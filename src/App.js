@@ -94,7 +94,6 @@ function App() {
           <Route exact path="/checkout" element={<Checkout />}></Route>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="*" element={<Error />}></Route>
-
         </Routes>
       </main>
       <Footer />
