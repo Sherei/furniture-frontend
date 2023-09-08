@@ -65,6 +65,10 @@ const Coffee = () => {
                                     visible={true}
                                 />
                             </div>
+                        ) : (data.category === "coffee").length === 0 ? (
+                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                                <h2>No Product Available in this category</h2>
+                            </div>
                         ) : (
                             data
                                 .filter((item) => item.category === "coffee")
@@ -104,31 +108,26 @@ const Coffee = () => {
                                                 </div>
                                             </div>
                                             <div className='d-flex justify-content-center flex-column gap-3'>
-                                            
-                                            <button className='order_btn' onClick={() => {
-                                                if (cu._id === undefined) {
-                                                    toast.warning("Login to Buy");
-                                                    move("/login");
-                                                } else {
-                                                    toast.success("Product Added");
-                                                }
-                                            }}>Add To Cart</button>
-                                            <a  href="https://wa.me/+923067208343">
 
-                                            <button className='order_btn'> <span className='mr-1'><FaWhatsapp/></span>Buy Via WhatsApp</button>
-                                            </a>
-                                        
-                                    </div>
+                                                <button className='order_btn' onClick={() => {
+                                                    if (cu._id === undefined) {
+                                                        toast.warning("Login to Buy");
+                                                        move("/login");
+                                                    } else {
+                                                        toast.success("Product Added");
+                                                    }
+                                                }}>Add To Cart</button>
+                                                <a href="https://wa.me/+923067208343">
+
+                                                    <button className='order_btn'> <span className='mr-1'><FaWhatsapp /></span>Buy Via WhatsApp</button>
+                                                </a>
+
+                                            </div>
                                         </div>
                                     </div>
                                 ))
                         )}
-                        {/* Render a message when no products are available */}
-                        {data.filter((item) => item.category === "coffee").length === 0 && !loading && (
-                            <div className="col-lg-12 col-sm-12">
-                                <p>No products available in this category.</p>
-                            </div>
-                        )}
+
                     </div>
                 </div>
             </div>

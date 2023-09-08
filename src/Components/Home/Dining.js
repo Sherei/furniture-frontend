@@ -66,6 +66,10 @@ const Dining = () => {
                                     visible={true}
                                 />
                             </div>
+                             ) : (data.category === "dinning").length === 0 ? (
+                                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                                    <h2>No Product Available in this category</h2>
+                                </div>
                         ) : (
                             data
                                 .filter((item) => item.category === "dinning")
@@ -124,11 +128,7 @@ const Dining = () => {
                                     </div>
                                 ))
                         )}
-                        {data.filter((item) => item.category === "dinning").length === 0 && !loading && (
-                            <div className="col-lg-12 col-sm-12">
-                                <p>No products available in this category.</p>
-                            </div>
-                        )}
+                     
                     </div>
                 </div>
             </div>
