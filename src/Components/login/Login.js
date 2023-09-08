@@ -19,7 +19,7 @@ export const Login = () => {
   let Login = async (data) => {
     try {
   
-      let response = await axios.post("https://my-furniture-tau.vercel.app//login", data);
+      let response = await axios.post("https://my-furniture-tau.vercel.app/login", data);
 
       let loginUser = response.data;
 

@@ -29,7 +29,7 @@ const SingleAdd = () => {
 
 
     useEffect(() => {
-        axios.get(`https://my-furniture-tau.vercel.app//singleProduct?id=${productId}`).then((res) => {
+        axios.get(`https://my-furniture-tau.vercel.app/singleProduct?id=${productId}`).then((res) => {
             setProduct(res.data);
         }).catch((error) => {
             console.error(error);
@@ -37,7 +37,7 @@ const SingleAdd = () => {
     }, [productId]);
 
     useEffect(() => {
-        axios.get('https://my-furniture-tau.vercel.app//product').then((res) => {
+        axios.get('https://my-furniture-tau.vercel.app/product').then((res) => {
             try {
                 if (res) {
                     setData(res.data);
@@ -67,7 +67,7 @@ const SingleAdd = () => {
         try {
             const commentWithProductId = { ...cmnt, productId };
 
-            const response = await axios.post("/comments", commentWithProductId);
+            const response = await axios.post("https://my-furniture-tau.vercel.app/comments", commentWithProductId);
             if (response.status === 200) {
                 toast.success("Comment Submitted");
             } else {
@@ -79,7 +79,7 @@ const SingleAdd = () => {
     };
 
     useEffect(() => {
-        axios.get("/comments").then((res) => {
+        axios.get("https://my-furniture-tau.vercel.app/comments").then((res) => {
             setComments(res.data);
             setIsLoadingComments(false);
         })

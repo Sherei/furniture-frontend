@@ -13,7 +13,7 @@ export const Signup = () => {
 
   async function SignUp(data) {
     try {
-      const response = await axios.post('https://my-furniture-tau.vercel.app//signUp', data);
+      const response = await axios.post('https://my-furniture-tau.vercel.app/signUp', data);
       if (response.data === "User Created") {
         toast.success("Account Created");
         move("/login")

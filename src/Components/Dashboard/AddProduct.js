@@ -52,7 +52,7 @@ export const AddProduct = () => {
     }
     try {
 
-      let response = await axios.post("https://my-furniture-tau.vercel.app//product", meraForm)
+      let response = await axios.post("https://my-furniture-tau.vercel.app/product", meraForm)
 
       if (response.data === "Product Added") {
         toast.success("Product Uploaded");

@@ -20,7 +20,7 @@ export const Dashboard = () => {
     const [product, setProducts] = useState([])
     const [comment, setComments] = useState([])
     useEffect(() => {
-        axios.get("https://my-furniture-tau.vercel.app//dashboard").then((res) => {
+        axios.get("https://my-furniture-tau.vercel.app/dashboard").then((res) => {
             setUsers(res.data.Users)
             setProducts(res.data.Products)
             setComments(res.data.comments)

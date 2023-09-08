@@ -11,7 +11,7 @@ const Comments = () => {
 
     useEffect(() => {
         axios
-            .get('https://my-furniture-tau.vercel.app//comments')
+            .get('https://my-furniture-tau.vercel.app/comments')
             .then((res) => {
                 setComment(res.data);
                 setIsLoading(false);
@@ -91,7 +91,7 @@ const Comments = () => {
                                                 <button
                                                     className="delete_btn"
                                                     onClick={() => {
-                                                        axios.delete('https://my-furniture-tau.vercel.app//deleteComment?id=' + data._id).then(() => {
+                                                        axios.delete('https://my-furniture-tau.vercel.app/deleteComment?id=' + data._id).then(() => {
                                                             setComment(comment.filter((item) => data._id !== item._id));
                                                         });
                                                     }}

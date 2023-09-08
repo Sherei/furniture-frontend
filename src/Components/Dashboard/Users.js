@@ -13,7 +13,7 @@ export const Users = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    axios.get('https://my-furniture-tau.vercel.app//Users')
+    axios.get('https://my-furniture-tau.vercel.app/Users')
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);
@@ -102,7 +102,7 @@ export const Users = () => {
                           <td>{data.date.slice(0, 19)}</td>
                           <td>
                             <button className='delete_btn' onClick={() => {
-                              axios.delete('https://my-furniture-tau.vercel.app//deleteUser?id=' + data._id).then(() => {
+                              axios.delete('https://my-furniture-tau.vercel.app/deleteUser?id=' + data._id).then(() => {
                                 setUsers(Users.filter(item => data._id != item._id))
                               });
                             }}>

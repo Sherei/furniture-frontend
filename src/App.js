@@ -53,7 +53,7 @@ function App() {
 
   useEffect(function () {
 
-    axios.post('https://my-furniture-tau.vercel.app//session-check', { token: localStorage.getItem('userToken') }).then(function (res) {
+    axios.post('https://my-furniture-tau.vercel.app/session-check', { token: localStorage.getItem('userToken') }).then(function (res) {
       if (res.data) {
         dispatch({
           type: "LOGIN_USER",

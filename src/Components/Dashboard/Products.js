@@ -11,7 +11,7 @@ export const Products = () => {
 
   useEffect(() => {
     axios
-      .get('https://my-furniture-tau.vercel.app//product')
+      .get('https://my-furniture-tau.vercel.app/product')
       .then((res) => {
         setProduct(res.data);
         setIsLoading(false);
@@ -103,7 +103,7 @@ export const Products = () => {
                         <button
                           className="delete_btn"
                           onClick={() => {
-                            axios.delete('https://my-furniture-tau.vercel.app//deleteProduct?id=' + data._id).then(() => {
+                            axios.delete('https://my-furniture-tau.vercel.app/deleteProduct?id=' + data._id).then(() => {
                               setProduct(product.filter((item) => data._id !== item._id));
                             });
                           }}
