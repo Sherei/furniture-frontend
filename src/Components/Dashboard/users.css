@@ -1,0 +1,59 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0.25em;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.user_row {
+    height: 100vh;
+    overflow: auto;
+    box-shadow: 1px 1px 1px 5px whitesmoke;
+    border-radius: 10px;
+}
+
+.user_row td {
+    border: 1px solid rgb(221, 221, 221);
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid rgb(165, 164, 164) !important;
+}
+
+.select {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.select:focus {
+    border: none;
+    outline: none;
+}
+
+td {
+    padding: 0.5rem 1rem;
+
+}
+.delete_btn{
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: red;
+}
+.textarea{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

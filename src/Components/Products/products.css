@@ -1,0 +1,121 @@
+.mic_hover {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.mic_hover:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    outline: none;
+    background-color: lightgray;
+    transition: all linear 0.3s;
+}
+
+.mic_hover:focus {
+    color: red;
+    outline: none;
+}
+
+.categories p {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(129, 128, 128);
+}
+
+.categories p:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    border-bottom: 1px solid rgb(175, 136, 136);
+    transition: all linear 0.3s;
+}
+
+.p_display{
+    display: none;
+}
+.card:hover{
+    cursor: pointer;
+    transform: scale(1.04);
+    transition: all linear 0.3s ;
+}
+.card:hover .p_display{
+    display: block;
+}
+.grid_icon {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.grid_icon.active {
+    background-color: black;
+    color: white;
+}
+
+.grid_icon {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.3rem 0.8rem;
+    background-color: #F6F8FA;
+    font-size: 1rem;
+}
+
+/* /////////////////////////// */
+
+
+
+.price {
+    color: #6254F3;
+    font-weight: 500;
+}
+
+.product {
+    padding: 0px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options select option {
+    padding: 10px !important;
+}
+
+@media only screen and (max-width: 225px) and (min-width: 990px) {
+    .main_col {
+        padding-top: 0px !important;
+        background-color: #6254F3;
+    }
+
+    .main-col1 {
+        background-color: #6254F3;
+
+        padding-bottom: 0px !important;
+    }
+
+    .categories {
+        color: blue;
+    }
+
+    .range_class {
+        width: 70%;
+    }
+}
+
+@media (max-width:768px) {
+    .product_card {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .p_row_display {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
