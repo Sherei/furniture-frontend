@@ -73,7 +73,7 @@ function App() {
         </div>
       )}
       
-      <a href="https://wa.me/+447392608087">
+      <a href="https://wa.me/+923067208343">
 
         <div className='whatsapp-btn'>
           <BsWhatsapp />

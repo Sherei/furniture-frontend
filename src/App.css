@@ -96,30 +96,15 @@
     }
 }
   @media screen and (min-width:768px) and (max-width:992px) {
-    .whatsapp-btn,.top_btn {
-      left: 92% !important;
-    }
-    .top_btn{
-      top: 76% !important;
-    }
+    
   }
 
   @media screen and (min-width:551px) and (max-width:767px) {
-    .whatsapp-btn, .phone,.top_btn {
-      left: 90% !important;
-    }
-    .top_btn{
-      top: 76% !important;
-    }
+    
   }
 
   @media screen and (max-width:550px) {
-    .whatsapp-btn,.top_btn {
-      left: 90% !important;
-    }
-    .top_btn{
-      top: 76% !important;
-    }
+   
     .whatsapp-btn,
     .phone {
       font-size: 15px !important;
@@ -131,12 +116,7 @@
   }
 
   @media screen and (max-width:350px) {
-    .whatsapp-btn, .top_btn {
-      left: 82% !important;
-    }
-    .top_btn{
-      top: 75% !important;
-    }
+    
     .whatsapp-btn,
     .phone {
       font-size: 15px !important;
@@ -144,5 +124,5 @@
     }
     .top_btn{
       font-size: 25px !important;
-    }
+     }
   }
