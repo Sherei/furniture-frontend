@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner';
 
-import axios from 'axios'
+import axios from 'axios';
 
 const Coffee = () => {
-
-    let cu = useSelector(store => store.userSection.cu)
+    let cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -28,7 +27,8 @@ const Coffee = () => {
             }
         });
     }, []);
-    return <>
+
+    return (
         <div className='container-fluid my-4' id='bedroom'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
@@ -70,9 +70,7 @@ const Coffee = () => {
                                 .filter((item) => item.category === "coffee")
                                 .slice(0, 10)
                                 .map((product) => (
-
-                                    <div className="bed_box">
-
+                                    <div className="bed_box" key={product._id}>
                                         <div className='b_box_img_main' onClick={() => move("/single_Add/" + product._id)}>
                                             <img src={product.images[0]} alt='No Network' />
 
@@ -105,27 +103,37 @@ const Coffee = () => {
                                                     )}
                                                 </div>
                                             </div>
-                                            <div className='d-flex justify-content-center'>
-                                                <a>
-                                                    <button className='order_btn' onClick={() => {
-                                                        if (cu._id === undefined) {
-                                                            toast.warning("Login to Buy")
-                                                            move("/login")
-                                                        } else {
-                                                            toast.success("Product Added")
-                                                        }
-                                                    }}>Add To Cart</button>
-                                                </a>
-                                            </div>
+                                            <div className='d-flex justify-content-center flex-column gap-3'>
+                                            
+                                            <button className='order_btn' onClick={() => {
+                                                if (cu._id === undefined) {
+                                                    toast.warning("Login to Buy");
+                                                    move("/login");
+                                                } else {
+                                                    toast.success("Product Added");
+                                                }
+                                            }}>Add To Cart</button>
+                                            <a  href="https://wa.me/+923067208343">
+
+                                            <button className='order_btn'> <span className='mr-1'><FaWhatsapp/></span>Buy Via WhatsApp</button>
+                                            </a>
+                                        
+                                    </div>
                                         </div>
                                     </div>
                                 ))
                         )}
+                        {/* Render a message when no products are available */}
+                        {data.filter((item) => item.category === "coffee").length === 0 && !loading && (
+                            <div className="col-lg-12 col-sm-12">
+                                <p>No products available in this category.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
-        </div >
-    </>
+        </div>
+    );
 }
 
-export default Coffee
+export default Coffee;
