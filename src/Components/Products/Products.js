@@ -26,7 +26,7 @@ const Products = () => {
     let move = useNavigate()
     useEffect(() => {
         setLoading(true);
-        axios.get('https://my-furniture-tau.vercel.app//product').then((res) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
             try {
                 if (res) {
                     setData(res.data)
@@ -362,18 +362,6 @@ const Products = () => {
 
                         </div>
                     </div>
-
-                    {/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
-
-
-
-
-                    {/* //////////////////////////////////////////////////// */}.
-
-
-
-
-
 
                 </div>
             </div>

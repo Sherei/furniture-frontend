@@ -17,7 +17,7 @@ const Review = () => {
 
     const Comment = async (cmnt) => {
         try {
-            const response = await axios.post("https://my-furniture-tau.vercel.app/comments", cmnt);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, cmnt);
             if (response.status === 200) {
                 toast.success("Comment Submitted");
             } else {
@@ -29,7 +29,7 @@ const Review = () => {
     };
 
     useEffect(() => {
-        axios.get("https://my-furniture-tau.vercel.app/comments").then((res) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
             setComments(res.data);
             setIsLoadingComments(false);
         })

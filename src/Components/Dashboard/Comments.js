@@ -11,7 +11,7 @@ const Comments = () => {
 
     useEffect(() => {
         axios
-            .get('https://my-furniture-tau.vercel.app/comments')
+            .get(`${process.env.REACT_APP_BASE_URL}/comments`)
             .then((res) => {
                 setComment(res.data);
                 setIsLoading(false);

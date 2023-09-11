@@ -11,7 +11,7 @@ export const Products = () => {
 
   useEffect(() => {
     axios
-      .get('https://my-furniture-tau.vercel.app/product')
+      .get(`${process.env.REACT_APP_BASE_URL}/product`)
       .then((res) => {
         setProduct(res.data);
         setIsLoading(false);

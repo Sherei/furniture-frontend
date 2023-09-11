@@ -13,7 +13,7 @@ export const Users = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    axios.get('https://my-furniture-tau.vercel.app/Users')
+    axios.get(`${process.env.REACT_APP_BASE_URL}/Users`)
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
+import { FaWhatsapp } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -43,27 +43,20 @@ const Bedroom = () => {
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    <div className='arrow_icons_main'>
-                        <div className='h_box_icon1' >
-                            <FaAngleLeft />
-                        </div>
-                        <div className='h_box_icon2'>
-                            <FaAngleRight />
-                        </div>
-                    </div>
+
                     <div className='h_box_main'>
                         {loading ? (
-                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{height:"50vh"}} >
-                             <Bars
-                                 height="50"
-                                 width="80"
-                                 color="#1b2950"
-                                 ariaLabel="bars-loading"
-                                 wrapperStyle={{}}
-                                 wrapperClass=""
-                                 visible={true}
-                             />
-                         </div>
+                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                                <Bars
+                                    height="50"
+                                    width="80"
+                                    color="#1b2950"
+                                    ariaLabel="bars-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
+                            </div>
                         ) : (
                             data
                                 .filter((item) => item.category === "wardrobes")
@@ -104,15 +97,17 @@ const Bedroom = () => {
                                                 </div>
                                             </div>
                                             <div className='d-flex justify-content-center'>
-                                                <a>
-                                                    <button className='order_btn' onClick={() => {
-                                                        if (cu._id === undefined) {
-                                                            toast.warning("Login to Buy")
-                                                            move("/login")
-                                                        } else {
-                                                            toast.success("Product Added")
-                                                        }
-                                                    }}>Add To Cart</button>
+                                                <button className='order_btn' onClick={() => {
+                                                    if (cu._id === undefined) {
+                                                        toast.warning("Login to Buy");
+                                                        move("/login");
+                                                    } else {
+                                                        toast.success("Product Added");
+                                                    }
+                                                }}>Add To Cart</button>
+                                                <a href="https://wa.me/+923067208343">
+
+                                                    <button className='order_btn'> <span className='mr-1'><FaWhatsapp /></span>Buy Via WhatsApp</button>
                                                 </a>
                                             </div>
                                         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -44,14 +44,7 @@ const Coffee = () => {
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    <div className='arrow_icons_main'>
-                        <div className='h_box_icon1' >
-                            <FaAngleLeft />
-                        </div>
-                        <div className='h_box_icon2'>
-                            <FaAngleRight />
-                        </div>
-                    </div>
+                 
                     <div className='h_box_main'>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >

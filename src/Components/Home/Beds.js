@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
