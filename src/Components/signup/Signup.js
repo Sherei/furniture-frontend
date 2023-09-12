@@ -14,6 +14,7 @@ export const Signup = () => {
   async function SignUp(data) {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
+      // const response = await axios.post("/signUp", data);
       if (response.data === "User Created") {
         toast.success("Account Created");
         move("/login")

@@ -21,6 +21,7 @@ export const Dashboard = () => {
     const [comment, setComments] = useState([])
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard`).then((res) => {
+            // axios.get("/dashboard").then((res) => {
             setUsers(res.data.Users)
             setProducts(res.data.Products)
             setComments(res.data.comments)

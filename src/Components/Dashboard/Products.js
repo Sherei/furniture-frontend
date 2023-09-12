@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Bars } from 'react-loader-spinner';
+import FadeLoader from "react-spinners/FadeLoader";
+
 import { AiFillDelete } from 'react-icons/ai';
 import axios from 'axios';
 
 export const Products = () => {
-  
+
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -12,6 +13,7 @@ export const Products = () => {
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/product`)
+      // .get("/product")
       .then((res) => {
         setProduct(res.data);
         setIsLoading(false);
@@ -61,7 +63,15 @@ export const Products = () => {
           <div className="table-container">
             {isLoading ? (
               <div className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center" style={{ height: '50vh' }}>
-                <Bars height="50" width="80" color="#1b2950" ariaLabel="bars-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+                <FadeLoader
+                  color="#1b2950"
+                  height={18}
+                  loading
+                  margin={5}
+                  radius={2}
+                  speedMultiplier={1}
+                  width={4}
+                />
               </div>
             ) : filteredProduct.length === 0 ? (
               <div className="col-lg-12 col-sm-12 text-center mb-4">

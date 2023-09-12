@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { Bars } from 'react-loader-spinner'
+import FadeLoader from "react-spinners/FadeLoader";
+
 import axios from 'axios';
 
 import "./review.css"
@@ -18,6 +19,7 @@ const Review = () => {
     const Comment = async (cmnt) => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, cmnt);
+            // const response = await axios.post("/comments", cmnt);
             if (response.status === 200) {
                 toast.success("Comment Submitted");
             } else {
@@ -29,7 +31,8 @@ const Review = () => {
     };
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
+        // axios.get("/comments").then((res) => {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
             setComments(res.data);
             setIsLoadingComments(false);
         })
@@ -53,15 +56,15 @@ const Review = () => {
                     }
                     {isLoadingComments ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                            <Bars
-                                height="50"
-                                width="80"
-                                color="#1b2950"
-                                ariaLabel="bars-loading"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                            />
+                            <FadeLoader
+                                    color="#1b2950"
+                                    height={18}
+                                    loading
+                                    margin={5}
+                                    radius={2}
+                                    speedMultiplier={1}
+                                    width={4}
+                                />
                         </div>
                     ) : comments.length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Bars } from 'react-loader-spinner';
+import FadeLoader from "react-spinners/FadeLoader";
+
 import { AiFillDelete } from "react-icons/ai"
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ export const Users = () => {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/Users`)
+    // axios.get("/Users")
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);
@@ -42,24 +44,24 @@ export const Users = () => {
   return (
     <>
       <div className='container-fluid'>
-      <div className="row my-3">
-                <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
-                    <div className="">
-                        <h1 className="p_head" style={{ color: 'rgb(2, 2, 94)', fontWeight: '700' }}>
-                            Users List
-                        </h1>
-                    </div>
-                    <div>
-                        <input
-                            type="search"
-                            className="w-100 form-control mb-2 mr-sm-2"
-                            placeholder="Search Anything"
-                            value={search}
-                            onChange={handleSearchInputChange}
-                        />
-                    </div>
-                </div>
+        <div className="row my-3">
+          <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
+            <div className="">
+              <h1 className="p_head" style={{ color: 'rgb(2, 2, 94)', fontWeight: '700' }}>
+                Users List
+              </h1>
             </div>
+            <div>
+              <input
+                type="search"
+                className="w-100 form-control mb-2 mr-sm-2"
+                placeholder="Search Anything"
+                value={search}
+                onChange={handleSearchInputChange}
+              />
+            </div>
+          </div>
+        </div>
         <div className='row px-0 py-3 user_row'>
           <div className='col'>
             <div className="table-container">
@@ -77,14 +79,14 @@ export const Users = () => {
                 <tbody>
                   {isLoading ? (
                     <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                      <Bars
-                        height="50"
-                        width="80"
+                      <FadeLoader
                         color="#1b2950"
-                        ariaLabel="bars-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
+                        height={18}
+                        loading
+                        margin={5}
+                        radius={2}
+                        speedMultiplier={1}
+                        width={4}
                       />
                     </div>
                   ) : (

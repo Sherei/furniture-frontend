@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Bars } from 'react-loader-spinner';
+import FadeLoader from "react-spinners/FadeLoader";
+
 
 import "./beds.css";
 
@@ -16,7 +17,8 @@ const Beds = () => {
     let move = useNavigate();
 
     useEffect(() => {
-        axios.get('https://server-lilac-five.vercel.app/product').then((res) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+            // axios.get("/product").then((res) => {
             try {
                 if (res) {
                     setData(res.data);
@@ -48,14 +50,14 @@ const Beds = () => {
                     <div className='h_box_main'>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                <Bars
-                                    height="50"
-                                    width="80"
+                               <FadeLoader
                                     color="#1b2950"
-                                    ariaLabel="bars-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
+                                    height={18}
+                                    loading
+                                    margin={5}
+                                    radius={2}
+                                    speedMultiplier={1}
+                                    width={4}
                                 />
                             </div>
                         ) : (data.category === "bed").length === 0 ? (

@@ -9,7 +9,8 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Bars } from 'react-loader-spinner';
+import FadeLoader from "react-spinners/FadeLoader";
+
 import './single.css';
 
 const SingleAdd = () => {
@@ -30,6 +31,7 @@ const SingleAdd = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`).then((res) => {
+            // axios.get(`/singleProduct?id=${productId}`).then((res) => {
             setProduct(res.data);
         }).catch((error) => {
             console.error(error);
@@ -38,6 +40,7 @@ const SingleAdd = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+            // axios.get("/product").then((res) => {
             try {
                 if (res) {
                     setData(res.data);
@@ -68,6 +71,7 @@ const SingleAdd = () => {
             const commentWithProductId = { ...cmnt, productId };
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
+            // const response = await axios.post("/comments", commentWithProductId);
             if (response.status === 200) {
                 toast.success("Comment Submitted");
             } else {
@@ -80,6 +84,7 @@ const SingleAdd = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
+            // axios.get("/comments").then((res) => {
             setComments(res.data);
             setIsLoadingComments(false);
         })
@@ -212,15 +217,15 @@ const SingleAdd = () => {
 
                     {isLoadingComments ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                            <Bars
-                                height="50"
-                                width="80"
-                                color="#1b2950"
-                                ariaLabel="bars-loading"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                            />
+                           <FadeLoader
+                                    color="#1b2950"
+                                    height={18}
+                                    loading
+                                    margin={5}
+                                    radius={2}
+                                    speedMultiplier={1}
+                                    width={4}
+                                />
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >

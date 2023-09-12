@@ -20,6 +20,7 @@ export const Login = () => {
     try {
   
       let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);
+      // let response = await axios.post("/login", data);
 
       let loginUser = response.data;
 

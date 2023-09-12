@@ -3,7 +3,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { toast } from "react-toastify"
-import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
 export const Navbar = () => {
@@ -54,7 +53,7 @@ export const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
           <ul className="navbar-nav px-lg-5 px-xlg-5">
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown" >
               <a className="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Sofas
               </a>
@@ -86,17 +85,17 @@ export const Navbar = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" role="button">
+              <a className="nav-link" href="/Products/all" role="button">
                 Wardrobes
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" role="button">
+              <a className="nav-link" href="/Products/all" role="button">
                 Mattress
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" role="button" >
+              <a className="nav-link" href="/Products/all" role="button" >
                 Dinning
               </a>
             </li>
@@ -109,7 +108,7 @@ export const Navbar = () => {
             {cu._id != undefined && cu.email != "asd@gmail.com" &&
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="cart">
+                  <a className="nav-link" href="/cart">
                     <span>
                       <FiShoppingCart />
                     </span>
@@ -122,7 +121,6 @@ export const Navbar = () => {
               <>
                 <li className="nav-item">
                   <a className="nav-link" href="/login">
-
                     Login
                   </a>
                 </li>

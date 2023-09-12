@@ -54,6 +54,7 @@ function App() {
   useEffect(function () {
 
     axios.post(`${process.env.REACT_APP_BASE_URL}/session-check`, { token: localStorage.getItem('userToken') }).then(function (res) {
+      // axios.post("/session-check", { token: localStorage.getItem('userToken') }).then(function (res) {
       if (res.data) {
         dispatch({
           type: "LOGIN_USER",
