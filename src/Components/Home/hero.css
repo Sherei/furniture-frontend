@@ -1,5 +1,5 @@
 .hero_main {
-    width: 95%;
+    width: 98%;
     margin: auto;
 }
 
@@ -53,8 +53,10 @@
 .swiper-slide img {
     display: block;
     width: 100%;
-    max-height: 480px;
+    max-height: 600px;
     object-fit: cover;
+    border-radius: 10px;
+
 }
 
 @media screen and (max-width:768px) {

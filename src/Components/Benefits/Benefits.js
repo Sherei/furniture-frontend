@@ -3,11 +3,11 @@ import { FaSyncAlt, FaProductHunt, FaRegCreditCard } from "react-icons/fa"
 import "./benefit.css"
 const Benefits = () => {
     return <>
-        <div className='container-fluid my-4' id='benefit'>
+        <div className='container main_container mb-5' id='benefit'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 Benefit_main'>
                     <div>
-                        <p style={{ fontWeight: "700", fontSize: "20px" }}>Benefits Of Our Service</p>
+                        <p className='px-4' style={{ fontWeight: "700", fontSize: "20px" , color:"#1b2950" }}>Benefits Of Our Service</p>
                     </div>
                 </div>
 

@@ -1,45 +1,86 @@
-
 .sticky-navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-item{
+  border-right: 1px solid rgb(216, 216, 216);
+  /* min-height: 50px; */
+}
+.nav-item2{
+  border: none !important;
+}
+.nav-item, .nav-item2 {
+  list-style: none;
+}
+.nav-item2{
+  padding: 1px 10px;
+  font-weight: 600;
+}
+.nav-item2:hover {
+  background-color: #1b2950;
+  font-weight: 700;
+}
 
-.navbar {
-      background-color: #1b2950; 
-  }
-  .navbar-nav{
-    align-items: center;
-  }
-  .navbar-nav .nav-item .nav-link {
-      color: white !important;
-  }
-  .dropdown-menu{
-    overflow: hidden;
-    height: 50vh;
-    width: fit-content;
-    background-color: white;
-    box-shadow: rgba(247, 246, 246, 0.795) 1.95px 1.95px 2.6px !important;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
-  }
-  .dropdown_menu2{
-    position: absolute;
-    left: -40px;
+.nav-item a {
+  color: black !important;
+}
 
-    height: fit-content !important;
-  }
-  .dropdown-menu .dropdown-item{
-    padding: 10px;
-  }
-  .dropdown-menu .dropdown-item:hover{
-    background-color: #1b2950;
-    color: white;
-    padding-left:20px;
-    transition: all linear .3s;
-  }
-  @media screen and (max-width:992px) {
-    .navbar-brand{
-        padding: 0px 0px 20px 0px;
-    }
-  }
+.nav-item2 a:hover {
+  color: white !important;
+}
+
+.dropdown{
+  border: none !important;
+}
+.dropdown-menu {
+  overflow: hidden;
+  height: 50vh;
+  width: fit-content;
+  background-color: white;
+  box-shadow: rgba(247, 246, 246, 0.795) 1.95px 1.95px 2.6px !important;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+.nav-item2.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown_menu2 {
+  height: fit-content !important;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 10px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #1b2950;
+  color: white !important;
+  padding-left: 20px;
+  transition: all linear .3s;
+}
+.line1{
+  height: 5px;
+  width: 30px;
+  background-color: #1b2950 !important;
+}
+.line2{
+  height: 5px;
+  width: 25px;
+  background-color: #1b2950 !important;
+}
+.line3{
+  height: 5px;
+  width: 28px;
+  background-color: #1b2950 !important;
+}
+.navbar-toggler{
+  transform: rotate(180deg) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.custom-toggler {
+  margin-left: auto;
+} 

@@ -45,13 +45,12 @@ const Review = () => {
     const length = comments.length
 
     return <>
-        <div className='container-fluid' id='review'>
-
+        <div className='container ' id='review'>
             <div className='row mt-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1 order-md-1 order-xl-1'>
                     {comments.length > 0 &&
                         <div>
-                            <p className="text-center" style={{ fontWeight: "700", fontSize: "20px" }}>{comments.length} Reviews</p>
+                            <p className="text-center" style={{ fontWeight: "700", fontSize: "20px" , color:"#1b2950" }}>{comments.length} Reviews</p>
                         </div>
                     }
                     {isLoadingComments ? (
@@ -67,20 +66,23 @@ const Review = () => {
                                 />
                         </div>
                     ) : comments.length === 0 ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center' style={{ height: "50vh" , color:"#1b2950" }} >
                             <h2>No Review available</h2>
                         </div>
                     ) : (
                         <div className='row comments_row'>
                             {comments.map((item) => {
                                 return (
-                                    <div className='border col-lg-8 col-md-12 col-sm-12 py-3 mb-3'>
-                                        <div className='d-flex'>
+                                    <div className='border col-lg-8 col-md-12 col-sm-12 py-1 mb-2'
+                                    style={{
+                                        backgroundColor:"rgb(255, 255, 255, 0.8)"
+                                    }}>
+                                        <div className='d-flex align-items-center' >
                                             <img
                                                 src="/149071-removebg-preview.png"
                                                 className="rounded-circle shadow-1-strong"
-                                                width={80}
-                                                height={80}
+                                                width={50}
+                                                height={50}
                                                 alt="No network"
                                             />
                                             <div className='px-4'>
@@ -98,7 +100,7 @@ const Review = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
                     <div>
-                        <h1 style={{ color: "#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
+                        <h1 style={{  color:"#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
                     </div>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">

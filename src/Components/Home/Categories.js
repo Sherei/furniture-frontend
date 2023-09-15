@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react'
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
-import "./home_category.css"
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import "./home_category.css"
+
 const Categories = () => {
   let array = [
     { img: "/sofas.jpg", title: "All Sofas" },
@@ -15,11 +15,11 @@ const Categories = () => {
   let move =useNavigate()
 
   return (
-    <div className='container-fluid my-4'>
+    <div className='container main_container'>
       <div className='row'>
         <div className='col-lg-12 col-sm-12 my-2 hero_main'>
           <div>
-            <p style={{ fontWeight: "700", fontSize: "20px" }}>Our collections</p>
+            <p style={{ fontWeight: "700", fontSize: "20px", color:"#1b2950" }}>Our collections</p>
           </div>
         </div>
         <div className='col-lg-12 col-sm-12'>

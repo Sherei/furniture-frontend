@@ -27,6 +27,7 @@ const Products = () => {
     let move = useNavigate()
     useEffect(() => {
         setLoading(true);
+        console.log("process.env.REACT_APP_BASE_URL::", process.env.REACT_APP_BASE_URL)
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
         // axios.get("/product").then((res) => {
             try {

@@ -8,8 +8,7 @@
 }
 .comments_row{
     display: flex;
-    padding: 0px 10px;
-    justify-content: center;
+    /* justify-content: center; */
     height: 65vh;
     overflow: auto;
 }
@@ -20,7 +19,7 @@
     max-height: 40px !important;
 }
 .comments_row::-webkit-scrollbar {
-    width: 7px;
+    width: 3px;
     max-height: 10px !important;
 }
 

@@ -31,11 +31,11 @@ const Dining = () => {
     }, []);
 
     return (
-        <div className='container-fluid my-4' id='coffee'>
+        <div className='container main_container' id='coffee'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p style={{ fontWeight: "700", fontSize: "20px" }}>Dining Table Sets</p>
+                        <p style={{ fontWeight: "700", fontSize: "20px" , color:"#1b2950" }}>Dining Table Sets</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
