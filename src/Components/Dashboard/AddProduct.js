@@ -55,9 +55,8 @@ export const AddProduct = () => {
       let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
       // let response = await axios.post("/product", meraForm)
 
-      if (response.data === "Product Added") {
+      if (response.data.message === "Product Added") {
         toast.success("Product Uploaded");
-
       }
     } catch (error) {
 

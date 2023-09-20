@@ -69,55 +69,43 @@ const Sofas = () => {
                                 .filter((item) => item.category === "sofa")
                                 .slice(0, 15)
                                 .map((product) => (
-                                    <div className="bed_box">
-                                        <div className='b_box_img_main' onClick={() => move("/single_Add/" + product._id)}>
-                                            <img src={product.images[0]} alt='No Network' />
-                                            {product.discount && product.discount > 0 ? (
-                                                <div className='discount'>
-                                                    {`-${product.discount}%`}
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        <div className=''>
-                                            <p className='card_title'>{product.title}</p>
-                                        </div>
-                                        <div className='px-2 display'>
-                                            {product.description && (
-                                                <div>
-                                                    <p className='card_description'>{product.description.slice(0, 90)}...</p>
-                                                </div>
-                                            )}
-                                            <div className='d-flex'>
-                                                <div className='d-flex' style={{ position: "relative", width: "100%" }}>
-                                                    <p className='px-1'><b>Price :</b></p>
-                                                    {product.discount && product.discount > 0 ? (
-                                                        <>
-                                                            <span className='card_Fprice'>{`${product.Fprice.toFixed(2)}$`}</span>
-                                                            <span><s>{`${product.price.toFixed(2)}$`}</s></span>
-                                                        </>
-                                                    ) : (
-                                                        <span className='card_Fprice'>{`${product.Fprice.toFixed(2)}$`}</span>
-                                                    )}
-                                                </div>
+                                    <div className='card_box' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
+                                    <button className='btn order_btn' onClick={() => {
+                                        if (cu._id === undefined) {
+                                            toast.warning("Login to Buy");
+                                            move("/login");
+                                        } else {
+                                            toast.success("Product Added");
+                                        }
+                                    }}>Add To Cart</button>
+                                    <a href="https://wa.me/+923067208343">
+
+                                        <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
+                                    </a>
+                                    <div className='card_img_box'>
+                                        <img src={product.images[0]} className='img-fluid' alt='No Network' />
+                                        {product.discount && product.discount > 0 ? (
+                                            <div className='discount'>
+                                                {`${product.discount}%`}
                                             </div>
-                                            <div className='d-flex justify-content-center flex-column gap-3'>
+                                        ) : null}
+                                    </div>
 
-                                                <button className='order_btn' onClick={() => {
-                                                    if (cu._id === undefined) {
-                                                        toast.warning("Login to Buy");
-                                                        move("/login");
-                                                    } else {
-                                                        toast.success("Product Added");
-                                                    }
-                                                }}>Add To Cart</button>
-                                                <a href="https://wa.me/+923067208343">
+                                    <p className='card_title px-2'>{product.title}</p>
+                                    <div>
+                                        {product.discount && product.discount > 0 ? (
+                                            <>
+                                                <span className='card_Fprice px-2'>{`$${product.Fprice.toFixed(1)}`}</span>
+                                                <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                            </>
+                                        ) : (
+                                            <span className='card_Fprice px-2'>{`$${product.Fprice.toFixed(2)}`}</span>
+                                        )}
+                                        <div className='card_btns'>
 
-                                                    <button className='order_btn'> <span className='mr-1'><FaWhatsapp /></span>Buy Via WhatsApp</button>
-                                                </a>
-
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
                                 ))
                         )}
                     </div>

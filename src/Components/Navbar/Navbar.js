@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
+import { FaUser, FaWhatsapp } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { toast } from "react-toastify"
@@ -7,9 +8,9 @@ import "./navbar.css";
 
 export const Navbar = () => {
 
-  let cu = useSelector(store => store.userSection.cu)
-  let dispatch = useDispatch()
-  let move = useNavigate()
+  const cu = useSelector(store => store.userSection.cu)
+  const dispatch = useDispatch()
+  const move = useNavigate()
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
@@ -27,6 +28,8 @@ export const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+
   function Logout() {
     dispatch({
       type: 'LOGOUT_USER'
@@ -47,46 +50,57 @@ export const Navbar = () => {
           <div className='d-flex align-items-center'>
             <li className="nav-item">
               <a className="nav-link" href="/login">
-                Login
+                <FaWhatsapp />
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/login">
-                Signup
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/cart">
-                <span>
-                  <FiShoppingCart />
-                </span>
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/149071-removebg-preview.png"
-                  className="img-fluid rounded-3"
-                  width={50}
-                  height={50}
-                  alt=""
-                />
-              </a>
-              <ul className="dropdown-menu dropdown_menu2" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a className="dropdown-item" href="#">Profile</a></li>
+            {cu._id == undefined &&
+              <li className="nav-item">
+                <a className="nav-link" href="/login">
+                  <FaUser />
+                </a>
+              </li>
+            }
+            {cu._id != undefined &&
+              <>
+              {cu.email !="asd@gmail.com" &&
+                <li className="nav-item">
+                  <a className="nav-link" href="/cart">
+                    <span>
+                      <FiShoppingCart />
+                    </span>
+                  </a>
+                </li>
+              }
+                <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/149071-removebg-preview.png"
+                      className="img-fluid rounded-3"
+                      width={50}
+                      height={50}
+                      alt=""
+                    />
+                  </a>
+                  <ul className="dropdown-menu dropdown_menu2" aria-labelledby="navbarDarkDropdownMenuLink">
+                    {cu.email != "asd@gmail.com" &&
+                      <li><a className="dropdown-item" href="#">Profile</a></li>
+                    }
+                    {cu.email === "asd@gmail.com" &&
+                      <li><a className="dropdown-item" href="/dashboard">Admin</a></li>
+                    }
+                    <li><a className="dropdown-item" href="/login" onClick={Logout}>Logout</a></li>
+                  </ul>
+                </li>
+              </>
 
-                <li><a className="dropdown-item" href="/dashboard">Admin</a></li>
-
-                <li><a className="dropdown-item" href="/login" onClick={Logout}>Logout</a></li>
-              </ul>
-            </li>
+            }
           </div>
         </div>
       </div>
     </div>
 
-    <div className="container border-bottom mb-1">
+    <div className={`container border-bottom mb-1 ${isSticky ? 'fixed-top navbar-custom' : ''}`}>
       <div className="row ">
-        <nav className="navbar navbar-expand-lg ">
+        <nav className="navbar navbar-expand-lg">
 
           <button
             className="navbar-toggler custom-toggler"

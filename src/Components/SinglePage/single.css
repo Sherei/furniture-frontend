@@ -51,8 +51,8 @@
     display: none;
 }
 
-.s_box::-webkit-scrollbar-thumb{
-    background : #1b2950;
+.s_box::-webkit-scrollbar-thumb {
+    background: #1b2950;
     border-radius: 5rem;
     height: 8rem;
     background-clip: content-box;
@@ -95,7 +95,17 @@
 }
 
 .s_btn button {
-    display: block;
+    font-weight: 600;
+    color: white;
+    background-color: #fd5d39;
+    padding: 10px 20px !important;
+    border: none;
+    outline: none;
+}
+.s_btn button:hover{
+    font-weight: 700;
+    color: #1B2950;
+    background-color: rgb(253,93,57,0.8);
 }
 
 .input_single {
@@ -117,10 +127,12 @@
     border-radius: 40px;
     color: white;
 }
-.s-Image{
+
+.s-Image {
     width: 100%;
 }
-.s-Image img{
+
+.s-Image img {
     width: fit-content;
     max-height: 400px;
     overflow: hidden;
@@ -161,10 +173,10 @@
     .related {
         margin: 40px 0px;
     }
-    
-.s_box::-webkit-scrollbar {
-    display: none;
-}
+
+    .s_box::-webkit-scrollbar {
+        display: none;
+    }
 
 }
 

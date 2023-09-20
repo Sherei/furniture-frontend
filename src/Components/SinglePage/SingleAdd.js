@@ -31,7 +31,6 @@ const SingleAdd = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`).then((res) => {
-            // axios.get(`/singleProduct?id=${productId}`).then((res) => {
             setProduct(res.data);
         }).catch((error) => {
             console.error(error);
@@ -40,7 +39,6 @@ const SingleAdd = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            // axios.get("/product").then((res) => {
             try {
                 if (res) {
                     setData(res.data);
@@ -63,8 +61,8 @@ const SingleAdd = () => {
             setQuantity(newQuantity);
         }
     };
-    const totalPrice = product.Fprice * quantity;
 
+    const totalPrice = product.Fprice * quantity;
 
     const Comment = async (cmnt) => {
         try {
@@ -98,7 +96,7 @@ const SingleAdd = () => {
         <div className='container-fluid'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center'>
-                    <p style={{textTransform:"capitalize"}}>home <FaAngleRight />products <FaAngleRight /> {product.category} <FaAngleRight />  {product.subCategory}</p>
+                    <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product.category} <FaAngleRight />  {product.subCategory}</p>
                 </div>
                 <div className='col-lg-1 col-md-2 col-sm-12 d-flex justify-content-center'>
                     <div className='small_images'>
@@ -156,27 +154,23 @@ const SingleAdd = () => {
                                 <RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill />
                             </span>
                         </p>
-                        <p className='' style={{ fontWeight: '600' }}>Reviews: 20</p>
+                        <p className='' style={{ fontWeight: '600' }}> {` Reviews : ${comments.filter((item) => item.productId === productId).length}`} </p>
                         <p className=''><b>Price: </b>
-                            {product.discount && product.discount > 0 ? (
-                                <span>{`$${totalPrice.toFixed(2)}`}</span>
-                            ) : (
-                                <span>{`$${product.price}}`}</span>
-                            )}
+                            <span className='card_Fprice'>{`$${totalPrice}`}</span>
                         </p>
                         <p><b>Quantity: </b>
                             <input className='input_single' type="number" value={quantity} min={1} onChange={handleQuantityChange} /></p>
-                        <div className='btn s_btn'>
-                            <button className='btn order_btn' onClick={() => {
-                                if (cu._id === undefined) {
-                                    toast.warning("Login to Buy")
-                                    move("/login")
-                                } else {
-                                    toast.success("Product Added")
-                                }
-                            }}
-                            >Add to Cart</button>
-                        </div>
+                    </div>
+                    <div className='s_btn mt-5'>
+                        <button className='btn' onClick={() => {
+                            if (cu._id === undefined) {
+                                toast.warning("Login to Buy")
+                                move("/login")
+                            } else {
+                                toast.success("Product Added")
+                            }
+                        }}
+                        >Add to Cart</button>
                     </div>
                 </div>
 
@@ -217,15 +211,15 @@ const SingleAdd = () => {
 
                     {isLoadingComments ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                           <FadeLoader
-                                    color="#1b2950"
-                                    height={18}
-                                    loading
-                                    margin={5}
-                                    radius={2}
-                                    speedMultiplier={1}
-                                    width={4}
-                                />
+                            <FadeLoader
+                                color="#1b2950"
+                                height={18}
+                                loading
+                                margin={5}
+                                radius={2}
+                                speedMultiplier={1}
+                                width={4}
+                            />
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
@@ -236,13 +230,17 @@ const SingleAdd = () => {
                             {comments.filter((item) => item.productId === productId)
                                 .map((item) => {
                                     return (
-                                        <div className='border col-lg-8 col-md-12 col-sm-12 pt-3 mb-3'>
-                                            <div className='d-flex'>
+                                        <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
+                                            style={{
+                                                height: "fit-content",
+                                                backgroundColor: "rgb(255, 255, 255, 0.8)"
+                                            }}>
+                                            <div className='d-flex align-items-center' >
                                                 <img
                                                     src="/149071-removebg-preview.png"
                                                     className="rounded-circle shadow-1-strong"
-                                                    width={80}
-                                                    height={80}
+                                                    width={50}
+                                                    height={50}
                                                     alt="No network"
                                                 />
                                                 <div className='px-4'>
@@ -257,7 +255,7 @@ const SingleAdd = () => {
                         </div>
                     )}
                 </div>
-                
+
                 <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
                     <div>
                         <h1 style={{ color: "#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
@@ -274,6 +272,8 @@ const SingleAdd = () => {
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
                             />
+                            {errors.name ? <div className='error'>Name is required </div> : null}
+
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -286,6 +286,8 @@ const SingleAdd = () => {
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
                             />
+                            {errors.email ? <div className='error'>Email is required </div> : null}
+
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -299,8 +301,9 @@ const SingleAdd = () => {
                                 aria-describedby="emailHelp"
                                 rows={5}
                             />
+                            {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
                         </div>
-                        <button type="submit" className="btn order_btn">
+                        <button type="submit" className="btn review_btn">
                             Submit
                         </button>
                     </form>

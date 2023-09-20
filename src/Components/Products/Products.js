@@ -29,7 +29,7 @@ const Products = () => {
         setLoading(true);
         console.log("process.env.REACT_APP_BASE_URL::", process.env.REACT_APP_BASE_URL)
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-        // axios.get("/product").then((res) => {
+            // axios.get("/product").then((res) => {
             try {
                 if (res) {
                     setData(res.data)
@@ -209,55 +209,52 @@ const Products = () => {
                             />
                         </div>
                     ) : (
-                        <div className="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-1 g-4">
+                        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
                                 filteredProduct.map((product) => (
                                     <div className="col" key={product.id}>
-                                        <div className="card">
-                                            <img
-                                                src={product.images[0]}
-                                                className="card-img-top"
-                                                alt="Product"
-                                            />
-                                            {product.discount && product.discount > 0 ? (
-                                                <div className='discount'>
-                                                    {`${product.discount}%`}
-                                                </div>
-                                            ) : null}
-                                            <div className="card-body">
-                                                <h5 className="card-title p_title">{product.title}</h5>
-                                                {product.description && (
-                                                    <p className="card-text text-center p_display">
-                                                        {product.description.slice(0, 90)}...
-                                                    </p>
+                                        <div className='product_box'>   
+                                            <button className='btn p_card_btn1' onClick={() => {
+                                                if (cu._id === undefined) {
+                                                    toast.warning("Login to Buy");
+                                                    move("/login");
+                                                } else {
+                                                    toast.success("Product Added");
+                                                }
+                                            }}>Add To Cart</button>
+                                            <a href="https://wa.me/+923067208343">
+                                                <button className='btn p_card_btn2'>Buy Via WhatsApp</button>
+                                            </a>
+                                            <div className='p_img_box'>
+                                                <img src={product.images[0]} alt="No network" />
+                                                {product.discount && product.discount > 0 ? (
+                                                    <div className='discount'>
+                                                        {`${product.discount}%`}
+                                                    </div>
+                                                ) : null}
+                                            </div>
+                                            <p className='card_title px-2'>{product.title}</p>
+                                            <p className='p_description px-2'>{product.description}</p>
+                                            <div className='text-left'>
+                                                {product.discount && product.discount > 0 ? (
+                                                    <>
+                                                        <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(1)}`}</span>
+                                                        <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                                    </>
+                                                ) : (
+                                                    <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
                                                 )}
-                                                <div className='d-flex flex-wrap'>
-                                                    <p className='px-1'><b>Price :</b></p>
-                                                    {product.discount && product.discount > 0 ? (
-                                                        <>
-                                                            <span className='card_Fprice'>{`${product.Fprice.toFixed(2)}$`}</span>
-                                                            <span><s>{`${product.price.toFixed(2)}$`}</s></span>
-                                                        </>
-                                                    ) : (
-                                                        <span className='card_Fprice'>{`${product.Fprice.toFixed(2)}$`}</span>
-                                                    )}
+                                            </div>
+                                            <div className='product_card_btns my-3'>
 
-                                                </div>
-                                                <div className='d-flex justify-content-center'>
-                                                    <a>
-                                                        <button className='order_btn' onClick={() => {
-                                                            if (cu._id === undefined) {
-                                                                toast.warning("Login to Buy")
-                                                                move("/login")
-                                                            } else {
-                                                                toast.success("Product Added")
-                                                            }
-                                                        }}>Add To Cart</button>
-                                                    </a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    //     <div className="product_card" style={{ position: "relative", overflow: "hidden " }}>
+
+
+                                    //     </div>
+                                    // </div>
                                 ))
                             }
                         </div>

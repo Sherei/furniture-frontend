@@ -32,7 +32,7 @@ const Review = () => {
 
     useEffect(() => {
         // axios.get("/comments").then((res) => {
-            axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
             setComments(res.data);
             setIsLoadingComments(false);
         })
@@ -50,33 +50,34 @@ const Review = () => {
                 <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1 order-md-1 order-xl-1'>
                     {comments.length > 0 &&
                         <div>
-                            <p className="text-center" style={{ fontWeight: "700", fontSize: "20px" , color:"#1b2950" }}>{comments.length} Reviews</p>
+                            <p className="text-center" style={{ fontWeight: "700", fontSize: "20px", color: "#1b2950" }}>{comments.length} Reviews</p>
                         </div>
                     }
                     {isLoadingComments ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                             <FadeLoader
-                                    color="#1b2950"
-                                    height={18}
-                                    loading
-                                    margin={5}
-                                    radius={2}
-                                    speedMultiplier={1}
-                                    width={4}
-                                />
+                                color="#1b2950"
+                                height={18}
+                                loading
+                                margin={5}
+                                radius={2}
+                                speedMultiplier={1}
+                                width={4}
+                            />
                         </div>
                     ) : comments.length === 0 ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center' style={{ height: "50vh" , color:"#1b2950" }} >
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center' style={{ height: "50vh", color: "#1b2950" }} >
                             <h2>No Review available</h2>
                         </div>
                     ) : (
                         <div className='row comments_row'>
                             {comments.map((item) => {
                                 return (
-                                    <div className='border col-lg-8 col-md-12 col-sm-12 py-1 mb-2'
-                                    style={{
-                                        backgroundColor:"rgb(255, 255, 255, 0.8)"
-                                    }}>
+                                    <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
+                                        style={{
+                                            height:"fit-content",
+                                            backgroundColor: "rgb(255, 255, 255, 0.8)"
+                                        }}>
                                         <div className='d-flex align-items-center' >
                                             <img
                                                 src="/149071-removebg-preview.png"
@@ -100,7 +101,7 @@ const Review = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
                     <div>
-                        <h1 style={{  color:"#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
+                        <h1 style={{ color: "#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
                     </div>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
@@ -114,6 +115,8 @@ const Review = () => {
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
                             />
+                            {errors.name ? <div className='error'>Name is required </div> : null}
+
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -126,6 +129,8 @@ const Review = () => {
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
                             />
+                            {errors.email ? <div className='error'>Email is required </div> : null}
+
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -139,8 +144,10 @@ const Review = () => {
                                 aria-describedby="emailHelp"
                                 rows={5}
                             />
+                            {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
+
                         </div>
-                        <button type="submit" className="btn order_btn">
+                        <button type="submit" className="btn review_btn">
                             Submit
                         </button>
                     </form>

@@ -3,6 +3,9 @@
   top: 0;
   z-index: 100;
 }
+.navbar-custom{
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
 .nav-item{
   border-right: 1px solid rgb(216, 216, 216);
   /* min-height: 50px; */

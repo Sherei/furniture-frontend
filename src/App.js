@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Navbar/Navbar';
 import { Login } from "./Components/login/Login";
-import { Signup } from "./Components/signup/Signup";
 import { Cart } from "./Components/cart/Cart"
 import {Error} from "./Components/Error/Error"
 import Home from "./Components/Home/Home"
@@ -91,7 +90,6 @@ function App() {
           <Route exact path="/Products/:prodctName" element={<Products />} />
           <Route exact path="/cart" element={<Cart />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/signup" element={<Signup />}></Route>
           <Route exact path="/checkout" element={<Checkout />}></Route>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="*" element={<Error />}></Route>

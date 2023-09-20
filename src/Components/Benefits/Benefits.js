@@ -33,7 +33,7 @@ const Benefits = () => {
                 <div className='col-lg-12 my-4 d-flex justify-content-center'>
 
                     <a href="/Products/all">
-                        <button className='order_btn r_btn'>Browse Products</button>
+                        <button className='review_btn'>Browse Products</button>
                     </a>
                 </div>
 
