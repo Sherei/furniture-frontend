@@ -38,9 +38,9 @@ export const Navbar = () => {
     move('/login');
   }
   return <>
-    <div className="container py-2 bg-white border-bottom">
+    <div className={`py-2 bg-white border-bottom ${isSticky ? 'container-fluid' : 'container'}`}>
       <div className="row">
-        <div className="cols-12 d-flex align-items-center justify-content-between">
+        <div className="cols-12 nav1">
           <a href="/" className="ms-md-2">
             <img
               src="/logo2.svg"
@@ -62,15 +62,15 @@ export const Navbar = () => {
             }
             {cu._id != undefined &&
               <>
-              {cu.email !="asd@gmail.com" &&
-                <li className="nav-item">
-                  <a className="nav-link" href="/cart">
-                    <span>
-                      <FiShoppingCart />
-                    </span>
-                  </a>
-                </li>
-              }
+                {cu.email != "asd@gmail.com" &&
+                  <li className="nav-item">
+                    <a className="nav-link" href="/cart">
+                      <span>
+                        <FiShoppingCart />
+                      </span>
+                    </a>
+                  </li>
+                }
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/149071-removebg-preview.png"
@@ -96,11 +96,11 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
 
-    <div className={`container border-bottom mb-1 ${isSticky ? 'fixed-top navbar-custom' : ''}`}>
-      <div className="row ">
-        <nav className="navbar navbar-expand-lg">
+    <div className={`border-bottom mb-1 ${isSticky ? 'container-fluid fixed-top navbar-custom' : 'container'}`}>
+      <div className="row">
+        <nav className="navbar navbar-expand-lg p-0">
 
           <button
             className="navbar-toggler custom-toggler"
@@ -119,7 +119,7 @@ export const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul className="navbar-nav">
-              <li className="nav-item nav-item2 dropdown" >
+              <li className="nav-item2 dropdown" >
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Sofas
                 </a>
@@ -132,7 +132,7 @@ export const Navbar = () => {
                   <li><a className="dropdown-item" href="#" >leather recliner sofa sets</a></li>
                 </ul>
               </li>
-              <li className="nav-item nav-item2 dropdown">
+              <li className="nav-item2 dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Beds
                 </a>
@@ -149,27 +149,27 @@ export const Navbar = () => {
                   <li><a className="dropdown-item" href="#">Wall Panel Beds Frame</a></li>
                 </ul>
               </li>
-              <li className="nav-item nav-item2">
+              <li className="nav-item2">
                 <a className="nav-link" href="/Products/all" role="button">
                   Interrior View
                 </a>
               </li>
-              <li className="nav-item nav-item2">
+              <li className="nav-item2">
                 <a className="nav-link" href="/Products/all" role="button">
                   Wardrobes
                 </a>
               </li>
-              <li className="nav-item nav-item2">
+              <li className="nav-item2">
                 <a className="nav-link" href="/Products/all" role="button">
                   Mattress
                 </a>
               </li>
-              <li className="nav-item nav-item2">
+              <li className="nav-item2">
                 <a className="nav-link" href="/Products/all" role="button" >
                   Dinning
                 </a>
               </li>
-              <li className="nav-item nav-item2">
+              <li className="nav-item2">
                 <a className="nav-link" href="/Products/all" role="button" >
                   Products
                 </a>

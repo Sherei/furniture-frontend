@@ -7,10 +7,15 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import "./hero.css"
 const Hero = () => {
     let array = [
-        { title: "60% off", img: "bed.jpg" },
-        { title: "40% off", img: "1.jpg" },
-        { title: "60% off", img: "3.jpg" },
-        { title: "50% off", img: "4.jpg" },
+        { img: "albero-furniture-bratislava-3RfIi22Y97Y-unsplash (1).jpg" },
+        { img: "3.jpg" },
+        { img: "AdobeStock_200836711_Preview.jpeg" },
+        { img: "1.jpg" },
+        { img: "AdobeStock_184256548_Preview.jpeg" },
+        { img: "AdobeStock_246454872_Preview.jpeg" },
+        {img:"AdobeStock_585163350_Preview.jpeg"},
+        { img: "bed.jpg" },
+        { img: "4.jpg" },
     ]
     return <>
         <div className='container-fluid' id='/'>
@@ -32,7 +37,7 @@ const Hero = () => {
                                     <div className='slide' style={{ position: "relative" }}>
                                         <img src={`/${data.img}`} alt="" />
                                         <div className='slide_detail'>
-                                                <img src="/40.png" className='img-fluid' alt="No network" />
+                                            <img src="/40.png" className='img-fluid' alt="No network" />
                                         </div>
                                     </div>
                                 </SwiperSlide>

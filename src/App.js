@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Navbar/Navbar';
 import { Login } from "./Components/login/Login";
 import { Cart } from "./Components/cart/Cart"
-import {Error} from "./Components/Error/Error"
+import { Error } from "./Components/Error/Error"
 import Home from "./Components/Home/Home"
 import Products from './Components/Products/Products';
 import Footer from "./Components/Footer/Footer"
@@ -10,7 +10,7 @@ import SingleAdd from './Components/SinglePage/SingleAdd';
 import Checkout from './Components/Checkout/Checkout';
 import { useDispatch, useSelector } from "react-redux";
 import { BsWhatsapp } from "react-icons/bs";
-import { FaArrowUp} from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +19,7 @@ import './App.css';
 import { Dashboard } from './Components/Dashboard/Dashboard';
 
 function App() {
- 
+
 
   const [showScrollButton, setShowScrollButton] = useState(false);
 
@@ -46,7 +46,7 @@ function App() {
     });
   };
 
-  
+
   let cu = useSelector(store => store.userSection.cu)
   let dispatch = useDispatch()
 
@@ -72,7 +72,7 @@ function App() {
           <FaArrowUp />
         </div>
       )}
-      
+
       <a href="https://wa.me/+923067208343">
 
         <div className='whatsapp-btn'>
@@ -86,7 +86,7 @@ function App() {
       <main>
         <Routes>
           <Route exact element={<Home />} path="/"></Route>
-          <Route exact path="/single_Add/:productId" element={<SingleAdd/>} />
+          <Route exact path="/single_Add/:productId" element={<SingleAdd />} />
           <Route exact path="/Products/:prodctName" element={<Products />} />
           <Route exact path="/cart" element={<Cart />}></Route>
           <Route exact path="/login" element={<Login />}></Route>

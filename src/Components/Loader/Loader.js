@@ -10,7 +10,7 @@ const Loader = () => {
             margin={5}
             radius={2}
             speedMultiplier={1}
-            width={4}
+            width={5}
         />
     </>
 }

@@ -36,7 +36,7 @@ export const AddProduct = () => {
 
 
   async function submitProduct(data) {
-    
+
     let meraForm = new FormData();
     meraForm.append('title', data.title);
     meraForm.append('sn', data.sn);
@@ -53,8 +53,9 @@ export const AddProduct = () => {
     try {
 
       let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
-      // let response = await axios.post("/product", meraForm)
-
+      
+      console.log(response)
+      
       if (response.data.message === "Product Added") {
         toast.success("Product Uploaded");
       }
@@ -185,7 +186,7 @@ export const AddProduct = () => {
               </div>
               <div className='col-lg-6 col-sm-12 my-2'>
                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                <input type='file' {...register('images', { required: true, maxLength: 6, minLength: 1 })} multiple className="form-control mb-2 mr-sm-2" />
+                <input type='file' multiple {...register('images', { required: true, maxLength: 6, minLength: 1 })} className="form-control mb-2 mr-sm-2" />
                 {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                 {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only six images allowed</div>}
                 {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}

@@ -1,24 +1,38 @@
-.mic_hover {
-    background: none;
-    border: none;
+.filter_col {
+    height: 400px;
+    width: 300px !important;
+    background-color: #1b2950;
     position: absolute;
-    top: 2px;
-    right: 4px;
-    padding: 3px;
-    border-radius: 50%;
+    top: 20px;
+    display: flex;
+    padding: 20px 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    left: -400px;
 }
 
-.mic_hover:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    outline: none;
-    background-color: lightgray;
-    transition: all linear 0.3s;
+.showFilter {
+    position: absolute;
+    height: 400px;
+    width: 300px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #1b2950;
+    top: 20px;
+    border-radius: 10px;
+    padding: 20px 10px;
+    z-index: 1000;
+    right: 10px;
+    transition: all ease-in-out 0.5s;
 }
 
-.mic_hover:focus {
-    color: red;
-    outline: none;
+.search_bar {
+    width: 80%;
+    background-color: transparent;
+    padding: 20px 10px !important;
+
 }
 
 .categories p {
@@ -90,10 +104,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-}
-
-.options select option {
-    padding: 10px !important;
 }
 
 .product_box {
@@ -186,9 +196,14 @@
     .p_img_box {
         height: 200px;
     }
+
+    .search_bar {
+        width: 95%;
+    }
 }
 
 @media screen and (max-width:550px) {
+
     .p_card_btn1,
     .p_card_btn2 {
         font-size: 12px;
@@ -226,6 +241,7 @@
         padding: 10px 10px;
         word-wrap: normal !important;
     }
+
     .product_box:hover .p_card_btn1 {
         left: 10%;
     }

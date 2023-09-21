@@ -117,4 +117,7 @@
     .arrow_icons_main {
         display: none;
     }
+    .main_container {
+        padding: 30px 10px;
+    }
 }
