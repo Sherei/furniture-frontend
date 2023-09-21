@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FaWhatsapp } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import FadeLoader from "react-spinners/FadeLoader";
+import Loader from "../Loader/Loader"
+
 
 const Sofas = () => {
     let cu = useSelector(store => store.userSection.cu);
@@ -34,7 +34,7 @@ const Sofas = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  hero_main'>
                     <div>
-                        <p style={{ fontWeight: "700", fontSize: "20px" , color:"#1b2950"}} >All Sofas</p>
+                        <p style={{ fontWeight: "700", fontSize: "20px", color: "#1b2950" }} >All Sofas</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
@@ -45,24 +45,16 @@ const Sofas = () => {
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    
 
+                    {data.filter((product) => product.category === "sofa").length === 0 &&
+                        <div className='px-4'>
+                            No product available related to this category
+                        </div>
+                    }
                     <div className='h_box_main'>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                 <FadeLoader
-                                    color="#1b2950"
-                                    height={18}
-                                    loading
-                                    margin={5}
-                                    radius={2}
-                                    speedMultiplier={1}
-                                    width={4}
-                                />
-                            </div>
-                        ) : (data.category === "sofa").length === 0 ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                <h2>No Product Available in this category</h2>
+                                <Loader />
                             </div>
                         ) : (
                             data
@@ -70,42 +62,42 @@ const Sofas = () => {
                                 .slice(0, 15)
                                 .map((product) => (
                                     <div className='card_box' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
-                                    <button className='btn order_btn' onClick={() => {
-                                        if (cu._id === undefined) {
-                                            toast.warning("Login to Buy");
-                                            move("/login");
-                                        } else {
-                                            toast.success("Product Added");
-                                        }
-                                    }}>Add To Cart</button>
-                                    <a href="https://wa.me/+923067208343">
+                                        <button className='btn order_btn' onClick={() => {
+                                            if (cu._id === undefined) {
+                                                toast.warning("Login to Buy");
+                                                move("/login");
+                                            } else {
+                                                toast.success("Product Added");
+                                            }
+                                        }}>Add To Cart</button>
+                                        <a href="https://wa.me/+923067208343">
 
-                                        <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
-                                    </a>
-                                    <div className='card_img_box'>
-                                        <img src={product.images[0]} className='img-fluid' alt='No Network' />
-                                        {product.discount && product.discount > 0 ? (
-                                            <div className='discount'>
-                                                {`${product.discount}%`}
+                                            <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
+                                        </a>
+                                        <div className='card_img_box'>
+                                            <img src={product.images[0]} className='img-fluid' alt='No Network' />
+                                            {product.discount && product.discount > 0 ? (
+                                                <div className='discount'>
+                                                    {`${product.discount}%`}
+                                                </div>
+                                            ) : null}
+                                        </div>
+
+                                        <p className='card_title px-2'>{product.title}</p>
+                                        <div>
+                                            {product.discount && product.discount > 0 ? (
+                                                <>
+                                                    <span className='card_Fprice px-2'>{`$${product.Fprice.toFixed(1)}`}</span>
+                                                    <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                                </>
+                                            ) : (
+                                                <span className='card_Fprice px-2'>{`$${product.Fprice.toFixed(2)}`}</span>
+                                            )}
+                                            <div className='card_btns'>
+
                                             </div>
-                                        ) : null}
-                                    </div>
-
-                                    <p className='card_title px-2'>{product.title}</p>
-                                    <div>
-                                        {product.discount && product.discount > 0 ? (
-                                            <>
-                                                <span className='card_Fprice px-2'>{`$${product.Fprice.toFixed(1)}`}</span>
-                                                <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
-                                            </>
-                                        ) : (
-                                            <span className='card_Fprice px-2'>{`$${product.Fprice.toFixed(2)}`}</span>
-                                        )}
-                                        <div className='card_btns'>
-
                                         </div>
                                     </div>
-                                </div>
                                 ))
                         )}
                     </div>

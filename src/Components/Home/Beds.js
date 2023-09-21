@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaWhatsapp } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import FadeLoader from "react-spinners/FadeLoader";
-
-
+import Loader from "../Loader/Loader"
 import "./beds.css";
 
 const Beds = () => {
@@ -47,22 +44,15 @@ const Beds = () => {
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
+                    {data.filter((product) => product.category === "bed").length === 0 &&
+                        <div className='px-4'>
+                            No product available related to this category
+                        </div>
+                    }
                     <div className='h_box_main'>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                <FadeLoader
-                                    color="#1b2950"
-                                    height={18}
-                                    loading
-                                    margin={5}
-                                    radius={2}
-                                    speedMultiplier={1}
-                                    width={4}
-                                />
-                            </div>
-                        ) : (data.category === "bed").length === 0 ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                <h2>No Product Available in this category</h2>
+                                <Loader />
                             </div>
                         ) : (
                             data

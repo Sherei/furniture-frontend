@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import FadeLoader from "react-spinners/FadeLoader";
-
-import { AiFillDelete } from "react-icons/ai"
+import React, { useEffect, useState, useRef } from 'react';
+import Loader from '../Loader/Loader';
+import { AiFillDelete } from 'react-icons/ai';
+import { FaDownload } from 'react-icons/fa'
+import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 
 import "./users.css";
@@ -12,10 +13,17 @@ export const Users = () => {
   const [Users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const tableRef = useRef(null);
+
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: 'Users',
+    sheet: 'Users'
+  })
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/Users`)
-    // axios.get("/Users")
+      // axios.get("/Users")
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);
@@ -47,10 +55,11 @@ export const Users = () => {
         <div className="row my-3">
           <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
             <div className="">
-              <h1 className="p_head" style={{ color: 'rgb(2, 2, 94)', fontWeight: '700' }}>
+              <h1 className="p_head">
                 Users List
               </h1>
             </div>
+            <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button>
             <div>
               <input
                 type="search"
@@ -79,15 +88,7 @@ export const Users = () => {
                 <tbody>
                   {isLoading ? (
                     <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                      <FadeLoader
-                        color="#1b2950"
-                        height={18}
-                        loading
-                        margin={5}
-                        radius={2}
-                        speedMultiplier={1}
-                        width={4}
-                      />
+                      <Loader />
                     </div>
                   ) : (
                     filteredUser.length === 0 ? (

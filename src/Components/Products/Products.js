@@ -6,7 +6,8 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
-import FadeLoader from "react-spinners/FadeLoader";
+import Loader from "../Loader/Loader"
+
 
 import "./products.css"
 
@@ -198,15 +199,7 @@ const Products = () => {
                     </div>
                     {loading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                            <FadeLoader
-                                color="#1b2950"
-                                height={18}
-                                loading
-                                margin={5}
-                                radius={2}
-                                speedMultiplier={1}
-                                width={4}
-                            />
+                            <Loader/>
                         </div>
                     ) : (
                         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-sm-2  g-4">
@@ -250,11 +243,6 @@ const Products = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    //     <div className="product_card" style={{ position: "relative", overflow: "hidden " }}>
-
-
-                                    //     </div>
-                                    // </div>
                                 ))
                             }
                         </div>

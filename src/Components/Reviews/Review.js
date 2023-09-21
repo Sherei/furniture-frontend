@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import FadeLoader from "react-spinners/FadeLoader";
-
+import Loader from "../Loader/Loader"
 import axios from 'axios';
 
 import "./review.css"
@@ -55,15 +53,7 @@ const Review = () => {
                     }
                     {isLoadingComments ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                            <FadeLoader
-                                color="#1b2950"
-                                height={18}
-                                loading
-                                margin={5}
-                                radius={2}
-                                speedMultiplier={1}
-                                width={4}
-                            />
+                            <Loader/>
                         </div>
                     ) : comments.length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center' style={{ height: "50vh", color: "#1b2950" }} >

@@ -1,15 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import FadeLoader from "react-spinners/FadeLoader";
+import { AiFillDelete } from 'react-icons/ai';
+import {FaDownload} from 'react-icons/fa'
+import { useDownloadExcel } from 'react-export-table-to-excel';
 
 export const Orders = () => {
+
+  const [Orders, setOrder] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const tableRef = useRef(null);
+
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: 'Orders',
+    sheet: 'Orders'
+  })
+
+  const handleSearchInputChange = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <>
       <div className='container-fluid'>
         <div className='row my-3'>
-          <div className='col-lg-12 col-sm-12'>
-            <h1 className='p_head' style={{ color: 'rgb(2, 2, 94)', fontWeight: '700' }}>
-              Total Orders
-            </h1>
+        <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
+            <div className="">
+              <h1 className="p_head">
+                Orders List
+              </h1>
+            </div>
+            <button className='excel_btn btn' onClick={onDownload}><FaDownload/></button>
+            <div>
+              <input
+                type="search"
+                className="w-100 form-control mb-2 mr-sm-2"
+                placeholder="Search Anything"
+                value={search}
+                onChange={handleSearchInputChange}
+              />
+            </div>
           </div>
         </div>
         <div className='row px-0 py-3 user_row'>

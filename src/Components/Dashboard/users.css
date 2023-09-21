@@ -1,3 +1,9 @@
+.p_head {
+    color: rgb(2, 2, 94);
+    font-weight: 700;
+    border-bottom: 1px solid rgb(2, 2, 94);
+}
+
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -45,15 +51,32 @@ td {
     padding: 0.5rem 1rem;
 
 }
-.delete_btn{
+
+.delete_btn {
     background-color: transparent !important;
     border: none;
     outline: none;
     font-size: 20px;
     color: red;
 }
-.textarea{
+
+.textarea {
     background-color: transparent;
     border: none;
     outline: none;
+}
+
+.excel_btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
+    background-color: rgb(2, 2, 94);
+    color: white;
+}
+
+.excel_btn:hover {
+    background-color: rgb(2, 2, 94, 0.8);
+    color: white;
+    transition: all linear 0.3s;
+
 }

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import FadeLoader from "react-spinners/FadeLoader";
-
+import React, { useEffect, useState, useRef } from 'react';
+import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
+import {FaDownload} from 'react-icons/fa'
+import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 
 export const Products = () => {
@@ -9,6 +10,13 @@ export const Products = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const tableRef = useRef(null);
+
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: 'Products',
+    sheet: 'Products'
+  })
 
   useEffect(() => {
     axios
@@ -43,10 +51,11 @@ export const Products = () => {
       <div className="row my-3">
         <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
           <div className="">
-            <h1 className="p_head" style={{ color: 'rgb(2, 2, 94)', fontWeight: '700' }}>
+            <h1 className="p_head">
               Products List
             </h1>
           </div>
+            <button className='excel_btn btn' onClick={onDownload}><FaDownload/></button>
           <div>
             <input
               type="search"
@@ -62,23 +71,15 @@ export const Products = () => {
         <div className="col">
           <div className="table-container">
             {isLoading ? (
-              <div className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center" style={{ height: '50vh' }}>
-                <FadeLoader
-                  color="#1b2950"
-                  height={18}
-                  loading
-                  margin={5}
-                  radius={2}
-                  speedMultiplier={1}
-                  width={4}
-                />
-              </div>
+             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+             <Loader />
+           </div>
             ) : filteredProduct.length === 0 ? (
               <div className="col-lg-12 col-sm-12 text-center mb-4">
                 <p>No matching products found.</p>
               </div>
             ) : (
-              <table className="table table-striped">
+              <table className="table table-striped" ref={tableRef}>
                 <thead>
                   <tr>
                     <th>Sr#</th>

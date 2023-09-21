@@ -4,7 +4,7 @@
   z-index: 100;
 }
 .navbar-custom{
-  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: rgb(216, 216, 216, 0.9);
 }
 .nav-item{
   border-right: 1px solid rgb(216, 216, 216);

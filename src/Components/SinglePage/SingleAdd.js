@@ -9,8 +9,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import FadeLoader from "react-spinners/FadeLoader";
-
+import Loader from '../Loader/Loader';
 import './single.css';
 
 const SingleAdd = () => {
@@ -211,15 +210,7 @@ const SingleAdd = () => {
 
                     {isLoadingComments ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                            <FadeLoader
-                                color="#1b2950"
-                                height={18}
-                                loading
-                                margin={5}
-                                radius={2}
-                                speedMultiplier={1}
-                                width={4}
-                            />
+                            <Loader />
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
