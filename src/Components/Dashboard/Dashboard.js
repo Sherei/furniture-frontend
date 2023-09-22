@@ -43,13 +43,13 @@ export const Dashboard = () => {
 
     if (cu.email != "asd@gmail.com") {
         return <Error />
-    } else if (cu._id == undefined) {
+    } else if (cu._id === undefined) {
         return <Error />
     }
 
     return (
         <>
-            <div className='container-fluid my-5'>
+            <div className='container my-5'>
                 <div className='row px-3'>
                     <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
                         <div className="">
@@ -85,30 +85,30 @@ export const Dashboard = () => {
 
                 </div>
                 <div className='col-lg-12 col-sm-12' id='order'>
-                    <div className='row px-5 my-5 d-flex gap-5 justify-content-center'>
+                    <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Orders />
                     </div>
                 </div>
 
                 <div className='col-lg-12 col-sm-12' id='users'>
-                    <div className='row px-5 my-5 d-flex gap-5 justify-content-center'>
+                    <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Users />
                     </div>
                 </div>
 
                 <div className='col-lg-12 col-sm-12' id='product'>
-                    <div className='row px-5 my-5 d-flex gap-5 justify-content-center'>
+                    <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Products />
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' id='comment'>
-                    <div className='row px-5 my-5 d-flex gap-5 justify-content-center'>
+                    <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Comments />
                     </div>
                 </div>
 
                 <div className='col-lg-12 col-sm-12' id='addproduct'>
-                    <div className='row px-5 my-5 d-flex gap-5 justify-content-center'>
+                    <div className='row  my-5 d-flex gap-5 justify-content-center'>
                         <AddProduct />
                     </div>
                 </div>

@@ -59,7 +59,6 @@ const Beds = () => {
                                 .filter((item) => item.category === "bed")
                                 .slice(0, 15)
                                 .map((product) => (
-
                                     <div className='card_box' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
                                         <button className='btn order_btn' onClick={() => {
                                             if (cu._id === undefined) {

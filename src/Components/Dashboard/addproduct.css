@@ -1,14 +1,4 @@
 
-.image-previews{
-    width: 200px;
-    height: 70px;
-    display: flex;
-    gap: 10px;
-}
-.image-previews img{
-    width: 100%;
-    height: 100%;
-}
 option{
     text-transform: capitalize;
 }

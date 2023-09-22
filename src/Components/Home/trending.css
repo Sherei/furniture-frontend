@@ -1,0 +1,98 @@
+.t_hover:hover{
+    box-shadow: 1px 1px 2px 1px rgb(0,0,0,0.2);
+    transition: all linear 0.3s;
+ 
+
+}
+.t_img_box {
+    position: relative;
+    width: 100%;
+}
+
+.trending {
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    left: 1px;
+    width: fit-content;
+    height: fit-content;
+    padding: 3px 5px;
+    color: white;
+    background-color: red;
+    border-radius: 4px;
+}
+
+.t_img_box img {
+    border-radius: 7px;
+    width: 100%;
+}
+
+.t_title {
+    margin-top: 10px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.t_title p {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.t_Fprice {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.t_price {
+    color: red;
+}
+
+.t_buttons {
+    position: absolute;
+    bottom: 10px;
+    right: -100px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+}
+.t_hover:hover .t_buttons{
+    right: 25px;
+    transition: all ease-in-out 0.5s;
+}
+
+.t_shopping {
+    height: fit-content !important;
+    width: fit-content !important;
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: rgb(2, 2, 94, 0.7);
+    padding: 10px 10px;
+    font-size: 20px;
+    border-radius: 40px !important;
+}
+
+.t_shopping:hover {
+    background-color: rgb(2, 2, 94);
+    color: white;
+}
+
+.t_whatsapp {
+    height: fit-content !important;
+    width: fit-content !important;
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: rgb(37, 211, 102, 0.7);
+    padding: 10px 10px;
+    font-size: 20px;
+    border-radius: 40px !important;
+}
+
+.t_whatsapp:hover {
+    color: white;
+    background-color: rgb(37, 211, 102);
+}

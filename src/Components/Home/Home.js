@@ -10,11 +10,13 @@ import Benefits from '../Benefits/Benefits'
 import Review from '../Reviews/Review'
 import Sofas from './Sofas'
 import Discounted from './Discounted'
+import Trending from './Trending'
 const Home = () => {
   return <>
       <Hero />
       <Categories />
       <Discounted />
+      <Trending/>
       <Sofas />
       <Beds />
       <Bedroom />
