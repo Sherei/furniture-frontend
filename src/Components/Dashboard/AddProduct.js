@@ -53,6 +53,7 @@ export const AddProduct = () => {
     meraForm.append('Fprice', data.Fprice);
     meraForm.append('trending', data.trending);
     meraForm.append('feature', data.feature);
+    meraForm.append('shipping', data.shipping);
 
     for (let i = 0; i < data.images.length; i++) {
       meraForm.append('images', data.images[i]);
@@ -83,7 +84,7 @@ export const AddProduct = () => {
         <div className='col-lg-12 col-sm-12'>
           <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
           {loading ? (
-            <div><Loader /></div>
+            <div className='d-flex justify-content-center align-items-center'><Loader /></div>
           ) : (
             <form>
               <div className='row'>
@@ -167,7 +168,6 @@ export const AddProduct = () => {
                       <option value="wall panel beds frame">Wall Panel Beds Frame</option>
                     </select>
                     {errors.subCategory ? <div className='error'>Select subCategory</div> : null}
-
                   </div>
                 )}
 
@@ -196,6 +196,11 @@ export const AddProduct = () => {
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only six images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Shipping Fee *</label>
+                  <input type="number" {...register('shipping', { required: true})} min={"0"} className="form-control mb-2 mr-sm-2" placeholder="1234" onChange={handlePriceChange} />
+                  {errors.shipping ? <div className='error'>Shipping fee is required minimum 0</div> : null}
                 </div>
               </div>
               <div className='row'>

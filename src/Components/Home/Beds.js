@@ -7,7 +7,7 @@ import Loader from "../Loader/Loader"
 import "./beds.css";
 
 const Beds = () => {
-    let cu = useSelector(store => store.userSection.cu);
+    const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 

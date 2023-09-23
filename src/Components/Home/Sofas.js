@@ -16,8 +16,7 @@ const Sofas = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            // axios.get("/product").then((res) => {
-            try {
+           try {
                 if (res) {
                     setData(res.data);
                 }

@@ -16,6 +16,8 @@
     -ms-overflow-style: none;
 }
 
+
+
 .h_box:hover {
     cursor: pointer;
     transform: scale(1.07);
@@ -75,6 +77,7 @@
         width: 100%;
         gap: 10px !important;
     }
+
     .main_container {
         padding: 30px 10px;
     }

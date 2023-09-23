@@ -61,14 +61,13 @@ const SingleAdd = () => {
         }
     };
 
-    const totalPrice = product.Fprice * quantity;
+    const totalPrice = (product.Fprice * quantity) + parseInt(product.shipping);
 
     const Comment = async (cmnt) => {
         try {
             const commentWithProductId = { ...cmnt, productId };
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
-            // const response = await axios.post("/comments", commentWithProductId);
             if (response.status === 200) {
                 toast.success("Comment Submitted");
             } else {
@@ -81,7 +80,6 @@ const SingleAdd = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
-            // axios.get("/comments").then((res) => {
             setComments(res.data);
             setIsLoadingComments(false);
         })
@@ -154,6 +152,14 @@ const SingleAdd = () => {
                             </span>
                         </p>
                         <p className='' style={{ fontWeight: '600' }}> {` Reviews : ${comments.filter((item) => item.productId === productId).length}`} </p>
+                        <p>Shipping Fee:
+                            {product.shipping > 0 &&
+                                <p>
+                                    {product.shipping}
+                                </p>
+                            }
+                            <p style={{color:"green", fontWeight:"600"}}>Free</p>
+                        </p>
                         <p className=''><b>Price: </b>
                             <span className='card_Fprice'>{`$${totalPrice}`}</span>
                         </p>

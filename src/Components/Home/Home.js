@@ -11,6 +11,7 @@ import Review from '../Reviews/Review'
 import Sofas from './Sofas'
 import Discounted from './Discounted'
 import Trending from './Trending'
+import Feature from './Feature'
 const Home = () => {
   return <>
       <Hero />
@@ -19,6 +20,7 @@ const Home = () => {
       <Trending/>
       <Sofas />
       <Beds />
+      <Feature/>
       <Bedroom />
       <Dining />
       <Coffee />
