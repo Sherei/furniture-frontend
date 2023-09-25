@@ -53,7 +53,6 @@ export const AddProduct = () => {
     meraForm.append('Fprice', data.Fprice);
     meraForm.append('trending', data.trending);
     meraForm.append('feature', data.feature);
-    meraForm.append('shipping', data.shipping);
 
     for (let i = 0; i < data.images.length; i++) {
       meraForm.append('images', data.images[i]);
@@ -147,7 +146,7 @@ export const AddProduct = () => {
                 )}
                 {selectedCategory === 'bed' && (
                   <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Brand *</label>
+                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Sub Category *</label>
                     <select {...register('subCategory', {
                       required: true, validate: function (selectedValue) {
                         if (selectedValue == "Select subCategory") {
@@ -183,7 +182,7 @@ export const AddProduct = () => {
                   {errors.price && errors.price.type == "minLength" ? <div className='error'>Price Contain at least 3 numbers</div> : null}
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
                   <input type="number" {...register('discount')} min={"1"} className="form-control mb-2 mr-sm-2" placeholder="10" onChange={handleDiscountChange} />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
@@ -197,11 +196,7 @@ export const AddProduct = () => {
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only six images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                 </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Shipping Fee *</label>
-                  <input type="number" {...register('shipping', { required: true})} min={"0"} className="form-control mb-2 mr-sm-2" placeholder="1234" onChange={handlePriceChange} />
-                  {errors.shipping ? <div className='error'>Shipping fee is required minimum 0</div> : null}
-                </div>
+                
               </div>
               <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12'>

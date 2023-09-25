@@ -4,6 +4,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import {FaDownload} from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Products = () => {
 
@@ -11,6 +12,8 @@ export const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   const tableRef = useRef(null);
+  
+  let move=useNavigate()
 
   const { onDownload } = useDownloadExcel({
     currentTableRef: tableRef.current,
@@ -97,7 +100,7 @@ export const Products = () => {
                 </thead>
                 <tbody>
                   {filteredProduct.map((data, index) => (
-                    <tr key={index}>
+                    <tr key={index} onClick={() => move("/single_Add/" + data._id)}> 
                       <td>{index + 1}</td>
                       <td>{data.sn}</td>
                       <td>
@@ -106,8 +109,8 @@ export const Products = () => {
                       <td>{data.title}</td>
                       <td>{data.category}</td>
                       <td>{data.subCategory}</td>
-                      <td>{data.price}</td>
-                      <td>{data.Fprice}</td>
+                      <td>{data.price.toFixed(2)}</td>
+                      <td>{data.Fprice.toFixed(2)}</td>
                       <td>{data.discount || 0}</td>
                       <td>{data.date.slice(0, 19)}</td>
                       <td>

@@ -16,7 +16,7 @@ const Sofas = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-           try {
+            try {
                 if (res) {
                     setData(res.data);
                 }
@@ -61,14 +61,8 @@ const Sofas = () => {
                                 .slice(0, 15)
                                 .map((product) => (
                                     <div className='card_box' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
-                                        <button className='btn order_btn' onClick={() => {
-                                            if (cu._id === undefined) {
-                                                toast.warning("Login to Buy");
-                                                move("/login");
-                                            } else {
-                                                toast.success("Product Added");
-                                            }
-                                        }}>Add To Cart</button>
+                                        <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
+
                                         <a href="https://wa.me/+923067208343">
 
                                             <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
@@ -80,6 +74,11 @@ const Sofas = () => {
                                                     {`${product.discount}%`}
                                                 </div>
                                             ) : null}
+                                              <div className='overlay'>
+                                                {product.images[1] &&
+                                                    <img src={product.images[1]} alt="" />
+                                                }
+                                            </div>
                                         </div>
 
                                         <p className='card_title px-2'>{product.title}</p>

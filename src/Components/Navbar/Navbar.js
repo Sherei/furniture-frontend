@@ -119,6 +119,11 @@ export const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul className="navbar-nav">
+            <li className="nav-item2">
+                <a className="nav-link" href="/" role="button">
+                  Home
+                </a>
+              </li>
               <li className="nav-item2 dropdown" >
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Sofas
@@ -174,7 +179,11 @@ export const Navbar = () => {
                   Products
                 </a>
               </li>
-
+              <li className="nav-item2">
+                <a className="nav-link" href="/Products/all" role="button">
+                  FAQ's
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

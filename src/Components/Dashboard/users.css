@@ -47,10 +47,16 @@
     border: none;
     outline: none;
 }
+tr:hover{
+    cursor: pointer;
+    color: white !important;
+    background-color: rgb(2, 2, 94,0.4) !important;
+    transition: all linear 0.3s;
+    font-weight: 600;
+}
 
 td {
-    padding: 0.5rem 1rem;
-
+    padding: 5px 5px;
 }
 
 .delete_btn {

@@ -61,7 +61,7 @@ const SingleAdd = () => {
         }
     };
 
-    const totalPrice = (product.Fprice * quantity) + parseInt(product.shipping);
+    const totalPrice = (product.Fprice * quantity);
 
     const Comment = async (cmnt) => {
         try {
@@ -151,23 +151,18 @@ const SingleAdd = () => {
                                 <RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill />
                             </span>
                         </p>
-                        <p className='' style={{ fontWeight: '600' }}> {` Reviews : ${comments.filter((item) => item.productId === productId).length}`} </p>
-                        <p>Shipping Fee:
-                            {product.shipping > 0 &&
-                                <p>
-                                    {product.shipping}
-                                </p>
-                            }
-                            <p style={{color:"green", fontWeight:"600"}}>Free</p>
+                        <p className='' style={{ fontWeight: '600' }}>
+                            
+                                <span>Reviews : {comments.filter((item) => item.productId === productId).length }</span>
                         </p>
                         <p className=''><b>Price: </b>
-                            <span className='card_Fprice'>{`$${totalPrice}`}</span>
+                            <span className='card_Fprice'>{`$${totalPrice.toFixed(2)}`}</span>
                         </p>
                         <p><b>Quantity: </b>
                             <input className='input_single' type="number" value={quantity} min={1} onChange={handleQuantityChange} /></p>
                     </div>
-                    <div className='s_btn mt-5'>
-                        <button className='btn' onClick={() => {
+                    <div className='s_btn mt-3'>
+                        <button className='btn s_cart' onClick={() => {
                             if (cu._id === undefined) {
                                 toast.warning("Login to Buy")
                                 move("/login")
@@ -176,6 +171,9 @@ const SingleAdd = () => {
                             }
                         }}
                         >Add to Cart</button>
+                        <a href="https://wa.me/+923067208343">
+                            <button className='btn s_whatsapp'>Buy via WhatsApp</button>
+                        </a>
                     </div>
                 </div>
 

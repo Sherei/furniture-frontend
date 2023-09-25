@@ -25,16 +25,16 @@
 .review_btn{
     font-weight: 500;
     color: white;
-    background-color: #fd5d39;
+    background-color: rgb(253,93,57,0.9);
     padding: 10px 20px !important;
     border: none;
     outline: none;
 }
 .review_btn:hover{
-    font-weight: 700;
-    color: #1B2950;
-    background-color: rgb(253,93,57,0.8);
-    transition: all linear 0.3s;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(253,93,57);
+    transition: all linear 0.1s;
 }
 @media screen and (max-width:768px) {
     .comments_row::-webkit-scrollbar {

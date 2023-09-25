@@ -48,14 +48,16 @@
 }
 
 .s_box::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
+}
+.s_box::-webkit-scrollbar-thumb{
+    background : #1b2950;
+    border-radius: 50rem;
 }
 
-.s_box::-webkit-scrollbar-thumb {
-    background: #1b2950;
-    border-radius: 5rem;
-    height: 8rem;
-    background-clip: content-box;
+.s_box::-webkit-scrollbar {
+    width: 5px;
+    max-height: 10px !important;
 }
 
 .s_content {
@@ -93,21 +95,37 @@
     /* box-shadow: 1px 1px 2px 1px rgb(0, 0, 0, 0.2); */
     padding: 10px 10px;
 }
-
+.s_btn{
+    display: flex;
+    gap: 10px;
+}
 .s_btn button {
     font-weight: 600;
     color: white;
-    background-color: #fd5d39;
     padding: 10px 20px !important;
     border: none;
     outline: none;
 }
-.s_btn button:hover{
-    font-weight: 700;
-    color: #1B2950;
-    background-color: rgb(253,93,57,0.8);
+.s_whatsapp{
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(33, 211, 102,0.9);
 }
-
+.s_cart{
+    height: fit-content;
+    width: fit-content;
+    background-color: rgb(253,93,57,0.9);
+}
+.s_cart:hover{
+    font-weight: 600;
+    color: white;
+    background-color: rgb(253,93,57);
+}
+.s_whatsapp:hover{
+    font-weight: 600;
+    color: white;
+    background-color: rgb(33, 211, 102);
+}
 .input_single {
     width: 50px !important;
     border: 1px solid lightgray;

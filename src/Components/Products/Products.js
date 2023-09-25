@@ -24,7 +24,7 @@ const Products = () => {
     const [subCategory, setSubcategory] = useState("all")
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('')
-  
+
     const move = useNavigate()
     useEffect(() => {
         setLoading(true);
@@ -163,7 +163,7 @@ const Products = () => {
                                 <p onClick={() => setSortOrder("asc")}>Price (Highes)</p>
                                 <p onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
                             </div>
-                           
+
                         </div>
                     </div>
                     <div className=''>
@@ -250,7 +250,7 @@ const Products = () => {
                         <div className="row row-cols-1 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
                                 filteredProduct.map((product) => (
-                                    <div className="col" key={product.id}>
+                                    <div className="col" key={product.id} onClick={() => move("/single_Add/" + product._id)}>
                                         <div className='product_box'>
                                             <div className='p_img_box'>
                                                 <img src={product.images[0]} alt="No network" />
@@ -259,6 +259,11 @@ const Products = () => {
                                                         {`${product.discount}%`}
                                                     </div>
                                                 ) : null}
+                                                <div className='overlay'>
+                                                    {product.images[1] &&
+                                                        <img src={product.images[1]} alt="" />
+                                                    }
+                                                </div>
                                             </div>
                                             <p className='card_title px-2'>{product.title}</p>
                                             {product.description &&
@@ -274,9 +279,13 @@ const Products = () => {
                                                     <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
                                                 )}
                                             </div>
-                                            <div className='product_card_btns d-flex flex-column align-items-center gap-3 my-4'>
+                                            <div className='p_btns'>
+                                                <button className='btn p_cart'>Add to Cart</button>
+                                                <button className='btn p_whatsapp'>Buy via WhatsApp</button>
+                                            </div>
+                                            {/* <div className='product_card_btns d-flex flex-column align-items-center gap-3 my-4'>
                                                 <div>
-                                                    <button className='btn p_card_btn1' onClick={() => {
+                                                    <button className='btn review_btn' onClick={() => {
                                                         if (cu._id === undefined) {
                                                             toast.warning("Login to Buy");
                                                             move("/login");
@@ -287,10 +296,10 @@ const Products = () => {
                                                 </div>
                                                 <div>
                                                     <a href="https://wa.me/+923067208343">
-                                                        <button className='btn p_card_btn2'>Buy Via WhatsApp</button>
+                                                        <button className='btn'>Buy Via WhatsApp</button>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 ))
