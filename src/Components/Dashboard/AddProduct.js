@@ -39,7 +39,6 @@ export const AddProduct = () => {
   
   async function submitProduct(data) {
     
-    console.log(data)
     setLoading(true);
     
     let meraForm = new FormData();

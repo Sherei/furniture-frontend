@@ -6,6 +6,7 @@ import Loader from "../Loader/Loader"
 
 import axios from 'axios'
 const Bedroom = () => {
+
     let cu = useSelector(store => store.userSection.cu)
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -14,8 +15,7 @@ const Bedroom = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            // axios.get("/product").then((res) => {
-            try {
+           try {
                 if (res) {
                     setData(res.data);
                 }

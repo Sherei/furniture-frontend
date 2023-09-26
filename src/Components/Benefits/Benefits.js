@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaSyncAlt, FaProductHunt, FaRegCreditCard } from "react-icons/fa"
+import { FaSyncAlt, FaProductHunt, FaRegCreditCard , FaArrowRight} from "react-icons/fa"
 import "./benefit.css"
 const Benefits = () => {
     return <>
@@ -33,7 +33,7 @@ const Benefits = () => {
                 <div className='col-lg-12 my-4 d-flex justify-content-center'>
 
                     <a href="/Products/all">
-                        <button className='review_btn'>Browse Products</button>
+                        <button className='review_btn'>Browse Products <FaArrowRight/></button>
                     </a>
                 </div>
 

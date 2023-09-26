@@ -4,7 +4,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { FaDownload } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
 import "./users.css";
 
 export const Users = () => {
@@ -23,7 +23,6 @@ export const Users = () => {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/Users`)
-      // axios.get("/Users")
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);
@@ -47,7 +46,13 @@ export const Users = () => {
       data.number.toLowerCase().includes(lowerCaseSearch)
     );
   });
-
+  
+  const DeleteUser = (dataId) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteUser?id=${dataId}`).then(() => {
+      setUsers(Users.filter(item => dataId != item._id))
+      toast.success("User removed")
+    });
+  };
 
   return (
     <>
@@ -104,11 +109,7 @@ export const Users = () => {
                           <td>{data.number}</td>
                           <td>{data.date.slice(0, 19)}</td>
                           <td>
-                            <button className='delete_btn' onClick={() => {
-                              axios.delete('https://my-furniture-tau.vercel.app/deleteUser?id=' + data._id).then(() => {
-                                setUsers(Users.filter(item => data._id != item._id))
-                              });
-                            }}>
+                            <button className='delete_btn' onClick={() => DeleteUser(data._id)}>
                               <AiFillDelete />
                             </button>
                           </td>

@@ -54,8 +54,14 @@ tr:hover{
     transition: all linear 0.3s;
     font-weight: 600;
 }
+th{
+    text-align: center;
+    vertical-align: middle;
 
+}
 td {
+    text-align: center;
+    vertical-align: middle;
     padding: 5px 5px;
 }
 

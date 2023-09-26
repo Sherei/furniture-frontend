@@ -28,7 +28,6 @@ const Products = () => {
     const move = useNavigate()
     useEffect(() => {
         setLoading(true);
-        console.log("process.env.REACT_APP_BASE_URL::", process.env.REACT_APP_BASE_URL)
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
             try {
                 if (res) {
@@ -283,23 +282,7 @@ const Products = () => {
                                                 <button className='btn p_cart'>Add to Cart</button>
                                                 <button className='btn p_whatsapp'>Buy via WhatsApp</button>
                                             </div>
-                                            {/* <div className='product_card_btns d-flex flex-column align-items-center gap-3 my-4'>
-                                                <div>
-                                                    <button className='btn review_btn' onClick={() => {
-                                                        if (cu._id === undefined) {
-                                                            toast.warning("Login to Buy");
-                                                            move("/login");
-                                                        } else {
-                                                            toast.success("Product Added");
-                                                        }
-                                                    }}>Add To Cart</button>
-                                                </div>
-                                                <div>
-                                                    <a href="https://wa.me/+923067208343">
-                                                        <button className='btn'>Buy Via WhatsApp</button>
-                                                    </a>
-                                                </div>
-                                            </div> */}
+                                        
                                         </div>
                                     </div>
                                 ))

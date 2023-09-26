@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import {FaDownload} from 'react-icons/fa'
+import { FaDownload } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
-
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const Comments = () => {
@@ -14,11 +14,11 @@ const Comments = () => {
     const tableRef = useRef(null);
 
     const { onDownload } = useDownloadExcel({
-      currentTableRef: tableRef.current,
-      filename: 'Comments',
-      sheet: 'Comments'
+        currentTableRef: tableRef.current,
+        filename: 'Comments',
+        sheet: 'Comments'
     })
-  
+
     useEffect(() => {
         axios
             .get(`${process.env.REACT_APP_BASE_URL}/comments`)
@@ -47,6 +47,14 @@ const Comments = () => {
         );
     });
 
+    const DeleteComment = (dataId) => {
+        axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteComment?id=${dataId}`).then(() => {
+            setComment(comment.filter((item) => dataId !== item._id));
+            toast.success("comment removed")
+        });
+
+    };
+
     return <>
         <div className="container-fluid">
             <div className="row my-3">
@@ -72,9 +80,9 @@ const Comments = () => {
                 <div className="col">
                     <div className="table-container">
                         {isLoading ? (
-                           <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                           <Loader />
-                         </div>
+                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                                <Loader />
+                            </div>
                         ) : filteredProduct.length === 0 ? (
                             <div className="col-lg-12 col-sm-12 text-center mb-4">
                                 <p>No Comment Found.</p>
@@ -100,14 +108,7 @@ const Comments = () => {
                                             <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
                                             <td>{data.date.slice(0, 19)}</td>
                                             <td>
-                                                <button
-                                                    className="delete_btn"
-                                                    onClick={() => {
-                                                        axios.delete('https://my-furniture-tau.vercel.app/deleteComment?id=' + data._id).then(() => {
-                                                            setComment(comment.filter((item) => data._id !== item._id));
-                                                        });
-                                                    }}
-                                                >
+                                                <button className="delete_btn" onClick={() => DeleteComment(data._id)}>
                                                     <AiFillDelete />
                                                 </button>
                                             </td>

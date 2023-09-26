@@ -5,6 +5,7 @@ import {FaDownload} from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const Products = () => {
 
@@ -48,7 +49,13 @@ export const Products = () => {
       data.sn.toString().toLowerCase().includes(lowerCaseSearch)
     );
   });
-
+  
+  const DeleteProduct = (dataId) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteProduct?id=${dataId}`).then(() => {
+      setProduct(product.filter((item) => dataId !== item._id));
+      toast.success("Product Removed")
+    });
+  };
   return (
     <div className="container-fluid">
       <div className="row my-3">
@@ -116,12 +123,7 @@ export const Products = () => {
                       <td>
                         <button
                           className="delete_btn"
-                          onClick={() => {
-                            axios.delete('https://my-furniture-tau.vercel.app/deleteProduct?id=' + data._id).then(() => {
-                              setProduct(product.filter((item) => data._id !== item._id));
-                            });
-                          }}
-                        >
+                          onClick={() => DeleteProduct(data._id)}>
                           <AiFillDelete />
                         </button>
                       </td>

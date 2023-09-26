@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { AiFillDelete } from "react-icons/ai"
+import { FaPlus, FaMinus } from "react-icons/fa"
+import { FaArrowRight } from "react-icons/fa"
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import "./checkout.css"
 
 const Checkout = () => {
+    const move = useNavigate()
+  const { userId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState([])
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+      console.log(res.data)
+      try {
+        if (res) {
+          setCart(res.data);
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  const filterCart = cart.filter((item) => userId === item.userId)
+
     return <>
         <div className="row main_checkout">
             <div className="col-md-4 order-md-2 mb-4 d-flex align-items-center flex-column">

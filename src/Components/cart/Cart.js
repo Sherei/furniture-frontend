@@ -1,118 +1,145 @@
 import React, { useEffect, useState } from 'react';
-import './cart.css';
 import { AiFillDelete } from "react-icons/ai"
-import { FaPlus, FaMinus } from "react-icons/fa"
+import { FaArrowRight } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
-import Checkout from '../Checkout/Checkout';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import './cart.css';
 
 export const Cart = () => {
-
+  const cu = useSelector(store => store.userSection.cu)
   const move = useNavigate()
-  const array = [
-    { title: "Roman Brown Recliner Leather Sofa 3 Seater Bonded Leather", img: "/alaska-large-corner-bg-1.jpg", sn: "S.N:4001", price: "$450" },
-    { title: "Shannon Corner Scatter Back Sofa", img: "/ashton-chesterfield-sofa-product-3-bg-1-150x150.jpg", sn: "S.N:4001", price: "$750" },
-    { title: "Alaska Large Corner", img: "/4.jpg", sn: "S.N:4001", price: "$450" },
-    { title: "Ashton Chesterfield Corner (Black)", img: "/ashton-chesterfield-corner-black-bg.jpg", sn: "S.N:4001", price: "$430" },
-    { title: "Roman Brown Recliner Corner Leather Sofa 3 Seater", img: "/ashton-chesterfield-sofa-3.jpg", sn: "S.N:4001", price: "$999" },
-  ]
-  const [showModel, setShowModel] = useState(false)
+  const { userId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState({}); // Use an object to track quantity for each item
 
-  const closeModal = () => {
-    setShowModel(false);
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+      console.log(res.data)
+      try {
+        if (res) {
+          setCart(res.data);
+          const initialQuantities = {};
+          res.data.forEach((item) => {
+            initialQuantities[item._id] = item.quantity;
+          });
+          setQuantity(initialQuantities);
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  const handleQuantityChange = (itemId, event) => {
+    const newQuantity = parseInt(event.target.value);
+    if (!isNaN(newQuantity) && newQuantity >= 1) {
+      setQuantity((prevQuantity) => ({
+        ...prevQuantity,
+        [itemId]: newQuantity,
+      }));
+    }
+  };
+
+  const calculateTotalPrice = (item) => {
+    const itemQuantity = quantity[item._id] || item.quantity;
+    return (item.Fprice * itemQuantity).toFixed(2);
   };
 
 
+  const DeleteCartItem = (itemId) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
+      setCart(cart.filter((data) => itemId !== data._id));
+      toast.success("Item removed")
+    });
+  };
 
-  return <>
-    <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <div className="container h-100 py-5">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-10">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
-              <div>
-                <p className="mb-0">
-                  <span className="text-muted">Sort by:</span>{" "}
-                  <a href="#!" className="text-body">
-                    price <i className="fas fa-angle-down mt-1" />
-                  </a>
-                </p>
-              </div>
+  const filterCart = cart.filter((item) => userId === item.userId);
+
+  return (
+    <div className="container-fluid h-100 py-5">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col-12" style={{ minHeight: "100vh" }}>
+          <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5" >
+            <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
+            <div>
+              <h3 className="fw-normal mb-0 text-black" >Length: {filterCart.length}</h3>
             </div>
-            {array.map((item) => {
-              return <>
-                <div className="card rounded-3 mb-4">
-                  <div className="card-body p-4">
-                    <div className="row d-flex justify-content-between align-items-center">
-                      <div className="col-md-2 col-lg-2 col-xl-2">
+          </div>
+          {filterCart.length < 1 &&
+            <div className='vh-100 d-flex flex-column gap-5  justify-content-center align-items-center'>
+              <h1>Cart is empty</h1>
+              <button className='btn review_btn' onClick={() => move('/Products/all')}>Browse Products <FaArrowRight /></button>
+            </div>
+          }
+          {filterCart.length > 0 &&
+            <div className="table-responsive">
+              <table className="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Sr#</th>
+                    <th>Product Code</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filterCart.map((item, index) => (
+                    <tr key={item._id}>
+                      <td>{index + 1}</td>
+                      <td>{item.sn}</td>
+                      <td>
                         <img
-                          src={item.img}
+                          src={item.image}
                           className="img-fluid rounded-3"
-                          alt="Cotton T-shirt"
+                          alt="No Internet"
+                          style={{ width: "100px" }}
                         />
-                      </div>
-                      <div className="col-md-4 col-lg-4 col-xl-4">
-                        <p className="lead fw-normal mb-2">{item.title}</p>
-                        <p>
-                          <span className="text-muted">{item.sn} </span>
-                          <span className="text-muted">{item.discount} </span>
-                        </p>
-                      </div>
-                      <div className="col-md-2 col-lg-2 col-xl-2 d-flex">
-                        <button
-                          className="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                        >
-                          <FaMinus />
-                          <i className="fas fa-minus" />
-                        </button>
+                      </td>
+                      <td>{item.title.slice(0, 15)}</td>
+                      <td className="color-red">{item.price.toFixed(2)}</td>
+                      <td className="color-red">{`${item.discount}%`}</td>
+                      <td>
                         <input
-                          id="form1"
-                          min={0}
-                          name="quantity"
-                          defaultValue={2}
                           type="number"
-                          className="form-control form-control-sm"
+                          value={quantity[item._id] || item.quantity}
+                          min={1}
+                          style={{ width: "60px" }}
+                          onChange={(e) => handleQuantityChange(item._id, e)}
                         />
-                        <button
-                          className="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                        >
-                          <FaPlus />
-                          <i className="fas fa-plus" />
-                        </button>
-                      </div>
-                      <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h5 className="mb-0">{item.price}</h5>
-                      </div>
-                      <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" className="text-danger" style={{ fontSize: "20px" }}>
+                      </td>
+                      <td>{calculateTotalPrice(item)}</td>
+                      <td >
+                        <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                           <AiFillDelete />
                         </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </>
-            })
-
-            }
-            <div className="card">
-              <div className="card-body">
-                <button type="button" className="btn btn-warning btn-block btn-lg" onClick={() => { move("/checkout") }}>
-                  Proceed to Pay
-                </button>
-              </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-
-          </div>
+          }
         </div>
+        {filterCart.length > 0 &&
+          <div className="card-body d-flex justify-content-center">
+            <button type="button" className="btn btn-warning btn-block btn-lg" onClick={() => { move(`/checkout/${cu._id}`) }}>
+              Proceed to Pay
+            </button>
+          </div>
+        }
       </div>
-
-    </section>
-
-
-  </>
+    </div>
+  )
 }
-

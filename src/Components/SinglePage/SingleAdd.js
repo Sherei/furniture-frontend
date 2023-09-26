@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaPlus, FaMinus } from 'react-icons/fa';
+import { FaAngleRight } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -21,11 +21,12 @@ const SingleAdd = () => {
     let { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const { productId } = useParams();
-    const [data, setData] = useState([]);
     const [product, setProduct] = useState({});
+    const [data, setData] = useState([]);
     const [quantity, setQuantity] = useState(1)
     const [comments, setComments] = useState([])
     const [isLoadingComments, setIsLoadingComments] = useState(true);
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
@@ -88,6 +89,47 @@ const SingleAdd = () => {
                 setIsLoadingComments(false);
             });
     }, []);
+
+    async function AddToCart() {
+
+        const meraForm = new FormData();
+
+        if (cu._id === undefined) {
+            move('/login')
+            toast.warning("Login First")
+        }
+        meraForm.append('title', product.title);
+        meraForm.append('productId', product._id);
+        meraForm.append('userId', cu._id);
+        meraForm.append('quantity', quantity);
+        meraForm.append('Fprice', totalPrice);
+        meraForm.append('sn', product.sn);
+        meraForm.append('category', product.category);
+        meraForm.append('subCategory', product.subCategory);
+        meraForm.append('description', product.description);
+        meraForm.append('price', product.price);
+        meraForm.append('image', product.images[0]);
+        meraForm.append('discount', product.discount);
+        try {
+            let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, meraForm)
+            
+            if (response.data === "Product Added") {
+                toast.success("Added to Cart");
+            }
+        } catch (error) {
+
+            if (error.response && error.response.status === 400) {
+                toast.warning("Product is Already into cart");
+            } else {
+                
+                toast.error("An error occurred. Please try again later.");
+            }
+
+        } finally {
+            setLoading(false);
+        }
+
+    };
 
     return <>
         <div className='container-fluid'>
@@ -152,8 +194,8 @@ const SingleAdd = () => {
                             </span>
                         </p>
                         <p className='' style={{ fontWeight: '600' }}>
-                            
-                                <span>Reviews : {comments.filter((item) => item.productId === productId).length }</span>
+
+                            <span>Reviews : {comments.filter((item) => item.productId === productId).length}</span>
                         </p>
                         <p className=''><b>Price: </b>
                             <span className='card_Fprice'>{`$${totalPrice.toFixed(2)}`}</span>
@@ -162,15 +204,9 @@ const SingleAdd = () => {
                             <input className='input_single' type="number" value={quantity} min={1} onChange={handleQuantityChange} /></p>
                     </div>
                     <div className='s_btn mt-3'>
-                        <button className='btn s_cart' onClick={() => {
-                            if (cu._id === undefined) {
-                                toast.warning("Login to Buy")
-                                move("/login")
-                            } else {
-                                toast.success("Product Added")
-                            }
-                        }}
-                        >Add to Cart</button>
+
+                        <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
+
                         <a href="https://wa.me/+923067208343">
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
                         </a>

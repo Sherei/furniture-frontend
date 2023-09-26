@@ -88,7 +88,7 @@ function App() {
           <Route exact element={<Home />} path="/"></Route>
           <Route exact path="/single_Add/:productId" element={<SingleAdd />} />
           <Route exact path="/Products/:prodctName" element={<Products />} />
-          <Route exact path="/cart" element={<Cart />}></Route>
+          <Route exact path="/cart/:userId" element={<Cart />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/checkout" element={<Checkout />}></Route>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>

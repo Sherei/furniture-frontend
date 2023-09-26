@@ -15,9 +15,6 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-
-
-
 .h_box:hover {
     cursor: pointer;
     transform: scale(1.07);
