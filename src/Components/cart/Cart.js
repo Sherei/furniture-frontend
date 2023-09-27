@@ -14,20 +14,24 @@ export const Cart = () => {
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState({}); // Use an object to track quantity for each item
+  const [itemQuantities, setItemQuantities] = useState({});
 
   useEffect(() => {
     setLoading(true);
     axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
-      console.log(res.data)
       try {
         if (res) {
-          setCart(res.data);
-          const initialQuantities = {};
-          res.data.forEach((item) => {
-            initialQuantities[item._id] = item.quantity;
+          const cartData = res.data.map((item) => ({
+            ...item,
+            quantity: item.quantity,
+          }));
+          setCart(cartData);
+
+          const initialItemQuantities = {};
+          cartData.forEach((item) => {
+            initialItemQuantities[item._id] = item.quantity;
           });
-          setQuantity(initialQuantities);
+          setItemQuantities(initialItemQuantities);
         }
       } catch (e) {
         console.log(e);
@@ -37,48 +41,93 @@ export const Cart = () => {
     });
   }, []);
 
-  const handleQuantityChange = (itemId, event) => {
-    const newQuantity = parseInt(event.target.value);
-    if (!isNaN(newQuantity) && newQuantity >= 1) {
-      setQuantity((prevQuantity) => ({
-        ...prevQuantity,
-        [itemId]: newQuantity,
-      }));
-    }
-  };
 
-  const calculateTotalPrice = (item) => {
-    const itemQuantity = quantity[item._id] || item.quantity;
-    return (item.Fprice * itemQuantity).toFixed(2);
-  };
+  const handleItemQuantityChange = (itemId, newQuantity) => {
+    setItemQuantities({
+      ...itemQuantities,
+      [itemId]: newQuantity,
 
-
-  const DeleteCartItem = (itemId) => {
-    axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
-      setCart(cart.filter((data) => itemId !== data._id));
-      toast.success("Item removed")
     });
   };
 
+  const DeleteCartItem = (itemId) => {
+    try {
+      axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
+        setLoading(true);
+        setCart(cart.filter((data) => itemId !== data._id));
+        toast.success("Item removed");
+      });
+
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const filterCart = cart.filter((item) => userId === item.userId);
+
+
+
+  const updateCart = () => {
+    const updatedCart = cart.map((item) => ({
+      ...item,
+      quantity: itemQuantities[item._id] || item.quantity,
+      Fprice: item.price * (itemQuantities[item._id] || item.quantity),
+    }));
+
+    try {
+      setLoading(true);
+      axios.put(`${process.env.REACT_APP_BASE_URL}/updateCart`, updatedCart)
+        .then(() => {
+          setCart(updatedCart);
+          toast.success("Cart updated successfully");
+        })
+        .catch((error) => {
+          console.error("Error updating cart:", error);
+          toast.error("Failed to update cart");
+        });
+    } catch (e) {
+      console.error(e);
+      toast.error("Failed to update cart");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const totalPrice = filterCart.reduce((acc, item) => {
+    const itemQuantity = itemQuantities[item._id] || item.quantity;
+    const itemPrice = item.price * itemQuantity;
+    return acc + itemPrice;
+  }, 0);
+
+  // Calculate Net Total (sum of Fprice values)
+  const netTotal = filterCart.reduce((acc, item) => {
+    const itemQuantity = itemQuantities[item._id] || item.quantity;
+    const itemFprice = item.Fprice * itemQuantity;
+    return acc + itemFprice;
+  }, 0);
+
+
 
   return (
     <div className="container-fluid h-100 py-5">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-12" style={{ minHeight: "100vh" }}>
-          <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5" >
+          <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5">
             <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
             <div>
-              <h3 className="fw-normal mb-0 text-black" >Length: {filterCart.length}</h3>
+              <h3 className="fw-normal mb-0 text-black">Length: {filterCart.length}</h3>
             </div>
           </div>
-          {filterCart.length < 1 &&
-            <div className='vh-100 d-flex flex-column gap-5  justify-content-center align-items-center'>
+
+          {filterCart.length < 1 && (
+            <div className='vh-100 d-flex flex-column gap-5 justify-content-center align-items-center'>
               <h1>Cart is empty</h1>
               <button className='btn review_btn' onClick={() => move('/Products/all')}>Browse Products <FaArrowRight /></button>
             </div>
-          }
-          {filterCart.length > 0 &&
+          )}
+          {filterCart.length > 0 && (
             <div className="table-responsive">
               <table className="table table-bordered table-hover">
                 <thead>
@@ -108,19 +157,19 @@ export const Cart = () => {
                         />
                       </td>
                       <td>{item.title.slice(0, 15)}</td>
-                      <td className="color-red">{item.price.toFixed(2)}</td>
+                      <td className="color-red">{`${item.price.toFixed(2)}$`}</td>
                       <td className="color-red">{`${item.discount}%`}</td>
                       <td>
                         <input
                           type="number"
-                          value={quantity[item._id] || item.quantity}
                           min={1}
                           style={{ width: "60px" }}
-                          onChange={(e) => handleQuantityChange(item._id, e)}
+                          value={itemQuantities[item._id]}
+                          onChange={(e) => handleItemQuantityChange(item._id, parseInt(e.target.value))}
                         />
                       </td>
-                      <td>{calculateTotalPrice(item)}</td>
-                      <td >
+                      <td>{`${(item.Fprice * (itemQuantities[item._id] || 1)).toFixed(2)}$`}</td> {/* Display item total price */}
+                      <td>
                         <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                           <AiFillDelete />
                         </a>
@@ -129,17 +178,44 @@ export const Cart = () => {
                   ))}
                 </tbody>
               </table>
+
+              <div className='d-flex flex-column justify-content-end gap-2 px-4 border'>
+                <div className='update p-3'>
+                  <div className='fw-bolder d-flex justify-content-between'>
+                    <p>Items:</p>
+                    <p>{filterCart.length}</p>
+                  </div>
+                  <div className='fw-bolder d-flex justify-content-between'>
+                    <p>Total:</p>
+                    <p>{`$${totalPrice.toFixed(2)}`}</p>
+                  </div>
+                    <div className='fw-bolder d-flex justify-content-between'>
+                      <p>After Discount</p>
+                    </div>
+                  <div className='fw-bolder d-flex justify-content-between'>
+                    <p>Net Total:</p>
+                    <p>{`$${netTotal.toFixed(2)}`}</p>
+                  </div>
+                </div>
+                <div>
+                  <button className='btn review_btn' onClick={updateCart}>
+                    Update Cart
+                  </button>
+                </div>
+              </div>
+
+
             </div>
-          }
+          )}
         </div>
-        {filterCart.length > 0 &&
-          <div className="card-body d-flex justify-content-center">
-            <button type="button" className="btn btn-warning btn-block btn-lg" onClick={() => { move(`/checkout/${cu._id}`) }}>
+        {filterCart.length > 0 && (
+          <div className="card-body">
+            <button type="button" className="btn review_btn btn-lg" onClick={() => { move(`/checkout/${cu._id}`) }}>
               Proceed to Pay
             </button>
           </div>
-        }
+        )}
       </div>
     </div>
-  )
-}
+  );
+};

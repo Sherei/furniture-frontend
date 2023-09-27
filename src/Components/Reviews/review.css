@@ -23,6 +23,8 @@
     max-height: 10px !important;
 }
 .review_btn{
+    width: fit-content;
+    height: fit-content;
     font-weight: 500;
     color: white;
     background-color: rgb(253,93,57,0.9);

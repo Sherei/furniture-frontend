@@ -9,7 +9,7 @@
   }
   
 .cart-items-container::-webkit-scrollbar {
-    /* display: none !important; */
+    display: none !important;
 }
 .cart{
     width: 100%;
@@ -50,7 +50,12 @@
     /* color: rgb(54, 54, 54); */
     font-weight: 700;
 }
-
+.update{
+    width: 200px;
+    height: fit-content;
+    background-color: white;
+    border-radius: 5px;
+}
 @media(max-width:768px) {
     .cart-total {
 

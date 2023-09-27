@@ -62,7 +62,7 @@ const SingleAdd = () => {
         }
     };
 
-    const totalPrice = (product.Fprice * quantity);
+    const totalPrice = product.Fprice * quantity;
 
     const Comment = async (cmnt) => {
         try {
@@ -92,6 +92,8 @@ const SingleAdd = () => {
 
     async function AddToCart() {
 
+        const totalPrice = product.Fprice * quantity;
+        
         const meraForm = new FormData();
 
         if (cu._id === undefined) {
@@ -201,7 +203,7 @@ const SingleAdd = () => {
                             <span className='card_Fprice'>{`$${totalPrice.toFixed(2)}`}</span>
                         </p>
                         <p><b>Quantity: </b>
-                            <input className='input_single' type="number" value={quantity} min={1} onChange={handleQuantityChange} /></p>
+                            <input className='input_single' type="number"  value={quantity} min={1} onChange={handleQuantityChange} /></p>
                     </div>
                     <div className='s_btn mt-3'>
 
