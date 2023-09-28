@@ -59,15 +59,6 @@
     font-weight: 700;
 }
 
-.view {
-    font-weight: 600;
-    color: #fd5d39;
-    border-bottom: 1px solid #fd5d39;
-}
-
-.view:hover {
-    cursor: pointer;
-}
 
 @media screen and (max-width:768px) {
     .h_box_main {

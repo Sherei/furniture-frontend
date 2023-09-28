@@ -33,10 +33,10 @@ const Beds = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  hero_main'>
                     <div>
-                        <p style={{ fontWeight: "700", fontSize: "20px", color: "#1b2950" }} >All Beds</p>
+                        <p className='fw-bolder fs-5' style={{color:'#fd5d39'}} >All Beds</p>
                     </div>
                     <div>
-                        <p className='view' onClick={() => {
+                        <p className='view ' onClick={() => {
                             move("/Products/" + "bed");
                         }}>
                             View All

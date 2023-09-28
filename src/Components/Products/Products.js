@@ -217,7 +217,7 @@ const Products = () => {
 
 
                 <div className='col-lg-12 col-md-12 col-sm-12'>
-                    <div className='row d-flex justify-content-between pb-5 px-4'>
+                    <div className='row px-4 mb-4'>
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-between'>
                             <div className='d-flex align-items-center gap-1'>
                                 <div
@@ -233,11 +233,11 @@ const Products = () => {
                                     <BsListStars />
                                 </div>
                             </div>
-                            <div className=''>
-                                <p style={{ fontWeight: "600" }}>{filteredProduct.length} Products</p>
+                            <div className='d-flex align-items-center'>
+                                <p className='fw-bolder'>{filteredProduct.length} Products</p>
                             </div>
-                            <div className=''>
-                                <button className='btn d-flex align-items-center' style={{ fontWeight: "600" }} role='button' onClick={Filter}><FaFilter /></button>
+                            <div className='d-flex align-items-center'>
+                                <button className='btn' role='button' onClick={Filter}><FaFilter /></button>
                             </div>
                         </div>
                     </div>
@@ -246,7 +246,7 @@ const Products = () => {
                             <Loader />
                         </div>
                     ) : (
-                        <div className="row row-cols-1 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
+                        <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
                                 filteredProduct.map((product) => (
                                     <div className="col" key={product.id} onClick={() => move("/single_Add/" + product._id)}>
@@ -278,11 +278,10 @@ const Products = () => {
                                                     <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
                                                 )}
                                             </div>
-                                            <div className='p_btns'>
-                                                <button className='btn p_cart'>Add to Cart</button>
-                                                <button className='btn p_whatsapp'>Buy via WhatsApp</button>
+                                            <div  className='product_btns'>
+                                                <button className='btn p_detail_btn'>View Detail</button>
+                                                <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
                                             </div>
-                                        
                                         </div>
                                     </div>
                                 ))

@@ -32,7 +32,7 @@ const Coffee = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p style={{ fontWeight: "700", fontSize: "20px", color: "#1b2950" }}>Coffee Tables</p>
+                        <p className='fw-bolder fs-5' style={{color:'#fd5d39'}} >Coffee Tables</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {

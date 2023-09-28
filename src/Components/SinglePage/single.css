@@ -39,12 +39,21 @@
 }
 
 .single_box {
+    position: relative;
     width: 100%;
     height: fit-content !important;
     display: flex;
     gap: 10px;
     align-items: center !important;
     border-bottom: 1px solid lightgray;
+}
+.single_img{
+    width: 100px !important;
+    height: 100px !important;
+}
+.single_img img{
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .s_box::-webkit-scrollbar {
@@ -97,29 +106,26 @@
 }
 .s_btn{
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 .s_btn button {
-    font-weight: 600;
+    font-weight: 500;
     color: white;
     padding: 10px 20px !important;
     border: none;
     outline: none;
 }
 .s_whatsapp{
-    width: fit-content;
-    height: fit-content;
     background-color: rgb(33, 211, 102,0.9);
 }
 .s_cart{
-    height: fit-content;
-    width: fit-content;
-    background-color: rgb(253,93,57,0.9);
+    background-color: rgb(2, 2, 94, 0.9);
 }
 .s_cart:hover{
-    font-weight: 600;
     color: white;
-    background-color: rgb(253,93,57);
+    font-weight: 600;
+    background-color: rgb(2, 2, 94);
 }
 .s_whatsapp:hover{
     font-weight: 600;
@@ -128,6 +134,7 @@
 }
 .input_single {
     width: 50px !important;
+    height: 35px;
     border: 1px solid lightgray;
 }
 

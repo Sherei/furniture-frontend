@@ -27,7 +27,7 @@
     height: fit-content;
     font-weight: 500;
     color: white;
-    background-color: rgb(253,93,57,0.9);
+    background-color: rgb(2, 2, 94,0.9);
     padding: 10px 20px !important;
     border: none;
     outline: none;
@@ -35,7 +35,7 @@
 .review_btn:hover{
     font-weight: 600;
     color: white;
-    background-color: rgb(253,93,57);
+    background-color: rgb(2, 2, 94);
     transition: all linear 0.1s;
 }
 @media screen and (max-width:768px) {

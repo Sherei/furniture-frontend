@@ -37,7 +37,7 @@ const Comments = () => {
         setSearch(e.target.value);
     };
 
-    const filteredProduct = comment.filter((data) => {
+    const filteredComment = comment.filter((data) => {
 
         const lowerCaseSearch = search.toLowerCase();
         return (
@@ -76,50 +76,52 @@ const Comments = () => {
                     </div>
                 </div>
             </div>
-            <div className="row px-0 py-3 user_row">
-                <div className="col">
-                    <div className="table-container">
-                        {isLoading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                <Loader />
-                            </div>
-                        ) : filteredProduct.length === 0 ? (
-                            <div className="col-lg-12 col-sm-12 text-center mb-4">
-                                <p>No Comment Found.</p>
-                            </div>
-                        ) : (
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Sr#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Comment</th>
-                                        <th>Date</th>
-                                        <th>Dalete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {filteredProduct.map((data, index) => (
-                                        <tr key={index}>
-                                            <td>{index + 1}</td>
-                                            <td>{data.name}</td>
-                                            <td>{data.email}</td>
-                                            <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
-                                            <td>{data.date.slice(0, 19)}</td>
-                                            <td>
-                                                <button className="delete_btn" onClick={() => DeleteComment(data._id)}>
-                                                    <AiFillDelete />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        )}
-                    </div>
+            <div className='row px-0 py-3 user_row'>
+                <div className='col'>
+                    {isLoading ? (
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                            <Loader />
+                        </div>
+                    ) : (
+                        <>
+                            {filteredComment.length > 0 && (
+                                <div className="table-responsive">
+                                    <table className="table table-bordered" ref={tableRef}>
+                                        <thead>
+                                            <tr>
+                                                <th>Sr#</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Comment</th>
+                                                <th>Date</th>
+                                                <th>Dalete</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            {filteredComment.map((data, index) => (
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{data.name}</td>
+                                                    <td>{data.email}</td>
+                                                    <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
+                                                    <td>{data.date.slice(0, 19)}</td>
+                                                    <td>
+                                                        <button className="delete_btn" onClick={() => DeleteComment(data._id)}>
+                                                            <AiFillDelete />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
+           
         </div>
 
 

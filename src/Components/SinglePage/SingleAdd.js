@@ -93,7 +93,7 @@ const SingleAdd = () => {
     async function AddToCart() {
 
         const totalPrice = product.Fprice * quantity;
-        
+
         const meraForm = new FormData();
 
         if (cu._id === undefined) {
@@ -114,7 +114,7 @@ const SingleAdd = () => {
         meraForm.append('discount', product.discount);
         try {
             let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, meraForm)
-            
+
             if (response.data === "Product Added") {
                 toast.success("Added to Cart");
             }
@@ -123,7 +123,7 @@ const SingleAdd = () => {
             if (error.response && error.response.status === 400) {
                 toast.warning("Product is Already into cart");
             } else {
-                
+
                 toast.error("An error occurred. Please try again later.");
             }
 
@@ -188,22 +188,18 @@ const SingleAdd = () => {
                 </div>
                 <div className='col-lg-4 col-sm-12'>
                     <div className='s_content'>
-                        <h1 className='text-center' style={{ fontSize: "34px" }}>{product.title}</h1>
-                        <p className='text-center' style={{ fontSize: "15px" }}>{product.description}</p>
-                        <p className='' style={{ fontWeight: '600' }}>
+                        <h1 className='text-center fs-1' style={{ color: "#1b2950" }}>{product.title}</h1>
+                        <p className='text-center text-muted fs-6'>{product.description}</p>
+                        <p className='fw-bolder' style={{ color: "#1b2950" }}>
                             Rating <span style={{ color: 'red' }}>
                                 <RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill />
                             </span>
                         </p>
-                        <p className='' style={{ fontWeight: '600' }}>
-
+                        <p className='fw-bolder' style={{ color: "#1b2950" }}>
                             <span>Reviews : {comments.filter((item) => item.productId === productId).length}</span>
                         </p>
-                        <p className=''><b>Price: </b>
-                            <span className='card_Fprice'>{`$${totalPrice.toFixed(2)}`}</span>
-                        </p>
-                        <p><b>Quantity: </b>
-                            <input className='input_single' type="number"  value={quantity} min={1} onChange={handleQuantityChange} /></p>
+                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:<span className=''>{`$${totalPrice.toFixed(2)}`}</span></p>
+                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: <input className='input_single' type="number" defaultValuevalue={quantity} min={1} onChange={handleQuantityChange} /></p>
                     </div>
                     <div className='s_btn mt-3'>
 
@@ -216,22 +212,21 @@ const SingleAdd = () => {
                 </div>
 
                 <div className='col-lg-3 col-sm-12 related'>
-                    <p style={{ fontWeight: "700", color: "#1b2950" }}>Related Items</p>
+                    <p className='fw-bolder' style={{ color: "#1b2950" }}>You may like this</p>
                     <div className='s_box'>
                         {data.filter((item) => item.category === product.category).reverse()
                             .map((product) => (
                                 <div className="single_box" key={product.id} onClick={() => move("/single_Add/" + product._id)}>
-                                    <div className='' style={{ position: "relative" }}>
-                                        <img src={product.images[0]} alt='No Network' className='img-fluid' style={{ width: "100px" }} />
+                                    <div className='single_img'>
+                                        <img src={product.images[0]} alt='No Network' className='img-fluid' />
                                         {product.discount && product.discount > 0 ? (
                                             <div className='s_discount'>
                                                 {`${product.discount}%`}
                                             </div>
                                         ) : null}
                                     </div>
-
                                     <div>
-                                        <p style={{ fontSize: "12px", fontWeight: "500" }}>{product.title.slice(0, 70)}...</p>
+                                        <p className='fs-6' style={{ color: "#1b2950" }}>{product.title.slice(0, 70)}...</p>
                                     </div>
                                 </div>
                             ))}
@@ -243,7 +238,7 @@ const SingleAdd = () => {
                     {comments.filter((item) => item.productId === productId).length > 0 && (
                         <div className='col-lg-12 col-sm-12'>
                             <div>
-                                <p className="text-center" style={{ fontWeight: "700", fontSize: "20px" }}>
+                                <p className="text-center fw-bolder fs-4" style={{color: "rgb(2, 2, 94)" }}>
                                     {`${comments.filter((item) => item.productId === productId).length} Reviews`}
                                 </p>
                             </div>
@@ -255,7 +250,7 @@ const SingleAdd = () => {
                             <Loader />
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh", color: "rgb(2, 2, 94)" }} >
                             <h2>No Review available</h2>
                         </div>
                     ) : (
@@ -291,7 +286,8 @@ const SingleAdd = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
                     <div>
-                        <h1 style={{ color: "#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
+                        <p className='fw-bolder fs-2 text-center' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a comment</p>
+
                     </div>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">

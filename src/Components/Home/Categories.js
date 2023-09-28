@@ -19,7 +19,7 @@ const Categories = () => {
       <div className='row'>
         <div className='col-lg-12 col-sm-12 my-2 hero_main'>
           <div>
-            <p style={{ fontWeight: "700", fontSize: "20px", color:"#1b2950" }}>Our collections</p>
+            <p className='fw-bolder fs-5' style={{color:'#fd5d39'}} >Our collections</p>
           </div>
         </div>
         <div className='col-lg-12 col-sm-12'>

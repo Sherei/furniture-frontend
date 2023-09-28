@@ -26,15 +26,8 @@
 .user_row {
     height: 100vh;
     overflow: auto;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 5px;
-}
-
-.user_row td {
-    vertical-align: middle;
-    border: 1px solid rgb(221, 221, 221);
-    padding: 1rem 0.5rem;
-    border-bottom: 1px solid rgb(165, 164, 164) !important;
 }
 
 .select {
@@ -47,20 +40,19 @@
     border: none;
     outline: none;
 }
+tr{
+    background-color: transparent;
+}
 tr:hover{
     cursor: pointer;
-    color: white !important;
-    background-color: rgb(2, 2, 94,0.7) !important;
-    transition: all linear 0.3s;
-    font-weight: 600;
+    background-color: white;
 }
+
 th{
     text-align: center;
     vertical-align: middle;
-
 }
 td {
-    text-align: center;
     vertical-align: middle;
     padding: 5px 5px;
 }

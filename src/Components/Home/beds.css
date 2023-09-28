@@ -49,7 +49,6 @@
 }
 
 .card_Fprice {
-  /* color: red; */
   font-weight: 600;
   margin-right: 4px;
 }
@@ -67,12 +66,22 @@
   bottom: 55px;
   border: none;
   outline: none;
-  background-color: rgb(253,93,57,0.9);
+  background-color: rgb(2, 2, 94,0.9);
   color: white;
   width: 80%;
   font-weight: 500;
   padding: 10px 0px !important;
 }
+.view {
+  font-weight: 600;
+  color: rgb(2, 2, 94);
+  border-bottom: 1px solid rgb(2, 2, 94);
+}
+
+.view:hover {
+  cursor: pointer;
+}
+
 
 .card_whatsAp{
   position: absolute;
@@ -90,7 +99,7 @@
 .order_btn:hover{
   font-weight: 600;
   color: white;
-  background-color: rgb(253,93,57);
+  background-color: rgb(2, 2, 94);
   transition: all linear 0.1s;
 }
 .card_whatsAp:hover{

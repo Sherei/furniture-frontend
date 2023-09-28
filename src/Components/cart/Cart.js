@@ -111,9 +111,9 @@ export const Cart = () => {
 
 
   return (
-    <div className="container-fluid h-100 py-5">
+    <div className="container h-100 py-5">
       <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-12" style={{ minHeight: "100vh" }}>
+        <div className="col-12">
           <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5">
             <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
             <div>
@@ -129,7 +129,7 @@ export const Cart = () => {
           )}
           {filterCart.length > 0 && (
             <div className="table-responsive">
-              <table className="table table-bordered table-hover">
+              <table className="table table-bordered">
                 <thead>
                   <tr>
                     <th>Sr#</th>
@@ -145,10 +145,10 @@ export const Cart = () => {
                 </thead>
                 <tbody>
                   {filterCart.map((item, index) => (
-                    <tr key={item._id}>
-                      <td>{index + 1}</td>
-                      <td>{item.sn}</td>
-                      <td>
+                    <tr key={item._id} className='cart_row'>
+                      <td className='text-center'>{index + 1}</td>
+                      <td className='text-center'>{item.sn}</td>
+                      <td className='text-center'>
                         <img
                           src={item.image}
                           className="img-fluid rounded-3"
@@ -157,10 +157,11 @@ export const Cart = () => {
                         />
                       </td>
                       <td>{item.title.slice(0, 15)}</td>
-                      <td className="color-red">{`${item.price.toFixed(2)}$`}</td>
-                      <td className="color-red">{`${item.discount}%`}</td>
-                      <td>
+                      <td className="color-red text-center">{`${item.price.toFixed(2)}$`}</td>
+                      <td className="color-red text-center">{`${item.discount}%`}</td>
+                      <td className='text-center'>
                         <input
+                        className='cart_input border text-center'
                           type="number"
                           min={1}
                           style={{ width: "60px" }}
@@ -168,8 +169,8 @@ export const Cart = () => {
                           onChange={(e) => handleItemQuantityChange(item._id, parseInt(e.target.value))}
                         />
                       </td>
-                      <td>{`${(item.Fprice * (itemQuantities[item._id] || 1)).toFixed(2)}$`}</td> {/* Display item total price */}
-                      <td>
+                      <td className='text-center'>{`${(item.Fprice * (itemQuantities[item._id] || 1)).toFixed(2)}$`}</td> {/* Display item total price */}
+                      <td className='text-center'>
                         <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                           <AiFillDelete />
                         </a>
@@ -178,44 +179,48 @@ export const Cart = () => {
                   ))}
                 </tbody>
               </table>
-
-              <div className='d-flex flex-column justify-content-end gap-2 px-4 border'>
-                <div className='update p-3'>
-                  <div className='fw-bolder d-flex justify-content-between'>
-                    <p>Items:</p>
-                    <p>{filterCart.length}</p>
-                  </div>
-                  <div className='fw-bolder d-flex justify-content-between'>
-                    <p>Total:</p>
-                    <p>{`$${totalPrice.toFixed(2)}`}</p>
-                  </div>
-                    <div className='fw-bolder d-flex justify-content-between'>
-                      <p>After Discount</p>
-                    </div>
-                  <div className='fw-bolder d-flex justify-content-between'>
-                    <p>Net Total:</p>
-                    <p>{`$${netTotal.toFixed(2)}`}</p>
-                  </div>
-                </div>
-                <div>
-                  <button className='btn review_btn' onClick={updateCart}>
-                    Update Cart
-                  </button>
-                </div>
-              </div>
-
-
             </div>
           )}
         </div>
-        {filterCart.length > 0 && (
-          <div className="card-body">
-            <button type="button" className="btn review_btn btn-lg" onClick={() => { move(`/checkout/${cu._id}`) }}>
-              Proceed to Pay
+      </div>
+
+      <div className='row d-flex justify-content-end'>
+        <div className='col-lg-3 col-md-3 col-sm-12'>
+          <div className='update mb-3 p-3 border'>
+            <div className='d-flex justify-content-between'>
+              <p className='fw-bolder fs-4' style={{color:"rgb(2, 2, 94)"}}>Summary</p>
+            </div>
+            <div className='fw-normal d-flex justify-content-between'>
+              <p>Items:</p>
+              <p>{filterCart.length}</p>
+            </div>
+            <div className='fw-normal d-flex justify-content-between'>
+              <p>Total:</p>
+              <p>{`${totalPrice.toFixed(2)}$`}</p>
+            </div>
+            <div className='fw-normal d-flex justify-content-between'>
+              <p>After Discount</p>
+            </div>
+            <div className='fw-normal d-flex justify-content-between'>
+              <p>Net Total:</p>
+              <p>{`${netTotal.toFixed(2)}$`}</p>
+            </div>
+          </div>
+          <div>
+            <button className='btn review_btn btn-lg' onClick={updateCart}>
+              Update Cart
             </button>
           </div>
-        )}
+        </div>
       </div>
+
+      {filterCart.length > 0 && (
+        <div className="card-body mt-5">
+          <button type="button" className="btn  review_btn btn-lg" style={{backgroundColor:"#fd5d39"}} onClick={() => { move(`/checkout/${cu._id}`) }}>
+            Proceed to Pay
+          </button>
+        </div>
+      )}
     </div>
   );
 };

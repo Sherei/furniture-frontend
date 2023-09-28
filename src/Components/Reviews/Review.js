@@ -48,7 +48,7 @@ const Review = () => {
                 <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1 order-md-1 order-xl-1'>
                     {comments.length > 0 &&
                         <div>
-                            <p className="text-center" style={{ fontWeight: "700", fontSize: "20px", color: "#1b2950" }}>{comments.length} Reviews</p>
+                            <p className="text-center fw-bolder fs-4" style={{color: "rgb(2, 2, 94)" }}>{comments.length} Reviews</p>
                         </div>
                     }
                     {isLoadingComments ? (
@@ -56,7 +56,7 @@ const Review = () => {
                             <Loader/>
                         </div>
                     ) : comments.length === 0 ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center' style={{ height: "50vh", color: "#1b2950" }} >
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh", color: "rgb(2, 2, 94)" }} >
                             <h2>No Review available</h2>
                         </div>
                     ) : (
@@ -91,7 +91,7 @@ const Review = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
                     <div>
-                        <h1 style={{ color: "#1b2950", fontWeight: "600" }}>Leave us a comment</h1>
+                        <p className='fw-bolder fs-2 text-center' style={{color:'rgb(2, 2, 94)'}} >Leave us a comment</p>
                     </div>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">

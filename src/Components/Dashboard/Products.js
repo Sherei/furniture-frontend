@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import {FaDownload} from 'react-icons/fa'
+import { FaDownload } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,8 @@ export const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   const tableRef = useRef(null);
-  
-  let move=useNavigate()
+
+  let move = useNavigate()
 
   const { onDownload } = useDownloadExcel({
     currentTableRef: tableRef.current,
@@ -49,7 +49,7 @@ export const Products = () => {
       data.sn.toString().toLowerCase().includes(lowerCaseSearch)
     );
   });
-  
+
   const DeleteProduct = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteProduct?id=${dataId}`).then(() => {
       setProduct(product.filter((item) => dataId !== item._id));
@@ -65,7 +65,7 @@ export const Products = () => {
               Products List
             </h1>
           </div>
-            <button className='excel_btn btn' onClick={onDownload}><FaDownload/></button>
+          <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button>
           <div>
             <input
               type="search"
@@ -77,64 +77,68 @@ export const Products = () => {
           </div>
         </div>
       </div>
-      <div className="row px-0 py-3 user_row">
-        <div className="col">
-          <div className="table-container">
-            {isLoading ? (
-             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-             <Loader />
-           </div>
-            ) : filteredProduct.length === 0 ? (
-              <div className="col-lg-12 col-sm-12 text-center mb-4">
-                <p>No matching products found.</p>
-              </div>
-            ) : (
-              <table className="table table-striped" ref={tableRef}>
-                <thead>
-                  <tr>
-                    <th>Sr#</th>
-                    <th>Serial</th>
-                    <th>Picture</th>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Sub Category</th>
-                    <th>Price</th>
-                    <th>Final Price</th>
-                    <th>Discount</th>
-                    <th>Date</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredProduct.map((data, index) => (
-                    <tr key={index} onClick={() => move("/single_Add/" + data._id)}> 
-                      <td>{index + 1}</td>
-                      <td>{data.sn}</td>
-                      <td>
-                        <img src={data.images[0]} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
-                      </td>
-                      <td>{data.title}</td>
-                      <td>{data.category}</td>
-                      <td>{data.subCategory}</td>
-                      <td>{data.price.toFixed(2)}</td>
-                      <td>{data.Fprice.toFixed(2)}</td>
-                      <td>{data.discount || 0}</td>
-                      <td>{data.date.slice(0, 19)}</td>
-                      <td>
-                        <button
-                          className="delete_btn"
-                          onClick={() => DeleteProduct(data._id)}>
-                          <AiFillDelete />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-          </div>
+      
+      
+      <div className='row px-0 py-3 user_row'>
+        <div className='col'>
+          {isLoading ? (
+            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+              <Loader />
+            </div>
+          ) : (
+            <>
+              {filteredProduct.length > 0 && (
+                <div className="table-responsive">
+                  <table className="table table-bordered" ref={tableRef}>
+                    <thead>
+                      <tr>
+                        <th>Sr#</th>
+                        <th>Serial</th>
+                        <th>Picture</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <th>Price</th>
+                        <th>Final Price</th>
+                        <th>Discount</th>
+                        <th>Date</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredProduct.map((data, index) => (
+                        <tr key={index} onClick={() => move("/single_Add/" + data._id)}>
+                          <td>{index + 1}</td>
+                          <td>{data.sn}</td>
+                          <td>
+                            <img src={data.images[0]} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
+                          </td>
+                          <td>{data.title}</td>
+                          <td>{data.category}</td>
+                          <td>{data.subCategory}</td>
+                          <td className='text-center'>{data.price.toFixed(2)}</td>
+                          <td className='text-center'>{data.Fprice.toFixed(2)}</td>
+                          <td className='text-center'>{data.discount || 0}</td>
+                          <td>{data.date.slice(0, 10)}</td>
+                          <td className='text-center'>
+                            <button
+                              className="delete_btn"
+                              onClick={() => DeleteProduct(data._id)}>
+                              <AiFillDelete />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
+
+
     </div>
   );
 };

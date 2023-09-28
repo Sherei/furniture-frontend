@@ -1,0 +1,8 @@
+.footer_font{
+    font-size: 15px;
+}
+@media screen and (max-width:768px) {
+    .footer_font{
+        font-size: 12px;
+    }
+}
