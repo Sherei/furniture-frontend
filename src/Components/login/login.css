@@ -18,7 +18,7 @@
     color: white;
     border: none;
     outline: none;
-    background-color: rgb(27, 41, 80, 0.9) !important;
+    background-color: #1b2950 !important;
 }
 
 .login_form_input {
@@ -48,9 +48,9 @@
 .active_btn {
     border: none !important;
     outline: none !important;
-    color: #1b2950 !important;
+    color: white !important;
     font-weight: 600;
-    background-color: rgb(253, 93, 57, 0.8) !important;
+    background-color: #1b2950 !important;
     transition: all ease-in-out 0.5s;
 }
 .form_label{

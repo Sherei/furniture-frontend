@@ -1,6 +1,7 @@
 import React from 'react'
-import "./error.css"
+import { FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router'
+import "./error.css"
 
 export const Error = () => {
 
@@ -19,9 +20,9 @@ export const Error = () => {
                         The page you are looking for does not exist. <br />
                         How you got here is a mystery. But you can click the button to go back to the homePage
                     </p>
-                    <button className='mt-2 error_btn' onClick={()=>{
+                    <button className='mt-2 btn review_btn' onClick={()=>{
                         move("/")
-                    }}>Home</button>
+                    }}>Home <FaArrowRight /></button>
                 </div>
 
 

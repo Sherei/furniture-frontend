@@ -5,13 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify"
+import axios from 'axios';
 import "./navbar.css";
 
 export const Navbar = () => {
 
+  const move = useNavigate()
   const cu = useSelector(store => store.userSection.cu)
   const dispatch = useDispatch()
-  const move = useNavigate()
+  const [cart, setCart] = useState([])
+  const [loading, setLoading] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
@@ -30,6 +33,23 @@ export const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+
+    setLoading(true);
+    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+      try {
+        if (res) {
+          setCart(res.data);
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+const filterCart= cart.filter((item)=> item.userId===cu._id)
 
   function Logout() {
     dispatch({
@@ -38,6 +58,7 @@ export const Navbar = () => {
     toast.success("Logout");
     move('/login');
   }
+
   return <>
     <div className={`py-2 bg-white border-bottom ${isSticky ? 'container-fluid' : 'container'}`}>
       <div className="row">
@@ -64,10 +85,25 @@ export const Navbar = () => {
             {cu._id != undefined &&
               <>
                 {cu.email != "asd@gmail.com" &&
-                  <li className="nav-item">
+                  <li className="nav-item" >
                     <Link className="nav-link" to={`/cart/${cu._id}`}>
-                      <span>
+                      <span style={{ position: "relative" }}>
                         <FiShoppingCart />
+                        <div className='px-1 py-1 d-flex justify-content-center'
+                          style={{
+                            position: "absolute",
+                            top: "-10px",
+                            left: "10px",
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: "40px",
+                            backgroundColor: "rgb(2, 2, 94)",
+                            color: 'white',
+                            fontSize: "10px"
+                          }}>
+                          {filterCart.length}
+
+                        </div>
                       </span>
                     </Link>
                   </li>
@@ -84,10 +120,10 @@ export const Navbar = () => {
                   </Link>
                   <ul className="dropdown-menu dropdown_menu2" aria-labelledby="navbarDarkDropdownMenuLink">
                     {cu.email != "asd@gmail.com" &&
-                      <li><Link className="dropdown-item" to="#">Profile</Link></li>
+                      <li><Link className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</Link></li>
                     }
                     {cu.email === "asd@gmail.com" &&
-                      <li><Link className="dropdown-item" to="/dashboard">Admin</Link></li>
+                      <li><Link className="dropdown-item" to="/admin-dashboard">Admin</Link></li>
                     }
                     <li><Link className="dropdown-item" to="/login" onClick={Logout}>Logout</Link></li>
                   </ul>

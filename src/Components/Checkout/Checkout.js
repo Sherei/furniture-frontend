@@ -1,261 +1,269 @@
 import React, { useEffect, useState } from 'react';
-import { AiFillDelete } from "react-icons/ai"
-import { FaPlus, FaMinus } from "react-icons/fa"
-import { FaArrowRight } from "react-icons/fa"
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { Error } from '../Error/Error';
+import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import "./checkout.css"
+import Loader from '../Loader/Loader';
 
 const Checkout = () => {
+
+    const cu = useSelector(store => store.userSection.cu)
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
     const move = useNavigate()
-  const { userId } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState([])
+    const { userId } = useParams();
+    const [loading, setLoading] = useState(true);
+    const [cart, setCart] = useState([])
+    const [method, setMethod] = useState('')
 
-  useEffect(() => {
-    setLoading(true);
-    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
-      console.log(res.data)
-      try {
-        if (res) {
-          setCart(res.data);
+    useEffect(() => {
+        setLoading(true);
+
+        axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+            try {
+                if (res) {
+                    setCart(res.data);
+                }
+            } catch (e) {
+                console.log(e);
+            } finally {
+                setLoading(false);
+            }
+        });
+    }, []);
+
+    const filterCart = cart.filter((item) => userId === item.userId)
+
+    const totalSum = filterCart.reduce((accumulator, item) => {
+        return accumulator + item.Fprice;
+    }, 0);
+
+
+    const Order = async (data) => {
+        setLoading(true);
+
+        try {
+
+            const formData = new FormData();
+
+            const orderItems = [];
+            const orderId = uuidv4().substr(0, 6);
+
+            formData.append('name1', data.name1);
+            formData.append('name2', data.name2);
+            formData.append('userId', userId);
+            formData.append('number1', data.number1);
+            formData.append('number2', data.number2);
+            formData.append('orderId', orderId);
+            filterCart.forEach((item) => {
+              
+                const itemData = {
+                    title: item.title,
+                    sn: item.sn,
+                    category: item.category,
+                    image:item.image,
+                    subCategory: item.subCategory,
+                    price: parseFloat(item.price * item.quantity).toString(),
+                    quantity: parseInt(item.quantity).toString(),
+                    discount: item.discount,
+                    Fprice: parseFloat(item.Fprice).toString(),
+                };
+                orderItems.push(itemData);
+            });
+
+            const orderItemsJSON = JSON.stringify(orderItems);
+
+            formData.append('orderItems', orderItemsJSON);
+            formData.append('email', data.email);
+            formData.append('shipping', data.shipping);
+            formData.append('payment', data.payment);
+
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            if (response.data === "Order is Placed") {
+                toast.success("Order is Placed");
+                move(`/order-placed/${userId}`);
+            }
+        } catch (e) {
+            console.log(e);
+        } finally {
+            setLoading(false);
         }
-      } catch (e) {
-        console.log(e);
-      } finally {
-        setLoading(false);
-      }
-    });
-  }, []);
+    };
 
-  const filterCart = cart.filter((item) => userId === item.userId)
-
-    return <>
-        <div className="row main_checkout">
-            <div className="col-md-4 order-md-2 mb-4 d-flex align-items-center flex-column">
-                <h4 className="d-flex justify-content-between align-items-center mb-3">
-                    <span className="text-muted">Your cart</span>
-                    <span className="badge badge-secondary badge-pill">3</span>
-                </h4>
-                <ul className="list-group mb-3 w-100">
-                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 className="my-0">Product name</h6>
-                            <small className="text-muted">Brief description</small>
-                        </div>
-                        <span className="text-muted">$12</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 className="my-0">Second product</h6>
-                            <small className="text-muted">Brief description</small>
-                        </div>
-                        <span className="text-muted">$8</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 className="my-0">Third item</h6>
-                            <small className="text-muted">Brief description</small>
-                        </div>
-                        <span className="text-muted">$5</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
+    if (loading) {
+        return (
+            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                <Loader />
             </div>
+        );
+    }
 
 
-            <div className="col-md-8 order-md-1">
-                <h4 className="mb-3">Billing address</h4>
-                <form className="needs-validation" noValidate="">
-                    <div className="row">
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="firstName">First name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="firstName"
-                                placeholder=""
-                                defaultValue=""
-                                required=""
-                            />
-                            <div className="invalid-feedback">
-                                Valid first name is required.
+    if (loading) {
+        return (
+            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                <Loader />
+            </div>
+        );
+    }
+    
+    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart.length < 1) {
+        return <>
+            <Error />
+        </>
+    }
+    return <>
+        <div className='container my-5'>
+            <div className='row checkout_display'>
+                <div className='border col-lg-8 col-sm-12 py-3'>
+                    <h4 className="mb-3">Billing address</h4>
+                    <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>Name *</label>
+                                <input type="text" className="form-control login_form_input"{...register('name1', { required: true })} />
+                                {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
+
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>Last Name *</label>
+                                <input type="text" className="form-control login_form_input"{...register('name2', { required: true })} />
+                                {errors.name2 ? <div className='error'>This Field is required</div> : null}
+                            </div>
+
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>Mobile*</label>
+                                <input type="number" className="form-control login_form_input" {...register('number1', { required: true })} />
+                                {errors.number1 ? <div className='error'>This Field is required</div> : null}
+                            </div>
+
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>Telephone*</label>
+                                <input type="text" className="form-control login_form_input" {...register('number2', { required: true })} />
+                                {errors.number2 ? <div className='error'>This Field is required</div> : null}
+                            </div>
+
+
+                            <div className="col-md-12 mb-3">
+                                <label htmlFor="" className='form_label'>E-mail *</label>
+                                <input type="text" className="form-control login_form_input" {...register('email', {
+                                    required: true, validate: function (typedValue) {
+                                        if (typedValue.match(
+                                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                                        )) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                })} />
+                                {errors.email ? <div className='error'>This Field is required</div> : null}
+                            </div>
+
+
+                            <div className="col-md-12 mb-3">
+                                <label htmlFor="" className='form_label'>Shipping Address *</label>
+                                <input type="text" className="form-control login_form_input" {...register('shipping', { required: true })} />
+                                {errors.shipping ? <div className='error'>This Field is required</div> : null}
+                            </div>
+
                         </div>
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="lastName">Last name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="lastName"
-                                placeholder=""
-                                defaultValue=""
-                                required=""
-                            />
-                            <div className="invalid-feedback">Valid last name is required.</div>
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="email">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            placeholder="you@example.com"
-                        />
-                        <div className="invalid-feedback">
-                            Please enter a valid email address for shipping updates.
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="address">Address</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="address"
-                            placeholder="1234 Main St"
-                            required=""
-                        />
-                        <div className="invalid-feedback">
-                            Please enter your shipping address.
-                        </div>
-                    </div>
-                    <hr className="mb-4" />
-                    <div className="custom-control custom-checkbox d-flex gap-2">
-                        <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="same-address"
-                        />
-                        <label className="custom-control-label" htmlFor="same-address">
-                            Shipping address is the same as my billing address
-                        </label>
-                    </div>
-                    <div className="custom-control custom-checkbox  d-flex gap-2">
-                        <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="save-info"
-                        />
-                        <label className="custom-control-label" htmlFor="save-info">
-                            Save this information for next time
-                        </label>
-                    </div>
-                    <hr className="mb-4" />
-                    <h4 className="mb-3">Payment</h4>
-                    <div className="d-block my-3">
-                        <div className="custom-control custom-radio  d-flex gap-2 ">
-                            <input
-                                id="credit"
-                                name="paymentMethod"
-                                type="radio"
-                                className="custom-control-input"
-                                defaultChecked=""
-                                required=""
-                            />
-                            <label className="custom-control-label" htmlFor="credit">
-                                Credit card
+                        <hr className="mb-4" />
+
+                        <h4 className="mb-3">Payment</h4>
+
+                        <div class="form-check" onClick={() => setMethod("credit")}>
+                            <input class="form-check-input" type="radio" name="payment" id="creditCard" />
+                            <label class="form-check-label" for="creditCard">
+                                Credit Card
                             </label>
                         </div>
-                        <div className="custom-control custom-radio  d-flex gap-2">
-                            <input
-                                id="debit"
-                                name="paymentMethod"
-                                type="radio"
-                                className="custom-control-input"
-                                required=""
-                            />
-                            <label className="custom-control-label" htmlFor="debit">
-                                Debit card
+                        {method == "credit" &&
+                            <div>
+                                <p className='error'>This payment Method is not available right now you can select Cash on delivery as your Payment Method</p>
+                            </div>
+                        }
+                        <div class="form-check" onClick={() => setMethod("debit")}>
+                            <input class="form-check-input" type="radio" name="payment" id="debitCard" />
+                            <label class="form-check-label" for="debitCard">
+                                Debit Card
                             </label>
                         </div>
-                        <div className="custom-control custom-radio  d-flex gap-2">
-                            <input
-                                id="paypal"
-                                name="paymentMethod"
-                                type="radio"
-                                className="custom-control-input"
-                                required=""
-                            />
-                            <label className="custom-control-label" htmlFor="paypal">
+                        {method == "debit" &&
+                            <div>
+                                <p className='error'>This payment Method is not available right now you can select Cash on delivery as your Payment Method</p>
+                            </div>
+                        }
+                        <div class="form-check" onClick={() => setMethod("paypal")}>
+                            <input class="form-check-input" type="radio" name="payment" id="paypal" />
+                            <label class="form-check-label" for="paypal">
                                 PayPal
                             </label>
                         </div>
-                        <div className="custom-control custom-radio  d-flex gap-2">
-                            <input
-                                id="paypal"
-                                name="paymentMethod"
-                                type="radio"
-                                className="custom-control-input"
-                                required=""
-                            />
-                            <label className="custom-control-label" htmlFor="paypal">
-                                Cash on delivery
+                        {method == "paypal" &&
+                            <div>
+                                <p className='error'>This payment Method is not available right now you can select Cash on delivery as your Payment Method</p>
+                            </div>
+                        }
+                        <div class="form-check" onClick={() => setMethod("cash")}>
+                            <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" {...register('payment', { required: true })} />
+                            <label class="form-check-label" for="cashOnDelivery">
+                                Cash on Delivery
                             </label>
+                            {errors.payment ? <div className='error'>This Field is required</div> : null}
+
+                        </div>
+
+                        <hr className="mb-4" />
+                        <button className="btn review_btn btn-lg btn-block">
+                            Place Order
+                        </button>
+                    </form>
+                </div>
+
+
+
+                <div className='col-lg-4  col-sm-12 px-4 '>
+                    <div className='row'>
+                        <div className='col-12 d-flex justify-content-between'>
+                            <p className='fw-bolder fs-6'>Your Cart</p>
+                            <p className='fw-bolder fs-6'>{filterCart.length}</p>
                         </div>
                     </div>
-                    {/* <div className="row">
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="cc-name">Name on card</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="cc-name"
-                                    placeholder=""
-                                    required=""
-                                />
-                                <small className="text-muted">Full name as displayed on card</small>
-                                <div className="invalid-feedback">Name on card is required</div>
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="cc-number">Credit card number</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="cc-number"
-                                    placeholder=""
-                                    required=""
-                                />
-                                <div className="invalid-feedback">
-                                    Credit card number is required
+                    {filterCart.map((item) => {
+                        return <>
+                            <div className='row border mb-1 pt-3'>
+                                <div className='col-3'>
+                                    <img className='img-fluid' src={item.image} alt="No Internet" style={{ width: "100%", height: "auto" }} />
+                                </div>
+                                <div className='col-9'>
+                                    <p className='checout_tittle text-muted'>{item.title}</p>
+                                    <p className='text-end'>{`$${item.Fprice.toFixed(2)}`}</p>
                                 </div>
                             </div>
+                        </>
+                    })
+                    }
+                    <div className='row mt-3'>
+                        <div className='px-3 col-12 border d-flex justify-content-between align-items-center'>
+                            <p>Total(USD)</p>
+                            <p className='fw-bold' >{`$${totalSum.toFixed(2)}`}</p>
+
                         </div>
-                        <div className="row">
-                            <div className="col-md-3 mb-3">
-                                <label htmlFor="cc-expiration">Expiration</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="cc-expiration"
-                                    placeholder=""
-                                    required=""
-                                />
-                                <div className="invalid-feedback">Expiration date required</div>
-                            </div>
-                            <div className="col-md-3 mb-3">
-                                <label htmlFor="cc-cvv">CVV</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="cc-cvv"
-                                    placeholder=""
-                                    required=""
-                                />
-                                <div className="invalid-feedback">Security code required</div>
-                            </div>
-                        </div> */}
-                    <hr className="mb-4" />
-                    <button className="btn btn-primary btn-lg btn-block" type="submit">
-                        Continue to checkout
-                    </button>
-                </form>
+                    </div>
+
+                </div>
             </div>
         </div>
 

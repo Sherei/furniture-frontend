@@ -19,12 +19,14 @@ export const Dashboard = () => {
     const [users, setUsers] = useState([])
     const [product, setProducts] = useState([])
     const [comment, setComments] = useState([])
+    const [order, setOrder] = useState([])
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard`).then((res) => {
             // axios.get("/dashboard").then((res) => {
             setUsers(res.data.Users)
             setProducts(res.data.Products)
             setComments(res.data.comments)
+            setOrder(res.data.orders)
         })
     }, [])
     let data = [

@@ -2,3 +2,20 @@
 option{
     text-transform: capitalize;
 }
+.completed-row {
+    background-color: rgb(2, 2, 94 );
+    color: white; /* You can adjust text color for better visibility */
+  }
+  .completed-row:hover{
+    background-color: rgb(2, 2, 94,0.8 );
+    color: white;  
+  }
+select{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: rgb(2, 2, 94);
+}
+.completed-row select{
+    color: white;
+}

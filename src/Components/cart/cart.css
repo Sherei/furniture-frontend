@@ -59,6 +59,10 @@
     
     background-color: transparent;
 }
+.cart_animation{
+    width: 40% !important;
+    height: auto !important;
+}
 @media(max-width:768px) {
     .cart-total {
 

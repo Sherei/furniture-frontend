@@ -52,7 +52,7 @@ const Sofas = () => {
                     }
                     <div className='h_box_main'>
                         {loading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                                 <Loader />
                             </div>
                         ) : (

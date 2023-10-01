@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { AiTwotoneMail } from "react-icons/ai"
-import { FaLock, FaPhoneAlt, FaUserAlt, FaLockOpen } from "react-icons/fa"
+import { FaLock, FaPhoneAlt, FaUserAlt, FaLockOpen,FaAddressCard } from "react-icons/fa"
 import axios from 'axios';
 
 import "./login.css"
@@ -38,7 +38,6 @@ export const Login = () => {
     try {
 
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);
-      // let response = await axios.post("/login", data);
 
       let loginUser = response.data;
 
@@ -53,7 +52,7 @@ export const Login = () => {
         
         if (loginUser.user.email === "asd@gmail.com") {
           toast.success("Welcome Back Dear Admin");
-          move('/dashboard');
+          move('/admin-dashboard');
         } else {
           toast.success("Welcome Back");
           move("/Products/all");
@@ -70,7 +69,7 @@ export const Login = () => {
   async function SignUp(data) {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
-      // const response = await axios.post("/signUp", data);
+  
       if (response.data === "User Created") {
         toast.success("Account Created");
         handleToggleForm(true)
@@ -180,7 +179,7 @@ export const Login = () => {
               <div>
                 <label htmlFor="" className='form_label'><FaUserAlt /> Name *</label>
                 <input type="text" className="form-control login_form_input"{...register('name', { required: true })} />
-                {errors.name ? <div className='error'>Name is required </div> : null}
+                {errors.name ? <div className='error'>This Field is required</div> : null}
               </div>
               <div>
                 <label htmlFor="" className='form_label'><AiTwotoneMail /> E-mail *</label>
@@ -196,12 +195,12 @@ export const Login = () => {
                   }
                 })} />
               </div>
-              {errors.email ? <div className='error'>E-mail is required</div> : null}
+              {errors.email ? <div className='error'>This Field is required</div> : null}
 
               <div>
                 <label htmlFor="" className='form_label'><FaLock /> Password *</label>
                 <input type="password" className="form-control login_form_input" {...register('password', { required: true })} />
-                {errors.password ? <div className='error'>Password is required</div> : null}
+                {errors.password ? <div className='error'>This Field is required</div> : null}
 
               </div>
               <div>
@@ -213,7 +212,12 @@ export const Login = () => {
               <div>
                 <label htmlFor="" className='form_label'><FaPhoneAlt /> Contact No *</label>
                 <input type="text" className="form-control login_form_input"{...register('number', { required: true })} />
-                {errors.number && errors.number.type == 'required' ? <div className='error'>Contact number is required</div> : null}
+                {errors.number && errors.number.type == 'required' ? <div className='error'>This Field is required</div> : null}
+              </div>
+              <div>
+                <label htmlFor="" className='form_label'><FaAddressCard /> Address *</label>
+                <input type="text" className="form-control login_form_input"{...register('address', { required: true })} />
+                {errors.address && errors.address.type == 'required' ? <div className='error'>This Field is required</div> : null}
               </div>
               <div>
                 <input type="checkbox" className="mx-1" required />

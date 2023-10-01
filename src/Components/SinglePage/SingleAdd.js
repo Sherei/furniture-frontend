@@ -93,7 +93,6 @@ const SingleAdd = () => {
     async function AddToCart() {
 
         const totalPrice = product.Fprice * quantity;
-
         const meraForm = new FormData();
 
         if (cu._id === undefined) {
@@ -103,13 +102,13 @@ const SingleAdd = () => {
         meraForm.append('title', product.title);
         meraForm.append('productId', product._id);
         meraForm.append('userId', cu._id);
+        meraForm.append('price', product.price);
         meraForm.append('quantity', quantity);
         meraForm.append('Fprice', totalPrice);
         meraForm.append('sn', product.sn);
         meraForm.append('category', product.category);
         meraForm.append('subCategory', product.subCategory);
         meraForm.append('description', product.description);
-        meraForm.append('price', product.price);
         meraForm.append('image', product.images[0]);
         meraForm.append('discount', product.discount);
         try {
@@ -123,7 +122,6 @@ const SingleAdd = () => {
             if (error.response && error.response.status === 400) {
                 toast.warning("Product is Already into cart");
             } else {
-
                 toast.error("An error occurred. Please try again later.");
             }
 
@@ -199,7 +197,11 @@ const SingleAdd = () => {
                             <span>Reviews : {comments.filter((item) => item.productId === productId).length}</span>
                         </p>
                         <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:<span className=''>{`$${totalPrice.toFixed(2)}`}</span></p>
-                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: <input className='input_single' type="number" defaultValuevalue={quantity} min={1} onChange={handleQuantityChange} /></p>
+                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: <input
+                            className='input_single'
+                            type="number"
+                            defaultValue={1}
+                            min={1} onChange={handleQuantityChange} /></p>
                     </div>
                     <div className='s_btn mt-3'>
 
@@ -210,6 +212,8 @@ const SingleAdd = () => {
                         </a>
                     </div>
                 </div>
+
+                {/* Related items */}
 
                 <div className='col-lg-3 col-sm-12 related'>
                     <p className='fw-bolder' style={{ color: "#1b2950" }}>You may like this</p>
@@ -232,13 +236,15 @@ const SingleAdd = () => {
                             ))}
                     </div>
                 </div>
+
+
             </div>
             <div className='row mt-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1  order-xl-1'>
                     {comments.filter((item) => item.productId === productId).length > 0 && (
                         <div className='col-lg-12 col-sm-12'>
                             <div>
-                                <p className="text-center fw-bolder fs-4" style={{color: "rgb(2, 2, 94)" }}>
+                                <p className="text-center fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
                                     {`${comments.filter((item) => item.productId === productId).length} Reviews`}
                                 </p>
                             </div>
@@ -246,7 +252,7 @@ const SingleAdd = () => {
                     )}
 
                     {isLoadingComments ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                        <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                             <Loader />
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (

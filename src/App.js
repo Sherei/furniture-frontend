@@ -17,6 +17,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
 import './App.css';
 import { Dashboard } from './Components/Dashboard/Dashboard';
+import Orderplaced from './Components/Placed/Orderplaced';
+import UserPanel from './Components/UserPanel/UserPanel';
+import OrderDetail from './Components/OrderDetail/OrderDetail';
 
 function App() {
 
@@ -86,12 +89,18 @@ function App() {
       <main>
         <Routes>
           <Route exact element={<Home />} path="/"></Route>
+          <Route exact element={<UserPanel/>} path="/user-profile/:userId"></Route>
           <Route exact path="/single_Add/:productId" element={<SingleAdd />} />
+          <Route exact path="/Products" element={<Products />} />
           <Route exact path="/Products/:prodctName" element={<Products />} />
+          <Route exact path="/cart" element={<Cart />}></Route>
           <Route exact path="/cart/:userId" element={<Cart />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/checkout/:userId" element={<Checkout />}></Route>
-          <Route exact path="/dashboard" element={<Dashboard />}></Route>
+          <Route exact path="/cart-checkout/:userId" element={<Checkout />}></Route>
+          <Route exact path="/admin-dashboard" element={<Dashboard />}></Route>
+          <Route path="/placed" element={<Orderplaced />} />
+          <Route path="/order-placed/:userId" element={<Orderplaced />} />
+          <Route path="/order-detail/:OrderId" element={<OrderDetail/>} />
           <Route exact path="*" element={<Error />}></Route>
         </Routes>
       </main>
