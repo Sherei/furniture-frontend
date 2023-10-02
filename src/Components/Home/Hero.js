@@ -6,6 +6,7 @@ import 'swiper/css/autoplay';
 import { Navigation, Autoplay } from 'swiper/modules';
 import "./hero.css"
 const Hero = () => {
+   
     let array = [
         { img: "albero-furniture-bratislava-3RfIi22Y97Y-unsplash (1).jpg" },
         { img: "3.jpg" },

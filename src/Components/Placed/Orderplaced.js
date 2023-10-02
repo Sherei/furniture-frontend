@@ -10,7 +10,12 @@ import lottie from 'lottie-web';
 import celebration from '../Animations/celebration.json';
 
 const Orderplaced = () => {
-    
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, []);
     const move = useNavigate();
     const cu = useSelector((store) => store.userSection.cu);
     const { userId } = useParams();

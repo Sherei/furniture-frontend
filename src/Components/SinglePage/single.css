@@ -47,20 +47,24 @@
     align-items: center !important;
     border-bottom: 1px solid lightgray;
 }
-.single_img{
-    width: 100px !important;
-    height: 100px !important;
+
+.single_box:hover {
+    cursor: pointer;
+    background-color: rgb(241, 239, 239);
+    transition: all linear 0.4s;
 }
-.single_img img{
-    width: 100% !important;
-    height: 100% !important;
+
+.single_img {
+    max-width: 100px !important;
+    max-height: 100px !important;
 }
 
 .s_box::-webkit-scrollbar {
     /* display: none; */
 }
-.s_box::-webkit-scrollbar-thumb{
-    background : #1b2950;
+
+.s_box::-webkit-scrollbar-thumb {
+    background: #1b2950;
     border-radius: 50rem;
 }
 
@@ -83,7 +87,7 @@
     position: absolute;
     display: flex;
     gap: 5px;
-    bottom: 60px;
+    bottom: 10px;
     right: 40px;
 }
 
@@ -104,11 +108,13 @@
     /* box-shadow: 1px 1px 2px 1px rgb(0, 0, 0, 0.2); */
     padding: 10px 10px;
 }
-.s_btn{
+
+.s_btn {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
+
 .s_btn button {
     font-weight: 500;
     color: white;
@@ -116,22 +122,27 @@
     border: none;
     outline: none;
 }
-.s_whatsapp{
-    background-color: rgb(33, 211, 102,0.9);
+
+.s_whatsapp {
+    background-color: rgb(33, 211, 102, 0.9);
 }
-.s_cart{
+
+.s_cart {
     background-color: rgb(2, 2, 94, 0.9);
 }
-.s_cart:hover{
+
+.s_cart:hover {
     color: white;
     font-weight: 600;
     background-color: rgb(2, 2, 94);
 }
-.s_whatsapp:hover{
+
+.s_whatsapp:hover {
     font-weight: 600;
     color: white;
     background-color: rgb(33, 211, 102);
 }
+
 .input_single {
     width: 50px !important;
     height: 35px;
@@ -155,11 +166,12 @@
 
 .s-Image {
     width: 100%;
+    height: auto;
 }
 
 .s-Image img {
     width: fit-content;
-    max-height: 400px;
+    height: auto;
     overflow: hidden;
 }
 

@@ -14,6 +14,13 @@ import './single.css';
 
 const SingleAdd = () => {
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
     let cu = useSelector(store => store.userSection.cu)
 
     let move = useNavigate();
@@ -154,7 +161,7 @@ const SingleAdd = () => {
                     </div>
                 </div>
 
-                <div className='col-lg-4 col-md-8 col-sm-12 mb-5' style={{ position: "relative" }} >
+                <div className='col-lg-4 col-md-8 col-sm-12 mb-5 border' style={{ height: "fit-content", position: "relative" }} >
                     <TransformWrapper
                         initialScale={1}
                         initialPositionX={0}
@@ -172,12 +179,13 @@ const SingleAdd = () => {
                                             <p>No images available</p>
                                         </div>
                                     )}
-                                    {product.discount && product.discount > 0 ? (
-                                        <div className='discount'>
-                                            {`-${product.discount}%`}
-                                        </div>
-                                    ) : null}
+
                                 </TransformComponent>
+                                {product.discount && product.discount > 0 ? (
+                                    <div className='discount'>
+                                        {`-${product.discount}%`}
+                                    </div>
+                                ) : null}
                                 <div className="tools">
                                     <button onClick={() => zoomIn()}><AiOutlineZoomIn /></button>
                                     <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
@@ -223,14 +231,12 @@ const SingleAdd = () => {
                         {data.filter((item) => item.category === product.category).reverse()
                             .map((product) => (
                                 <div className="single_box" key={product.id} onClick={() => move("/single_Add/" + product._id)}>
-                                    <div className='single_img'>
-                                        <img src={product.images[0]} alt='No Network' className='img-fluid' />
-                                        {product.discount && product.discount > 0 ? (
-                                            <div className='s_discount'>
-                                                {`${product.discount}%`}
-                                            </div>
-                                        ) : null}
-                                    </div>
+                                    <img  src={product.images[0]} alt='No Network' className='img-fluid single_img' />
+                                    {product.discount && product.discount > 0 ? (
+                                        <div className='s_discount'>
+                                            {`${product.discount}%`}
+                                        </div>
+                                    ) : null}
                                     <div>
                                         <p className='fs-6' style={{ color: "#1b2950" }}>{product.title.slice(0, 70)}...</p>
                                     </div>

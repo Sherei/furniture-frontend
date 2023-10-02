@@ -13,7 +13,12 @@ import CartAnimation from "../Animations/CartAnimation.json"
 import './cart.css';
 
 export const Cart = () => {
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
   const cu = useSelector(store => store.userSection.cu)
   const move = useNavigate()
   const { userId } = useParams();

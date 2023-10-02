@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { BsFillGridFill, BsListStars } from "react-icons/bs"
 import { FaArrowAltCircleDown, FaFilter } from "react-icons/fa"
 import { useSelector } from 'react-redux';
@@ -13,7 +13,12 @@ import "./products.css"
 
 const Products = () => {
 
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
     const cu = useSelector(store => store.userSection.cu)
     const { prodctName } = useParams()
     const [data, setData] = useState([]);
@@ -60,9 +65,25 @@ const Products = () => {
         data.sort().reverse()
     }
 
+    const filterRef = useRef(null);
+
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (filter && filterRef.current && !filterRef.current.contains(event.target)) {
+                setFilter(false);
+            }
+        }
+
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [filter]);
+
     function Filter() {
         setFilter("showFilter")
-        console.log("filter")
 
     }
 
@@ -82,7 +103,7 @@ const Products = () => {
     });
 
     return <>
-        <div className='container-fluid min-vh-100' style={{ overflow: "hidden", position: "relative" }}>
+        <div className='container-fluid min-vh-100' style={{ overflow: "hidden" }}>
             <div className='row mt-5'>
                 <div className='col d-flex justify-content-center'>
                     <input
@@ -95,6 +116,7 @@ const Products = () => {
                 </div>
             </div>
             <div className='row my-5'>
+
                 <div className={`${filter ? 'showFilter' : 'filter_col'}`}>
                     <div className='categories'>
                         <div className='d-flex justify-content-between'>
@@ -125,7 +147,7 @@ const Products = () => {
                             <div className='p_category'
                                 data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo"
-                                aria-expanded="true"
+                                aria-expanded="false"
                                 aria-controls="collapseTwo"
                                 data-bs-parent="#accordionExample"
                             >
@@ -148,7 +170,7 @@ const Products = () => {
                             <div className='p_category'
                                 data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree"
-                                aria-expanded="true"
+                                aria-expanded="false"
                                 aria-controls="collapseThree"
                                 data-bs-parent="#accordionExample"
                             >
@@ -156,6 +178,7 @@ const Products = () => {
                             </div>
                             <div className='accordion-collapse collapse show text-capitalize px-4'
                                 id="collapseThree"
+                                aria-expanded="false"
                                 aria-labelledby="collapseThree"
                             >
                                 <p onClick={() => setSortOrder("")}>All</p>
@@ -174,15 +197,14 @@ const Products = () => {
                         {data.filter((item) => item.trending === "true")
                             .map((product) => {
                                 return <div className='filter_Card' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
-                                    <div>
-                                        <img src={product.images[0]} alt="No network" style={{ width: "80px" }} />
 
-                                    </div>
+                                    <img src={product.images[0]} alt="No network" style={{ maxWidth: "80px", height: "80px" }} />
+
                                     <div className='text-left'>
                                         <p>{product.title}</p>
-                                        <span className='px-2 t_Fprice'>{`$${product.Fprice}`}</span>
+                                        <span className='px-2 t_Fprice'>{`$${product.Fprice.toFixed(0, 2)}`}</span>
                                         {product.price &&
-                                            <span className='t_price'><s>{`$${product.price}`}</s></span>
+                                            <span className='t_price'><s>{`$${product.price.toFixed(0, 2)}`}</s></span>
                                         }
                                     </div>
                                 </div>
@@ -196,15 +218,13 @@ const Products = () => {
                             {data.filter((item) => item.feature === "true")
                                 .map((product) => {
                                     return <div className='filter_Card' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
-                                        <div>
-                                            <img src={product.images[0]} alt="No network" style={{ width: "80px" }} />
+                                        <img src={product.images[0]} alt="No network" style={{ maxWidth: "80px", height: "80px" }} />
 
-                                        </div>
                                         <div className='text-left'>
                                             <p>{product.title}</p>
-                                            <span className='px-2 t_Fprice'>{`$${product.Fprice}`}</span>
+                                            <span className='px-2 t_Fprice'>{`$${product.Fprice.toFixed(0, 2)}`}</span>
                                             {product.price &&
-                                                <span className='t_price'><s>{`$${product.price}`}</s></span>
+                                                <span className='t_price'><s>{`$${product.price.toFixed(0, 2)}`}</s></span>
                                             }
                                         </div>
                                     </div>
@@ -234,10 +254,10 @@ const Products = () => {
                                 </div>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <p className='fw-bolder'>{filteredProduct.length} Products</p>
+                                <p className='fw-bolder my-2'>{filteredProduct.length} Products</p>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <button className='btn' role='button' onClick={Filter}><FaFilter /></button>
+                                <button className='btn fs-4' role='button' onClick={Filter} ref={filterRef}><FaFilter /></button>
                             </div>
                         </div>
                     </div>
@@ -278,7 +298,7 @@ const Products = () => {
                                                     <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
                                                 )}
                                             </div>
-                                            <div  className='product_btns'>
+                                            <div className='product_btns'>
                                                 <button className='btn p_detail_btn'>View Detail</button>
                                                 <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
                                             </div>
@@ -294,72 +314,48 @@ const Products = () => {
                         </div>
                     )}
 
-
-                    <div className="row justify-content-center">
+                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 g-4 my-3">
                         {activeGrid === "list" &&
                             filteredProduct.map((product) => {
                                 return <>
-                                    <div className="col-md-6 col-xl-6 mb-4">
-                                        <div className="card shadow-0 border rounded-3">
-                                            <div className="card-body">
-                                                <div className="row">
-                                                    <div className="col-md-3 col-lg-3 col-xl-3 col-sm-3 cols-3 mb-3 mb-lg-0">
-                                                        <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                                            <img
-                                                                src={product.images[0]}
-                                                                className="w-100"
-                                                            />
-                                                            {product.discount && product.discount > 0 ? (
-                                                                <div className='discount'>
-                                                                    {`${product.discount}%`}
-                                                                </div>
-                                                            ) : null}
-                                                            <a href="#!">
-                                                                <div className="hover-overlay">
-                                                                    <div
-                                                                        className="mask"
-                                                                        style={{ backgroundColor: "rgba(253, 253, 253, 0.15)" }}
-                                                                    />
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                    <div className="col d-flex grid_box_main " key={product.id} onClick={() => move("/single_Add/" + product._id)} style={{ overflow: "hidden" }}>
+                                        <div style={{ width: "40%" }}>
+                                            <div className='p_img_box_grid'>
+                                                <img src={product.images[0]} alt="No network" />
+                                                {product.discount && product.discount > 0 ? (
+                                                    <div className='discount'>
+                                                        {`${product.discount}%`}
                                                     </div>
-                                                    <div className="col-md-9 col-lg-9 col-xl-9 col-sm-9 cols-9">
-                                                        <h5 className="card-title p_title">{product.title}</h5>
-                                                        {product.description &&
-                                                            <p className="card-text text-center p_display">
-                                                                {product.description.slice(0, 90)}...
-                                                            </p>
-                                                        }
-                                                        <div className='d-flex flex-wrap'>
-                                                            <p className='px-1'><b>Price :</b></p>
-                                                            {product.discount && product.discount > 0 ? (
-                                                                <>
-                                                                    <span className='card_Fprice'>{`${product.Fprice.toFixed(2)}$`}</span>
-                                                                    <span><s>{`${product.price.toFixed(2)}$`}</s></span>
-                                                                </>
-                                                            ) : (
-                                                                <span className='card_Fprice'>{`${product.Fprice.toFixed(2)}$`}</span>
-                                                            )}
-
-                                                        </div>
-                                                        <a>
-                                                            <button className='review_btn' onClick={() => {
-                                                                if (cu._id === undefined) {
-                                                                    toast.warning("Login to Buy")
-                                                                    move("/login")
-                                                                } else {
-                                                                    toast.success("Product Added")
-                                                                }
-                                                            }}>Add To Cart</button>
-                                                        </a>
-
-                                                    </div>
+                                                ) : null}
+                                                <div className='overlay'>
+                                                    {product.images[1] &&
+                                                        <img src={product.images[1]} alt="" />
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className='d-flex flex-column justify-content-between gap-3' style={{ width: "60%" }}>
+                                            <div>
+                                                <p className='card_title px-2'>{product.title}</p>
+                                                {product.description &&
+                                                    <p className='p_description px-2'>{product.description}</p>
+                                                }
+                                            </div>
+                                            <div className='text-left'>
+                                                {product.discount && product.discount > 0 ? (
+                                                    <>
+                                                        <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(1)}`}</span>
+                                                        <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                                    </>
+                                                ) : (
+                                                    <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
+                                                )}
+                                            </div>
+                                            <div className='text-center'>
+                                                <button className='btn review_btn btn-outline-primary fs-10'>View Detail</button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </>
                             })}
 

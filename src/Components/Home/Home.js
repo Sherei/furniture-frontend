@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from './Hero'
 import "./home.css"
 import Categories from './Categories'
@@ -13,19 +13,28 @@ import Discounted from './Discounted'
 import Trending from './Trending'
 import Feature from './Feature'
 const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
+
   return <>
-      <Hero />
-      <Categories />
-      <Discounted />
-      <Trending/>
-      <Sofas />
-      <Beds />
-      <Feature/>
-      <Bedroom />
-      <Dining />
-      <Coffee />
-      <Review />
-      <Benefits />
+    <Hero />
+    <Categories />
+    <Discounted />
+    <Trending />
+    <Sofas />
+    <Beds />
+    <Feature />
+    <Bedroom />
+    <Dining />
+    <Coffee />
+    <Review />
+    <Benefits />
 
   </>
 }

@@ -9,6 +9,14 @@ import { Error } from '../Error/Error';
 import axios from 'axios';
 
 const OrderDetail = () => {
+
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, []);
+
     const { OrderId } = useParams();
     const cu = useSelector(store => store.userSection.cu);
     const move = useNavigate();
@@ -50,7 +58,7 @@ const OrderDetail = () => {
                 </div>
             </div>
             <div className='row'>
-                <div className='col-lg-4 col-md-4 col-sm-12'>
+                <div className='col'>
                     <p><b>Customer Name:</b> {order.name1} {order.name2}</p>
                     <p><b>Customer E-mail: </b>{order.email}</p>
                     <p><b>Mobile Number: </b>{order.number1}</p>

@@ -11,7 +11,12 @@ import "./checkout.css"
 import Loader from '../Loader/Loader';
 
 const Checkout = () => {
-
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, []);
     const cu = useSelector(store => store.userSection.cu)
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();

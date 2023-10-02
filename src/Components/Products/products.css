@@ -1,13 +1,6 @@
 .filter_col {
     position: absolute;
-    height: fit-content;
     width: 300px !important;
-    top: 20px;
-    display: flex;
-    padding: 20px 10px;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1000;
     left: -400px;
 }
 
@@ -21,7 +14,7 @@
     gap: 40px !important;
     background-color: white;
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.5);
-    top: 45px;
+    top: 120px;
     border-radius: 7px;
     padding: 20px 10px;
     z-index: 10000;
@@ -78,6 +71,12 @@
     gap: 5px;
 }
 
+.filter_Card:hover {
+    cursor: pointer;
+    background-color: rgb(247, 245, 245);
+    transition: all linear 0.4s;
+}
+
 .search_bar {
     width: 80%;
     background-color: transparent;
@@ -114,12 +113,12 @@
 
 .grid_icon {
     background-color: white;
-    color: black;
+    color: rgb(2, 2, 94);
     cursor: pointer;
 }
 
 .grid_icon.active {
-    background-color: black;
+    background-color: rgb(2, 2, 94);
     color: white;
 }
 
@@ -158,6 +157,9 @@
 
 .product_box {
     overflow: hidden;
+}
+
+.product_box_list {
     border-radius: 7px;
 }
 
@@ -178,6 +180,18 @@
     height: 250px;
 }
 
+.p_img_box_grid {
+    position: relative;
+    height: 150px;
+}
+
+.p_img_box_grid img {
+    /* object-fit: cover; */
+    /* object-position: center; */
+    width: 100%;
+    height: 100%;
+}
+
 .p_img_box img {
     border-radius: 7px;
     width: 100%;
@@ -194,10 +208,27 @@
     transition: 0.3s ease;
 }
 
+.p_img_box_grid .overlay {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease;
+}
+
 .p_img_box:hover .overlay {
     left: 0;
 }
 
+.p_img_box_grid:hover .overlay {
+    left: 0;
+}
+.grid_box_main:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all linear 0.3s;
+}
 .product_btns {
     width: 100%;
     display: flex;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
@@ -16,7 +16,12 @@ import "./login.css"
 
 
 export const Login = () => {
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
   let array = [
     { img: "17.jpeg" },
     { img: "15.jpeg" },

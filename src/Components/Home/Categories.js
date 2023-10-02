@@ -5,11 +5,11 @@ import "./home_category.css"
 
 const Categories = () => {
   let array = [
-    { img: "/sofas.jpg", title: "All Sofas" },
-    { img: "/living.jpg", title: "Dinning Tables" },
-    { img: "/Beds.jpg", title: "All Beds" },
-    { img: "/mattress.jpg", title: "Wardrobes" },
-    { img: "/coffee.jpg", title: "Coffee Tables" },
+    { img: "/sofas.jpg", title: "All Sofas", path:"/Products/" + "sofa" },
+    { img: "/Beds.jpg", title: "All Beds" , path:"/Products/" + "bed"},
+    { img: "/living.jpg", title: "Dinning Tables", path:"/Products/" + "dinning" },
+    { img: "/mattress.jpg", title: "Wardrobes" , path:"/Products/" + "wardrobes"},
+    { img: "/coffee.jpg", title: "Coffee Tables" , path:"/Products/" + "coffee"},
   ]
 
   let move =useNavigate()
@@ -26,7 +26,7 @@ const Categories = () => {
           <div className='h_box_main'>
             {array.map((data) => (
               <div className="h_box" onClick={()=>{
-                move("/products")
+                move(data.path)
               }}>
                 <div className='h_box_img_main'>
                   <img src={data.img} alt='No Network' />

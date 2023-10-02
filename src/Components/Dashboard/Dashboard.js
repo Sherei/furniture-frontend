@@ -13,7 +13,12 @@ import { useSelector } from 'react-redux';
 import { Error } from '../Error/Error';
 
 export const Dashboard = () => {
-
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, []);
     let cu = useSelector(store => store.userSection.cu)
     const move = useNavigate()
     const [users, setUsers] = useState([])

@@ -8,6 +8,15 @@ import { Error } from '../Error/Error';
 import axios from 'axios';
 
 const UserPanel = () => {
+
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, []);
+
+      
     const cu = useSelector((store) => store.userSection.cu);
     const move = useNavigate();
     const { userid } = useParams();
