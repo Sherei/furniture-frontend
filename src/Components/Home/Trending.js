@@ -39,7 +39,7 @@ const Trending = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  justify-content-between'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{color:'#fd5d39'}} >Trending Products</p>
+                        <p className='fw-bolder fs-5' style={{color:'rgb(2, 2, 94)'}} >Trending Products</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
