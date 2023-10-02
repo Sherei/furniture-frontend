@@ -9,10 +9,11 @@ const Hero = () => {
     let array = [
         { img: "albero-furniture-bratislava-3RfIi22Y97Y-unsplash (1).jpg" },
         { img: "3.jpg" },
-        { img: "AdobeStock_200836711_Preview.jpeg" },
         { img: "1.jpg" },
-        { img: "AdobeStock_184256548_Preview.jpeg" },
+        { img: "4.jpg" },
+        { img: "albero-furniture-bratislava-3RfIi22Y97Y-unsplash (1).jpg" },
         { img: "AdobeStock_246454872_Preview.jpeg" },
+        { img: "3.jpg" },
         {img:"AdobeStock_585163350_Preview.jpeg"},
         { img: "bed.jpg" },
         { img: "4.jpg" },
