@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Error } from '../Error/Error';
 import Loader from '../Loader/Loader';
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
 import './cart.css';
 
@@ -20,10 +20,6 @@ export const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [itemQuantities, setItemQuantities] = useState({});
-  const [animationState, setAnimationState] = useState({
-    isStopped: false,
-    isPaused: false,
-  });
 
   useEffect(() => {
     setLoading(true);
@@ -78,11 +74,11 @@ export const Cart = () => {
 
 
   const updateCart = () => {
-    
+
     const updatedCart = cart.map((item) => {
       const newQuantity = itemQuantities[item._id] || item.quantity;
       const updatedFprice = item.price * newQuantity * (1 - item.discount / 100);
-    
+
       return {
         ...item,
         quantity: newQuantity,
@@ -125,28 +121,21 @@ export const Cart = () => {
     return accumulator + item.Fprice;
   }, 0);
 
-  
+
   const defaultOptions = {
-    loop: 100,
+    loop: true,
     autoplay: true,
     animationData: CartAnimation,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
+
   };
 
   if (filterCart.length === 0) {
-    return <center className='mb-5'>
-      <div style={{ minHeight: "100vh" }}>
-      <p className='fw-bolder'>Your Cart is empty</p>
-        <div className='p-0 m-0 cart_animation'>
-          <Lottie
-            options={defaultOptions}
-          />
-        </div>
-        <button className='btn review_btn' onClick={() => move('/Products/all')}>Browse Products <FaArrowRight /></button>
-      </div>
-    </center>
+    return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '50vh'}}>
+      <p className='fs-1 fw-bolder'>Cart is empty</p>
+      <button className='btn review_btn' onClick={() => move('/Products/all')}>
+        Browse Products <FaArrowRight />
+      </button>
+    </div>
   }
 
   if (loading) {
@@ -241,10 +230,7 @@ export const Cart = () => {
               <p>Items:</p>
               <p>{filterCart.length}</p>
             </div>
-            {/* <div className='fw-normal d-flex justify-content-between'>
-              <p>Total:</p>
-              <p>{`$${total.toFixed(2)}`}</p>
-            </div> */}
+
             <div className='fw-normal d-flex justify-content-between'>
               <p>After Discount</p>
             </div>
@@ -263,7 +249,7 @@ export const Cart = () => {
 
       {filterCart.length > 0 && (
         <div className="card-body mt-5">
-          <button type="button" className="btn  review_btn btn-lg" style={{ backgroundColor: "#fd5d39" }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+          <button type="button" className="fw-bolder btn btn-outline-primary" onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
             Proceed to Pay
           </button>
         </div>

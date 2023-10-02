@@ -1,66 +1,49 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
-import { FaArrowRight } from "react-icons/fa"
+import { FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Error } from '../Error/Error';
-import Lottie from 'react-lottie';
-import CartAnimation from "../Animations/CartAnimation.json"
-
 import axios from 'axios';
 
 const UserPanel = () => {
-
-    const cu = useSelector(store => store.userSection.cu)
-    const move = useNavigate()
-    const { userid } = useParams()
+    const cu = useSelector((store) => store.userSection.cu);
+    const move = useNavigate();
+    const { userid } = useParams();
     const [order, setOrder] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [profile, setProfile] = useState("order")
-    const [animationState, setAnimationState] = useState({
-        isStopped: false,
-        isPaused: false,
-    });
+    const [profile, setProfile] = useState('order');
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/order`)
-            .then((res) => {
-                try {
-                    if (res.data) {
-                        setOrder(res.data);
-                    }
-                } catch (e) {
-                    console.log(e);
-                } finally {
-                    setLoading(false);
+        axios.get(`${process.env.REACT_APP_BASE_URL}/order`).then((res) => {
+            try {
+                if (res.data) {
+                    setOrder(res.data);
                 }
-            });
+            } catch (e) {
+                console.log(e);
+            } finally {
+                setLoading(false);
+            }
+        });
     }, []);
 
-    const filterOrder = order.filter((item) => item.userId === cu._id)
+    const filterOrder = order.filter((item) => item.userId === cu._id);
 
-    const defaultOptions = {
-        loop: 100,
-        autoplay: true,
-        animationData: CartAnimation,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
-    };
-
-    if (cu._id === undefined || cu.email === "asd@gmail.com") {
+    if (cu._id === undefined || cu.email === 'asd@gmail.com') {
         return <>
             <Error />
         </>
     }
-    return <>
+
+    return (
         <section style={{ backgroundColor: "#eee", minHeight: "100vh" }}>
             <div className="container py-5">
                 <div className="row">
                     <div className="col">
-                        <nav aria-label="breadcrumb" className="rounded-3 p-3 mb-4" style={{ backgroundColor: "white"}}>
+                        <nav aria-label="breadcrumb" className="rounded-3 p-3 mb-4" style={{ backgroundColor: "white" }}>
                             <ol className="breadcrumb mb-0">
                                 <li className="breadcrumb-item">
                                     <a href="#">Home</a>
@@ -153,30 +136,25 @@ const UserPanel = () => {
                         </div>
                     }
 
-                    {profile === "order" &&
+                    {profile === "order" && (
                         <div className='col-lg-8 col-md-8 col-sm-12'>
-                            {filterOrder.length < 1 &&
-                                <center style={{ minHeight: "100vh", backgroundColor: "#eee" }}>
-                                    <div className='py-0 mb-5'  >
+                            {filterOrder.length === 0 ? (
+                                    <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '50vh', backgroundColor: '#eee' }}>
                                         <p className='fw-bolder'>No Order placed yet</p>
-                                        <div className='p-0 m-0 cart_animation'>
-                                            <Lottie
-                                                options={defaultOptions}
-                                            />
-                                        </div>
-                                        <button className='btn review_btn' onClick={() => move('/Products/all')}>Browse Products <FaArrowRight /></button>
+                                        <button className='btn review_btn' onClick={() => move('/Products/all')}>
+                                            Browse Products <FaArrowRight />
+                                        </button>
                                     </div>
-                                </center>
-                            }
-                            {loading ? (
-                                <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                    <Loader />
-                                </div>
+                            
                             ) : (
                                 <>
-                                    {filterOrder.length > 0 && (
-                                        <div className="table-responsive" style={{ backgroundColor: "white", minHeight:"58vh" }}>
-                                            <table className="table table-bordered">
+                                    {loading ? (
+                                        <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
+                                            <Loader />
+                                        </div>
+                                    ) : (
+                                        <div className='table-responsive' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
+                                            <table className='table table-bordered'>
                                                 <thead>
                                                     <tr className='text-center'>
                                                         <th>Sr#</th>
@@ -210,9 +188,7 @@ const UserPanel = () => {
                                                                 <td className='text-center'>{totalFprice.toFixed(2)}</td>
                                                                 <td>{data.date.slice(0, 10)}</td>
                                                                 <td className='text-center'>
-                                                                    <a href={`/order-detail/${data._id}`}>
-                                                                        Detail
-                                                                    </a>
+                                                                    <a href={`/order-detail/${data._id}`}>Detail</a>
                                                                 </td>
                                                             </tr>
                                                         );
@@ -224,12 +200,11 @@ const UserPanel = () => {
                                 </>
                             )}
                         </div>
-                    }
+                    )}
                 </div>
             </div>
         </section>
+    );
+};
 
-    </>
-}
-
-export default UserPanel
+export default UserPanel;

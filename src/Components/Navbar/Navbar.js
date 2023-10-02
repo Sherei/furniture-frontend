@@ -70,13 +70,13 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
             />
           </Link>
           <div className='d-flex align-items-center'>
-            <li className="nav-item">
+            <li className="nav-item fs-4">
               <Link className="nav-link" to="/login">
                 <FaWhatsapp />
               </Link>
             </li>
             {cu._id == undefined &&
-              <li className="nav-item">
+              <li className="fs-4 nav-item">
                 <Link className="nav-link" to="/login">
                   <FaUser />
                 </Link>
@@ -87,22 +87,21 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                 {cu.email != "asd@gmail.com" &&
                   <li className="nav-item" >
                     <Link className="nav-link" to={`/cart/${cu._id}`}>
-                      <span style={{ position: "relative" }}>
+                      <span className='fs-4' style={{ position: "relative" }}>
                         <FiShoppingCart />
-                        <div className='px-1 py-1 d-flex justify-content-center'
+                        <div className='px-1 py-1 d-flex justify-content-center align-items-center'
                           style={{
                             position: "absolute",
-                            top: "-10px",
-                            left: "10px",
+                            top: "-12px",
+                            left: "14px",
                             width: "20px",
                             height: "20px",
                             borderRadius: "40px",
                             backgroundColor: "rgb(2, 2, 94)",
                             color: 'white',
-                            fontSize: "10px"
+                            fontSize: "12px"
                           }}>
                           {filterCart.length}
-
                         </div>
                       </span>
                     </Link>

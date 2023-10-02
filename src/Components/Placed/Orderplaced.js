@@ -6,8 +6,6 @@ import { FaArrowRight } from 'react-icons/fa';
 import axios from 'axios';
 import { Error } from '../Error/Error';
 import Loader from '../Loader/Loader';
-import Lottie from 'react-lottie';
-import celebration from "../Animations/celebration.json"
 
 const Orderplaced = () => {
 
@@ -17,10 +15,7 @@ const Orderplaced = () => {
     const { userId } = useParams();
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState([]);
-    const [animationState, setAnimationState] = useState({
-        isStopped: false,
-        isPaused: false,
-    });
+
 
     useEffect(() => {
         setLoading(true);
@@ -41,15 +36,6 @@ const Orderplaced = () => {
     const filterOrder = order.filter((item) => userId === item.userId)
 
 
-    const defaultOptions = {
-        loop: 1,
-        autoplay: true,
-        animationData: celebration,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
-    };
-
     if (loading) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
@@ -69,18 +55,6 @@ const Orderplaced = () => {
             <div className="row">
                 <center>
                     <div className="col-12" style={{ minHeight: "80vh" }}>
-                        <Lottie
-                            options={defaultOptions}
-                            isStopped={animationState.isStopped}
-                            isPaused={animationState.isPaused}
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100vh',
-                            }}
-                        />
                         <p className='text-center' style={{ lineHeight: "50px" }}>
                             Thank you for placing an order, <br />
                             Your Order ID is: <b>{filterOrder[0].orderId}</b>
