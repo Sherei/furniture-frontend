@@ -28,6 +28,7 @@ const OrderDetail = () => {
     }, [OrderId]);
 
     useEffect(() => {
+        
         if (order.orderItems) {
             let sum = 0;
             order.orderItems.forEach((data) => {
@@ -37,10 +38,10 @@ const OrderDetail = () => {
         }
     }, [order.orderItems]);
 
-    if (cu._id === undefined || order.orderItems.length < 1) {
+    if (cu._id === undefined || !order.orderItems?.length) {
         return <Error />;
     }
-
+    
     return (
         <div className='container my-5'>
             <div className='row'>
@@ -89,10 +90,10 @@ const OrderDetail = () => {
                                             <tr key={index} onClick={() => move("/single_Add/" + data._id)}>
                                                 <td>{index + 1}</td>
                                                 <td>{data.sn}</td>
-                                                <td>
+                                                <td >
                                                     <img src={data.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
                                                 </td>
-                                                <td>{data.title}</td>
+                                                <td >{data.title}</td>
                                                 <td>{data.category}</td>
                                                 <td>{data.subCategory}</td>
                                                 <td className='text-center'>{`$${parseFloat(data.price).toFixed(2)}`}</td>
@@ -150,7 +151,7 @@ const OrderDetail = () => {
                     }
                     {cu.email !="asd@gmail.com" &&
                         <a href={`/user-profile/${cu._id}`}>
-                        <button className='btn review_btn'>
+                        <button className='btn btn-outline-primary fw-bolder'>
                             Back to Profile <FaArrowRight />
                         </button>
                     </a>

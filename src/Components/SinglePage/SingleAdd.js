@@ -91,42 +91,44 @@ const SingleAdd = () => {
     }, []);
 
     async function AddToCart() {
-
-        const totalPrice = product.Fprice * quantity;
-        const meraForm = new FormData();
-
         if (cu._id === undefined) {
             move('/login')
             toast.warning("Login First")
         }
-        meraForm.append('title', product.title);
-        meraForm.append('productId', product._id);
-        meraForm.append('userId', cu._id);
-        meraForm.append('price', product.price);
-        meraForm.append('quantity', quantity);
-        meraForm.append('Fprice', totalPrice);
-        meraForm.append('sn', product.sn);
-        meraForm.append('category', product.category);
-        meraForm.append('subCategory', product.subCategory);
-        meraForm.append('description', product.description);
-        meraForm.append('image', product.images[0]);
-        meraForm.append('discount', product.discount);
-        try {
-            let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, meraForm)
+        else {
 
-            if (response.data === "Product Added") {
-                toast.success("Added to Cart");
+            const totalPrice = product.Fprice * quantity;
+            const meraForm = new FormData();
+
+            meraForm.append('title', product.title);
+            meraForm.append('productId', product._id);
+            meraForm.append('userId', cu._id);
+            meraForm.append('price', product.price);
+            meraForm.append('quantity', quantity);
+            meraForm.append('Fprice', totalPrice);
+            meraForm.append('sn', product.sn);
+            meraForm.append('category', product.category);
+            meraForm.append('subCategory', product.subCategory);
+            meraForm.append('description', product.description);
+            meraForm.append('image', product.images[0]);
+            meraForm.append('discount', product.discount);
+            try {
+                let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, meraForm)
+
+                if (response.data === "Product Added") {
+                    toast.success("Added to Cart");
+                }
+            } catch (error) {
+
+                if (error.response && error.response.status === 400) {
+                    toast.warning("Product is Already into cart");
+                } else {
+                    toast.error("An error occurred. Please try again later.");
+                }
+
+            } finally {
+                setLoading(false);
             }
-        } catch (error) {
-
-            if (error.response && error.response.status === 400) {
-                toast.warning("Product is Already into cart");
-            } else {
-                toast.error("An error occurred. Please try again later.");
-            }
-
-        } finally {
-            setLoading(false);
         }
 
     };

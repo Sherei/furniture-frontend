@@ -81,8 +81,8 @@ const Trending = () => {
                             .map((product) => (
 
                                 <SwiperSlide className='t_slide'>
-                                    <div className="t_card py-2" key={product._id} onClick={() => move("/single_Add/" + product._id)}>
-                                        <div className='t_img_box'>
+                                    <div className="t_card py-2" key={product._id} >
+                                        <div className='t_img_box' onClick={() => move("/single_Add/" + product._id)}>
                                             <img src={product.images[0]} alt="No network" />
                                             <div className='trending'>
                                                 Trending

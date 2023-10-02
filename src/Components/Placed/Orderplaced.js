@@ -6,16 +6,31 @@ import { FaArrowRight } from 'react-icons/fa';
 import axios from 'axios';
 import { Error } from '../Error/Error';
 import Loader from '../Loader/Loader';
+import lottie from 'lottie-web'; 
+import celebration from '../Animations/celebration.json';
 
 const Orderplaced = () => {
-
+    
     const move = useNavigate();
-
     const cu = useSelector((store) => store.userSection.cu);
     const { userId } = useParams();
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState([]);
+    
+    const animationContainerRef = React.createRef();
 
+    useEffect(() => {
+        const animation = lottie.loadAnimation({
+            container: animationContainerRef.current,
+            loop: true,
+            autoplay: true,
+            animationData: celebration,
+        });
+
+        return () => {
+            animation.destroy();
+        };
+    }, []);
 
     useEffect(() => {
         setLoading(true);
@@ -33,8 +48,7 @@ const Orderplaced = () => {
             });
     }, []);
 
-    const filterOrder = order.filter((item) => userId === item.userId)
-
+    const filterOrder = order.filter((item) => userId === item.userId);
 
     if (loading) {
         return (
@@ -45,9 +59,7 @@ const Orderplaced = () => {
     }
 
     if (cu._id === undefined || cu.email === "asd@gmail.com" || filterOrder.length < 1) {
-        return <>
-            <Error />
-        </>
+        return <Error />;
     }
 
     return (
@@ -55,13 +67,24 @@ const Orderplaced = () => {
             <div className="row">
                 <center>
                     <div className="col-12" style={{ minHeight: "80vh" }}>
+                        <div
+                            ref={animationContainerRef}
+                            style={{
+                                width: "100%", 
+                                height: "auto",
+                                zIndex: 1000
+
+                            }}
+                        />
                         <p className='text-center' style={{ lineHeight: "50px" }}>
                             Thank you for placing an order, <br />
-                            Your Order ID is: <b>{filterOrder[0].orderId}</b>
+                            Your Order ID is: <b>{filterOrder[0].orderId}</b> <br />
+                            Order will be delivered within 10-15 working days
+
                         </p>
                         <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'
                             style={{
-                                zIndex: 20000
+                                zIndex: 10000
                             }}>
                             <button className="review_btn my-3" onClick={() => {
                                 move(`/user-profile/${cu._id}`)

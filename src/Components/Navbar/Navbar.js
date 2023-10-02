@@ -89,7 +89,7 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                     <Link className="nav-link" to={`/cart/${cu._id}`}>
                       <span className='fs-4' style={{ position: "relative" }}>
                         <FiShoppingCart />
-                        <div className='px-1 py-1 d-flex justify-content-center align-items-center'
+                        {/* <div className='px-1 py-1 d-flex justify-content-center align-items-center'
                           style={{
                             position: "absolute",
                             top: "-12px",
@@ -102,7 +102,7 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                             fontSize: "12px"
                           }}>
                           {filterCart.length}
-                        </div>
+                        </div> */}
                       </span>
                     </Link>
                   </li>

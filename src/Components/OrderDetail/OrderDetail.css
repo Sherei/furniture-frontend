@@ -1,0 +1,23 @@
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #ccc; /* Default background color */
+    margin-top: 20px; /* Adjust margin as needed */
+    border-radius: 5px; /* Add rounded corners if desired */
+    overflow: hidden; /* Ensure child elements don't overflow */
+  }
+  
+  .progress-item {
+    float: left;
+    height: 100%;
+    line-height: 15px;
+    text-align: center;
+    color: #fff; /* Text color for stage names */
+    font-weight: bold;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Smooth transitions */
+  }
+  
+  .progress-item.completed {
+    background-color: green; /* Change to your desired color for completed stages */
+  }
+  

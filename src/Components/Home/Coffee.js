@@ -32,7 +32,7 @@ const Coffee = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{color:'#fd5d39'}} >Coffee Tables</p>
+                        <p className='fw-bolder fs-5' style={{ color: '#fd5d39' }} >Coffee Tables</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
@@ -58,21 +58,21 @@ const Coffee = () => {
                                 .filter((item) => item.category === "coffee")
                                 .slice(0, 10)
                                 .map((product) => (
-                                    <div className='card_box' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
+                                    <div className='card_box' key={product._id} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
-                                        
+
                                         <a href="https://wa.me/+923067208343">
 
                                             <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
                                         </a>
-                                        <div className='card_img_box'>
+                                        <div className='card_img_box' onClick={() => move("/single_Add/" + product._id)}>
                                             <img src={product.images[0]} className='img-fluid' alt='No Network' />
                                             {product.discount && product.discount > 0 ? (
                                                 <div className='discount'>
                                                     {`${product.discount}%`}
                                                 </div>
                                             ) : null}
-                                              <div className='overlay'>
+                                            <div className='overlay'>
                                                 {product.images[1] &&
                                                     <img src={product.images[1]} alt="" />
                                                 }

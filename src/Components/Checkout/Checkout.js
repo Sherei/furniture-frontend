@@ -61,6 +61,7 @@ const Checkout = () => {
             formData.append('number1', data.number1);
             formData.append('number2', data.number2);
             formData.append('orderId', orderId);
+            
             filterCart.forEach((item) => {
               
                 const itemData = {
@@ -76,7 +77,6 @@ const Checkout = () => {
                 };
                 orderItems.push(itemData);
             });
-
             const orderItemsJSON = JSON.stringify(orderItems);
 
             formData.append('orderItems', orderItemsJSON);
