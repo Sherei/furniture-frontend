@@ -6,36 +6,23 @@ import { FaArrowRight } from 'react-icons/fa';
 import axios from 'axios';
 import { Error } from '../Error/Error';
 import Loader from '../Loader/Loader';
-import lottie from 'lottie-web'; 
-import celebration from '../Animations/celebration.json';
+import Lottie from 'lottie-react';
+import celebration from "../Animations/celebration.json"
+
 
 const Orderplaced = () => {
     useEffect(() => {
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      }, []);
+    }, []);
+
     const move = useNavigate();
     const cu = useSelector((store) => store.userSection.cu);
     const { userId } = useParams();
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState([]);
-    
-    const animationContainerRef = React.createRef();
-
-    useEffect(() => {
-        const animation = lottie.loadAnimation({
-            container: animationContainerRef.current,
-            loop: true,
-            autoplay: true,
-            animationData: celebration,
-        });
-
-        return () => {
-            animation.destroy();
-        };
-    }, []);
 
     useEffect(() => {
         setLoading(true);
@@ -70,17 +57,16 @@ const Orderplaced = () => {
     return (
         <div className="container my-5" style={{ position: "relative" }}>
             <div className="row">
+                <Lottie animationData={celebration} loop={20} autoplay={true}
+                    style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        zIndex: 1000,
+
+                    }} />
                 <center>
                     <div className="col-12" style={{ minHeight: "80vh" }}>
-                        <div
-                            ref={animationContainerRef}
-                            style={{
-                                width: "100%", 
-                                height: "auto",
-                                zIndex: 1000
-
-                            }}
-                        />
                         <p className='text-center' style={{ lineHeight: "50px" }}>
                             Thank you for placing an order, <br />
                             Your Order ID is: <b>{filterOrder[0].orderId}</b> <br />
@@ -88,16 +74,16 @@ const Orderplaced = () => {
 
                         </p>
                         <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'
-                            style={{
-                                zIndex: 10000
-                            }}>
+                            style={{ zIndex: 20000 }}>
                             <button className="review_btn my-3" onClick={() => {
                                 move(`/user-profile/${cu._id}`)
-                            }}>
+                            }}
+                            style={{ zIndex: 20000 }}>
                                 My Order <FaArrowRight />
                             </button>
                             <a href="/Products/all">
-                                <button className="review_btn my-3">
+                                <button className="review_btn my-3"
+                            style={{ zIndex: 20000 }}>
                                     Browse Products <FaArrowRight />
                                 </button>
                             </a>

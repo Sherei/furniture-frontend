@@ -12,6 +12,9 @@ import Sofas from './Sofas'
 import Discounted from './Discounted'
 import Trending from './Trending'
 import Feature from './Feature'
+
+
+
 const Home = () => {
 
   useEffect(() => {

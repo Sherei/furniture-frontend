@@ -34,6 +34,7 @@
 }
 
 .nav-item2:hover {
+  color: white;
   background-color: #1b2950;
   font-weight: 700;
 }
@@ -119,6 +120,12 @@
 
   .dropdown-menu {
     width: 100%;
+    background-color: transparent;
+  }
+
+  .navbar-custom {
+    margin-top: 10px;
+    border: none;
     background-color: transparent;
   }
 }

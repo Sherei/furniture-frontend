@@ -33,6 +33,8 @@ const Hero = () => {
                                 disableOnInteraction: false,
                             }}
                             loop={true}
+                            resistance={false} 
+                            effect="slide" 
                         >
                             {array.map((data) => {
                                 return <SwiperSlide>

@@ -21,6 +21,8 @@ import Orderplaced from './Components/Placed/Orderplaced';
 import UserPanel from './Components/UserPanel/UserPanel';
 import OrderDetail from './Components/OrderDetail/OrderDetail';
 import Loader from './Components/Loader/Loader';
+import Lottie from 'lottie-react';
+import Nointernet from "./Components/Animations/Nointernet.json";
 
 
 function App() {
@@ -131,10 +133,12 @@ function App() {
       </>
     );
   }
-return (
-    <div className='d-flex flex-column justify-content-center align-items-center' style={{ minHeight: '100vh' }}>
-      <p>You are currently offline. Please check your internet connection.</p>
-      <button className='btn btn-outline-primary' onClick={() => window.location.reload()}>
+  return (
+    <div className='d-flex flex-column justify-content-center align-items-center' style={{ minHeight: '50vh' }}>
+      <div>
+        <Lottie animationData={Nointernet} loop={true} />;
+      </div>
+      <button className='btn review_btn' onClick={() => window.location.reload()}>
         Reload
       </button>
     </div>

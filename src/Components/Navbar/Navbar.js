@@ -135,7 +135,7 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
       </div>
     </div >
 
-    <div className={`border-bottom mb-1 ${isSticky ? 'container-fluid fixed-top navbar-custom' : 'container'}`}>
+    <div className={`mb-1 ${isSticky ? 'container-fluid fixed-top navbar-custom' : 'container'}`}>
       <div className="row">
         <nav className="navbar navbar-expand-lg p-0">
 
@@ -190,11 +190,7 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                   <li><Link className="dropdown-item" to="#">Wall Panel Beds Frame</Link></li>
                 </ul>
               </li>
-              <li className="nav-item2">
-                <Link className="nav-link" to="/Products/all" role="button">
-                  Interrior View
-                </Link>
-              </li>
+           
               <li className="nav-item2">
                 <Link className="nav-link" to="/Products/all" role="button">
                   Wardrobes

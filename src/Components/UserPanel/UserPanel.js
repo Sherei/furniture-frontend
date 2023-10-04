@@ -6,17 +6,20 @@ import { FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Error } from '../Error/Error';
 import axios from 'axios';
+import Lottie from 'lottie-react';
+import userPanel from "../Animations/userPanel.json"
+
 
 const UserPanel = () => {
 
     useEffect(() => {
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      }, []);
+    }, []);
 
-      
+
     const cu = useSelector((store) => store.userSection.cu);
     const move = useNavigate();
     const { userid } = useParams();
@@ -148,13 +151,14 @@ const UserPanel = () => {
                     {profile === "order" && (
                         <div className='col-lg-8 col-md-8 col-sm-12'>
                             {filterOrder.length === 0 ? (
-                                    <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '50vh', backgroundColor: '#eee' }}>
-                                        <p className='fw-bolder'>No Order placed yet</p>
-                                        <button className='btn review_btn' onClick={() => move('/Products/all')}>
-                                            Browse Products <FaArrowRight />
-                                        </button>
-                                    </div>
-                            
+                                <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ height: '50vh', backgroundColor: '#eee' }}>
+                                    <p className='fw-bolder text-muted'>No Order Placed yet</p>
+                                    <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
+                                    <button className='btn review_btn' onClick={() => move('/Products/all')}>
+                                        Browse Products <FaArrowRight />
+                                    </button>
+                                </div>
+
                             ) : (
                                 <>
                                     {loading ? (
