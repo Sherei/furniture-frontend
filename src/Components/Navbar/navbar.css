@@ -67,7 +67,12 @@
 }
 
 .dropdown_menu2 {
+  /* border: none; */
   height: fit-content !important;
+}
+
+.dropdown_menu2 .dropdown-item {
+  background-color: white;
 }
 
 .dropdown-menu .dropdown-item {
@@ -120,13 +125,17 @@
 
   .dropdown-menu {
     width: 100%;
-    background-color: transparent;
+    /* background-color: transparent; */
   }
 
   .navbar-custom {
     margin-top: 10px;
     border: none;
-    background-color: transparent;
+    background-color: white;
+  }
+
+  .dropdown_menu2 {
+    /* border: none; */
   }
 }
 

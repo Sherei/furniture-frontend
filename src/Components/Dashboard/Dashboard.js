@@ -11,14 +11,15 @@ import Comments from './Comments';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Error } from '../Error/Error';
+import Traffic from './Traffic';
 
 export const Dashboard = () => {
     useEffect(() => {
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      }, []);
+    }, []);
     let cu = useSelector(store => store.userSection.cu)
     const move = useNavigate()
     const [users, setUsers] = useState([])
@@ -35,6 +36,7 @@ export const Dashboard = () => {
         })
     }, [])
     let data = [
+        { title: "Analytics", id: "analytic" },
         { title: "Total Orders", desc: "43", icon: <FaFirstOrder />, id: "order" },
         { title: "Total Users", desc: users.length, icon: <FaUsers />, id: "users" },
         { title: "Products", desc: product.length, icon: <FaClipboardList />, id: "product" },
@@ -91,6 +93,11 @@ export const Dashboard = () => {
                     })}
 
                 </div>
+                <div className='col-lg-12 col-sm-12' id='analytic'>
+                    <div className='row  my-5 d-flex gap-5 justify-content-center'>
+                        <Traffic />
+                    </div>
+                </div>
                 <div className='col-lg-12 col-sm-12' id='order'>
                     <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Orders />
@@ -119,6 +126,7 @@ export const Dashboard = () => {
                         <AddProduct />
                     </div>
                 </div>
+
 
             </div>
         </>
