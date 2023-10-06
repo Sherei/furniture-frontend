@@ -103,6 +103,7 @@ export const Products = () => {
                         <th>Discount</th>
                         <th>Date</th>
                         <th>Delete</th>
+                        <th>Edit</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -126,6 +127,9 @@ export const Products = () => {
                               onClick={() => DeleteProduct(data._id)}>
                               <AiFillDelete />
                             </button>
+                          </td>
+                          <td className='text-center'>
+                            <button className="delete_btn">Edit</button>
                           </td>
                         </tr>
                       ))}
