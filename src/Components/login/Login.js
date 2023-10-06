@@ -11,7 +11,6 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import { AiTwotoneMail } from "react-icons/ai"
 import { FaLock, FaPhoneAlt, FaUserAlt, FaLockOpen,FaAddressCard } from "react-icons/fa"
 import axios from 'axios';
-
 import "./login.css"
 
 
@@ -58,11 +57,12 @@ export const Login = () => {
         if (loginUser.user.email === "asd@gmail.com") {
           toast.success("Welcome Back Dear Admin");
           move('/admin-dashboard');
+          reset();
         } else {
           toast.success("Welcome Back");
           move("/Products/all");
+          reset();
         }
-        reset();
       } else {
         toast.error("Enter valid credentials");
       }
@@ -78,6 +78,7 @@ export const Login = () => {
       if (response.data === "User Created") {
         toast.success("Account Created");
         handleToggleForm(true)
+        reset();
       } else if (response.data === "Passwords do not match") {
         toast.error("Password does not match");
       }

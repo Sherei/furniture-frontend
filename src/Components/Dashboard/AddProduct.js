@@ -62,6 +62,7 @@ export const AddProduct = () => {
 
         if (response.data.message === "Product Added") {
           toast.success("Product Uploaded");
+          reset();
       }
     } catch (error) {
 
