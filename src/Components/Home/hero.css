@@ -48,11 +48,13 @@
     border-radius: 5px;
     transform: rotate(-33deg);
 }
-
+.swiper-slide{
+    overflow: hidden;
+}
 .swiper-slide img {
     display: block;
     width: 100%;
-    max-height: 600px;
+    max-height: 500px;
     object-fit: cover;
 }
 

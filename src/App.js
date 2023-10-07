@@ -123,7 +123,6 @@ function App() {
                 <Route exact element={<Home />} path='/' />
                 <Route exact element={<UserPanel />} path='/user-profile/:userId' />
                 <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
-                <Route exact path='/Products' element={<Products />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
                 <Route exact path='/cart' element={<Cart />} />
                 <Route exact path='/cart/:userId' element={<Cart />} />

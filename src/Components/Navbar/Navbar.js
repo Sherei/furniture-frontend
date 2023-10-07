@@ -49,7 +49,7 @@ export const Navbar = () => {
     });
   }, []);
 
-const filterCart= cart.filter((item)=> item.userId===cu._id)
+  const filterCart = cart.filter((item) => item.userId === cu._id)
 
   function Logout() {
     dispatch({
@@ -165,13 +165,15 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                 <Link className="nav-link dropdown-toggle" to="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Sofas
                 </Link>
-                <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink" onClick={() => { move("/Products/" + "sofa") }}>
-                  <li><Link className="dropdown-item" to="#" >fabric corner sofas</Link></li>
-                  <li><Link className="dropdown-item" to="#" >fabric recliner sofas</Link></li>
-                  <li><Link className="dropdown-item" to="#" >fabric sofa sets</Link></li>
-                  <li><Link className="dropdown-item" to="#" >leather recliner corner sofas</Link></li>
-                  <li><Link className="dropdown-item" to="#" >leather recliner sofas</Link></li>
-                  <li><Link className="dropdown-item" to="#" >leather recliner sofa sets</Link></li>
+                <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink"
+                onClick={()=>move('/products/sofa')}>
+                  <li><Link className="dropdown-item" to="/products/sofa">All in sofas</Link></li>
+                  <li><Link className="dropdown-item" >fabric corner sofas</Link></li>
+                  <li><Link className="dropdown-item" >fabric recliner sofas</Link></li>
+                  <li><Link className="dropdown-item" >fabric sofa sets</Link></li>
+                  <li><Link className="dropdown-item" >leather recliner corner sofas</Link></li>
+                  <li><Link className="dropdown-item" >leather recliner sofas</Link></li>
+                  <li><Link className="dropdown-item" >leather recliner sofa sets</Link></li>
                 </ul>
               </li>
               <li className="nav-item2 dropdown">
@@ -179,7 +181,8 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                   Beds
                 </Link>
                 <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink"
-                  onClick={() => { move("/Products/" + "bed") }}>
+                onClick={()=> move('/products/bed')}>
+                  <li><Link className="dropdown-item" to={`products/bed`}>All in beds</Link></li>
                   <li><Link className="dropdown-item" to="#">Ambassador Beds</Link></li>
                   <li><Link className="dropdown-item" to="#">Bespoke Beds</Link></li>
                   <li><Link className="dropdown-item" to="#">Chesterfield Beds</Link></li>
@@ -190,7 +193,7 @@ const filterCart= cart.filter((item)=> item.userId===cu._id)
                   <li><Link className="dropdown-item" to="#">Wall Panel Beds Frame</Link></li>
                 </ul>
               </li>
-           
+
               <li className="nav-item2">
                 <Link className="nav-link" to="/Products/all" role="button">
                   Wardrobes

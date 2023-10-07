@@ -47,8 +47,9 @@
 }
 
 .activeCategory {
-    color: #fd5d39;
-    font-weight: 600;
+    background-color: red !important;
+    color: #fd5d39 !important;
+    font-weight: 600 !important;
 }
 
 .p_category span {
