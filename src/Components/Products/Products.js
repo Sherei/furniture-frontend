@@ -224,9 +224,9 @@ const Products = () => {
 
                                     <div className='text-left'>
                                         <p>{product.title}</p>
-                                        <span className='px-2 t_Fprice'>{`$${product.Fprice.toFixed(0, 2)}`}</span>
+                                        <span className='px-2 t_Fprice'>{`£${product.Fprice.toFixed(0, 2)}`}</span>
                                         {product.price &&
-                                            <span className='t_price'><s>{`$${product.price.toFixed(0, 2)}`}</s></span>
+                                            <span className='t_price'><s>{`£${product.price.toFixed(0, 2)}`}</s></span>
                                         }
                                     </div>
                                 </div>
@@ -244,9 +244,9 @@ const Products = () => {
 
                                         <div className='text-left'>
                                             <p>{product.title}</p>
-                                            <span className='px-2 t_Fprice'>{`$${product.Fprice.toFixed(0, 2)}`}</span>
+                                            <span className='px-2 t_Fprice'>{`£${product.Fprice.toFixed(0, 2)}`}</span>
                                             {product.price &&
-                                                <span className='t_price'><s>{`$${product.price.toFixed(0, 2)}`}</s></span>
+                                                <span className='t_price'><s>{`£${product.price.toFixed(0, 2)}`}</s></span>
                                             }
                                         </div>
                                     </div>
@@ -313,11 +313,11 @@ const Products = () => {
                                             <div className='text-left'>
                                                 {product.discount && product.discount > 0 ? (
                                                     <>
-                                                        <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(1)}`}</span>
-                                                        <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                                        <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(1)}`}</span>
+                                                        <span className='card_price'><s>{`£${product.price.toFixed(1)}`}</s></span>
                                                     </>
                                                 ) : (
-                                                    <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
+                                                    <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(2)}`}</span>
                                                 )}
                                             </div>
                                             <div className='product_btns'>
@@ -366,11 +366,11 @@ const Products = () => {
                                             <div className='text-left'>
                                                 {product.discount && product.discount > 0 ? (
                                                     <>
-                                                        <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(1)}`}</span>
-                                                        <span className='card_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                                        <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(1)}`}</span>
+                                                        <span className='card_price'><s>{`£${product.price.toFixed(1)}`}</s></span>
                                                     </>
                                                 ) : (
-                                                    <span className='card_Fprice px-2 '> {`$${product.Fprice.toFixed(2)}`}</span>
+                                                    <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(2)}`}</span>
                                                 )}
                                             </div>
                                             <div className='text-center'>

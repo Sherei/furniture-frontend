@@ -154,11 +154,9 @@ const Checkout = () => {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label htmlFor="" className='form_label'>Telephone*</label>
-                                <input type="text" className="form-control login_form_input" {...register('number2', { required: true })} />
-                                {errors.number2 ? <div className='error'>This Field is required</div> : null}
+                                <label htmlFor="" className='form_label'>Telephone</label>
+                                <input type="text" className="form-control login_form_input" {...register('number2')} />
                             </div>
-
 
                             <div className="col-md-12 mb-3">
                                 <label htmlFor="" className='form_label'>E-mail *</label>
@@ -254,7 +252,7 @@ const Checkout = () => {
                                 </div>
                                 <div className='col-9'>
                                     <p className='checout_tittle text-muted'>{item.title}</p>
-                                    <p className='text-end'>{`$${item.Fprice.toFixed(2)}`}</p>
+                                    <p className='text-end'>{`£${item.Fprice.toFixed(2)}`}</p>
                                 </div>
                             </div>
                         </>
@@ -263,7 +261,7 @@ const Checkout = () => {
                     <div className='row mt-3'>
                         <div className='px-3 col-12 border d-flex justify-content-between align-items-center'>
                             <p>Total(USD)</p>
-                            <p className='fw-bold' >{`$${totalSum.toFixed(2)}`}</p>
+                            <p className='fw-bold' >{`£${totalSum.toFixed(2)}`}</p>
 
                         </div>
                     </div>

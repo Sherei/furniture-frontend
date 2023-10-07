@@ -70,7 +70,7 @@ const Orderplaced = () => {
                         <p className='text-center' style={{ lineHeight: "50px" }}>
                             Thank you for placing an order, <br />
                             Your Order ID is: <b>{filterOrder[0].orderId}</b> <br />
-                            Order will be delivered within 10-15 working days
+                            Order will be delivered within 05-07 working days
 
                         </p>
                         <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'

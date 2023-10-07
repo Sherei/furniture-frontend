@@ -56,6 +56,19 @@ export const Products = () => {
       toast.success("Product Removed")
     });
   };
+  const formatDateTime = (dateStr) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-GB', options);
+  };
+  
   return (
     <div className="container-fluid">
       <div className="row my-3">
@@ -103,7 +116,6 @@ export const Products = () => {
                         <th>Discount</th>
                         <th>Date</th>
                         <th>Delete</th>
-                        <th>Edit</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -120,7 +132,7 @@ export const Products = () => {
                           <td className='text-center'>{data.price.toFixed(2)}</td>
                           <td className='text-center'>{data.Fprice.toFixed(2)}</td>
                           <td className='text-center'>{data.discount || 0}</td>
-                          <td>{data.date.slice(0, 10)}</td>
+                          <td className='text-center'>{formatDateTime(data.date)}</td>
                           <td className='text-center'>
                             <button
                               className="delete_btn"
@@ -128,9 +140,7 @@ export const Products = () => {
                               <AiFillDelete />
                             </button>
                           </td>
-                          <td className='text-center'>
-                            <button className="delete_btn">Edit</button>
-                          </td>
+                        
                         </tr>
                       ))}
                     </tbody>

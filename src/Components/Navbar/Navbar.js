@@ -87,26 +87,11 @@ export const Navbar = () => {
                 {cu.email != "asd@gmail.com" &&
                   <li className="nav-item" >
                     <Link className="nav-link" to={`/cart/${cu._id}`}>
-                      <span className='fs-4' style={{ position: "relative" }}>
+                      <span className={`fs-4 ${filterCart.length > 0 ? 'cart-red' : ''}`}>
                         <FiShoppingCart />
-                        <div className='px-1 py-1 d-flex justify-content-center align-items-center'
-                          style={{
-                            position: "absolute",
-                            top: "-12px",
-                            left: "14px",
-                            width: "20px",
-                            height: "20px",
-                            borderRadius: "40px",
-                            backgroundColor: "rgb(2, 2, 94)",
-                            color: 'white',
-                            fontSize: "12px"
-                          }}>
-                          {filterCart.length}
-                        </div>
                       </span>
                     </Link>
                   </li>
-
                 }
                 <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">

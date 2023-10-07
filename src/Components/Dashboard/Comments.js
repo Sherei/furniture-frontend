@@ -55,6 +55,20 @@ const Comments = () => {
 
     };
 
+    const formatDateTime = (dateStr) => {
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+        };
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-GB', options);
+      };
+
+      
     return <>
         <div className="container-fluid">
             <div className="row my-3">
@@ -105,7 +119,7 @@ const Comments = () => {
                                                     <td>{data.name}</td>
                                                     <td>{data.email}</td>
                                                     <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
-                                                    <td>{data.date.slice(0, 19)}</td>
+                                                    <td className='text-center'>{formatDateTime(data.date)}</td>
                                                     <td className='text-center'>
                                                         <button className="delete_btn" onClick={() => DeleteComment(data._id)}>
                                                             <AiFillDelete />

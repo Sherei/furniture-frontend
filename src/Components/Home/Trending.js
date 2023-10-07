@@ -97,9 +97,9 @@ const Trending = () => {
                                             <p className='px-2'>{product.title}</p>
                                         </div>
                                         <div className='text-left my-3'>
-                                            <span className='px-2 t_Fprice'>{`$${product.Fprice.toFixed(1)}`}</span>
+                                            <span className='px-2 t_Fprice'>{`£${product.Fprice.toFixed(1)}`}</span>
                                             {product.price &&
-                                                <span className='t_price'><s>{`$${product.price.toFixed(1)}`}</s></span>
+                                                <span className='t_price'><s>{`£${product.price.toFixed(1)}`}</s></span>
                                             }
                                         </div>
                                         <div className='t_buttons'>

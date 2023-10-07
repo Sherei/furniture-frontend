@@ -206,7 +206,7 @@ const SingleAdd = () => {
                         <p className='fw-bolder' style={{ color: "#1b2950" }}>
                             <span>Reviews : {comments.filter((item) => item.productId === productId).length}</span>
                         </p>
-                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:<span className=''>{`$${totalPrice.toFixed(2)}`}</span></p>
+                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:<span className=''>{`£${totalPrice.toFixed(2)}`}</span></p>
                         <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: <input
                             className='input_single'
                             type="number"

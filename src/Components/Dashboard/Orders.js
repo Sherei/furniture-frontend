@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 export const Orders = () => {
+
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -49,6 +50,26 @@ export const Orders = () => {
         setOrders(updatedOrders);
         toast.success('Status updated');
       });
+  };
+
+  const DeleteOrder = (dataId) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteOrder?id=${dataId}`).then(() => {
+      setOrders(orders.filter((item) => dataId !== item._id));
+      toast.success("Order Delete");
+    });
+  };
+
+  const formatDateTime = (dateStr) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-GB', options);
   };
 
   return (
@@ -97,6 +118,7 @@ export const Orders = () => {
                           <th>Price</th>
                           <th>Date</th>
                           <th>Detail</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -107,21 +129,21 @@ export const Orders = () => {
                             totalFprice += parseFloat(item.Fprice);
                           });
 
-                          const rowClassName = data.status === 'completed' ? 'completed-row' : '';
+                          const rowClassName = data.status === 'delivered' ? 'completed-row' : '';
 
                           return (
                             <tr key={index} className={`text-center ${rowClassName}`}>
                               <td>{index + 1}</td>
                               <td>{data.orderId}</td>
                               <td>
-                                 <select
+                                <select
                                   name=''
                                   id=''
                                   value={data.status}
                                   onChange={(e) => updateStatus(data._id, e.target.value)}
                                 >
                                   <option value='pending'>Pending</option>
-                                  <option value='completed'>Completed</option>
+                                  <option value='delivered'>Delivered</option>
                                 </select>
 
                               </td>
@@ -131,9 +153,14 @@ export const Orders = () => {
                               <td>{data.shipping}</td>
                               <td className='text-center'>{orderItemsLength}</td>
                               <td className='text-center'>{totalFprice.toFixed(2)}</td>
-                              <td>{data.date.slice(0, 10)}</td>
+                              <td className='text-center'>{formatDateTime(data.date)}</td>
                               <td className='text-center'>
                                 <a href={`/order-detail/${data._id}`}>Detail</a>
+                              </td>
+                              <td className='text-center'>
+                                <button className='delete_btn' onClick={() => DeleteOrder(data._id)}>
+                                  <AiFillDelete />
+                                </button>
                               </td>
                             </tr>
                           );

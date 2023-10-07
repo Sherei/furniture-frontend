@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { AiTwotoneMail } from "react-icons/ai"
-import { FaLock, FaPhoneAlt, FaUserAlt, FaLockOpen,FaAddressCard } from "react-icons/fa"
+import { FaLock, FaPhoneAlt, FaUserAlt, FaLockOpen, FaAddressCard } from "react-icons/fa"
 import axios from 'axios';
 import "./login.css"
 
@@ -31,6 +31,7 @@ export const Login = () => {
   ]
 
   const [showLogin, setShowLogin] = useState(true);
+  const [Error, setError] = useState("");
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -48,12 +49,12 @@ export const Login = () => {
       if (loginUser) {
 
         localStorage.setItem('userToken', loginUser.myToken);
-        
+
         dispatch({
           type: "LOGIN_USER",
           payload: loginUser.user,
         });
-        
+
         if (loginUser.user.email === "asd@gmail.com") {
           toast.success("Welcome Back Dear Admin");
           move('/admin-dashboard');
@@ -73,8 +74,13 @@ export const Login = () => {
 
   async function SignUp(data) {
     try {
+      if (data.password != data.cpassword) {
+        return setError("Password does not match")
+      }
+      data.number = data.number.replace(/\s+/g, "");
+      
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
-  
+
       if (response.data === "User Created") {
         toast.success("Account Created");
         handleToggleForm(true)
@@ -213,11 +219,14 @@ export const Login = () => {
                 <label htmlFor="" className='form_label'><FaLockOpen /> Retype Passowrd *</label>
                 <input type="password" className="form-control login_form_input" {...register('cpassword', { required: true })} />
                 {errors.cpassword ? <div className='error'>Re Enter Your Passowrd </div> : null}
+                {Error==="Password does not match" &&
+                <div className='error'>Password does not match</div>
+                }
 
               </div>
               <div>
                 <label htmlFor="" className='form_label'><FaPhoneAlt /> Contact No *</label>
-                <input type="text" className="form-control login_form_input"{...register('number', { required: true })} />
+                <input type="text" defaultValue="+44" className="form-control login_form_input"{...register('number', { required: true })} />
                 {errors.number && errors.number.type == 'required' ? <div className='error'>This Field is required</div> : null}
               </div>
               <div>

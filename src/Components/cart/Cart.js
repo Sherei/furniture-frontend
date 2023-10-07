@@ -191,7 +191,7 @@ export const Cart = () => {
                         />
                       </td>
                       <td>{item.title.slice(0, 15)}</td>
-                      <td className="color-red text-center">{`$${item.price.toFixed(2)}`}</td>
+                      <td className="color-red text-center">{`£${item.price.toFixed(2)}`}</td>
                       <td className="color-red text-center">{`${item.discount}%`}</td>
                       <td className='text-center'>
                         <input
@@ -203,7 +203,7 @@ export const Cart = () => {
                           onChange={(e) => handleItemQuantityChange(item._id, parseInt(e.target.value))}
                         />
                       </td>
-                      <td className='text-center'>{`$${(item.Fprice).toFixed(2)}`}</td>
+                      <td className='text-center'>{`£${(item.Fprice).toFixed(2)}`}</td>
                       <td className='text-center'>
                         <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                           <AiFillDelete />
@@ -234,7 +234,7 @@ export const Cart = () => {
             </div>
             <div className='fw-normal d-flex justify-content-between'>
               <p>Net Total:</p>
-              <p>{`$${netTotal.toFixed(2)}`}</p>
+              <p>{`£${netTotal.toFixed(2)}`}</p>
             </div>
           </div>
           <div>
