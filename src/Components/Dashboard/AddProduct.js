@@ -73,7 +73,7 @@ export const AddProduct = () => {
       }
 
     } finally {
-      setLoading(false); // Clear loading, whether the request succeeds or fails
+      setLoading(false); 
     }
   };
 
@@ -200,11 +200,11 @@ export const AddProduct = () => {
               </div>
               <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
-                  <input type="checkbox" {...register('trending')} class="form-check-input" id="exampleCheck1" />
+                  <input type="checkbox" {...register('trending')} className="form-check-input" id="exampleCheck1" />
                   <span className='px-2'><b>Make Trending</b> </span>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
-                  <input type="checkbox" {...register('feature')} class="form-check-input" id="exampleCheck1" />
+                  <input type="checkbox" {...register('feature')} className="form-check-input" id="exampleCheck1" />
                   <span className='px-2'><b>Make Feature</b> </span>
                 </div>
                 <div className='col-lg-12 col-sm-12 my-5'>

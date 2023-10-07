@@ -21,7 +21,7 @@ const Sofas = () => {
                     setData(res.data);
                 }
             } catch (e) {
-                console.log(e);
+                // console.log(e);
             } finally {
                 setLoading(false);
             }

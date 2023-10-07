@@ -36,7 +36,7 @@ const Checkout = () => {
                     setCart(res.data);
                 }
             } catch (e) {
-                console.log(e);
+                // console.log(e);
             } finally {
                 setLoading(false);
             }
@@ -100,7 +100,7 @@ const Checkout = () => {
                 move(`/order-placed/${userId}`);
             }
         } catch (e) {
-            console.log(e);
+            // console.log(e);
         } finally {
             setLoading(false);
         }

@@ -28,7 +28,7 @@ const Comments = () => {
                 setIsLoading(false);
             })
             .catch((error) => {
-                console.error('Error fetching data:', error);
+                // console.error('Error fetching data:', error);
                 setIsLoading(false);
             });
     }, []);
@@ -106,7 +106,7 @@ const Comments = () => {
                                                     <td>{data.email}</td>
                                                     <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
                                                     <td>{data.date.slice(0, 19)}</td>
-                                                    <td>
+                                                    <td className='text-center'>
                                                         <button className="delete_btn" onClick={() => DeleteComment(data._id)}>
                                                             <AiFillDelete />
                                                         </button>

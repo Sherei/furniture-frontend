@@ -31,7 +31,7 @@ export const Products = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        // console.error('Error fetching data:', error);
         setIsLoading(false);
       });
   }, []);
@@ -108,14 +108,14 @@ export const Products = () => {
                     </thead>
                     <tbody>
                       {filteredProduct.map((data, index) => (
-                        <tr key={index} onClick={() => move("/single_Add/" + data._id)}>
+                        <tr key={index} >
                           <td>{index + 1}</td>
                           <td>{data.sn}</td>
-                          <td>
+                          <td onClick={() => move("/single_Add/" + data._id)}>
                             <img src={data.images[0]} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
                           </td>
-                          <td>{data.title}</td>
-                          <td>{data.category}</td>
+                          <td onClick={() => move("/single_Add/" + data._id)}>{data.title}</td>
+                          <td >{data.category}</td>
                           <td>{data.subCategory}</td>
                           <td className='text-center'>{data.price.toFixed(2)}</td>
                           <td className='text-center'>{data.Fprice.toFixed(2)}</td>

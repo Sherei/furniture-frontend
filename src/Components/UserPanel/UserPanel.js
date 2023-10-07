@@ -35,7 +35,7 @@ const UserPanel = () => {
                     setOrder(res.data);
                 }
             } catch (e) {
-                console.log(e);
+                // console.log(e);
             } finally {
                 setLoading(false);
             }

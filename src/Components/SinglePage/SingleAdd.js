@@ -40,7 +40,7 @@ const SingleAdd = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`).then((res) => {
             setProduct(res.data);
         }).catch((error) => {
-            console.error(error);
+            // console.error(error);
         });
     }, [productId]);
 
@@ -51,7 +51,7 @@ const SingleAdd = () => {
                     setData(res.data);
                 }
             } catch (e) {
-                console.log(e);
+                // console.log(e);
             }
         });
     }, []);
@@ -82,7 +82,7 @@ const SingleAdd = () => {
                 toast.error("Error occurred");
             }
         } catch (e) {
-            console.error(e);
+            // console.error(e);
         }
     };
 
@@ -92,7 +92,7 @@ const SingleAdd = () => {
             setIsLoadingComments(false);
         })
             .catch((error) => {
-                console.error(error);
+                // console.error(error);
                 setIsLoadingComments(false);
             });
     }, []);

@@ -24,7 +24,7 @@ const Review = () => {
                 toast.error("Error occurred");
             }
         } catch (e) {
-            console.error(e);
+            // console.error(e);
         }
     };
 
@@ -35,7 +35,7 @@ const Review = () => {
             setIsLoadingComments(false);
         })
             .catch((error) => {
-                console.error(error);
+                // console.error(error);
                 setIsLoadingComments(false);
             });
     }, []);

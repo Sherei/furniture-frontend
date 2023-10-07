@@ -44,7 +44,7 @@ export const Cart = () => {
           setItemQuantities(initialItemQuantities);
         }
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       } finally {
         setLoading(false);
       }
@@ -71,7 +71,7 @@ export const Cart = () => {
       });
 
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     } finally {
       setLoading(false);
     }
@@ -100,11 +100,11 @@ export const Cart = () => {
           toast.success("Cart updated successfully");
         })
         .catch((error) => {
-          console.error("Error updating cart:", error);
+          // console.error("Error updating cart:", error);
           toast.error("Failed to update cart");
         });
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       toast.error("Failed to update cart");
     } finally {
       setLoading(false);

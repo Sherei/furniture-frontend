@@ -20,7 +20,7 @@ const Bedroom = () => {
                     setData(res.data);
                 }
             } catch (e) {
-                console.log(e);
+                // console.log(e);
             } finally {
                 setLoading(false);
             }
@@ -28,6 +28,7 @@ const Bedroom = () => {
     }, []);
 
     return <>
+
         <div className='container main_container' id='bedroom'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
