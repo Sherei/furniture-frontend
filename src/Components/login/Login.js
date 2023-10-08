@@ -64,11 +64,13 @@ export const Login = () => {
           move("/Products/all");
           reset();
         }
-      } else {
-        toast.error("Enter valid credentials");
       }
     } catch (e) {
-      toast.error("Try Again later");
+      if (e.response && e.response.status === 404) {
+        toast.warning("Invalid Credentials");
+      } else {
+        toast.error("Invalid Credentials");
+      }
     }
   };
 
@@ -85,8 +87,6 @@ export const Login = () => {
         toast.success("Account Created");
         handleToggleForm(true)
         reset();
-      } else if (response.data === "Passwords do not match") {
-        toast.error("Password does not match");
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
