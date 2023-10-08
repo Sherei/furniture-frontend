@@ -20,7 +20,6 @@ import { Dashboard } from './Components/Dashboard/Dashboard';
 import Orderplaced from './Components/Placed/Orderplaced';
 import UserPanel from './Components/UserPanel/UserPanel';
 import OrderDetail from './Components/OrderDetail/OrderDetail';
-import Loader from './Components/Loader/Loader';
 import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
 
