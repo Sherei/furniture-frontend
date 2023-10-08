@@ -23,6 +23,7 @@ import OrderDetail from './Components/OrderDetail/OrderDetail';
 import Loader from './Components/Loader/Loader';
 import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('G-D838NQZVCN');
 
