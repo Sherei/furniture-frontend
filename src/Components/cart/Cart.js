@@ -153,7 +153,7 @@ export const Cart = () => {
   return (
     <div className="container h-100 py-5">
       <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-12">
+        <div className="col-12" style={{height:"50vh", overflow:"auto"}}>
           <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5">
             <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
             <div>
@@ -238,7 +238,7 @@ export const Cart = () => {
             </div>
           </div>
           <div>
-            <button className='btn review_btn btn-lg' onClick={updateCart}>
+            <button className='btn review_btn' onClick={updateCart}>
               Update Cart
             </button>
           </div>
@@ -247,7 +247,7 @@ export const Cart = () => {
 
       {filterCart.length > 0 && (
         <div className="card-body mt-5">
-          <button type="button" className="fw-bolder btn btn-outline-primary" onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+          <button type="button" className="fw-bolder btn btn-outline-primary btn-lg" onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
             Proceed to Pay
           </button>
         </div>

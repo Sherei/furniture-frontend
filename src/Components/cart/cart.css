@@ -51,6 +51,7 @@
     font-weight: 700;
 }
 .update{
+    /* width: 250px; */
     height: fit-content;
     background-color: white;
     border-radius: 5px;

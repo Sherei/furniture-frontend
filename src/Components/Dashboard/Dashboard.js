@@ -26,17 +26,17 @@ export const Dashboard = () => {
     const [product, setProducts] = useState([])
     const [comment, setComments] = useState([])
     const [order, setOrder] = useState([])
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard`).then((res) => {
-            // axios.get("/dashboard").then((res) => {
             setUsers(res.data.Users)
             setProducts(res.data.Products)
             setComments(res.data.comments)
-            setOrder(res.data.orders)
+            setOrder(res.data.allOrder)
         })
     }, [])
     let data = [
-        { title: "Total Orders", desc: "43", icon: <FaFirstOrder />, id: "order" },
+        { title: "Total Orders", desc: order.length, icon: <FaFirstOrder />, id: "order" },
         { title: "Total Users", desc: users.length, icon: <FaUsers />, id: "users" },
         { title: "Products", desc: product.length, icon: <FaClipboardList />, id: "product" },
         { title: "Comments", desc: comment.length, icon: <FaCommentDots />, id: "comment" },
