@@ -119,8 +119,8 @@ export const Login = () => {
             }}
             loop={true}
           >
-            {array.map((data) => {
-              return <SwiperSlide>
+            {array.map((data, index) => {
+              return <SwiperSlide key={index}>
                 <div className='slide' style={{ position: "relative" }}>
                   <img src={`/${data.img}`} alt="" />
                 </div>

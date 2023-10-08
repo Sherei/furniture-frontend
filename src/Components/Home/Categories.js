@@ -24,8 +24,8 @@ const Categories = () => {
         </div>
         <div className='col-lg-12 col-sm-12'>
           <div className='h_box_main'>
-            {array.map((data) => (
-              <div className="h_box" onClick={()=>{
+            {array.map((data, index) => (
+              <div className="h_box" key={index} onClick={()=>{
                 move(data.path)
               }}>
                 <div className='h_box_img_main'>

@@ -59,8 +59,8 @@ const Discounted = () => {
                             data
                                 .filter((item) => item.discount > 0).reverse()
                                 .slice(0, 15)
-                                .map((product) => (
-                                    <div className='card_box' key={product._id} >
+                                .map((product, index) => (
+                                    <div className='card_box' key={index} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
 
                                         <a href="https://wa.me/+923067208343">

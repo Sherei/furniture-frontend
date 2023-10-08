@@ -229,8 +229,8 @@ const SingleAdd = () => {
                     <p className='fw-bolder' style={{ color: "#1b2950" }}>You may like this</p>
                     <div className='s_box'>
                         {data.filter((item) => item.category === product.category).reverse()
-                            .map((product) => (
-                                <div className="single_box" key={product.id} onClick={() => move("/single_Add/" + product._id)}>
+                            .map((product, index) => (
+                                <div className="single_box" key={index} onClick={() => move("/single_Add/" + product._id)}>
                                     <img  src={product.images[0]} alt='No Network' className='img-fluid single_img' />
                                     {product.discount && product.discount > 0 ? (
                                         <div className='s_discount'>
@@ -270,13 +270,13 @@ const SingleAdd = () => {
                     ) : (
                         <div className='row comments_row'>
                             {comments.filter((item) => item.productId === productId)
-                                .map((item) => {
+                                .map((item, index) => {
                                     return (
                                         <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
                                             style={{
                                                 height: "fit-content",
                                                 backgroundColor: "rgb(255, 255, 255, 0.8)"
-                                            }}>
+                                            }} key={index}>
                                             <div className='d-flex align-items-center' >
                                                 <img
                                                     src="/149071-removebg-preview.png"

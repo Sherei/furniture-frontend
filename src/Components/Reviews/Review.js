@@ -61,13 +61,13 @@ const Review = () => {
                         </div>
                     ) : (
                         <div className='row comments_row'>
-                            {comments.map((item) => {
+                            {comments.map((item, index) => {
                                 return (
                                     <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
                                         style={{
                                             height:"fit-content",
                                             backgroundColor: "rgb(255, 255, 255, 0.8)"
-                                        }}>
+                                        }} key={index}>
                                         <div className='d-flex align-items-center' >
                                             <img
                                                 src="/149071-removebg-preview.png"

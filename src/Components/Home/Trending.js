@@ -78,9 +78,9 @@ const Trending = () => {
                             </div>
                         ) : (data
                             .filter((item) => item.trending === "true")
-                            .map((product) => (
+                            .map((product, index) => (
 
-                                <SwiperSlide className='t_slide'>
+                                <SwiperSlide className='t_slide' key={index}>
                                     <div className="t_card py-2" key={product._id} >
                                         <div className='t_img_box' onClick={() => move("/single_Add/" + product._id)}>
                                             <img src={product.images[0]} alt="No network" />

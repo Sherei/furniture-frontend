@@ -58,9 +58,9 @@ const Bedroom = () => {
                             data
                                 .filter((item) => item.category === "wardrobes")
                                 .slice(0, 10)
-                                .map((product) => (
+                                .map((product, index) => (
 
-                                    <div className='card_box' key={product._id} >
+                                    <div className='card_box' key={index} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
 
                                         <a href="https://wa.me/+923067208343">

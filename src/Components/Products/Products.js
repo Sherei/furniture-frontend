@@ -217,8 +217,8 @@ const Products = () => {
                     <div>
                         <p style={{ fontWeight: "600" }}>Trending Products</p>
                         {data.filter((item) => item.trending === "true")
-                            .map((product) => {
-                                return <div className='filter_Card' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
+                            .map((product, index) => {
+                                return <div className='filter_Card' key={index} onClick={() => move("/single_Add/" + product._id)}>
 
                                     <img src={product.images[0]} alt="No network" style={{ maxWidth: "80px", height: "80px" }} />
 
@@ -238,10 +238,9 @@ const Products = () => {
                         <div>
                             <p style={{ fontWeight: "600" }}>Feature Products</p>
                             {data.filter((item) => item.feature === "true")
-                                .map((product) => {
-                                    return <div className='filter_Card' key={product._id} onClick={() => move("/single_Add/" + product._id)}>
+                                .map((product, index) => {
+                                    return <div className='filter_Card' key={index} onClick={() => move("/single_Add/" + product._id)}>
                                         <img src={product.images[0]} alt="No network" style={{ maxWidth: "80px", height: "80px" }} />
-
                                         <div className='text-left'>
                                             <p>{product.title}</p>
                                             <span className='px-2 t_Fprice'>{`£${product.Fprice.toFixed(0, 2)}`}</span>
@@ -290,8 +289,8 @@ const Products = () => {
                     ) : (
                         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
-                                filteredProduct.map((product) => (
-                                    <div className="col" key={product.id} onClick={() => move("/single_Add/" + product._id)}>
+                                filteredProduct.map((product, index) => (
+                                    <div className="col" key={index} onClick={() => move("/single_Add/" + product._id)}>
                                         <div className='product_box'>
                                             <div className='p_img_box'>
                                                 <img src={product.images[0]} alt="No network" />
@@ -338,9 +337,9 @@ const Products = () => {
 
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 g-4 my-3">
                         {activeGrid === "list" &&
-                            filteredProduct.map((product) => {
+                            filteredProduct.map((product, index) => {
                                 return <>
-                                    <div className="col d-flex grid_box_main " key={product.id} onClick={() => move("/single_Add/" + product._id)} style={{ overflow: "hidden" }}>
+                                    <div className="col d-flex grid_box_main" key={index} onClick={() => move("/single_Add/" + product._id)} style={{ overflow: "hidden" }}>
                                         <div style={{ width: "40%" }}>
                                             <div className='p_img_box_grid'>
                                                 <img src={product.images[0]} alt="No network" />

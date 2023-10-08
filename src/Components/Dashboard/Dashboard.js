@@ -66,9 +66,9 @@ export const Dashboard = () => {
                             </h1>
                         </div>
                     </div>
-                    {data.map((item) => {
+                    {data.map((item, index) => {
                         return (
-                            <div className='col-lg-3 col-sm-5 mb-3' key={item.title} onClick={() => handleItemClick(item.id)}>
+                            <div className='col-lg-3 col-sm-5 mb-3' key={index} onClick={() => handleItemClick(item.id)}>
                                 <div className='dash_card'>
                                     {item.title === "New Order" && (
                                         <div>

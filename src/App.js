@@ -84,9 +84,9 @@ function App() {
 
   const dispatch = useDispatch();
 
+
   useEffect(() => {
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/session-check`, {token: localStorage.getItem('userToken')}).then((res) => {
+    axios.post(`${process.env.REACT_APP_BASE_URL}/session-check`, {token: localStorage.getItem('userToken')}).then((res) => {
         if (res.data) {
           dispatch({
             type: 'LOGIN_USER',
@@ -95,6 +95,7 @@ function App() {
         }
       });
   }, []);
+
 
   if (isOnline) {
     return (
