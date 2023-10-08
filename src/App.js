@@ -24,7 +24,7 @@ import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
 
 import ReactGA from 'react-ga';
-ReactGA.initialize('G-D838NQZVCN');
+ReactGA.initialize('G-Y946N662J4');
 
 function App() {
 
