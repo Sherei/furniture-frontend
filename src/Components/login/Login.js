@@ -236,7 +236,7 @@ export const Login = () => {
               </div>
               <div>
                 <label htmlFor="" className='form_label'><FaPhoneAlt /> Contact No *</label>
-                <input type="text" defaultValue="+44" className="form-control login_form_input"{...register('number', { required: true })} />
+                <input type="text" className="form-control login_form_input"{...register('number', { required: true })} />
                 {errors.number && errors.number.type == 'required' ? <div className='error'>This Field is required</div> : null}
               </div>
               <div>
