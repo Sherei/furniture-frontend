@@ -72,6 +72,7 @@ export const AddProduct = () => {
         setError("Try with different Serial number")
       } else {
         toast.error("Try Again later")
+        console.log("error while uploading add is :" +error)
       }
 
     } finally {
