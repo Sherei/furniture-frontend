@@ -70,7 +70,6 @@ export const AddProduct = () => {
 
       if (error.response && error.response.status === 400) {
         setError("Try with different Serial number")
-        // toast.warning("Try with different Serial number");
       } else {
         toast.error("Try Again later")
       }
