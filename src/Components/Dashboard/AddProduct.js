@@ -13,6 +13,8 @@ export const AddProduct = () => {
   const [discount, setDiscount] = useState(0);
   const [finalPrice, setFinalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [Error, setError] = useState("");
+
 
   const handleDiscountChange = (e) => {
     const newDiscount = parseFloat(e.target.value);
@@ -31,16 +33,16 @@ export const AddProduct = () => {
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  
+
   let move = useNavigate();
-  
+
   let { register, handleSubmit, reset, formState: { errors } } = useForm();
-  
-  
+
+
   async function submitProduct(data) {
-    
+
     setLoading(true);
-    
+
     let meraForm = new FormData();
     meraForm.append('title', data.title);
     meraForm.append('sn', data.sn);
@@ -60,20 +62,21 @@ export const AddProduct = () => {
 
       let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
 
-        if (response.data.message === "Product Added") {
-          toast.success("Product Uploaded");
-          reset();
+      if (response.data.message === "Product Added") {
+        toast.success("Product Uploaded");
+        reset();
       }
     } catch (error) {
 
       if (error.response && error.response.status === 400) {
-        toast.warning("Try with different Serial number");
+        setError("Try with different Serial number")
+        // toast.warning("Try with different Serial number");
       } else {
-        toast.error("An error occurred. Please try again later.");
+        setError("Try with different Serial number")
       }
 
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -87,6 +90,9 @@ export const AddProduct = () => {
           ) : (
             <form>
               <div className='row'>
+                {Error === "Try with different Serial number" &&
+                  <div className='error'>Try with different serial number</div>
+                }
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
                   <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2" placeholder="Fabric Sofa" />
@@ -196,7 +202,7 @@ export const AddProduct = () => {
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only six images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                 </div>
-                
+
               </div>
               <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
