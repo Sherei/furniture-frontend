@@ -67,9 +67,10 @@ export const Login = () => {
       }
     } catch (e) {
       if (e.response && e.response.status === 404) {
-        toast.warning("Invalid Credentials");
+        setError("Invalid Credentials")
+        // toast.warning("Invalid Credentials");
       } else {
-        toast.error("Invalid Credentials");
+        setError("Invalid Credentials")
       }
     }
   };
@@ -80,7 +81,7 @@ export const Login = () => {
         return setError("Password does not match")
       }
       data.number = data.number.replace(/\s+/g, "");
-      
+
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
 
       if (response.data === "User Created") {
@@ -89,10 +90,11 @@ export const Login = () => {
         reset();
       }
     } catch (error) {
+
       if (error.response && error.response.status === 400) {
-        toast.warning("Try with different Email");
+        setError('Email Taken')
       } else {
-        toast.error("An error occurred. Please try again later.");
+        setError('Email Taken')
       }
     }
   }
@@ -149,6 +151,10 @@ export const Login = () => {
           {showLogin ? (
             <div>
               <form action="" className='d-flex justify-content-center flex-column gap-4' onSubmit={handleSubmit(Login)}>
+                {Error === "Invalid Credentials" &&
+                  <div className='error'> Invalid Credentials </div>
+                }
+
                 <div style={{ position: "relative" }}>
                   <input type="text" className="form-control login_form_input" placeholder='Enter Your E-mail' {...register('email', {
                     required: true, validate: function (typedValue) {
@@ -188,6 +194,9 @@ export const Login = () => {
             </div>
           ) : (
             <form action="" className='d-flex justify-content-center flex-column gap-4' onSubmit={handleSubmit(SignUp)}>
+              {Error === "Email Taken" &&
+                <div className='error'>This Email is Already Taken Try with different</div>
+              }
               <div>
                 <label htmlFor="" className='form_label'><FaUserAlt /> Name *</label>
                 <input type="text" className="form-control login_form_input"{...register('name', { required: true })} />
@@ -219,8 +228,9 @@ export const Login = () => {
                 <label htmlFor="" className='form_label'><FaLockOpen /> Retype Passowrd *</label>
                 <input type="password" className="form-control login_form_input" {...register('cpassword', { required: true })} />
                 {errors.cpassword ? <div className='error'>Re Enter Your Passowrd </div> : null}
-                {Error==="Password does not match" &&
-                <div className='error'>Password does not match</div>
+
+                {Error === "Password does not match" &&
+                  <div className='error'>Password does not match</div>
                 }
 
               </div>
