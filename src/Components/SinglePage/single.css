@@ -56,11 +56,7 @@
 
 .single_img {
     max-width: 100px !important;
-    max-height: 100px !important;
-}
-
-.s_box::-webkit-scrollbar {
-    /* display: none; */
+    max-height: auto !important;
 }
 
 .s_box::-webkit-scrollbar-thumb {
