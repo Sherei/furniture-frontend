@@ -54,7 +54,7 @@ export const AddProduct = () => {
     meraForm.append('Fprice', data.Fprice);
     meraForm.append('trending', data.trending);
     meraForm.append('feature', data.feature);
-
+    
     for (let i = 0; i < data.images.length; i++) {
       meraForm.append('images', data.images[i]);
     }
@@ -79,6 +79,7 @@ export const AddProduct = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <div className='container my-4'>
