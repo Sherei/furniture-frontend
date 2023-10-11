@@ -122,7 +122,7 @@ export const Login = () => {
             {array.map((data, index) => {
               return <SwiperSlide key={index}>
                 <div className='slide' style={{ position: "relative" }}>
-                  <img src={`/${data.img}`} alt="" />
+                  <img src={`/${data.img}`} className='rounded-2' alt="No network" />
                 </div>
               </SwiperSlide>
             })}
