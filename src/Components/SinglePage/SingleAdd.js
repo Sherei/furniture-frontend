@@ -238,7 +238,7 @@ const SingleAdd = () => {
 
                         <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
 
-                        <a href="https://wa.me/+923067208343">
+                        <a href="https://wa.me/+923067208343" target='blank'>
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
                         </a>
                     </div>

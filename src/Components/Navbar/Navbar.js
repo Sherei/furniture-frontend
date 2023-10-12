@@ -71,9 +71,9 @@ export const Navbar = () => {
           </Link>
           <div className='d-flex align-items-center'>
             <li className="nav-item fs-4">
-              <Link className="nav-link" to="/login">
+              <a className="nav-link" href='https://wa.me/+923067208343' target="blank">
                 <FaWhatsapp />
-              </Link>
+              </a>
             </li>
             {cu._id == undefined &&
               <li className="fs-4 nav-item">
@@ -151,7 +151,7 @@ export const Navbar = () => {
                   Sofas
                 </Link>
                 <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink"
-                onClick={()=>move('/products/sofa')}>
+                  onClick={() => move('/products/sofa')}>
                   <li><Link className="dropdown-item" to="/products/sofa">All in sofas</Link></li>
                   <li><Link className="dropdown-item" >fabric corner sofas</Link></li>
                   <li><Link className="dropdown-item" >fabric recliner sofas</Link></li>
@@ -166,7 +166,7 @@ export const Navbar = () => {
                   Beds
                 </Link>
                 <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink"
-                onClick={()=> move('/products/bed')}>
+                  onClick={() => move('/products/bed')}>
                   <li><Link className="dropdown-item" to={`products/bed`}>All in beds</Link></li>
                   <li><Link className="dropdown-item" to="#">Ambassador Beds</Link></li>
                   <li><Link className="dropdown-item" to="#">Bespoke Beds</Link></li>

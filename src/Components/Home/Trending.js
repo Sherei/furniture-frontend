@@ -114,7 +114,7 @@ const Trending = () => {
                                                 }}><FaCartArrowDown /></button>
                                             </div>
                                             <div>
-                                                <a href="https://wa.me/+923067208343">
+                                                <a href="https://wa.me/+923067208343" target="blank">
                                                     <button className='btn t_whatsapp'><FaWhatsapp /></button>
                                                 </a>
                                             </div>

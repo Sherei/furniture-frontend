@@ -321,7 +321,9 @@ const Products = () => {
                                             </div>
                                             <div className='product_btns'>
                                                 <button className='btn p_detail_btn'>View Detail</button>
-                                                <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
+                                                <a href='https://wa.me/+923067208343' target="blank">
+                                                    <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
