@@ -41,6 +41,19 @@ const Review = () => {
     }, []);
 
     const length = comments.length
+    
+    const formatDateTime = (dateStr) => {
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+        };
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-GB', options);
+      };
 
     return <>
         <div className='container ' id='review'>
@@ -78,7 +91,7 @@ const Review = () => {
                                             />
                                             <div className='px-4'>
                                                 <p className='my-0' style={{ fontWeight: "700" }}>{item.name}</p>
-                                                <p>{item.date.slice(0, 19)}</p>
+                                                <p>{formatDateTime(item.date)}</p>
                                                 <p>{item.comment}</p>
                                             </div>
                                         </div>

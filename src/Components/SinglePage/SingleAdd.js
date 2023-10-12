@@ -7,7 +7,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import './single.css';
@@ -34,6 +34,8 @@ const SingleAdd = () => {
     const [comments, setComments] = useState([])
     const [isLoadingComments, setIsLoadingComments] = useState(true);
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch()
+
 
 
     useEffect(() => {
@@ -102,6 +104,13 @@ const SingleAdd = () => {
             move('/login')
             toast.warning("Login First")
         }
+        else if (cu.email === "asd@gmail.com") {
+            dispatch({
+                type: 'LOGOUT_USER'
+            });
+            move('/login')
+            toast.warning("Login with different account")
+        }
         else {
 
             const totalPrice = product.Fprice * quantity;
@@ -137,7 +146,19 @@ const SingleAdd = () => {
                 setLoading(false);
             }
         }
+    };
 
+    const formatDateTime = (dateStr) => {
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        };
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-GB', options);
     };
 
     return <>
@@ -231,141 +252,141 @@ const SingleAdd = () => {
                         {data.filter((item) => item.category === product.category).reverse()
                             .map((product, index) => (
                                 <div className="single_box" key={index} onClick={() => {
-                                  window.scrollTo({
-                                    top: 0,
-                                    behavior: 'smooth',
-                                  });
-                                  move("/single_Add/" + product._id);
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: 'smooth',
+                                    });
+                                    move("/single_Add/" + product._id);
                                 }}
-                              >
-                        <img src={product.images[0]} alt='No Network' className='img-fluid single_img' />
-                        {product.discount && product.discount > 0 ? (
-                            <div className='s_discount'>
-                                {`${product.discount}%`}
-                            </div>
-                        ) : null}
-                        <div>
-                            <p className='fs-6' style={{ color: "#1b2950" }}>{product.title.slice(0, 70)}...</p>
-                        </div>
-                    </div>
+                                >
+                                    <img src={product.images[0]} alt='No Network' className='img-fluid single_img' />
+                                    {product.discount && product.discount > 0 ? (
+                                        <div className='s_discount'>
+                                            {`${product.discount}%`}
+                                        </div>
+                                    ) : null}
+                                    <div>
+                                        <p className='fs-6' style={{ color: "#1b2950" }}>{product.title.slice(0, 70)}...</p>
+                                    </div>
+                                </div>
                             ))}
+                    </div>
                 </div>
+
+
             </div>
-
-
-        </div>
-        <div className='row mt-5'>
-            <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1  order-xl-1'>
-                {comments.filter((item) => item.productId === productId).length > 0 && (
-                    <div className='col-lg-12 col-sm-12'>
-                        <div>
-                            <p className="text-center fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
-                                {`${comments.filter((item) => item.productId === productId).length} Reviews`}
-                            </p>
+            <div className='row mt-5'>
+                <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1  order-xl-1'>
+                    {comments.filter((item) => item.productId === productId).length > 0 && (
+                        <div className='col-lg-12 col-sm-12'>
+                            <div>
+                                <p className="text-center fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
+                                    {`${comments.filter((item) => item.productId === productId).length} Reviews`}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {isLoadingComments ? (
-                    <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                        <Loader />
-                    </div>
-                ) : comments.filter((item) => item.productId === productId).length === 0 ? (
-                    <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh", color: "rgb(2, 2, 94)" }} >
-                        <h2>No Review available</h2>
-                    </div>
-                ) : (
-                    <div className='row comments_row'>
-                        {comments.filter((item) => item.productId === productId)
-                            .map((item, index) => {
-                                return (
-                                    <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
-                                        style={{
-                                            height: "fit-content",
-                                            backgroundColor: "rgb(255, 255, 255, 0.8)"
-                                        }} key={index}>
-                                        <div className='d-flex align-items-center' >
-                                            <img
-                                                src="/149071-removebg-preview.png"
-                                                className="rounded-circle shadow-1-strong"
-                                                width={50}
-                                                height={50}
-                                                alt="No network"
-                                            />
-                                            <div className='px-4'>
-                                                <p className='my-0' style={{ fontWeight: "700" }}>{item.name}</p>
-                                                <p>{item.date.slice(0, 19)}</p>
-                                                <p>{item.comment}</p>
+                    {isLoadingComments ? (
+                        <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                            <Loader />
+                        </div>
+                    ) : comments.filter((item) => item.productId === productId).length === 0 ? (
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh", color: "rgb(2, 2, 94)" }} >
+                            <h2>No Review available</h2>
+                        </div>
+                    ) : (
+                        <div className='row comments_row'>
+                            {comments.filter((item) => item.productId === productId)
+                                .map((item, index) => {
+                                    return (
+                                        <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
+                                            style={{
+                                                height: "fit-content",
+                                                backgroundColor: "rgb(255, 255, 255, 0.8)"
+                                            }} key={index}>
+                                            <div className='d-flex align-items-center' >
+                                                <img
+                                                    src="/149071-removebg-preview.png"
+                                                    className="rounded-circle shadow-1-strong"
+                                                    width={50}
+                                                    height={50}
+                                                    alt="No network"
+                                                />
+                                                <div className='px-4'>
+                                                    <p className='my-0' style={{ fontWeight: "700" }}>{item.name}</p>
+                                                    <p>{formatDateTime(item.date)}</p>
+                                                    <p>{item.comment}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
-                    </div>
-                )}
-            </div>
+                                    );
+                                })}
+                        </div>
+                    )}
+                </div>
 
-            <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
-                <div>
-                    <p className='fw-bolder fs-2 text-center' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a comment</p>
+                <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
+                    <div>
+                        <p className='fw-bolder fs-2 text-center' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a comment</p>
+
+                    </div>
+                    <form action="" onSubmit={handleSubmit(Comment)}>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">
+                                Name *
+                            </label>
+                            <input
+                                {...register('name', { required: true })}
+                                type="text"
+                                className="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                            />
+                            {errors.name ? <div className='error'>Name is required </div> : null}
+
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">
+                                Email *
+                            </label>
+                            <input
+                                {...register('email', { required: true })}
+                                type="email"
+                                className="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                            />
+                            {errors.email ? <div className='error'>Email is required </div> : null}
+
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">
+                                Comment *
+                            </label>
+                            <textarea
+                                {...register('comment', { required: true })}
+                                type="text"
+                                className="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                rows={5}
+                            />
+                            {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
+                        </div>
+                        <button type="submit" className="btn review_btn">
+                            Submit
+                        </button>
+                    </form>
 
                 </div>
-                <form action="" onSubmit={handleSubmit(Comment)}>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">
-                            Name *
-                        </label>
-                        <input
-                            {...register('name', { required: true })}
-                            type="text"
-                            className="form-control"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                        />
-                        {errors.name ? <div className='error'>Name is required </div> : null}
-
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">
-                            Email *
-                        </label>
-                        <input
-                            {...register('email', { required: true })}
-                            type="email"
-                            className="form-control"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                        />
-                        {errors.email ? <div className='error'>Email is required </div> : null}
-
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">
-                            Comment *
-                        </label>
-                        <textarea
-                            {...register('comment', { required: true })}
-                            type="text"
-                            className="form-control"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                            rows={5}
-                        />
-                        {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
-                    </div>
-                    <button type="submit" className="btn review_btn">
-                        Submit
-                    </button>
-                </form>
-
             </div>
-        </div>
-        <div className='row'>
-            <div className='col-lg-12 col-sm-12'>
-                <Benefits />
+            <div className='row'>
+                <div className='col-lg-12 col-sm-12'>
+                    <Benefits />
+                </div>
             </div>
-        </div>
-    </div >
+        </div >
     </>
 }
 

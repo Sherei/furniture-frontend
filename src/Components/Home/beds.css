@@ -8,7 +8,6 @@
 }
 .card_box:hover{
   cursor: pointer;
-  border: 1px solid rgb(230, 229, 229);
   transition: all ease 0.1s !important;
 }
 
