@@ -290,9 +290,9 @@ const Products = () => {
                         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
                                 filteredProduct.map((product, index) => (
-                                    <div className="col" key={index} onClick={() => move("/single_Add/" + product._id)}>
+                                    <div className="col" key={index} >
                                         <div className='product_box'>
-                                            <div className='p_img_box'>
+                                            <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
                                                 <img src={product.images[0]} alt="No network" />
                                                 {product.discount && product.discount > 0 ? (
                                                     <div className='discount'>
@@ -320,7 +320,9 @@ const Products = () => {
                                                 )}
                                             </div>
                                             <div className='product_btns'>
-                                                <button className='btn p_detail_btn'>View Detail</button>
+                                                <button className='btn p_detail_btn' onClick={() => move("/single_Add/" + product._id)}>
+                                                    View Detail
+                                                </button>
                                                 <a href='https://wa.me/+923067208343' target="blank">
                                                     <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
                                                 </a>

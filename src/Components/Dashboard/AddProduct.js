@@ -196,8 +196,8 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input type='file' multiple {...register('images', { required: true, maxLength: 10, minLength: 1 })} className="form-control mb-2 mr-sm-2" />
-                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
+                  <input type='file' multiple {...register('images', { maxLength: 10, minLength: 1 })} className="form-control mb-2 mr-sm-2" />
+                  {/* {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>} */}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                 </div>
