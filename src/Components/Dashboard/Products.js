@@ -40,13 +40,13 @@ export const Products = () => {
     setSearch(e.target.value);
   };
 
-  const filteredProduct = product.filter((data) => {
+  const filteredProduct = product?.filter((data) => {
     const lowerCaseSearch = search.toLowerCase();
     return (
-      data.title.toLowerCase().includes(lowerCaseSearch) ||
-      data.category.toLowerCase().includes(lowerCaseSearch) ||
-      data.subCategory.toLowerCase().includes(lowerCaseSearch) ||
-      data.sn.toString().toLowerCase().includes(lowerCaseSearch)
+      data?.title.toLowerCase().includes(lowerCaseSearch) ||
+      data?.category.toLowerCase().includes(lowerCaseSearch) ||
+      data?.subCategory.toLowerCase().includes(lowerCaseSearch) ||
+      data?.sn.toString().toLowerCase().includes(lowerCaseSearch)
     );
   });
 

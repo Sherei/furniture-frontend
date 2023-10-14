@@ -37,13 +37,13 @@ const Comments = () => {
         setSearch(e.target.value);
     };
 
-    const filteredComment = comment.filter((data) => {
+    const filteredComment = comment?.filter((data) => {
 
         const lowerCaseSearch = search.toLowerCase();
         return (
-            data.name.toLowerCase().includes(lowerCaseSearch) ||
-            data.email.toLowerCase().includes(lowerCaseSearch) ||
-            data.comment.toLowerCase().includes(lowerCaseSearch)
+            data?.name.toLowerCase().includes(lowerCaseSearch) ||
+            data?.email.toLowerCase().includes(lowerCaseSearch) ||
+            data?.comment.toLowerCase().includes(lowerCaseSearch)
         );
     });
 

@@ -36,13 +36,13 @@ export const Users = () => {
     setSearch(e.target.value);
   };
 
-  const filteredUser = Users.filter((data) => {
+  const filteredUser = Users?.filter((data) => {
     const lowerCaseSearch = search.toLowerCase();
 
     return (
-      data.name.toLowerCase().includes(lowerCaseSearch) ||
-      data.email.toLowerCase().includes(lowerCaseSearch) ||
-      data.number.toLowerCase().includes(lowerCaseSearch)
+      data?.name.toLowerCase().includes(lowerCaseSearch) ||
+      data?.email.toLowerCase().includes(lowerCaseSearch) ||
+      data?.number.toLowerCase().includes(lowerCaseSearch)
     );
   });
 

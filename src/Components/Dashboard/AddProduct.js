@@ -43,7 +43,8 @@ export const AddProduct = () => {
 
     setLoading(true);
 
-    let meraForm = new FormData();
+    const meraForm = new FormData();
+
     meraForm.append('title', data.title);
     meraForm.append('sn', data.sn);
     meraForm.append('category', data.category);
@@ -54,10 +55,23 @@ export const AddProduct = () => {
     meraForm.append('Fprice', data.Fprice);
     meraForm.append('trending', data.trending);
     meraForm.append('feature', data.feature);
-    
+
+    const cloudinaryUrl = []
+
     for (let i = 0; i < data.images.length; i++) {
-      meraForm.append('images', data.images[i]);
+      console.log('data image,', data.images[i])
+      const formData = new FormData()
+      formData.append('file', data.images[i]);
+      formData.append('upload_preset', "vnayn2uf");
+      await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
+        // console.log('form data res', res)
+        cloudinaryUrl.push(res.data.url)
+      }).catch((e) => {
+        // console.log(e)
+      })
     }
+    meraForm.append('image', cloudinaryUrl);
+
     try {
 
       let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
@@ -72,7 +86,7 @@ export const AddProduct = () => {
         setError("Try with different Serial number")
       } else {
         toast.error("Try Again later")
-        console.log("error while uploading add is :" +error)
+        console.log("error while uploading add is :" + error)
       }
 
     } finally {
@@ -196,8 +210,8 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input type='file' multiple {...register('images', { maxLength: 10, minLength: 1 })} className="form-control mb-2 mr-sm-2" />
-                  {/* {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>} */}
+                  <input type='file' multiple {...register('images', { required: true, maxLength: 10, minLength: 1 })} className="form-control mb-2 mr-sm-2" />
+                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                 </div>
