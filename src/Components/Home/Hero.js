@@ -20,7 +20,7 @@ const Hero = () => {
         { img: "4.jpg" },
     ]
     return <>
-        <div className='container-fluid' id='/'>
+        <div className='container-fluid px-0 mx-0' id='/'>
             <div className='row'>
                 <div className='col-lg-12 px-0'>
                     <div className='hero_main px-0'>
