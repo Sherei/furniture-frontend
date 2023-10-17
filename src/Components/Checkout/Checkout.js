@@ -78,6 +78,7 @@ const Checkout = () => {
             const orderItemsJSON = JSON.stringify(orderItems);
 
             data.orderId = orderId;
+            data.userId = userId;
             data.orderItems = orderItemsJSON;
             
             console.log("order items are ::", orderItems)
@@ -130,15 +131,14 @@ const Checkout = () => {
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row">
                             <div className="col-md-6 mb-3">
-                                <label htmlFor="" className='form_label'>Name *</label>
+                                <label htmlFor="" className='form_label'>First Name *</label>
                                 <input type="text" className="form-control login_form_input"{...register('name1', { required: true })} />
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label htmlFor="" className='form_label'>Last Name *</label>
-                                <input type="text" className="form-control login_form_input"{...register('name2', { required: true })} />
-                                {errors.name2 ? <div className='error'>This Field is required</div> : null}
+                                <label htmlFor="" className='form_label'>Last Name</label>
+                                <input type="text" className="form-control login_form_input"{...register('name2')} />
                             </div>
 
                             <div className="col-md-6 mb-3">

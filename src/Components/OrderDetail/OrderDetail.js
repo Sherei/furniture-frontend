@@ -70,7 +70,7 @@ const OrderDetail = () => {
             </div>
                     <div className='row' id="orderDetail">
                         <div className='col-12'>
-                            <p><b>Customer Name:</b> {order.name1} {order.name2}</p>
+                            <p><b>Customer Name:</b> {order.name1} {order?.name2}</p>
                             <p><b>Customer E-mail: </b>{order.email}</p>
                             <p><b>Mobile Number: </b>{order.number1}</p>
                             <p><b>Phone Number: </b>{order.number2}</p>

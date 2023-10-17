@@ -100,11 +100,9 @@ export const Cart = () => {
           toast.success("Cart updated successfully");
         })
         .catch((error) => {
-          // console.error("Error updating cart:", error);
           toast.error("Failed to update cart");
         });
     } catch (e) {
-      // console.error(e);
       toast.error("Failed to update cart");
     } finally {
       setLoading(false);

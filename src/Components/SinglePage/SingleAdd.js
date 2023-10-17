@@ -113,7 +113,9 @@ const SingleAdd = () => {
             toast.warning("Login with different account")
         }
         else {
-            
+            if (product.discount === null || product.discount === undefined) {
+                product.discount = 0;
+            }
             const totalPrice = product.Fprice * quantity;
 
             product.productId=product._id;
@@ -121,7 +123,7 @@ const SingleAdd = () => {
             product.Fprice=totalPrice;
             product.quantity=quantity
             product.image=product.images[0];
-            
+                console.log(product.discount)            
             try {
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
