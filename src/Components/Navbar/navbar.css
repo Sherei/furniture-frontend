@@ -34,6 +34,7 @@
 }
 
 .nav-item2:hover {
+  cursor: pointer !important;
   background-color: #1b2950;
   font-weight: 600;
 }
@@ -44,6 +45,7 @@
 }
 
 .nav-item2:hover .nav-link{
+  cursor: pointer !important;
   color: white !important;
 }
 
@@ -62,6 +64,7 @@
 }
 
 .nav-item2.dropdown:hover .dropdown-menu {
+  cursor: pointer !important;
   display: block;
 }
 
@@ -78,6 +81,7 @@
 }
 
 .dropdown-menu .dropdown-item:hover {
+  cursor: pointer !important;
   background-color: #1b2950;
   color: white !important;
   padding-left: 20px;

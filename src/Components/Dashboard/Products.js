@@ -25,13 +25,11 @@ export const Products = () => {
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/product`)
-      // .get("/product")
       .then((res) => {
-        setProduct(res.data);
+        setProduct(res?.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        // console.error('Error fetching data:', error);
         setIsLoading(false);
       });
   }, []);
@@ -40,13 +38,13 @@ export const Products = () => {
     setSearch(e.target.value);
   };
 
-  const filteredProduct = product?.filter((data) => {
+  const filteredProduct = product.length > 0 && product?.filter((data) => {
     const lowerCaseSearch = search.toLowerCase();
     return (
-      data?.title.toLowerCase().includes(lowerCaseSearch) ||
-      data?.category.toLowerCase().includes(lowerCaseSearch) ||
-      data?.subCategory.toLowerCase().includes(lowerCaseSearch) ||
-      data?.sn.toString().toLowerCase().includes(lowerCaseSearch)
+      data?.title?.toLowerCase().includes(lowerCaseSearch) ||
+      data?.category?.toLowerCase().includes(lowerCaseSearch) ||
+      data?.subCategory?.toLowerCase().includes(lowerCaseSearch) ||
+      data?.sn?.toString().toLowerCase().includes(lowerCaseSearch)
     );
   });
 
@@ -68,7 +66,7 @@ export const Products = () => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-GB', options);
   };
-  
+
   return (
     <div className="container-fluid">
       <div className="row my-3">
@@ -90,8 +88,8 @@ export const Products = () => {
           </div>
         </div>
       </div>
-      
-      
+
+
       <div className='row px-0 py-3 user_row'>
         <div className='col'>
           {isLoading ? (
@@ -140,7 +138,7 @@ export const Products = () => {
                               <AiFillDelete />
                             </button>
                           </td>
-                        
+
                         </tr>
                       ))}
                     </tbody>

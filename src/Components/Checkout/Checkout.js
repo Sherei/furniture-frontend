@@ -13,10 +13,10 @@ import Loader from '../Loader/Loader';
 const Checkout = () => {
     useEffect(() => {
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      }, []);
+    }, []);
     const cu = useSelector(store => store.userSection.cu)
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -51,29 +51,21 @@ const Checkout = () => {
 
 
     const Order = async (data) => {
+
         setLoading(true);
 
         try {
 
-            const formData = new FormData();
-
             const orderItems = [];
-            const orderId = uuidv4().substr(0, 6);
 
-            formData.append('name1', data.name1);
-            formData.append('name2', data.name2);
-            formData.append('userId', userId);
-            formData.append('number1', data.number1);
-            formData.append('number2', data.number2);
-            formData.append('orderId', orderId);
-            
+            const orderId = uuidv4().substr(0, 10);
+
             filterCart.forEach((item) => {
-              
                 const itemData = {
                     title: item.title,
                     sn: item.sn,
                     category: item.category,
-                    image:item.image,
+                    image: item.image,
                     subCategory: item.subCategory,
                     price: parseFloat(item.price * item.quantity).toString(),
                     quantity: parseInt(item.quantity).toString(),
@@ -82,17 +74,19 @@ const Checkout = () => {
                 };
                 orderItems.push(itemData);
             });
+
             const orderItemsJSON = JSON.stringify(orderItems);
 
-            formData.append('orderItems', orderItemsJSON);
-            formData.append('email', data.email);
-            formData.append('shipping', data.shipping);
-            formData.append('payment', data.payment);
+            data.orderId = orderId;
+            data.orderItems = orderItemsJSON;
+            
+            console.log("order items are ::", orderItems)
 
-            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, formData, {
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                 },
+                
             });
 
             if (response.data === "Order is Placed") {
@@ -122,7 +116,7 @@ const Checkout = () => {
             </div>
         );
     }
-    
+
     if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart.length < 1) {
         return <>
             <Error />

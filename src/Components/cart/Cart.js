@@ -153,7 +153,7 @@ export const Cart = () => {
   return (
     <div className="container h-100 py-5">
       <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-12" style={{height:"50vh", overflow:"auto"}}>
+        <div className="col-12">
           <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5">
             <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
             <div>

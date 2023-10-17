@@ -43,56 +43,75 @@ export const AddProduct = () => {
 
     setLoading(true);
 
-    const meraForm = new FormData();
-
-    meraForm.append('title', data.title);
-    meraForm.append('sn', data.sn);
-    meraForm.append('category', data.category);
-    meraForm.append('subCategory', data.subCategory);
-    meraForm.append('description', data.description);
-    meraForm.append('price', data.price);
-    meraForm.append('discount', data.discount);
-    meraForm.append('Fprice', data.Fprice);
-    meraForm.append('trending', data.trending);
-    meraForm.append('feature', data.feature);
-
-    const cloudinaryUrl = []
-
-    for (let i = 0; i < data.images.length; i++) {
-      console.log('data image,', data.images[i])
-      const formData = new FormData()
-      formData.append('file', data.images[i]);
-      formData.append('upload_preset', "vnayn2uf");
-      await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
-        // console.log('form data res', res)
-        cloudinaryUrl.push(res.data.url)
-      }).catch((e) => {
-        // console.log(e)
-      })
-    }
-    meraForm.append('image', cloudinaryUrl);
-
+    const formData = new FormData()
+    const cloudinaryUrl = [];
     try {
 
-      let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
-
-      if (response.data.message === "Product Added") {
-        toast.success("Product Uploaded");
-        reset();
+      for (let i = 0; i < data.images.length; i++) {
+        formData.append('file', data.images[i]);
+        formData.append('upload_preset', "vnayn2uf");
+        await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
+          cloudinaryUrl.push(res.data.url)
+        })
       }
-    } catch (error) {
+      data.images = cloudinaryUrl;
 
+      let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data)
+      if (response.data) {
+        toast.success("Product Uploaded")
+      }
+    }
+
+    catch (error) {
       if (error.response && error.response.status === 400) {
         setError("Try with different Serial number")
       } else {
         toast.error("Try Again later")
-        console.log("error while uploading add is :" + error)
       }
 
     } finally {
       setLoading(false);
     }
   };
+  // meraForm.append('title', data.title);
+  // meraForm.append('sn', data.sn);
+  // meraForm.append('category', data.category);
+  // meraForm.append('subCategory', data.subCategory);
+  // meraForm.append('description', data.description);
+  // meraForm.append('price', data.price);
+  // meraForm.append('discount', data.discount);
+  // meraForm.append('Fprice', data.Fprice);
+  // meraForm.append('trending', data.trending);
+  // meraForm.append('feature', data.feature);
+
+
+  // const meraForm = new FormData();
+  // try {
+  //   const cloudinaryUrl = [];
+  //   const formData = new FormData()
+
+  //   for (let i = 0; i < data.images.length; i++) {
+  //     formData.append('file', data.images[i]);
+  //     formData.append('upload_preset', "vnayn2uf");
+  //     await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
+  //       cloudinaryUrl.push(res.data.url)
+  //       console.log("url are :::" , cloudinaryUrl)
+  //     }).catch((e) => {
+
+  //     })
+  //   }
+  //   meraForm.append('images', cloudinaryUrl);
+
+
+  //   let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
+
+  //   if (response.data.message === "Product Added") {
+  //     toast.success("Product Uploaded");
+  //     reset();
+  //   }
+
+  // } 
+
 
 
   return (
@@ -210,7 +229,7 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input type='file' multiple {...register('images', { required: true, maxLength: 10, minLength: 1 })} className="form-control mb-2 mr-sm-2" />
+                  <input type='file' multiple {...register('images', { required: true, minLength: 1, maxLength: 5 })} className="form-control mb-2 mr-sm-2" />
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}

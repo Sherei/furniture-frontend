@@ -71,7 +71,7 @@ const SingleAdd = () => {
         }
     };
 
-    const totalPrice = product.Fprice * quantity;
+    const totalPrice = product?.Fprice * quantity;
 
     const Comment = async (cmnt) => {
         try {
@@ -100,6 +100,7 @@ const SingleAdd = () => {
     }, []);
 
     async function AddToCart() {
+
         if (cu._id === undefined) {
             move('/login')
             toast.warning("Login First")
@@ -112,24 +113,17 @@ const SingleAdd = () => {
             toast.warning("Login with different account")
         }
         else {
-
+            
             const totalPrice = product.Fprice * quantity;
-            const meraForm = new FormData();
 
-            meraForm.append('title', product.title);
-            meraForm.append('productId', product._id);
-            meraForm.append('userId', cu._id);
-            meraForm.append('price', product.price);
-            meraForm.append('quantity', quantity);
-            meraForm.append('Fprice', totalPrice);
-            meraForm.append('sn', product.sn);
-            meraForm.append('category', product.category);
-            meraForm.append('subCategory', product.subCategory);
-            meraForm.append('description', product.description);
-            meraForm.append('image', product.images[0]);
-            meraForm.append('discount', product.discount);
+            product.productId=product._id;
+            product.userId=cu._id;
+            product.Fprice=totalPrice;
+            product.quantity=quantity
+            product.image=product.images[0];
+            
             try {
-                let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, meraForm)
+                let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
                 if (response.data === "Product Added") {
                     toast.success("Added to Cart");
@@ -165,12 +159,12 @@ const SingleAdd = () => {
         <div className='container-fluid'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center'>
-                    <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product.category} <FaAngleRight />  {product.subCategory}</p>
+                    <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product?.category} <FaAngleRight />  {product?.subCategory}</p>
                 </div>
                 <div className='col-lg-1 col-md-2 col-sm-12 d-flex justify-content-center'>
                     <div className='small_images'>
-                        {product.images &&
-                            product.images.map((image, index) => (
+                        {product?.images &&
+                            product?.images.map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}
@@ -191,7 +185,7 @@ const SingleAdd = () => {
                         {({ zoomIn, zoomOut, ...rest }) => (
                             <>
                                 <TransformComponent>
-                                    {product.images && product.images.length > 0 ? (
+                                    {product?.images && product?.images.length > 0 ? (
                                         <div className='s-Image'>
                                             <img src={product.images[selectedImage]} className='s-Image img-fluid rounded' alt="No network" />
                                         </div>
@@ -202,9 +196,9 @@ const SingleAdd = () => {
                                     )}
 
                                 </TransformComponent>
-                                {product.discount && product.discount > 0 ? (
+                                {product?.discount && product?.discount > 0 ? (
                                     <div className='discount'>
-                                        {`-${product.discount}%`}
+                                        {`-${product?.discount}%`}
                                     </div>
                                 ) : null}
                                 <div className="tools">
@@ -217,8 +211,8 @@ const SingleAdd = () => {
                 </div>
                 <div className='col-lg-4 col-sm-12'>
                     <div className='s_content'>
-                        <h1 className='text-center fs-1' style={{ color: "#1b2950" }}>{product.title}</h1>
-                        <p className='text-center text-muted fs-6'>{product.description}</p>
+                        <h1 className='text-center fs-1' style={{ color: "#1b2950" }}>{product?.title}</h1>
+                        <p className='text-center text-muted fs-6'>{product?.description}</p>
                         <p className='fw-bolder' style={{ color: "#1b2950" }}>
                             Rating <span style={{ color: 'red' }}>
                                 <RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill />
@@ -249,7 +243,7 @@ const SingleAdd = () => {
                 <div className='col-lg-3 col-sm-12 related'>
                     <p className='fw-bolder' style={{ color: "#1b2950" }}>You may like this</p>
                     <div className='s_box'>
-                        {data.filter((item) => item.category === product.category).reverse()
+                        {data?.filter((item) => item.category === product?.category).reverse()
                             .map((product, index) => (
                                 <div className="single_box" key={index} onClick={() => {
                                     window.scrollTo({
@@ -259,10 +253,10 @@ const SingleAdd = () => {
                                     move("/single_Add/" + product._id);
                                 }}
                                 >
-                                    <img src={product.images[0]} alt='No Network' className='img-fluid single_img' />
-                                    {product.discount && product.discount > 0 ? (
+                                    <img src={product?.images[0]} alt='No Network' className='img-fluid single_img' />
+                                    {product?.discount && product?.discount > 0 ? (
                                         <div className='s_discount'>
-                                            {`${product.discount}%`}
+                                            {`${product?.discount}%`}
                                         </div>
                                     ) : null}
                                     <div>

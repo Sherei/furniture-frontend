@@ -68,7 +68,7 @@ export const Login = () => {
     } catch (e) {
       if (e.response && e.response.status === 404) {
         setError("Invalid Credentials")
-        // toast.warning("Invalid Credentials");
+
       } else {
         setError("Invalid Credentials")
       }

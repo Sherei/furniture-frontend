@@ -110,17 +110,17 @@ const Products = () => {
     }
 
     const filteredProduct = data.filter((product) => {
-        const lowerCaseTitle = product.title.toLowerCase();
-        const productCategory = product.category.toLowerCase();
-        const productsubCategory = product.subCategory.toLowerCase();
+        const lowerCaseTitle = product?.title?.toLowerCase();
+        const productCategory = product?.category?.toLowerCase();
+        const productsubCategory = product?.subCategory?.toLowerCase();
         const lowerCaseSearch = (search).toLowerCase();
         return (
-            (lowerCaseTitle.includes(lowerCaseSearch) ||
-                productCategory.includes(lowerCaseSearch) ||
-                productsubCategory.includes(lowerCaseSearch) ||
-                productsubCategory.includes(lowerCaseSearch)) &&
-            (category === "all" || productCategory.includes(category)) &&
-            (subCategory === "all" || productsubCategory.includes(subCategory))
+            (lowerCaseTitle?.includes(lowerCaseSearch) ||
+                productCategory?.includes(lowerCaseSearch) ||
+                productsubCategory?.includes(lowerCaseSearch) ||
+                productsubCategory?.includes(lowerCaseSearch)) &&
+            (category === "all" || productCategory?.includes(category)) &&
+            (subCategory === "all" || productsubCategory?.includes(subCategory))
         );
     });
 

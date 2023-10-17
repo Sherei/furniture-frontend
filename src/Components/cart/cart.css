@@ -47,11 +47,9 @@
 }
 
 .cart-total .main span {
-    /* color: rgb(54, 54, 54); */
     font-weight: 700;
 }
 .update{
-    /* width: 250px; */
     height: fit-content;
     background-color: white;
     border-radius: 5px;
@@ -66,8 +64,7 @@
 }
 @media(max-width:768px) {
     .cart-total {
-
-        justify-content: center;
+       justify-content: center;
 
     }
 }
