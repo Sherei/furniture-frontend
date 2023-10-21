@@ -100,6 +100,13 @@
   outline: none !important;
 }
 
+.heart{
+  color: red;
+  padding-right:10px ;
+}
+.heart:hover{
+  cursor: pointer;
+}
 
 @media screen and (max-width:991px) {
   .nav-item2:hover {

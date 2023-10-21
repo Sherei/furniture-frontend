@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: fit-content;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .slide-text {
@@ -12,15 +12,14 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  position: relative;
-  animation: slideText 10s linear infinite; 
+  animation: moveRightToLeft 10s linear infinite; /* Adjust the duration as needed */
 }
 
-@keyframes slideText {
+@keyframes moveRightToLeft {
   0% {
-    transform: translateX(100%); /* Start from the right edge */
+    transform: translateX(100%); /* Start from the right */
   }
   100% {
-    transform: translateX(-100%); /* Move to the left edge */
+    transform: translateX(-100%); /* Move to the left */
   }
 }

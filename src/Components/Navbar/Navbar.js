@@ -71,10 +71,8 @@ export const Navbar = () => {
             />
           </NavLink>
           <div className='d-flex align-items-center'>
-            <li className="nav-item fs-4">
-              <a className="nav-link" href='https://wa.me/+923067208343' target="blank">
-                <FaWhatsapp />
-              </a>
+            <li className="nav-item heart fs-4">
+              ❤
             </li>
             {cu._id == undefined &&
               <li className="fs-4 nav-item">
@@ -217,33 +215,6 @@ export const Navbar = () => {
       </div>
     </nav>
 
-    {/* <div className={`mb-1 ${isSticky ? 'container-fluid fixed-top navbar-custom' : 'container'}`}>
-
-              <li className="nav-item2">
-                <NavLink className="nav-link" to="/Products/all" role="button">
-                  Mattress
-                </NavLink>
-              </li>
-              <li className="nav-item2">
-                <NavLink className="nav-link" to="/Products/all" role="button">
-                  Foot Stools & Puffs
-                </NavLink>
-              </li>
-              <li className="nav-item2">
-                <Link className="nav-link" to="review" role="button" >
-                  Reviews
-                </Link>
-              </li>
-              <li className="nav-item2">
-                <NavLink className="nav-link" to="/faq" role="button">
-                  FAQ's
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div> */}
-
+    
   </>
 };
