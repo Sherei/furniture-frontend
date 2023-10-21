@@ -363,8 +363,8 @@ const Products = () => {
                                 ))
                             }
                             {filteredProduct.length === 0 &&
-                                <div className='col-12 d-flex justify-content-center align-items-center px-4'>
-                                    No product available related to this category
+                                <div className='col-12 d-flex justify-content-center align-items-center flex-wrap px-4'>
+                                  <p className='text-center'>No product available related to this category</p>
                                 </div>
                             }
                         </div>
