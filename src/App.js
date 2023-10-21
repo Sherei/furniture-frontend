@@ -15,15 +15,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
-import './App.css';
-import { Dashboard } from './Components/Dashboard/Dashboard';
 import Orderplaced from './Components/Placed/Orderplaced';
 import UserPanel from './Components/UserPanel/UserPanel';
 import OrderDetail from './Components/OrderDetail/OrderDetail';
 import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
-
+import './App.css';
 import ReactGA from 'react-ga';
+import Sidebar from './Components/Dashboard/Sidebar';
+import { AddProduct } from './Components/Dashboard/AddProduct';
 ReactGA.initialize('G-Y946N662J4');
 
 function App() {
@@ -120,12 +120,15 @@ function App() {
                 <Route exact element={<Home />} path='/' />
                 <Route exact element={<UserPanel />} path='/user-profile/:userId' />
                 <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
+                <Route exact path='/Products/' element={<Products />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
                 <Route exact path='/cart' element={<Cart />} />
                 <Route exact path='/cart/:userId' element={<Cart />} />
                 <Route exact path='/login' element={<Login />} />
                 <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
-                <Route exact path='/admin-dashboard' element={<Dashboard />} />
+                <Route exact path='/admin-dashboard' element={<Sidebar />} />
+                <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
+                <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
                 <Route path='/placed' element={<Orderplaced />} />
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />

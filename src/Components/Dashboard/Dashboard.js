@@ -40,7 +40,7 @@ export const Dashboard = () => {
         { title: "Total Users", desc: users.length, icon: <FaUsers />, id: "users" },
         { title: "Products", desc: product.length, icon: <FaClipboardList />, id: "product" },
         { title: "Comments", desc: comment.length, icon: <FaCommentDots />, id: "comment" },
-        { title: "Add Product", icon: <MdProductionQuantityLimits />, id: "addproduct" },
+        // { title: "Add Product", icon: <MdProductionQuantityLimits />, id: "addproduct" },
     ];
     const handleItemClick = (id) => {
         const element = document.getElementById(id);
@@ -116,11 +116,11 @@ export const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className='col-lg-12 col-sm-12' id='addproduct'>
+                {/* <div className='col-lg-12 col-sm-12' id='addproduct'>
                     <div className='row  my-5 d-flex gap-5 justify-content-center'>
                         <AddProduct />
                     </div>
-                </div>
+                </div> */}
 
 
             </div>

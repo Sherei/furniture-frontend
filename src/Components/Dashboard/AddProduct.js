@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Loader from "../Loader/Loader"
 import axios from 'axios';
@@ -15,6 +15,7 @@ export const AddProduct = () => {
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
 
+  const { productId } = useParams();
 
   const handleDiscountChange = (e) => {
     const newDiscount = parseFloat(e.target.value);
@@ -73,52 +74,15 @@ export const AddProduct = () => {
       setLoading(false);
     }
   };
-  // meraForm.append('title', data.title);
-  // meraForm.append('sn', data.sn);
-  // meraForm.append('category', data.category);
-  // meraForm.append('subCategory', data.subCategory);
-  // meraForm.append('description', data.description);
-  // meraForm.append('price', data.price);
-  // meraForm.append('discount', data.discount);
-  // meraForm.append('Fprice', data.Fprice);
-  // meraForm.append('trending', data.trending);
-  // meraForm.append('feature', data.feature);
 
-
-  // const meraForm = new FormData();
-  // try {
-  //   const cloudinaryUrl = [];
-  //   const formData = new FormData()
-
-  //   for (let i = 0; i < data.images.length; i++) {
-  //     formData.append('file', data.images[i]);
-  //     formData.append('upload_preset', "vnayn2uf");
-  //     await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
-  //       cloudinaryUrl.push(res.data.url)
-  //       console.log("url are :::" , cloudinaryUrl)
-  //     }).catch((e) => {
-
-  //     })
-  //   }
-  //   meraForm.append('images', cloudinaryUrl);
-
-
-  //   let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, meraForm)
-
-  //   if (response.data.message === "Product Added") {
-  //     toast.success("Product Uploaded");
-  //     reset();
-  //   }
-
-  // } 
-
-
-
-  return (
+  return <>
     <div className='container my-4'>
       <div className='row border py-5 px-4'>
         <div className='col-lg-12 col-sm-12'>
+          <div className='d-flex justify-content-between'>
           <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
+          <p className='panel_btn' onClick={()=>move("/admin-dashboard")}>Admin Panel</p>
+          </div>
           {loading ? (
             <div className='d-flex justify-content-center align-items-center'><Loader /></div>
           ) : (
@@ -256,5 +220,5 @@ export const AddProduct = () => {
         </div>
       </div >
     </div >
-  );
+  </>
 };

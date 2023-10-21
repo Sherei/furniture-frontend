@@ -19,3 +19,11 @@ select{
 .completed-row select{
     color: white;
 }
+.panel_btn{
+  font-size: 15px;
+  color: #2b2c6c;
+  font-weight: 600;
+}
+.panel_btn:hover{
+  cursor: pointer;
+}

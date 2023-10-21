@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import { FaDownload } from 'react-icons/fa'
+import { FaDownload ,FaPencilAlt } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -114,6 +114,7 @@ export const Products = () => {
                         <th>Discount</th>
                         <th>Date</th>
                         <th>Delete</th>
+                        <th>Edit</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -138,7 +139,12 @@ export const Products = () => {
                               <AiFillDelete />
                             </button>
                           </td>
-
+                          <td className='text-center'>
+                            <button
+                              className="delete_btn" onClick={()=>move(`/admin-dashboard-add-product/${data._id}`)}>
+                              <FaPencilAlt />
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>

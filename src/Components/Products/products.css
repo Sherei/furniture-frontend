@@ -92,12 +92,16 @@
 }
 
 .categories p:hover {
+    padding: 3px 5px;
+    color: white;
     cursor: pointer;
     transform: scale(1.03);
-    border-bottom: 1px solid rgb(175, 136, 136);
+    background-color: #1B2950;
     transition: all linear 0.3s;
 }
-
+.accordian_btn{
+    padding: 10px;
+}
 .p_display {
     display: none;
 }
@@ -270,7 +274,11 @@
     color: white;
     font-weight: 600;
 }
-
+.accordian-item1{
+    border: none;
+    outline: none;
+    padding: 0px;
+}
 @media screen and (max-width:768px) {
     .p_img_box {
         height: auto;

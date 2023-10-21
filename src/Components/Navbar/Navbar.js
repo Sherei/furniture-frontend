@@ -103,7 +103,7 @@ export const Navbar = () => {
                       alt=""
                     />
                   </NavLink>
-                  <ul className="dropdown-menu dropdown_menu2" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <ul className="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                     {cu.email != "asd@gmail.com" &&
                       <li><NavLink className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</NavLink></li>
                     }
