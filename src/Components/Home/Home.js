@@ -12,6 +12,7 @@ import Sofas from './Sofas'
 import Discounted from './Discounted'
 import Trending from './Trending'
 import Feature from './Feature'
+import Slider from '../Sentence/Slider'
 
 
 
@@ -27,6 +28,7 @@ const Home = () => {
 
   return <>
     <Hero />
+    <Slider/>
     <Categories />
     <Discounted />
     <Trending />
@@ -35,7 +37,6 @@ const Home = () => {
     <Feature />
     <Bedroom />
     <Dining />
-    <Coffee />
     <Review />
     <Benefits />
 

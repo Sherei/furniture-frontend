@@ -1,0 +1,31 @@
+.slider-container {
+  display: flex;
+  gap: 150px;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  overflow: hidden;
+}
+
+.slide-text {
+  color: #fff;
+  font-weight: 600;
+  font-size: 30px;
+  white-space: nowrap;
+  animation-duration: 10s; 
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.slide-text {
+  animation-name: moveRightToLeft;
+}
+
+@keyframes moveRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

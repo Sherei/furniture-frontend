@@ -1,100 +1,102 @@
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Puddles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-  body {
-    margin: 0px !important;
-    padding: 0px !important;
-    box-sizing: border-box;
-    /* background-color: black !important; */
-  }
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+  box-sizing: border-box;
+}
 
-  * {
-    font-family: 'Montserrat', sans-serif !important;
-  }
+* {
+  font-family: 'Jost', sans-serif;
+  /* font-family: 'Montserrat', sans-serif !important; */
+}
 
-  a {
-    text-decoration: none !important;
-  }
+a {
+  text-decoration: none !important;
+}
 
-  .error {
-    font-family: 'Montserrat', sans-serif;
-    color: red;
-    letter-spacing: 0.1rem;
-    margin-top: 0.5rem;
-    padding: 2px 10px;
-    background-color: rgb(255, 0, 0, 0.2);
-  }
+.error {
+  font-family: 'Montserrat', sans-serif;
+  color: red;
+  letter-spacing: 0.1rem;
+  margin-top: 0.5rem;
+  padding: 2px 10px;
+  background-color: rgb(255, 0, 0, 0.2);
+}
 
-  main {
-    padding: 0px !important;
-    flex: 1 0 auto;
-    background-color: rgb(240, 240, 235, 0.3);
+main {
+  padding: 0px !important;
+  flex: 1 0 auto;
+  background-color: rgb(240, 240, 235, 0.3);
 
-  }
+}
 
-  .main_body {
-    max-width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    scroll-behavior: smooth;
-  }
+.main_body {
+  overflow: hidden;
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
 
-  .btns {
-    position: absolute;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1px !important;
-    z-index: 1100 !important;
-    top: 83%;
-    right: 40px;
-  }
+.top_btn {
+  position: absolute;
+  position: fixed;
+  bottom: 5%;
+  right: 2%;
+  cursor: pointer;
+  max-width: fit-content;
+  max-height: fit-content;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 25px;
+  z-index: 1000;
+  color: #1b2950;
+}
 
-  .top_btn {
-    cursor: pointer;
-    max-width: fit-content;
-    max-height: fit-content;
-    padding: 5px 10px;
-    text-align: center;
-    font-size: 25px;
-    color: #1b2950;
+.whatsapp-btn {
+  background-color: #25D366;
+  position: absolute;
+  position: fixed;
+  bottom: 5%;
+  left: 4%;
+  color: white;
+  cursor: pointer;
+  max-width: fit-content;
+  max-height: fit-content;
+  font-size: 30px;
+  z-index: 1000;
+  border-radius: 15px;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.greeting {
+  width: 100px;
+  position: absolute;
+  position: fixed;
+  bottom: 7%;
+  left: 2%;
+  z-index: 1000;
+  transform: scale(1.4);
+  /* Adjust the scale value as needed */
+}
+
+
+@media screen and (max-width:400px) {
+  .greeting {
+    left: 4%;
   }
 
   .whatsapp-btn {
-    background-color: #25D366;
-    animation-name: pulse;
+    left: 14%;
   }
-
+}
+@media screen and (min-width:401px) and (max-width:768px) {
   .whatsapp-btn {
-    color: white;
-    cursor: pointer;
-    max-width: fit-content;
-    max-height: fit-content;
-    font-size: 25px;
-    border-radius: 15px;
-    padding: 10px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
-    animation-iteration-count: infinite;
+    left: 7%;
   }
-
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-    }
-
-    80% {
-      box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .btns {
-      right: 20px;
-    }
-  }
+}

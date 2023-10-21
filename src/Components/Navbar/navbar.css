@@ -1,7 +1,7 @@
 .sticky-navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .nav1 {
@@ -35,7 +35,7 @@
 
 .nav-item2:hover {
   cursor: pointer !important;
-  background-color: #1b2950;
+  /* background-color: #1b2950; */
   font-weight: 600;
 }
 
@@ -57,9 +57,7 @@
   overflow: hidden;
   height: 50vh;
   width: fit-content;
-  background-color: white;
-  box-shadow: rgba(247, 246, 246, 0.795) 1.95px 1.95px 2.6px !important;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: white !important; 
   overflow-y: auto;
 }
 
@@ -71,8 +69,7 @@
 .dropdown_menu2 {
   height: fit-content !important;
 }
-
-.dropdown_menu2 .dropdown-item {
+.dropdown-item {
   background-color: white;
 }
 
@@ -128,13 +125,13 @@
   }
 
   .dropdown-menu {
-    width: 100%;
+      width: 100%;
   }
 
   .navbar-custom {
     margin-top: 10px;
     border: none;
-    background-color: white;
+    background-color: transparent;
   }
 }
 

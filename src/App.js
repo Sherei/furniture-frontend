@@ -7,10 +7,10 @@ import Home from "./Components/Home/Home"
 import Products from './Components/Products/Products';
 import Footer from "./Components/Footer/Footer"
 import SingleAdd from './Components/SinglePage/SingleAdd';
+import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
 import { useDispatch } from "react-redux";
-import { BsWhatsapp } from "react-icons/bs";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp, FaDiscourse} from "react-icons/fa";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -100,19 +100,18 @@ function App() {
     return (
       <>
         <div className='main_body'>
-          <div className='btns'>
+
             {showScrollButton && (
               <div className='top_btn' onClick={scrollToTop}>
                 <FaArrowUp />
               </div>
             )}
-
+            <img src="/greeting.svg" className='greeting' />
             <a href='https://wa.me/+923067208343' target="blank">
               <div className='whatsapp-btn'>
-                <BsWhatsapp />
+                <FaDiscourse />
               </div>
             </a>
-          </div>
 
           <BrowserRouter>
             <Navbar />
@@ -130,6 +129,7 @@ function App() {
                 <Route path='/placed' element={<Orderplaced />} />
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
+                <Route path='/faq' element={<Faq/>} />
                 <Route exact path='*' element={<Error />} />
               </Routes>
             </main>

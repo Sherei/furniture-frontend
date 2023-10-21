@@ -3,7 +3,8 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FaUser, FaWhatsapp } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
+import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify"
 import axios from 'axios';
 import "./navbar.css";
@@ -63,12 +64,12 @@ export const Navbar = () => {
     <div className={`py-2 bg-white border-bottom ${isSticky ? 'container-fluid' : 'container'}`}>
       <div className="row">
         <div className="cols-12 nav1">
-          <Link to="/" className="ms-md-2">
+          <NavLink to="/" className="ms-md-2">
             <img
               src="/logo2.svg"
               height={35}
             />
-          </Link>
+          </NavLink>
           <div className='d-flex align-items-center'>
             <li className="nav-item fs-4">
               <a className="nav-link" href='https://wa.me/+923067208343' target="blank">
@@ -77,39 +78,39 @@ export const Navbar = () => {
             </li>
             {cu._id == undefined &&
               <li className="fs-4 nav-item">
-                <Link className="nav-link" to="/login">
+                <NavLink className="nav-link" to="/login">
                   <FaUser />
-                </Link>
+                </NavLink>
               </li>
             }
             {cu._id != undefined &&
               <>
                 {cu.email != "asd@gmail.com" &&
                   <li className="nav-item" >
-                    <Link className="nav-link" to={`/cart/${cu._id}`}>
+                    <NavLink className="nav-link" to={`/cart/${cu._id}`}>
                       <span className={`fs-4 ${filterCart.length > 0 ? 'cart-red' : ''}`}>
                         <FiShoppingCart />
                       </span>
-                    </Link>
+                    </NavLink>
                   </li>
                 }
                 <li className="nav-item dropdown">
-                  <Link className="nav-link dropdown-toggle" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/149071-removebg-preview.png"
                       className="img-fluid rounded-3"
                       width={50}
                       height={50}
                       alt=""
                     />
-                  </Link>
+                  </NavLink>
                   <ul className="dropdown-menu dropdown_menu2" aria-labelledby="navbarDarkDropdownMenuLink">
                     {cu.email != "asd@gmail.com" &&
-                      <li><Link className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</Link></li>
+                      <li><NavLink className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</NavLink></li>
                     }
                     {cu.email === "asd@gmail.com" &&
-                      <li><Link className="dropdown-item" to="/admin-dashboard">Admin</Link></li>
+                      <li> <NavLink className="dropdown-item" to="/admin-dashboard">Admin </NavLink></li>
                     }
-                    <li><Link className="dropdown-item" to="/login" onClick={Logout}>Logout</Link></li>
+                    <li> <NavLink className="dropdown-item" to="/login" onClick={Logout}>Logout </NavLink></li>
                   </ul>
                 </li>
               </>
@@ -142,67 +143,69 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul className="navbar-nav">
               <li className="nav-item2">
-                <Link className="nav-link" to="/" role="button">
+                <NavLink className="nav-link" to="/" role="button">
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item2 dropdown" >
-                <Link className="nav-link dropdown-toggle" to="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Sofas
-                </Link>
+                </NavLink>
                 <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink"
                   onClick={() => move('/products/sofa')}>
-                  <li><Link className="dropdown-item" to="/products/sofa">All in sofas</Link></li>
-                  <li><Link className="dropdown-item" >fabric corner sofas</Link></li>
-                  <li><Link className="dropdown-item" >fabric recliner sofas</Link></li>
-                  <li><Link className="dropdown-item" >fabric sofa sets</Link></li>
-                  <li><Link className="dropdown-item" >leather recliner corner sofas</Link></li>
-                  <li><Link className="dropdown-item" >leather recliner sofas</Link></li>
-                  <li><Link className="dropdown-item" >leather recliner sofa sets</Link></li>
+                  <li> <NavLink className="dropdown-item" to="/products/sofa">All in sofas </NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Corner Sofas </NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Sofa Sets </NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Three & Two Seater Sofas</NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Fabric sofas </NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Chesterfield Sofas </NavLink></li>
+                  <li> <NavLink className="dropdown-item" >U Shaped Sofas</NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Leather Sofas</NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Recliner Sofas</NavLink></li>
+                  <li> <NavLink className="dropdown-item" >Arm Chair & Sweet Chair </NavLink></li>
                 </ul>
               </li>
               <li className="nav-item2 dropdown">
-                <Link className="nav-link dropdown-toggle" to="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Beds
-                </Link>
+                </NavLink>
                 <ul className="dropdown-menu" style={{ textTransform: "capitalize" }} aria-labelledby="navbarDarkDropdownMenuLink"
                   onClick={() => move('/products/bed')}>
-                  <li><Link className="dropdown-item" to={`products/bed`}>All in beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Ambassador Beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Bespoke Beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Chesterfield Beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Ottoman Beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Panel Beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Wingback bed Frames</Link></li>
-                  <li><Link className="dropdown-item" to="#">Luxuy Beds</Link></li>
-                  <li><Link className="dropdown-item" to="#">Wall Panel Beds Frame</Link></li>
+                  <li> <NavLink className="dropdown-item" to={`products/bed`}>All in beds </NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Ambassador Beds</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Panel Beds</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Wingback Bed Frames</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Ottoman Beds</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Bespoke Beds</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Chesterfield Beds</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="#">Divan Beds</NavLink></li>
                 </ul>
               </li>
 
               <li className="nav-item2">
-                <Link className="nav-link" to="/Products/all" role="button">
-                  Wardrobes
-                </Link>
-              </li>
-              <li className="nav-item2">
-                <Link className="nav-link" to="/Products/all" role="button">
+                <NavLink className="nav-link" to="/Products/all" role="button">
                   Mattress
+                </NavLink>
+              </li>
+              <li className="nav-item2">
+                <NavLink className="nav-link" to="/Products/all" role="button">
+                  Foot Stools & Puffs
+                </NavLink>
+              </li>
+              {/* <li className="nav-item2">
+                <NavLink className="nav-link" to="/Products/all" role="button">
+                  Automon Box
+                </NavLink>
+              </li> */}
+              <li className="nav-item2">
+                <Link className="nav-link" to="review" role="button" >
+                  Reviews
                 </Link>
               </li>
               <li className="nav-item2">
-                <Link className="nav-link" to="/Products/all" role="button" >
-                  Dinning
-                </Link>
-              </li>
-              <li className="nav-item2">
-                <Link className="nav-link" to="/Products/all" role="button" >
-                  Products
-                </Link>
-              </li>
-              <li className="nav-item2">
-                <Link className="nav-link" to="/Products/all" role="button">
+                <NavLink className="nav-link" to="/faq" role="button">
                   FAQ's
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
