@@ -108,6 +108,9 @@
     .newsletter_box{
         padding: 0px 15px;
     }
+    .footer_display{
+        justify-content: center !important  ;
+    }
     .footer_display p{
         text-align: center;
 

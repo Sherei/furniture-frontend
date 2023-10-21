@@ -1,10 +1,10 @@
 .slider-container {
   display: flex;
-  gap: 150px;
+  gap: 250px;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  overflow: hidden;
+  height: fit-content;
+  overflow: hidden; 
 }
 
 .slide-text {
@@ -12,20 +12,15 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  animation-duration: 10s; 
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  position: relative;
+  animation: slideText 10s linear infinite; 
 }
 
-.slide-text {
-  animation-name: moveRightToLeft;
-}
-
-@keyframes moveRightToLeft {
+@keyframes slideText {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100%); /* Start from the right edge */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Move to the left edge */
   }
 }

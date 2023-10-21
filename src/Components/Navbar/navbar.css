@@ -3,7 +3,9 @@
   top: 0;
   z-index: 1000;
 }
-
+.navbar{
+  background-color: white !important;
+}
 .nav1 {
   display: flex;
   justify-content: space-between;
@@ -12,13 +14,15 @@
 
 .navbar-custom {
   width: 100%;
-  background-color: rgb(216, 216, 216, 0.9);
+  /* background-color: rgb(216, 216, 216, 0.9) !important; */
 }
 
 .nav-item {
   border-right: 1px solid rgb(216, 216, 216);
 }
-
+.nav-item .nav-link{
+  font-size: 18px;
+}
 .nav-item2 {
   border: none !important;
 }
@@ -35,54 +39,43 @@
 
 .nav-item2:hover {
   cursor: pointer !important;
-  /* background-color: #1b2950; */
   font-weight: 600;
+  background-color: #1b2950;
 }
+
+.nav-item2:hover .nav-link{
+  color: white !important;
+}
+
 
 .nav-item a,
 .nav-item2 a {
   color: black !important;
 }
-
-.nav-item2:hover .nav-link{
-  cursor: pointer !important;
-  color: white !important;
+.nav-item2 .nav-link{
+  font-size: 17px;
 }
 
-.dropdown {
+.navbar-toggler {
+  transform: rotate(180deg) !important;
   border: none !important;
+  outline: none !important;
 }
 
-.dropdown-menu {
-  overflow: hidden;
-  height: 50vh;
-  width: fit-content;
-  background-color: white !important; 
-  overflow-y: auto;
+.custom-toggler {
+  margin-left: auto;
 }
-
-.nav-item2.dropdown:hover .dropdown-menu {
-  cursor: pointer !important;
-  display: block;
+.cart-red{
+  color: red;
 }
-
-.dropdown_menu2 {
-  height: fit-content !important;
+.dropdown-item{
+  padding: 10px 15px;
 }
-.dropdown-item {
-  background-color: white;
-}
-
-.dropdown-menu .dropdown-item {
-  padding: 10px;
-}
-
-.dropdown-menu .dropdown-item:hover {
-  cursor: pointer !important;
+.dropdown-item:hover{
   background-color: #1b2950;
-  color: white !important;
-  padding-left: 20px;
-  transition: all linear .3s;
+  padding-left:20px;
+  color: #ffff !important;
+  transition: all linear 0.3s;
 }
 
 .line1 {
@@ -102,36 +95,24 @@
   width: 28px;
   background-color: #1b2950 !important;
 }
-
-.navbar-toggler {
-  transform: rotate(180deg) !important;
+.navbar-toggler:focus{
   border: none !important;
   outline: none !important;
 }
 
-.custom-toggler {
-  margin-left: auto;
-}
-.cart-red{
-  color: red;
-}
+
 @media screen and (max-width:991px) {
   .nav-item2:hover {
     background-color: transparent;
   }
-
+  .nav-item2{
+    background-color: #fff;
+  }
   .nav-item2:hover .nav-link {
     color: #1b2950 !important;
   }
-
-  .dropdown-menu {
-      width: 100%;
-  }
-
   .navbar-custom {
-    margin-top: 10px;
     border: none;
-    background-color: transparent;
   }
 }
 

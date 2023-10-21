@@ -16,7 +16,7 @@ const Footer = () => {
     reset()
   }
   return <>
-    <div className='container-fluid mx-0 px-0 py-5' style={{ backgroundColor: "#02025E" }} >
+    <div className='container-fluid mx-0 px-0 py-lg-5 py-3 py-xl-5' style={{ backgroundColor: "#02025E" }} >
       <div className='row footer_row ' style={{ minHeight: "60vh" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
           <p className='footer_head_detail'>We are an independent retail company dedicated to supplying good quality
@@ -41,6 +41,9 @@ const Footer = () => {
           </Link>
           <Link to="/">
             <p>Discounted Products</p>
+          </Link>
+          <Link to='case'>
+            <p>Cart</p>
           </Link>
           <Link to='case'>
             <p>Reviews</p>
