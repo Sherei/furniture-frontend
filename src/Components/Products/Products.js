@@ -202,8 +202,8 @@ const Products = () => {
                                         <div className="accordion-body">
                                             <p onClick={() => setCategory("sofa")} className={setCategory === "sofa" ? 'activeCategory' : ''}>All in sofas</p>
                                             <p onClick={() => setSubcategory("corner-sofas")} className={setSubcategory === "corner-sofas" ? 'activeCategory' : ''}>Corner Sofas</p>
-                                            <p onClick={() => setSubcategory("sofa-sofas")} className={setSubcategory === "sofa-sofas" ? 'activeCategory' : ''}>Sofa Sets </p>
-                                            <p onClick={() => setSubcategory("two-&-three-seater-sofas")} className={setSubcategory === "two-&-three-seater-sofas" ? 'activeCategory' : ''}>3 & 2 Seater Sofas</p>
+                                            <p onClick={() => setSubcategory("sofa-sets")} className={setSubcategory === "sofa-sofas" ? 'activeCategory' : ''}>Sofa Sets </p>
+                                            <p onClick={() => setSubcategory("three-&-two-seater-sofas")} className={setSubcategory === "two-&-three-seater-sofas" ? 'activeCategory' : ''}>3 & 2 Seater Sofas</p>
                                             <p onClick={() => setSubcategory("fabric-sofas")} className={setSubcategory === "fabric-sofas" ? 'activeCategory' : ''}>Fabric sofas </p>
                                             <p onClick={() => setSubcategory("chesterfield-sofas")} className={setSubcategory === "chesterfield-sofas" ? 'activeCategory' : ''}>Chesterfield Sofas</p>
                                             <p onClick={() => setSubcategory("u-shaped-sofas")} className={setSubcategory === "u-shaped-sofas" ? 'activeCategory' : ''}>U Shaped Sofas</p>

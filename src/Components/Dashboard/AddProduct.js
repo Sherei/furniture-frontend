@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Loader from "../Loader/Loader"
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 import "./addproduct.css"
 
 export const AddProduct = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
+  const cu = useSelector(store => store.userSection.cu);
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [price, setPrice] = useState(0);
@@ -38,50 +48,83 @@ export const AddProduct = () => {
   let move = useNavigate();
 
   let { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [product, setProduct] = useState(null);
 
+
+  useEffect(() => {
+
+    axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
+      setProduct(resp.data)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (productId) {
+      reset(product);
+    }
+  }, [product]);
 
   async function submitProduct(data) {
 
     setLoading(true);
 
-    const formData = new FormData()
+    const formData = new FormData();
+
     const cloudinaryUrl = [];
-    try {
 
-      for (let i = 0; i < data.images.length; i++) {
-        formData.append('file', data.images[i]);
-        formData.append('upload_preset', "vnayn2uf");
-        await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
-          cloudinaryUrl.push(res.data.url)
-        })
-      }
-      data.images = cloudinaryUrl;
-
-      let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data)
-      if (response.data) {
-        toast.success("Product Uploaded")
-      }
+    for (let i = 0; i < data.images.length; i++) {
+      formData.append('file', data.images[i]);
+      formData.append('upload_preset', "vnayn2uf");
+      await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
+        cloudinaryUrl.push(res.data.url);
+      });
     }
 
-    catch (error) {
-      if (error.response && error.response.status === 400) {
-        setError("Try with different Serial number")
-      } else {
-        toast.error("Try Again later")
-      }
+    data.images = cloudinaryUrl;
+    data.discount = discount;
+    data.price = price;
+    data.Fprice = finalPrice;
 
-    } finally {
-      setLoading(false);
+    if (productId) {
+
+      axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
+        if (resp) {
+          toast.success("Product updated")
+        }
+      }).catch(function (resp) {
+        console.log(resp);
+      })
+
+    } else {
+
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
+        if (response.data) {
+          toast.success("Product Uploaded");
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          setError("Try with a different Serial number");
+        } else {
+          toast.error("Try Again later");
+        }
+      } finally {
+        setLoading(false);
+      }
     }
-  };
+  }
+
+  // if (!cu._id || !productId || cu.email !="asd@gmail.com") {
+  //   return <Error />
+  // }
 
   return <>
     <div className='container my-4'>
       <div className='row border py-5 px-4'>
         <div className='col-lg-12 col-sm-12'>
           <div className='d-flex justify-content-between'>
-          <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
-          <p className='panel_btn' onClick={()=>move("/admin-dashboard")}>Admin Panel</p>
+            <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
+            <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
           </div>
           {loading ? (
             <div className='d-flex justify-content-center align-items-center'><Loader /></div>
@@ -93,12 +136,12 @@ export const AddProduct = () => {
                 }
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
-                  <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2" placeholder="Fabric Sofa" />
+                  <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2" />
                   {errors.title && errors.title.type == "required" ? <div className='error'> Title is required </div> : null}
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Serial Number *</label>
-                  <input type="number" {...register('sn', { required: true })} min={"1"} className="form-control mb-2 mr-sm-2" placeholder="1234" />
+                  <input type="number" {...register('sn', { required: true })} min={"1"} className="form-control mb-2 mr-sm-2" />
                   {errors.sn && errors.sn.type == "required" ? <div className='error'>Serail Number is required</div> : null}
                 </div>
 
@@ -116,9 +159,9 @@ export const AddProduct = () => {
                     <option value="select category">Select Category</option>
                     <option value="sofa">Sofa</option>
                     <option value="bed">Bed</option>
-                    <option value="wardrobes">Wardrobes</option>
-                    <option value="dinning">Dinning</option>
-                    <option value="coffee">Coffee</option>
+                    <option value="ottoman-beds">Ottoman box</option>
+                    <option value="mattress">Mattress</option>
+                    <option value="footstools">FootStools & Puffs</option>
                   </select>
                   {errors.category ? <div className='error'>Category is required</div> : null}
                 </div>
@@ -136,12 +179,15 @@ export const AddProduct = () => {
                       }
                     })} className="form-control mb-2 mr-sm-2">
                       <option value="select subCategory">Select subCategory</option>
-                      <option value="fabric corner sofas">fabric corner sofas</option>
-                      <option value="fabric recliner sofas">fabric recliner sofas</option>
-                      <option value="fabric sofa sets">fabric sofa sets</option>
-                      <option value="leather recliner corner sofas">leather recliner corner sofas</option>
-                      <option value="leather recliner sofas">leather recliner sofas</option>
-                      <option value="leather recliner sofa sets">leather recliner sofa sets</option>
+                      <option value="corner-sofas">Corner Sofas</option>
+                      <option value="sofa-sets">Sofa Sets</option>
+                      <option value="three-&-two-seater-sofas">3 & 2 Seater Sofas</option>
+                      <option value="fabric-sofas">Fabric sofas</option>
+                      <option value="chesterfield-sofas">Chesterfield Sofas</option>
+                      <option value="u-shaped-sofas">U Shaped Sofas</option>
+                      <option value="leather-sofas">Leather Sofas</option>
+                      <option value="recliner-sofas">Recliner Sofas</option>
+                      <option value="arm-chair-&-swivel-chair">Arm Chair & Swivel Chair</option>
                       <option value="Others">Others</option>
                     </select>
                     {errors.subCategory ? <div className='error'>Select Sub Category</div> : null}
@@ -161,14 +207,13 @@ export const AddProduct = () => {
                       }
                     })} className="form-control mb-2 mr-sm-2">
                       <option value="Select subCategory">Select subCategory</option>
-                      <option value="ambassador beds">Ambassador Beds</option>
-                      <option value="bespoke bed">Bespoke Beds</option>
-                      <option value="chesterfield beds">Chesterfield Beds</option>
-                      <option value="ottoman beds">Ottoman Beds</option>
-                      <option value="panel beds">Panel Beds</option>
-                      <option value="Wingback bed Frames">Wingback bed Frames</option>
-                      <option value="luxury beds">Luxuy Beds</option>
-                      <option value="wall panel beds frame">Wall Panel Beds Frame</option>
+                      <option value="ambassador-beds">Ambassador Beds</option>
+                      <option value="wingback-beds-frames">Panel Beds</option>
+                      <option value="wingback-beds-frames">Wingback bed Frames</option>
+                      <option value="ottoman-beds">Ottoman Beds</option>
+                      <option value="bespoke-beds">Bespoke Beds</option>
+                      <option value="chesterfield-beds">Chesterfield Beds</option>
+                      <option value="divan-beds">Divan Beds</option>
                     </select>
                     {errors.subCategory ? <div className='error'>Select subCategory</div> : null}
                   </div>
@@ -180,16 +225,16 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
-                  <input type="number" {...register('price', { required: true })} min={"1"} className="form-control mb-2 mr-sm-2" placeholder="1234" onChange={handlePriceChange} />
+                  <input type="number" {...register('price', { required: true })} min={"1"} className="form-control mb-2 mr-sm-2" onChange={handlePriceChange} />
                   {errors.price && errors.price.type == "required" ? <div className='error'>Price is required</div> : null}
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
-                  <input type="number" {...register('discount')} min={"1"} className="form-control mb-2 mr-sm-2" placeholder="10" onChange={handleDiscountChange} />
+                  <input type="number" {...register('discount')} min={"1"} className="form-control mb-2 mr-sm-2" onChange={handleDiscountChange} />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Final Price *</label>
-                  <input type="number" {...register('Fprice')} value={finalPrice} className="form-control mb-2 mr-sm-2" placeholder="1234" />
+                  <input type="number" {...register('Fprice')} value={finalPrice} className="form-control mb-2 mr-sm-2" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>

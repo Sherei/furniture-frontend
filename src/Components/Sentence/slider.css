@@ -17,7 +17,7 @@
 
 @keyframes moveRightToLeft {
   0% {
-    transform: translateX(100%); /* Start from the right */
+    transform: translateX(60%); /* Start from the right */
   }
   100% {
     transform: translateX(-100%); /* Move to the left */

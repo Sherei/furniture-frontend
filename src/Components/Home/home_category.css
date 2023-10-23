@@ -51,7 +51,7 @@
 
 .h_box_img_main img {
     width: 100% !important;
-    max-height: 100% !important;
+    height: 100% !important;
     object-fit: cover;
 }
 

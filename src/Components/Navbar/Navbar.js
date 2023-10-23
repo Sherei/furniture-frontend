@@ -121,27 +121,32 @@ export const Navbar = () => {
 
     <nav className={`navbar navbar-expand-lg  ${isSticky ? 'container-fluid fixed-top navbar-custom' : 'container'}`}>
       <div className="container-fluid nav_bg">
-          <button
-            className="navbar-toggler custom-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <div className='d-flex flex-column gap-1'>
-              <span className="navbar-toggler-icon line1"></span>
-              <span className="navbar-toggler-icon line2"></span>
-              <span className="navbar-toggler-icon line3"></span>
-            </div>
-          </button>
-     
+        <button
+          className="navbar-toggler custom-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <div className='d-flex flex-column gap-1'>
+            <span className="navbar-toggler-icon line1"></span>
+            <span className="navbar-toggler-icon line2"></span>
+            <span className="navbar-toggler-icon line3"></span>
+          </div>
+        </button>
+
         <div className="collapse nav_bg navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item nav-item2">
               <NavLink className="nav-link" aria-current="page" to="/">
                 Home
+              </NavLink>
+            </li>
+            <li className="nav-item nav-item2">
+              <NavLink className="nav-link" aria-current="page" to="/">
+                Beds & Sofas
               </NavLink>
             </li>
             <li className="nav-item  nav-item2 dropdown">
@@ -156,11 +161,11 @@ export const Navbar = () => {
                 Sofas
               </a>
               <ul className="dropdown-menu dropdown_nav" aria-labelledby="navbarDropdown1">
-                <li> <NavLink className="dropdown-item" to="/products/sofa">All in sofas </NavLink></li>
-                <li> <NavLink className="dropdown-item" to="products/corner-sofas">Corner Sofas </NavLink></li>
-                <li> <NavLink className="dropdown-item" to="products/sofa-sofas">Sofa Sets </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="/products/sofa">All Sofas </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="products/ ">Corner Sofas </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="products/sofa-sets">Sofa Sets </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/two-&-three-seater-sofas">3 & 2 Seater Sofas</NavLink></li>
-                <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/chesterfield-sofas">Chesterfield Sofas </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas">U Shaped Sofas</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/leather-sofas">Leather Sofas</NavLink></li>
@@ -180,7 +185,7 @@ export const Navbar = () => {
                 Beds
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown2">
-                <li> <NavLink className="dropdown-item" to="products/bed">All in beds </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="products/bed">All Beds </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/ambassador-beds">Ambassador Beds</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/panel-beds">Panel Beds</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames">Wingback Bed Frames</NavLink></li>
@@ -192,12 +197,17 @@ export const Navbar = () => {
             </li>
             <li className="nav-item nav-item2">
               <NavLink className="nav-link" aria-current="page" to="/products/mattress">
-                Mattress
+                Ottoman Box
               </NavLink>
             </li>
             <li className="nav-item nav-item2">
               <NavLink className="nav-link" aria-current="page" to="/footstools">
-                FootStools & Puffs
+                Footstools
+              </NavLink>
+            </li>
+            <li className="nav-item nav-item2">
+              <NavLink className="nav-link" aria-current="page" to="/products/mattress">
+                Mattress
               </NavLink>
             </li>
             <li className="nav-item nav-item2">
@@ -215,6 +225,6 @@ export const Navbar = () => {
       </div>
     </nav>
 
-    
+
   </>
 };

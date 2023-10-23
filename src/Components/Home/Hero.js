@@ -8,15 +8,14 @@ import "./hero.css"
 const Hero = () => {
    
     let array = [
-        { img: "albero-furniture-bratislava-3RfIi22Y97Y-unsplash (1).jpg" },
+        { img: "6.jpg" },
         { img: "3.jpg" },
         { img: "1.jpg" },
         { img: "4.jpg" },
-        { img: "albero-furniture-bratislava-3RfIi22Y97Y-unsplash (1).jpg" },
+        { img: "6.jpg" },
         { img: "AdobeStock_246454872_Preview.jpeg" },
         { img: "3.jpg" },
         {img:"AdobeStock_585163350_Preview.jpeg"},
-        { img: "bed.jpg" },
         { img: "4.jpg" },
     ]
     return <>
@@ -41,7 +40,7 @@ const Hero = () => {
                                     <div className='slide' style={{ position: "relative" }}>
                                         <img src={`/${data.img}`} alt="" />
                                         <div className='slide_detail'>
-                                            <img src="/40.png" className='img-fluid' alt="No network" />
+                                            <img src="/get.png" className='img-fluid' alt="No network" />
                                         </div>
                                     </div>
                                 </SwiperSlide>
