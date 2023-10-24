@@ -129,7 +129,7 @@ export const Cart = () => {
   if (filterCart.length === 0) {
     return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
       <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-      <button className='btn review_btn' onClick={() => move('/Products/all')}>
+      <button className='btn review_btn' onClick={() => move('/Products')}>
         Browse Products <FaArrowRight />
       </button>
     </div>
