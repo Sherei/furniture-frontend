@@ -3,6 +3,9 @@
   top: 0;
   z-index: 1000;
 }
+.logo_navbar{
+  width: 150px;
+}
 .navbar{
   background-color: white !important;
 }

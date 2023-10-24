@@ -65,9 +65,9 @@ export const Navbar = () => {
       <div className="row">
         <div className="cols-12 nav1">
           <NavLink to="/" className="ms-md-2">
-            <img
-              src="/logo2.svg"
-              height={35}
+            <img className='logo_navbar'
+              src="/logo.png"
+
             />
           </NavLink>
           <div className='d-flex align-items-center'>

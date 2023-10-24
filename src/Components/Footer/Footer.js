@@ -19,6 +19,7 @@ const Footer = () => {
     <div className='container-fluid mx-0 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
       <div className='row footer_row ' style={{ minHeight: "60vh" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
+      
           <p className='footer_head_detail'>We are an independent retail company dedicated to supplying good quality
             products direct to the consumer with substantial savings and ease.</p>
           <div className='footer_address'>
