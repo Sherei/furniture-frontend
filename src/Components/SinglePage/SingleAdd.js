@@ -257,7 +257,7 @@ const SingleAdd = () => {
                         {product.category === "sofa" &&
                             <div>
                                 <p className='fw-bolder fs-5'>Size: <span className='fs-6' style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
-                                <div className='d-flex flex-wrap align-items-center px-lg-4 px-3'>
+                                <div className='d-flex flex-wrap'>
                                     <div className='size_box' onClick={() => setSize("5-seater")}><p className='m-0'>3+2 Sofa Set</p></div>
                                     <div className='size_box' onClick={() => setSize("3-seater")}><p className='m-0'>3 Seater</p></div>
                                     <div className='size_box' onClick={() => setSize("2-seater")}><p className='m-0'>2 Seater</p></div>
@@ -268,7 +268,7 @@ const SingleAdd = () => {
                         {product.category === "bed" &&
                             <div>
                                 <p className='fw-bolder fs-5'>Size: <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
-                                <div className='d-flex flex-wrap align-items-center px-lg-4 px-3'>
+                                <div className='d-flex flex-wrap'>
                                     <div className='size_box' onClick={() => setSize("3ft-double")}><p className='m-0'>3ft Single</p></div>
                                     <div className='size_box' onClick={() => setSize("4ft-standard-double")}><p className='m-0'>4ft Small Double</p></div>
                                     <div className='size_box' onClick={() => setSize("5ft-king")}><p className='m-0'>5ft King</p></div>
@@ -283,7 +283,7 @@ const SingleAdd = () => {
                                     {size}
                                 </span>
                                 </p>
-                                <div className='d-flex flex-wrap align-items-center px-lg-4 px-3'>
+                                <div className='d-flex flex-wrap'>
                                     <div className='size_box' onClick={() => setSize("single")}><p className='m-0'>Single</p></div>
                                     <div className='size_box' onClick={() => setSize("small-double")}><p className='m-0'>Small Double</p></div>
                                     <div className='size_box' onClick={() => setSize("double")}><p className='m-0'>Double</p></div>
