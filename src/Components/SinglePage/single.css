@@ -107,6 +107,7 @@
 
 .s_btn {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -114,6 +115,7 @@
 .s_btn button {
     font-weight: 500;
     color: white;
+    width: 200px;
     padding: 10px 20px !important;
     border: none;
     outline: none;

@@ -117,6 +117,7 @@ const SingleAdd = () => {
             });
     }, []);
 
+
     async function AddToCart() {
 
         if (cu._id === undefined) {
@@ -183,6 +184,10 @@ const SingleAdd = () => {
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-GB', options);
     };
+    function Order(){
+        AddToCart()
+        move(`/cart-checkout/${cu._id}`)
+    }
 
     return <>
         <div className='container-fluid'>
@@ -322,9 +327,11 @@ const SingleAdd = () => {
                     </div>
                     <div className='s_btn mt-3'>
                         <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
+                        <button className='btn s_cart' onClick={(Order)}>Order now</button>
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
                         </a>
+
                     </div>
 
                 </div>
