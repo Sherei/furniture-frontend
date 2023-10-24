@@ -142,7 +142,9 @@
 .input_single {
     width: 50px !important;
     height: 35px;
-    border: 1px solid lightgray;
+    border: none;
+    background-color: transparent;
+    padding: 0px 0px 0px 15px;
 }
 
 .input_single:focus {
@@ -175,10 +177,11 @@
 .single_arrow2 {
     position: absolute;
     top: 40%;
-    background-color: rgb(241, 239, 239);
+    background-color: transparent;
     padding: 8px 10px;
-    font-size: 18px;
+    font-size: 25px;
 }
+
 .single_arrow1 {
     left: 20px;
 }
@@ -186,11 +189,38 @@
 .single_arrow2 {
     right: 20px;
 }
+
 .single_arrow1:hover,
-.single_arrow2:hover{
+.single_arrow2:hover {
     cursor: pointer;
 }
+.size_box{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 15px !important;
+    margin: 0px 0px 10px 10px; 
+}
+.size_box:hover {
+    font-weight: 600;
+    cursor: pointer;
+    outline: 1px solid transparent;
+    box-shadow: 0 0 2px 1px #1b2950; 
+}
+.plus_btn{
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
 
+}
+.plus_btn:focus{
+    border: none !important;
+    outline: none !important;
+}
+.plus_btn:hover{
+    border: none !important;
+    outline: none !important;
+}
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {

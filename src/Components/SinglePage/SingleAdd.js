@@ -34,7 +34,7 @@ const SingleAdd = () => {
     const [comments, setComments] = useState([])
     const [isLoadingComments, setIsLoadingComments] = useState(true);
     const [loading, setLoading] = useState(false);
-    const [size, setSize] = useState(1);
+    const [size, setSize] = useState('');
     const [Error, setError] = useState(1);
     const dispatch = useDispatch()
 
@@ -93,6 +93,11 @@ const SingleAdd = () => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
             if (response.status === 200) {
                 toast.success("Comment Submitted");
+                reset();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             } else {
                 toast.error("Error occurred");
             }
@@ -111,10 +116,6 @@ const SingleAdd = () => {
                 setIsLoadingComments(false);
             });
     }, []);
-
-    const handleSizeChange = (e) => {
-        setSize(e.target.value)
-    }
 
     async function AddToCart() {
 
@@ -245,76 +246,80 @@ const SingleAdd = () => {
                 </div>
                 <div className='col-lg-4 col-sm-12'>
                     <div className='s_content'>
-                        <h1 className='text-center fs-1' style={{ color: "#1b2950" }}>{product?.title}</h1>
-                        <p className='text-center text-muted fs-6'>{product?.description}</p>
-                        <div className='d-flex gap-5 align-items-center'>
-                            <p className='fw-bolder' style={{ color: "#1b2950" }}>
-                                Rating
-                            </p>
-                            <p style={{ color: 'red' }}>
-                                <RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill />
-                            </p>
-                        </div>
-                        <div className='d-flex gap-5 align-items-center'>
-                            <p className='fw-bolder' style={{ color: "#1b2950" }}>
-                                Reviews :
-                            </p>
-                            <p>{comments.filter((item) => item.productId === productId).length}</p>
-                        </div>
-                        <div className='d-flex gap-5 align-items-center'>
-                            <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:</p>
-                            <p className=''>{`£${totalPrice.toFixed(2)}`}</p>
+                        <h1 className='text-center fs-1 ' style={{ color: "#1b2950" }}>{product?.title}</h1>
+                        <p className='text-center text-muted fs-6 mb-2'>{product?.description}</p>
+                        {comments.filter((item) => item.productId === productId).length > 0 &&
+                            <span className='text-center mt-2 mb-3' style={{ color: "red" }}><RiStarSFill /><RiStarSFill /><RiStarSFill />
+                                <RiStarSFill /><RiStarSFill />
+                                <span className='text-center' style={{ color: "#1b2950" }} >({comments.filter((item) => item.productId === productId).length} Customer Review)</span>
+                            </span>
+                        }
+                        {product.category === "sofa" &&
+                            <div>
+                                <p className='fw-bolder fs-5'>Size: <span className='fs-6' style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
+                                <div className='d-flex flex-wrap align-items-center px-lg-4 px-3'>
+                                    <div className='size_box' onClick={() => setSize("5-seater")}><p className='m-0'>3+2 Sofa Set</p></div>
+                                    <div className='size_box' onClick={() => setSize("3-seater")}><p className='m-0'>3 Seater</p></div>
+                                    <div className='size_box' onClick={() => setSize("2-seater")}><p className='m-0'>2 Seater</p></div>
+                                    <div className='size_box' onClick={() => setSize("1-seater")}><p className='m-0'>1 Seater</p></div>
+                                </div>
+                            </div>
+                        }
+                        {product.category === "bed" &&
+                            <div>
+                                <p className='fw-bolder fs-5'>Size: <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
+                                <div className='d-flex flex-wrap align-items-center px-lg-4 px-3'>
+                                    <div className='size_box' onClick={() => setSize("3ft-double")}><p className='m-0'>3ft Single</p></div>
+                                    <div className='size_box' onClick={() => setSize("4ft-standard-double")}><p className='m-0'>4ft Small Double</p></div>
+                                    <div className='size_box' onClick={() => setSize("5ft-king")}><p className='m-0'>5ft King</p></div>
+                                    <div className='size_box' onClick={() => setSize("4'6ft-king")}><p className='m-0'>4'6ft Standard Double</p></div>
+                                    <div className='size_box' onClick={() => setSize("6ft-super-king")}><p className='m-0'>6ft Super King</p></div>
+                                </div>
+                            </div>
+                        }
+                        {product.category === "mattress" &&
+                            <div>
+                                <p className='fw-bolder fs-5'>Size: &nbsp;&nbsp;&nbsp; <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>
+                                    {size}
+                                </span>
+                                </p>
+                                <div className='d-flex flex-wrap align-items-center px-lg-4 px-3'>
+                                    <div className='size_box' onClick={() => setSize("single")}><p className='m-0'>Single</p></div>
+                                    <div className='size_box' onClick={() => setSize("small-double")}><p className='m-0'>Small Double</p></div>
+                                    <div className='size_box' onClick={() => setSize("double")}><p className='m-0'>Double</p></div>
+                                    <div className='size_box' onClick={() => setSize("king")}><p className='m-0'>King</p></div>
+                                    <div className='size_box' onClick={() => setSize("super-king")}><p className='m-0'>Super King</p></div>
+                                </div>
+                            </div>
+                        }
+
+                        <div className='d-flex gap-5 align-items-center mt-3'>
+                            <p className='fw-bolder fs-5' style={{ color: "#1b2950" }}>Price:</p>
+                            <p className='fw-bolder fs-5' style={{ color: "#1b2950" }}>{`£${totalPrice.toFixed(2)}`}</p>
                         </div>
                         <div className='d-flex gap-4 align-items-center'>
-                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Size</label>
-                            {product.category == "sofa" &&
-                                <select className="form-control mb-2 mr-sm-2 w-50" onChange={handleSizeChange}>
-                                    <option value="5-seater">3+2 Sofa Set</option>
-                                    <option value="3-seater">3 Seater</option>
-                                    <option value="2-seater">2 Seater</option>
-                                    <option value="1-seater">1 Seater</option>
-                                </select>
-                            }
-                            {product.category == "bed" &&
-                                <select className="form-control mb-2 mr-sm-2 w-50" onChange={handleSizeChange}>
-                                    <option value="3ft-single">3ft Single</option>
-                                    <option value="4ft-small-double">4ft Small Double</option>
-                                    <option value="4'6ft-standard-double">4'6ft Standard Double</option>
-                                    <option value="5ft-king">5ft King</option>
-                                    <option value="6ft-super-king">6ft Super King</option>
-                                </select>
-                            }
-                            {product.category == "mattress" &&
-                                <select className="form-control mb-2 mr-sm-2 w-50" onChange={handleSizeChange}>
-                                    <option value="single">Single</option>
-                                    <option value="small-double">Small Double</option>
-                                    <option value="double">Double</option>
-                                    <option value="king">King</option>
-                                    <option value="super-king">Super King</option>
-                                </select>
-                            }
-                        </div>
-
-                        <div className='d-flex gap-4 align-items-center'>
-                            <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: </p>
-
-                            <button className="btn btn-link px-2" onClick={Decrement}>
-                                <FaMinus />
-                            </button>
-                            <input name="quantity"
-                                type="number"
-                                className="form-control form-control-sm input_single"
-                                value={quantity}
-                                min={1}
-                                onChange={handleQuantityChange}
-                            />
-                            <button className="btn btn-link px-2" onClick={Increment}>
-                                <FaPlus />
-                            </button>
+                            <div className='mt-3'>
+                                <p className='fw-bolder fs-5' style={{ color: "#1b2950" }}>Quantity: </p>
+                            </div>
+                            <div className='d-flex align-items-center'>
+                                <button className="plus_btn" onClick={Decrement}>
+                                    <FaMinus />
+                                </button>
+                                <input name="quantity"
+                                    type="number"
+                                    className="input_single mx-2"
+                                    value={quantity}
+                                    min={1}
+                                    onChange={handleQuantityChange}
+                                />
+                                <button className="plus_btn" onClick={Increment}>
+                                    <FaPlus />
+                                </button>
+                            </div>
 
                         </div>
                     </div>
-                    <div className='s_btn mt-5'>
+                    <div className='s_btn mt-3'>
                         <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
