@@ -90,6 +90,7 @@ export const AddProduct = () => {
       axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
         if (resp) {
           toast.success("Product updated")
+          move('admin-dashboard')
         }
       }).catch(function (resp) {
         console.log(resp);
@@ -101,6 +102,7 @@ export const AddProduct = () => {
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
         if (response.data) {
           toast.success("Product Uploaded");
+          reset()
         }
       } catch (error) {
         if (error.response && error.response.status === 400) {
@@ -114,9 +116,9 @@ export const AddProduct = () => {
     }
   }
 
-  // if (!cu._id || !productId || cu.email !="asd@gmail.com") {
-  //   return <Error />
-  // }
+  if (!cu._id || !productId || cu.email != "asd@gmail.com") {
+    return <Error />
+  }
 
   return <>
     <div className='container my-4'>
@@ -181,6 +183,7 @@ export const AddProduct = () => {
                       <option value="select subCategory">Select subCategory</option>
                       <option value="corner-sofas">Corner Sofas</option>
                       <option value="sofa-sets">Sofa Sets</option>
+                      <option value="sofa-beds">Sofa & Beds</option>
                       <option value="three-&-two-seater-sofas">3 & 2 Seater Sofas</option>
                       <option value="fabric-sofas">Fabric sofas</option>
                       <option value="chesterfield-sofas">Chesterfield Sofas</option>

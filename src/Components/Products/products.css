@@ -102,6 +102,24 @@
 .accordian_btn{
     padding: 10px;
 }
+.accordian_btn2{
+    /* width: 100%; */
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 15px 5px;
+    color: rgb(129, 128, 128);
+    font-weight: 700;
+}
+
+.accordian_btn2:hover{
+    cursor: pointer;
+
+}
+.accordian_btn2:hover{
+    cursor: pointer;
+    background-color: transparent !important;
+}
 .p_display {
     display: none;
 }

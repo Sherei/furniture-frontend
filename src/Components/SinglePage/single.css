@@ -171,6 +171,25 @@
     overflow: hidden;
 }
 
+.single_arrow1,
+.single_arrow2 {
+    position: absolute;
+    top: 40%;
+    background-color: rgb(241, 239, 239);
+    padding: 8px 10px;
+    font-size: 18px;
+}
+.single_arrow1 {
+    left: 20px;
+}
+
+.single_arrow2 {
+    right: 20px;
+}
+.single_arrow1:hover,
+.single_arrow2:hover{
+    cursor: pointer;
+}
 
 @media screen and (min-width:769px) and (max-width:992px) {}
 

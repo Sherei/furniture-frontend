@@ -60,7 +60,7 @@ export const Login = () => {
           move('/admin-dashboard');
           reset();
         } else {
-          toast.success("Welcome Back");
+          toast.success("Login Succesfull");
           move("/Products/all");
           reset();
         }
@@ -77,6 +77,7 @@ export const Login = () => {
 
   async function SignUp(data) {
     try {
+
       if (data.password != data.cpassword) {
         return setError("Password does not match")
       }
@@ -92,9 +93,9 @@ export const Login = () => {
     } catch (error) {
 
       if (error.response && error.response.status === 400) {
-        setError('Email Taken')
+        setError('Try with different E-mail')
       } else {
-        setError('Email Taken')
+        setError('Try with different E-mail')
       }
     }
   }

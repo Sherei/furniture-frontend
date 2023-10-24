@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -34,6 +34,8 @@ const SingleAdd = () => {
     const [comments, setComments] = useState([])
     const [isLoadingComments, setIsLoadingComments] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [size, setSize] = useState(1);
+    const [Error, setError] = useState(1);
     const dispatch = useDispatch()
 
 
@@ -60,17 +62,28 @@ const SingleAdd = () => {
 
 
     const [selectedImage, setSelectedImage] = useState(0);
+    const totalImages = product?.images?.length || 0;
 
     const handleThumbnailClick = (index) => {
         setSelectedImage(index);
     };
+
     const handleQuantityChange = (e) => {
-        const newQuantity = parseInt(e.target.value);
-        if (!isNaN(newQuantity) && newQuantity >= 1) {
-            setQuantity(newQuantity);
-        }
+        // const newQuantity = parseInt(e.target.value);
+        // if (!isNaN(newQuantity) && newQuantity >= 1) {
+        //     setQuantity(newQuantity);
+        // }
     };
 
+    const Increment = () => {
+        setQuantity((prevQuantity) => prevQuantity + 1);
+    };
+
+    const Decrement = () => {
+        if (quantity > 1) {
+            setQuantity((prevQuantity) => prevQuantity - 1);
+        }
+    };
     const totalPrice = product?.Fprice * quantity;
 
     const Comment = async (cmnt) => {
@@ -99,6 +112,10 @@ const SingleAdd = () => {
             });
     }, []);
 
+    const handleSizeChange = (e) => {
+        setSize(e.target.value)
+    }
+
     async function AddToCart() {
 
         if (cu._id === undefined) {
@@ -116,14 +133,15 @@ const SingleAdd = () => {
             if (product.discount === null || product.discount === undefined) {
                 product.discount = 0;
             }
-            const totalPrice = product.Fprice * quantity;
 
-            product.productId=product._id;
-            product.userId=cu._id;
-            product.Fprice=totalPrice;
-            product.quantity=quantity
-            product.image=product.images[0];
-                console.log(product.discount)            
+            const totalPrice = product.Fprice * quantity;
+            product.productId = product._id;
+            product.size = size;
+            product.userId = cu._id;
+            product.Fprice = totalPrice;
+            product.quantity = quantity;
+            product.image = product.images[0];
+
             try {
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
@@ -142,6 +160,14 @@ const SingleAdd = () => {
                 setLoading(false);
             }
         }
+    };
+
+    const handleLeftArrowClick = () => {
+        setSelectedImage((prevSelectedImage) => (prevSelectedImage - 1 + totalImages) % totalImages);
+    };
+
+    const handleRightArrowClick = () => {
+        setSelectedImage((prevSelectedImage) => (prevSelectedImage + 1) % totalImages);
     };
 
     const formatDateTime = (dateStr) => {
@@ -207,6 +233,12 @@ const SingleAdd = () => {
                                     <button onClick={() => zoomIn()}><AiOutlineZoomIn /></button>
                                     <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
                                 </div>
+                                <div className='single_arrow1' onClick={handleLeftArrowClick}>
+                                    <FaAngleLeft />
+                                </div>
+                                <div className='single_arrow2' onClick={handleRightArrowClick}>
+                                    <FaAngleRight />
+                                </div>
                             </>
                         )}
                     </TransformWrapper>
@@ -215,31 +247,81 @@ const SingleAdd = () => {
                     <div className='s_content'>
                         <h1 className='text-center fs-1' style={{ color: "#1b2950" }}>{product?.title}</h1>
                         <p className='text-center text-muted fs-6'>{product?.description}</p>
-                        <p className='fw-bolder' style={{ color: "#1b2950" }}>
-                            Rating <span style={{ color: 'red' }}>
+                        <div className='d-flex gap-5 align-items-center'>
+                            <p className='fw-bolder' style={{ color: "#1b2950" }}>
+                                Rating
+                            </p>
+                            <p style={{ color: 'red' }}>
                                 <RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill /><RiStarSFill />
-                            </span>
-                        </p>
-                        <p className='fw-bolder' style={{ color: "#1b2950" }}>
-                            <span>Reviews : {comments.filter((item) => item.productId === productId).length}</span>
-                        </p>
-                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:<span className=''>{`£${totalPrice.toFixed(2)}`}</span></p>
-                        <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: <input
-                            className='input_single'
-                            type="number"
-                            defaultValue={1}
-                            min={1} onChange={handleQuantityChange} /></p>
+                            </p>
+                        </div>
+                        <div className='d-flex gap-5 align-items-center'>
+                            <p className='fw-bolder' style={{ color: "#1b2950" }}>
+                                Reviews :
+                            </p>
+                            <p>{comments.filter((item) => item.productId === productId).length}</p>
+                        </div>
+                        <div className='d-flex gap-5 align-items-center'>
+                            <p className='fw-bolder' style={{ color: "#1b2950" }}>Price:</p>
+                            <p className=''>{`£${totalPrice.toFixed(2)}`}</p>
+                        </div>
+                        <div className='d-flex gap-4 align-items-center'>
+                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Size</label>
+                            {product.category == "sofa" &&
+                                <select className="form-control mb-2 mr-sm-2 w-50" onChange={handleSizeChange}>
+                                    <option value="5-seater">3+2 Sofa Set</option>
+                                    <option value="3-seater">3 Seater</option>
+                                    <option value="2-seater">2 Seater</option>
+                                    <option value="1-seater">1 Seater</option>
+                                </select>
+                            }
+                            {product.category == "bed" &&
+                                <select className="form-control mb-2 mr-sm-2 w-50" onChange={handleSizeChange}>
+                                    <option value="3ft-single">3ft Single</option>
+                                    <option value="4ft-small-double">4ft Small Double</option>
+                                    <option value="4'6ft-standard-double">4'6ft Standard Double</option>
+                                    <option value="5ft-king">5ft King</option>
+                                    <option value="6ft-super-king">6ft Super King</option>
+                                </select>
+                            }
+                            {product.category == "mattress" &&
+                                <select className="form-control mb-2 mr-sm-2 w-50" onChange={handleSizeChange}>
+                                    <option value="single">Single</option>
+                                    <option value="small-double">Small Double</option>
+                                    <option value="double">Double</option>
+                                    <option value="king">King</option>
+                                    <option value="super-king">Super King</option>
+                                </select>
+                            }
+                        </div>
+
+                        <div className='d-flex gap-4 align-items-center'>
+                            <p className='fw-bolder' style={{ color: "#1b2950" }}>Quantity: </p>
+
+                            <button className="btn btn-link px-2" onClick={Decrement}>
+                                <FaMinus />
+                            </button>
+                            <input name="quantity"
+                                type="number"
+                                className="form-control form-control-sm input_single"
+                                value={quantity}
+                                min={1}
+                                onChange={handleQuantityChange}
+                            />
+                            <button className="btn btn-link px-2" onClick={Increment}>
+                                <FaPlus />
+                            </button>
+
+                        </div>
                     </div>
-                    <div className='s_btn mt-3'>
-
+                    <div className='s_btn mt-5'>
                         <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
-
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
                         </a>
                     </div>
-                </div>
 
+                </div>
                 {/* Related items */}
 
                 <div className='col-lg-3 col-sm-12 related'>

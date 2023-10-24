@@ -77,7 +77,7 @@ export const Navbar = () => {
             {cu._id == undefined &&
               <li className="fs-4 nav-item">
                 <NavLink className="nav-link" to="/login">
-                  Login/Register
+                  Login
                 </NavLink>
               </li>
             }
@@ -144,11 +144,6 @@ export const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item nav-item2">
-              <NavLink className="nav-link" aria-current="page" to="/">
-                Beds & Sofas
-              </NavLink>
-            </li>
             <li className="nav-item  nav-item2 dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -164,6 +159,7 @@ export const Navbar = () => {
                 <li> <NavLink className="dropdown-item" to="/products/sofa">All Sofas </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/ ">Corner Sofas </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/sofa-sets">Sofa Sets </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa & Beds </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/two-&-three-seater-sofas">3 & 2 Seater Sofas</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/chesterfield-sofas">Chesterfield Sofas </NavLink></li>

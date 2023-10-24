@@ -203,6 +203,7 @@ const Products = () => {
                                             <p onClick={() => setCategory("sofa")} className={setCategory === "sofa" ? 'activeCategory' : ''}>All in sofas</p>
                                             <p onClick={() => setSubcategory("corner-sofas")} className={setSubcategory === "corner-sofas" ? 'activeCategory' : ''}>Corner Sofas</p>
                                             <p onClick={() => setSubcategory("sofa-sets")} className={setSubcategory === "sofa-sofas" ? 'activeCategory' : ''}>Sofa Sets </p>
+                                            <p onClick={() => setSubcategory("sofa-beds")} className={setSubcategory === "sofa-beds" ? 'activeCategory' : ''}>Sofa & Beds</p>
                                             <p onClick={() => setSubcategory("three-&-two-seater-sofas")} className={setSubcategory === "two-&-three-seater-sofas" ? 'activeCategory' : ''}>3 & 2 Seater Sofas</p>
                                             <p onClick={() => setSubcategory("fabric-sofas")} className={setSubcategory === "fabric-sofas" ? 'activeCategory' : ''}>Fabric sofas </p>
                                             <p onClick={() => setSubcategory("chesterfield-sofas")} className={setSubcategory === "chesterfield-sofas" ? 'activeCategory' : ''}>Chesterfield Sofas</p>
@@ -213,6 +214,9 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <button className='btn accordian_btn2'>Ottoman Box</button> <br />
+                                <button className='btn accordian_btn2'>Mattress</button> <br />
+                                <button className='btn accordian_btn2'>Footstool & Puffs</button>
                                 
                                 <div className="accordion-item accordian-item1">
                                     <h2 className="accordion-header custom_header">

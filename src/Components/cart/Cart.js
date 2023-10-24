@@ -36,6 +36,7 @@ export const Cart = () => {
             quantity: item.quantity,
           }));
           setCart(cartData);
+          console.log(cartData)
 
           const initialItemQuantities = {};
           cartData.forEach((item) => {
@@ -168,6 +169,7 @@ export const Cart = () => {
                     <th>Product Code</th>
                     <th>Image</th>
                     <th>Title</th>
+                    <th>Size</th>
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Quantity</th>
@@ -189,6 +191,7 @@ export const Cart = () => {
                         />
                       </td>
                       <td>{item.title.slice(0, 15)}</td>
+                      <td>{item.size}</td>
                       <td className="color-red text-center">{`£${item.price.toFixed(2)}`}</td>
                       <td className="color-red text-center">{`${item.discount}%`}</td>
                       <td className='text-center'>

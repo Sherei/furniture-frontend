@@ -12,14 +12,14 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  animation: moveRightToLeft 10s linear infinite; /* Adjust the duration as needed */
+  animation: moveRightToLeft 18s linear infinite;
 }
 
 @keyframes moveRightToLeft {
   0% {
-    transform: translateX(60%); /* Start from the right */
+    transform: translateX(60%); 
   }
   100% {
-    transform: translateX(-100%); /* Move to the left */
+    transform: translateX(-100%); 
   }
 }
