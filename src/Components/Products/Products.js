@@ -214,9 +214,9 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button className='btn accordian_btn2'>Ottoman Box</button> <br />
-                                <button className='btn accordian_btn2'>Mattress</button> <br />
-                                <button className='btn accordian_btn2'>Footstool & Puffs</button>
+                                <button className='btn accordian_btn2' onClick={() => setSubcategory("ottoman-beds")}>Ottoman Box</button> <br />
+                                <button className='btn accordian_btn2' onClick={() => setCategory("mattress")}>Mattress</button> <br />
+                                <button className='btn accordian_btn2' onClick={() => setCategory("footstools")}>Footstool & Puffs</button>
                                 
                                 <div className="accordion-item accordian-item1">
                                     <h2 className="accordion-header custom_header">
