@@ -5,6 +5,7 @@ import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import Benefits from '../Benefits/Benefits';
+import { Error } from '../Error/Error';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -185,8 +186,12 @@ const SingleAdd = () => {
         return date.toLocaleDateString('en-GB', options);
     };
     function Order(){
-        AddToCart()
-        move(`/cart-checkout/${cu._id}`)
+        if(cu._id ===undefined){
+            return <Error />;
+        }else{
+            AddToCart()
+            move(`/cart-checkout/${cu._id}`)
+        }
     }
 
     return <>
