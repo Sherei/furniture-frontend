@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Loader from "../Loader/Loader"
 import axios from 'axios';
 
-const Coffee = () => {
+const FootStools = () => {
     let cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -32,18 +32,18 @@ const Coffee = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }} >Coffee Tables</p>
+                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }} >Footstools & Pouffes</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products/" + "coffee")
+                            move("/Products/footstools")
                         }}>
                             View All
                         </p>
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data.filter((product) => product.category === "coffee").length === 0 &&
+                    {data.filter((product) => product.category === "footstools").length === 0 &&
                         <div className='px-4'>
                             No product available related to this category
                         </div>
@@ -55,7 +55,7 @@ const Coffee = () => {
                             </div>
                         ) : (
                             data
-                                .filter((item) => item.category === "coffee")
+                                .filter((item) => item.category === "footstools")
                                 .slice(0, 10)
                                 .map((product, index) => (
                                     <div className='card_box' key={index} >
@@ -107,4 +107,4 @@ const Coffee = () => {
     );
 }
 
-export default Coffee;
+export default FootStools;

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Loader from "../Loader/Loader"
-import axios from 'axios';
 
-const Dining = () => {
-    let cu = useSelector(store => store.userSection.cu);
+import axios from 'axios'
+const Mattress = () => {
 
+    let cu = useSelector(store => store.userSection.cu)
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -15,8 +15,7 @@ const Dining = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            // axios.get("/product").then((res) => {
-            try {
+           try {
                 if (res) {
                     setData(res.data);
                 }
@@ -28,23 +27,24 @@ const Dining = () => {
         });
     }, []);
 
-    return (
-        <div className='container main_container' id='coffee'>
+    return <>
+
+        <div className='container main_container' id='bedroom'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{color:'rgb(2, 2, 94)'}} >Footstools & Pouffes</p>
+                        <p className='fw-bolder fs-5' style={{color:'rgb(2, 2, 94)'}} >Mattress</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products/" + "dinning")
+                            move("/Products/mattress")
                         }}>
                             View All
                         </p>
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data.filter((product) => product.category === "dinning").length === 0 &&
+                    {data.filter((product) => product.category === "wardrobes").length === 0 &&
                         <div className='px-4'>
                             No product available related to this category
                         </div>
@@ -56,12 +56,14 @@ const Dining = () => {
                             </div>
                         ) : (
                             data
-                                .filter((item) => item.category === "dinning")
+                                .filter((item) => item.category === "wardrobes")
                                 .slice(0, 10)
                                 .map((product, index) => (
+
                                     <div className='card_box' key={index} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
-                                        <a href="https://wa.me/+923067208343" target="blank"> 
+
+                                        <a href="https://wa.me/+923067208343" target="blank">
 
                                             <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
                                         </a>
@@ -92,16 +94,17 @@ const Dining = () => {
                                             <div className='card_btns'>
 
                                             </div>
+
                                         </div>
+
                                     </div>
                                 ))
                         )}
-
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        </div >
+    </>
 }
 
-export default Dining;
+export default Mattress

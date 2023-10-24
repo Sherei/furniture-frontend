@@ -3,9 +3,8 @@ import Hero from './Hero'
 import "./home.css"
 import Categories from './Categories'
 import Beds from './Beds'
-import Bedroom from './Bedroom'
-import Dining from './Dining'
-import Coffee from './Coffee'
+import Mattress from './Mattress'
+import FootStools from './Footstools'
 import Benefits from '../Benefits/Benefits'
 import Review from '../Reviews/Review'
 import Sofas from './Sofas'
@@ -35,8 +34,8 @@ const Home = () => {
     <Sofas />
     <Beds />
     <Feature />
-    <Bedroom />
-    <Dining />
+    <Mattress />
+    <FootStools />
     <Review />
     <Benefits />
 

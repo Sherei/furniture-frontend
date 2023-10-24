@@ -161,7 +161,7 @@ export const AddProduct = () => {
                     <option value="select category">Select Category</option>
                     <option value="sofa">Sofa</option>
                     <option value="bed">Bed</option>
-                    <option value="ottoman-beds">Ottoman box</option>
+                    <option value="ottoman-box">Ottoman box</option>
                     <option value="mattress">Mattress</option>
                     <option value="footstools">FootStools & Puffs</option>
                   </select>
