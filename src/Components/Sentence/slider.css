@@ -12,7 +12,7 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  animation: moveRightToLeft 18s linear infinite;
+  animation: moveRightToLeft 200s linear infinite;
 }
 
 @keyframes moveRightToLeft {
