@@ -37,14 +37,14 @@ const Mattress = () => {
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products/mattress")
+                            move("/Products")
                         }}>
                             View All
                         </p>
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data.filter((product) => product.category === "wardrobes").length === 0 &&
+                    {data.filter((product) => product.category === "mattress").length === 0 &&
                         <div className='px-4'>
                             No product available related to this category
                         </div>
@@ -56,7 +56,7 @@ const Mattress = () => {
                             </div>
                         ) : (
                             data
-                                .filter((item) => item.category === "wardrobes")
+                                .filter((item) => item.category === "mattress")
                                 .slice(0, 10)
                                 .map((product, index) => (
 

@@ -25,7 +25,7 @@ const Products = () => {
     const [search, setSearch] = useState("")
     const [activeGrid, setActiveGrid] = useState("grid")
     const [sort, setSortOrder] = useState("")
-    const [category, setCategory] = useState(prodctName.toLowerCase());
+    const [category, setCategory] = useState();
     const [subCategory, setSubcategory] = useState("all")
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('')
@@ -93,20 +93,20 @@ const Products = () => {
 
     }
 
-    const filteredProduct = data.filter((product) => {
-        const lowerCaseTitle = product.title.toLowerCase();
-        const productCategory = product.category.toLowerCase();
-        const productsubCategory = product.subCategory.toLowerCase();
-        const lowerCaseSearch = (search).toLowerCase();
-        return (
-            (lowerCaseTitle?.includes(lowerCaseSearch) ||
-                productCategory?.includes(lowerCaseSearch) ||
-                productsubCategory?.includes(lowerCaseSearch) ||
-                productsubCategory?.includes(lowerCaseSearch)) &&
-            (productCategory?.includes(category)) &&
-            (productsubCategory?.includes(subCategory))
-        );
-    });
+    // const filteredProduct = data.filter((product) => {
+    //     const lowerCaseTitle = product.title.toLowerCase();
+    //     const productCategory = product.category.toLowerCase();
+    //     const productsubCategory = product.subCategory.toLowerCase();
+    //     const lowerCaseSearch = (search).toLowerCase();
+    //     return (
+    //         (lowerCaseTitle?.includes(lowerCaseSearch) ||
+    //             productCategory?.includes(lowerCaseSearch) ||
+    //             productsubCategory?.includes(lowerCaseSearch) ||
+    //             productsubCategory?.includes(lowerCaseSearch)) &&
+    //         (productCategory?.includes(category)) &&
+    //         (productsubCategory?.includes(subCategory))
+    //     );
+    // });
 
     return <>
         <div className='container-fluid min-vh-100' style={{ overflow: "hidden" }}>
@@ -243,9 +243,9 @@ const Products = () => {
 
                                     <div className='text-left'>
                                         <p>{product.title}</p>
-                                        <span className='px-2 t_Fprice'>{`£${product.Fprice.toFixed(0, 2)}`}</span>
+                                        <span className='px-2 t_Fprice'>{`£${product.Fprice?.toFixed(0, 2)}`}</span>
                                         {product.price &&
-                                            <span className='t_price'><s>{`£${product.price.toFixed(0, 2)}`}</s></span>
+                                            <span className='t_price'><s>{`£${product.price?.toFixed(0, 2)}`}</s></span>
                                         }
                                     </div>
                                 </div>
@@ -262,9 +262,9 @@ const Products = () => {
                                         <img src={product.images[0]} alt="No network" style={{ maxWidth: "80px", height: "80px" }} />
                                         <div className='text-left'>
                                             <p>{product.title}</p>
-                                            <span className='px-2 t_Fprice'>{`£${product.Fprice.toFixed(0, 2)}`}</span>
+                                            <span className='px-2 t_Fprice'>{`£${product.Fprice?.toFixed(0, 2)}`}</span>
                                             {product.price &&
-                                                <span className='t_price'><s>{`£${product.price.toFixed(0, 2)}`}</s></span>
+                                                <span className='t_price'><s>{`£${product.price?.toFixed(0, 2)}`}</s></span>
                                             }
                                         </div>
                                     </div>
@@ -294,7 +294,7 @@ const Products = () => {
                                 </div>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <p className='fw-bolder my-2'>{filteredProduct.length} Products</p>
+                                <p className='fw-bolder my-2'>{data.length} Products</p>
                             </div>
                             <div className='d-flex align-items-center'>
                                 <button className='btn fs-4' role='button' onClick={Filter}><FaFilter /></button>
@@ -308,7 +308,7 @@ const Products = () => {
                     ) : (
                         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
-                                filteredProduct.map((product, index) => (
+                                data.map((product, index) => (
                                     <div className="col" key={index} >
                                         <div className='product_box'>
                                             <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
@@ -331,11 +331,11 @@ const Products = () => {
                                             <div className='text-left'>
                                                 {product.discount && product.discount > 0 ? (
                                                     <>
-                                                        <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(1)}`}</span>
-                                                        <span className='card_price'><s>{`£${product.price.toFixed(1)}`}</s></span>
+                                                        <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(1)}`}</span>
+                                                        <span className='card_price'><s>{`£${product.price?.toFixed(1)}`}</s></span>
                                                     </>
                                                 ) : (
-                                                    <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(2)}`}</span>
+                                                    <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(2)}`}</span>
                                                 )}
                                             </div>
                                             <div className='product_btns'>
@@ -350,7 +350,7 @@ const Products = () => {
                                     </div>
                                 ))
                             }
-                            {filteredProduct.length === 0 &&
+                            {data.length === 0 &&
                                 <div className='col-12 d-flex justify-content-center align-items-center flex-wrap px-4'>
                                     <p className='text-center'>No product available related to this category</p>
                                 </div>
@@ -360,7 +360,7 @@ const Products = () => {
 
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 g-4 my-3">
                         {activeGrid === "list" &&
-                            filteredProduct.map((product, index) => {
+                            data.map((product, index) => {
                                 return <>
                                     <div className="col d-flex grid_box_main" key={index} onClick={() => move("/single_Add/" + product._id)} style={{ overflow: "hidden" }}>
                                         <div style={{ width: "40%" }}>
@@ -388,11 +388,11 @@ const Products = () => {
                                             <div className='text-left'>
                                                 {product.discount && product.discount > 0 ? (
                                                     <>
-                                                        <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(1)}`}</span>
-                                                        <span className='card_price'><s>{`£${product.price.toFixed(1)}`}</s></span>
+                                                        <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(1)}`}</span>
+                                                        <span className='card_price'><s>{`£${product.price?.toFixed(1)}`}</s></span>
                                                     </>
                                                 ) : (
-                                                    <span className='card_Fprice px-2 '> {`£${product.Fprice.toFixed(2)}`}</span>
+                                                    <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(2)}`}</span>
                                                 )}
                                             </div>
                                             <div className='text-center'>

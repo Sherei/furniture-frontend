@@ -35,8 +35,11 @@ const SingleAdd = () => {
     const [comments, setComments] = useState([])
     const [isLoadingComments, setIsLoadingComments] = useState(true);
     const [loading, setLoading] = useState(false);
-    const [size, setSize] = useState('');
     const [Error, setError] = useState(1);
+    const [size, setSize] = useState('');
+    const [color, setColor] = useState('');
+    const [mattress, setMattress] = useState('');
+
     const dispatch = useDispatch()
 
 
@@ -119,7 +122,18 @@ const SingleAdd = () => {
     }, []);
 
 
-    async function AddToCart() {
+    async function AddToCart(product, color, mattress, size) {
+
+        if (product.category === "bed" || product.category === "sofa") {
+            if (!size) {
+                setError("size")
+                return;
+            }
+            else if (!color) {
+                setError("color")
+                return;
+            }
+        }
 
         if (cu._id === undefined) {
             move('/login')
@@ -133,18 +147,20 @@ const SingleAdd = () => {
             toast.warning("Login with different account")
         }
         else {
+
             if (product.discount === null || product.discount === undefined) {
                 product.discount = 0;
             }
 
             const totalPrice = product.Fprice * quantity;
             product.productId = product._id;
-            product.size = size;
             product.userId = cu._id;
             product.Fprice = totalPrice;
             product.quantity = quantity;
+            product.color = color;
+            product.mattress = mattress;
+            product.size = size;
             product.image = product.images[0];
-
             try {
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
@@ -185,10 +201,11 @@ const SingleAdd = () => {
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-GB', options);
     };
-    function Order(){
-        if(cu._id ===undefined){
+
+    function Order() {
+        if (cu._id === undefined) {
             return <Error />;
-        }else{
+        } else {
             AddToCart()
             move(`/cart-checkout/${cu._id}`)
         }
@@ -266,7 +283,7 @@ const SingleAdd = () => {
                         }
                         {product.category === "sofa" &&
                             <div>
-                                <p className='fw-bolder fs-5'>Size: <span className='fs-6' style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
+                                <p className='fw-bolder fs-5'>Size <span className='' style={{ color: "red" }}>*</span> <span className='fs-6' style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
                                 <div className='d-flex flex-wrap justify-content-center'>
                                     <div className='size_box' onClick={() => setSize("5-seater")}><p className='m-0'>3+2 Sofa Set</p></div>
                                     <div className='size_box' onClick={() => setSize("3-seater")}><p className='m-0'>3 Seater</p></div>
@@ -274,11 +291,32 @@ const SingleAdd = () => {
                                     <div className='size_box' onClick={() => setSize("1-seater")}><p className='m-0'>1 Seater</p></div>
                                     <div className='size_box' onClick={() => setSize("corner-sofa")}><p className='m-0'>Corner Sofa</p></div>
                                 </div>
+                                {Error === "size" &&
+                                    <div className='error'>Please choose Sofa Size</div>
+                                }
+                                <p className='fw-bolder fs-5'>Choose Color <span className='' style={{ color: "red" }}>*</span></p>
+                                <div className='text-center my-2'>
+                                    <select name="" id="" className='w-50' onChange={(e) => {
+                                        const selectedValue = e.target.value;
+                                        if (selectedValue !== "") {
+                                            setColor(selectedValue);
+                                        } else {
+                                        }
+                                    }}>
+                                        <option value="">Please Choose</option>
+                                        <option value="Black">Black</option>
+                                        <option value="Brown">Brown</option>
+                                        <option value="Sky">Sky</option>
+                                    </select>
+                                </div>
+                                {Error === "color" &&
+                                    <div className='error'>Please choose Sofa Color</div>
+                                }
                             </div>
                         }
                         {product.category === "bed" &&
                             <div>
-                                <p className='fw-bolder fs-5'>Size: <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
+                                <p className='fw-bolder fs-5'>Size <span className='' style={{ color: "red" }}>*</span> <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>{size}</span>  </p>
                                 <div className='d-flex flex-wrap justify-content-center'>
                                     <div className='size_box' onClick={() => setSize("3ft-double")}><p className='m-0'>3ft Single</p></div>
                                     <div className='size_box' onClick={() => setSize("4ft-standard-double")}><p className='m-0'>4ft Small Double</p></div>
@@ -286,11 +324,48 @@ const SingleAdd = () => {
                                     <div className='size_box' onClick={() => setSize("4'6ft-king")}><p className='m-0'>4'6ft Standard Double</p></div>
                                     <div className='size_box' onClick={() => setSize("6ft-super-king")}><p className='m-0'>6ft Super King</p></div>
                                 </div>
+                                {Error === "size" &&
+                                    <div className='error'>Please choose Bed Size</div>
+                                }
+                                <p className='fw-bolder fs-5'>Choose Color <span className='' style={{ color: "red" }}>*</span></p>
+                                <div className='text-center my-2'>
+                                    <select name="" id="" className='w-50' onChange={(e) => {
+                                        const selectedValue = e.target.value;
+                                        if (selectedValue !== "") {
+                                            setColor(selectedValue);
+                                        } else {
+                                        }
+                                    }}>
+                                        <option value="">Please Choose</option>
+                                        <option value="Black">Black</option>
+                                        <option value="Brown">Brown</option>
+                                        <option value="Sky">Sky</option>
+                                    </select>
+                                </div>
+                                    {Error === "color" &&
+                                        <div className='error'>Please choose Bed Color</div>
+                                    }
+                                <p className='fw-bolder fs-5'>Mattress</p>
+                                <div className='text-center my-2'>
+                                    <select name="" id="" className='w-50' onChange={(e) => {
+                                        const selectedValue = e.target.value;
+                                        if (selectedValue !== "") {
+                                            setMattress(selectedValue);
+                                        } else {
+                                        }
+                                    }}>
+                                        <option value="">Please Choose</option>
+                                        <option value="single">Single</option>
+                                        <option value="double">Double</option>
+                                        <option value="king">King</option>
+                                        <option value="super-king">Super King</option>
+                                    </select>
+                                </div>
                             </div>
                         }
                         {product.category === "mattress" &&
                             <div>
-                                <p className='fw-bolder fs-5'>Size: &nbsp;&nbsp;&nbsp; <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>
+                                <p className='fw-bolder fs-5'>Size <span className='' style={{ color: "red" }}>*</span> <span style={{ color: "#1b2950", fontWeight: "500", textTransform: "capitalize" }}>
                                     {size}
                                 </span>
                                 </p>
@@ -331,7 +406,7 @@ const SingleAdd = () => {
                         </div>
                     </div>
                     <div className='s_btn mt-3'>
-                        <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
+                        <button className='btn s_cart' onClick={() => AddToCart(product, color, mattress, size)}>Add to Cart</button>
                         <button className='btn s_cart' onClick={(Order)}>Order now</button>
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>

@@ -228,6 +228,10 @@
     outline: none !important;
 }
 
+select:hover, option:hover{
+    cursor: pointer;
+}
+
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {

@@ -37,7 +37,7 @@ const Discounted = () => {
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products/" + "all");
+                            move("/Products");
                         }}>
                             View All
                         </p>

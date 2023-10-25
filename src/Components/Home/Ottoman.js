@@ -37,14 +37,14 @@ const Ottoman = () => {
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products/ottoman-box")
+                            move("/Products")
                         }}>
                             View All
                         </p>
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data.filter((product) => product.category === "dinning").length === 0 &&
+                    {data.filter((product) => product.category === "ottoman-box").length === 0 &&
                         <div className='px-4'>
                             No product available related to this category
                         </div>
