@@ -161,6 +161,7 @@ const SingleAdd = () => {
             product.mattress = mattress;
             product.size = size;
             product.image = product.images[0];
+
             try {
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
@@ -203,7 +204,7 @@ const SingleAdd = () => {
     };
 
     function Order() {
-        if (cu._id === undefined) {
+        if (cu._id === undefined || cu.email ==="asd@gmail.com") {
             return <Error />;
         } else {
             AddToCart()
