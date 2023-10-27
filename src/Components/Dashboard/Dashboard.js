@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { FaUsers, FaClipboardList, FaFirstOrder, FaCommentDots } from "react-icons/fa";
-import { MdProductionQuantityLimits } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
 import { Users } from "./Users"
-import { AddProduct } from "./AddProduct"
 import { Products } from "./Products"
 import { Orders } from "./Orders"
-import "./dashboard.css";
 import Comments from './Comments';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Error } from '../Error/Error';
+import "./dashboard.css";
 
 
 export const Dashboard = () => {
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -21,7 +19,6 @@ export const Dashboard = () => {
         });
     }, []);
     let cu = useSelector(store => store.userSection.cu)
-    const move = useNavigate()
     const [users, setUsers] = useState([])
     const [product, setProducts] = useState([])
     const [comment, setComments] = useState([])
@@ -40,7 +37,6 @@ export const Dashboard = () => {
         { title: "Total Users", desc: users.length, icon: <FaUsers />, id: "users" },
         { title: "Products", desc: product.length, icon: <FaClipboardList />, id: "product" },
         { title: "Comments", desc: comment.length, icon: <FaCommentDots />, id: "comment" },
-        // { title: "Add Product", icon: <MdProductionQuantityLimits />, id: "addproduct" },
     ];
     const handleItemClick = (id) => {
         const element = document.getElementById(id);
@@ -115,13 +111,6 @@ export const Dashboard = () => {
                         <Comments />
                     </div>
                 </div>
-
-                {/* <div className='col-lg-12 col-sm-12' id='addproduct'>
-                    <div className='row  my-5 d-flex gap-5 justify-content-center'>
-                        <AddProduct />
-                    </div>
-                </div> */}
-
 
             </div>
         </>

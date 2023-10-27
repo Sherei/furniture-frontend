@@ -4,8 +4,8 @@
   z-index: 1000;
 }
 .logo_navbar{
-  width: 100px;
-  max-height: 100px;
+  width: 200px;
+  max-height: 150px;
 
 }
 .navbar{
@@ -112,7 +112,10 @@
 .heart:hover{
   cursor: pointer;
 }
-
+.dropdown-item.active{
+  color: white !important;
+  background-color: #1b2950 !important;
+}
 @media screen and (max-width:991px) {
   .nav-item2:hover {
     background-color: transparent;

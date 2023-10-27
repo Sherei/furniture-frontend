@@ -18,6 +18,7 @@ export const AddProduct = () => {
 
   const cu = useSelector(store => store.userSection.cu);
 
+  const [product, setProduct] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -47,14 +48,19 @@ export const AddProduct = () => {
 
   let move = useNavigate();
 
-  let { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [product, setProduct] = useState(null);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    defaultValues: product, // Assuming product contains existing product data
+  });
+
 
 
   useEffect(() => {
 
     axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
       setProduct(resp.data)
+      setPrice(resp.data.price);
+      setDiscount(resp.data.discount); 
+      setFinalPrice(resp.data.Fprice); 
     })
   }, [])
 
@@ -86,11 +92,11 @@ export const AddProduct = () => {
     data.Fprice = finalPrice;
 
     if (productId) {
-
+      console.log(data)
       axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
         if (resp) {
           toast.success("Product updated")
-          move('admin-dashboard')
+          move('/admin-dashboard')
         }
       }).catch(function (resp) {
         console.log(resp);
@@ -157,7 +163,10 @@ export const AddProduct = () => {
                         return true;
                       }
                     }
-                  })} className="form-control mb-2 mr-sm-2" onChange={handleCategoryChange}>
+                  })} className="form-control mb-2 mr-sm-2"
+                    defaultValue={product ? product.category : selectedCategory}
+                    onChange={handleCategoryChange}
+                  >
                     <option value="select category">Select Category</option>
                     <option value="sofa">Sofa</option>
                     <option value="bed">Bed</option>
@@ -168,7 +177,7 @@ export const AddProduct = () => {
                   {errors.category ? <div className='error'>Category is required</div> : null}
                 </div>
 
-                {selectedCategory === 'sofa' && (
+                {(selectedCategory === 'sofa' || product?.category === "sofa") && (
                   <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Sub Category *</label>
                     <select {...register('subCategory', {
@@ -179,7 +188,9 @@ export const AddProduct = () => {
                           return true;
                         }
                       }
-                    })} className="form-control mb-2 mr-sm-2">
+                    })} className="form-control mb-2 mr-sm-2"
+                      defaultValue={product ? product.subCategory : ""}
+                    >
                       <option value="select subCategory">Select subCategory</option>
                       <option value="corner-sofas">Corner Sofas</option>
                       <option value="sofa-sets">Sofa Sets</option>
@@ -197,7 +208,7 @@ export const AddProduct = () => {
 
                   </div>
                 )}
-                {selectedCategory === 'bed' && (
+                {(selectedCategory === 'bed' || product?.category === "bed") && (
                   <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Sub Category *</label>
                     <select {...register('subCategory', {
@@ -208,7 +219,9 @@ export const AddProduct = () => {
                           return true;
                         }
                       }
-                    })} className="form-control mb-2 mr-sm-2">
+                    })} className="form-control mb-2 mr-sm-2"
+                      defaultValue={product ? product.subCategory : ""}
+                    >
                       <option value="Select subCategory">Select subCategory</option>
                       <option value="ambassador-beds">Ambassador Beds</option>
                       <option value="wingback-beds-frames">Panel Beds</option>
@@ -223,25 +236,47 @@ export const AddProduct = () => {
                 )}
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Description</label>
-                  <textarea {...register('description', { minLength: 10 })} className="form-control" rows={3} defaultValue={""} />
+                  <textarea {...register('description', { minLength: 10 })} className="form-control" rows={3} defaultValue={product ? product.description : ""} />
                   {errors.description && errors.description.type == "minLength" ? <div className='error'>Description Should Contain more than 15 characters </div> : null}
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
-                  <input type="number" {...register('price', { required: true })} min={"1"} className="form-control mb-2 mr-sm-2" onChange={handlePriceChange} />
+                  <input type="number" {...register('price', { required: true })} min={"1"}
+                    className="form-control mb-2 mr-sm-2"
+                    defaultValue={product ? product.price : price}
+                    onChange={handlePriceChange} />
                   {errors.price && errors.price.type == "required" ? <div className='error'>Price is required</div> : null}
                 </div>
+
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
-                  <input type="number" {...register('discount')} min={"1"} className="form-control mb-2 mr-sm-2" onChange={handleDiscountChange} />
+                  <input type="number" {...register('discount')} min={"1"}
+                    className="form-control mb-2 mr-sm-2"
+                    defaultValue={product ? product.discount : discount}
+                    onChange={handleDiscountChange} />
                 </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+
+                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Final Price *</label>
-                  <input type="number" {...register('Fprice')} value={finalPrice} className="form-control mb-2 mr-sm-2" />
+                  <input type="number" {...register('Fprice')}
+                    min={"1"}
+                    defaultValue={product ? finalPrice : finalPrice}
+                    className="form-control mb-2 mr-sm-2" />
                 </div>
+
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input type='file' multiple {...register('images', { required: true, minLength: 1, maxLength: 5 })} className="form-control mb-2 mr-sm-2" />
+                  <input
+                    type='file'
+                    multiple
+                    {...register('images', {
+                      required: productId ? false : true,
+                      minLength: 1,
+                      maxLength: 5,
+                    })}
+                    className="form-control mb-2 mr-sm-2"
+                  />
+
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
@@ -250,13 +285,26 @@ export const AddProduct = () => {
               </div>
               <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
-                  <input type="checkbox" {...register('trending')} className="form-check-input" id="exampleCheck1" />
-                  <span className='px-2'><b>Make Trending</b> </span>
+
+                  <input
+                    type="checkbox"
+                    {...register('trending')}
+                    className="form-check-input"
+                    id="exampleCheck1"
+                    defaultChecked={product ? product.trending : false}
+                  />
+                  <span className='px-2'><b>Make Trending</b></span>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
-                  <input type="checkbox" {...register('feature')} className="form-check-input" id="exampleCheck1" />
+                  <input type="checkbox"
+                    {...register('feature')}
+                    className="form-check-input"
+                    id="exampleCheck1"
+                    defaultChecked={product ? product.feature : false}
+                  />
                   <span className='px-2'><b>Make Feature</b> </span>
                 </div>
+
                 <div className='col-lg-12 col-sm-12 my-5'>
                   <button type="button" className="btn review_btn" onClick={handleSubmit(submitProduct)}>
                     Submit
@@ -266,7 +314,7 @@ export const AddProduct = () => {
             </form>
           )}
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   </>
 };

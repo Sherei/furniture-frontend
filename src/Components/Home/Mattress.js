@@ -60,14 +60,14 @@ const Mattress = () => {
                                 .slice(0, 10)
                                 .map((product, index) => (
 
-                                    <div className='card_box' key={index} >
+                                    <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)}>
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
 
                                         <a href="https://wa.me/+923067208343" target="blank">
 
                                             <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
                                         </a>
-                                        <div className='card_img_box' onClick={() => move("/single_Add/" + product._id)}>
+                                        <div className='card_img_box' >
                                             <img src={product.images[0]} className='img-fluid' alt='No Network' />
                                             {product.discount && product.discount > 0 ? (
                                                 <div className='discount'>

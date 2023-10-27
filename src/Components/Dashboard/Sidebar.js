@@ -13,7 +13,6 @@ import { Dashboard } from './Dashboard';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { AddProduct } from './AddProduct';
 import { Products } from './Products';
 import { Users } from './Users';
 import Comments from './Comments';
@@ -90,14 +89,15 @@ const Sidebar = () => {
             Comments
           </div>
         </div>
-        <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`} onClick={() => move('/admin-dashboard-add-product')}>
-          <div className="icon">
-            <FaCameraRetro />
+          <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`} 
+          onClick={() => move('/admin-dashboard-add-product')}>
+            <div className="icon">
+              <FaCameraRetro />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Add Product
+            </div>
           </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-            Add Product
-          </div>
-        </div>
 
         <div className="link" onClick={() => {
           move("/")

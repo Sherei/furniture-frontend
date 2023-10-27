@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import { FaDownload ,FaPencilAlt } from 'react-icons/fa'
+import { FaDownload, FaPencilAlt } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -123,11 +123,13 @@ export const Products = () => {
                           <td>{index + 1}</td>
                           <td>{data.sn}</td>
                           <td onClick={() => move("/single_Add/" + data._id)}>
-                            <img src={data.images[0]} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
+                            <img src={data.images[0]} alt="No   network" style={{ maxWidth: '80px', height: '80px' }} />
                           </td>
                           <td onClick={() => move("/single_Add/" + data._id)}>{data.title}</td>
                           <td >{data.category}</td>
-                          <td>{data.subCategory}</td>
+                          <td className='text-center'>
+                            {data.subCategory === "select subCategory" ? "No subCategory" : data.subCategory}
+                          </td>
                           <td className='text-center'>{data.price.toFixed(2)}</td>
                           <td className='text-center'>{data.Fprice.toFixed(2)}</td>
                           <td className='text-center'>{data.discount || 0}</td>
@@ -141,7 +143,7 @@ export const Products = () => {
                           </td>
                           <td className='text-center'>
                             <button
-                              className="delete_btn" onClick={()=>move(`/admin-dashboard-add-product/${data._id}`)}>
+                              className="delete_btn" onClick={() => move(`/admin-dashboard-add-product/${data._id}`)}>
                               <FaPencilAlt />
                             </button>
                           </td>

@@ -228,13 +228,38 @@
     outline: none !important;
 }
 
-select:hover, option:hover{
-    cursor: pointer;
+.single_form select {
+    background-color: transparent !important;
+    border: 1px solid black;
+    width: 85%;
 }
+
+.single_description {
+    height: 70px;
+    overflow: hidden;
+}
+
+.expanded {
+    height: fit-content;
+    overflow: visible;
+}
+
+.single_read_btn {
+    background-color: rgb(2, 2, 94,);
+    color: white;
+}
+.single_read_btn:hover {
+    color: white;
+}
+
 
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {
+    .single_form select {
+        width: 100%;
+    }
+
     .s_main_img {
         width: 400px !important;
     }

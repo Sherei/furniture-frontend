@@ -80,9 +80,9 @@ const Feature = () => {
                             .filter((item) => item.feature === "true")
                             .map((product, index) => (
 
-                                <SwiperSlide className='t_slide' key={index}>
+                                <SwiperSlide className='t_slide' key={index} onClick={() => move("/single_Add/" + product._id)}>
                                     <div className="t_card py-2">
-                                        <div className='t_img_box' onClick={() => move("/single_Add/" + product._id)}>
+                                        <div className='t_img_box'>
                                             <img src={product.images[0]} alt="No network" />
                                             <div className='trending'>
                                                 Featured
