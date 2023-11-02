@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
-import {AiFillMail } from "react-icons/ai"
+import { AiFillMail } from "react-icons/ai"
+import {TiUser} from "react-icons/ti"
+import {FaBars,FaUserAlt} from "react-icons/fa"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-scroll';
@@ -63,9 +65,26 @@ export const Navbar = () => {
 
   return <>
 
+    <div className='container-fluid nav_contact2 ' style={{ backgroundColor: "black" }}>
+      <div className='row py-3'>
+        <div className='col  d-flex justify-content-center align-items-center gap-sm-2'>
+          <a href="tel:00923067208343" target='blak' className='fs-6'>
+            <span className='nav_cotact_icon'><TbPhoneCall></TbPhoneCall></span> &nbsp;
+            <span className='ml-2'>
+              00923067208343
+            </span>&nbsp;
+          </a>
+          <a href="mailto:sharjeelakhtar245@gmail.com" target='blak'>
+            <span className='nav_cotact_icon'><AiFillMail></AiFillMail></span>&nbsp;
+            <span className='m-0'>sharjeelakhtar245@gmail.com</span>&nbsp;
+          </a>
+        </div>
+      </div>
 
+    </div>
+    <div className={`${isSticky ? 'fixed-top navbar-custom' : ''}`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
 
-    <div className={`py-2 px-4 border-bottom container-fluid `} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
+    <div className={`py-2 px-5  container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
       <div className="row">
         <div className="cols-12 nav1">
           <NavLink to="/" className="ms-md-2">
@@ -76,14 +95,14 @@ export const Navbar = () => {
           </NavLink>
           <div className='nav_cotact'>
             <div>
-              <a href="tel:00923067208343">
+              <a href="tel:00923067208343" target='blak'>
                 <p className='m-0'>Tell: &nbsp;<span className='nav_cotact_icon'><TbPhoneCall></TbPhoneCall></span> </p>
                 <p className='m-0'>
                   00923067208343
                 </p>
               </a>
             </div>
-            <a href="mailto:sharjeelakhtar245@gmail.com">
+            <a href="mailto:sharjeelakhtar245@gmail.com" target='blak'>
               <div>
                 <p className='m-0'>Mail &nbsp; <span className='nav_cotact_icon'><AiFillMail></AiFillMail></span></p>
                 <p className='m-0'>sharjeelakhtar245@gmail.com</p>
@@ -97,7 +116,7 @@ export const Navbar = () => {
             {cu._id == undefined &&
               <li className="fs-4 nav-item">
                 <NavLink className="nav-link nav-link1" to="/login">
-                  Login
+                  <FaUserAlt/>
                 </NavLink>
               </li>
             }
@@ -138,8 +157,7 @@ export const Navbar = () => {
         </div>
       </div>
     </div >
-
-    <nav className={`navbar navbar-expand-lg container-fluid  ${isSticky ? 'fixed-top navbar-custom' : ''}`}>
+    <nav className={`navbar navbar-expand-lg container-fluid`}>
       <div className="container-fluid nav_bg">
         <button
           className="navbar-toggler custom-toggler"
@@ -150,11 +168,7 @@ export const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <div className='d-flex flex-column gap-1'>
-            <span className="navbar-toggler-icon line1"></span>
-            <span className="navbar-toggler-icon line2"></span>
-            <span className="navbar-toggler-icon line3"></span>
-          </div>
+          <FaBars/>
         </button>
 
         <div className="collapse nav_bg navbar-collapse" id="navbarSupportedContent">
@@ -241,6 +255,6 @@ export const Navbar = () => {
       </div>
     </nav>
 
-
+    </div>
   </>
 };

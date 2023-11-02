@@ -10,7 +10,7 @@ import SingleAdd from './Components/SinglePage/SingleAdd';
 import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
 import { useDispatch } from "react-redux";
-import { FaArrowUp, FaDiscourse} from "react-icons/fa";
+import { FaArrowUp, FaDiscourse } from "react-icons/fa";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -85,14 +85,14 @@ function App() {
 
 
   useEffect(() => {
-    axios.post(`${process.env.REACT_APP_BASE_URL}/session-check`, {token: localStorage.getItem('userToken')}).then((res) => {
-        if (res.data) {
-          dispatch({
-            type: 'LOGIN_USER',
-            payload: res.data,
-          });
-        }
-      });
+    axios.post(`${process.env.REACT_APP_BASE_URL}/session-check`, { token: localStorage.getItem('userToken') }).then((res) => {
+      if (res.data) {
+        dispatch({
+          type: 'LOGIN_USER',
+          payload: res.data,
+        });
+      }
+    });
   }, []);
 
 
@@ -101,17 +101,24 @@ function App() {
       <>
         <div className='main_body'>
 
-            {showScrollButton && (
-              <div className='top_btn' onClick={scrollToTop}>
-                <FaArrowUp />
+          {showScrollButton && (
+            <div className='top_btn' onClick={scrollToTop}>
+            Back To Top
+            </div>
+          )}
+          {/* <img src="/greeting.svg" className='greeting' /> */}
+          <a href='https://wa.me/+923067208343' target="blank">
+            <div className='d-flex align-items-center gap-2 whatsapp-btn_main'>
+            <div>
+                <p className='m-0'>Chat</p>
               </div>
-            )}
-            {/* <img src="/greeting.svg" className='greeting' /> */}
-            <a href='https://wa.me/+923067208343' target="blank">
               <div className='whatsapp-btn'>
                 <FaDiscourse />
               </div>
-            </a>
+            
+            </div>
+
+          </a>
 
           <BrowserRouter>
             <Navbar />
@@ -132,7 +139,7 @@ function App() {
                 <Route path='/placed' element={<Orderplaced />} />
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
-                <Route path='/faq' element={<Faq/>} />
+                <Route path='/faq' element={<Faq />} />
                 <Route exact path='*' element={<Error />} />
               </Routes>
             </main>

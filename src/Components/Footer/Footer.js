@@ -24,13 +24,20 @@ const Footer = () => {
           <p className='footer_head_detail'>We are an independent retail company dedicated to supplying good quality
             products direct to the consumer with substantial savings and ease.</p>
           <div className='footer_address'>
-            <div className='mb-2'>
-              <span className='footer_addres_icon'><FaPhoneSquareAlt /> <span className='px-2'>+92 306-7208343</span> </span>
-            </div>
-            <div className='mb-2'>
-              <span className='footer_addres_icon'><FaEnvelope /> <span className='px-2'>needhelp@company.com</span></span>
-
-            </div>
+            <a href="tel:00923067208343" target='blak'>
+              <div className='mb-2'>
+                <span className='footer_addres_icon'><FaPhoneSquareAlt />
+                  <span className='px-2'>+923067208343</span>
+                </span>
+              </div>
+            </a>
+            <a href="mailto:sharjeelakhtar245@gmail.com" target='blak'>
+              <div className='mb-2'>
+                <span className='footer_addres_icon'><FaEnvelope />
+                  <span className='px-2'>sharjeelakhtar245@gmail.com</span>
+                </span>
+              </div>
+            </a>
             <div className='mb-2'>
               <span className='footer_addres_icon'><ImLocation2 /> <span className='px-2'>66 Broklyn Street New York, USA</span></span>
             </div>
@@ -52,7 +59,7 @@ const Footer = () => {
           </Link>
         </div>
         <div className='footer_menus col-lg-3 col-md-12 col-sm-12'>
-          <p className='fw-bolder fs-5'>Popular Categories</p>  
+          <p className='fw-bolder fs-5'>Popular Categories</p>
           <Link to='about'>
             <p>All Sofas</p>
           </Link>
@@ -101,7 +108,9 @@ const Footer = () => {
           </div>
           <div className='footer_icon'>
             <div><FaInstagram /></div>
-            <div><FaWhatsapp /></div>
+            <a href='https://wa.me/+923067208343' target="blank">
+              <div><FaWhatsapp /></div>
+            </a>
             <div><FaFacebook /></div>
           </div>
         </div>

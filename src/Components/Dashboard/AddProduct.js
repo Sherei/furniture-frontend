@@ -285,7 +285,7 @@ export const AddProduct = () => {
 
               </div>
               <div className='row'>
-                <div className='col-lg-6 col-md-6 col-sm-12'>
+                {/* <div className='col-lg-6 col-md-6 col-sm-12'>
 
                   <input
                     type="checkbox"
@@ -304,8 +304,7 @@ export const AddProduct = () => {
                     defaultChecked={product ? product.feature : false}
                   />
                   <span className='px-2'><b>Make Feature</b> </span>
-                </div>
-
+                </div> */}
                 <div className='col-lg-12 col-sm-12 my-5'>
                   <button type="button" className="btn review_btn" onClick={handleSubmit(submitProduct)}>
                     Submit
