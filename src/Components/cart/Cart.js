@@ -197,7 +197,7 @@ export const Cart = () => {
                           type="number"
                           min={1}
                           style={{ width: "60px" }}
-                          value={itemQuantities[item._id]}
+                          defaultValue={itemQuantities[item._id]}
                           onChange={(e) => handleItemQuantityChange(item._id, parseInt(e.target.value))}
                         />
                       </td>

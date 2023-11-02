@@ -18,10 +18,10 @@
 
 .s_main_img {
     display: flex;
+    align-items: center;
     justify-content: center !important;
     width: 500px !important;
     height: 300px !important;
-    background-color: red !important;
 }
 
 .s_main_img img {
@@ -107,20 +107,29 @@
 
 .s_btn {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    flex: 1;
     gap: 10px;
 }
 
 .s_btn button {
     font-weight: 500;
     color: white;
-    padding: 10px 50px !important;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    flex-grow: 1;
     border: none;
     outline: none;
 }
 
 .s_whatsapp {
+    width: 100%;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
     background-color: rgb(33, 211, 102, 0.9);
 }
 
@@ -140,17 +149,7 @@
     background-color: rgb(33, 211, 102);
 }
 
-.input_single {
-    width: 50px !important;
-    height: 35px;
-    border: none;
-    background-color: transparent;
-    padding: 0px 0px 0px 15px;
-}
 
-.input_single:focus {
-    outline: none;
-}
 
 .s_discount {
     position: absolute;
@@ -176,11 +175,11 @@
 
 .single_arrow1,
 .single_arrow2 {
+    color: white;
     position: absolute;
     top: 40%;
     background-color: transparent;
-    padding: 8px 10px;
-    font-size: 25px;
+    font-size: 45px;
 }
 
 .single_arrow1 {
@@ -210,19 +209,36 @@
     outline: 1px solid transparent;
     box-shadow: 0 0 2px 1px #1b2950;
 }
+.input_single {
+    min-width: 30px;
+    height: fit-content;
+    background-color: transparent;
+}
 
+.sigle_quatity_main {
+    display: flex;
+    align-items: center !important;
+    gap: 20px;
+}
+
+.sigle_quatity {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+    border: 1px solid lightgray !important;
+
+}
 .plus_btn {
-    background-color: transparent !important;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
     border: none !important;
     outline: none !important;
+    border: 1px solid lightgray !important;
 
 }
-
-.plus_btn:focus {
-    border: none !important;
-    outline: none !important;
-}
-
 .plus_btn:hover {
     border: none !important;
     outline: none !important;
@@ -231,7 +247,7 @@
 .single_form select {
     background-color: transparent !important;
     border: 1px solid black;
-    width: 85%;
+    width: 95%;
 }
 
 .single_description {
@@ -245,9 +261,10 @@
 }
 
 .single_read_btn {
-    background-color: rgb(2, 2, 94,);
-    color: white;
+    background-color: #1b2950 !important;
+    color: white !important;
 }
+
 .single_read_btn:hover {
     color: white;
 }
@@ -317,11 +334,5 @@
     .s_main_img {
         width: 250px !important;
         height: 200px !important;
-    }
-}
-
-@media screen and (max-width:390px) {
-    .s_btn button {
-        width: 100%;
     }
 }

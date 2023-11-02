@@ -106,7 +106,7 @@ function App() {
                 <FaArrowUp />
               </div>
             )}
-            <img src="/greeting.svg" className='greeting' />
+            {/* <img src="/greeting.svg" className='greeting' /> */}
             <a href='https://wa.me/+923067208343' target="blank">
               <div className='whatsapp-btn'>
                 <FaDiscourse />

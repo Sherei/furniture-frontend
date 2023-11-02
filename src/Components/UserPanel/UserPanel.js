@@ -75,7 +75,7 @@ const UserPanel = () => {
                         <div className="card mb-4">
                             <div className="card-body text-center">
                                 <img
-                                    src="/user.png"
+                                    src="/profile.png"
                                     alt="avatar"
                                     className="rounded-circle img-fluid"
                                     style={{ width: 150 }}

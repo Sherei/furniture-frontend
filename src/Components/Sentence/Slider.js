@@ -6,7 +6,8 @@ const Slider = () => {
     <div className="container-fluid px-0 mx-0 py-3" style={{ backgroundColor: "rgba(2, 2, 94, 0.6)" }}>
       <div className="row">
         <div className="col-12 d-flex slider-container">
-          <div className="slide-text">Up to 30% OFF! 
+          <div className="slide-text">
+          Up to 30% OFF! 
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           FAST DELIVERY WITHIN 05-07 DAYS!  
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,37 +21,36 @@ const Slider = () => {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
+          FAST DELIVERY WITHIN 05-07 DAYS!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Up to 30% OFF!
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          FAST DELIVERY WITHIN 05-07 DAYS! 
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Up to 30% OFF!
+          FAST DELIVERY WITHIN 05-07 DAYS!
+        
           </div>
         </div>
       </div>

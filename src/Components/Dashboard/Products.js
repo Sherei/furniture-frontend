@@ -130,9 +130,10 @@ export const Products = () => {
                           <td className='text-center'>
                             {data.subCategory === "select subCategory" ? "No subCategory" : data.subCategory}
                           </td>
-                          <td className='text-center'>{data.price.toFixed(2)}</td>
-                          <td className='text-center'>{data.Fprice.toFixed(2)}</td>
-                          <td className='text-center'>{data.discount || 0}</td>
+                          <td className='text-center'>&pound; {data.price.toFixed(2)}</td>
+
+                          <td className='text-center'>&pound; {data.Fprice.toFixed(2)}</td>
+                          <td className='text-center'>{data.discount ? data.discount + '%' : '0%'}</td>
                           <td className='text-center'>{formatDateTime(data.date)}</td>
                           <td className='text-center'>
                             <button

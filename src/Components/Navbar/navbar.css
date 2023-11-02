@@ -28,6 +28,9 @@
 .nav-item .nav-link{
   font-size: 18px;
 }
+.nav-item .nav-link1{
+  color: white !important;
+}
 .nav-item2 {
   border: none !important;
 }
@@ -70,6 +73,9 @@
 .custom-toggler {
   margin-left: auto;
 }
+.cart-white{
+  color: #fff !important;
+}
 .cart-red{
   color: red;
 }
@@ -106,8 +112,11 @@
 }
 
 .heart{
-  color: red;
+  color: white;
   padding-right:10px ;
+}
+.dropdown-toggle1::after {
+  color: white;
 }
 .heart:hover{
   cursor: pointer;
@@ -116,13 +125,27 @@
   color: white !important;
   background-color: #1b2950 !important;
 }
+.nav_cotact{
+  display: flex;
+  gap: 50px;
+}
+.nav_cotact p{
+  color: white;
+}
+.nav_cotact a{
+  color: white;
+}
+.nav_cotact a:hover{
+  cursor: pointer;
+}
+.nav_cotact_icon{
+  font-size: 20px;
+}
 @media screen and (max-width:991px) {
   .nav-item2:hover {
     background-color: transparent;
   }
-  .heart{
-    display: none;
-  }
+ 
   .nav-item2{
     background-color: #fff;
   }
@@ -131,6 +154,9 @@
   }
   .navbar-custom {
     border: none;
+  }
+  .nav_cotact{
+    display: none;
   }
 }
 

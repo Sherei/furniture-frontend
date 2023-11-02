@@ -57,7 +57,7 @@ const Review = () => {
 
     return <>
         <div className='container ' id='review'>
-            <div className='row mt-5'>
+            <div className='row my-5 pt-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1 order-md-1 order-xl-1'>
                     {comments.length > 0 &&
                         <div>
@@ -83,7 +83,7 @@ const Review = () => {
                                         }} key={index}>
                                         <div className='d-flex align-items-center' >
                                             <img
-                                                src="/149071-removebg-preview.png"
+                                                src="/profile.png"
                                                 className="rounded-circle shadow-1-strong"
                                                 width={50}
                                                 height={50}

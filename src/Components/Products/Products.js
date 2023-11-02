@@ -308,7 +308,7 @@ const Products = () => {
                     ) : (
                         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
-                                data.map((product, index) => (
+                                data?.map((product, index) => (
                                     <div className="col" key={index} >
                                         <div className='product_box'>
                                             <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
@@ -360,7 +360,7 @@ const Products = () => {
 
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 g-4 my-3">
                         {activeGrid === "list" &&
-                            data.map((product, index) => {
+                            data?.map((product, index) => {
                                 return <>
                                     <div className="col d-flex grid_box_main" key={index} onClick={() => move("/single_Add/" + product._id)} style={{ overflow: "hidden" }}>
                                         <div style={{ width: "40%" }}>

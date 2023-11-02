@@ -8,9 +8,7 @@ import FootStools from './Footstools'
 import Benefits from '../Benefits/Benefits'
 import Review from '../Reviews/Review'
 import Sofas from './Sofas'
-import Discounted from './Discounted'
-import Trending from './Trending'
-import Feature from './Feature'
+import Ottoman from "./Ottoman"
 import Slider from '../Sentence/Slider'
 
 
@@ -29,11 +27,12 @@ const Home = () => {
     <Hero />
     <Slider/>
     <Categories />
-    <Discounted />
-    <Trending />
+    {/* <Discounted /> */}
+    {/* <Trending /> */}
     <Sofas />
     <Beds />
-    <Feature />
+    <Ottoman/>
+    {/* <Feature /> */}
     <Mattress />
     <FootStools />
     <Review />

@@ -5,11 +5,11 @@ import "./home_category.css"
 
 const Categories = () => {
   let array = [
-    { img: "/sofa.jpg", title: "All Sofas", path:"/Products/" + "sofa" },
-    { img: "/bed.jpg", title: "All Beds" , path:"/Products/" + "bed"},
-    { img: "/ottoman.jpg", title: "Ottoman Box" , path:"/Products/" + "coffee"},
-    { img: "/matres.jpg", title: "Mattress", path:"/Products/" + "dinning" },
-    { img: "/footstools.jpg", title: "Fotstools & Pouffes" , path:"/Products/" + "wardrobes"},
+    { img: "/sofa.jpg", title: "All Sofas", path:"/Products/" },
+    { img: "/bed.jpg", title: "All Beds" , path:"/Products"},
+    { img: "/ottoman.jpg", title: "Ottoman Box" , path:"/Products/"},
+    { img: "/matres.jpg", title: "Mattresses", path:"/Products/" },
+    { img: "/footstools.jpg", title: "Fotstools" , path:"/Products/"},
   ]
 
   let move =useNavigate()

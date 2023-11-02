@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { TbPhoneCall } from "react-icons/tb"
+import {AiFillMail } from "react-icons/ai"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-scroll';
@@ -61,22 +62,41 @@ export const Navbar = () => {
   }
 
   return <>
-    <div className={`py-2 bg-white border-bottom ${isSticky ? 'container-fluid' : 'container'}`}>
+
+
+
+    <div className={`py-2 px-4 border-bottom container-fluid `} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
       <div className="row">
         <div className="cols-12 nav1">
           <NavLink to="/" className="ms-md-2">
             <img className='logo_navbar'
-              src="/logo2.png"
+              src="/logo.png"
 
             />
           </NavLink>
+          <div className='nav_cotact'>
+            <div>
+              <a href="tel:00923067208343">
+                <p className='m-0'>Tell: &nbsp;<span className='nav_cotact_icon'><TbPhoneCall></TbPhoneCall></span> </p>
+                <p className='m-0'>
+                  00923067208343
+                </p>
+              </a>
+            </div>
+            <a href="mailto:sharjeelakhtar245@gmail.com">
+              <div>
+                <p className='m-0'>Mail &nbsp; <span className='nav_cotact_icon'><AiFillMail></AiFillMail></span></p>
+                <p className='m-0'>sharjeelakhtar245@gmail.com</p>
+              </div>
+            </a>
+          </div>
           <div className='d-flex align-items-center'>
             <li className="nav-item heart fs-4">
               ❤
             </li>
             {cu._id == undefined &&
               <li className="fs-4 nav-item">
-                <NavLink className="nav-link" to="/login">
+                <NavLink className="nav-link nav-link1" to="/login">
                   Login
                 </NavLink>
               </li>
@@ -86,15 +106,15 @@ export const Navbar = () => {
                 {cu.email != "asd@gmail.com" &&
                   <li className="nav-item" >
                     <NavLink className="nav-link" to={`/cart/${cu._id}`}>
-                      <span className={`fs-4 ${filterCart.length > 0 ? 'cart-red' : ''}`}>
+                      <span className={`fs-4 ${filterCart.length > 0 ? 'cart-red' : 'cart-white'}`}>
                         <FiShoppingCart />
                       </span>
                     </NavLink>
                   </li>
                 }
                 <li className="nav-item dropdown">
-                  <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/149071-removebg-preview.png"
+                  <NavLink className="nav-link dropdown-toggle dropdown-toggle1" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/profile.png"
                       className="img-fluid rounded-3"
                       width={50}
                       height={50}
@@ -119,7 +139,7 @@ export const Navbar = () => {
       </div>
     </div >
 
-    <nav className={`navbar navbar-expand-lg  ${isSticky ? 'container-fluid fixed-top navbar-custom' : 'container'}`}>
+    <nav className={`navbar navbar-expand-lg container-fluid  ${isSticky ? 'fixed-top navbar-custom' : ''}`}>
       <div className="container-fluid nav_bg">
         <button
           className="navbar-toggler custom-toggler"
@@ -159,7 +179,7 @@ export const Navbar = () => {
                 <li> <NavLink className="dropdown-item" to="/products/sofa">All Sofas </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/ ">Corner Sofas </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/sofa-sets">Sofa Sets </NavLink></li>
-                <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa & Beds </NavLink></li>
+                <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/two-&-three-seater-sofas">3 & 2 Seater Sofas</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
                 <li> <NavLink className="dropdown-item" to="products/chesterfield-sofas">Chesterfield Sofas </NavLink></li>
@@ -203,7 +223,7 @@ export const Navbar = () => {
             </li>
             <li className="nav-item nav-item2">
               <NavLink className="nav-link" aria-current="page" to="/products/mattress">
-                Mattress
+                Mattresses
               </NavLink>
             </li>
             <li className="nav-item nav-item2">

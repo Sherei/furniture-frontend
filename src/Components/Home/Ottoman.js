@@ -33,7 +33,7 @@ const Ottoman = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{color:'rgb(2, 2, 94)'}} >onChangettoman Box</p>
+                        <p className='fw-bolder fs-5' style={{color:'rgb(2, 2, 94)'}} >Ottoman Box</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {

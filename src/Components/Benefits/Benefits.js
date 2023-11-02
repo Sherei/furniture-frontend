@@ -5,12 +5,6 @@ const Benefits = () => {
     return <>
         <div className='container main_container mb-5' id='benefit'>
             <div className='row'>
-                <div className='col-lg-12 col-sm-12 Benefit_main'>
-                    <div>
-                        <p className='px-4' style={{ fontWeight: "700", fontSize: "20px" , color:"#1b2950" }}>Benefits Of Our Service</p>
-                    </div>
-                </div>
-
                 <div className='col-lg-12 col-sm-12 my-4'>
                     <div className='benefit_main_box px-lg-5 px-sm-0 gap-5'>
                         <div className='benefit_box'>

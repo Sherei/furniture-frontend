@@ -39,15 +39,15 @@ const Hero = () => {
                                 return <SwiperSlide key={index}>
                                     <div className='slide' style={{ position: "relative" }}>
                                         <img src={`/${data.img}`} alt="" />
-                                        <div className='slide_detail'>
+                                        {/* <div className='slide_detail'>
                                             <img src="/get.png" className='img-fluid' alt="No network" />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </SwiperSlide>
                             })}
 
                         </Swiper>
-
+                            
                     </div>
                 </div>
             </div>

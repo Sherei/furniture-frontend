@@ -6,9 +6,7 @@ import { useDownloadExcel } from 'react-export-table-to-excel';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-
 export const Orders = () => {
-
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -55,7 +53,7 @@ export const Orders = () => {
   const DeleteOrder = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteOrder?id=${dataId}`).then(() => {
       setOrders(orders.filter((item) => dataId !== item._id));
-      toast.success("Order Delete");
+      toast.success('Order Delete');
     });
   };
 
@@ -102,7 +100,7 @@ export const Orders = () => {
               </div>
             ) : (
               <>
-                {orders.length > 0 && (
+                {orders.length > 0 ? (
                   <div className='table-responsive' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
                     <table className='table table-bordered' ref={tableRef}>
                       <thead>
@@ -166,7 +164,12 @@ export const Orders = () => {
                           );
                         })}
                       </tbody>
+                  
                     </table>
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <p>No orders found.</p>
                   </div>
                 )}
               </>
@@ -177,3 +180,4 @@ export const Orders = () => {
     </>
   );
 };
+                  

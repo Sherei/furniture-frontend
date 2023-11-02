@@ -1,8 +1,9 @@
 import React from 'react'
-import { FaPhoneSquareAlt, FaEnvelope, FaInstagram, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa"
+import { FaPhoneSquareAlt, FaEnvelope, FaInstagram, FaLinkedin, FaTwitter, FaFacebook, FaWhatsapp } from "react-icons/fa"
 import { ImLocation2 } from "react-icons/im"
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-scroll'
+import { NavLink } from 'react-router-dom';
 import "./footer.css"
 import { toast } from 'react-toastify';
 
@@ -19,7 +20,7 @@ const Footer = () => {
     <div className='container-fluid mx-0 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
       <div className='row footer_row ' style={{ minHeight: "60vh" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
-      
+
           <p className='footer_head_detail'>We are an independent retail company dedicated to supplying good quality
             products direct to the consumer with substantial savings and ease.</p>
           <div className='footer_address'>
@@ -37,42 +38,43 @@ const Footer = () => {
         </div>
         <div className='footer_menus col-lg-2 col-md-12 col-sm-12'>
           <p className='fw-bolder fs-5'>INFORMATION</p>
-          <Link to='about'>
-            <p>Shop</p>
-          </Link>
-          <Link to="/">
-            <p>Discounted Products</p>
-          </Link>
-          <Link to='case'>
-            <p>Cart</p>
-          </Link>
+          <NavLink to='products'>
+            <p>Shop Now</p>
+          </NavLink>
           <Link to='case'>
             <p>Reviews</p>
           </Link>
-          <Link to='/'>
+          <NavLink to='/faq'>
             <p>Faq's</p>
-          </Link>
+          </NavLink>
           <Link to='about'>
-            <p>Contact</p>
+            <p>Contact Us</p>
           </Link>
         </div>
         <div className='footer_menus col-lg-3 col-md-12 col-sm-12'>
-          <p className='fw-bolder fs-5'>Popular Categories</p>
+          <p className='fw-bolder fs-5'>Popular Categories</p>  
           <Link to='about'>
-            <p>All Beds & Sofas</p>
+            <p>All Sofas</p>
           </Link>
-          <Link to="/">
+          <Link to='about'>
+            <p>All Beds</p>
+          </Link>
+          <Link to='about'>
+            <p>Sofa Beds</p>
+          </Link>
+          <Link to='about'>
+            <p>Ottomon Box</p>
+          </Link>
+          {/* <Link to="/">
             <p>Fabric Sofas</p>
-          </Link>
+          </Link> */}
           <Link to='case'>
             <p>Recliner Sofas</p>
           </Link>
-          <Link to='/'>
+          {/* <Link to='/'>
             <p>Leather Sofas</p>
-          </Link>
-          <Link to='about'>
-            <p>Ottomon Beds</p>
-          </Link>
+          </Link> */}
+
           <Link to='about'>
             <p>Footstools</p>
           </Link>
@@ -81,7 +83,7 @@ const Footer = () => {
         <div className='footer_menus col-lg-4 col-md-12 col-sm-12 mb-5'>
           <p className='fw-bolder fs-5'>NEWSLETTER</p>
           <div className='newsletter_box'>
-            <p>Subscribe for latest articles and resources</p>
+            <p>Subscribe for latest Updates</p>
             <div style={{ position: 'relative' }}>
               <form onSubmit={handleSubmit(News)}>
                 <input type="email" placeholder='Email Address' className='newsletter_input' {...register('news', { required: true })} />
@@ -95,12 +97,11 @@ const Footer = () => {
       <div className='row footer_row2'>
         <div className='col-12 footer_display'>
           <div>
-            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved DVANIO Furniture UK 2023 Created By Excellence Creative.</p>
+            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved SOFA & BEDS UK 2023 Created By Excellence Creative.</p>
           </div>
           <div className='footer_icon'>
             <div><FaInstagram /></div>
-            <div><FaLinkedin /></div>
-            <div><FaTwitter /></div>
+            <div><FaWhatsapp /></div>
             <div><FaFacebook /></div>
           </div>
         </div>

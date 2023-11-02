@@ -59,8 +59,8 @@ export const AddProduct = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
       setProduct(resp.data)
       setPrice(resp.data.price);
-      setDiscount(resp.data.discount); 
-      setFinalPrice(resp.data.Fprice); 
+      setDiscount(resp.data.discount);
+      setFinalPrice(resp.data.Fprice);
     })
   }, [])
 
@@ -76,17 +76,18 @@ export const AddProduct = () => {
 
     const formData = new FormData();
 
-    const cloudinaryUrl = [];
+    if (data.images.length > 0) {
 
-    for (let i = 0; i < data.images.length; i++) {
-      formData.append('file', data.images[i]);
-      formData.append('upload_preset', "vnayn2uf");
-      await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
-        cloudinaryUrl.push(res.data.url);
-      });
+      const cloudinaryUrl = [];
+      for (let i = 0; i < data.images.length; i++) {
+        formData.append('file', data.images[i]);
+        formData.append('upload_preset', "vnayn2uf");
+        await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
+          cloudinaryUrl.push(res.data.url);
+        });
+      }
+      data.images = cloudinaryUrl;
     }
-
-    data.images = cloudinaryUrl;
     data.discount = discount;
     data.price = price;
     data.Fprice = finalPrice;
@@ -194,7 +195,7 @@ export const AddProduct = () => {
                       <option value="select subCategory">Select subCategory</option>
                       <option value="corner-sofas">Corner Sofas</option>
                       <option value="sofa-sets">Sofa Sets</option>
-                      <option value="sofa-beds">Sofa & Beds</option>
+                      <option value="sofa-beds">Sofa Beds</option>
                       <option value="three-&-two-seater-sofas">3 & 2 Seater Sofas</option>
                       <option value="fabric-sofas">Fabric sofas</option>
                       <option value="chesterfield-sofas">Chesterfield Sofas</option>
