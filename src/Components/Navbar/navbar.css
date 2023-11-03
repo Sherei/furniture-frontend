@@ -26,15 +26,13 @@
   /* background-color: rgb(216, 216, 216, 0.9) !important; */
 }
 
-.nav-item {
-  border-right: 1px solid rgb(216, 216, 216);
-}
 
 .nav-item .nav-link {
   font-size: 18px;
 }
 
 .nav-item .nav-link1 {
+
   color: white !important;
 }
 
@@ -47,8 +45,8 @@
   list-style: none;
 }
 
-.nav-item2 {
-  padding: 5px 10px;
+  .nav-item2 {
+    padding: 5px 10px;
   font-weight: 500;
 }
 
@@ -74,7 +72,7 @@
 
 .custom-toggler {
   position: absolute;
-  top: -50px;
+  top: -62px;
   left: -4px;
   font-size: 30px;
   color: white !important;
@@ -149,7 +147,23 @@
 }
 
 .nav_contact2 span {
-  font-size: 12px;
+  font-size: 18px;
+}
+.nav_user, .heart{
+  font-size: 25px !important;
+}
+.nav_image{
+  width: 50px;
+}
+@media screen and (max-width:550px) {
+
+  .nav_contact2 span {
+    font-size: 13px;
+  }
+  .heart{
+    display: none;
+  }
+
 }
 
 @media screen and (max-width:991px) {
@@ -176,9 +190,7 @@
   .nav_contact2 {
     display: block;
   }
-  .navbar {
-    background: transparent !important;
-  }
+
 
 }
 

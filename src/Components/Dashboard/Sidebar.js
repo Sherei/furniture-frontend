@@ -8,6 +8,7 @@ import {
   FaHome,
   FaQq
 } from 'react-icons/fa';
+import {AiFillFolderAdd} from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi';
 import { Dashboard } from './Dashboard';
 import { useNavigate } from 'react-router';
@@ -46,7 +47,7 @@ const Sidebar = () => {
       <div style={{ width: isOpen ? '300px' : '50px' }} className="sidebar">
         <div className="top_section">
           <h1 style={{ display: isOpen ? 'block' : 'none' }} className="logo">
-            DVIANIO
+            SOFA & BEDS
           </h1>
           <div style={{ marginLeft: isOpen ? '50px' : '0px' }} className="bars">
             <FaBars onClick={toggle} />
@@ -92,7 +93,7 @@ const Sidebar = () => {
           <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`} 
           onClick={() => move('/admin-dashboard-add-product')}>
             <div className="icon">
-              <FaCameraRetro />
+              <AiFillFolderAdd />
             </div>
             <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
               Add Product

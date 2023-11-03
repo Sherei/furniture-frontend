@@ -101,11 +101,11 @@ function App() {
       <>
         <div className='main_body'>
 
-          {showScrollButton && (
+          {/* {showScrollButton && (
             <div className='top_btn' onClick={scrollToTop}>
             Back To Top
             </div>
-          )}
+          )} */}
           {/* <img src="/greeting.svg" className='greeting' /> */}
           <a href='https://wa.me/+923067208343' target="blank">
             <div className='d-flex align-items-center gap-2 whatsapp-btn_main'>

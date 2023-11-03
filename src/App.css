@@ -76,7 +76,6 @@ main {
 
 
 @media screen and (max-width:400px) {
-
   .whatsapp-btn {
     left: 14%;
   }
@@ -85,5 +84,10 @@ main {
 @media screen and (min-width:401px) and (max-width:768px) {
   .whatsapp-btn {
     left: 7%;
+  }
+}
+@media screen and (max-width:992px){
+  .top_btn{
+    top: 100px !important;
   }
 }

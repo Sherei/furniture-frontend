@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import {TiUser} from "react-icons/ti"
-import {FaBars,FaUserAlt} from "react-icons/fa"
+import {FaBars,FaRegUser, FaRegHeart} from "react-icons/fa"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-scroll';
@@ -65,7 +64,7 @@ export const Navbar = () => {
 
   return <>
 
-    <div className='container-fluid nav_contact2 ' style={{ backgroundColor: "black" }}>
+    <div className='container-fluid nav_contact2 ' style={{ backgroundColor: "rgba(2, 2, 94,0.5)" }}>
       <div className='row py-3'>
         <div className='col  d-flex justify-content-center align-items-center gap-sm-2'>
           <a href="tel:00923067208343" target='blak' className='fs-6'>
@@ -111,12 +110,12 @@ export const Navbar = () => {
           </div>
           <div className='d-flex align-items-center'>
             <li className="nav-item heart fs-4">
-              ❤
+              <FaRegHeart/>
             </li>
             {cu._id == undefined &&
-              <li className="fs-4 nav-item">
-                <NavLink className="nav-link nav-link1" to="/login">
-                  <FaUserAlt/>
+              <li className="fs-2 nav-item">
+                <NavLink className="nav-link nav_user nav-link1" to="/login">
+                  <FaRegUser/>
                 </NavLink>
               </li>
             }
@@ -134,9 +133,7 @@ export const Navbar = () => {
                 <li className="nav-item dropdown">
                   <NavLink className="nav-link dropdown-toggle dropdown-toggle1" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/profile.png"
-                      className="img-fluid rounded-3"
-                      width={50}
-                      height={50}
+                      className="nav_image"
                       alt=""
                     />
                   </NavLink>
@@ -158,7 +155,7 @@ export const Navbar = () => {
       </div>
     </div >
     <nav className={`navbar navbar-expand-lg container-fluid`}>
-      <div className="container-fluid nav_bg">
+      <div className="container-fluid nav_bg p-0">
         <button
           className="navbar-toggler custom-toggler"
           type="button"

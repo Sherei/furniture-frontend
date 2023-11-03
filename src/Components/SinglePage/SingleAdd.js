@@ -40,7 +40,7 @@ const SingleAdd = () => {
     const [detail, setDetail] = useState('')
     const [base, setBase] = useState('')
     const [fabric, setFabric] = useState('')
-    const [headoard, setHeadoard] = useState('')
+    const [headboard, setHeadboard] = useState('')
     const [ottoman, setOttoman] = useState('')
 
     const [Error, setError] = useState(1);
@@ -94,13 +94,32 @@ const SingleAdd = () => {
             setQuantity((prevQuantity) => prevQuantity - 1);
         }
     };
-    const totalPrice = product?.Fprice * quantity;
+    // const totalPrice = product?.Fprice * quantity;
+
+    const calculateTotalPrice = (price, quantity, size,mattress, detail, fabric,headboard, ottoman) => {
+
+        let totalPrice = price * quantity;
+
+        if (size === "small-double" || size === "2-seater" || size === "4ft" || mattress === "small-double") {
+            totalPrice += 1 * 50;
+        } else if (size === "double" || size === "3-seater" || size === "4'6ft" || mattress === "double") {
+            totalPrice += 3 * 50;
+        } else if (size === "king" || size === "5-seater" || size === "5ft" || mattress === "king") {
+            totalPrice += 4 * 50;
+        } else if (size === "super-king" || size === "corner-sofa" || size === "6ft" || mattress === "super-king") {
+            totalPrice += 5 * 50;
+        }
+
+        return totalPrice;
+    };
+
+    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, mattress, detail, fabric, headboard, ottoman);
 
 
     async function AddToCart(product) {
 
         if (product.category === "bed") {
-            if (!size || !fabric || !detail || !color || !base || !headoard) {
+            if (!size || !fabric || !detail || !color || !base || !headboard) {
                 return setError("bed fields")
             }
         }
@@ -110,6 +129,7 @@ const SingleAdd = () => {
             }
         }
         if (product.category === "mattress") {
+
             if (!size) {
                 return setError("mattress size")
             }
@@ -302,31 +322,46 @@ const SingleAdd = () => {
                         }
                         {product.discount && product.discount > 0 ? (
                             <>
-                                {product.category === "bed" &&
+                                {product.category === "bed" ? (
                                     <div className='text-center'>
                                         <span className='fw-bold fs-5 mx-2' style={{ color: "red" }}>{`£${totalPrice?.toFixed(1)}`}</span>
                                         <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed(2)}`}</s></span>
                                     </div>
-                                }
-                                {product.category !== "bed" &&
+                                ) : (
                                     <div>
                                         <span className='fw-bold fs-5 mx-2' style={{ color: "red" }}>{`£${totalPrice?.toFixed(1)}`}</span>
                                         <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed(2)}`}</s></span>
                                     </div>
-                                }
+                                )}
                             </>
                         ) : (
-                            <span className='fw-bolder fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed(2)}`}</span>
+                            <>
+                                {product.category === "bed" ? (
+                                    <span className='fw-bolder fs-5 text-center' style={{ color: "red" }}>
+                                        {`£${totalPrice?.toFixed(2)}`}
+                                    </span>
+                                ) : (
+                                    <span className='fw-bolder fs-5' style={{ color: "red" }}>
+                                        {`£${totalPrice?.toFixed(2)}`}
+                                    </span>
+                                )}
+                            </>
                         )}
-                        {product.category != "footstools" && (
-                            <div className='single_form  mt-3'>
-                                {(Error === "bed fields" || Error === "sofa fields") &&
-                                    <div className='error'>All fields are required</div>
-                                }
-                                {Error === "mattress size" &&
-                                    <div className='error'>Size is required</div>
-                                }
-                                {product.category === "sofa" &&
+
+
+
+                        <div className='single_form  mt-3'>
+                            {(Error === "bed fields" || Error === "sofa fields") &&
+                                <div className='error'>All fields are required</div>
+                            }
+                            {Error === "mattress size" &&
+                                <div className='error'>Size is required</div>
+                            }
+
+                            {/*.................................... Sofa Start .......................... */}
+
+                            {product.category === "sofa" &&
+                                <>
                                     <div>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Size <span style={{ color: "red" }}>*</span></label>
                                         <select className="form-control form-select  mb-2 mr-sm-2"
@@ -339,40 +374,84 @@ const SingleAdd = () => {
                                                 }
                                             }}>
                                             <option value="select size">Select Size</option>
-                                            <option value="corer-sofa">Corer Sofa</option>
-                                            <option value="single">3 + 2 Sofa Set</option>
-                                            <option value="small-double">3 Seater</option>
-                                            <option value="small-double">2 Seater</option>
-                                            <option value="small-double">1 Seater</option>
+                                            <option value="corner-sofa">Corner Sofa</option>
+                                            <option value="5-seater">3 + 2 Sofa Set</option>
+                                            <option value="3-seater">3 Seater</option>
+                                            <option value="2-seater">2 Seater</option>
+                                            <option value="1-seater">1 Seater</option>
                                         </select>
                                     </div>
-                                }
 
-                                {product.category === "mattress" &&
-                                    <div>
-                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size <span style={{ color: "red" }}>*</span></label>
-                                        <select className="form-control form-select  mb-2 mr-sm-2"
-
-                                            onChange={(e) => {
-                                                if (e.target.value === "select size") {
-                                                    return setError("size")
-                                                } else {
-                                                    setSize(e.target.value)
-                                                }
-                                            }}>
-                                            <option value="select size">Select Size</option>
-                                            <option value="single">Single Size</option>
-                                            <option value="small-double">Small Double Size</option>
-                                            <option value="double">Double Size</option>
-                                            <option value="king">King Size</option>
-                                            <option value="super-king">Super King Size</option>
+                                    <div className='mt-3'>
+                                        {product.category === "sofa" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
+                                                <span style={{ color: "red" }}>*</span>
+                                            </label>
+                                        }
+                                        <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                        <select onChange={(e) => {
+                                            if (e.target.value === "select color") {
+                                                return setError("color")
+                                            } else if (product.category === "mattress" && e.target.value === "select color") {
+                                                return setColor("Not selected")
+                                            } else {
+                                                setColor(e.target.value)
+                                            }
+                                        }} className="form-select mb-2 mr-sm-2">
+                                            <option value="select color">Please Choose</option>
+                                            <option value="black">Black</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="grey">Grey</option>
+                                            <option value="mink">Mink</option>
+                                            <option value="royal-blue">Royal Blue</option>
+                                            <option value="sky-blue">Sky Blue</option>
+                                            <option value="white">White</option>
+                                            <option value="mustered-gold">Mustered Gold</option>
+                                            <option value="cream">Cream</option>
+                                            <option value="pink">Pink</option>
+                                            <option value="steel">Steel</option>
+                                            <option value="teal">Teal</option>
+                                            <option value="green">Green</option>
+                                            <option value="duck-egg">Duck Egg</option>
+                                            <option value="beige">Beige</option>
                                         </select>
                                     </div>
-                                }
-                                {(product.category === "bed" || product.category === "mattress") &&
+                                </>
+                            }
+
+                            {/*............................ Sofa End ............................ */}
+
+
+
+                            {/*........................ Bed & Mattress Start ..................... */}
+
+                            {(product.category === "bed" || product.category === "mattress") && (
+                                <>
+                                    {product.category === "mattress" && (
+                                        <div>
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size <span style={{ color: "red" }}>*</span></label>
+                                            <select className="form-control form-select mb-2 mr-sm-2"
+                                                onChange={(e) => {
+                                                    if (e.target.value === "select size") {
+                                                        return setError("size");
+                                                    } else {
+                                                        setSize(e.target.value);
+                                                    }
+                                                }}>
+                                                <option value="select size">Select Size</option>
+                                                <option value="single">Single Size</option>
+                                                <option value="small-double">Small Double Size</option>
+                                                <option value="double">Double Size</option>
+                                                <option value="king">King Size</option>
+                                                <option value="super-king">Super King Size</option>
+                                            </select>
+                                        </div>
+                                    )}
                                     <div>
                                         {product.category === "bed" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size <span style={{ color: "red" }}>*</span></label>
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
+                                                <span style={{ color: "red" }}>*</span>
+                                            </label>
                                         }
                                         {product.category === "mattress" &&
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size</label>
@@ -389,16 +468,14 @@ const SingleAdd = () => {
                                                 }
                                             }}>
                                             <option value="select size">Select Size</option>
-                                            <option value="single">3ft Single</option>
-                                            <option value="small-double">4ft Small Double</option>
-                                            <option value="small-double">4'6ft Standard Double</option>
-                                            <option value="small-double">5ft King</option>
-                                            <option value="small-double">6ft Super King</option>
+                                            <option value="3ft">3ft Single</option>
+                                            <option value="4ft">4ft Small Double</option>
+                                            <option value="4'6ft">4'6ft Standard Double</option>
+                                            <option value="5ft">5ft King</option>
+                                            <option value="6ft">6ft Super King</option>
                                         </select>
                                     </div>
-                                }
 
-                                {(product.category === "bed" || product.category === "mattress") &&
                                     <div className='mt-3'>
                                         {(product.category === "bed" || product.category === "ottoman-box") &&
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric <span style={{ color: "red" }}>*</span></label>
@@ -424,19 +501,26 @@ const SingleAdd = () => {
                                             <option value="chenille">Chenille</option>
                                         </select>
                                     </div>
-                                }
-                                {product.category === "bed" &&
+
                                     <div className='mt-3'>
-                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height <span style={{ color: "red" }}>*</span></label>
+                                        {product.category === "bed" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height
+                                                <span style={{ color: "red" }}>*</span>
+                                            </label>
+                                        }
+                                        {product.category === "mattress" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height</label>
+                                        }
+
                                         <p className='mt-2 mb-0'>Please Choose Headboard Height</p>
                                         <select className="form-select mb-2 mr-sm-2"
                                             onChange={(e) => {
                                                 if ((product.category === "bed") && e.target.value === "headboard") {
                                                     return setError("headboard")
-                                                } else if (product.category === "bed" && e.target.value === "headboard") {
-                                                    return setHeadoard("Not selected")
+                                                } else if (product.category === "mattress" && e.target.value === "headboard") {
+                                                    return setHeadboard("Not selected")
                                                 } else {
-                                                    setHeadoard(e.target.value)
+                                                    setHeadboard(e.target.value)
                                                 }
                                             }}>
                                             <option value="select headboard">Please Choose</option>
@@ -448,129 +532,247 @@ const SingleAdd = () => {
                                             <option value="two-part">Two Part Option Available</option>
                                         </select>
                                     </div>
-                                }
 
-                                {(product.category === "bed" || product.category === "sofa"
-                                    || product.category === "ottoman-box" || product.category === "footstools" || product.category === "mattress") &&
-                                    <>
-                                        <div className='mt-3'>
-                                            {(product.category === "bed" || product.category === "sofa"
-                                                || product.category === "ottoman-box" || product.category === "footstools") &&
-                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour <span style={{ color: "red" }}>*</span></label>
-                                            }
-                                            {product.category === "mattress" &&
-                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Colour</label>
-                                            }
-                                            <p className='mt-2 mb-0'>Please Choose Colour</p>
-                                            <select onChange={(e) => {
-                                                if (e.target.value === "select color") {
-                                                    return setError("color")
-                                                } else if (product.category === "mattress" && e.target.value === "select color") {
-                                                    return setColor("Not selected")
-                                                } else {
-                                                    setColor(e.target.value)
-                                                }
-                                            }} className="form-select mb-2 mr-sm-2">
-                                                <option value="select color">Please Choose</option>
-                                                <option value="black">Black</option>
-                                                <option value="silver">Silver</option>
-                                                <option value="grey">Grey</option>
-                                                <option value="mink">Mink</option>
-                                                <option value="royal-blue">Royal Blue</option>
-                                                <option value="sky-blue">Sky Blue</option>
-                                                <option value="white">White</option>
-                                                <option value="mustered-gold">Mustered Gold</option>
-                                                <option value="cream">Cream</option>
-                                                <option value="pink">Pink</option>
-                                                <option value="steel">Steel</option>
-                                                <option value="teal">Teal</option>
-                                                <option value="green">Green</option>
-                                                <option value="duck-egg">Duck Egg</option>
-                                                <option value="beige">Beige</option>
-                                            </select>
-                                        </div>
-                                    </>
-                                }
-                                {(product.category === "bed" || product.category === "mattress") &&
-                                    <>
-                                        <div className='mt-3'>
-                                            {product.category === "bed" &&
-                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail <span style={{ color: "red" }}>*</span></label>
-                                            }
-                                            {product.category === "mattress" &&
-                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail</label>
-                                            }
-                                            <p className='mt-2 mb-0'>Please Choose more Detail</p>
-                                            <select
-                                                onChange={(e) => {
-                                                    if (e.target.value === "select detail") {
-                                                        return setError("detail")
-                                                    } else if (product.category === "mattress" && e.target.value === "select detail") {
-                                                        setDetail("Not selected")
-                                                    } else {
-                                                        setDetail(e.target.value)
-                                                    }
-                                                }} className="form-select mb-2 mr-sm-2">
-                                                <option value="select detail">Please Choose</option>
-                                                <option value="button">Buttons +£10.0</option>
-                                                <option value="diamonds">Diamonds</option>
-                                                <option value="not-required">Not Required</option>
-                                            </select>
-                                        </div>
-
-                                        <div className='mt-3'>
-                                            {product.category === "bed" &&
-                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base <span style={{ color: "red" }}>*</span></label>
-                                            }
-                                            {product.category === "mattress" &&
-                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base</label>
-                                            }
-                                            <p className='mt-2 mb-0'>Please Choose Bed Base</p>
-                                            <select
-                                                onChange={(e) => {
-
-                                                    if (product.category === "mattress" && e.target.value === "select base") {
-                                                        setBase('Not Selected')
-                                                    } else if (e.target.value === "select base") {
-                                                        return setError("base")
-                                                    } else {
-                                                        setBase(e.target.value)
-                                                    }
-                                                }} className="form-select mb-2 mr-sm-2">
-                                                <option value="select base">Please Choose</option>
-                                                <option value="slats">Slats</option>
-                                                <option value="ottoman">Ottoman Gaslift +£120.00</option>
-                                                <option value="solid">Solid Base +£60.00</option>
-                                            </select>
-                                        </div>
-                                    </>
-                                }
-                                {product.category === "bed" &&
                                     <div className='mt-3'>
-                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress</label>
-                                        <p className='mt-2 mb-0'>Please Choose bed mattress</p>
-                                        <select
-                                            onChange={(e) => {
-                                                if (e.target.value === "select mattress") {
-                                                    return setError("mat")
-                                                } else {
-                                                    setMattress(e.target.value)
-                                                }
-                                            }}
-                                            className="form-select mb-2 mr-sm-2">
-                                            <option value="select mattress">Please Choose</option>
-                                            <option value="Single">Single</option>
-                                            <option value="small-double">Small Double</option>
-                                            <option value="double">Double</option>
-                                            <option value="king">King</option>
-                                            <option value="super-king">Super King</option>
-                                            <option value="not-require">Not Require</option>
-
+                                        {product.category === "bed" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
+                                                <span style={{ color: "red" }}>*</span>
+                                            </label>
+                                        }
+                                        {product.category === "mattress" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Colour</label>
+                                        }
+                                        <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                        <select onChange={(e) => {
+                                            if (e.target.value === "select color") {
+                                                return setError("color")
+                                            } else if (product.category === "mattress" && e.target.value === "select color") {
+                                                return setColor("Not selected")
+                                            } else {
+                                                setColor(e.target.value)
+                                            }
+                                        }} className="form-select mb-2 mr-sm-2">
+                                            <option value="select color">Please Choose</option>
+                                            <option value="black">Black</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="grey">Grey</option>
+                                            <option value="mink">Mink</option>
+                                            <option value="royal-blue">Royal Blue</option>
+                                            <option value="sky-blue">Sky Blue</option>
+                                            <option value="white">White</option>
+                                            <option value="mustered-gold">Mustered Gold</option>
+                                            <option value="cream">Cream</option>
+                                            <option value="pink">Pink</option>
+                                            <option value="steel">Steel</option>
+                                            <option value="teal">Teal</option>
+                                            <option value="green">Green</option>
+                                            <option value="duck-egg">Duck Egg</option>
+                                            <option value="beige">Beige</option>
                                         </select>
                                     </div>
-                                }
-                            </div>
-                        )}
+
+                                    <div className='mt-3'>
+                                        {product.category === "bed" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail <span style={{ color: "red" }}>*</span></label>
+                                        }
+                                        {product.category === "mattress" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail</label>
+                                        }
+                                        <p className='mt-2 mb-0'>Please Choose more Detail</p>
+                                        <select
+                                            onChange={(e) => {
+                                                if (e.target.value === "select detail") {
+                                                    return setError("detail")
+                                                } else if (product.category === "mattress" && e.target.value === "select detail") {
+                                                    setDetail("Not selected")
+                                                } else {
+                                                    setDetail(e.target.value)
+                                                }
+                                            }} className="form-select mb-2 mr-sm-2">
+                                            <option value="select detail">Please Choose</option>
+                                            <option value="button">Buttons +£10.0</option>
+                                            <option value="diamonds">Diamonds</option>
+                                            <option value="not-required">Not Required</option>
+                                        </select>
+                                    </div>
+
+                                    <div className='mt-3'>
+                                        {product.category === "bed" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base <span style={{ color: "red" }}>*</span></label>
+                                        }
+                                        {product.category === "mattress" &&
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base</label>
+                                        }
+                                        <p className='mt-2 mb-0'>Please Choose Bed Base</p>
+                                        <select
+                                            onChange={(e) => {
+
+                                                if (product.category === "mattress" && e.target.value === "select base") {
+                                                    setBase('Not Selected')
+                                                } else if (e.target.value === "select base") {
+                                                    return setError("base")
+                                                } else {
+                                                    setBase(e.target.value)
+                                                }
+                                            }} className="form-select mb-2 mr-sm-2">
+                                            <option value="select base">Please Choose</option>
+                                            <option value="slats">Slats</option>
+                                            <option value="ottoman">Ottoman Gaslift +£120.00</option>
+                                            <option value="solid">Solid Base +£60.00</option>
+                                        </select>
+                                    </div>
+
+                                    {product.category === "bed" &&
+                                        <div className='mt-3'>
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress</label>
+                                            <p className='mt-2 mb-0'>Please Choose bed mattress</p>
+                                            <select
+                                                onChange={(e) => {
+                                                    if (e.target.value === "select mattress") {
+                                                        return setError("mat")
+                                                    } else {
+                                                        setMattress(e.target.value)
+                                                    }
+                                                }}
+                                                className="form-select mb-2 mr-sm-2">
+                                                <option value="select mattress">Please Choose</option>
+                                                <option value="Single">Single</option>
+                                                <option value="small-double">Small Double</option>
+                                                <option value="double">Double</option>
+                                                <option value="king">King</option>
+                                                <option value="super-king">Super King</option>
+                                                <option value="not-require">Not Require</option>
+                                            </select>
+                                        </div>
+                                    }
+                                </>
+                            )}
+                        </div>
+
+                        {/*.................................... Bed End .......................... */}
+
+
+                        {/*.................................... Ottoman Start .......................... */}
+
+                        {product.category === "ottoman-box" &&
+                            <>
+                                <div>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Size <span style={{ color: "red" }}>*</span></label>
+                                    <select className="form-control form-select  mb-2 mr-sm-2"
+
+                                        onChange={(e) => {
+                                            if (e.target.value === "select size") {
+                                                return setError("size")
+                                            } else {
+                                                setSize(e.target.value)
+                                            }
+                                        }}>
+                                        <option value="select size">Select Size</option>
+                                        <option value="single">Single Size</option>
+                                        <option value="small-double">Small Double Size</option>
+                                        <option value="double">Double Size</option>
+                                        <option value="king">King Size</option>
+                                        <option value="super-king">Super King Size</option>
+                                    </select>
+                                </div>
+
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
+                                        <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                    <select onChange={(e) => {
+                                        if (e.target.value === "select color") {
+                                            return setError("color")
+                                        } else if (product.category === "mattress" && e.target.value === "select color") {
+                                            return setColor("Not selected")
+                                        } else {
+                                            setColor(e.target.value)
+                                        }
+                                    }} className="form-select mb-2 mr-sm-2">
+                                        <option value="select color">Please Choose</option>
+                                        <option value="black">Black</option>
+                                        <option value="silver">Silver</option>
+                                        <option value="grey">Grey</option>
+                                        <option value="mink">Mink</option>
+                                        <option value="royal-blue">Royal Blue</option>
+                                        <option value="sky-blue">Sky Blue</option>
+                                        <option value="white">White</option>
+                                        <option value="mustered-gold">Mustered Gold</option>
+                                        <option value="cream">Cream</option>
+                                        <option value="pink">Pink</option>
+                                        <option value="steel">Steel</option>
+                                        <option value="teal">Teal</option>
+                                        <option value="green">Green</option>
+                                        <option value="duck-egg">Duck Egg</option>
+                                        <option value="beige">Beige</option>
+                                    </select>
+                                </div>
+                            </>
+                        }
+                        {/*.................................... Ottoman End .......................... */}
+
+
+                        {/*.................................... Footstools Start .......................... */}
+
+                        {product.category === "footstools" &&
+                            <>
+                                <div>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Size
+                                        <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <select className="form-control form-select  mb-2 mr-sm-2"
+
+                                        onChange={(e) => {
+                                            if (e.target.value === "select size") {
+                                                return setError("size")
+                                            } else {
+                                                setSize(e.target.value)
+                                            }
+                                        }}>
+                                        <option value="select size">Select Size</option>
+                                        <option value="single">Single Size</option>
+                                        <option value="small-double">Small Double Size</option>
+                                        <option value="double">Double Size</option>
+                                        <option value="king">King Size</option>
+                                        <option value="super-king">Super King Size</option>
+                                    </select>
+                                </div>
+
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
+                                        <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                    <select onChange={(e) => {
+                                        if (e.target.value === "select color") {
+                                            return setError("color")
+                                        } else {
+                                            setColor(e.target.value)
+                                        }
+                                    }} className="form-select mb-2 mr-sm-2">
+                                        <option value="select color">Please Choose</option>
+                                        <option value="black">Black</option>
+                                        <option value="silver">Silver</option>
+                                        <option value="grey">Grey</option>
+                                        <option value="mink">Mink</option>
+                                        <option value="royal-blue">Royal Blue</option>
+                                        <option value="sky-blue">Sky Blue</option>
+                                        <option value="white">White</option>
+                                        <option value="mustered-gold">Mustered Gold</option>
+                                        <option value="cream">Cream</option>
+                                        <option value="pink">Pink</option>
+                                        <option value="steel">Steel</option>
+                                        <option value="teal">Teal</option>
+                                        <option value="green">Green</option>
+                                        <option value="duck-egg">Duck Egg</option>
+                                        <option value="beige">Beige</option>
+                                    </select>
+                                </div>
+                            </>
+                        }
+
+                        {/*.................................... Footstools End .......................... */}
 
                         <div className='sigle_quatity_main'>
                             <div className='mt-3'>
@@ -654,9 +856,10 @@ const SingleAdd = () => {
                             ))}
                     </div>
                 </div>
-
-
             </div>
+
+
+
             <div className='row mt-5 pt-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1  order-xl-1'>
                     {comments.filter((item) => item.productId === productId).length > 0 && (
