@@ -128,11 +128,11 @@ export const Products = () => {
                           <td onClick={() => move("/single_Add/" + data._id)}>{data.title}</td>
                           <td >{data.category}</td>
                           <td className='text-center'>
-                            {data.subCategory === "select subCategory" ? "No subCategory" : data.subCategory}
+                            {data.subCategory === undefined? "No subCategory" : data.subCategory}
                           </td>
-                          <td className='text-center'>&pound; {data.price.toFixed(2)}</td>
+                          <td className='text-center'>&pound; {data?.price?.toFixed(2)}</td>
 
-                          <td className='text-center'>&pound; {data.Fprice.toFixed(2)}</td>
+                          <td className='text-center'>&pound; {data?.Fprice?.toFixed(2)}</td>
                           <td className='text-center'>{data.discount ? data.discount + '%' : '0%'}</td>
                           <td className='text-center'>{formatDateTime(data.date)}</td>
                           <td className='text-center'>
@@ -144,7 +144,8 @@ export const Products = () => {
                           </td>
                           <td className='text-center'>
                             <button
-                              className="delete_btn" onClick={() => move(`/admin-dashboard-add-product/${data._id}`)}>
+                              className="delete_btn" onClick={() => move(`/admin-dashboard-add-product/${data._id}`)}
+                              style={{color:"rgb(2, 2, 94)"}}>
                               <FaPencilAlt />
                             </button>
                           </td>

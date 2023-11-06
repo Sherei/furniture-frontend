@@ -124,10 +124,10 @@ export const Cart = () => {
   }, 0);
 
 
-  if (filterCart.length === 0) {
+  if (filterCart?.length === 0) {
     return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
       <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-      <button className='btn review_btn' onClick={() => move('/Products')}>
+      <button className='btn review_btn' onClick={() => move('/Products/all')}>
         Browse Products <FaArrowRight />
       </button>
     </div>
@@ -154,11 +154,11 @@ export const Cart = () => {
           <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5">
             <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
             <div>
-              <h3 className="fw-normal mb-0 text-black">Length: {filterCart.length}</h3>
+              <h3 className="fw-normal mb-0 text-black">Length: {filterCart?.length}</h3>
             </div>
           </div>
 
-          {filterCart.length > 0 && (
+          {filterCart?.length > 0 && (
             <div className="table-responsive">
               <table className="table table-bordered">
                 <thead>
@@ -175,33 +175,33 @@ export const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {filterCart.map((item, index) => (
+                  {filterCart?.map((item, index) => (
                     <tr key={item._id} className='cart_row'>
                       <td className='text-center'>{index + 1}</td>
-                      <td className='text-center'>{item.sn}</td>
+                      <td className='text-center'>{item?.sn}</td>
                       <td className='text-center'>
                         <img
-                          src={item.image}
+                          src={item?.image}
                           className="img-fluid rounded-3"
                           alt="No Internet"
                           style={{ width: "100px" }}
                         />
                       </td>
-                      <td>{item.title.slice(0, 15)}</td>
+                      <td>{item?.title?.slice(0, 15)}</td>
 
-                      <td className="color-red text-center">{`£${item.price.toFixed(2)}`}</td>
-                      <td className="color-red text-center">{`${item.discount}%`}</td>
+                      <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
+                      <td className="color-red text-center">{`${item?.discount}%`}</td>
                       <td className='text-center'>
                         <input
                           className='cart_input border text-center'
                           type="number"
                           min={1}
                           style={{ width: "60px" }}
-                          defaultValue={itemQuantities[item._id]}
-                          onChange={(e) => handleItemQuantityChange(item._id, parseInt(e.target.value))}
+                          defaultValue={itemQuantities[item?._id]}
+                          onChange={(e) => handleItemQuantityChange(item?._id, parseInt(e.target.value))}
                         />
                       </td>
-                      <td className='text-center'>{`£${(item.Fprice).toFixed(2)}`}</td>
+                      <td className='text-center'>{`£${(item?.Fprice).toFixed(2)}`}</td>
                       <td className='text-center'>
                         <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                           <AiFillDelete />

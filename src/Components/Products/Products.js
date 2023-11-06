@@ -6,8 +6,6 @@ import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from "../Loader/Loader"
 import axios from 'axios';
-
-
 import "./products.css"
 
 
@@ -45,19 +43,16 @@ const Products = () => {
                 setLoading(false);
             }
         });
-    }, [category]);
+    }, []);
 
-    useEffect(() => {
-        setCategory(prodctName?.toLowerCase());
-    }, [prodctName]);
+
 
     const SearchInput = (e) => {
         setSearch(e.target.value)
     }
 
     function ClearFilter() {
-        setCategory("all")
-        setCategory("all")
+        setCategory("")
         setSortOrder("")
         setActiveGrid("grid")
     }
@@ -89,32 +84,33 @@ const Products = () => {
 
     function Filter() {
         setFilter("showFilter")
-
     }
 
+    useEffect(() => {
+       
+            setCategory(prodctName?.toLowerCase());
+       
+    }, [prodctName]);
+
     const filterProduct = data.filter((product) => {
-        const Lsearch = search?.toLowerCase();
-        const Lcategory = category?.toLowerCase();
-        const LproductName = prodctName?.toLowerCase();
-    
-        const categoryMatches = LproductName === "all"  || category ? (
-            product?.category?.toLowerCase() === category || product?.subCategory?.toLowerCase() === category
-        ) : true;
-    
+        const Lsearch = (search ?? "").toLowerCase();
+        const Lcategory = (category ?? "").toLowerCase();
+        const LproductName = (prodctName ?? "").toLowerCase();
+
+        const LsearchMatch = Lcategory.includes(Lsearch) ||
+            product?.category?.toLowerCase().includes(Lsearch) ||
+            product?.title?.toLowerCase().includes(Lsearch);
+
+        const categoryMatches = LproductName === "all" ? true
+            : product?.category?.toLowerCase() === category || product?.subCategory?.toLowerCase() === category || category === "all"; // Include all categories when "all" is selected
+
         const productNameMatches = LproductName === "all" || (
-            product?.category?.toLowerCase().includes(Lcategory) || product?.subCategory?.toLowerCase().includes(Lcategory)
+            product?.category?.toLowerCase().includes(Lcategory) ||
+            product?.subCategory?.toLowerCase().includes(Lcategory)
         );
-    
-        return (
-            productNameMatches && categoryMatches && 
-            (Lsearch === "" || LproductName === "all" ||
-                product?.title?.toLowerCase().includes(Lsearch) ||
-                product?.category?.toLowerCase().includes(Lsearch) ||
-                product?.subCategory?.toLowerCase().includes(Lsearch)
-            )
-        );
+
+        return productNameMatches && categoryMatches && LsearchMatch;
     });
-    
 
 
     return <>
@@ -138,97 +134,77 @@ const Products = () => {
                             <span className='close px-3' onClick={() => setFilter('')}>❌</span>
                         </div>
                         <div className="accordion" id="accordionExample">
-                            {prodctName === "all" &&
-                                <>
-
-                                    {prodctName === "sofa" &&
-                                        <div className="accordion-item accordian-item1">
-                                            <div className="accordion-item accordian-item1">
-                                                <h2 className="accordion-header custom_header">
-                                                    <button
-                                                        className="accordion-button accordian_btn"
-                                                        type="button"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseOne"
-                                                        aria-expanded="true"
-                                                        aria-controls="collapseOne"
-                                                    >
-                                                        <p className='fw-bolder fs-6'>All Sofas</p>
-                                                    </button>
-                                                </h2>
-                                                <div
-                                                    id="collapseOne"
-                                                    className="accordion-collapse collapse show"
-                                                    data-bs-parent="#accordionExample"
-                                                >
-                                                    <div className="accordion-body">
-                                                        <p onClick={() => setCategory("sofa")} className={setCategory === "sofa" ? 'activeCategory' : ''}>All in sofas</p>
-                                                        <p onClick={() => setCategory("corner-sofas")} className={setCategory === "corner-sofas" ? 'activeCategory' : ''}>Corner Sofas</p>
-                                                        <p onClick={() => setCategory("sofa-sets")} className={setCategory === "sofa-sets" ? 'activeCategory' : ''}>Sofa Sets </p>
-                                                        <p onClick={() => setCategory("sofa-beds")} className={setCategory === "sofa-beds" ? 'activeCategory' : ''}>Sofa Beds</p>
-                                                        <p onClick={() => setCategory("three-&-two-seater-sofas")} className={setCategory === "three-&-two-seater-sofas" ? 'activeCategory' : ''}>3 & 2 Seater Sofas</p>
-                                                        <p onClick={() => setCategory("fabric-sofas")} className={setCategory === "fabric-sofas" ? 'activeCategory' : ''}>Fabric sofas </p>
-                                                        <p onClick={() => setCategory("chesterfield-sofas")} className={setCategory === "chesterfield-sofas" ? 'activeCategory' : ''}>Chesterfield Sofas</p>
-                                                        <p onClick={() => setCategory("u-shaped-sofas")} className={setCategory === "u-shaped-sofas" ? 'activeCategory' : ''}>U Shaped Sofas</p>
-                                                        <p onClick={() => setCategory("leather-sofas")} className={setCategory === "leather-sofas" ? 'activeCategory' : ''}>Leather Sofas</p>
-                                                        <p onClick={() => setCategory("recliner-sofas")} className={setCategory === "recliner-sofas" ? 'activeCategory' : ''}>Recliner Sofas</p>
-                                                        <p onClick={() => setCategory("arm-chair-&-swivel-chair")} className={setCategory === "arm-chair-&-swivel-chair" ? 'activeCategory' : ''}>Arm Chair & Swivel Chair</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <div className="accordion-item accordian-item1">
+                                <div className="accordion-item accordian-item1">
+                                    <h2 className="accordion-header custom_header">
+                                        <button
+                                            className="accordion-button accordian_btn"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne"
+                                            aria-expanded="true"
+                                            aria-controls="collapseOne"
+                                        >
+                                            <p className='fw-bolder fs-6 pt-2'>All Sofas</p>
+                                        </button>
+                                    </h2>
+                                    <div
+                                        id="collapseOne"
+                                        className="accordion-collapse collapse show"
+                                        data-bs-parent="#accordionExample"
+                                    >
+                                        <div className="accordion-body">
+                                            <p onClick={() => setCategory("sofa")} className={setCategory === "sofa" ? 'activeCategory' : ''}>All in sofas</p>
+                                            <p onClick={() => setCategory("corner-sofas")} className={setCategory === "corner-sofas" ? 'activeCategory' : ''}>Corner Sofas</p>
+                                            <p onClick={() => setCategory("sofa-sets")} className={setCategory === "sofa-sets" ? 'activeCategory' : ''}>Sofa Sets </p>
+                                            <p onClick={() => setCategory("sofa-beds")} className={setCategory === "sofa-beds" ? 'activeCategory' : ''}>Sofa Beds</p>
+                                            <p onClick={() => setCategory("three-&-two-seater-sofas")} className={setCategory === "three-&-two-seater-sofas" ? 'activeCategory' : ''}>3 & 2 Seater Sofas</p>
+                                            <p onClick={() => setCategory("fabric-sofas")} className={setCategory === "fabric-sofas" ? 'activeCategory' : ''}>Fabric sofas </p>
+                                            <p onClick={() => setCategory("chesterfield-sofas")} className={setCategory === "chesterfield-sofas" ? 'activeCategory' : ''}>Chesterfield Sofas</p>
+                                            <p onClick={() => setCategory("u-shaped-sofas")} className={setCategory === "u-shaped-sofas" ? 'activeCategory' : ''}>U Shaped Sofas</p>
+                                            <p onClick={() => setCategory("leather-sofas")} className={setCategory === "leather-sofas" ? 'activeCategory' : ''}>Leather Sofas</p>
+                                            <p onClick={() => setCategory("recliner-sofas")} className={setCategory === "recliner-sofas" ? 'activeCategory' : ''}>Recliner Sofas</p>
+                                            <p onClick={() => setCategory("arm-chair-&-swivel-chair")} className={setCategory === "arm-chair-&-swivel-chair" ? 'activeCategory' : ''}>Arm Chair & Swivel Chair</p>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                    }
-                                    {prodctName === "bed" &&
-                                        <div className="accordion-item accordian-item1">
-                                            <h2 className="accordion-header custom_header">
-                                                <button
-                                                    className="accordion-button accordian_btn"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseTwo"
-                                                    aria-expanded="true"
-                                                    aria-controls="collapseTwo"
-                                                >
-                                                    <p className='fw-bolder fs-6'>All Beds</p>
-                                                </button>
-                                            </h2>
-                                            <div
-                                                id="collapseTwo"
-                                                className="accordion-collapse collapse show"
-                                                data-bs-parent="#accordionExample"
-                                            >
-                                                <div className="accordion-body">
-                                                    <p onClick={() => setCategory("bed")} className={setCategory === "bed" ? 'activeCategory' : ''}>All in Beds</p>
-                                                    <p onClick={() => setCategory("ambassador-beds")} className={setCategory === "ambassador-beds" ? 'activeCategory' : ''}>Ambassador Beds </p>
-                                                    <p onClick={() => setCategory("panel-bed")} className={setCategory === "panel-bed" ? 'activeCategory' : ''}>Panel Beds</p>
-                                                    <p onClick={() => setCategory("wingback-beds-frames")} className={setCategory === "wingback-beds-frames" ? 'activeCategory' : ''}>Wingback bed Frames</p>
-                                                    <p onClick={() => setCategory("ottoman-beds")} className={setCategory === "ottoman-beds" ? 'activeCategory' : ''}>Ottoman Beds </p>
-                                                    <p onClick={() => setCategory("bespoke-beds")} className={setCategory === "bespoke-beds" ? 'activeCategory' : ''}>Bespoke Beds</p>
-                                                    <p onClick={() => setCategory("chesterfield-beds")} className={setCategory === "chesterfield-beds" ? 'activeCategory' : ''}>Chesterfield Beds</p>
-                                                    <p onClick={() => setCategory("divan-beds")} className={setCategory === "divan-beds" ? 'activeCategory' : ''}>Divan Beds</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
+                            <div className="accordion-item accordian-item1">
+                                <h2 className="accordion-header custom_header">
+                                    <button
+                                        className="accordion-button accordian_btn"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo"
+                                        aria-expanded="true"
+                                        aria-controls="collapseTwo"
+                                    >
+                                        <p className='fw-bolder fs-6 pt-2'>All Beds</p>
+                                    </button>
+                                </h2>
+                                <div
+                                    id="collapseTwo"
+                                    className="accordion-collapse collapse show"
+                                    data-bs-parent="#accordionExample"
+                                >
+                                    <div className="accordion-body">
+                                        <p onClick={() => setCategory("bed")} className={setCategory === "bed" ? 'activeCategory' : ''}>All in Beds</p>
+                                        <p onClick={() => setCategory("ambassador-beds")} className={setCategory === "ambassador-beds" ? 'activeCategory' : ''}>Ambassador Beds </p>
+                                        <p onClick={() => setCategory("panel-bed")} className={setCategory === "panel-bed" ? 'activeCategory' : ''}>Panel Beds</p>
+                                        <p onClick={() => setCategory("wingback-beds-frames")} className={setCategory === "wingback-beds-frames" ? 'activeCategory' : ''}>Wingback bed Frames</p>
+                                        <p onClick={() => setCategory("ottoman-beds")} className={setCategory === "ottoman-beds" ? 'activeCategory' : ''}>Ottoman Beds </p>
+                                        <p onClick={() => setCategory("bespoke-beds")} className={setCategory === "bespoke-beds" ? 'activeCategory' : ''}>Bespoke Beds</p>
+                                        <p onClick={() => setCategory("chesterfield-beds")} className={setCategory === "chesterfield-beds" ? 'activeCategory' : ''}>Chesterfield Beds</p>
+                                        <p onClick={() => setCategory("divan-beds")} className={setCategory === "divan-beds" ? 'activeCategory' : ''}>Divan Beds</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className='btn accordian_btn2' onClick={() => setCategory("ottoman-beds")}>Ottoman Box</button> <br />
 
-                                    {prodctName == "ottoman-box" &&
-                                        <>
-                                            <button className='btn accordian_btn2' onClick={() => setCategory("ottoman-beds")}>Ottoman Box</button> <br />
-                                        </>
-                                    }
-                                    {prodctName == "mattress" &&
-                                        <>
-                                            <button className='btn accordian_btn2' onClick={() => setCategory("mattress")}>Mattress</button> <br />
-                                        </>
-                                    }
-                                    {prodctName == "footstools" &&
-                                        <>
-                                            <button className='btn accordian_btn2' onClick={() => setCategory("footstools")}>Footstool</button>
-                                        </>
-                                    }
-                                </>
-                            }
+                            <button className='btn accordian_btn2' onClick={() => setCategory("mattress")}>Mattress</button> <br />
+
+                            <button className='btn accordian_btn2' onClick={() => setCategory("footstools")}>Footstool</button>
 
                             <div className="accordion-item accordian-item1">
                                 <h2 className="accordion-header custom_header">

@@ -150,7 +150,7 @@ export const Orders = () => {
                               <td>{data.number1}</td>
                               <td>{data.shipping}</td>
                               <td className='text-center'>{orderItemsLength}</td>
-                              <td className='text-center'>{totalFprice.toFixed(2)}</td>
+                              <td className='text-center'>{totalFprice?.toFixed(2)}</td>
                               <td className='text-center'>{formatDateTime(data.date)}</td>
                               <td className='text-center'>
                                 <a href={`/order-detail/${data._id}`}>Detail</a>

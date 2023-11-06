@@ -183,22 +183,22 @@ const UserPanel = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {filterOrder.map((data, index) => {
+                                                    {filterOrder?.map((data, index) => {
                                                         const orderItemsLength = data.orderItems.length;
                                                         let totalFprice = 0;
                                                         data.orderItems.forEach((item) => {
-                                                            totalFprice += parseFloat(item.Fprice);
+                                                            totalFprice += parseFloat(item?.Fprice);
                                                         });
                                                         return (
                                                             <tr key={index} className='text-center'>
                                                                 <td>{index + 1}</td>
-                                                                <td>{data.orderId}</td>
-                                                                <td>{data.name1}</td>
-                                                                <td>{data.email}</td>
-                                                                <td>{data.number1}</td>
-                                                                <td>{data.shipping}</td>
+                                                                <td>{data?.orderId}</td>
+                                                                <td>{data?.name1}</td>
+                                                                <td>{data?.email}</td>
+                                                                <td>{data?.number1}</td>
+                                                                <td>{data?.shipping}</td>
                                                                 <td className='text-center'>{orderItemsLength}</td>
-                                                                <td className='text-center'>{totalFprice.toFixed(2)}</td>
+                                                                <td className='text-center'>{totalFprice?.toFixed(2)}</td>
                                                                 <td>{data.date.slice(0, 10)}</td>
                                                                 <td className='text-center'>
                                                                     <a href={`/order-detail/${data._id}`}>Detail</a>

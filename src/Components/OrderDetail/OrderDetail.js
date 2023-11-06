@@ -70,13 +70,13 @@ const OrderDetail = () => {
             </div>
                     <div className='row' id="orderDetail">
                         <div className='col-12'>
-                            <p><b>Customer Name:</b> {order.name1} {order?.name2}</p>
-                            <p><b>Customer E-mail: </b>{order.email}</p>
-                            <p><b>Mobile Number: </b>{order.number1}</p>
-                            <p><b>Phone Number: </b>{order.number2}</p>
-                            <p><b>Shipping Address: </b>{order.shipping}</p>
-                            <p><b>Total Products: </b>{order.orderItems.length}</p >
-                            <p><b>Tracking Id: </b>{order.orderId}</p >
+                            <p><b>Customer Name:</b> {order?.name1} {order?.name2}</p>
+                            <p><b>Customer E-mail: </b>{order?.email}</p>
+                            <p><b>Mobile Number: </b>{order?.number1}</p>
+                            <p><b>Phone Number: </b>{order?.number2}</p>
+                            <p><b>Shipping Address: </b>{order?.shipping}</p>
+                            <p><b>Total Products: </b>{order?.orderItems.length}</p >
+                            <p><b>Tracking Id: </b>{order?.orderId}</p >
                         </div>
                     </div>
                     <div className='col-12'>
@@ -107,18 +107,18 @@ const OrderDetail = () => {
                                             order.orderItems.map((data, index) => (
                                                 <tr key={index} onClick={() => move("/single_Add/" + data._id)}>
                                                     <td>{index + 1}</td>
-                                                    <td>{data.sn}</td>
+                                                    <td>{data?.sn}</td>
                                                     <td >
-                                                        <img src={data.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
+                                                        <img src={data?.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
                                                     </td>
-                                                    <td >{data.title}</td>
-                                                    <td>{data.category}</td>
-                                                    <td>{data.subCategory}</td>
-                                                    <td className='text-center'>{`£${parseFloat(data.price).toFixed(2)}`}</td>
-                                                    <td className='text-center'>{`1 X ${parseInt(data.quantity)}`}</td>
-                                                    <td className='text-center'>{`${parseFloat(data.discount || 0).toFixed(2)}%`}</td>
-                                                    <td className='text-center'>{`£${parseFloat(data.Fprice).toFixed(2)}`}</td>
-                                                    <td className='text-center'>{formatDateTime(data.date)}</td>
+                                                    <td >{data?.title}</td>
+                                                    <td>{data?.category}</td>
+                                                    <td>{data?.subCategory}</td>
+                                                    <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed(2)}`}</td>
+                                                    <td className='text-center'>{`1 X ${parseInt(data?.quantity)}`}</td>
+                                                    <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed(2)}%`}</td>
+                                                    <td className='text-center'>{`£${parseFloat(data?.Fprice)?.toFixed(2)}`}</td>
+                                                    <td className='text-center'>{formatDateTime(data?.date)}</td>
                                                 </tr>
                                             ))
                                         ) : (
@@ -145,7 +145,7 @@ const OrderDetail = () => {
                             </div>
                             <div className='fw-normal d-flex justify-content-between'>
                                 <p>Net Total:</p>
-                                <p>£{totalSum.toFixed(2)}</p>
+                                <p>£{totalSum?.toFixed(2)}</p>
                             </div>
                             <div className=''>
                             <a href="https://wa.me/+923067208343">

@@ -44,7 +44,7 @@ const Beds = () => {
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data.filter((product) => product.category === "bed").length === 0 &&
+                    {data?.filter((product) => product.category === "bed").length === 0 &&
                         <div className='px-4'>
                             No product available related to this category
                         </div>
@@ -65,28 +65,28 @@ const Beds = () => {
                                             <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
                                         </a>
                                         <div className='card_img_box'>
-                                            <img src={product.images[0]} className='img-fluid' alt='No Network' />
-                                            {product.discount && product.discount > 0 ? (
+                                            <img src={product?.images[0]} className='img-fluid' alt='No Network' />
+                                            {product?.discount && product?.discount > 0 ? (
                                                 <div className='discount'>
-                                                    {`${product.discount}%`}
+                                                    {`${product?.discount}%`}
                                                 </div>
                                             ) : null}
                                             <div className='overlay'>
                                                 {product.images[1] &&
-                                                    <img src={product.images[1]} alt="" />
+                                                    <img src={product?.images[1]} alt="" />
                                                 }
                                             </div>
                                         </div>
 
-                                        <p className='card_title px-2'>{product.title}</p>
+                                        <p className='card_title px-2'>{product?.title}</p>
                                         <div>
-                                            {product.discount && product.discount > 0 ? (
+                                            {product?.discount && product?.discount > 0 ? (
                                                 <>
-                                                    <span className='card_Fprice px-2'>{`£${product.Fprice.toFixed(1)}`}</span>
-                                                    <span className='card_price'><s>{`£${product.price.toFixed(1)}`}</s></span>
+                                                    <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(1)}`}</span>
+                                                    <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span>
                                                 </>
                                             ) : (
-                                                <span className='card_Fprice px-2'>{`£${product.Fprice.toFixed(2)}`}</span>
+                                                <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>
                                             )}
                                             <div className='card_btns'>
 

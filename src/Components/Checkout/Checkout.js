@@ -235,18 +235,18 @@ const Checkout = () => {
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between'>
                             <p className='fw-bolder fs-6'>Your Cart</p>
-                            <p className='fw-bolder fs-6'>{filterCart.length}</p>
+                            <p className='fw-bolder fs-6'>{filterCart?.length}</p>
                         </div>
                     </div>
                     {filterCart.map((item) => {
                         return <>
                             <div className='row border mb-1 pt-3'>
                                 <div className='col-3'>
-                                    <img className='img-fluid' src={item.image} alt="No Internet" style={{ width: "100%", height: "auto" }} />
+                                    <img className='img-fluid' src={item?.image} alt="No Internet" style={{ width: "100%", height: "auto" }} />
                                 </div>
                                 <div className='col-9'>
-                                    <p className='checout_tittle text-muted'>{item.title}</p>
-                                    <p className='text-end'>{`£${item.Fprice.toFixed(2)}`}</p>
+                                    <p className='checout_tittle text-muted'>{item?.title}</p>
+                                    <p className='text-end'>{`£${item?.Fprice?.toFixed(2)}`}</p>
                                 </div>
                             </div>
                         </>
@@ -255,7 +255,7 @@ const Checkout = () => {
                     <div className='row mt-3'>
                         <div className='px-3 col-12 border d-flex justify-content-between align-items-center'>
                             <p>Total(USD)</p>
-                            <p className='fw-bold' >{`£${totalSum.toFixed(2)}`}</p>
+                            <p className='fw-bold' >{`£${totalSum?.toFixed(2)}`}</p>
 
                         </div>
                     </div>

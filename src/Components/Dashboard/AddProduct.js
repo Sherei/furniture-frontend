@@ -22,7 +22,7 @@ export const AddProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [finalPrice, setFinalPrice] = useState(0);
+  const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 0);;
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
 
@@ -42,26 +42,32 @@ export const AddProduct = () => {
     setFinalPrice(newFinalPrice);
   };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+  const handleCategoryChange = (e) => {
+      setSelectedCategory(e.target.value); 
   };
+  
 
   let move = useNavigate();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
-    defaultValues: product, // Assuming product contains existing product data
+    defaultValues: product,
   });
 
 
 
   useEffect(() => {
+    if (productId) {
+      try {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
+          setProduct(resp.data)
+          setPrice(resp.data.price);
+          setDiscount(resp.data.discount);
+          setFinalPrice(resp.data.Fprice);
+        })
+      } catch (e) {
 
-    axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
-      setProduct(resp.data)
-      setPrice(resp.data.price);
-      setDiscount(resp.data.discount);
-      setFinalPrice(resp.data.Fprice);
-    })
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -96,7 +102,7 @@ export const AddProduct = () => {
 
       axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
         if (resp) {
-    setLoading(true);
+          setLoading(true);
 
           toast.success("Product updated")
           move('/admin-dashboard')
@@ -134,7 +140,7 @@ export const AddProduct = () => {
             <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
           </div>
           {loading ? (
-            <div className='d-flex justify-content-center align-items-center'><Loader /></div>
+            <div className='d-flex justify-content-center align-items-center h-100 ' style={{ height: "100vh" }}><Loader /></div>
           ) : (
             <form>
               <div className='row'>
@@ -257,10 +263,13 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Final Price *</label>
-                  <input type="number" {...register('Fprice')}
-                    min={"1"}
-                    defaultValue={product ? finalPrice : finalPrice}
-                    className="form-control mb-2 mr-sm-2" />
+                  <input
+                    type="number"
+                    {...register('Fprice')}
+                    min="1"
+                    value={finalPrice}
+                    className="form-control mb-2 mr-sm-2"
+                  />
                 </div>
 
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>

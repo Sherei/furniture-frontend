@@ -7,13 +7,13 @@ const Loader = () => {
             width: "fit-contet",
             height: "fit-content",
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-            zIndex:"2500"
+            zIndex: "2500"
         }}>
             <div>
                 <ClipLoader color="#1b2950" />
             </div>
             <div>
-                <p className='text-muted m-0'>Please Wait Loading</p>
+                <p className='text-muted m-0'>Loading! Please Wait </p>
             </div>
 
         </div>

@@ -61,7 +61,7 @@ export const Login = () => {
           reset();
         } else {
           toast.success("Login Succesfull");
-          move("/");
+          move("/products/all");
           reset();
         }
       }
