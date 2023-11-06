@@ -1,17 +1,23 @@
 import React from 'react'
-import FadeLoader from "react-spinners/FadeLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Loader = () => {
     return <>
-        <FadeLoader
-            color="#1b2950"
-            height={15}
-            loading
-            margin={5}
-            radius={2}
-            speedMultiplier={1}
-            width={5}
-        />
+        <div className='d-flex gap-4 px-5 py-2 align-items-center' style={{
+            width: "fit-contet",
+            height: "fit-content",
+            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            zIndex:"2500"
+        }}>
+            <div>
+                <ClipLoader color="#1b2950" />
+            </div>
+            <div>
+                <p className='text-muted m-0'>Please Wait Loading</p>
+            </div>
+
+        </div>
+
     </>
 }
 

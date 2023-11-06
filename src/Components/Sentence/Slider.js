@@ -3,7 +3,7 @@ import './slider.css';
 
 const Slider = () => {
   return (
-    <div className="container-fluid px-0 mx-0 py-3" style={{ backgroundColor: "rgba(2, 2, 94, 0.6)" }}>
+    <div className="container-fluid px-0 mx-0 py-3" style={{ backgroundColor: "#F7EEDD" }}>
       <div className="row">
         <div className="col-12 d-flex slider-container">
           <div className="slide-text">

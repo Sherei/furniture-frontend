@@ -58,14 +58,15 @@ main {
 }
 
 .whatsapp-btn_main {
-  background-color: #25D366;
+  background-color: rgb(2,2,94);
   position: absolute;
   position: fixed;
   bottom: 5%;
   right: 2%;
   color: white;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 700;
   z-index: 1050;
   border-radius: 15px;
   padding: 10px 10px;

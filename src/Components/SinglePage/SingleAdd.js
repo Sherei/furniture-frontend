@@ -96,7 +96,7 @@ const SingleAdd = () => {
     };
     // const totalPrice = product?.Fprice * quantity;
 
-    const calculateTotalPrice = (price, quantity, size,mattress, detail, fabric,headboard, ottoman) => {
+    const calculateTotalPrice = (price, quantity, size, mattress, detail, fabric, headboard, ottoman) => {
 
         let totalPrice = price * quantity;
 
@@ -447,7 +447,10 @@ const SingleAdd = () => {
                                             </select>
                                         </div>
                                     )}
+
+
                                     <div>
+
                                         {product.category === "bed" &&
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
                                                 <span style={{ color: "red" }}>*</span>
@@ -475,6 +478,8 @@ const SingleAdd = () => {
                                             <option value="6ft">6ft Super King</option>
                                         </select>
                                     </div>
+
+
 
                                     <div className='mt-3'>
                                         {(product.category === "bed" || product.category === "ottoman-box") &&
@@ -645,6 +650,72 @@ const SingleAdd = () => {
                                             </select>
                                         </div>
                                     }
+                                    {(product.category === "bed" || product.category === "mattress") &&
+                                        <div className='mt-3'>
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Match with Ottoman Box</label>
+
+                                            <div className='d-flex gap-2'>
+                                                <div>
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="flexRadioDefault"
+                                                        id="flexRadioDefault1"
+                                                        onChange={() => {
+                                                            setOttoman("yes")
+                                                        }}
+                                                    /> &nbsp;
+                                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                        Yes + £90.00
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="flexRadioDefault"
+                                                        id="flexRadioDefault2"
+                                                        defaultChecked=""
+                                                    />&nbsp;
+                                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                        <div className='mt-3'>
+                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Pillow Topper</label>
+
+                                            <div className='d-flex gap-2'>
+                                                <div>
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="flexRadioDefault"
+                                                        id="flexRadioDefault1"
+                                                        onChange={() => {
+                                                            setOttoman("yes")
+                                                        }}
+                                                    /> &nbsp;
+                                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                        Yes + £50.00
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="flexRadioDefault"
+                                                        id="flexRadioDefault2"
+                                                        defaultChecked=""
+                                                    />&nbsp;
+                                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </>
                             )}
                         </div>
@@ -656,23 +727,21 @@ const SingleAdd = () => {
 
                         {product.category === "ottoman-box" &&
                             <>
-                                <div>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Size <span style={{ color: "red" }}>*</span></label>
-                                    <select className="form-control form-select  mb-2 mr-sm-2"
-
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric <span style={{ color: "red" }}>*</span></label>
+                                    <p className='mt-2 mb-0'>Please Choose Fabric</p>
+                                    <select className="form-select mb-2 mr-sm-2"
                                         onChange={(e) => {
-                                            if (e.target.value === "select size") {
-                                                return setError("size")
+                                            if (e.target.value === "select fabric") {
+                                                return setError("fabric")
                                             } else {
-                                                setSize(e.target.value)
+                                                setFabric(e.target.value)
                                             }
                                         }}>
-                                        <option value="select size">Select Size</option>
-                                        <option value="single">Single Size</option>
-                                        <option value="small-double">Small Double Size</option>
-                                        <option value="double">Double Size</option>
-                                        <option value="king">King Size</option>
-                                        <option value="super-king">Super King Size</option>
+                                        <option value="select fabric">Please Choose</option>
+                                        <option value="plush-velvet">Plush Velvet</option>
+                                        <option value="crush-velvet">Crush Velvet</option>
+                                        <option value="chenille">Chenille</option>
                                     </select>
                                 </div>
 
@@ -680,12 +749,11 @@ const SingleAdd = () => {
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
                                         <span style={{ color: "red" }}>*</span>
                                     </label>
+
                                     <p className='mt-2 mb-0'>Please Choose Colour</p>
                                     <select onChange={(e) => {
                                         if (e.target.value === "select color") {
                                             return setError("color")
-                                        } else if (product.category === "mattress" && e.target.value === "select color") {
-                                            return setColor("Not selected")
                                         } else {
                                             setColor(e.target.value)
                                         }
@@ -708,6 +776,24 @@ const SingleAdd = () => {
                                         <option value="beige">Beige</option>
                                     </select>
                                 </div>
+
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail <span style={{ color: "red" }}>*</span></label>
+                                    <p className='mt-2 mb-0'>Please Choose more Detail</p>
+                                    <select
+                                        onChange={(e) => {
+                                            if (e.target.value === "select detail") {
+                                                return setError("detail")
+                                            } else {
+                                                setDetail(e.target.value)
+                                            }
+                                        }} className="form-select mb-2 mr-sm-2">
+                                        <option value="select detail">Please Choose</option>
+                                        <option value="button">Matchig Buttons </option>
+                                        <option value="diamonds">Diamonds</option>
+                                    </select>
+                                </div>
+
                             </>
                         }
                         {/*.................................... Ottoman End .......................... */}
@@ -717,25 +803,21 @@ const SingleAdd = () => {
 
                         {product.category === "footstools" &&
                             <>
-                                <div>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Size
-                                        <span style={{ color: "red" }}>*</span>
-                                    </label>
-                                    <select className="form-control form-select  mb-2 mr-sm-2"
-
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric <span style={{ color: "red" }}>*</span></label>
+                                    <p className='mt-2 mb-0'>Please Choose Fabric</p>
+                                    <select className="form-select mb-2 mr-sm-2"
                                         onChange={(e) => {
-                                            if (e.target.value === "select size") {
-                                                return setError("size")
+                                            if (e.target.value === "select fabric") {
+                                                return setError("fabric")
                                             } else {
-                                                setSize(e.target.value)
+                                                setFabric(e.target.value)
                                             }
                                         }}>
-                                        <option value="select size">Select Size</option>
-                                        <option value="single">Single Size</option>
-                                        <option value="small-double">Small Double Size</option>
-                                        <option value="double">Double Size</option>
-                                        <option value="king">King Size</option>
-                                        <option value="super-king">Super King Size</option>
+                                        <option value="select fabric">Please Choose</option>
+                                        <option value="plush-velvet">Plush Velvet</option>
+                                        <option value="crush-velvet">Crush Velvet</option>
+                                        <option value="chenille">Chenille</option>
                                     </select>
                                 </div>
 
@@ -774,7 +856,9 @@ const SingleAdd = () => {
 
                         {/*.................................... Footstools End .......................... */}
 
-                        <div className='sigle_quatity_main'>
+
+
+                        <div className='sigle_quatity_main mt-3'>
                             <div className='mt-3'>
                                 <p style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
                             </div>
@@ -786,13 +870,6 @@ const SingleAdd = () => {
                                 <p className="input_single text-center m-0 p-0">
                                     {quantity}
                                 </p>
-                                {/* <input name="quantity"
-                                    type="number"
-                                    className="input_single mx-2"
-                                    value={quantity}
-                                    min={1}
-                                    onChange={handleQuantityChange}
-                                /> */}
                                 <button className="plus_btn" onClick={Increment}>
                                     <FaPlus />
                                 </button>

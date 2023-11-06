@@ -37,7 +37,7 @@ const Ottoman = () => {
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products")
+                            move("/Products/ottoman-box")
                         }}>
                             View All
                         </p>

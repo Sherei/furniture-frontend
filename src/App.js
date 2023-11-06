@@ -10,7 +10,7 @@ import SingleAdd from './Components/SinglePage/SingleAdd';
 import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
 import { useDispatch } from "react-redux";
-import { FaArrowUp, FaDiscourse } from "react-icons/fa";
+import {RiMessage2Line}from "react-icons/ri"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -113,7 +113,7 @@ function App() {
                 <p className='m-0'>Chat</p>
               </div>
               <div className='whatsapp-btn'>
-                <FaDiscourse />
+                <RiMessage2Line />
               </div>
             
             </div>

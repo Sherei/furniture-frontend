@@ -37,7 +37,7 @@ const Beds = () => {
                     </div>
                     <div>
                         <p className='view ' onClick={() => {
-                            move("/Products");
+                            move("/Products/bed");
                         }}>
                             View All
                         </p>

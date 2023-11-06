@@ -93,9 +93,11 @@ export const AddProduct = () => {
     data.Fprice = finalPrice;
 
     if (productId) {
-      console.log(data)
+
       axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
         if (resp) {
+    setLoading(true);
+
           toast.success("Product updated")
           move('/admin-dashboard')
         }
@@ -121,10 +123,6 @@ export const AddProduct = () => {
         setLoading(false);
       }
     }
-  }
-
-  if (!cu._id || !productId || cu.email != "asd@gmail.com") {
-    return <Error />
   }
 
   return <>
@@ -225,7 +223,7 @@ export const AddProduct = () => {
                     >
                       <option value="Select subCategory">Select subCategory</option>
                       <option value="ambassador-beds">Ambassador Beds</option>
-                      <option value="wingback-beds-frames">Panel Beds</option>
+                      <option value="panel-bed">Panel Beds</option>
                       <option value="wingback-beds-frames">Wingback bed Frames</option>
                       <option value="ottoman-beds">Ottoman Beds</option>
                       <option value="bespoke-beds">Bespoke Beds</option>

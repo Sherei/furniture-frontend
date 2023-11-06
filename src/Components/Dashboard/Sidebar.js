@@ -90,6 +90,7 @@ const Sidebar = () => {
             Comments
           </div>
         </div>
+        
           <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`} 
           onClick={() => move('/admin-dashboard-add-product')}>
             <div className="icon">

@@ -26,7 +26,7 @@ const Benefits = () => {
                 </div>
                 <div className='col-lg-12 my-4 d-flex justify-content-center'>
 
-                    <a href="/Products">
+                    <a href="/Products/all">
                         <button className='review_btn'>Browse Products <FaArrowRight/></button>
                     </a>
                 </div>
