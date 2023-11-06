@@ -36,7 +36,6 @@ const SingleAdd = () => {
     const [loading, setLoading] = useState(false);
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
-    const [mattress, setMattress] = useState('')
     const [detail, setDetail] = useState('')
     const [base, setBase] = useState('')
     const [fabric, setFabric] = useState('')
@@ -113,25 +112,37 @@ const SingleAdd = () => {
         return totalPrice;
     };
 
-    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, mattress, detail, fabric, headboard, ottoman);
+    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, detail, fabric, headboard, ottoman);
 
 
     async function AddToCart(product) {
 
         if (product.category === "bed") {
-            if (!size || !fabric || !detail || !color || !base || !headboard) {
-                return setError("bed fields")
+            if (!size || !fabric || !headboard || !color || !detail  || !base ) {
+                return setError("bed")
             }
         }
         if (product.category === "sofa") {
             if (!size || !color) {
-                return setError("sofa fields")
+                return setError("sofa")
             }
         }
-        if (product.category === "mattress") {
+        if (product.category === "footstools") {
 
             if (!size) {
-                return setError("mattress size")
+                return setError("footstools")
+            }
+        }
+        if (product.category === "ottoman-box") {
+
+            if (!fabric || !color || !detail) {
+                return setError("ottoman-box")
+            }
+        }
+        if (product.category === "footstools") {
+
+            if (!fabric || !color ) {
+                return setError("footstools")
             }
         }
 
@@ -159,7 +170,6 @@ const SingleAdd = () => {
             product.color = color;
             product.fabric = fabric;
             product.detail = detail;
-            product.mattress = mattress;
             product.base = base;
             product.Fprice = totalPrice;
             product.image = product.images[0];
@@ -351,13 +361,10 @@ const SingleAdd = () => {
 
 
                         <div className='single_form  mt-3'>
-                            {(Error === "bed fields" || Error === "sofa fields") &&
+                            {(Error === "bed" || Error === "sofa" || Error === "mattress" || Error === "ottoman-box") &&
                                 <div className='error'>All fields are required</div>
                             }
-                            {Error === "mattress size" &&
-                                <div className='error'>Size is required</div>
-                            }
-
+    
                             {/*.................................... Sofa Start .......................... */}
 
                             {product.category === "sofa" &&
@@ -423,49 +430,20 @@ const SingleAdd = () => {
 
 
 
-                            {/*........................ Bed & Mattress Start ..................... */}
+                            {/*........................ Bed Start ..................... */}
 
-                            {(product.category === "bed" || product.category === "mattress") && (
+                            {product.category === "bed" && (
                                 <>
-                                    {product.category === "mattress" && (
-                                        <div>
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size <span style={{ color: "red" }}>*</span></label>
-                                            <select className="form-control form-select mb-2 mr-sm-2"
-                                                onChange={(e) => {
-                                                    if (e.target.value === "select size") {
-                                                        return setError("size");
-                                                    } else {
-                                                        setSize(e.target.value);
-                                                    }
-                                                }}>
-                                                <option value="select size">Select Size</option>
-                                                <option value="single">Single Size</option>
-                                                <option value="small-double">Small Double Size</option>
-                                                <option value="double">Double Size</option>
-                                                <option value="king">King Size</option>
-                                                <option value="super-king">Super King Size</option>
-                                            </select>
-                                        </div>
-                                    )}
-
-
                                     <div>
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
+                                            <span style={{ color: "red" }}>*</span>
+                                        </label>
 
-                                        {product.category === "bed" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
-                                                <span style={{ color: "red" }}>*</span>
-                                            </label>
-                                        }
-                                        {product.category === "mattress" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size</label>
-                                        }
                                         <select className="form-control form-select mb-2 mr-sm-2"
 
                                             onChange={(e) => {
-                                                if (product.category === "bed" && e.target.value === "select size") {
+                                                if (e.target.value === "select size") {
                                                     return setError("bed-size")
-                                                } else if (product.category === "mattress" && e.target.value === "select size") {
-                                                    return setSize("Not selected")
                                                 } else {
                                                     setSize(e.target.value)
                                                 }
@@ -479,23 +457,16 @@ const SingleAdd = () => {
                                         </select>
                                     </div>
 
-
-
                                     <div className='mt-3'>
-                                        {(product.category === "bed" || product.category === "ottoman-box") &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric <span style={{ color: "red" }}>*</span></label>
-                                        }
-                                        {(product.category === "mattress") &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Fabric</label>
-                                        }
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
+                                            <span style={{ color: "red" }}>*</span>
+                                        </label>
+
                                         <p className='mt-2 mb-0'>Please Choose Fabric</p>
                                         <select className="form-select mb-2 mr-sm-2"
                                             onChange={(e) => {
-                                                if ((product.category === "bed" || product.category === "sofa" ||
-                                                    product.category === "ottoman-box") && e.target.value === "select fabric") {
+                                                if (e.target.value === "select fabric") {
                                                     return setError("fabric")
-                                                } else if (product.category === "mattress" && e.target.value === "select fabric") {
-                                                    return setFabric("Not selected")
                                                 } else {
                                                     setFabric(e.target.value)
                                                 }
@@ -508,22 +479,14 @@ const SingleAdd = () => {
                                     </div>
 
                                     <div className='mt-3'>
-                                        {product.category === "bed" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height
-                                                <span style={{ color: "red" }}>*</span>
-                                            </label>
-                                        }
-                                        {product.category === "mattress" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height</label>
-                                        }
-
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height
+                                            <span style={{ color: "red" }}>*</span>
+                                        </label>
                                         <p className='mt-2 mb-0'>Please Choose Headboard Height</p>
                                         <select className="form-select mb-2 mr-sm-2"
                                             onChange={(e) => {
-                                                if ((product.category === "bed") && e.target.value === "headboard") {
+                                                if (e.target.value === "headboard") {
                                                     return setError("headboard")
-                                                } else if (product.category === "mattress" && e.target.value === "headboard") {
-                                                    return setHeadboard("Not selected")
                                                 } else {
                                                     setHeadboard(e.target.value)
                                                 }
@@ -539,20 +502,14 @@ const SingleAdd = () => {
                                     </div>
 
                                     <div className='mt-3'>
-                                        {product.category === "bed" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                                <span style={{ color: "red" }}>*</span>
-                                            </label>
-                                        }
-                                        {product.category === "mattress" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Colour</label>
-                                        }
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
+                                            <span style={{ color: "red" }}>*</span>
+                                        </label>
+
                                         <p className='mt-2 mb-0'>Please Choose Colour</p>
                                         <select onChange={(e) => {
                                             if (e.target.value === "select color") {
                                                 return setError("color")
-                                            } else if (product.category === "mattress" && e.target.value === "select color") {
-                                                return setColor("Not selected")
                                             } else {
                                                 setColor(e.target.value)
                                             }
@@ -577,19 +534,14 @@ const SingleAdd = () => {
                                     </div>
 
                                     <div className='mt-3'>
-                                        {product.category === "bed" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail <span style={{ color: "red" }}>*</span></label>
-                                        }
-                                        {product.category === "mattress" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail</label>
-                                        }
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail
+                                            <span style={{ color: "red" }}>*</span>
+                                        </label>
                                         <p className='mt-2 mb-0'>Please Choose more Detail</p>
                                         <select
                                             onChange={(e) => {
                                                 if (e.target.value === "select detail") {
                                                     return setError("detail")
-                                                } else if (product.category === "mattress" && e.target.value === "select detail") {
-                                                    setDetail("Not selected")
                                                 } else {
                                                     setDetail(e.target.value)
                                                 }
@@ -602,20 +554,15 @@ const SingleAdd = () => {
                                     </div>
 
                                     <div className='mt-3'>
-                                        {product.category === "bed" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base <span style={{ color: "red" }}>*</span></label>
-                                        }
-                                        {product.category === "mattress" &&
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base</label>
-                                        }
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base
+                                            <span style={{ color: "red" }}>*</span>
+                                        </label>
                                         <p className='mt-2 mb-0'>Please Choose Bed Base</p>
                                         <select
                                             onChange={(e) => {
 
-                                                if (product.category === "mattress" && e.target.value === "select base") {
+                                                if (e.target.value === "select base") {
                                                     setBase('Not Selected')
-                                                } else if (e.target.value === "select base") {
-                                                    return setError("base")
                                                 } else {
                                                     setBase(e.target.value)
                                                 }
@@ -627,101 +574,90 @@ const SingleAdd = () => {
                                         </select>
                                     </div>
 
-                                    {product.category === "bed" &&
-                                        <div className='mt-3'>
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress</label>
-                                            <p className='mt-2 mb-0'>Please Choose bed mattress</p>
-                                            <select
-                                                onChange={(e) => {
-                                                    if (e.target.value === "select mattress") {
-                                                        return setError("mat")
-                                                    } else {
-                                                        setMattress(e.target.value)
-                                                    }
-                                                }}
-                                                className="form-select mb-2 mr-sm-2">
-                                                <option value="select mattress">Please Choose</option>
-                                                <option value="Single">Single</option>
-                                                <option value="small-double">Small Double</option>
-                                                <option value="double">Double</option>
-                                                <option value="king">King</option>
-                                                <option value="super-king">Super King</option>
-                                                <option value="not-require">Not Require</option>
-                                            </select>
-                                        </div>
-                                    }
-                                    {(product.category === "bed" || product.category === "mattress") &&
-                                        <div className='mt-3'>
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Match with Ottoman Box</label>
+                                    <div className='mt-3'>
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                                            Match with Ottoman Box</label>
 
-                                            <div className='d-flex gap-2'>
-                                                <div>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="flexRadioDefault"
-                                                        id="flexRadioDefault1"
-                                                        onChange={() => {
-                                                            setOttoman("yes")
-                                                        }}
-                                                    /> &nbsp;
-                                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                                        Yes + £90.00
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="flexRadioDefault"
-                                                        id="flexRadioDefault2"
-                                                        defaultChecked=""
-                                                    />&nbsp;
-                                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                                        No
-                                                    </label>
-                                                </div>
+                                        <div className='d-flex gap-2'>
+                                            <div>
+                                                <input
+                                                    className="form-check-input"
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault1"
+                                                    onChange={() => {
+                                                        setOttoman("yes")
+                                                    }}
+                                                /> &nbsp;
+                                                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                    Yes + £90.00
+                                                </label>
                                             </div>
-                                        </div>
-                                    }
-                                        <div className='mt-3'>
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Pillow Topper</label>
 
-                                            <div className='d-flex gap-2'>
-                                                <div>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="flexRadioDefault"
-                                                        id="flexRadioDefault1"
-                                                        onChange={() => {
-                                                            setOttoman("yes")
-                                                        }}
-                                                    /> &nbsp;
-                                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                                        Yes + £50.00
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="flexRadioDefault"
-                                                        id="flexRadioDefault2"
-                                                        defaultChecked=""
-                                                    />&nbsp;
-                                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                                        No
-                                                    </label>
-                                                </div>
-                                            </div>
                                         </div>
+                                    </div>
                                 </>
                             )}
                         </div>
 
                         {/*.................................... Bed End .......................... */}
 
+
+                        {/*.................................... Mattress Start .......................... */}
+
+                        {product.category === "mattress" &&
+                            <>
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size
+                                        <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <p className='mt-2 mb-0'>Please Choose Mattress Size</p>
+                                    <select
+                                        onChange={(e) => {
+                                            if (e.target.value === "select size") {
+                                                return setError("mat")
+                                            } else {
+                                                setSize(e.target.value)
+                                            }
+                                        }}
+                                        className="form-select mb-2 mr-sm-2">
+                                        <option value="select size">Please Choose</option>
+                                        <option value="Single">Single</option>
+                                        <option value="small-double">Small Double</option>
+                                        <option value="double">Double</option>
+                                        <option value="king">King</option>
+                                        <option value="super-king">Super King</option>
+                                        <option value="not-require">Not Require</option>
+                                    </select>
+                                </div>
+
+                                <div className='mt-3'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Pillow Topper</label>
+
+                                    <div className='d-flex gap-2'>
+                                        <div>
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="flexRadioDefault"
+                                                id="flexRadioDefault1"
+                                                onChange={() => {
+                                                    setOttoman("yes")
+                                                }}
+                                            /> &nbsp;
+                                            <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                Yes + £50.00
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </>
+
+
+                        }
+                        {/*.................................... Mattress End .......................... */}
 
                         {/*.................................... Ottoman Start .......................... */}
 
