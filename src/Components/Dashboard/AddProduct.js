@@ -87,10 +87,8 @@ export const AddProduct = () => {
       const cloudinaryUrl = [];
       for (let i = 0; i < data.images.length; i++) {
         formData.append('file', data.images[i]);
-        formData.append('upload_preset', "zonfnjjo");
-        await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
-        // formData.append('upload_preset', "vnayn2uf");
-        // await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
+        formData.append('upload_preset', "vnayn2uf");
+         await axios.post("https://api.cloudinary.com/v1_1/drouq9iz2/image/upload", formData).then((res) => {
           cloudinaryUrl.push(res.data.url);
         });
       }
