@@ -41,7 +41,7 @@ const SingleAdd = () => {
     const [fabric, setFabric] = useState('')
     const [headboard, setHeadboard] = useState('')
     const [ottoman, setOttoman] = useState('')
-
+    const [pillow, setPillow]=useState('')
     const [Error, setError] = useState(1);
     const [descriptionExpanded, setDescriptionExpanded] = useState(false);
 
@@ -118,7 +118,7 @@ const SingleAdd = () => {
     async function AddToCart(product) {
 
         if (product.category === "bed") {
-            if (!size || !fabric || !headboard || !color || !detail  || !base ) {
+            if (!size || !fabric || !headboard || !color || !detail || !base) {
                 return setError("bed")
             }
         }
@@ -141,7 +141,7 @@ const SingleAdd = () => {
         }
         if (product.category === "footstools") {
 
-            if (!fabric || !color ) {
+            if (!fabric || !color) {
                 return setError("footstools")
             }
         }
@@ -364,7 +364,7 @@ const SingleAdd = () => {
                             {(Error === "bed" || Error === "sofa" || Error === "mattress" || Error === "ottoman-box") &&
                                 <div className='error'>All fields are required</div>
                             }
-    
+
                             {/*.................................... Sofa Start .......................... */}
 
                             {product.category === "sofa" &&
@@ -642,7 +642,7 @@ const SingleAdd = () => {
                                                 name="flexRadioDefault"
                                                 id="flexRadioDefault1"
                                                 onChange={() => {
-                                                    setOttoman("yes")
+                                                    setPillow("yes")
                                                 }}
                                             /> &nbsp;
                                             <label className="form-check-label" htmlFor="flexRadioDefault1">
