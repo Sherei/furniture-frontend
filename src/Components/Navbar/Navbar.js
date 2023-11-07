@@ -122,17 +122,14 @@ export const Navbar = () => {
                 <FaRegHeart />
               </li>
               <li className="nav-item" onClick={() => {
-
                 if (cu._id === undefined) {
-                  move("/login")
+                  setLogin("login")
                   toast.warning("Login to see your Cart")
+                  
                 } else if (cu.email === "asd@gmail.com") {
-                  move("/login")
-
                   toast.warning("Login too see cart")
                 } else {
                   move(`/cart/${cu._id}`)
-
                 }
 
               }}  >
