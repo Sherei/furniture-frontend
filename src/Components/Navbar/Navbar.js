@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaBars, FaRegUser, FaRegHeart } from "react-icons/fa"
+import { FaRegUser, FaRegHeart } from "react-icons/fa"
+import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-scroll';
@@ -10,6 +11,8 @@ import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify"
 import axios from 'axios';
 import "./navbar.css";
+import { Login } from '../login/Login';
+import Signup from '../Signup/Signup';
 
 export const Navbar = () => {
 
@@ -19,6 +22,8 @@ export const Navbar = () => {
   const [cart, setCart] = useState([])
   const [loading, setLoading] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [login, setLogin] = useState("close");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,14 +57,17 @@ export const Navbar = () => {
     });
   }, []);
 
-  const filterCart = cart.filter((item) => item.userId === cu._id)
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const filterCart = cart?.filter((item) => item.userId === cu._id)
 
   function Logout() {
     dispatch({
       type: 'LOGOUT_USER'
     });
     toast.success("Logout");
-    move('/login');
   }
 
   return <>
@@ -91,7 +99,6 @@ export const Navbar = () => {
             <NavLink to="/" className="ms-md-2">
               <img className='logo_navbar'
                 src="/logo.png"
-
               />
             </NavLink>
             <div className='nav_cotact'>
@@ -111,34 +118,68 @@ export const Navbar = () => {
               </a>
             </div>
             <div className='d-flex align-items-center'>
-              <li className="nav-item heart fs-4">
+              <li className="nav-item heart fs-2">
                 <FaRegHeart />
               </li>
               <li className="nav-item" onClick={() => {
 
-                  if (cu._id === undefined) {
-                    move("/login")
-                    toast.warning("Login to see your Cart")
-                  }else if (cu.email==="asd@gmail.com"){
-                    move("/login")
+                if (cu._id === undefined) {
+                  move("/login")
+                  toast.warning("Login to see your Cart")
+                } else if (cu.email === "asd@gmail.com") {
+                  move("/login")
 
-                    toast.warning("Login too see cart")
-                  }else{
-                    move(`/cart/${cu._id}`)
+                  toast.warning("Login too see cart")
+                } else {
+                  move(`/cart/${cu._id}`)
 
-                  }
-          
+                }
+
               }}  >
                 <NavLink className="nav-link">
-                  <span className={`fs-4 ${filterCart.length > 0 ? 'cart-red' : 'cart-white'}`}>
+                  <span className={`fs-2 ${filterCart?.length > 0 ? 'cart-red' : 'cart-white'}`}>
                     <FiShoppingCart />
                   </span>
                 </NavLink>
               </li>
               {cu._id == undefined &&
-                <li className="fs-2 nav-item">
-                  <NavLink className="nav-link nav_user nav-link1" to="/login">
-                    <FaRegUser />
+                <li className="nav-item">
+                  <NavLink className="nav-link nav-link1" >
+                    <div className='fs-2' onClick={() => { setLogin("login") }}>
+                      <FaRegUser />
+                    </div>
+                    {login === "login" &&
+                      <div className='login_div p-4'>
+                        <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin("close") }}><RxCross1 /></div>
+                        <Login />
+                        <div className='mt-3'>
+                          <p className='m-0 fs-6'>
+                            I don't have an account?{' '}
+                            <span className="register_btn"
+                              onClick={() => { setLogin("signup") }}
+                            >
+                              Register
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    }
+                    {login === "signup" &&
+                      <div className='login_div p-4'>
+                        <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin("close") }}><RxCross1 /></div>
+                        <Signup />
+                        <div className='mt-3'>
+                          <p>
+                            Already have an Account?{' '}
+                            <span className="register_btn"
+                              onClick={() => { setLogin("login") }}
+                            >
+                              Login
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    }
                   </NavLink>
                 </li>
               }
@@ -154,10 +195,10 @@ export const Navbar = () => {
                       />
                     </NavLink>
                     <ul className="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                      {cu.email != "asd@gmail.com" &&
+                      {cu?.email != "asd@gmail.com" &&
                         <li><NavLink className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</NavLink></li>
                       }
-                      {cu.email === "asd@gmail.com" &&
+                      {cu?.email === "asd@gmail.com" &&
                         <li> <NavLink className="dropdown-item" to="/admin-dashboard">Admin </NavLink></li>
                       }
                       <li> <NavLink className="dropdown-item" to="/login" onClick={Logout}>Logout </NavLink></li>
@@ -173,16 +214,21 @@ export const Navbar = () => {
       <nav className={`navbar navbar-expand-lg container-fluid`}>
         <div className="container-fluid nav_bg p-0">
           <button
-            className="navbar-toggler custom-toggler"
-            type="button"
+            className={`custom-toggler ${isMenuOpen ? 'cross' : ''}`}
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={toggleMenu}
           >
-            <FaBars />
+            <div className='d-flex flex-column gap-1 lines'>
+              <div className={`line1 ${isMenuOpen ? 'cross-line1' : ''}`}></div>
+              <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
+              <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
+            </div>
           </button>
+
 
           <div className="collapse nav_bg navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">

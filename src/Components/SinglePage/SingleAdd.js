@@ -41,7 +41,7 @@ const SingleAdd = () => {
     const [fabric, setFabric] = useState('')
     const [headboard, setHeadboard] = useState('')
     const [ottoman, setOttoman] = useState('')
-    const [pillow, setPillow]=useState('')
+    const [mattress, setMattress] = useState('')
     const [Error, setError] = useState(1);
     const [descriptionExpanded, setDescriptionExpanded] = useState(false);
 
@@ -370,9 +370,14 @@ const SingleAdd = () => {
                             {product.category === "sofa" &&
                                 <>
                                     <div>
-                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Size <span style={{ color: "red" }}>*</span></label>
-                                        <select className="form-control form-select  mb-2 mr-sm-2"
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Size 
+                                        <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {size ? size.replace(/-/g, " ") : ""}
+                                            </span>
+                                        </label>
+                                        <p className='mt-2 mb-0'>Please Choose Size</p>
 
+                                        <select className="form-control form-select  mb-2 mr-sm-2"
                                             onChange={(e) => {
                                                 if (e.target.value === "select size") {
                                                     return setError("size")
@@ -382,7 +387,7 @@ const SingleAdd = () => {
                                             }}>
                                             <option value="select size">Select Size</option>
                                             <option value="corner-sofa">Corner Sofa</option>
-                                            <option value="5-seater">3 + 2 Sofa Set</option>
+                                            <option value="5+2-seater">3 + 2 Sofa Set</option>
                                             <option value="3-seater">3 Seater</option>
                                             <option value="2-seater">2 Seater</option>
                                             <option value="1-seater">1 Seater</option>
@@ -392,7 +397,9 @@ const SingleAdd = () => {
                                     <div className='mt-3'>
                                         {product.category === "sofa" &&
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                                <span style={{ color: "red" }}>*</span>
+                                                 <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {color ? color.replace(/-/g, " ") : ""}
+                                            </span>
                                             </label>
                                         }
                                         <p className='mt-2 mb-0'>Please Choose Colour</p>
@@ -436,8 +443,9 @@ const SingleAdd = () => {
                                 <>
                                     <div>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
-                                            <span style={{ color: "red" }}>*</span>
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>{size ? size.replace(/-/g, " ") : ""} </span>
                                         </label>
+                                        <p className='mt-2 mb-0'>Please Choose Size</p>
 
                                         <select className="form-control form-select mb-2 mr-sm-2"
 
@@ -449,17 +457,19 @@ const SingleAdd = () => {
                                                 }
                                             }}>
                                             <option value="select size">Select Size</option>
-                                            <option value="3ft">3ft Single</option>
-                                            <option value="4ft">4ft Small Double</option>
-                                            <option value="4'6ft">4'6ft Standard Double</option>
-                                            <option value="5ft">5ft King</option>
-                                            <option value="6ft">6ft Super King</option>
+                                            <option value="3ft-single">3ft Single</option>
+                                            <option value="4ft-small-double">4ft Small Double</option>
+                                            <option value="4'6ft-standard-ouble">4'6ft Standard Double</option>
+                                            <option value="5ft-king">5ft King</option>
+                                            <option value="6ft-super-king">6ft Super King</option>
                                         </select>
                                     </div>
 
                                     <div className='mt-3'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
-                                            <span style={{ color: "red" }}>*</span>
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {fabric ? fabric.replace(/-/g, " ") : ""}
+                                            </span>
                                         </label>
 
                                         <p className='mt-2 mb-0'>Please Choose Fabric</p>
@@ -480,7 +490,9 @@ const SingleAdd = () => {
 
                                     <div className='mt-3'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height
-                                            <span style={{ color: "red" }}>*</span>
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {headboard ? headboard.replace(/-/g, " ") : ""}
+                                            </span>
                                         </label>
                                         <p className='mt-2 mb-0'>Please Choose Headboard Height</p>
                                         <select className="form-select mb-2 mr-sm-2"
@@ -492,18 +504,20 @@ const SingleAdd = () => {
                                                 }
                                             }}>
                                             <option value="select headboard">Please Choose</option>
-                                            <option value="standard">Standard (54")</option>
-                                            <option value="extra-premium">Extra Premium (65") (+£79.00)</option>
-                                            <option value="exclusive">Exclusive (70") (+£129.00)</option>
-                                            <option value="extra-exclusive">Extra Exclusive (80") (+£200.00)</option>
-                                            <option value="diamond">Diamond (90") (+£380.00)</option>
+                                            <option value="standard-(54)">Standard (54")</option>
+                                            <option value="extra-premium-(65)-(+£79.00)">Extra Premium (65") (+£79.00)</option>
+                                            <option value="exclusive-(70)-(+£129.00)">Exclusive (70") (+£129.00)</option>
+                                            <option value="extra-exclusive-(80)-(+£200.00)">Extra Exclusive (80") (+£200.00)</option>
+                                            <option value="diamond-(90)-(+£380.00)">Diamond (90") (+£380.00)</option>
                                             <option value="two-part">Two Part Option Available</option>
                                         </select>
                                     </div>
 
                                     <div className='mt-3'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                            <span style={{ color: "red" }}>*</span>
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {color ? color.replace(/-/g, " ") : ""}
+                                            </span>
                                         </label>
 
                                         <p className='mt-2 mb-0'>Please Choose Colour</p>
@@ -535,7 +549,9 @@ const SingleAdd = () => {
 
                                     <div className='mt-3'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail
-                                            <span style={{ color: "red" }}>*</span>
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {detail ? detail.replace(/-/g, " ") : ""}
+                                            </span>
                                         </label>
                                         <p className='mt-2 mb-0'>Please Choose more Detail</p>
                                         <select
@@ -547,7 +563,7 @@ const SingleAdd = () => {
                                                 }
                                             }} className="form-select mb-2 mr-sm-2">
                                             <option value="select detail">Please Choose</option>
-                                            <option value="button">Buttons +£10.0</option>
+                                            <option value="button-+£10.0">Buttons +£10.0</option>
                                             <option value="diamonds">Diamonds</option>
                                             <option value="not-required">Not Required</option>
                                         </select>
@@ -555,7 +571,9 @@ const SingleAdd = () => {
 
                                     <div className='mt-3'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base
-                                            <span style={{ color: "red" }}>*</span>
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                {base ? base.replace(/-/g, " ") : ""}
+                                            </span>
                                         </label>
                                         <p className='mt-2 mb-0'>Please Choose Bed Base</p>
                                         <select
@@ -569,15 +587,44 @@ const SingleAdd = () => {
                                             }} className="form-select mb-2 mr-sm-2">
                                             <option value="select base">Please Choose</option>
                                             <option value="slats">Slats</option>
-                                            <option value="ottoman">Ottoman Gaslift +£120.00</option>
-                                            <option value="solid">Solid Base +£60.00</option>
+                                            <option value="ottoman-gaslift-+£120.00">Ottoman Gaslift +£120.00</option>
+                                            <option value="solid-base-+£60.00">Solid Base +£60.00</option>
+                                        </select>
+                                    </div>
+
+                                    <div className='mt-3'>
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size
+                                            &nbsp; <span className='lable_Case'>
+                                                {mattress ? mattress.replace(/-/g, " ") : ""}
+                                            </span>
+                                        </label>
+                                        <p className='mt-2 mb-0'>Please Choose Mattress Size</p>
+                                        <select
+                                            onChange={(e) => {
+                                                if (e.target.value === "select size") {
+                                                    return setError("mat")
+                                                } else {
+                                                    setMattress(e.target.value)
+                                                }
+                                            }}
+                                            className="form-select mb-2 mr-sm-2">
+                                            <option value="select size">Please Choose</option>
+                                            <option value="Single">Single</option>
+                                            <option value="small-double">Small Double</option>
+                                            <option value="double">Double</option>
+                                            <option value="king">King</option>
+                                            <option value="super-king">Super King</option>
+                                            <option value="not-require">Not Require</option>
                                         </select>
                                     </div>
 
                                     <div className='mt-3'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                                            Match with Ottoman Box</label>
-
+                                            Matching Ottoman Box
+                                            &nbsp; <span className='lable_Case'>
+                                                {ottoman ? ottoman.replace(/-/g, " ") : ""}
+                                            </span>
+                                        </label>
                                         <div className='d-flex gap-2'>
                                             <div>
                                                 <input
@@ -586,14 +633,27 @@ const SingleAdd = () => {
                                                     name="flexRadioDefault"
                                                     id="flexRadioDefault1"
                                                     onChange={() => {
-                                                        setOttoman("yes")
+                                                        setOttoman("Yes + £90.00")
                                                     }}
                                                 /> &nbsp;
                                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                                     Yes + £90.00
                                                 </label>
                                             </div>
-
+                                            <div>
+                                                <input
+                                                    className="form-check-input"
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault1"
+                                                    onChange={() => {
+                                                        setOttoman("No")
+                                                    }}
+                                                /> &nbsp;
+                                                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </>
@@ -609,7 +669,9 @@ const SingleAdd = () => {
                             <>
                                 <div className='mt-3'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size
-                                        <span style={{ color: "red" }}>*</span>
+                                        <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                            {size ? size.replace(/-/g, " ") : ""}
+                                        </span>
                                     </label>
                                     <p className='mt-2 mb-0'>Please Choose Mattress Size</p>
                                     <select
@@ -627,12 +689,15 @@ const SingleAdd = () => {
                                         <option value="double">Double</option>
                                         <option value="king">King</option>
                                         <option value="super-king">Super King</option>
-                                        <option value="not-require">Not Require</option>
                                     </select>
                                 </div>
 
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Pillow Topper</label>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Pillow Topper
+                                        &nbsp; <span className='lable_Case'>
+                                            {ottoman ? ottoman.replace(/-/g, " ") : ""}
+                                        </span>
+                                    </label>
 
                                     <div className='d-flex gap-2'>
                                         <div>
@@ -642,11 +707,25 @@ const SingleAdd = () => {
                                                 name="flexRadioDefault"
                                                 id="flexRadioDefault1"
                                                 onChange={() => {
-                                                    setPillow("yes")
+                                                    setOttoman("Yes + £50.00")
+                                                }}
+                                            />
+                                            <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                Yes + £50.00
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="flexRadioDefault"
+                                                id="flexRadioDefault1"
+                                                onChange={() => {
+                                                    setOttoman("No")
                                                 }}
                                             /> &nbsp;
                                             <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                                Yes + £50.00
+                                                No
                                             </label>
                                         </div>
 
@@ -664,7 +743,11 @@ const SingleAdd = () => {
                         {product.category === "ottoman-box" &&
                             <>
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric <span style={{ color: "red" }}>*</span></label>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric 
+                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                            {fabric ? fabric.replace(/-/g, " ") : ""}
+                                        </span>
+                                    </label>
                                     <p className='mt-2 mb-0'>Please Choose Fabric</p>
                                     <select className="form-select mb-2 mr-sm-2"
                                         onChange={(e) => {
@@ -683,7 +766,9 @@ const SingleAdd = () => {
 
                                 <div className='mt-3'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                        <span style={{ color: "red" }}>*</span>
+                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                            {color ? color.replace(/-/g, " ") : ""}
+                                        </span>
                                     </label>
 
                                     <p className='mt-2 mb-0'>Please Choose Colour</p>
@@ -714,7 +799,11 @@ const SingleAdd = () => {
                                 </div>
 
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail <span style={{ color: "red" }}>*</span></label>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail 
+                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                            {detail ? detail.replace(/-/g, " ") : ""}
+                                        </span>
+                                    </label>
                                     <p className='mt-2 mb-0'>Please Choose more Detail</p>
                                     <select
                                         onChange={(e) => {
@@ -725,7 +814,7 @@ const SingleAdd = () => {
                                             }
                                         }} className="form-select mb-2 mr-sm-2">
                                         <option value="select detail">Please Choose</option>
-                                        <option value="button">Matchig Buttons </option>
+                                        <option value="matchig-buttons">Matchig Buttons </option>
                                         <option value="diamonds">Diamonds</option>
                                     </select>
                                 </div>
@@ -740,7 +829,11 @@ const SingleAdd = () => {
                         {product.category === "footstools" &&
                             <>
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric <span style={{ color: "red" }}>*</span></label>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric 
+                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                            {fabric ? fabric.replace(/-/g, " ") : ""}
+                                        </span>
+                                    </label>
                                     <p className='mt-2 mb-0'>Please Choose Fabric</p>
                                     <select className="form-select mb-2 mr-sm-2"
                                         onChange={(e) => {
@@ -759,7 +852,9 @@ const SingleAdd = () => {
 
                                 <div className='mt-3'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                        <span style={{ color: "red" }}>*</span>
+                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                            {color ? color.replace(/-/g, " ") : ""}
+                                        </span>
                                     </label>
                                     <p className='mt-2 mb-0'>Please Choose Colour</p>
                                     <select onChange={(e) => {

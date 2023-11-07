@@ -15,6 +15,7 @@
 }
 
 .login_btn {
+    width: 100%;
     color: white;
     border: none;
     outline: none;
@@ -24,12 +25,13 @@
 
 .login_form_input {
     outline: none;
-    padding: 10px 30px;
+    padding: 15px 5px 15px 10px;
 }
 .form_icon{
     position: absolute;
-    top: 10px;
+    top: 3px;
     left: 8px;
+    color:#1b2950;
 }
 .login_btn:hover {
     color: white;
@@ -57,8 +59,12 @@
 .form_label{
     display: flex;
     align-items: center;
+    color: #1b2950;
     gap: 8px;
     margin: 0px 5px 10px 0px;
+}
+form span{
+    font-size: 15px;
 }
 @media screen and (max-width:768px) {
     .hide_div {

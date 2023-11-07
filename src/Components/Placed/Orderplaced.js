@@ -74,7 +74,7 @@ const Orderplaced = () => {
 
                         </p>
                         <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'
-                            style={{ zIndex: 20000 }}>
+                            style={{ zIndex: 101 }}>
                             <button className="review_btn my-3" onClick={() => {
                                 move(`/user-profile/${cu._id}`)
                             }}
