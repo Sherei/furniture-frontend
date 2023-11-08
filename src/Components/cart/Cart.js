@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Error } from '../Error/Error';
+import  Products  from "../Products/Products"
 import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
@@ -35,7 +35,7 @@ export const Cart = () => {
             ...item,
             quantity: item.quantity,
           }));
-          setCart(cartData);  
+          setCart(cartData);
 
           const initialItemQuantities = {};
           cartData.forEach((item) => {
@@ -143,7 +143,7 @@ export const Cart = () => {
 
   if (cu._id === undefined || cu.email === "asd@gmail.com") {
     return <>
-      <Error />
+      <Products />
     </>
   }
 

@@ -130,7 +130,6 @@ function App() {
                 <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
                 <Route exact path='/Products' element={<Products />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
-                <Route exact path='/cart' element={<Cart />} />
                 <Route exact path='/cart/:userId' element={<Cart />} />
                 <Route exact path='/login' element={<Login />} />
                 <Route exact path='/signup' element={<Signup />} />
@@ -142,7 +141,7 @@ function App() {
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
                 <Route path='/faq' element={<Faq />} />
-                <Route exact path='*' element={<Error />} />
+                <Route exact path='*' element={<Home />} />
               </Routes>
             </main>
             <Footer />

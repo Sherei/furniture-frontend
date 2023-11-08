@@ -187,7 +187,7 @@ export const Navbar = () => {
                       <div className='login_div p-4'>
                         <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin("close") }}><RxCross1 /></div>
                         <div>
-                          <p className='m-0 fs-5 text-center fw-bolder'>Login to my Account</p>
+                          <p className='m-0 fs-5 text-center fw-bolder mt-2'>Login to my Account</p>
                         </div>
                         <form action="" onSubmit={handleSubmit(Login)}>
                           {Error === "Invalid Credentials" &&

@@ -208,26 +208,25 @@
 
 .login_div {
   position: absolute;
-  top: 70px;
+  top: 80px;
   right: 10px;
   width: 350px;
   height: fit-content;
-  overflow: auto;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  z-index: 103;
+  z-index: 104 !important;
 }
 
 .login_div::before {
   content: "";
   position: absolute;
-  top: -20px;
-  right: 10px;
+  top: -10px;
+  right: 20px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 15px solid white; /* Adjust the size as needed */
+  border-bottom: 15px solid white;
 }
 
 .login_div::-webkit-scrollbar-thumb {
@@ -244,19 +243,6 @@
 .login_div p {
   color: #1b2950 !important;
 }
-
-
-.login_div::before {
-  content: ' ';
-  position: absolute;
-  top: -20px;
-  right: 20px;
-  border-width: 10px;
-  border-style: solid;
-  border-color: transparent transparent red transparent;
-}
-
-
 
 @media screen and (max-width:550px) {
 
@@ -305,7 +291,10 @@
   }
 
   .login_div {
-    top: 110px;
+    top: 115px;
+  }
+  .navbar-custom .login_div{
+    top: 75px;
   }
 
   .navbar {
