@@ -64,7 +64,7 @@ const Review = () => {
 
     return <>
         <div className='container-fluid p-0 ' id='review'>
-            <div className='row pt-5'>
+            <div className='row pt-lg-0 pt-xs-5 pt-sm-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 py-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
                     <h1 className='text-center fs-1 fw-bolder' style={{ color: "white" }}>Our Customers</h1>
                     <p className='text-center fs-6' style={{ color: "white" }}>Over 10,000 happy customers!</p>
@@ -80,11 +80,9 @@ const Review = () => {
                         <div className='mt-5'>
                             <Swiper
                                 slidesPerView={2}
-                                
                                 centeredSlides={true}
                                 spaceBetween={30}
-                                autoplay={{ delay: 1000 }}
-                                
+                                autoplay={{ delay: 3000 }}
                                 modules={[Autoplay]}
                                 className="mySwiper"
                             >
@@ -108,7 +106,7 @@ const Review = () => {
                     )}
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12 px-5'>
+                <div className='col-lg-6 col-md-6 col-sm-12 px-5 py-5'>
                     <div>
                         <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 my-5' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a comment</h1>
                     </div>
