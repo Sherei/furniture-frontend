@@ -43,12 +43,7 @@ const Hero = () => {
                                     <img src="/6.jpg" alt="No Network" />
                                     <div className='hero_detail'>
                                         <h1 className='hero_heading'>Prime Quality Sofa4U</h1>
-                                        <p className='hero_text'>
-                                            Already Established on Facebook (Bed4U AND Bed4U Northern Ireland & Ireland),
-                                            we have now decided to make it easier for our customers to choose bed designs, sizes, colour they want,
-                                            directly from our website. Feel free to contact us or
-                                            visit our facebook pages for all lovely pictures of Customers beds & their reviews regrading our products.
-                                        </p>
+                                      
                                         <button className='btn my-5' style={{backgroundColor:"#25D366", color:"white"}}>Explore On WhatsApp</button>
                                     </div>
                                 </div>
@@ -58,13 +53,8 @@ const Hero = () => {
                                 <div className='slide' style={{ position: "relative" }}>
                                     <img src="/foot.jpg" alt="No Network" />
                                     <div className='hero_detail'>
-                                        <h1 className='hero_heading'>Prime Quality Footstools</h1>
-                                        <p className='hero_text'>
-                                            Already Established on Facebook (Bed4U AND Bed4U Northern Ireland & Ireland),
-                                            we have now decided to make it easier for our customers to choose bed designs, sizes, colour they want,
-                                            directly from our website. Feel free to contact us or
-                                            visit our facebook pages for all lovely pictures of Customers beds & their reviews regrading our products.
-                                        </p>
+                                        <h1 className='hero_heading'>Prime Quality Footstools4U</h1>
+                                      
                                         <button className='btn  my-5' style={{backgroundColor:"#E4405F", color:"white"}}>Explore On Instagram</button>
                                     </div>
                                 </div>
