@@ -10,6 +10,7 @@ import Review from '../Reviews/Review'
 import Sofas from './Sofas'
 import Ottoman from "./Ottoman"
 import Slider from '../Sentence/Slider'
+import About from '../About/About'
 
 
 
@@ -35,6 +36,7 @@ const Home = () => {
     {/* <Feature /> */}
     <Mattress />
     <FootStools />
+    <About/>
     <Review />
     <Benefits />
 
