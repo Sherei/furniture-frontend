@@ -108,5 +108,8 @@
         margin-top: 5px !important;
         width: 100%;
     }
+    .hero_shop, .hero_facebook{
+        padding: 10px 3px;
+    }
 
 }

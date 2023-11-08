@@ -4,11 +4,11 @@ const About = () => {
     return <>
         <div className='container-fluid p-0'>
             <div className='row p-0'>
-                <div className='col-lg-6 col-sm-12 p-0 about_img' style={{maxHeight:"100vh"}} >
+                <div className='col-lg-6 col-sm-12 p-0 about_img min-vh-100' >
                     <img src="/about.jpg" alt="No Network" className='img-fluid' style={{height:"100%"}} />
                 </div>
                 <div className='col-lg-6 col-md-12 col-sm-12 px-5 py-5 d-flex align-items-center 
-                justify-content-center' style={{ backgroundColor: "rgb(2, 2, 94)" , maxHeight:"100vh", overflow:"hidden" }}>
+                justify-content-center min-vh-100' style={{ backgroundColor: "rgb(2, 2, 94)"  }}>
                     <div className='row '>
                         <div className='col-lg-10 col-md-10 col-sm-12'>
                             <p className='fs-1 fw-bolder' style={{ color: "#F7EEDD" }}> The House of Luxury Beds & Sofas</p>
