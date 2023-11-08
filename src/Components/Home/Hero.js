@@ -5,7 +5,17 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { Navigation, Autoplay } from 'swiper/modules';
 import "./hero.css"
+import { useNavigate } from 'react-router-dom';
 const Hero = () => {
+
+    const array = [
+        { img: "/6.jpg" },
+        { img: "/4.jpg" },
+        {img:"/foot.jpg"},
+        { img: "/AdobeStock_246454872_Preview.jpeg" },
+        { img: "/3.jpg" },
+    ]
+    const move = useNavigate()
 
     return <>
         <div className='container-fluid px-0 mx-0' id='/'>
@@ -24,41 +34,21 @@ const Hero = () => {
                             resistance={false}
                             effect="slide"
                         >
-                            <SwiperSlide>
-                                <div className='slide' style={{ position: "relative" }}>
-                                    <img src="/bed.webp" alt="No Network" />
-                                    <div className='hero_detail'>
-                                        <h1 className='hero_heading mb-4'>Prime Quality Bed4U</h1>
-                                        <p className='hero_text'>Already Established on Facebook (Bed4U AND Bed4U Northern Ireland & Ireland),
-                                            we have now decided to make it easier for our customers to choose bed designs, sizes, colour they want,
-                                            directly from our website. Feel free to contact us or
-                                            visit our facebook pages for all lovely pictures of Customers beds & their reviews regrading our products.
-                                        </p>
-                                        <button className='btn my-5' style={{backgroundColor:"#1877F2", color:"white"}}>Explore On Faceook</button>
+                            {array.map((data, index) => {
+                                return <SwiperSlide>
+                                    <div className='slide' key={index} style={{ position: "relative" }}>
+                                        <img src={data.img} alt="No Network" />
+                                        <div className='hero_detail'>
+                                            <button className='btn hero_shop' onClick={() => move('/products/all')}>SHOP NOW</button>
+                                            <button className='btn hero_facebook' >Explore On Facebook</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className='slide' style={{ position: "relative" }}>
-                                    <img src="/6.jpg" alt="No Network" />
-                                    <div className='hero_detail'>
-                                        <h1 className='hero_heading'>Prime Quality Sofa4U</h1>
-                                      
-                                        <button className='btn my-5' style={{backgroundColor:"#25D366", color:"white"}}>Explore On WhatsApp</button>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
+                                </SwiperSlide>
+                            })
 
-                            <SwiperSlide>
-                                <div className='slide' style={{ position: "relative" }}>
-                                    <img src="/foot.jpg" alt="No Network" />
-                                    <div className='hero_detail'>
-                                        <h1 className='hero_heading'>Prime Quality Footstools4U</h1>
-                                      
-                                        <button className='btn  my-5' style={{backgroundColor:"#E4405F", color:"white"}}>Explore On Instagram</button>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
+                            }
+
+
                         </Swiper>
 
                     </div>

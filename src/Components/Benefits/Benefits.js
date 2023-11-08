@@ -5,8 +5,12 @@ const Benefits = () => {
     return <>
         <div className='container main_container mb-5' id='benefit'>
             <div className='row'>
-                <div className='col-lg-12 col-sm-12 my-4'>
-                    <div className='benefit_main_box px-lg-5 px-sm-0 gap-5'>
+                <div className='col-lg-12 col-sm-12 my-5'>
+                    <div className='my-4 text-center'>
+                        <h1 className='' style={{color:"rgb(2, 2, 94)"}}>100% Satisfaction is Guaranteed</h1>
+                        <p >Over 10,000 Happy Customers!</p>
+                    </div>
+                    <div className='benefit_main_box mt-5 px-lg-5 px-sm-0 gap-5'>
                         <div className='benefit_box'>
                             <div style={{ fontSize: "30px", color: "#fd5d39" }}><FaSyncAlt /></div>
                             <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>12 Months Warrenty</p></div>
