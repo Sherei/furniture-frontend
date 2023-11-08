@@ -237,7 +237,6 @@ export const Navbar = () => {
 
               {cu._id != undefined &&
                 <>
-
                   <li className="nav-item dropdown">
                     <NavLink className="nav-link dropdown-toggle dropdown-toggle1 px-lg-0 px-3" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                       style={{ borderBottom: "none" }}>

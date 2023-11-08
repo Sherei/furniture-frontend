@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const AllBlog = () => {
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
     const move = useNavigate()
 
     return <>
