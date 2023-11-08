@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaSyncAlt, FaProductHunt, FaRegCreditCard , FaArrowRight} from "react-icons/fa"
+import { FaSyncAlt, FaShuttleVan, FaRegCreditCard , FaArrowRight} from "react-icons/fa"
 import "./benefit.css"
 const Benefits = () => {
     return <>
@@ -22,9 +22,9 @@ const Benefits = () => {
                             <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>100% Secure Payments</p></div>
                         </div>
                         <div className='benefit_box'>
-                            <div style={{ fontSize: "30px", color: "#fd5d39" }}><FaProductHunt /></div>
-                            <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>Quality</p></div>
-                            <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>100% Original Product</p></div>
+                            <div style={{ fontSize: "30px", color: "#fd5d39" }}><FaShuttleVan /></div>
+                            <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>Fast Delivery</p></div>
+                            <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>Delivery in as little as 5 -7  days</p></div>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser, FaRegHeart } from "react-icons/fa"
+import { FaRegUser, FaRegHeart, FaAngleDown } from "react-icons/fa"
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -219,7 +219,7 @@ export const Navbar = () => {
                             <p className='m-0 fs-6'>
                               I don't have an account?{' '}
                               <NavLink to="/signup">
-                                <span className="register_btn" onClick={()=>{
+                                <span className="register_btn" onClick={() => {
                                   setLogin('close')
                                 }} >
                                   Register
@@ -291,15 +291,21 @@ export const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item  nav-item2 dropdown">
+
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link d-flex justify-content-between gap-1"
                   href="#"
                   id="navbarDropdown1"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Sofas
+                  <div>
+                    <p className='m-0'>Sofas</p>
+                  </div>
+                  <div>
+                    <FaAngleDown />
+                  </div>
                 </a>
                 <ul className="dropdown-menu dropdown_nav" aria-labelledby="navbarDropdown1">
                   <li> <NavLink className="dropdown-item" to="/products/sofa">All Sofas </NavLink></li>
@@ -315,16 +321,32 @@ export const Navbar = () => {
                   <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair">Arm Chair & Swivel Chair</NavLink></li>
                 </ul>
               </li>
+             
+              <li className="nav-item nav-item2">
+                <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
+                  Corner Sofas
+                </NavLink>
+              </li>
+              <li className="nav-item nav-item2">
+                <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
+                  3+2 Sofa Sets
+                </NavLink>
+              </li>
               <li className="nav-item nav-item2 dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link d-flex justify-content-between gap-1"
                   href="#"
                   id="navbarDropdown2"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Beds
+                 <div>
+                    <p className='m-0'>Beds</p>
+                  </div>
+                  <div>
+                    <FaAngleDown />
+                  </div>
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown2">
                   <li> <NavLink className="dropdown-item" to="products/bed">All Beds </NavLink></li>

@@ -64,24 +64,34 @@
 .hero_detail {
     position: absolute;
     bottom:  20px;
-    width: 80%;
+    width: 90%;
     display: flex;
     gap: 10px;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    flex-grow: 1;
+
 }
-.hero_shop, .hero_facebook{
-    color: white;
+.hero_shop{
+    background-color: #F7EEDD;
+    border: none;
+    outline: 1px solid black;
+    color: black;
     padding: 10px 20px;
     font-weight: 600;
 }
 .hero_shop:hover{
-    color: white;
-    background-color: rgb(0, 0, 0,0.6);
+    color: black;
+    background-color: #F7EEDD;
     transform: scale(1.02);
     transition: all linear 0.3s;
 }
 .hero_facebook{
+    padding: 10px 20px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    outline: none;
     background-color: rgb(24, 119, 242) ;
 }
 .hero_facebook:hover{
@@ -90,9 +100,14 @@
     transform: scale(1.02);
     transition: all linear 0.3s;
 }
-.hero_shop{
-    background-color: rgb(0, 0, 0, 0.4);
-    outline: 2px solid white;
+.hero_insta{
+    padding: 10px 20px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    outline: none;
+    background: linear-gradient(90deg, #833ab4, #c13584, #fd6a02);
+
 }
 
 @media screen and (max-width:768px) {
@@ -108,8 +123,12 @@
         margin-top: 5px !important;
         width: 100%;
     }
-    .hero_shop, .hero_facebook{
-        padding: 10px 3px;
+    .hero_shop, .hero_facebook, .hero_insta{
+        padding: 10px 4px;
     }
+    .hero_insta{
+        width: 280px;
+    }
+   
 
 }

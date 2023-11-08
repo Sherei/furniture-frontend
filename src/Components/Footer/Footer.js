@@ -20,9 +20,10 @@ const Footer = () => {
     <div className='container-fluid mx-0 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
       <div className='row footer_row ' style={{ minHeight: "60vh" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
-
-          <p className='footer_head_detail'>We are an independent retail company dedicated to supplying good quality
-            products direct to the consumer with substantial savings and ease.</p>
+          <p className='fw-bolder fs-5' style={{ color: "white" }}>ABOUT US</p>
+          <p className='footer_head_detail'>We are an independent retail company dedicated to
+            supplying good quality furniture products to the consumers
+            with substantial savings and ease.</p>
           <div className='footer_address'>
             <a href="tel:00923067208343" target='blak'>
               <div className='mb-2'>
@@ -107,11 +108,19 @@ const Footer = () => {
             <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved SOFA & BEDS UK 2023 Created By Excellence Creative.</p>
           </div>
           <div className='footer_icon'>
-            <div><FaInstagram /></div>
+            <a href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>
+              <div>
+                <FaInstagram />
+              </div>
+            </a>
             <a href='https://wa.me/+923067208343' target="blank">
               <div><FaWhatsapp /></div>
             </a>
-            <div><FaFacebook /></div>
+            <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
+              <div>
+                <FaFacebook />
+              </div>
+            </a>
           </div>
         </div>
       </div>
