@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
+
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import { useForm } from 'react-hook-form';
@@ -80,15 +81,14 @@ const Review = () => {
                         <div className='mt-5'>
                             <Swiper
                                 slidesPerView={2}
-                                centeredSlides={true}
                                 spaceBetween={30}
                                 autoplay={{ delay: 3000 }}
                                 modules={[Autoplay]}
                                 className="mySwiper"
                             >
                                 {comments.map((item, index) => {
-                                    return <SwiperSlide>
-                                        <div className='col px-3' key={index} style={{maxWidth:"400px"}} >
+                                    return <SwiperSlide className='review_slide'>
+                                        <div className='px-3 py-2' key={index} >
                                             <div className='text-center' style={{ color: "yellow" }}>
                                                 <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                                             </div>
@@ -108,7 +108,7 @@ const Review = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 px-5 py-5'>
                     <div>
-                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 my-5' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a comment</h1>
+                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 my-5' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a Review</h1>
                     </div>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
