@@ -4,10 +4,6 @@
     align-items: center;
     flex-wrap: wrap;
 }
-
-.Benefit_main {
-}
-
 .benefit_box {
     /* border: 1px solid red; */
     width: fit-content;

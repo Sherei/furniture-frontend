@@ -11,6 +11,7 @@ import Sofas from './Sofas'
 import Ottoman from "./Ottoman"
 import Slider from '../Sentence/Slider'
 import About from '../About/About'
+import Blog from '../Blog/Blog'
 
 
 
@@ -26,19 +27,20 @@ const Home = () => {
 
   return <>
     <Hero />
-    <Slider/>
+    <Slider />
     <Categories />
     {/* <Discounted /> */}
     {/* <Trending /> */}
     <Sofas />
     <Beds />
-    <Ottoman/>
+    <Ottoman />
     {/* <Feature /> */}
     <Mattress />
     <FootStools />
-    <About/>
+    <About />
     <Review />
     <Benefits />
+    <Blog />
 
   </>
 }

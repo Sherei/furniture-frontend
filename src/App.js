@@ -10,6 +10,7 @@ import Footer from "./Components/Footer/Footer"
 import SingleAdd from './Components/SinglePage/SingleAdd';
 import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
+import SingleBlog from './Components/Blog/SingleBlog';
 import { useDispatch } from "react-redux";
 import { RiMessage2Line } from "react-icons/ri"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -25,6 +26,7 @@ import ReactGA from 'react-ga';
 import Sidebar from './Components/Dashboard/Sidebar';
 import './App.css';
 import { AddProduct } from './Components/Dashboard/AddProduct';
+import AllBlog from './Components/Blog/AllBlog';
 ReactGA.initialize('G-Y946N662J4');
 
 function App() {
@@ -141,6 +143,8 @@ function App() {
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
                 <Route path='/faq' element={<Faq />} />
+                <Route path='/single-blog/:Name' element={<SingleBlog />} />
+                <Route path='/all-blog' element={<AllBlog />} />
                 <Route exact path='*' element={<Home />} />
               </Routes>
             </main>
