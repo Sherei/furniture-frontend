@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Navbar/Navbar';
 import { Login } from "./Components/login/Login";
+import Signup from "./Components/Signup/Signup"
 import { Cart } from "./Components/cart/Cart"
 import { Error } from "./Components/Error/Error"
 import Home from "./Components/Home/Home"
@@ -10,7 +11,7 @@ import SingleAdd from './Components/SinglePage/SingleAdd';
 import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
 import { useDispatch } from "react-redux";
-import {RiMessage2Line}from "react-icons/ri"
+import { RiMessage2Line } from "react-icons/ri"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,9 +21,9 @@ import UserPanel from './Components/UserPanel/UserPanel';
 import OrderDetail from './Components/OrderDetail/OrderDetail';
 import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
-import './App.css';
 import ReactGA from 'react-ga';
 import Sidebar from './Components/Dashboard/Sidebar';
+import './App.css';
 import { AddProduct } from './Components/Dashboard/AddProduct';
 ReactGA.initialize('G-Y946N662J4');
 
@@ -109,13 +110,13 @@ function App() {
           {/* <img src="/greeting.svg" className='greeting' /> */}
           <a href='https://wa.me/+923067208343' target="blank">
             <div className='d-flex align-items-center gap-2 whatsapp-btn_main'>
-            <div>
+              <div>
                 <p className='m-0'>Chat</p>
               </div>
               <div className='whatsapp-btn'>
                 <RiMessage2Line />
               </div>
-            
+
             </div>
 
           </a>
@@ -132,6 +133,7 @@ function App() {
                 <Route exact path='/cart' element={<Cart />} />
                 <Route exact path='/cart/:userId' element={<Cart />} />
                 <Route exact path='/login' element={<Login />} />
+                <Route exact path='/signup' element={<Signup />} />
                 <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
                 <Route exact path='/admin-dashboard' element={<Sidebar />} />
                 <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />

@@ -1,25 +1,23 @@
-  .slider-container {
-    display: flex;
-    gap: 250px;
-    justify-content: center;
-    align-items: center;
-    height: fit-content;
-    overflow: hidden;
-  }
+.slider-container {
+  display: flex;
+  overflow: hidden;
+  height: fit-content;
+}
 
-  .slide-text {
-    color: rgb(2, 2, 94);
-    font-weight: 600;
-    font-size: 30px;
-    white-space: nowrap;
-    animation: moveRightToLeft 200s linear infinite;
-  }
+.slide-text {
+  color: rgb(2, 2, 94);
+  font-weight: 600;
+  font-size: 30px;
+  white-space: nowrap;
+  animation: moveRightToLeft 500s linear infinite;
+  padding-right: 100%; /* Adjust the padding to control the speed of the animation */
+}
 
-  @keyframes moveRightToLeft {
-    0% {
-      transform: translateX(50%); 
-    }
-    100% {
-      transform: translateX(-100%); 
-    }
+@keyframes moveRightToLeft {
+  0% {
+    transform: translateX(100%);
   }
+  100% {
+    transform: translateX(-100%);
+  }
+}

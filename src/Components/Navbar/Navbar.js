@@ -10,9 +10,8 @@ import { Link } from 'react-scroll';
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify"
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 import "./navbar.css";
-import { Login } from '../login/Login';
-import Signup from '../Signup/Signup';
 
 export const Navbar = () => {
 
@@ -24,6 +23,7 @@ export const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [login, setLogin] = useState("close");
+  const [Error, setError] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +42,6 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-
     setLoading(true);
     axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
       try {
@@ -59,6 +58,45 @@ export const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const Login = async (data) => {
+    console.log("hello")
+    try {
+
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);
+
+      let loginUser = response.data;
+
+      if (loginUser) {
+
+        localStorage.setItem('userToken', loginUser.myToken);
+
+        dispatch({
+          type: "LOGIN_USER",
+          payload: loginUser.user,
+        });
+
+        if (loginUser.user.email === "asd@gmail.com") {
+          toast.success("Welcome Back Dear Admin");
+          move('/admin-dashboard');
+          reset();
+        } else {
+          toast.success("Welcome back dear");
+          move("/products/all");
+          reset();
+        }
+      }
+    } catch (e) {
+      if (e.response && e.response.status === 404) {
+        setError("Invalid Credentials")
+
+      } else {
+        setError("Invalid Credentials")
+      }
+    }
   };
 
   const filterCart = cart?.filter((item) => item.userId === cu._id)
@@ -125,7 +163,7 @@ export const Navbar = () => {
                 if (cu._id === undefined) {
                   setLogin("login")
                   toast.warning("Login to see your Cart")
-                  
+
                 } else if (cu.email === "asd@gmail.com") {
                   toast.warning("Login too see cart")
                 } else {
@@ -133,7 +171,7 @@ export const Navbar = () => {
                 }
 
               }}  >
-                <NavLink className="nav-link">
+                <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
                   <span className={`fs-2 ${filterCart?.length > 0 ? 'cart-red' : 'cart-white'}`}>
                     <FiShoppingCart />
                   </span>
@@ -141,40 +179,56 @@ export const Navbar = () => {
               </li>
               {cu._id == undefined &&
                 <li className="nav-item">
-                  <NavLink className="nav-link nav-link1" >
+                  <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
                     <div className='fs-2' onClick={() => { setLogin("login") }}>
                       <FaRegUser />
                     </div>
                     {login === "login" &&
                       <div className='login_div p-4'>
                         <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin("close") }}><RxCross1 /></div>
-                        <Login />
-                        <div className='mt-3'>
-                          <p className='m-0 fs-6'>
-                            I don't have an account?{' '}
-                            <span className="register_btn"
-                              onClick={() => { setLogin("signup") }}
-                            >
-                              Register
-                            </span>
-                          </p>
+                        <div>
+                          <p className='m-0 fs-5 text-center fw-bolder'>Login to my Account</p>
                         </div>
-                      </div>
-                    }
-                    {login === "signup" &&
-                      <div className='login_div p-4'>
-                        <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin("close") }}><RxCross1 /></div>
-                        <Signup />
-                        <div className='mt-3'>
-                          <p>
-                            Already have an Account?{' '}
-                            <span className="register_btn"
-                              onClick={() => { setLogin("login") }}
-                            >
-                              Login
-                            </span>
-                          </p>
-                        </div>
+                        <form action="" onSubmit={handleSubmit(Login)}>
+                          {Error === "Invalid Credentials" &&
+                            <div className='error'> Invalid Credentials </div>
+                          }
+                          <div style={{ position: "relative" }} className='mt-3'>
+                            <input type="text" className="form-control login_form_input" placeholder='E-mail' {...register('email', {
+                              required: true, validate: function (typedValue) {
+                                if (typedValue.match(
+                                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                                )) {
+                                  return true;
+                                } else {
+                                  return false;
+                                }
+                              }
+                            })} />
+                            {errors.email ? <div className='error'> Please Enter Your Valid Email </div> : null}
+
+                          </div>
+
+                          <div style={{ position: "relative" }} className='mt-3'>
+                            <input type="password" className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+                            {errors.password ? <div className='error'> Please Enter Your Password </div> : null}
+
+                          </div>
+                          <button className='btn rounded login_btn mt-3' onClick={handleSubmit(Login)}>Login</button>
+                          <div className='mt-3'>
+                            <p className='m-0 fs-6'>
+                              I don't have an account?{' '}
+                              <NavLink to="/signup">
+                                <span className="register_btn" onClick={()=>{
+                                  setLogin('close')
+                                }} >
+                                  Register
+                                </span>
+                              </NavLink>
+
+                            </p>
+                          </div>
+                        </form>
                       </div>
                     }
                   </NavLink>
@@ -185,10 +239,12 @@ export const Navbar = () => {
                 <>
 
                   <li className="nav-item dropdown">
-                    <NavLink className="nav-link dropdown-toggle dropdown-toggle1" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <NavLink className="nav-link dropdown-toggle dropdown-toggle1" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                      style={{ borderBottom: "none" }}>
                       <img src="/profile.png"
                         className="nav_image"
                         alt=""
+
                       />
                     </NavLink>
                     <ul className="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -198,7 +254,7 @@ export const Navbar = () => {
                       {cu?.email === "asd@gmail.com" &&
                         <li> <NavLink className="dropdown-item" to="/admin-dashboard">Admin </NavLink></li>
                       }
-                      <li> <NavLink className="dropdown-item" to="/login" onClick={Logout}>Logout </NavLink></li>
+                      <li> <NavLink className="dropdown-item" to="/" onClick={Logout}>Logout </NavLink></li>
                     </ul>
                   </li>
                 </>

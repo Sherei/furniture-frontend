@@ -1,3 +1,4 @@
+
 .sticky-navbar {
   position: sticky;
   top: 0;
@@ -11,7 +12,8 @@
 }
 
 .navbar {
-  background-color: white !important;
+  padding: 0px 0px 0px 40px;
+  background-color: white;
 }
 
 .nav_padding {
@@ -190,7 +192,7 @@
 .cross-line3 {
   position: relative;
   left: 0px;
-  top: -8px;
+  top: -9px;  
   transform: rotate(-45deg);
   transform-origin: center;
 }
@@ -209,34 +211,51 @@
   top: 70px;
   right: 10px;
   width: 350px;
-  height: 390px;
+  height: fit-content;
   overflow: auto;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   z-index: 103;
 }
-.login_div::-webkit-scrollbar-thumb{
-  background : #1b2950;
+
+.login_div::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid white; /* Adjust the size as needed */
+}
+
+.login_div::-webkit-scrollbar-thumb {
+  background: #1b2950;
   border-radius: 50rem;
   max-height: 40px !important;
 }
+
 .login_div::-webkit-scrollbar {
   width: 7px;
   max-height: 10px !important;
 }
-.login_div p{
-  color: #1b2950 !important;
 
+.login_div p {
+  color: #1b2950 !important;
 }
+
+
 .login_div::before {
-  content: '';
+  content: ' ';
   position: absolute;
   top: -20px;
   right: 20px;
   border-width: 10px;
   border-style: solid;
-  border-color: transparent transparent white transparent;
+  border-color: transparent transparent red transparent;
 }
+
 
 
 @media screen and (max-width:550px) {
@@ -266,7 +285,7 @@
   }
 
   .nav-item2 {
-    background-color: #fff;
+    background-color: #F7EEDD !important;
   }
 
   .nav-item2:hover .nav-link {
@@ -284,10 +303,24 @@
   .nav_contact2 {
     display: block;
   }
+
   .login_div {
-    top: 90px;
+    top: 110px;
   }
 
+  .navbar {
+    padding: 0px;
+  }
+
+  .dropdown-menu {
+
+    background-color: transparent;
+    border: none;
+  }
+
+  .nav-link {
+    border-bottom: 1px solid lightgray;
+  }
 }
 
 @media screen and (max-width:380px) {

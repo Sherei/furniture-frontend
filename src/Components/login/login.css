@@ -66,9 +66,9 @@
 form span{
     font-size: 15px;
 }
+
 @media screen and (max-width:768px) {
     .hide_div {
         display: none !important;
     }
-
 }
