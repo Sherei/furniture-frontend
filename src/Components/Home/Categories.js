@@ -70,7 +70,7 @@ const Categories = () => {
                 <img src="/three.webp" alt='No Network' />
               </div>
               <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>3 & 2 Seater</p>
+                <p className='text-center m-0 mt-3 fw-bolder'>3+2 Sofa Sets</p>
                 <p className='text-center mt-1'>({product.filter(data => data.subCategory === "three-&-two-seater-sofas").length} Products)</p>
               </div>
             </div>
