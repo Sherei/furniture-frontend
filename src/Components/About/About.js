@@ -5,10 +5,10 @@ const About = () => {
         <div className='container-fluid p-0'>
             <div className='row p-0'>
                 <div className='col-lg-6 col-sm-12 p-0 about_img min-vh-100' >
-                    <img src="/about.jpg" alt="No Network" className='img-fluid' style={{height:"100%"}} />
+                    <img src="/about.jpg" alt="No Network" className='img-fluid' style={{ height: "100%" }} />
                 </div>
                 <div className='col-lg-6 col-md-12 col-sm-12 px-5 py-5 d-flex align-items-center 
-                justify-content-center min-vh-100 ' style={{ backgroundColor: "rgb(2, 2, 94)"  }}>
+                justify-content-center min-vh-100 ' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
                     <div className='row '>
                         <div className='col-lg-10 col-md-10 col-sm-12'>
                             <p className='fs-1 fw-bolder' style={{ color: "#F7EEDD" }}> The House of Luxury Sofa & Beds </p>
@@ -25,10 +25,15 @@ const About = () => {
                                 making it easy for you to upgrade your home furniture quickly.
                             </p>
                             <p className='about_text'>
-                            If you have any questions about our products, please don’t hesitate to contact us. 
-                            You can contact us on WhatsApp to discuss further. We personally prefer to chat with our customer before taking an order to understand their needs. 
-                            We are available six days a week and would be happy to provide you with any additional information you may need.
+                                If you have any questions about our products, please don’t hesitate to contact us.
+                                You can contact us on WhatsApp to discuss further. We personally prefer to chat with our customer before taking an order to understand their needs.
+                                We are available six days a week and would be happy to provide you with any additional information you may need.
                             </p>
+                            <div className='mt-5'>
+                                <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
+                                    <button className='btn hero_facebook' >Explore On Facebook</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

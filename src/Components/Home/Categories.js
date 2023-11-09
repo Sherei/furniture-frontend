@@ -55,16 +55,6 @@ const Categories = () => {
               </div>
             </div>
 
-            <div className="h_box" onClick={()=>{move('/products/sofa-sets')}}>
-              <div className='h_box_img_main'>
-                <img src="/set.webp" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>Sofa Sets</p>
-                <p className='text-center mt-1'>({product.filter(data => data.subCategory === "sofa-sets").length} Products)</p>
-              </div>
-            </div>
-
             <div className="h_box" onClick={()=>{move('/products/three-&-two-seater-sofas')}}>
               <div className='h_box_img_main'>
                 <img src="/three.webp" alt='No Network' />

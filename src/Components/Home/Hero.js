@@ -40,12 +40,7 @@ const Hero = () => {
                                         <img src={data.img} alt="No Network" />
                                         <div className='hero_detail'>
                                             <button className='btn hero_shop' onClick={() => move('/products/all')}>SHOP NOW</button>
-                                            <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
-                                                <button className='btn hero_facebook' >Explore On Facebook</button>
-                                            </a>
-                                            <a href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'> 
-                                                <button className='btn hero_insta' >Explore On Instagram</button>
-                                            </a>
+                                           
                                         </div>
                                     </div>
                                 </SwiperSlide>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaStar } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -8,6 +8,11 @@ import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules';
+
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import './single.css';
@@ -269,57 +274,77 @@ const SingleAdd = () => {
                                     src={image}
                                     alt='No Network'
                                     onClick={() => handleThumbnailClick(index)}
-                                    className={index === selectedImage ? 'active' : ''}
+                                    className={index === selectedImage ? 'activeImg' : ''}
                                 />
                             ))}
                     </div>
                 </div>
 
-                <div className='col-lg-4 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content", position: "relative" }} >
-                    <TransformWrapper
-                        initialScale={1}
-                        initialPositionX={0}
-                        initialPositionY={0}
-                    >
-                        {({ zoomIn, zoomOut, ...rest }) => (
-                            <>
-                                <TransformComponent>
-                                    {product?.images && product?.images.length > 0 ? (
-                                        <div className='s-Image'>
-                                            <img src={product?.images[selectedImage]} className='s-Image img-fluid rounded' alt="No network" />
-                                        </div>
-                                    ) : (
-                                        <div className='s_main_img '>
-                                            <p>No images available</p>
-                                        </div>
-                                    )}
+                <div className='col-lg-4 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
+                    <div style={{ position: "relative" }}>
 
-                                </TransformComponent>
-                                {product?.discount && product?.discount > 0 ? (
-                                    <div className='discount'>
-                                        {`-${product?.discount}%`}
-                                    </div>
-                                ) : null}
-                                {product?.images && product?.images.length > 0 &&
-                                    <div className="tools">
-                                        <button onClick={() => zoomIn()}><AiOutlineZoomIn /></button>
-                                        <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
-                                    </div>
-                                }
-                                {product?.images && product?.images.length > 0 &&
-                                    <>
-                                        <div className='single_arrow1' onClick={handleLeftArrowClick}>
-                                            <FaAngleLeft />
-                                        </div>
-                                        <div className='single_arrow2' onClick={handleRightArrowClick}>
-                                            <FaAngleRight />
-                                        </div>
-                                    </>
 
-                                }
-                            </>
-                        )}
-                    </TransformWrapper>
+                        <TransformWrapper
+                            initialScale={1}
+                            initialPositionX={0}
+                            initialPositionY={0}
+                        >
+                            {({ zoomIn, zoomOut, ...rest }) => (
+                                <>
+                                    <TransformComponent>
+                                        {product?.images && product?.images.length > 0 ? (
+                                            <div className='s-Image'>
+                                                <img src={product?.images[selectedImage]} className='s-Image img-fluid rounded' alt="No network" />
+                                            </div>
+                                        ) : (
+                                            <div className='s_main_img '>
+                                                <p>No images available</p>
+                                            </div>
+                                        )}
+
+                                    </TransformComponent>
+                                    {product?.discount && product?.discount > 0 ? (
+                                        <div className='discount'>
+                                            {`-${product?.discount}%`}
+                                        </div>
+                                    ) : null}
+                                    {product?.images && product?.images.length > 0 &&
+                                        <div className="tools">
+                                            <button onClick={() => zoomIn()}><AiOutlineZoomIn /></button>
+                                            <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
+                                        </div>
+                                    }
+                                    {product?.images && product?.images.length > 0 &&
+                                        <>
+                                            <div className='single_arrow1' onClick={handleLeftArrowClick}>
+                                                <FaAngleLeft />
+                                            </div>
+                                            <div className='single_arrow2' onClick={handleRightArrowClick}>
+                                                <FaAngleRight />
+                                            </div>
+                                        </>
+
+                                    }
+                                </>
+                            )}
+                        </TransformWrapper>
+                    </div>
+                    {product.description &&
+                        <div className='mt-5'>
+                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
+                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
+                                {product?.description}
+                            </p>
+                            <div className="d-flex justify-content-center mt-4">
+                                <button
+                                    className='btn single_read_btn'
+                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
+                                >
+                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
+                                </button>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div className='col-lg-4 col-sm-12'>
                     <div className='s_content'>
@@ -370,8 +395,8 @@ const SingleAdd = () => {
                             {product.category === "sofa" &&
                                 <>
                                     <div>
-                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Size 
-                                        <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Size
+                                            <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                 {size ? size.replace(/-/g, " ") : ""}
                                             </span>
                                         </label>
@@ -397,9 +422,9 @@ const SingleAdd = () => {
                                     <div className='mt-3'>
                                         {product.category === "sofa" &&
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                                 <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
-                                                {color ? color.replace(/-/g, " ") : ""}
-                                            </span>
+                                                <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
+                                                    {color ? color.replace(/-/g, " ") : ""}
+                                                </span>
                                             </label>
                                         }
                                         <p className='mt-2 mb-0'>Please Choose Colour</p>
@@ -743,8 +768,8 @@ const SingleAdd = () => {
                         {product.category === "ottoman-box" &&
                             <>
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric 
-                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
+                                        <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                             {fabric ? fabric.replace(/-/g, " ") : ""}
                                         </span>
                                     </label>
@@ -766,7 +791,7 @@ const SingleAdd = () => {
 
                                 <div className='mt-3'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                        <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                             {color ? color.replace(/-/g, " ") : ""}
                                         </span>
                                     </label>
@@ -799,8 +824,8 @@ const SingleAdd = () => {
                                 </div>
 
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail 
-                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail
+                                        <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                             {detail ? detail.replace(/-/g, " ") : ""}
                                         </span>
                                     </label>
@@ -829,8 +854,8 @@ const SingleAdd = () => {
                         {product.category === "footstools" &&
                             <>
                                 <div className='mt-3'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric 
-                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
+                                        <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                             {fabric ? fabric.replace(/-/g, " ") : ""}
                                         </span>
                                     </label>
@@ -852,7 +877,7 @@ const SingleAdd = () => {
 
                                 <div className='mt-3'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
-                                    <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
+                                        <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                             {color ? color.replace(/-/g, " ") : ""}
                                         </span>
                                     </label>
@@ -917,22 +942,7 @@ const SingleAdd = () => {
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
                         </a>
                     </div>
-                    {product.description &&
-                        <div className='mt-5'>
-                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
-                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
-                                {product?.description}
-                            </p>
-                            <div className="d-flex justify-content-center mt-4">
-                                <button
-                                    className='btn single_read_btn'
-                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
-                                >
-                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
-                                </button>
-                            </div>
-                        </div>
-                    }
+
                 </div>
 
 
@@ -969,52 +979,42 @@ const SingleAdd = () => {
 
 
             <div className='row mt-5 pt-5'>
-                <div className='col-lg-6 col-md-6 col-sm-12 order-2 order-lg-1  order-xl-1'>
-                    {comments.filter((item) => item.productId === productId).length > 0 && (
-                        <div className='col-lg-12 col-sm-12'>
-                            <div>
-                                <p className="text-center fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
-                                    {`${comments.filter((item) => item.productId === productId).length} Reviews`}
-                                </p>
-                            </div>
-                        </div>
-                    )}
-
+                <div className='col-lg-6 col-md-6 col-sm-12 py-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
+                    <h1 className='text-center fs-1 fw-bolder' style={{ color: "white" }}>Product Reviews</h1>
                     {isLoadingComments ? (
-                        <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                             <Loader />
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh", color: "rgb(2, 2, 94)" }} >
-                            <h2>No Review available</h2>
+                            <h2 style={{color:"white"}}>No Review available</h2>
                         </div>
                     ) : (
-                        <div className='row comments_row'>
-                            {comments.filter((item) => item.productId === productId)
-                                .map((item, index) => {
-                                    return (
-                                        <div className='border col-lg-8 col-md-12 col-sm-12 py-2 mb-2'
-                                            style={{
-                                                height: "fit-content",
-                                                backgroundColor: "rgb(255, 255, 255, 0.8)"
-                                            }} key={index}>
-                                            <div className='d-flex align-items-center' >
-                                                <img
-                                                    src="/profile.png"
-                                                    className="rounded-circle shadow-1-strong"
-                                                    width={50}
-                                                    height={50}
-                                                    alt="No network"
-                                                />
-                                                <div className='px-4'>
-                                                    <p className='my-0' style={{ fontWeight: "700" }}>{item?.name}</p>
-                                                    <p>{formatDateTime(item?.date)}</p>
-                                                    <p>{item?.comment}</p>
+                        <div className='mt-5'>
+                            <Swiper
+                                slidesPerView={2}
+                                spaceBetween={30}
+                                autoplay={{ delay: 3000 }}
+                                modules={[Autoplay]}
+                                className="mySwiper"
+                            >
+                                {comments.filter((item) => item.productId === productId)
+                                    .map((item, index) => {
+                                        return <SwiperSlide className='review_slide'>
+                                            <div className='px-3 py-2' key={index} >
+                                                <div className='text-center' style={{ color: "yellow" }}>
+                                                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                                                 </div>
+                                                <p className='review_detail text-center py-5 mt-3' >
+                                                    {item.comment}
+                                                </p>
+                                                <p className='text-center' style={{ color: "white" }}>{item.name}</p>
+                                                <p className='text-center text-muted' style={{ fontWeight: "700", fontWeight: "700" }}>{formatDateTime(item.date)}</p>
                                             </div>
-                                        </div>
-                                    );
-                                })}
+                                        </SwiperSlide>
+                                    })}
+
+                            </Swiper>
                         </div>
                     )}
                 </div>

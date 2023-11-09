@@ -5,7 +5,9 @@
     flex-direction: column;
     gap: 23px;
 }
-
+.activeImg{
+    border: 3px solid #1b2950;
+}
 .small_images::-webkit-scrollbar {
     display: none;
 }

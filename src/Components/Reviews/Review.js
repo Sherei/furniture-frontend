@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -82,6 +82,7 @@ const Review = () => {
                             <Swiper
                                 slidesPerView={2}
                                 spaceBetween={30}
+                                centeredSlides={true}
                                 autoplay={{ delay: 3000 }}
                                 modules={[Autoplay]}
                                 className="mySwiper"

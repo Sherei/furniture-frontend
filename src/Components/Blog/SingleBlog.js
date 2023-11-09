@@ -10,7 +10,7 @@ const SingleBlog = () => {
         });
     }, []);
     const { Name } = useParams()
-    const move=useNavigate()
+    const move = useNavigate()
     return <>
         <div className='container min-vh-100 '>
             <div className='row mt-5'>
@@ -45,8 +45,11 @@ const SingleBlog = () => {
 
                     {Name === "perfect-bed" &&
                         <>
-
-                            <img src="/3_1060x550_crop_center.webp" className='mt-5' alt="No Network" />
+                            <img
+                                src="/3_1060x550_crop_center.webp"
+                                className='mt-5 img-fluid'
+                                alt="No Network"
+                            />
                             <div className='my-5 px-5' >
                                 <p className='m-auto'>
                                     Your bed is one of the most important pieces of furniture in your home, and choosing the right one can make a big difference in the overall look and feel of your bedroom. With so many different types of beds available, it can be overwhelming to select the perfect one for your space.
@@ -103,7 +106,7 @@ const SingleBlog = () => {
                     {Name === "clean-sofa" &&
                         <>
 
-                            <img src="/Sofa_Claning_1060x550_crop_center.webp" className='mt-5' alt="No Network" />
+                            <img src="/Sofa_Claning_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-5' >
                                 <p className='m-auto'>
                                     Hey, <br /> <br />
@@ -157,7 +160,7 @@ const SingleBlog = () => {
                     {Name === "perfect-sofa" &&
                         <>
 
-                            <img src="/1_1060x550_crop_center.webp" className='mt-5' alt="No Network" />
+                            <img src="/1_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-5' >
                                 <p className='m-auto'>
                                     A sofa is often the centerpiece of a living room and is where you and your
@@ -213,7 +216,7 @@ const SingleBlog = () => {
                     {Name === "perfect-mattress" &&
                         <>
 
-                            <img src="/2_1060x550_crop_center.webp" className='mt-5' alt="No Network" />
+                            <img src="/2_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-5' >
                                 <p className='m-auto'>
                                     Are you in the market for a new mattress? With so many options available,
@@ -269,7 +272,7 @@ const SingleBlog = () => {
                         </>
                     }
                     <div className='my-5 text-center'>
-                        <button className='btn review_btn'onClick={()=>move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
+                        <button className='btn review_btn' onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
                     </div>
                 </div>
             </div>
