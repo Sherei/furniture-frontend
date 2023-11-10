@@ -292,7 +292,7 @@ const SingleAdd = () => {
                                         src: product?.images[selectedImage]
                                     },
                                     largeImage: {
-                                        src: product?.images[selectedImage], // Use the same image for simplicity; replace with the high-res image
+                                        src: product?.images[selectedImage],
                                         width: 1200,
                                         height: 1800
                                     }
