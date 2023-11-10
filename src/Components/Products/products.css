@@ -179,7 +179,8 @@
 }
 
 .product_box {
-    height: fit-content;
+    max-height: fit-content;
+    
     overflow: hidden;
 }
 

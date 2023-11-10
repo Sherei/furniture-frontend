@@ -3,7 +3,7 @@ import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaStar } from 'react-icons/
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { TransformWrapper, TransformComponent, PinchZoomPan } from "react-zoom-pan-pinch";
 import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -282,16 +282,18 @@ const SingleAdd = () => {
 
                 <div className='col-lg-4 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
                     <div style={{ position: "relative" }}>
-
-
                         <TransformWrapper
                             initialScale={1}
+                            maxScale={5}
                             initialPositionX={0}
                             initialPositionY={0}
+                            draggableUnZoomed={false}
+                            draggableZoomed={false}
+
                         >
                             {({ zoomIn, zoomOut, ...rest }) => (
                                 <>
-                                    <TransformComponent>
+                                    <TransformComponent disabled>
                                         {product?.images && product?.images.length > 0 ? (
                                             <div className='s-Image'>
                                                 <img src={product?.images[selectedImage]} className='s-Image img-fluid rounded' alt="No network" />
