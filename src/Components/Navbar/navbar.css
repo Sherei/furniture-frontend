@@ -159,10 +159,9 @@
 }
 
 .custom-toggler {
-
   opacity: 0;
   position: absolute;
-  top: -53px;
+  top: -47px;
   left: -4px;
   font-size: 30px;
   color: white !important;
@@ -171,6 +170,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+.additional-class{
+  top: -57px;
 }
 
 .custom-toggler .line1,
@@ -210,7 +212,7 @@
   position: absolute;
   top: 80px;
   right: 10px;
-  width: 350px;
+  width: 320px;
   height: fit-content;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -290,20 +292,19 @@
   .nav_contact2 {
     display: block;
   }
-
-  .login_div {
-    top: 115px;
-  }
   .navbar-custom .login_div{
+    top: 74px !important;
+  }
+  .login_div {
     top: 75px;
   }
+  
 
   .navbar {
     padding: 0px;
   }
 
   .dropdown-menu {
-
     background-color: transparent;
     border: none;
   }
