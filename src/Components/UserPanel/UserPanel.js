@@ -154,7 +154,7 @@ const UserPanel = () => {
                                 <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ height: '50vh', backgroundColor: '#eee' }}>
                                     <p className='fw-bolder text-muted'>No Order Placed yet</p>
                                     <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
-                                    <button className='btn review_btn' onClick={() => move('/Products/all')}>
+                                    <button className='btn review_btn' style={{width:"fit-content"}} onClick={() => move('/Products/all')}>
                                         Browse Products <FaArrowRight />
                                     </button>
                                 </div>
