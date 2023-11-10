@@ -173,7 +173,7 @@ export const Navbar = () => {
                   }
 
                 }}  >
-                  <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
+                  <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none" }}>
                     <span className={`fs-2 ${filterCart?.length > 0 ? 'cart-red' : 'cart-white'}`}>
                       <FiShoppingCart />
                     </span>
@@ -240,7 +240,7 @@ export const Navbar = () => {
                 {cu._id != undefined &&
                   <>
                     <li className="nav-item dropdown">
-                      <NavLink className="nav-link dropdown-toggle dropdown-toggle1 px-lg-0 px-3" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                      <NavLink className="nav-link dropdown-toggle dropdown-toggle1 px-0" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                         style={{ borderBottom: "none" }}>
                         <img src="/profile.png"
                           className="nav_image"
