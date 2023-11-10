@@ -66,7 +66,7 @@ const Review = () => {
     return <>
         <div className='container-fluid p-0 ' id='review'>
             <div className='row pt-lg-0 pt-5'>
-                <div className='col-lg-6 col-md-6 col-sm-12 py-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
+                <div className='col-lg-6 col-md-6 col-sm-12 pt-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
                     <h1 className='text-center fs-1 fw-bolder' style={{ color: "white" }}>Our Customers</h1>
                     <p className='text-center fs-6' style={{ color: "white" }}>Over 10,000 happy customers!</p>
                     {isLoadingComments ? (
@@ -107,10 +107,8 @@ const Review = () => {
                     )}
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12 px-5 py-5'>
-                    <div>
-                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 my-5' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a Review</h1>
-                    </div>
+                <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5'>
+                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a Review</h1>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -155,7 +153,7 @@ const Review = () => {
                             {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
 
                         </div>
-                        <button type="submit" className="btn review_btn">
+                        <button type="submit " className="btn mt-2 review_btn">
                             Submit
                         </button>
                     </form>

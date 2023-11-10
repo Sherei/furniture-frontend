@@ -257,6 +257,9 @@
   .nav_padding {
     padding-right: 5px;
   }
+  .nav-link1{
+    padding: 0px 0px 0px 5px;
+  }
 
 }
 

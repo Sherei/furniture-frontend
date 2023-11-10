@@ -86,20 +86,8 @@
     transform: scale(1.02);
     transition: all linear 0.3s;
 }
-.hero_facebook{
-    padding: 10px 20px;
-    font-weight: 600;
-    color: white;
-    border: none;
-    outline: none;
-    background-color: rgb(24, 119, 242) ;
-}
-.hero_facebook:hover{
-    color: white;
-    background-color: rgb(24, 119, 242) ;
-    transform: scale(1.02);
-    transition: all linear 0.3s;
-}
+
+
 .hero_insta{
     padding: 10px 20px;
     font-weight: 600;
@@ -123,12 +111,5 @@
         margin-top: 5px !important;
         width: 100%;
     }
-    .hero_shop, .hero_facebook, .hero_insta{
-        padding: 10px 4px;
-    }
-    .hero_insta{
-        width: 280px;
-    }
-   
 
 }

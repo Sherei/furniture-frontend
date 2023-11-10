@@ -12,17 +12,17 @@ const Benefits = () => {
                     </div>
                     <div className='benefit_main_box mt-5 px-lg-5 px-sm-0 gap-5'>
                         <div className='benefit_box'>
-                            <div style={{ fontSize: "30px", color: "#fd5d39" }}><FaSyncAlt /></div>
+                            <div  className='benefit_icon'><FaSyncAlt /></div>
                             <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>12 Months Warrenty</p></div>
                             <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>The Most of the U.K</p></div>
                         </div>
                         <div className='benefit_box'>
-                            <div style={{ fontSize: "30px", color: "#fd5d39" }}><FaRegCreditCard /></div>
+                            <div className='benefit_icon'><FaRegCreditCard /></div>
                             <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>Flexible Payments</p></div>
                             <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>100% Secure Payments</p></div>
                         </div>
                         <div className='benefit_box'>
-                            <div style={{ fontSize: "30px", color: "#fd5d39" }}><FaShuttleVan /></div>
+                            <div className='benefit_icon'><FaShuttleVan /></div>
                             <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>Fast Delivery</p></div>
                             <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>Delivery in as little as 5 -7  days</p></div>
                         </div>

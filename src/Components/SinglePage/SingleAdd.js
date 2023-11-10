@@ -987,7 +987,7 @@ const SingleAdd = () => {
                         </div>
                     ) : comments.filter((item) => item.productId === productId).length === 0 ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh", color: "rgb(2, 2, 94)" }} >
-                            <h2 style={{color:"white"}}>No Review available</h2>
+                            <h2 style={{ color: "white" }}>No Review available</h2>
                         </div>
                     ) : (
                         <div className='mt-5'>
@@ -1019,11 +1019,8 @@ const SingleAdd = () => {
                     )}
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12 order-1 order-lg-2 order-md-2 order-xl-2'>
-                    <div>
-                        <p className='fw-bolder fs-2 text-center' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a comment</p>
-
-                    </div>
+                <div className='col-lg-6 col-md-6 col-sm-12 pt-5 px-5 order-1 order-lg-2 order-md-2 order-xl-2'>
+                    <p className='fw-bolder fs-2 text-center' style={{ color: 'rgb(2, 2, 94)' }} >Product Feedback</p>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">

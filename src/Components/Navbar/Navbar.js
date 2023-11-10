@@ -309,9 +309,8 @@ export const Navbar = () => {
                 <ul className="dropdown-menu dropdown_nav" aria-labelledby="navbarDropdown1">
                   <li> <NavLink className="dropdown-item" to="/products/sofa">All Sofas </NavLink></li>
                   <li> <NavLink className="dropdown-item" to="products/corner-sofas">Corner Sofas </NavLink></li>
-                  <li> <NavLink className="dropdown-item" to="products/sofa-sets">Sofa Sets </NavLink></li>
-                  <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
                   <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas">3+2 Sofa Sets</NavLink></li>
+                  <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
                   <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
                   <li> <NavLink className="dropdown-item" to="products/chesterfield-sofas">Chesterfield Sofas </NavLink></li>
                   <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas">U Shape Sofas</NavLink></li>

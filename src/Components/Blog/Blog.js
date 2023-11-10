@@ -38,9 +38,12 @@ const Blog = () => {
 
                         </div>
                     </div>
-                    <div className='my-5 text-center'>
-                        <button className='btn review_btn' onClick={()=>{move("/all-blog")}}>VIEW ALL POSTS <FaArrowRight /></button>
-                    </div>
+                   
+                </div>
+                <div className='col-lg-12 my-5 d-flex justify-content-center'>
+                    <a href="/all-blog">
+                        <button className='review_btn'>VIEW ALL POSTS <FaArrowRight/></button>
+                    </a>
                 </div>
             </div>
         </div>
