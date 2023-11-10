@@ -194,6 +194,8 @@
 
 .s-Image {
     width: 100%;
+    position: relative;
+    transition: opacity 0.3s ease-in-out;
     height: auto;
 }
 
@@ -213,11 +215,11 @@
 }
 
 .single_arrow1 {
-    left: 20px;
+    left: 10px;
 }
 
 .single_arrow2 {
-    right: 20px;
+    right: 1%;
 }
 
 .single_arrow1:hover,

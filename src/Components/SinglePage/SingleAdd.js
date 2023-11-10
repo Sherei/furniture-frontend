@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaStar, FaWhatsapp, FaCartArrowDown } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft,FaArrowLeft,FaArrowRight, FaStar, FaWhatsapp, FaCartArrowDown } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
-import { TransformWrapper, TransformComponent, PinchZoomPan } from "react-zoom-pan-pinch";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import Benefits from '../Benefits/Benefits';
 import Home from "../Home/Home"
 import axios from 'axios';
@@ -297,7 +297,8 @@ const SingleAdd = () => {
                                     <TransformComponent disabled>
                                         {product?.images && product?.images.length > 0 ? (
                                             <div className='s-Image'>
-                                                <img src={product?.images[selectedImage]} className='img-fluid rounded' alt="No network" />
+                                                <img src={product?.images[selectedImage]} 
+                                                className='img-fluid rounded' alt="No network" />
                                             </div>
                                         ) : (
                                             <div className='s_main_img '>
@@ -320,10 +321,10 @@ const SingleAdd = () => {
                                     {product?.images && product?.images.length > 1 &&
                                         <>
                                             <div className='single_arrow1' onClick={handleLeftArrowClick}>
-                                                <FaAngleLeft />
+                                                <FaArrowLeft />
                                             </div>
                                             <div className='single_arrow2' onClick={handleRightArrowClick}>
-                                                <FaAngleRight />
+                                                <FaArrowRight />
                                             </div>
                                         </>
 
