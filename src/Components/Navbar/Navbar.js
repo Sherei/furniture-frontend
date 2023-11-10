@@ -262,7 +262,8 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
-      </div >
+      </div>
+      
       <nav className={`navbar navbar-expand-lg container-fluid`}>
         <div className="container-fluid nav_bg p-0">
           <button
