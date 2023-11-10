@@ -62,41 +62,27 @@
 }
 
 .hero_detail {
-    position: absolute;
-    bottom:  20px;
-    width: 90%;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    flex-grow: 1;
+  
 
 }
 .hero_shop{
-    background-color: #F7EEDD;
+    position: absolute;
+    bottom:  100px;
+    left: 70px;
+    background-color: #1b2950;
     border: none;
-    outline: 1px solid black;
-    color: black;
+    outline: 1px solid #F7EEDD;
+    color: #F7EEDD;
     padding: 10px 20px;
     font-weight: 600;
 }
 .hero_shop:hover{
-    color: black;
-    background-color: #F7EEDD;
+    color: #F7EEDD;
+    background-color: #1b2950;
     transform: scale(1.02);
     transition: all linear 0.3s;
 }
 
-
-.hero_insta{
-    padding: 10px 20px;
-    font-weight: 600;
-    color: white;
-    border: none;
-    outline: none;
-    background: linear-gradient(90deg, #833ab4, #c13584, #fd6a02);
-
-}
 
 @media screen and (max-width:768px) {
     .hero_heading {

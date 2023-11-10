@@ -11,8 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination, Autoplay } from 'swiper/modules';
-
+import { Autoplay } from 'swiper/modules';
+import ReactImageMagnify from 'react-image-magnify';
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import './single.css';
@@ -283,51 +283,51 @@ const SingleAdd = () => {
                 <div className='col-lg-4 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
                     <div style={{ position: "relative" }}>
 
-
-                        <TransformWrapper
-                            initialScale={1}
-                            initialPositionX={0}
-                            initialPositionY={0}
-                        >
-                            {({ zoomIn, zoomOut, ...rest }) => (
-                                <>
-                                    <TransformComponent>
-                                        {product?.images && product?.images.length > 0 ? (
-                                            <div className='s-Image'>
-                                                <img src={product?.images[selectedImage]} className='s-Image img-fluid rounded' alt="No network" />
-                                            </div>
-                                        ) : (
-                                            <div className='s_main_img '>
-                                                <p>No images available</p>
-                                            </div>
-                                        )}
-
-                                    </TransformComponent>
-                                    {product?.discount && product?.discount > 0 ? (
-                                        <div className='discount'>
-                                            {`-${product?.discount}%`}
-                                        </div>
-                                    ) : null}
-                                    {product?.images && product?.images.length > 0 &&
-                                        <div className="tools">
-                                            <button onClick={() => zoomIn()}><AiOutlineZoomIn /></button>
-                                            <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
-                                        </div>
+                        {product?.images && product?.images.length > 0 ? (
+                            <ReactImageMagnify
+                                {...{
+                                    smallImage: {
+                                        alt: 'Wristwatch by Ted Baker London',
+                                        isFluidWidth: true,
+                                        src: product?.images[selectedImage]
+                                    },
+                                    largeImage: {
+                                        src: product?.images[selectedImage], // Use the same image for simplicity; replace with the high-res image
+                                        width: 1200,
+                                        height: 1800
                                     }
-                                    {product?.images && product?.images.length > 0 &&
-                                        <>
-                                            <div className='single_arrow1' onClick={handleLeftArrowClick}>
-                                                <FaAngleLeft />
-                                            </div>
-                                            <div className='single_arrow2' onClick={handleRightArrowClick}>
-                                                <FaAngleRight />
-                                            </div>
-                                        </>
+                                }}
+                            />
+                        ) : (
+                            <div className='s_main_img '>
+                                <p>No images available</p>
+                            </div>
+                        )}
 
-                                    }
-                                </>
-                            )}
-                        </TransformWrapper>
+                        {product?.discount && product?.discount > 0 ? (
+                            <div className='discount'>
+                                {`-${product?.discount}%`}
+                            </div>
+                        ) : null}
+
+                        {product?.images && product?.images.length > 0 && (
+                            <div className="tools">
+                                <button><AiOutlineZoomIn /></button>
+                                <button><AiOutlineZoomOut /></button>
+                            </div>
+                        )}
+
+                        {product?.images && product?.images.length > 0 && (
+                            <>
+                                <div className='single_arrow1' onClick={handleLeftArrowClick}>
+                                    <FaAngleLeft />
+                                </div>
+                                <div className='single_arrow2' onClick={handleRightArrowClick}>
+                                    <FaAngleRight />
+                                </div>
+                            </>
+                        )}
+
                     </div>
                     {product.description &&
                         <div className='mt-5'>

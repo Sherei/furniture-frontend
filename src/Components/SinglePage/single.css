@@ -5,6 +5,9 @@
     flex-direction: column;
     gap: 23px;
 }
+.s-Image img {
+    pointer-events: none;
+}
 .activeImg{
     border: 3px solid #1b2950;
 }
