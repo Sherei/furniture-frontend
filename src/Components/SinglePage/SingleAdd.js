@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaStar } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaStar, FaWhatsapp, FaCartArrowDown } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TransformWrapper, TransformComponent, PinchZoomPan } from "react-zoom-pan-pinch";
 import Benefits from '../Benefits/Benefits';
+import Home from "../Home/Home"
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +13,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import './single.css';
@@ -251,8 +251,9 @@ const SingleAdd = () => {
     };
 
     function Order() {
+        AddToCart()
         if (cu._id === undefined || cu.email === "asd@gmail.com") {
-            return <Error />;
+            return <Home />;
         } else {
             AddToCart()
             move(`/cart-checkout/${cu._id}`)
@@ -280,7 +281,7 @@ const SingleAdd = () => {
                     </div>
                 </div>
 
-                <div className='col-lg-4 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
+                <div className='col-lg-5 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
                     <div style={{ position: "relative" }}>
                         <TransformWrapper
                             initialScale={1}
@@ -296,7 +297,7 @@ const SingleAdd = () => {
                                     <TransformComponent disabled>
                                         {product?.images && product?.images.length > 0 ? (
                                             <div className='s-Image'>
-                                                <img src={product?.images[selectedImage]} className='s-Image img-fluid rounded' alt="No network" />
+                                                <img src={product?.images[selectedImage]} className='img-fluid rounded' alt="No network" />
                                             </div>
                                         ) : (
                                             <div className='s_main_img '>
@@ -316,7 +317,7 @@ const SingleAdd = () => {
                                             <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
                                         </div>
                                     }
-                                    {product?.images && product?.images.length > 0 &&
+                                    {product?.images && product?.images.length > 1 &&
                                         <>
                                             <div className='single_arrow1' onClick={handleLeftArrowClick}>
                                                 <FaAngleLeft />
@@ -331,25 +332,9 @@ const SingleAdd = () => {
                             )}
                         </TransformWrapper>
                     </div>
-                    {product.description &&
-                        <div className='mt-5'>
-                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
-                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
-                                {product?.description}
-                            </p>
-                            <div className="d-flex justify-content-center mt-4">
-                                <button
-                                    className='btn single_read_btn'
-                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
-                                >
-                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
-                                </button>
-                            </div>
-                        </div>
-                    }
                 </div>
-                <div className='col-lg-4 col-sm-12'>
-                    <div className='s_content'>
+                <div className='col-lg-5 col-sm-12' >
+                    <div className={`s_content ${product.category === "bed" ? "bed_class" : ""}`}>
                         <h1 className='text-center fs-1 ' style={{ color: "#1b2950" }}>{product?.title}</h1>
                         {comments.filter((item) => item.productId === productId).length > 0 &&
                             <span className='mt-2 mb-3' style={{ color: "red" }}><RiStarSFill /><RiStarSFill /><RiStarSFill />
@@ -913,27 +898,24 @@ const SingleAdd = () => {
                         }
 
                         {/*.................................... Footstools End .......................... */}
-
-
-
-                        <div className='sigle_quatity_main mt-3'>
-                            <div className='mt-3'>
-                                <p style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
-                            </div>
-                            <div className='sigle_quatity'>
-                                <button className="plus_btn" onClick={Decrement}>
-                                    <FaMinus />
-                                </button>
-
-                                <p className="input_single text-center m-0 p-0">
-                                    {quantity}
-                                </p>
-                                <button className="plus_btn" onClick={Increment}>
-                                    <FaPlus />
-                                </button>
-                            </div>
-
+                    </div>
+                    <div className='sigle_quatity_main mt-3'>
+                        <div className='mt-3'>
+                            <p style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
                         </div>
+                        <div className='sigle_quatity'>
+                            <button className="plus_btn" onClick={Decrement}>
+                                <FaMinus />
+                            </button>
+
+                            <p className="input_single text-center m-0 p-0">
+                                {quantity}
+                            </p>
+                            <button className="plus_btn" onClick={Increment}>
+                                <FaPlus />
+                            </button>
+                        </div>
+
                     </div>
                     <div className='s_btn my-3'>
                         <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
@@ -945,37 +927,24 @@ const SingleAdd = () => {
                         </a>
                     </div>
 
-                </div>
-
-
-                {/* Related items */}
-
-                <div className='col-lg-3 col-sm-12 related'>
-                    <p className='fw-bolder' style={{ color: "#1b2950" }}>You may like this</p>
-                    <div className='s_box'>
-                        {data?.filter((item) => item.category === product?.category).reverse()
-                            .map((product, index) => (
-                                <div className="single_box" key={index} onClick={() => {
-                                    window.scrollTo({
-                                        top: 0,
-                                        behavior: 'smooth',
-                                    });
-                                    move("/single_Add/" + product._id);
-                                }}
+                    {product.description &&
+                        <div className='mt-5'>
+                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
+                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
+                                {product?.description}
+                            </p>
+                            <div className="d-flex justify-content-center mt-4">
+                                <button
+                                    className='btn single_read_btn'
+                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
                                 >
-                                    <img src={product?.images[0]} alt='No Network' className='img-fluid single_img' />
-                                    {product?.discount && product?.discount > 0 ? (
-                                        <div className='s_discount'>
-                                            {`${product?.discount}%`}
-                                        </div>
-                                    ) : null}
-                                    <div>
-                                        <p className='fs-6' style={{ color: "#1b2950" }}>{product?.title.slice(0, 70)}...</p>
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
+                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
+                                </button>
+                            </div>
+                        </div>
+                    }
                 </div>
+
             </div>
 
 

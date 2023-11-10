@@ -43,9 +43,9 @@ export const AddProduct = () => {
   };
 
   const handleCategoryChange = (e) => {
-      setSelectedCategory(e.target.value); 
+    setSelectedCategory(e.target.value);
   };
-  
+
 
   let move = useNavigate();
 
@@ -88,13 +88,13 @@ export const AddProduct = () => {
       for (let i = 0; i < data.images.length; i++) {
         formData.append('file', data.images[i]);
         formData.append('upload_preset', "zonfnjjo");
-         await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
+        await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
           cloudinaryUrl.push(res.data.url);
         });
       }
       data.images = cloudinaryUrl;
     }
-    
+
     data.discount = discount;
     data.price = price;
     data.Fprice = finalPrice;
@@ -183,7 +183,7 @@ export const AddProduct = () => {
                   {errors.category ? <div className='error'>Category is required</div> : null}
                 </div>
 
-                {(selectedCategory === 'sofa' || product?.category === "sofa") && (
+                {(selectedCategory === 'sofa') && (
                   <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Sub Category *</label>
                     <select {...register('subCategory', {
@@ -214,7 +214,7 @@ export const AddProduct = () => {
 
                   </div>
                 )}
-                {(selectedCategory === 'bed' || product?.category === "bed") && (
+                {(selectedCategory === 'bed') && (
                   <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Sub Category *</label>
                     <select {...register('subCategory', {
@@ -256,7 +256,7 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
-                  <input type="number" {...register('discount')} min={"1"}
+                  <input type="number" {...register('discount')} min={"0"}
                     className="form-control mb-2 mr-sm-2"
                     defaultValue={product ? product.discount : discount}
                     onChange={handleDiscountChange} />
@@ -293,31 +293,20 @@ export const AddProduct = () => {
 
               </div>
               <div className='row'>
-                {/* <div className='col-lg-6 col-md-6 col-sm-12'>
-
-                  <input
-                    type="checkbox"
-                    {...register('trending')}
-                    className="form-check-input"
-                    id="exampleCheck1"
-                    defaultChecked={product ? product.trending : false}
-                  />
-                  <span className='px-2'><b>Make Trending</b></span>
-                </div>
-                <div className='col-lg-6 col-md-6 col-sm-12'>
-                  <input type="checkbox"
-                    {...register('feature')}
-                    className="form-check-input"
-                    id="exampleCheck1"
-                    defaultChecked={product ? product.feature : false}
-                  />
-                  <span className='px-2'><b>Make Feature</b> </span>
-                </div> */}
-                <div className='col-lg-12 col-sm-12 my-5'>
-                  <button type="button" className="btn review_btn" onClick={handleSubmit(submitProduct)}>
-                    Submit
-                  </button>
-                </div>
+                {!product &&
+                  <div className='col-lg-12 col-sm-12 my-5'>
+                    <button type="button" className="btn review_btn" style={{width:"fit-content"}} onClick={handleSubmit(submitProduct)}>
+                      Submit
+                    </button>
+                  </div>
+                }
+                {product &&
+                  <div className='col-lg-12 col-sm-12 my-5'>
+                    <button type="button" className="btn review_btn" style={{width:"fit-content"}} onClick={handleSubmit(submitProduct)}>
+                      Update
+                    </button>
+                  </div>
+                }
               </div>
             </form>
           )}

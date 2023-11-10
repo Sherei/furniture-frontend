@@ -5,12 +5,15 @@
     flex-direction: column;
     gap: 23px;
 }
+
 .s-Image img {
     pointer-events: none;
 }
-.activeImg{
+
+.activeImg {
     border: 3px solid #1b2950;
 }
+
 .small_images::-webkit-scrollbar {
     display: none;
 }
@@ -77,8 +80,30 @@
 .s_content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    height: 50vh;
+    overflow: auto;
 }
+
+.bed_class {
+    height: 100vh;
+    overflow: auto;
+
+
+}
+
+.s_content::-webkit-scrollbar,
+.bed_class::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+.s_content::-webkit-scrollbar-thumb,
+.bed_class::-webkit-scrollbar-thumb {
+    background: #1b2950;
+    border-radius: 10px;
+}
+
+
 
 .s_categories_P {
     padding: 0px 30px;
@@ -214,6 +239,7 @@
     outline: 1px solid transparent;
     box-shadow: 0 0 2px 1px #1b2950;
 }
+
 .input_single {
     min-width: 30px;
     height: fit-content;
@@ -235,6 +261,7 @@
     border: 1px solid lightgray !important;
 
 }
+
 .plus_btn {
     width: fit-content;
     height: fit-content;
@@ -244,6 +271,7 @@
     border: 1px solid lightgray !important;
 
 }
+
 .plus_btn:hover {
     border: none !important;
     outline: none !important;
@@ -274,13 +302,13 @@
     color: white;
 }
 
-.lable_Case{
-        text-transform: capitalize;
-        font-size: 15px;
-        font-weight: 500    ;
-        color: rgb(110, 110, 110)   ;
-    
-      
+.lable_Case {
+    text-transform: capitalize;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(110, 110, 110);
+
+
 }
 
 @media screen and (min-width:769px) and (max-width:992px) {}
