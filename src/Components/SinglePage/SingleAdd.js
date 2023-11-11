@@ -1,11 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaArrowLeft, FaArrowRight, FaStar, FaWhatsapp, FaCartArrowDown } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaArrowLeft, FaArrowRight, FaStar, } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
-import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
 import Benefits from '../Benefits/Benefits';
 import { Login } from "../login/Login"
-import axios from 'axios';
+
+import Ambassador from "../Description/Bed/Ambassador"
+import Bespoke from "../Description/Bed/Bespoke"
+import Chester from "../Description/Bed/Chester"
+import Divan from "../Description/Bed/Divan"
+import OttomanBeds from "../Description/Bed/OttomanBeds"
+import Panel from "../Description/Bed/Panel"
+import Wing from "../Description/Bed/Wing"
+
+import Arm from "../Description/Sofa/Arm"
+import ChesterfieldSofa from "../Description/Sofa/ChesterfieldSofa"
+import Corner from "../Description/Sofa/Corner"
+import Fabric from "../Description/Sofa/Fabric"
+import Leather from "../Description/Sofa/Leather"
+import Recliner from "../Description/Sofa/Recliner"
+import SofaBeds from "../Description/Sofa/SofaBeds"
+import Three from "../Description/Sofa/Three"
+import UShaped from "../Description/Sofa/UShaped"
+
+import Footstools from "../Description/Footstools/Footstools"
+import Mattress from "../Description/Mattress/Mattress"
+import Ottoman from "../Description/Ottoman/Ottoman"
+
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,10 +35,10 @@ import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
-import './single.css';
-
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+import axios from 'axios';
+import './single.css';
 
 const SingleAdd = () => {
 
@@ -259,14 +280,12 @@ const SingleAdd = () => {
 
                 <div className='col-lg-5 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
                     <div style={{ position: "relative" }}>
-
                         <InnerImageZoom
                             zoomScale={2}
                             src={product?.images && product.images[selectedImage] ? product.images[selectedImage] : 'fallbackImageURL'}
                             zoomSrc={product?.images && product.images[selectedImage] ? product.images[selectedImage] : 'fallbackImageURL'}
 
                         />
-
                         {product?.discount && product?.discount > 0 ? (
                             <div className='discount'>
                                 {`-${product?.discount}%`}
@@ -285,6 +304,22 @@ const SingleAdd = () => {
 
                         }
                     </div>
+                    {product.description &&
+                        <div className='mt-5 description_display'>
+                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
+                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
+                                {product?.description}
+                            </p>
+                            <div className="d-flex justify-content-center mt-4">
+                                <button
+                                    className='btn single_read_btn'
+                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
+                                >
+                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
+                                </button>
+                            </div>
+                        </div>
+                    }
                 </div>
 
 
@@ -883,7 +918,7 @@ const SingleAdd = () => {
                     </div>
 
                     {product.description &&
-                        <div className='mt-5'>
+                        <div className='mt-5 description_display1'>
                             <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
                             <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
                                 {product?.description}
@@ -899,9 +934,75 @@ const SingleAdd = () => {
                         </div>
                     }
                 </div>
-
             </div>
 
+            <div className='row my-5 d-flex justify-content-center'>
+                <div className='col-lg-10 col-md-10 col-sm-12'>
+                    <div>
+                        {(product.category === "bed" && product.subCategory === "ambassador-beds") &&
+                            <Ambassador />
+                        }
+                        {(product.category === "bed" && product.subCategory === "bespoke-beds") &&
+                            <Bespoke />
+                        }
+                        {(product.category === "bed" && product.subCategory === "chesterfield-beds") &&
+                            <Chester />
+                        }
+                        {(product.category === "bed" && product.subCategory === "divan-beds") &&
+                            <Divan />
+                        }
+                        {(product.category === "bed" && product.subCategory === "ottoman-beds") &&
+                            <OttomanBeds />
+                        }
+                        {(product.category === "bed" && product.subCategory === "panel-bed") &&
+                            <Panel />
+                        }
+                        {(product.category === "bed" && product.subCategory === "wingback-beds-frames") &&
+                            <Wing />
+                        }
+                    </div>
+                    <div>
+                        {(product.category === "sofa" && product.subCategory === "corner-sofas") &&
+                            <Corner />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "sofa-beds") &&
+                            <SofaBeds />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "three-&-two-seater-sofas") &&
+                            <Three />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "fabric-sofas") &&
+                            <Fabric />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "chesterfield-sofas") &&
+                            <ChesterfieldSofa />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "u-shaped-sofas") &&
+                            <UShaped />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "leather-sofas") &&
+                            <Leather />
+                        }
+                        {(product.category === "sofa" && product.subCategory === "recliner-sofas") &&
+                            <Recliner />
+                        }
+                         {(product.category === "sofa" && product.subCategory === "arm-chair-&-swivel-chair") &&
+                            <Arm />
+                        }
+                    </div>
+                    <div>
+                        {product.category === "footstools"  &&
+                            <Footstools />
+                        }
+                        {product.category === "mattress"  &&
+                            <Mattress />
+                        }
+                         {product.category === "ottoman-box"  &&
+                            <Ottoman />
+                        }
+                    </div>
+                </div>
+            </div>
 
 
             <div className='row mt-5 pt-5'>

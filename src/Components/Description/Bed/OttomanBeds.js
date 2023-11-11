@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Ottoman = () => {
+const OttomanBeds = () => {
   return (
     <div>Ottoman</div>
   )
 }
 
-export default Ottoman
+export default OttomanBeds

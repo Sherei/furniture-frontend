@@ -192,6 +192,7 @@ export const Cart = () => {
                       <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
                       <td className="color-red text-center">{`${item?.discount}%`}</td>
                       <td className='text-center'>
+                        
                         <input
                           className='cart_input border text-center'
                           type="number"

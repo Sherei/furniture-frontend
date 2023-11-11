@@ -207,7 +207,6 @@ export const AddProduct = () => {
                       <option value="leather-sofas">Leather Sofas</option>
                       <option value="recliner-sofas">Recliner Sofas</option>
                       <option value="arm-chair-&-swivel-chair">Arm Chair & Swivel Chair</option>
-                      <option value="Others">Others</option>
                     </select>
                     {errors.subCategory ? <div className='error'>Select Sub Category</div> : null}
 

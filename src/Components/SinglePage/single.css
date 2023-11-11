@@ -309,10 +309,14 @@
     font-size: 15px;
     font-weight: 500;
     color: rgb(110, 110, 110);
-
-
 }
 
+.description_display1 {
+    display: none;
+}
+.description_display {
+    display: block;
+}
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {
@@ -336,6 +340,14 @@
 @media screen and (max-width:992px) {
     .small_images {
         gap: 40px;
+    }
+
+    .description_display1 {
+        display: block;
+    }
+
+    .description_display {
+        display: none;
     }
 
     .s_box {
