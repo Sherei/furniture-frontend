@@ -244,6 +244,12 @@
 .login_div p {
   color: #1b2950 !important;
 }
+.dropdown-menu{
+  margin-bottom: 0px;
+}
+.menu3{
+  background-color: #F7EEDD !important;
+}
 
 @media screen and (max-width:550px) {
 
@@ -271,7 +277,9 @@
   .nav-item2:hover {
     background-color: transparent;
   }
-
+  .menu3{
+    background-color: #F7EEDD !important;
+  }
   .nav-item2 {
     background-color: #F7EEDD !important;
   }

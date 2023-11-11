@@ -199,7 +199,6 @@ export const AddProduct = () => {
                     >
                       <option value="select subCategory">Select subCategory</option>
                       <option value="corner-sofas">Corner Sofas</option>
-                      <option value="sofa-sets">Sofa Sets</option>
                       <option value="sofa-beds">Sofa Beds</option>
                       <option value="three-&-two-seater-sofas">3 & 2 Seater Sofas</option>
                       <option value="fabric-sofas">Fabric sofas</option>

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft,FaArrowLeft,FaArrowRight, FaStar, FaWhatsapp, FaCartArrowDown } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaAngleLeft, FaArrowLeft, FaArrowRight, FaStar, FaWhatsapp, FaCartArrowDown } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import Benefits from '../Benefits/Benefits';
-import Home from "../Home/Home"
+import { Login } from "../login/Login"
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +15,9 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import './single.css';
+
+import InnerImageZoom from 'react-inner-image-zoom';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 const SingleAdd = () => {
 
@@ -122,38 +124,11 @@ const SingleAdd = () => {
 
     async function AddToCart(product) {
 
-        if (product.category === "bed") {
-            if (!size || !fabric || !headboard || !color || !detail || !base) {
-                return setError("bed")
-            }
-        }
-        if (product.category === "sofa") {
-            if (!size || !color) {
-                return setError("sofa")
-            }
-        }
-        if (product.category === "footstools") {
 
-            if (!size) {
-                return setError("footstools")
-            }
-        }
-        if (product.category === "ottoman-box") {
-
-            if (!fabric || !color || !detail) {
-                return setError("ottoman-box")
-            }
-        }
-        if (product.category === "footstools") {
-
-            if (!fabric || !color) {
-                return setError("footstools")
-            }
-        }
 
         if (cu._id === undefined) {
             move('/login')
-            toast.warning("Login First")
+            toast.warning("Login to Place Order")
         }
         else if (cu.email === "asd@gmail.com") {
             dispatch({
@@ -251,12 +226,13 @@ const SingleAdd = () => {
     };
 
     function Order() {
-        AddToCart()
-        if (cu._id === undefined || cu.email === "asd@gmail.com") {
-            return <Home />;
-        } else {
+        if (cu._id != undefined || cu.email != "asd@gmail.com") {
             AddToCart()
             move(`/cart-checkout/${cu._id}`)
+        }
+        else {
+            toast.warning("Login to Place Order")
+            move(`/login`)
         }
     }
 
@@ -283,57 +259,35 @@ const SingleAdd = () => {
 
                 <div className='col-lg-5 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
                     <div style={{ position: "relative" }}>
-                        <TransformWrapper
-                            initialScale={1}
-                            maxScale={5}
-                            initialPositionX={0}
-                            initialPositionY={0}
-                            draggableUnZoomed={false}
-                            draggableZoomed={false}
 
-                        >
-                            {({ zoomIn, zoomOut, ...rest }) => (
-                                <>
-                                    <TransformComponent disabled>
-                                        {product?.images && product?.images.length > 0 ? (
-                                            <div className='s-Image'>
-                                                <img src={product?.images[selectedImage]} 
-                                                className='img-fluid rounded' alt="No network" />
-                                            </div>
-                                        ) : (
-                                            <div className='s_main_img '>
-                                                <p>No images available</p>
-                                            </div>
-                                        )}
+                        <InnerImageZoom
+                            zoomScale={2}
+                            src={product?.images && product.images[selectedImage] ? product.images[selectedImage] : 'fallbackImageURL'}
+                            zoomSrc={product?.images && product.images[selectedImage] ? product.images[selectedImage] : 'fallbackImageURL'}
 
-                                    </TransformComponent>
-                                    {product?.discount && product?.discount > 0 ? (
-                                        <div className='discount'>
-                                            {`-${product?.discount}%`}
-                                        </div>
-                                    ) : null}
-                                    {product?.images && product?.images.length > 0 &&
-                                        <div className="tools">
-                                            <button onClick={() => zoomIn()}><AiOutlineZoomIn /></button>
-                                            <button onClick={() => zoomOut()}><AiOutlineZoomOut /></button>
-                                        </div>
-                                    }
-                                    {product?.images && product?.images.length > 1 &&
-                                        <>
-                                            <div className='single_arrow1' onClick={handleLeftArrowClick}>
-                                                <FaArrowLeft />
-                                            </div>
-                                            <div className='single_arrow2' onClick={handleRightArrowClick}>
-                                                <FaArrowRight />
-                                            </div>
-                                        </>
+                        />
 
-                                    }
-                                </>
-                            )}
-                        </TransformWrapper>
+                        {product?.discount && product?.discount > 0 ? (
+                            <div className='discount'>
+                                {`-${product?.discount}%`}
+                            </div>
+                        ) : null}
+
+                        {product?.images && product?.images.length > 1 &&
+                            <>
+                                <div className='single_arrow1' onClick={handleLeftArrowClick}>
+                                    <FaArrowLeft />
+                                </div>
+                                <div className='single_arrow2' onClick={handleRightArrowClick}>
+                                    <FaArrowRight />
+                                </div>
+                            </>
+
+                        }
                     </div>
                 </div>
+
+
                 <div className='col-lg-5 col-sm-12' >
                     <div className={`s_content ${product.category === "bed" ? "bed_class" : ""}`}>
                         <h1 className='text-center fs-1 ' style={{ color: "#1b2950" }}>{product?.title}</h1>
