@@ -14,14 +14,14 @@ const Blog = () => {
                     <p className='text-center'>We prepared some helpful tips for you</p>
                     <div className='d-flex flex-wrap  gap-3 justify-content-center my-5 px-4 '>
 
-                        <div className='block_main d-flex flex-column justify-content-center ' onClick={() => move("/single-blog/clean-sofa")}>
+                        <div className='block_main ' onClick={() => move("/single-blog/clean-sofa")}>
                             <div className='blog1 text-center'>
                                 <img src="/blog1.webp" alt="" />
                             </div>
                             <p className='fw-bolder fs-5 text-center mt-4'>How to clean Sofa</p>
                             <p className='text-muted text-center mt-4 read'  >READ MORE</p>
                         </div>
-                        <div className='block_main d-flex flex-column justify-content-center' onClick={() => move("/single-blog/perfect-bed")}>
+                        <div className='block_main ' onClick={() => move("/single-blog/perfect-bed")}>
                             <div className='blog2'>
                                 <img src="/blog2.webp" alt="" />
                             </div>
@@ -29,7 +29,7 @@ const Blog = () => {
                             <p className='text-muted text-center mt-4 read' >READ MORE</p>
 
                         </div>
-                        <div className='block_main d-flex flex-column justify-content-center' onClick={() => move("/single-blog/perfect-sofa")}>
+                        <div className='block_main ' onClick={() => move("/single-blog/perfect-sofa")}>
                             <div className='blog3'>
                                 <img src="/blog3.webp" alt="" />
                             </div>

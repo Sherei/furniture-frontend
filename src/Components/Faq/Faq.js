@@ -22,8 +22,9 @@ const Faq = () => {
                                             data-bs-target="#collapseOne"
                                             aria-expanded="true"
                                             aria-controls="collapseOne"
+                                            style={{ textTransform: "capitalize" }}
                                         >
-                                            <span className='accordian_counting'>1.</span> HOW CONSULTANCY EXPERTS WORK?
+                                            <span className='accordian_counting' >1.</span> What payment methods do you accept?
                                         </button>
                                     </h2>
                                     <div
@@ -32,13 +33,8 @@ const Faq = () => {
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="accordion-body">
-                                            <strong>This is the first item's accordion body.</strong> It is shown by
-                                            default, until the collapse plugin adds the appropriate classes that we
-                                            use to style each element. These classes control the overall appearance,
-                                            as well as the showing and hiding via CSS transitions. You can modify
-                                            any of this with custom CSS or overriding our default variables. It's
-                                            also worth noting that just about any HTML can go within the{" "}
-                                            <code>.accordion-body</code>, though the transition does limit overflow.
+                                            We accept major credit and debit cards (Visa, Mastercard, American Express),
+                                            PayPal, and other secure online payment methods.
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +47,9 @@ const Faq = () => {
                                             data-bs-target="#collapseTwo"
                                             aria-expanded="false"
                                             aria-controls="collapseTwo"
+                                            style={{ textTransform: "capitalize" }}
                                         >
-                                            <span className='accordian_counting'>2.</span>  WHAT IS THE BEST ADVICE FOR GROWTH?
+                                            <span className='accordian_counting'>2.</span> What are your shipping options and costs?
                                         </button>
                                     </h2>
                                     <div
@@ -61,14 +58,9 @@ const Faq = () => {
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="accordion-body">
-                                            <strong>This is the second item's accordion body.</strong> It is hidden
-                                            by default, until the collapse plugin adds the appropriate classes that
-                                            we use to style each element. These classes control the overall
-                                            appearance, as well as the showing and hiding via CSS transitions. You
-                                            can modify any of this with custom CSS or overriding our default
-                                            variables. It's also worth noting that just about any HTML can go within
-                                            the <code>.accordion-body</code>, though the transition does limit
-                                            overflow.
+                                            We offer various shipping options, including standard and expedited shipping.
+                                            Shipping costs may vary based on the item's size, weight,
+                                            and your location. You can calculate shipping costs during checkout.
                                         </div>
                                     </div>
                                 </div>
@@ -81,8 +73,9 @@ const Faq = () => {
                                             data-bs-target="#collapseThree"
                                             aria-expanded="false"
                                             aria-controls="collapseThree"
+                                            style={{ textTransform: "capitalize" }}
                                         >
-                                            <span className='accordian_counting'>3.</span> HOW TO IMPROVE YOUR BUSINESS?
+                                            <span className='accordian_counting'>3.</span>Do you offer international shipping?
                                         </button>
                                     </h2>
                                     <div
@@ -91,14 +84,8 @@ const Faq = () => {
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="accordion-body">
-                                            <strong>This is the third item's accordion body.</strong> It is hidden
-                                            by default, until the collapse plugin adds the appropriate classes that
-                                            we use to style each element. These classes control the overall
-                                            appearance, as well as the showing and hiding via CSS transitions. You
-                                            can modify any of this with custom CSS or overriding our default
-                                            variables. It's also worth noting that just about any HTML can go within
-                                            the <code>.accordion-body</code>, though the transition does limit
-                                            overflow.
+                                            Yes, we do offer international shipping. Shipping costs and delivery
+                                            times may vary based on the destination. Please check during the checkout process for more details.
                                         </div>
                                     </div>
                                 </div>
@@ -112,8 +99,9 @@ const Faq = () => {
                                             data-bs-target="#collapseFour"
                                             aria-expanded="false"
                                             aria-controls="collapseFour"
+                                            style={{ textTransform: "capitalize" }}
                                         >
-                                            <span className='accordian_counting'>4.</span> HOW TO IMPROVE YOUR BUSINESS?
+                                            <span className='accordian_counting'>4.</span>What is your return policy?
                                         </button>
                                     </h2>
                                     <div
@@ -122,15 +110,64 @@ const Faq = () => {
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="accordion-body">
-                                            <strong>This is the third item's accordion body.</strong> It is hidden
-                                            by default, until the collapse plugin adds the appropriate classes that
-                                            we use to style each element. These classes control the overall
-                                            appearance, as well as the showing and hiding via CSS transitions. You
-                                            can modify any of this with custom CSS or overriding our default
-                                            variables. It's also worth noting that just about any HTML can go within
-                                            the <code>.accordion-body</code>, though the transition does limit
-                                            overflow.
+                                            We have a hassle-free return policy. If you're not satisfied with your purchase, you can return
+                                            it within 7 days for a full refund or exchange. Certain items may have specific return conditions,
+                                            so please review our return policy for more details.
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item mb-4">
+                                    <h2 className="accordion-header">
+                                        <button
+                                            className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseFive"
+                                            aria-expanded="false"
+                                            aria-controls="collapseFive"
+                                            style={{ textTransform: "capitalize" }}
+                                        >
+                                            <span className='accordian_counting'>5.</span>Are there any warranties on your furniture?
+                                        </button>
+                                    </h2>
+                                    <div
+                                        id="collapseFive"
+                                        className="accordion-collapse collapse"
+                                        data-bs-parent="#accordionExample"
+                                    >
+                                        <div className="accordion-body">
+                                            Yes, many of our products come with warranties. The duration and coverage vary by item. You can find warranty
+                                            information on the product page or contact our customer service for specific details.
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div className="accordion-item mb-4">
+                                    <h2 className="accordion-header">
+                                        <button
+                                            className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseSix"
+                                            aria-expanded="false"
+                                            aria-controls="collapseSix"
+                                            style={{ textTransform: "capitalize" }}
+                                        >
+                                            <span className='accordian_counting'>6.</span>Can I cancel or modify my order after it's been placed?
+                                        </button>
+                                    </h2>
+                                    <div
+                                        id="collapseSix"
+                                        className="accordion-collapse collapse"
+                                        data-bs-parent="#accordionExample"
+                                    >
+                                        <div className="accordion-body">
+                                        We strive to process orders promptly, but if you need to make changes, 
+                                        please contact our customer service as soon as possible. 
+                                        Once an order is processed, modifications might not be possible.
+                                            </div>
                                     </div>
                                 </div>
                             </div>

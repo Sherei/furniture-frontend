@@ -1,16 +1,30 @@
-.blog1,
-.blog2,
-.blog3,
-.blog4 {
+.block_main {
     width: 400px;
-    height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     overflow: hidden;
 }
 
-.block_main {
-    width: 400px;
+.block_main:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all ease-in-out 0.3s;
+}
+
+.block_main:hover .read {
+    font-weight: 700;
+    color: rgb(2, 2, 94) !important;
+}
+
+.blog1,
+.blog2,
+.blog3,
+.blog4 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .blog1 {
@@ -39,24 +53,12 @@
     object-fit: cover;
 }
 
-.block_main:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: all ease-in-out 0.3s;
-}
 
-.block_main:hover .read {
-    font-weight: 700;
-    color: rgb(2, 2, 94) !important;
-}
 
 @media screen and (max-width:420px) {
 
-    .blog1,
-    .blog2,
-    .blog3,
-    .blog4 {
-        width: 300px;
-        height: 300px;
+    .block_main {
+        width: 300px !important;
     }
+
 }
