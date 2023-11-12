@@ -267,8 +267,7 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1</label>
-                  <input {...register('descriptionHead1', { minLength: 3 })} className="form-control" />
-                  {errors.descriptionHead1 && errors.descriptionHead1.type == "minLength" ? <div className='error'>it Should Contain more than 3 characters </div> : null}
+                  <input {...register('descriptionHead1')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
