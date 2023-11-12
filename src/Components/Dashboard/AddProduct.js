@@ -25,7 +25,10 @@ export const AddProduct = () => {
   const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 0);;
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
+  const [imagePreviews, setImagePreviews] = useState([]);
 
+
+  let move = useNavigate();
   const { productId } = useParams();
 
   const handleDiscountChange = (e) => {
@@ -46,8 +49,23 @@ export const AddProduct = () => {
     setSelectedCategory(e.target.value);
   };
 
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+    const previews = [];
 
-  let move = useNavigate();
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        previews.push(event.target.result);
+        if (previews.length === files.length) {
+          setImagePreviews(previews);
+        }
+      };
+
+      reader.readAsDataURL(files[i]);
+    }
+  };
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: product,
@@ -267,23 +285,6 @@ export const AddProduct = () => {
                   />
                 </div>
 
-                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input
-                    type='file'
-                    multiple
-                    {...register('images', {
-                      required: productId ? false : true,
-                      minLength: 1,
-                      maxLength: 5,
-                    })}
-                    className="form-control mb-2 mr-sm-2"
-                  />
-
-                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
-                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
-                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
-                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1</label>
                   <input {...register('descriptionHead1', { minLength: 3 })} className="form-control" defaultValue={product ? product.descriptionHead1 : ""} />
@@ -373,6 +374,33 @@ export const AddProduct = () => {
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 2</label>
                   <input {...register('note2', { minLength: 5 })} className="form-control" defaultValue={product ? product.note2 : ""} />
                   {errors.note2 && errors.note2.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
+                  <input
+                    type='file'
+                    multiple
+                    onChange={handleImageChange}
+                    {...register('images', {
+                      required: productId ? false : true,
+                      minLength: 1,
+                      maxLength: 5,
+                    })}
+                    className="form-control mb-2 mr-sm-2"
+                  />
+
+                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
+                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
+                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
+
+                  {imagePreviews.length > 0 && (
+                    <div className='img_preview'>
+                      {imagePreviews.map((preview, index) => (
+                        <img key={index} src={preview} alt={`Preview ${index}`} style={{ width: '100px', height: 'auto', marginRight: '5px' }} />
+                      ))}
+                    </div>
+                  )}
+
                 </div>
               </div>
               <div className='row'>

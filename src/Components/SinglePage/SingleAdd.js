@@ -279,22 +279,6 @@ const SingleAdd = () => {
 
                         }
                     </div>
-                    {/* {product.description &&
-                        <div className='mt-5 description_display'>
-                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
-                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
-                                {product?.description}
-                            </p>
-                            <div className="d-flex justify-content-center mt-4">
-                                <button
-                                    className='btn single_read_btn'
-                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
-                                >
-                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
-                                </button>
-                            </div>
-                        </div>
-                    } */}
                 </div>
 
 
@@ -892,25 +876,10 @@ const SingleAdd = () => {
                             <button className='btn s_whatsapp'>Buy via WhatsApp</button>
                         </a>
                     </div>
-
-                    {product.description &&
-                        <div className='mt-5 description_display1'>
-                            <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
-                            <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
-                                {product?.description}
-                            </p>
-                            <div className="d-flex justify-content-center mt-4">
-                                <button
-                                    className='btn single_read_btn'
-                                    onClick={() => setDescriptionExpanded(!descriptionExpanded)}
-                                >
-                                    {descriptionExpanded ? 'Read Less' : 'Read More'}
-                                </button>
-                            </div>
-                        </div>
-                    }
                 </div>
             </div>
+
+            
             <div className='row my-5 d-flex justify-content-center'>
                 <div className='col-lg-10 col-md-10 col-sm-12'>
                     {(product?.description || product?.description2 || product?.description3 || product?.description4 || product?.feature1
