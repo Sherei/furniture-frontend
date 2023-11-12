@@ -281,7 +281,7 @@ const SingleAdd = () => {
                 <div className='col-lg-5 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >
                     <div style={{ position: "relative" }}>
                         <InnerImageZoom
-                            zoomScale={2}
+                            zoomScale={1}
                             src={product?.images && product.images[selectedImage] ? product.images[selectedImage] : 'fallbackImageURL'}
                             zoomSrc={product?.images && product.images[selectedImage] ? product.images[selectedImage] : 'fallbackImageURL'}
 
@@ -332,6 +332,7 @@ const SingleAdd = () => {
                                 <span className='text-center' style={{ color: "#1b2950" }} >({comments.filter((item) => item.productId === productId).length} Review)</span>
                             </span>
                         }
+                        
                         {product.discount && product.discount > 0 ? (
                             <>
                                 {product.category === "bed" ? (
