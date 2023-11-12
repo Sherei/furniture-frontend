@@ -883,8 +883,8 @@ const SingleAdd = () => {
             <div className='row my-5 d-flex justify-content-center'>
                 <div className='col-lg-10 col-md-10 col-sm-12'>
                     {product?.description && <>
-                            <p className='fs-6 fw-bolder'>
-                                Description
+                            <p className='fs-2 fw-bolder' style={{color:"#1b2950",borderBottom:"1px solid #1b2950"}}>
+                                Product Detail
                             </p>
                             {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead1}</p>}
                             {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
@@ -894,10 +894,7 @@ const SingleAdd = () => {
                             {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
                             {product?.note1 && <p className='fs-6 fw-bolder'>{product.note1}</p>}
 
-                            {(product?.feature1 || product?.feature2 || product?.feature3 || product?.feature4 ||
-                                product?.feature5 || product?.feature6) &&
-                                <>
-                                    {product.featureHead && <p className='fs-6 text-muted'>{product.featureHead}</p>}
+                                    {product.featureHead && <p className='fs-6 fw-bolder'>{product.featureHead}</p>}
                                     <ul>
                                         {product?.feature1 && <p><li>{product.feature1}</li></p>}
                                         {product?.feature2 && <p><li>{product.feature2}</li></p>}
@@ -907,8 +904,7 @@ const SingleAdd = () => {
                                         {product?.feature6 && <p><li>{product.feature6}</li></p>}
                                         {product?.feature7 && <p><li>{product.feature7}</li></p>}
                                     </ul>
-                                </>
-                            }
+                               
                             {(product?.images && product.images.length > 0) &&
                                 <>
                                     <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
