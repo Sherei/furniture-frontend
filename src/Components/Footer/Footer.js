@@ -44,50 +44,46 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='footer_menus col-lg-2 col-md-12 col-sm-12'>
-          <p className='fw-bolder fs-5'>INFORMATION</p>
-          <NavLink to='products'>
-            <p>Shop Now</p>
-          </NavLink>
-          <Link to='case'>
-            <p>Reviews</p>
-          </Link>
-          <NavLink to='/faq'>
-            <p>Faq's</p>
-          </NavLink>
-          <Link to='about'>
-            <p>Contact Us</p>
-          </Link>
-        </div>
-        <div className='footer_menus col-lg-3 col-md-12 col-sm-12'>
-          <p className='fw-bolder fs-5'>Popular Categories</p>
-          <Link to='about'>
-            <p>All Sofas</p>
-          </Link>
-          <Link to='about'>
-            <p>All Beds</p>
-          </Link>
-          <Link to='about'>
-            <p>Sofa Beds</p>
-          </Link>
-          <Link to='about'>
-            <p>Ottomon Box</p>
-          </Link>
-          {/* <Link to="/">
-            <p>Fabric Sofas</p>
-          </Link> */}
-          <Link to='case'>
-            <p>Recliner Sofas</p>
-          </Link>
-          {/* <Link to='/'>
-            <p>Leather Sofas</p>
-          </Link> */}
+        <div className='footer_menus col-lg-5 col-md-12 col-sm-12'>
+          <div>
+            <p className='fw-bolder fs-5'>INFORMATION</p>
+            <NavLink to='products'>
+              <p>Shop Now</p>
+            </NavLink>
+            <Link to='case'>
+              <p>Reviews</p>
+            </Link>
+            <NavLink to='/faq'>
+              <p>Faq's</p>
+            </NavLink>
+            <Link to='about'>
+              <p>Contact Us</p>
+            </Link>
+          </div>
+          <div>
+            <p className='fw-bolder fs-5'>Popular Categories</p>
+            <Link to='about'>
+              <p>All Sofas</p>
+            </Link>
+            <Link to='about'>
+              <p>All Beds</p>
+            </Link>
+            <Link to='about'>
+              <p>Sofa Beds</p>
+            </Link>
+            <Link to='about'>
+              <p>Ottomon Box</p>
+            </Link>
+            <Link to='case'>
+              <p>Recliner Sofas</p>
+            </Link>
+            <Link to='about'>
+              <p>Footstools</p>
+            </Link>
+          </div>
 
-          <Link to='about'>
-            <p>Footstools</p>
-          </Link>
         </div>
-
+       
         <div className='footer_menus col-lg-4 col-md-12 col-sm-12 mb-5'>
           <p className='fw-bolder fs-5'>NEWSLETTER</p>
           <div className='newsletter_box'>
