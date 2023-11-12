@@ -8,7 +8,7 @@ const Mattress = () => {
           {/* <h1 className='mb-3'>Mattress Decsription:</h1> */}
           <div>
             <h2>3000 POCKET SPRING MATTRESS</h2>
-            <p className='fs-2 fw-bolder'>
+            <p className='fs-6 fw-bolder'>
               Description
             </p>
             <p className='fs-6 text-muted'>
