@@ -63,7 +63,6 @@ export const Navbar = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const Login = async (data) => {
-    console.log("hello")
     try {
 
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);

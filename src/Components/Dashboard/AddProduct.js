@@ -24,7 +24,6 @@ export const AddProduct = () => {
   const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 0);;
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
-  const [imagePreviews, setImagePreviews] = useState([]);
 
 
   let move = useNavigate();
@@ -48,15 +47,7 @@ export const AddProduct = () => {
     setSelectedCategory(e.target.value);
   };
 
-  const handleImageChange = (e) => {
-    const files = e.target.files;
-    const previews = [];
 
-    for (let i = 0; i < files.length; i++) {
-      previews.push(URL.createObjectURL(files[i]));
-    }
-    setImagePreviews(previews);
-  };
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: product,
@@ -153,44 +144,6 @@ export const AddProduct = () => {
             <div className='d-flex justify-content-center align-items-center h-100 ' style={{ height: "100vh" }}><Loader /></div>
           ) : (
             <form>
-              <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
-                <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                <input
-                  type='file'
-                  multiple
-                  onChange={handleImageChange}
-                  {...register('images', {
-                    required: productId ? false : true,
-                    minLength: 1,
-                    maxLength: 5,
-                  })}
-                  className="form-control mb-2 mr-sm-2"
-                />
-
-                {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
-                {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
-                {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
-{/* 
-                <div className='d-flex' style={{ position: "relative" }}>
-                  {product?.images.map((data) => {
-                    return (
-                      <div key={data}>
-                        <img
-                          src={data}
-                          alt="No Network"
-                          className='img=fluid rounded'
-                          style={{ width: "100px", height: "100px" }}
-                        />
-                        <p className='m-0' style={{ position: "absolute", top: "5px", right: "10px" }}>
-                          X
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div> */}
-
-
-              </div>
 
               <div className='row'>
                 {Error === "Try with different Serial number" &&
@@ -314,93 +267,93 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1</label>
-                  <input {...register('descriptionHead1', { minLength: 3 })} className="form-control"  />
+                  <input {...register('descriptionHead1', { minLength: 3 })} className="form-control" />
                   {errors.descriptionHead1 && errors.descriptionHead1.type == "minLength" ? <div className='error'>it Should Contain more than 3 characters </div> : null}
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
-                  <input {...register('description', { minLength: 10 })} className="form-control"  />
-                  {errors.description && errors.description.type == "minLength" ? <div className='error'>Description Should Contain more than 10 characters </div> : null}
-                </div>
+                  <input {...register('description')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 2</label>
-                  <input {...register('descriptionHead2', { minLength: 3 })} className="form-control" />
-                  {errors.descriptionHead2 && errors.descriptionHead2.type == "minLength" ? <div className='error'>it Should Contain more than 3 characters </div> : null}
-                </div>
+                  <input {...register('descriptionHead2')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 2</label>
-                  <input {...register('description2', { minLength: 10 })} className="form-control" />
-                  {errors.description2 && errors.description2.type == "minLength" ? <div className='error'>Description Should Contain more than 10 characters </div> : null}
+                  <input {...register('description2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 3</label>
-                  <input {...register('descriptionHead3', { minLength: 3 })} className="form-control" />
-                  {errors.descriptionHead3 && errors.descriptionHead3.type == "minLength" ? <div className='error'>it Should Contain more than 3 characters </div> : null}
+                  <input {...register('descriptionHead3')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 3</label>
-                  <input {...register('description3', { minLength: 10 })} className="form-control" />
-                  {errors.description3 && errors.description3.type == "minLength" ? <div className='error'>Description Should Contain more than 10 characters </div> : null}
-                </div>
+                  <input {...register('description3')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 4</label>
-                  <input {...register('descriptionHead4', { minLength: 3 })} className="form-control"/>
-                  {errors.descriptionHead4 && errors.descriptionHead4.type == "minLength" ? <div className='error'>it Should Contain more than 3 characters </div> : null}
-                </div>
+                  <input {...register('descriptionHead4')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 4</label>
-                  <input {...register('description4', { minLength: 10 })} className="form-control"/>
-                  {errors.description4 && errors.description4.type == "minLength" ? <div className='error'>Description Should Contain more than 10 characters </div> : null}
+                  <input {...register('description4')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature Heading</label>
-                  <input {...register('featureHead', { minLength: 3 })} className="form-control" />
-                  {errors.featureHead && errors.featureHead.type == "minLength" ? <div className='error'>it Should Contain more than 3 characters </div> : null}
+                  <input {...register('featureHead')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 1</label>
-                  <input {...register('feature1', { minLength: 5 })} className="form-control"  />
-                  {errors.feature1 && errors.feature1.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
+                  <input {...register('feature1')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 2</label>
-                  <input {...register('feature2', { minLength: 5 })} className="form-control" />
-                  {errors.feature2 && errors.feature2.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
+                  <input {...register('feature2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 3</label>
-                  <input {...register('feature3', { minLength: 5 })} className="form-control" />
-                  {errors.feature3 && errors.feature3.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
-                </div>
+                  <input {...register('feature3')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 4</label>
-                  <input {...register('feature4', { minLength: 5 })} className="form-control" />
-                  {errors.feature4 && errors.feature4.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
-                </div>
+                  <input {...register('feature4')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 5</label>
-                  <input {...register('feature5', { minLength: 5 })} className="form-control"  />
-                  {errors.feature5 && errors.feature5.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
+                  <input {...register('feature5')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 6</label>
-                  <input {...register('feature6', { minLength: 5 })} className="form-control" />
-                  {errors.feature6 && errors.feature6.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
-                </div>
+                  <input {...register('feature6')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
-                  <input {...register('feature7', { minLength: 5 })} className="form-control" />
-                  {errors.feature7 && errors.feature7.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
-                </div>
+                  <input {...register('feature7')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 1</label>
-                  <input {...register('note1', { minLength: 5 })} className="form-control"/>
-                  {errors.note1 && errors.note1.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
-                </div>
+                  <input {...register('note1')} className="form-control" />
+               </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 2</label>
-                  <input {...register('note2', { minLength: 5 })} className="form-control" />
-                  {errors.note2 && errors.note2.type == "minLength" ? <div className='error'>it Should Contain more than 5 characters </div> : null}
+                  <input {...register('note2')} className="form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
+                  <input
+                    type='file'
+                    multiple
+                    {...register('images', {
+                      required: productId ? false : true,
+                      minLength: 1,
+                      maxLength: 5,
+                    })}
+                    className="form-control mb-2 mr-sm-2"
+                  />
+
+                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
+                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
+                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                 </div>
 
               </div>
