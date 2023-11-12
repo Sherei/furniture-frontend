@@ -917,15 +917,7 @@ const SingleAdd = () => {
                                     </div>
                                 </>
                             }
-                            {product?.category === "ottoman-box" &&
-                                <>
-                                    <p className='fs-6 fw-bolder'>Dimensions</p>
-                                    <p className='fs-6 text-muted'>Length: 40 inches &nbsp; &nbsp; Width: 18 inches
-                                        &nbsp; &nbsp; Height: 16 inches
-                                    </p>
-                                </>
-
-                            }
+                         
 
                             {product?.note1 && <p className='fs-6 fw-bolder'>Note: {product.note1}</p>}
                             {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead4}</p>}
