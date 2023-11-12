@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='footer_menus col-lg-5 col-md-12 col-sm-12'>
+        <div className='footer_menus col-lg-5 col-md-12 col-sm-12 d-flex gap-5 px-lg-5'>
           <div>
             <p className='fw-bolder fs-5'>INFORMATION</p>
             <NavLink to='products'>
@@ -83,7 +83,8 @@ const Footer = () => {
           </div>
 
         </div>
-       
+
+        
         <div className='footer_menus col-lg-4 col-md-12 col-sm-12 mb-5'>
           <p className='fw-bolder fs-5'>NEWSLETTER</p>
           <div className='newsletter_box'>

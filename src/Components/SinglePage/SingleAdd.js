@@ -3,30 +3,6 @@ import { FaAngleRight, FaMinus, FaPlus, FaArrowLeft, FaArrowRight, FaStar, } fro
 import { RiStarSFill } from 'react-icons/ri';
 import { useNavigate, useParams } from 'react-router-dom';
 import Benefits from '../Benefits/Benefits';
-import { Login } from "../login/Login"
-
-import Ambassador from "../Description/Bed/Ambassador"
-import Bespoke from "../Description/Bed/Bespoke"
-import Chester from "../Description/Bed/Chester"
-import Divan from "../Description/Bed/Divan"
-import OttomanBeds from "../Description/Bed/OttomanBeds"
-import Panel from "../Description/Bed/Panel"
-import Wing from "../Description/Bed/Wing"
-
-import Arm from "../Description/Sofa/Arm"
-import ChesterfieldSofa from "../Description/Sofa/ChesterfieldSofa"
-import Corner from "../Description/Sofa/Corner"
-import Fabric from "../Description/Sofa/Fabric"
-import Leather from "../Description/Sofa/Leather"
-import Recliner from "../Description/Sofa/Recliner"
-import SofaBeds from "../Description/Sofa/SofaBeds"
-import Three from "../Description/Sofa/Three"
-import UShaped from "../Description/Sofa/UShaped"
-
-import Footstools from "../Description/Footstools/Footstools"
-import Mattress from "../Description/Mattress/Mattress"
-import Ottoman from "../Description/Ottoman/Ottoman"
-
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -45,7 +21,6 @@ const SingleAdd = () => {
     useEffect(() => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
         });
     }, []);
 
@@ -304,7 +279,7 @@ const SingleAdd = () => {
 
                         }
                     </div>
-                    {product.description &&
+                    {/* {product.description &&
                         <div className='mt-5 description_display'>
                             <p className='fs-3 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>Product Detail</p>
                             <p className={`text-center text-muted fs-6 mb-2 single_description ${descriptionExpanded ? 'expanded' : ''}`}>
@@ -319,7 +294,7 @@ const SingleAdd = () => {
                                 </button>
                             </div>
                         </div>
-                    }
+                    } */}
                 </div>
 
 
@@ -332,7 +307,7 @@ const SingleAdd = () => {
                                 <span className='text-center' style={{ color: "#1b2950" }} >({comments.filter((item) => item.productId === productId).length} Review)</span>
                             </span>
                         }
-                        
+
                         {product.discount && product.discount > 0 ? (
                             <>
                                 {product.category === "bed" ? (
@@ -936,75 +911,109 @@ const SingleAdd = () => {
                     }
                 </div>
             </div>
-
             <div className='row my-5 d-flex justify-content-center'>
                 <div className='col-lg-10 col-md-10 col-sm-12'>
-                    <div>
-                        {(product.category === "bed" && product.subCategory === "ambassador-beds") &&
-                            <Ambassador />
-                        }
-                        {(product.category === "bed" && product.subCategory === "bespoke-beds") &&
-                            <Bespoke />
-                        }
-                        {(product.category === "bed" && product.subCategory === "chesterfield-beds") &&
-                            <Chester />
-                        }
-                        {(product.category === "bed" && product.subCategory === "divan-beds") &&
-                            <Divan />
-                        }
-                        {(product.category === "bed" && product.subCategory === "ottoman-beds") &&
-                            <OttomanBeds />
-                        }
-                        {(product.category === "bed" && product.subCategory === "panel-bed") &&
-                            <Panel />
-                        }
-                        {(product.category === "bed" && product.subCategory === "wingback-beds-frames") &&
-                            <Wing />
-                        }
-                    </div>
-                    <div>
-                        {(product.category === "sofa" && product.subCategory === "corner-sofas") &&
-                            <Corner />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "sofa-beds") &&
-                            <SofaBeds />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "three-&-two-seater-sofas") &&
-                            <Three />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "fabric-sofas") &&
-                            <Fabric />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "chesterfield-sofas") &&
-                            <ChesterfieldSofa />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "u-shaped-sofas") &&
-                            <UShaped />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "leather-sofas") &&
-                            <Leather />
-                        }
-                        {(product.category === "sofa" && product.subCategory === "recliner-sofas") &&
-                            <Recliner />
-                        }
-                         {(product.category === "sofa" && product.subCategory === "arm-chair-&-swivel-chair") &&
-                            <Arm />
-                        }
-                    </div>
-                    <div>
-                        {product.category === "footstools"  &&
-                            <Footstools />
-                        }
-                        {product.category === "mattress"  &&
-                            <Mattress />
-                        }
-                         {product.category === "ottoman-box"  &&
-                            <Ottoman />
-                        }
-                    </div>
+                    {(product?.description || product?.description2 || product?.description3 || product?.description4 || product?.feature1
+                        || product?.feature2 || product?.feature3 || product?.feature4 || product?.feature5 || product?.feature6 || product?.feature7 || product.note1 || product.note2) &&
+                        <>
+                            <p className='fs-6 fw-bolder'>
+                                Description
+                            </p>
+                            {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead1}</p>}
+                            {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
+                            {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead2}</p>}
+                            {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
+                            {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead3}</p>}
+                            {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
+                            {product?.note1 && <p className='fs-6 fw-bolder'>{product.note1}</p>}
+
+                            {(product?.feature1 || product?.feature2 || product?.feature3 || product?.feature4 ||
+                                product?.feature5 || product?.feature6) &&
+                                <>
+                                    {product.featureHead && <p className='fs-6 text-muted'>{product.featureHead}</p>}
+                                    <ul>
+                                        {product?.feature1 && <p><li>{product.feature1}</li></p>}
+                                        {product?.feature2 && <p><li>{product.feature2}</li></p>}
+                                        {product?.feature3 && <p><li>{product.feature3}</li></p>}
+                                        {product?.feature4 && <p><li>{product.feature4}</li></p>}
+                                        {product?.feature5 && <p><li>{product.feature5}</li></p>}
+                                        {product?.feature6 && <p><li>{product.feature6}</li></p>}
+                                        {product?.feature7 && <p><li>{product.feature7}</li></p>}
+                                    </ul>
+                                </>
+                            }
+                            {(product?.images && product.images.length > 0) &&
+                                <>
+                                    <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
+                                        {product.images[1] && <img src={product.images[1]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                        {product.images[2] && <img src={product.images[2]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                    </div>
+                                </>
+                            }
+                            {product?.note1 && <p className='fs-6 fw-bolder'>Note: {product.note1}</p>}
+                            {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead4}</p>}
+                            {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
+                            {(product?.images && product.images.length > 0) &&
+                                <>
+                                    <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
+                                        {product.images[3] && <img src={product.images[3]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                        {product.images[4] && <img src={product.images[4]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                    </div>
+                                </>
+                            }
+                            {product?.note2 && <p className='fs-6 fw-bolder'>Note: {product.note2}</p>}
+                        </>
+
+                    }
+                    {product?.category === "bed" &&
+                        <div className="table-responsive">
+                            <p className='fs-6 fw-bolder'>Dimensions: (Should be in table form)</p>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Bed Size Height (Inches)</th>
+                                        <th>Length (Inches)</th>
+                                        <th>Width (Inches)</th>
+                                        <th>Footboard</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className='text-center'>
+                                        <td>Single 3ft</td>
+                                        <td>82</td>
+                                        <td>38</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr className='text-center'>
+                                        <td>Small Double 4ft</td>
+                                        <td>82</td>
+                                        <td>50</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr className='text-center'>
+                                        <td>Double 4'6ft</td>
+                                        <td>82</td>
+                                        <td>56</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr className='text-center'>
+                                        <td>King Size 5ft</td>
+                                        <td>84</td>
+                                        <td>62</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr className='text-center'>
+                                        <td>Super King 6ft</td>
+                                        <td>84</td>
+                                        <td>74</td>
+                                        <td>20</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
                 </div>
             </div>
-
 
             <div className='row mt-5 pt-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 py-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
