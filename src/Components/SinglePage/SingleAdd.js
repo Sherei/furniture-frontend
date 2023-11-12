@@ -879,12 +879,10 @@ const SingleAdd = () => {
                 </div>
             </div>
 
-            
+
             <div className='row my-5 d-flex justify-content-center'>
                 <div className='col-lg-10 col-md-10 col-sm-12'>
-                    {(product?.description || product?.description2 || product?.description3 || product?.description4 || product?.feature1
-                        || product?.feature2 || product?.feature3 || product?.feature4 || product?.feature5 || product?.feature6 || product?.feature7 || product.note1 || product.note2) &&
-                        <>
+                    {product?.description && <>
                             <p className='fs-6 fw-bolder'>
                                 Description
                             </p>
@@ -919,6 +917,16 @@ const SingleAdd = () => {
                                     </div>
                                 </>
                             }
+                            {product?.category === "ottoman-box" &&
+                                <>
+                                    <p className='fs-6 fw-bolder'>Dimensions</p>
+                                    <p className='fs-6 text-muted'>Length: 40 inches &nbsp; &nbsp; Width: 18 inches
+                                        &nbsp; &nbsp; Height: 16 inches
+                                    </p>
+                                </>
+
+                            }
+
                             {product?.note1 && <p className='fs-6 fw-bolder'>Note: {product.note1}</p>}
                             {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead4}</p>}
                             {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
