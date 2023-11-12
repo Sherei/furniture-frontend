@@ -7,7 +7,7 @@ const Footstools = () => {
         <div className='col'>
           {/* <h1 className='mb-3'>Footstools Decsription:</h1> */}
           <div>
-            <p className='fs-6 fw-bolder'>
+            <p className='fs-2 fw-bolder'>
               Description
             </p>
             <p className='fs-6 text-muted'>

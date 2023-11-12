@@ -6,7 +6,7 @@ const Ottoman = () => {
       <div className='row'>
         <div className='col'>
           {/* <h1 className='mb-4'>Ottoman Box Description:</h1> */}
-          <p className='fs-6 fw-bolder'>
+          <p className='fs-2 fw-bolder'>
             Description
           </p>
           <p className='fs-6 text-muted'>
