@@ -886,15 +886,15 @@ const SingleAdd = () => {
                             <p className='fs-2 fw-bolder' style={{color:"#1b2950",borderBottom:"1px solid #1b2950"}}>
                                 Product Detail
                             </p>
-                            {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead1}</p>}
+                            {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder'style={{color:"#1b2950"}}>{product.descriptionHead1}</p>}
                             {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
-                            {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead2}</p>}
+                            {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder' style={{color:"#1b2950"}}>{product.descriptionHead2}</p>}
                             {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
-                            {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead3}</p>}
+                            {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder' style={{color:"#1b2950"}}>{product.descriptionHead3}</p>}
                             {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
-                            {product?.note1 && <p className='fs-6 fw-bolder'>{product.note1}</p>}
+                            {product?.note1 && <p className='fs-6 fw-bolder' style={{color:"#1b2950"}}>{product.note1}</p>}
 
-                                    {product.featureHead && <p className='fs-6 fw-bolder'>{product.featureHead}</p>}
+                                    {product.featureHead && <p className='fs-6 fw-bolder' style={{color:"#1b2950"}}>{product.featureHead}</p>}
                                     <ul>
                                         {product?.feature1 && <p><li>{product.feature1}</li></p>}
                                         {product?.feature2 && <p><li>{product.feature2}</li></p>}
@@ -915,8 +915,8 @@ const SingleAdd = () => {
                             }
                          
 
-                            {product?.note1 && <p className='fs-6 fw-bolder'>Note: {product.note1}</p>}
-                            {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder'>{product.descriptionHead4}</p>}
+                            {product?.note1 && <p className='fs-6 fw-bolder' style={{color:"#1b2950"}}>Note: {product.note1}</p>}
+                            {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{color:"#1b2950"}}>{product.descriptionHead4}</p>}
                             {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
                             {(product?.images && product.images.length > 0) &&
                                 <>
@@ -926,7 +926,7 @@ const SingleAdd = () => {
                                     </div>
                                 </>
                             }
-                            {product?.note2 && <p className='fs-6 fw-bolder'>Note: {product.note2}</p>}
+                            {product?.note2 && <p className='fs-6 fw-bolder' style={{color:"#1b2950"}}>Note: {product.note2}</p>}
                         </>
 
                     }
