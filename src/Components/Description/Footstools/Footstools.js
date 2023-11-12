@@ -5,7 +5,7 @@ const Footstools = () => {
     <div className='container'>
       <div className='row'>
         <div className='col'>
-          <h1 className='mb-3'>Footstools Decsription:</h1>
+          {/* <h1 className='mb-3'>Footstools Decsription:</h1> */}
           <div>
             <p className='fs-6 fw-bolder'>
               Description

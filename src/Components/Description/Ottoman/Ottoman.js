@@ -5,7 +5,10 @@ const Ottoman = () => {
     <div className='container'>
       <div className='row'>
         <div className='col'>
-          <h1 className='mb-4'>Ottoman Box Description:</h1>
+          {/* <h1 className='mb-4'>Ottoman Box Description:</h1> */}
+          <p className='fs-6 fw-bolder'>
+            Description
+          </p>
           <p className='fs-6 text-muted'>
             The Jasmine tufted ottoman storage box is a must have accessory with our beds or to use as additional storage.
           </p>

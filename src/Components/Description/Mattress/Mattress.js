@@ -5,7 +5,7 @@ const Mattress = () => {
     <div className='container '>
       <div className='row'>
         <div className='col'>
-          <h1 className='mb-3'>Mattress Decsription:</h1>
+          {/* <h1 className='mb-3'>Mattress Decsription:</h1> */}
           <div>
             <h2>3000 POCKET SPRING MATTRESS</h2>
             <p className='fs-6 fw-bolder'>
