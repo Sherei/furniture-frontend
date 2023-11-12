@@ -1047,7 +1047,7 @@ const SingleAdd = () => {
                     )}
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12 pt-5 order-1 order-lg-2 order-md-2 order-xl-2'>
+                <div className='col-lg-6 col-md-6 col-sm-12 pt-5 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2'>
                     <p className='fw-bolder fs-2 text-center' style={{ color: 'rgb(2, 2, 94)' }} >Product Feedback</p>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
