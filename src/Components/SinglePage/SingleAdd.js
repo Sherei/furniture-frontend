@@ -893,50 +893,59 @@ const SingleAdd = () => {
                                 <p className='fs-2 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>
                                     Product Detail
                                 </p>
-                                {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead1}</p>}
-                                {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
-                                {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead2}</p>}
-                                {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
-                                {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead3}</p>}
-                                {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
-                                {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.note1}</p>}
-
-                                {product.featureHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.featureHead}</p>}
-                                <ul>
-                                    {product?.feature1 && <p><li>{product.feature1}</li></p>}
-                                    {product?.feature2 && <p><li>{product.feature2}</li></p>}
-                                    {product?.feature3 && <p><li>{product.feature3}</li></p>}
-                                    {product?.feature4 && <p><li>{product.feature4}</li></p>}
-                                    {product?.feature5 && <p><li>{product.feature5}</li></p>}
-                                    {product?.feature6 && <p><li>{product.feature6}</li></p>}
-                                    {product?.feature7 && <p><li>{product.feature7}</li></p>}
-                                </ul>
-
-                                {(product?.images && product.images.length > 0) &&
-                                    <>
-                                        <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
-                                            {product.images[1] && <img src={product.images[1]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
-                                            {product.images[2] && <img src={product.images[2]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
-                                        </div>
-                                    </>
-                                }
-
-
-                                {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note1}</p>}
-                                {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
-                                {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
-                                {(product?.images && product.images.length > 0) &&
-                                    <>
-                                        <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
-                                            {product.images[3] && <img src={product.images[3]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
-                                            {product.images[4] && <img src={product.images[4]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
-                                        </div>
-                                    </>
-                                }
-                                {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
                             </>
-
                             }
+                            
+                            {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead1}</p>}
+                            {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
+                            {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead2}</p>}
+                            {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
+                            {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead3}</p>}
+                            {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
+                            {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.note1}</p>}
+
+                            {product?.dimensionHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimensionHead}</p>}
+                            <div className='d-flex gap-lg-4 gap-3'>
+                                {product?.dimension1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension1}</p>}
+                                {product?.dimension2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension2}</p>}
+                                {product?.dimension3 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension3}</p>}
+                                {product?.dimension4 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension4}</p>}
+                            </div>
+
+                            {product.featureHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.featureHead}</p>}
+                            <ul>
+                                {product?.feature1 && <p><li>{product.feature1}</li></p>}
+                                {product?.feature2 && <p><li>{product.feature2}</li></p>}
+                                {product?.feature3 && <p><li>{product.feature3}</li></p>}
+                                {product?.feature4 && <p><li>{product.feature4}</li></p>}
+                                {product?.feature5 && <p><li>{product.feature5}</li></p>}
+                                {product?.feature6 && <p><li>{product.feature6}</li></p>}
+                                {product?.feature7 && <p><li>{product.feature7}</li></p>}
+                            </ul>
+
+                            {(product?.images && product.images.length > 0) &&
+                                <>
+                                    <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
+                                        {product.images[1] && <img src={product.images[1]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                        {product.images[2] && <img src={product.images[2]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                    </div>
+                                </>
+                            }
+
+
+                            {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note1}</p>}
+                            {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
+                            {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
+                            {(product?.images && product.images.length > 0) &&
+                                <>
+                                    <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
+                                        {product.images[3] && <img src={product.images[3]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                        {product.images[4] && <img src={product.images[4]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
+                                    </div>
+                                </>
+                            }
+                            {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
+
                             {product?.category === "bed" &&
                                 <div className="table-responsive">
                                     <p className='fs-6 fw-bolder'>Dimensions: (Should be in table form)</p>
