@@ -56,17 +56,17 @@ export const AddProduct = () => {
 
 
   useEffect(() => {
-    if (productId) {
-      try {
+    try {
+      if (productId) {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
           setProduct(resp.data)
           setPrice(resp.data.price);
           setDiscount(resp.data.discount);
           setFinalPrice(resp.data.Fprice);
         })
-      } catch (e) {
-
       }
+    } catch (e) {
+
     }
   }, [])
 
@@ -77,58 +77,59 @@ export const AddProduct = () => {
   }, [product]);
 
   async function submitProduct(data) {
-
     setLoading(true);
+    try {
+      const formData = new FormData();
 
-    const formData = new FormData();
+      if (data.images.length > 0) {
 
-    if (data.images.length > 0) {
-
-      const cloudinaryUrl = [];
-      for (let i = 0; i < data.images.length; i++) {
-        formData.append('file', data.images[i]);
-        formData.append('upload_preset', "zonfnjjo");
-        await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
-          cloudinaryUrl.push(res.data.url);
-        });
+        const cloudinaryUrl = [];
+        for (let i = 0; i < data.images.length; i++) {
+          formData.append('file', data.images[i]);
+          formData.append('upload_preset', "zonfnjjo");
+          await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
+            cloudinaryUrl.push(res.data.url);
+          });
+        }
+        data.images = cloudinaryUrl;
       }
-      data.images = cloudinaryUrl;
-    }
 
-    data.discount = discount;
-    data.price = price;
-    data.Fprice = finalPrice;
+      data.discount = discount;
+      data.price = price;
+      data.Fprice = finalPrice;
 
-    if (productId) {
+      if (productId) {
 
-      axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
-        if (resp) {
-          setLoading(true);
+        axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
+          if (resp) {
+            setLoading(true);
 
-          toast.success("Product updated")
-          move('/admin-dashboard')
+            toast.success("Product updated")
+            move('/admin-dashboard')
+          }
+        }).catch(function (resp) {
+          console.log(resp);
+        })
+
+      } else {
+        try {
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
+          if (response.data) {
+            toast.success("Product Uploaded");
+            reset()
+          }
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            setError("Try with a different Serial number");
+          } else {
+            toast.error("Try Again later");
+          }
+        } finally {
+          setLoading(false);
         }
-      }).catch(function (resp) {
-        console.log(resp);
-      })
-
-    } else {
-
-      try {
-        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
-        if (response.data) {
-          toast.success("Product Uploaded");
-          reset()
-        }
-      } catch (error) {
-        if (error.response && error.response.status === 400) {
-          setError("Try with a different Serial number");
-        } else {
-          toast.error("Try Again later");
-        }
-      } finally {
-        setLoading(false);
       }
+    } catch (e) {
+
     }
   }
 
@@ -141,7 +142,9 @@ export const AddProduct = () => {
             <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
           </div>
           {loading ? (
-            <div className='d-flex justify-content-center align-items-center h-100 ' style={{ height: "100vh" }}><Loader /></div>
+            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+              <Loader />
+            </div>
           ) : (
             <form>
 
@@ -272,11 +275,11 @@ export const AddProduct = () => {
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
                   <input {...register('description')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 2</label>
                   <input {...register('descriptionHead2')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 2</label>
                   <input {...register('description2')} className="form-control" />
@@ -288,11 +291,11 @@ export const AddProduct = () => {
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 3</label>
                   <input {...register('description3')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 4</label>
                   <input {...register('descriptionHead4')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 4</label>
                   <input {...register('description4')} className="form-control" />
@@ -312,11 +315,11 @@ export const AddProduct = () => {
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 3</label>
                   <input {...register('feature3')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 4</label>
                   <input {...register('feature4')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 5</label>
                   <input {...register('feature5')} className="form-control" />
@@ -324,18 +327,38 @@ export const AddProduct = () => {
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 6</label>
                   <input {...register('feature6')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
                   <input {...register('feature7')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 1</label>
                   <input {...register('note1')} className="form-control" />
-               </div>
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 2</label>
                   <input {...register('note2')} className="form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension Heading</label>
+                  <input {...register('dimensionHead')} className="form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 1</label>
+                  <input {...register('dimension1')} className="form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 2</label>
+                  <input {...register('dimension2')} className="form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 3</label>
+                  <input {...register('dimension3')} className="form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
+                  <input {...register('dimension4')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
@@ -354,6 +377,7 @@ export const AddProduct = () => {
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                 </div>
+               
 
               </div>
               <div className='row'>
