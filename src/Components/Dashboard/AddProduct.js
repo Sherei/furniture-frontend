@@ -77,29 +77,40 @@ export const AddProduct = () => {
   }, [product]);
 
   async function submitProduct(data) {
+
+    window.scrollTo({
+      top: 0,
+    });
+    
+    if (data.images.length > 5) {
+      return setError('images');
+     }
+ 
     setLoading(true);
-    try {
-      const formData = new FormData();
 
-      if (data.images.length > 0) {
 
-        const cloudinaryUrl = [];
-        for (let i = 0; i < data.images.length; i++) {
-          formData.append('file', data.images[i]);
-          formData.append('upload_preset', "zonfnjjo");
-          await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
-            cloudinaryUrl.push(res.data.url);
-          });
-        }
-        data.images = cloudinaryUrl;
+    const formData = new FormData();
+
+    if (data.images.length > 0) {
+
+      const cloudinaryUrl = [];
+      for (let i = 0; i < data.images.length; i++) {
+        formData.append('file', data.images[i]);
+        formData.append('upload_preset', "zonfnjjo");
+        await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData).then((res) => {
+          cloudinaryUrl.push(res.data.url);
+        });
       }
+      data.images = cloudinaryUrl;
+    }
 
-      data.discount = discount;
-      data.price = price;
-      data.Fprice = finalPrice;
+    data.discount = discount;
+    data.price = price;
+    data.Fprice = finalPrice;
 
-      if (productId) {
 
+    if (productId) {
+      try {
         axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
           if (resp) {
             setLoading(true);
@@ -110,27 +121,27 @@ export const AddProduct = () => {
         }).catch(function (resp) {
           console.log(resp);
         })
+      } catch (e) {
 
-      } else {
-        try {
-          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
-          if (response.data) {
-            toast.success("Product Uploaded");
-            reset()
-          }
-        } catch (error) {
-          if (error.response && error.response.status === 400) {
-            setError("Try with a different Serial number");
-          } else {
-            toast.error("Try Again later");
-          }
-        } finally {
-          setLoading(false);
-        }
       }
-    } catch (e) {
-
+    } else {
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
+        if (response.data) {
+          toast.success("Product Uploaded");
+          reset()
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          setError("Try with a different Serial number");
+        } else {
+          toast.error("Try Again later");
+        }
+      } finally {
+        setLoading(false);
+      }
     }
+
   }
 
   return <>
@@ -152,6 +163,23 @@ export const AddProduct = () => {
                 {Error === "Try with different Serial number" &&
                   <div className='error'>Try with different serial number</div>
                 }
+                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
+                  <input
+                    type='file'
+                    multiple
+                    {...register('images', {
+                      required: productId ? false : true,
+                      minLength: 1,
+                      maxLength: 5,
+                    })}
+                    className="form-control mb-2 mr-sm-2"
+                  />
+                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
+                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
+                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
+                  {Error === "images" && <div className='error'>Only five images allowed</div>}
+                </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
                   <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2" />
@@ -360,24 +388,6 @@ export const AddProduct = () => {
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
                   <input {...register('dimension4')} className="form-control" />
                 </div>
-                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input
-                    type='file'
-                    multiple
-                    {...register('images', {
-                      required: productId ? false : true,
-                      minLength: 1,
-                      maxLength: 5,
-                    })}
-                    className="form-control mb-2 mr-sm-2"
-                  />
-
-                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
-                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
-                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
-                </div>
-               
 
               </div>
               <div className='row'>

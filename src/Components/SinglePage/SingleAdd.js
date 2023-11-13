@@ -302,13 +302,13 @@ const SingleAdd = () => {
                                     <>
                                         {product.category === "bed" ? (
                                             <div className='text-center'>
-                                                <span className='fw-bold fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed(1)}`}</span>
-                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed(2)}`}</s></span>
+                                                <span className='fw-bold fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed()}`}</span>
+                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed()}`}</s></span>
                                             </div>
                                         ) : (
                                             <div>
-                                                <span className='fw-bold fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed(1)}`}</span>
-                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed(2)}`}</s></span>
+                                                <span className='fw-bold fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed()}`}</span>
+                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed()}`}</s></span>
                                             </div>
                                         )}
                                     </>
@@ -316,11 +316,11 @@ const SingleAdd = () => {
                                     <>
                                         {product.category === "bed" ? (
                                             <span className='fw-bolder fs-5 text-center' style={{ color: "red" }}>
-                                                {`£${totalPrice?.toFixed(2)}`}
+                                                {`£${totalPrice?.toFixed()}`}
                                             </span>
                                         ) : (
                                             <span className='fw-bolder fs-5' style={{ color: "red" }}>
-                                                {`£${totalPrice?.toFixed(2)}`}
+                                                {`£${totalPrice?.toFixed()}`}
                                             </span>
                                         )}
                                     </>
@@ -905,12 +905,12 @@ const SingleAdd = () => {
                             {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.note1}</p>}
 
                             {product?.dimensionHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimensionHead}</p>}
-                            <div className='d-flex gap-lg-4 gap-3'>
-                                {product?.dimension1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension1}</p>}
-                                {product?.dimension2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension2}</p>}
-                                {product?.dimension3 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension3}</p>}
-                                {product?.dimension4 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension4}</p>}
-                            </div>
+                            <ul>
+                                {product?.dimension1 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension1}</p></li> }
+                                {product?.dimension2 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension2}</p></li>}
+                                {product?.dimension3 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension3}</p></li>}
+                                {product?.dimension4 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension4}</p></li>}
+                            </ul>
 
                             {product.featureHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.featureHead}</p>}
                             <ul>
