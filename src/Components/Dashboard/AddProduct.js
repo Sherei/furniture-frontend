@@ -195,6 +195,7 @@ export const AddProduct = () => {
           setImagePreviews([])
           setFinalPrice('')
           setPrice('')
+          setError('')
         }
       } catch (error) {
         if (error.response && error.response.status === 400) {
