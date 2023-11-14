@@ -24,6 +24,8 @@ export const AddProduct = () => {
   const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 0);;
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
+  const [imagePreviews, setImagePreviews] = useState([]); // To store image previews
+  const [formData, setFormData] = useState(new FormData()); // To manage form data
 
 
   let move = useNavigate();
@@ -59,16 +61,54 @@ export const AddProduct = () => {
     try {
       if (productId) {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
-          setProduct(resp.data)
+          setProduct(resp.data);
           setPrice(resp.data.price);
           setDiscount(resp.data.discount);
           setFinalPrice(resp.data.Fprice);
-        })
+
+          const imageArray = [];
+          for (let i = 0; i < resp.data.images.length; i++) {
+            imageArray.push(resp.data.images[i]);
+          }
+          setImagePreviews(imageArray);
+        });
       }
     } catch (e) {
 
     }
-  }, [])
+  }, []);
+
+
+
+
+  const handleImageChange = (e) => {
+
+    const files = Array.from(e.target.files);
+
+    if (files.length + imagePreviews.length > 5) {
+      setError('images');
+      return;
+    }
+
+    const newFormData = new FormData();
+    const previews = [...imagePreviews];
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        previews.push(e.target.result);
+        setImagePreviews([...previews]);
+      };
+
+      reader.readAsDataURL(file);
+      newFormData.append('images', file);
+    });
+
+    setImagePreviews(previews);
+    setFormData(newFormData);
+  };
+
 
   useEffect(() => {
     if (productId) {
@@ -81,11 +121,12 @@ export const AddProduct = () => {
     window.scrollTo({
       top: 0,
     });
+    data.images = imagePreviews;
     
     if (data.images.length > 5) {
       return setError('images');
-     }
- 
+    }
+
     setLoading(true);
 
 
@@ -111,18 +152,14 @@ export const AddProduct = () => {
 
     if (productId) {
       try {
-        axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data).then(function (resp) {
-          if (resp) {
-            setLoading(true);
-
-            toast.success("Product updated")
-            move('/admin-dashboard')
-          }
-        }).catch(function (resp) {
-          console.log(resp);
-        })
-      } catch (e) {
-
+        const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data);
+        setLoading(true);
+        toast.success("Product updated");
+        move('/admin-dashboard');
+      } catch (error) {
+        if (error.response && error.response.status === 400 && error.response.data.message === 'Cannot add more than 5 images') {
+          setError('images');
+        }
       }
     } else {
       try {
@@ -174,11 +211,37 @@ export const AddProduct = () => {
                       maxLength: 5,
                     })}
                     className="form-control mb-2 mr-sm-2"
+                    onChange={handleImageChange}
                   />
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                   {Error === "images" && <div className='error'>Only five images allowed</div>}
+
+
+                  <div className='img_preview d-flex gap-3'>
+                    {imagePreviews.map((preview, index) => (
+                      <div key={index} style={{ position: "relative" }}>
+                        <img src={preview} alt={`Preview ${index}`} style={{ height: "90px", width: "100px" }} />
+                        <p
+                          className='m-0 px-2'
+                          style={{ position: "absolute", top: "4px", right: "5px", backgroundColor: "rgb(0,0,0,0.2)", color: "white" }}
+                          onClick={() => {
+                            const updatedPreviews = imagePreviews.filter((_, i) => i !== index);
+                            setImagePreviews(updatedPreviews);
+
+                            const newFormData = new FormData();
+                            updatedPreviews.forEach((preview) => {
+                              newFormData.append('images', preview);
+                            });
+                            setFormData(newFormData);
+                          }}
+                        >
+                          X
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
