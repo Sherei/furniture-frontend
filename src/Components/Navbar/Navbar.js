@@ -239,7 +239,15 @@ export const Navbar = () => {
                 {cu._id != undefined &&
                   <>
                     <li className="nav-item dropdown">
-                      <NavLink className="nav-link dropdown-toggle dropdown-toggle1 px-0" to="/" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                      <NavLink
+                        to="/"
+                        className="nav-link dropdown-toggle 
+                      dropdown-toggle1 px-0"
+                        id="navbarDarkDropdownMenuLink1"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        
                         style={{ borderBottom: "none" }}>
                         <img src="/profile.png"
                           className="nav_image"

@@ -194,7 +194,7 @@ const SingleAdd = () => {
             });
             move('/login')
             toast.warning("Login with different account")
-        } 
+        }
         else {
 
             const totalPrice = product.Fprice * quantity;
@@ -984,9 +984,6 @@ const SingleAdd = () => {
                                     </div>
                                 </>
                             }
-
-
-                            {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
                             {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
                             {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
                             {(product?.images && product.images.length > 0) &&

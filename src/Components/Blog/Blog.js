@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa"
 import "./blog.css"
 import { useNavigate } from 'react-router-dom'
 const Blog = () => {
-
+    
     const move = useNavigate()
 
     return <>

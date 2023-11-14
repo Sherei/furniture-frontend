@@ -97,11 +97,8 @@ const Signup = () => {
                             <input type="text"placeholder='Shipping Address *' className="form-control login_form_input"{...register('address', { required: true })} />
                             {errors.address && errors.address.type == 'required' ? <div className='error'>This Field is required</div> : null}
                         </div>
-                        <div className='my-3 d-flex align-items-center'>
-                            <input type="checkbox" className="mx-1" required />
-                            <span className='text-muted'>i have read and agree to the terms.</span>
-                        </div>
-                        <button className='btn border rounded login_btn'>Submit</button>
+                  
+                        <button className='btn border rounded login_btn mt-5'>Submit</button>
 
                     </form>
                 </div>

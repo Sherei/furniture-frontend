@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaCheck } from "react-icons/fa"
 import "./faq.css"
 const Faq = () => {
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
+
     return <>
         <div className='container-fluid mx-0 border' id='faq'>
             <div className='row py-5'>
@@ -164,10 +173,10 @@ const Faq = () => {
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="accordion-body">
-                                        We strive to process orders promptly, but if you need to make changes, 
-                                        please contact our customer service as soon as possible. 
-                                        Once an order is processed, modifications might not be possible.
-                                            </div>
+                                            We strive to process orders promptly, but if you need to make changes,
+                                            please contact our customer service as soon as possible.
+                                            Once an order is processed, modifications might not be possible.
+                                        </div>
                                     </div>
                                 </div>
                             </div>

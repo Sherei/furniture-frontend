@@ -80,14 +80,14 @@ const Checkout = () => {
             data.orderId = orderId;
             data.userId = userId;
             data.orderItems = orderItemsJSON;
-            
+
             console.log("order items are ::", orderItems)
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                
+
             });
 
             if (response.data === "Order is Placed") {
@@ -116,7 +116,7 @@ const Checkout = () => {
     return <>
         <div className='container my-5'>
             <div className='row checkout_display'>
-                <div className='border col-lg-8 col-sm-12 py-3'>
+                <div className='border col-lg-8 col-sm-12 py-3 px-3 mt-5 mt-lg-0'>
                     <h4 className="mb-3">Billing address</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row">
@@ -170,62 +170,41 @@ const Checkout = () => {
 
                         <h4 className="mb-3">Payment</h4>
 
-                        <div class="form-check" onClick={() => setMethod("credit")}>
-                            <input class="form-check-input" type="radio" name="payment" id="creditCard" />
-                            <label class="form-check-label" for="creditCard">
-                                Credit Card
-                            </label>
-                        </div>
-                        {method == "credit" &&
-                            <div>
-                                <p className='error'>This payment Method is not available right now you can select Cash on delivery as your Payment Method</p>
-                            </div>
-                        }
-                        <div class="form-check" onClick={() => setMethod("debit")}>
-                            <input class="form-check-input" type="radio" name="payment" id="debitCard" />
-                            <label class="form-check-label" for="debitCard">
-                                Debit Card
-                            </label>
-                        </div>
-                        {method == "debit" &&
-                            <div>
-                                <p className='error'>This payment Method is not available right now you can select Cash on delivery as your Payment Method</p>
-                            </div>
-                        }
-                        <div class="form-check" onClick={() => setMethod("paypal")}>
-                            <input class="form-check-input" type="radio" name="payment" id="paypal" />
-                            <label class="form-check-label" for="paypal">
-                                PayPal
-                            </label>
-                        </div>
-                        {method == "paypal" &&
-                            <div>
-                                <p className='error'>This payment Method is not available right now you can select Cash on delivery as your Payment Method</p>
-                            </div>
-                        }
                         <div class="form-check" onClick={() => setMethod("cash")}>
                             <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" {...register('payment', { required: true })} />
                             <label class="form-check-label" for="cashOnDelivery">
                                 Cash on Delivery
                             </label>
                             {errors.payment ? <div className='error'>This Field is required</div> : null}
-
                         </div>
+                        <a href="https://wa.me/+923067208343" target='blank'>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="payment" id="Whatsapp" />
+                                <label class="form-check-label">
+                                    Buy Via Whatsapp
+                                </label>
+                                {errors.payment ? <div className='error'>This Field is required</div> : null}
+                            </div>
+                        </a>
 
                         <hr className="mb-4" />
-                        <button className="btn review_btn btn-lg btn-block">
-                            Place Order
+                        <button className="btn review_btn btn-lg btn-block fw-bolder">
+                            PROCEED TO CHECKOUT
+                        </button>
+                        <p className='my-3 text-center fw-bolder fs-3'>OR</p>
+                        <button className="btn review_btn btn-lg btn-block fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
+                            COMPLETE ORDER VIA WHATSAPP
                         </button>
                     </form>
                 </div>
 
 
 
-                <div className='col-lg-4  col-sm-12 px-4 '>
+                <div className='col-lg-4 col-sm-12 px-4 '>
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between'>
-                            <p className='fw-bolder fs-6'>Your Cart</p>
-                            <p className='fw-bolder fs-6'>{filterCart?.length}</p>
+                            <p className='fw-bolder fs-4'>CART TOTALS</p>
+                            <p className='fw-bolder fs-4'>{filterCart?.length}</p>
                         </div>
                     </div>
                     {filterCart?.map((item) => {
@@ -236,17 +215,16 @@ const Checkout = () => {
                                 </div>
                                 <div className='col-9'>
                                     <p className='checout_tittle text-muted'>{item?.title}</p>
-                                    <p className='text-end'>{`£${item?.Fprice?.toFixed(2)}`}</p>
+                                    <p className='text-end fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
                                 </div>
                             </div>
                         </>
                     })
                     }
                     <div className='row mt-3'>
-                        <div className='px-3 col-12 border d-flex justify-content-between align-items-center'>
-                            <p>Total(USD)</p>
-                            <p className='fw-bold' >{`£${totalSum?.toFixed(2)}`}</p>
-
+                        <div className='px-3 py-3 col-12 d-flex justify-content-between align-items-center'>
+                            <p className='m-0 fw-bolder fs-5'>Total</p>
+                            <p className='fw-bolder m-0 fs-5' style={{ color: "red" }} >{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
                     </div>
 
