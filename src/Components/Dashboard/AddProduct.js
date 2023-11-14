@@ -62,6 +62,7 @@ export const AddProduct = () => {
           setPrice(resp.data.price);
           setDiscount(resp.data.discount);
           setFinalPrice(resp.data.Fprice);
+          setSelectedCategory(resp.data.category);
           const imageArray = [];
           for (let i = 0; i < resp.data.images.length; i++) {
             imageArray.push(resp.data.images[i]);
@@ -162,14 +163,11 @@ export const AddProduct = () => {
       }
     }
 
-    data.images = cloudinaryUrls;
-    data.discount = discount;
-    data.price = price;
-    data.Fprice = finalPrice;
 
     if (productId) {
-      if ((selectedCategory != "bed" || selectedCategory != "sofa")) {
-        data.subCategory = "";
+      if (selectedCategory !== "bed" && selectedCategory !== "sofa") {
+        setSelectedCategory('');
+        data.subCategory="";
       }
       data.images = cloudinaryUrls;
       data.discount = discount;
@@ -187,6 +185,12 @@ export const AddProduct = () => {
         }
       }
     } else {
+
+      data.images = cloudinaryUrls;
+      data.discount = discount;
+      data.price = price;
+      data.Fprice = finalPrice;
+
       try {
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
         if (response.data) {
@@ -249,7 +253,7 @@ export const AddProduct = () => {
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                   {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only Ten images allowed</div>}
                   {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
-                  <div className='img_preview d-flex flex-wrap px-lg-5 px-md-5 px-3 gap-3'>
+                  <div className='img_preview d-flex flex-wrap px-3 gap-3'>
                     {(imagePreviews).map((preview, index) => (
                       <div className='p-1' key={index}
                         style={{
@@ -257,7 +261,7 @@ export const AddProduct = () => {
                           border: "2px dashed rgb(2,2,94)",
                         }}>
                         <img src={preview} alt={`Preview ${index}`}
-                          style={{ height: "90px", width: "100px" }} />
+                          style={{ height: "80px", width: "80px" }} />
                         <button
                           type="button"
                           className='m-0 px-2'
@@ -368,7 +372,7 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
-                  <input type="number" {...register('price', { required: true })} min={"1"}
+                  <input type="number" {...register('price', { required: true })} min={1}
                     className="form-control mb-2 mr-sm-2"
                     defaultValue={product ? product.price : price}
                     onChange={handlePriceChange} />
@@ -377,7 +381,7 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
-                  <input type="number" {...register('discount')} min={"0"}
+                  <input type="number" {...register('discount')} min={0}
                     className="form-control mb-2 mr-sm-2"
                     defaultValue={product ? product.discount : discount}
                     onChange={handleDiscountChange} />
