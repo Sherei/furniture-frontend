@@ -19,7 +19,7 @@ export const AddProduct = () => {
   const [product, setProduct] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [price, setPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  const [discount, setDiscount] = useState(product ? product.discount : 0);
   const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 1);;
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
@@ -28,6 +28,7 @@ export const AddProduct = () => {
 
 
   let move = useNavigate();
+
   const { productId } = useParams();
 
 

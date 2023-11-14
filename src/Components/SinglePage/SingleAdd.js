@@ -163,7 +163,27 @@ const SingleAdd = () => {
 
 
     async function AddToCart(product) {
-
+        if (product.category === "bed") {
+            if (!size, !detail, !fabric, !color, !headboard, !base) {
+                return setError("options")
+            }
+        } else if (product.category === "sofa") {
+            if (!size, !color) {
+                return setError("options")
+            }
+        } else if (product.category === "mattress") {
+            if (!size) {
+                return setError("options")
+            }
+        } else if (product.category === "ottoman-box") {
+            if (!detail, !fabric, !color) {
+                return setError("options")
+            }
+        } else if (product.category === "footstools") {
+            if (!fabric, !color) {
+                return setError("options")
+            }
+        }
         if (cu._id === undefined) {
             move('/login')
             toast.warning("Login to Place Order")
@@ -174,11 +194,9 @@ const SingleAdd = () => {
             });
             move('/login')
             toast.warning("Login with different account")
-        }
+        } 
         else {
-            if (product?.discount === null || product?.discount === undefined) {
-                product.discount = 0;
-            }
+
             const totalPrice = product.Fprice * quantity;
             product.productId = product._id;
             product.userId = cu._id;
@@ -367,10 +385,6 @@ const SingleAdd = () => {
 
 
                                 <div className='single_form  mt-3'>
-                                    {(Error === "bed" || Error === "sofa" || Error === "mattress" || Error === "ottoman-box") &&
-                                        <div className='error'>All fields are required</div>
-                                    }
-
                                     {/*.................................... Sofa Start .......................... */}
 
                                     {product.category === "sofa" &&
@@ -911,6 +925,10 @@ const SingleAdd = () => {
                                 </div>
 
                             </div>
+                            {Error === "options" &&
+                                <div className='error'>All fields are required</div>
+                            }
+
                             <div className='s_btn my-3'>
                                 <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
                                 <button className='btn s_cart' onClick={(Order)}>Order now</button>

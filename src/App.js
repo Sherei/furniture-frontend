@@ -150,7 +150,18 @@ function App() {
             </main>
             <Footer />
           </BrowserRouter>
-          <ToastContainer />
+          <ToastContainer
+            position="top-right"
+            autoClose={700}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </div>
       </>
     );
@@ -160,7 +171,7 @@ function App() {
       <div>
         <Lottie animationData={Nointernet} loop={true} />;
       </div>
-      <button className='btn review_btn' style={{width:"200px"}} onClick={() => window.location.reload()}>
+      <button className='btn review_btn' style={{ width: "200px" }} onClick={() => window.location.reload()}>
         Reload
       </button>
     </div>
