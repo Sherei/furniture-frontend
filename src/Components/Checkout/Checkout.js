@@ -205,7 +205,7 @@ const Checkout = () => {
                 <div className='col-lg-4 col-sm-12 px-4 '>
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between'>
-                            <p className='fw-bolder fs-4'>CART TOTALS</p>
+                            <p className='fw-bolder fs-4'>CART ITEMS</p>
                             <p className='fw-bolder fs-4'>{filterCart?.length}</p>
                         </div>
                     </div>
