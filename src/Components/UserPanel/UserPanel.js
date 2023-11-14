@@ -125,7 +125,7 @@ const UserPanel = () => {
                                             <p className="text-muted mb-0">{cu.number}</p>
                                         </div>
                                     </div>
-                                    <hr />
+                                    {/* <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <p className="mb-0">Password</p>
@@ -133,7 +133,7 @@ const UserPanel = () => {
                                         <div className="col-sm-9">
                                             <p className="text-muted mb-0">{cu.password}</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
