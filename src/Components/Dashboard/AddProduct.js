@@ -80,7 +80,7 @@ export const AddProduct = () => {
 
     const files = Array.from(e.target.files);
 
-    if (files.length + imagePreviews.length > 5) {
+    if (files.length + imagePreviews.length > 10) {
       setError('images');
       return;
     }
@@ -96,7 +96,7 @@ export const AddProduct = () => {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        setImagePreviews([...imagePreviews, e.target.result]);
+        setImagePreviews((prevPreviews) => [...prevPreviews, e.target.result]);
       };
 
       reader.readAsDataURL(file);
@@ -105,6 +105,7 @@ export const AddProduct = () => {
 
     setFormData(newFormData);
   };
+
 
 
   const handleImageDelete = (index) => {
@@ -138,11 +139,12 @@ export const AddProduct = () => {
       top: 0,
     });
 
-    if (selectedCategory != "bed" || selectedCategory != "sofa") {
+    if ((selectedCategory != "bed" || selectedCategory != "sofa")
+      || (product.category != "bed" || product.category != "sofa")) {
       data.subCategory = "";
     }
 
-    if (imagePreviews.length > 5) {
+    if (imagePreviews.length > 10) {
       setError('images');
       return;
     }
@@ -170,7 +172,7 @@ export const AddProduct = () => {
     data.Fprice = finalPrice;
 
     if (productId) {
-      
+
       data.images = cloudinaryUrls;
       data.discount = discount;
       data.price = price;
@@ -182,7 +184,7 @@ export const AddProduct = () => {
         toast.success("Product updated");
         move('/admin-dashboard');
       } catch (error) {
-        if (error.response && error.response.status === 400 && error.response.data.message === 'Cannot add more than 5 images') {
+        if (error.response && error.response.status === 400 && error.response.data.message === 'Cannot add more than 10 images') {
           return setError('images');
         }
       }
@@ -223,7 +225,7 @@ export const AddProduct = () => {
             <div className='error'>Try with different serial number</div>
           }
           {Error === "images" &&
-            <div className='error'>Invalid number of images. Must be between 1 and 5</div>
+            <div className='error'>Invalid number of images. Must be between 1 and 10</div>
           }
           {loading ? (
             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
@@ -233,7 +235,51 @@ export const AddProduct = () => {
 
             <form>
               <div className='row'>
-        
+                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
+                  <input
+                    type='file'
+                    multiple
+                    {...register('images', {
+                      required: productId ? false : true,
+                      minLength: 1,
+                      maxLength: 10,
+                    })}
+                    className="form-control mb-2 mr-sm-2"
+                    onChange={handleImageChange}
+                  />
+                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
+                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only Ten images allowed</div>}
+                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
+                  <div className='img_preview d-flex flex-wrap px-lg-5 px-md-5 px-3 gap-3'>
+                    {(imagePreviews).map((preview, index) => (
+                      <div className='p-1' key={index}
+                        style={{
+                          position: "relative",
+                          border: "2px dashed rgb(2,2,94)",
+                        }}>
+                        <img src={preview} alt={`Preview ${index}`}
+                          style={{ height: "90px", width: "100px" }} />
+                        <button
+                          type="button"
+                          className='m-0 px-2'
+                          style={{
+                            position: "absolute", top: "4px",
+                            right: "5px",
+                            border: "none",
+                            backgroundColor: "rgb(0,0,0,0.2)",
+                            color: "white",
+                          }}
+                          onClick={() => handleImageDelete(index)}
+
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
                   <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2" />
@@ -442,64 +488,19 @@ export const AddProduct = () => {
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
                   <input {...register('dimension4')} className="form-control" />
                 </div>
-                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
-                  <input
-                    type='file'
-                    multiple
-                    {...register('images', {
-                      required: productId ? false : true,
-                      minLength: 1,
-                      maxLength: 5,
-                    })}
-                    className="form-control mb-2 mr-sm-2"
-                    onChange={handleImageChange}
-                  />
-                  {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
-                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only ten images allowed</div>}
-                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
-                  {Error === "images" && <div className='error'>Only five images allowed</div>}
 
-                  <div className='img_preview d-flex flex-wrap px-lg-5 px-md-5 px-3 gap-3'>
-                    {(imagePreviews).map((preview, index) => (
-                      <div className='p-1' key={index}
-                        style={{
-                          position: "relative",
-                          border: "2px dashed rgb(2,2,94)",
-                        }}>
-                        <img src={preview} alt={`Preview ${index}`}
-                          style={{ height: "90px", width: "100px" }} />
-                        <button
-                          type="button"
-                          className='m-0 px-2'
-                          style={{
-                            position: "absolute", top: "4px",
-                            right: "5px",
-                            border: "none",
-                            backgroundColor: "rgb(0,0,0,0.2)",
-                            color: "white"
-                          }}
-                          onClick={() => handleImageDelete(index)}
-
-                        >
-                          X
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
               <div className='row'>
                 {!product &&
                   <div className='col-lg-12 col-sm-12 my-5'>
-                    <button type="button" className="btn review_btn" style={{width:"200px"}}  onClick={handleSubmit(submitProduct)}>
+                    <button type="button" className="btn review_btn" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
                       Submit
                     </button>
                   </div>
                 }
                 {product &&
                   <div className='col-lg-12 col-sm-12 my-5'>
-                    <button type="button" className="btn review_btn" style={{width:"200px"}} onClick={handleSubmit(submitProduct)}>
+                    <button type="button" className="btn review_btn" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
                       Update
                     </button>
                   </div>
