@@ -188,12 +188,12 @@ const Checkout = () => {
                         </a>
 
                         <hr className="mb-4" />
-                        <button className="btn review_btn btn-lg btn-block fw-bolder">
+                        <button className="btn review_btn btn-block fw-bolder">
                             PROCEED TO CHECKOUT
                         </button>
                         <p className='my-3 text-center fw-bolder fs-3'>OR</p>
                         <a href="https://wa.me/+923067208343" target='blank'>
-                            <button className="btn review_btn btn-lg btn-block fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
+                            <button className="btn review_btn btn-block fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
                                 COMPLETE ORDER VIA WHATSAPP
                             </button>
                         </a>
