@@ -20,7 +20,7 @@ export const AddProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 0);;
+  const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 1);;
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
   const [imagePreviews, setImagePreviews] = useState([]);

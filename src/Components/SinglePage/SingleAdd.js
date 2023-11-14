@@ -176,11 +176,9 @@ const SingleAdd = () => {
             toast.warning("Login with different account")
         }
         else {
-
-            if (product.discount === null || product.discount === undefined) {
+            if (product?.discount === null || product?.discount === undefined) {
                 product.discount = 0;
             }
-
             const totalPrice = product.Fprice * quantity;
             product.productId = product._id;
             product.userId = cu._id;
@@ -263,13 +261,13 @@ const SingleAdd = () => {
     };
 
     function Order() {
-        if (cu._id != undefined || cu.email != "asd@gmail.com") {
-            AddToCart()
-            move(`/cart-checkout/${cu._id}`)
-        }
-        else {
+        if (cu._id === undefined || cu.email === "asd@gmail.com") {
             toast.warning("Login to Place Order")
             move(`/login`)
+        }
+        else {
+            move(`/cart-checkout/${cu._id}`)
+            AddToCart()
         }
     }
 

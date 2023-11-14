@@ -109,20 +109,10 @@ const Checkout = () => {
         );
     }
 
-
-    if (loading) {
-        return (
-            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <Loader />
-            </div>
-        );
-    }
-
     if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart.length < 1) {
-        return <>
-            <Error />
-        </>
+        return move("/")
     }
+
     return <>
         <div className='container my-5'>
             <div className='row checkout_display'>
@@ -238,7 +228,7 @@ const Checkout = () => {
                             <p className='fw-bolder fs-6'>{filterCart?.length}</p>
                         </div>
                     </div>
-                    {filterCart.map((item) => {
+                    {filterCart?.map((item) => {
                         return <>
                             <div className='row border mb-1 pt-3'>
                                 <div className='col-3'>
