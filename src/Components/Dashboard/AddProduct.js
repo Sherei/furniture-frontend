@@ -139,10 +139,6 @@ export const AddProduct = () => {
       top: 0,
     });
 
-    if ((selectedCategory != "bed" || selectedCategory != "sofa")
-      || (product.category != "bed" || product.category != "sofa")) {
-      data.subCategory = "";
-    }
 
     if (imagePreviews.length > 10) {
       setError('images');
@@ -172,7 +168,9 @@ export const AddProduct = () => {
     data.Fprice = finalPrice;
 
     if (productId) {
-
+      if ((selectedCategory != "bed" || selectedCategory != "sofa")) {
+        data.subCategory = "";
+      }
       data.images = cloudinaryUrls;
       data.discount = discount;
       data.price = price;
@@ -344,7 +342,7 @@ export const AddProduct = () => {
                 )}
                 {(selectedCategory === 'bed') && (
                   <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Sub Category *</label>
+                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Sub Category *</label>
                     <select {...register('subCategory', {
                       required: true, validate: function (selectedValue) {
                         if (selectedValue == "Select subCategory") {
