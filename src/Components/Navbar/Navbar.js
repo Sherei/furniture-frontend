@@ -324,12 +324,12 @@ export const Navbar = () => {
                 </li>
 
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
+                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas">
                     Corner Sofas
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
+                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas">
                     3+2 Sofa Sets
                   </NavLink>
                 </li>
