@@ -150,11 +150,11 @@ const SingleAdd = () => {
                     totalPrice += 130;
                 } else if (mattress === "king-+(£180)") {
                     totalPrice += 180;
-                }else if(mattress === "super-king-+(£220)"){
+                } else if (mattress === "super-king-+(£220)") {
                     totalPrice += 220;
                 }
             }
-                    
+
         }
         return totalPrice;
     };
@@ -929,12 +929,9 @@ const SingleAdd = () => {
 
                     <div className='row my-5 d-flex justify-content-center'>
                         <div className='col-lg-10 col-md-10 col-sm-12'>
-                            {product?.description && <>
-                                <p className='fs-2 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>
-                                    Product Detail
-                                </p>
-                            </>
-                            }
+                            <p className='fs-2 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>
+                                Product Detail
+                            </p>
 
                             {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead1}</p>}
                             {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
@@ -942,7 +939,7 @@ const SingleAdd = () => {
                             {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
                             {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead3}</p>}
                             {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
-                            {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.note1}</p>}
+                            {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note1}</p>}
 
                             {product?.dimensionHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimensionHead}</p>}
                             <ul>
@@ -973,7 +970,7 @@ const SingleAdd = () => {
                             }
 
 
-                            {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note1}</p>}
+                            {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
                             {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
                             {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
                             {(product?.images && product.images.length > 0) &&
