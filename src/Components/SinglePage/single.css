@@ -80,16 +80,8 @@
 .s_content {
     display: flex;
     flex-direction: column;
-    height: 50vh;
-    overflow: auto;
 }
 
-.bed_class {
-    height: 100vh;
-    overflow: auto;
-
-
-}
 
 .s_content::-webkit-scrollbar,
 .bed_class::-webkit-scrollbar {

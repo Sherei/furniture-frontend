@@ -5,7 +5,9 @@ option{
 .completed-row {
     background-color: rgb(2, 2, 94 );
     color: white; /* You can adjust text color for better visibility */
+  
   }
+  
   .completed-row:hover{
     background-color: rgb(2, 2, 94,0.8 );
     color: white;  

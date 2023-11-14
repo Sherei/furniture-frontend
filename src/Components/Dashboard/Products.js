@@ -128,7 +128,7 @@ export const Products = () => {
                           <td onClick={() => move("/single_Add/" + data._id)}>{data.title}</td>
                           <td >{data.category}</td>
                           <td className='text-center'>
-                            {data.subCategory === undefined? "No subCategory" : data.subCategory}
+                            {data.subCategory === undefined|| data.subCategory === ""? "No subCategory" : data.subCategory}
                           </td>
                           <td className='text-center'>&pound; {data?.price?.toFixed(2)}</td>
 
