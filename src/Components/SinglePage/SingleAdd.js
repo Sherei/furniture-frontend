@@ -103,7 +103,6 @@ const SingleAdd = () => {
 
     const calculateTotalPrice = (price, quantity, size, mattress, detail, headboard, ottoman) => {
 
-        // const totalPrice = product?.Fprice * quantity;
         let totalPrice = price * quantity;
 
         if (product.category === "bed") {
