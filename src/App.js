@@ -160,7 +160,7 @@ function App() {
       <div>
         <Lottie animationData={Nointernet} loop={true} />;
       </div>
-      <button className='btn review_btn' onClick={() => window.location.reload()}>
+      <button className='btn review_btn' style={{width:"200px"}} onClick={() => window.location.reload()}>
         Reload
       </button>
     </div>

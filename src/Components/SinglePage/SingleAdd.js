@@ -100,26 +100,59 @@ const SingleAdd = () => {
             setQuantity((prevQuantity) => prevQuantity - 1);
         }
     };
-    // const totalPrice = product?.Fprice * quantity;
 
-    const calculateTotalPrice = (price, quantity, size, mattress, detail, fabric, headboard, ottoman) => {
+    const calculateTotalPrice = (Fprice, quantity, size, mattress, fabric, headboard, ottoman, category) => {
 
-        let totalPrice = price * quantity;
+        const totalPrice = product?.Fprice * quantity;
+        if (category === "bed") {
+            switch (size) {
+                case "3ft-single":
+                    totalPrice += 0;
+                    break;
+                case "4ft-small-double-(£120)":
+                    totalPrice += 120;
+                    break;
+                case "4'6ft-standard-ouble-(+£180)":
+                    totalPrice += 180;
+                    break;
+                default:
+                    break;
+            }
+            switch (fabric) {
+                case "plush-velvet":
+                    totalPrice += 0; // Additional price for Plush Velvet
+                    break;
+                case "crush-velvet":
+                    totalPrice += 0; // Additional price for Crush Velvet
+                    break;
+                case "chenille":
+                    totalPrice += 0; // Additional price for Chenille
+                    break;
+                // Add similar cases for other fabric options
+                default:
+                    break;
+            }
+            switch (headboard) {
+                case "standard-(54)":
+                    totalPrice += 0; // Additional price for Standard (54")
+                    break;
+                case "extra-premium-(65)-(+£79.00)":
+                    totalPrice += 79; // Additional price for Extra Premium (65")
+                    break;
+                // Add similar cases for other headboard options
+                default:
+                    break;
+            }
+        } else if (category === "sofa") {
 
-        if (size === "small-double" || size === "2-seater" || size === "4ft" || mattress === "small-double") {
-            totalPrice += 1 * 50;
-        } else if (size === "double" || size === "3-seater" || size === "4'6ft" || mattress === "double") {
-            totalPrice += 3 * 50;
-        } else if (size === "king" || size === "5-seater" || size === "5ft" || mattress === "king") {
-            totalPrice += 4 * 50;
-        } else if (size === "super-king" || size === "corner-sofa" || size === "6ft" || mattress === "super-king") {
-            totalPrice += 5 * 50;
+        } else if (category === "mattress") {
+
         }
 
         return totalPrice;
     };
 
-    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, detail, fabric, headboard, ottoman);
+    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, mattress, detail, fabric, headboard, ottoman, product.category);
 
 
     async function AddToCart(product) {
@@ -426,10 +459,10 @@ const SingleAdd = () => {
                                                     }}>
                                                     <option value="select size">Select Size</option>
                                                     <option value="3ft-single">3ft Single</option>
-                                                    <option value="4ft-small-double">4ft Small Double</option>
-                                                    <option value="4'6ft-standard-ouble">4'6ft Standard Double</option>
-                                                    <option value="5ft-king">5ft King</option>
-                                                    <option value="6ft-super-king">6ft Super King</option>
+                                                    <option value="4ft-small-double-(£120)">4ft Small Double +(£120)</option>
+                                                    <option value="4'6ft-standard-ouble-(+£180)">4'6ft Standard Double +(£180)</option>
+                                                    <option value="5ft-king-(£250)">5ft King +(£250)</option>
+                                                    <option value="6ft-super-king-(£300)">6ft Super King +(£300)</option>
                                                 </select>
                                             </div>
 
@@ -531,7 +564,7 @@ const SingleAdd = () => {
                                                         }
                                                     }} className="form-select mb-2 mr-sm-2">
                                                     <option value="select detail">Please Choose</option>
-                                                    <option value="button-+£10.0">Buttons +£10.0</option>
+                                                    <option value="button-+£10.0">Buttons +(£10.0)</option>
                                                     <option value="diamonds">Diamonds</option>
                                                     <option value="not-required">Not Required</option>
                                                 </select>
@@ -555,8 +588,8 @@ const SingleAdd = () => {
                                                     }} className="form-select mb-2 mr-sm-2">
                                                     <option value="select base">Please Choose</option>
                                                     <option value="slats">Slats</option>
-                                                    <option value="ottoman-gaslift-+£120.00">Ottoman Gaslift +£120.00</option>
-                                                    <option value="solid-base-+£60.00">Solid Base +£60.00</option>
+                                                    <option value="ottoman-gaslift-(+£120.00)">Ottoman Gaslift +(£120.00)</option>
+                                                    <option value="solid-base-(+£60.00)">Solid Base +(£60.00)</option>
                                                 </select>
                                             </div>
 
@@ -578,10 +611,10 @@ const SingleAdd = () => {
                                                     className="form-select mb-2 mr-sm-2">
                                                     <option value="select size">Please Choose</option>
                                                     <option value="Single">Single</option>
-                                                    <option value="small-double">Small Double</option>
-                                                    <option value="double">Double</option>
-                                                    <option value="king">King</option>
-                                                    <option value="super-king">Super King</option>
+                                                    <option value="small-double-(+£70)">Small Double +(£70)</option>
+                                                    <option value="double-+(£130)">Double +(£130)</option>
+                                                    <option value="king-+(£180)">King +(£180)</option>
+                                                    <option value="super-king-+(£220)">Super King +(£220)</option>
                                                     <option value="not-require">Not Require</option>
                                                 </select>
                                             </div>
@@ -895,7 +928,7 @@ const SingleAdd = () => {
                                 </p>
                             </>
                             }
-                            
+
                             {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead1}</p>}
                             {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
                             {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead2}</p>}
@@ -906,7 +939,7 @@ const SingleAdd = () => {
 
                             {product?.dimensionHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimensionHead}</p>}
                             <ul>
-                                {product?.dimension1 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension1}</p></li> }
+                                {product?.dimension1 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension1}</p></li>}
                                 {product?.dimension2 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension2}</p></li>}
                                 {product?.dimension3 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension3}</p></li>}
                                 {product?.dimension4 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension4}</p></li>}
