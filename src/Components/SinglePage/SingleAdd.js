@@ -101,58 +101,66 @@ const SingleAdd = () => {
         }
     };
 
-    const calculateTotalPrice = (Fprice, quantity, size, mattress, fabric, headboard, ottoman, category) => {
+    const calculateTotalPrice = (price, quantity, size, mattress, detail, headboard, ottoman) => {
 
-        const totalPrice = product?.Fprice * quantity;
-        if (category === "bed") {
-            switch (size) {
-                case "3ft-single":
-                    totalPrice += 0;
-                    break;
-                case "4ft-small-double-(£120)":
+        // const totalPrice = product?.Fprice * quantity;
+        let totalPrice = price * quantity;
+
+        if (product.category === "bed") {
+            if (size !== undefined && size !== '') {
+                if (size === "4ft-small-double-(£120)") {
                     totalPrice += 120;
-                    break;
-                case "4'6ft-standard-ouble-(+£180)":
+                }
+                else if (size === "4'6ft-standard-ouble-(+£180)") {
                     totalPrice += 180;
-                    break;
-                default:
-                    break;
+                }
+                else if (size === "5ft-king-(£250)") {
+                    totalPrice += 250;
+                }
+                else if (size === "6ft-super-king-(£300)") {
+                    totalPrice += 300;
+                } else {
+                    totalPrice += 0;
+                }
             }
-            switch (fabric) {
-                case "plush-velvet":
-                    totalPrice += 0; // Additional price for Plush Velvet
-                    break;
-                case "crush-velvet":
-                    totalPrice += 0; // Additional price for Crush Velvet
-                    break;
-                case "chenille":
-                    totalPrice += 0; // Additional price for Chenille
-                    break;
-                // Add similar cases for other fabric options
-                default:
-                    break;
+            if (headboard !== undefined && headboard !== '') {
+                if (headboard === "extra-premium-(65)-(+£79.00)") {
+                    totalPrice += 79;
+                }
+                else if (headboard === "exclusive-(70)-(+£129.00)") {
+                    totalPrice += 129;
+                }
+                else if (headboard === "extra-exclusive-(80)-(+£200.00)") {
+                    totalPrice += 200;
+                }
+                else if (headboard === "diamond-(90)-(+£380.00)") {
+                    totalPrice += 380;
+                } else {
+                    totalPrice += 0;
+                }
             }
-            switch (headboard) {
-                case "standard-(54)":
-                    totalPrice += 0; // Additional price for Standard (54")
-                    break;
-                case "extra-premium-(65)-(+£79.00)":
-                    totalPrice += 79; // Additional price for Extra Premium (65")
-                    break;
-                // Add similar cases for other headboard options
-                default:
-                    break;
+            if (detail !== undefined && detail !== '') {
+                if (detail === "button-(+£10.0)") {
+                    totalPrice += 10;
+                }
             }
-        } else if (category === "sofa") {
-
-        } else if (category === "mattress") {
-
+            if (mattress !== undefined && mattress !== '') {
+                if (mattress === "small-double-(+£70)") {
+                    totalPrice += 70;
+                } else if (mattress === "double-+(£130)") {
+                    totalPrice += 130;
+                } else if (mattress === "king-+(£180)") {
+                    totalPrice += 180;
+                }else if(mattress === "super-king-+(£220)"){
+                    totalPrice += 220;
+                }
+            }
+                    
         }
-
         return totalPrice;
     };
 
-    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, mattress, detail, fabric, headboard, ottoman, product.category);
+    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, detail, fabric, headboard, ottoman);
 
 
     async function AddToCart(product) {
@@ -564,7 +572,7 @@ const SingleAdd = () => {
                                                         }
                                                     }} className="form-select mb-2 mr-sm-2">
                                                     <option value="select detail">Please Choose</option>
-                                                    <option value="button-+£10.0">Buttons +(£10.0)</option>
+                                                    <option value="button-(+£10.0)">Buttons +(£10.0)</option>
                                                     <option value="diamonds">Diamonds</option>
                                                     <option value="not-required">Not Required</option>
                                                 </select>
