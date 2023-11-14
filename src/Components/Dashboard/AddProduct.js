@@ -204,6 +204,7 @@ export const AddProduct = () => {
       } catch (error) {
         if (error.response && error.response.status === 400) {
           setError("Serial number");
+          setImagePreviews([])
         } else {
           toast.error("Try Again later");
         }
@@ -483,7 +484,6 @@ export const AddProduct = () => {
                             color: "white",
                           }}
                           onClick={() => handleImageDelete(index)}
-
                         >
                           X
                         </button>
