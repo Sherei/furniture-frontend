@@ -29,7 +29,6 @@ const Checkout = () => {
 
     useEffect(() => {
         setLoading(true);
-
         axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
             try {
                 if (res) {
@@ -55,11 +54,8 @@ const Checkout = () => {
         setLoading(true);
 
         try {
-
             const orderItems = [];
-
             const orderId = uuidv4().substr(0, 10);
-
             filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
@@ -109,8 +105,9 @@ const Checkout = () => {
         );
     }
 
-    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart.length < 1) {
-        return move("/")
+    if (cu._id === undefined || cu.email === "asd@gmail.com") {
+        toast.warning("Login to See cart")
+        return move("/login")
     }
 
     return <>
@@ -188,12 +185,12 @@ const Checkout = () => {
                         </a>
 
                         <hr className="mb-4" />
-                        <button className="btn review_btn btn-block fw-bolder">
+                        <button className="fw-bolder btn btn-lg" style={{width:"100%",backgroundColor:"#8B0000", color:"white"}}>
                             PROCEED TO CHECKOUT
                         </button>
                         <p className='my-3 text-center fw-bolder fs-3'>OR</p>
                         <a href="https://wa.me/+923067208343" target='blank'>
-                            <button className="btn review_btn btn-block fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
+                            <button className="btn review_btn btn-lg fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
                                 COMPLETE ORDER VIA WHATSAPP
                             </button>
                         </a>

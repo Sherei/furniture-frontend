@@ -63,6 +63,9 @@ export const Login = () => {
     }
   };
 
+  if(cu._id !==undefined){
+    move('/products')
+  }
   return <>
     <div className='container my-5'>
       <div className='row d-flex justify-content-center'>

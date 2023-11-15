@@ -19,6 +19,7 @@ export const Cart = () => {
       behavior: 'smooth'
     });
   }, []);
+  
   const cu = useSelector(store => store.userSection.cu)
   const move = useNavigate()
   const { userId } = useParams();
@@ -246,7 +247,7 @@ export const Cart = () => {
 
       {filterCart.length > 0 && (
         <div className="card-body mt-5">
-          <button type="button" className="fw-bolder btn btn-outline-primary btn-lg" style={{width:"fit-content"}} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+          <button type="button" className="fw-bolder btn btn-lg" style={{width:"fit-content", backgroundColor:"#8B0000", color:"white"}} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
             Proceed to Pay
           </button>
         </div>

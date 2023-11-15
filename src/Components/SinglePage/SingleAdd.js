@@ -101,11 +101,14 @@ const SingleAdd = () => {
         }
     };
 
-    const calculateTotalPrice = (price, quantity, size, mattress, detail, headboard, ottoman) => {
+    const calculateTotalPrice = (quantity, size, mattress, detail, headboard, ottoman) => {
 
-        let totalPrice = price * quantity;
+        let totalPrice = (product?.Fprice || 0) * quantity;
 
-        if (product.category === "bed") {
+        if (!size === undefined && size === '') {
+            totalPrice += 0;
+        }
+        if (product?.category === "bed") {
             if (size !== undefined && size !== '') {
                 if (size === "4ft-small-double-(£120)") {
                     totalPrice += 120;
@@ -154,32 +157,110 @@ const SingleAdd = () => {
                     totalPrice += 220;
                 }
             }
+            if (ottoman !== undefined && ottoman !== '') {
+                if (ottoman === "Yes + £90.00") {
+                    totalPrice += 90;
+                }
+            }
+            if (base !== undefined && base !== '') {
+                if (base === "ottoman-gaslift-(+£120.00)") {
+                    totalPrice += 120;
+                } else if (base === "solid-base-(+£60.00))") {
+                    totalPrice += 60;
+                }
+            }
 
         }
+        if (product?.category === "sofa") {
+            if (size !== undefined && size !== '') {
+
+                if (size === "corner-sofa-+(£350)") {
+                    totalPrice += 350;
+                }
+                else if (size === "5+2-seater-+(£450)") {
+                    totalPrice += 450;
+                }
+                else if (size === "3-seater-+(£200)") {
+                    totalPrice += 200;
+                }
+                else if (size === "2-seater-+(£100)") {
+                    totalPrice += 100;
+                } else {
+                    totalPrice += 0;
+                }
+            }
+
+
+        }
+        if (product?.category === "mattress") {
+            if (size !== undefined && size !== '') {
+
+                if (size === "small-double-+(£60)") {
+                    totalPrice += 60;
+                }
+                else if (size === "double-+(£90)") {
+                    totalPrice += 90;
+                }
+                else if (size === "king-+(£150)") {
+                    totalPrice += 150;
+                }
+                else if (size === "super-king-+(£190)") {
+                    totalPrice += 190;
+                } else {
+                    totalPrice += 0;
+                }
+            }
+            if (size !== undefined && size !== '') {
+
+                if (size === "small-double-+(£60)") {
+                    totalPrice += 60;
+                }
+                else if (size === "double-+(£90)") {
+                    totalPrice += 90;
+                }
+                else if (size === "king-+(£150)") {
+                    totalPrice += 150;
+                }
+                else if (size === "super-king-+(£190)") {
+                    totalPrice += 190;
+                } else {
+                    totalPrice += 0;
+                }
+            }
+            if (ottoman !== undefined && ottoman !== "") {
+                if (ottoman === "pillow-Yes-(+£50.00)") {
+                    totalPrice += 50;
+                }
+            }
+
+        }
+
         return totalPrice;
     };
 
-    const totalPrice = calculateTotalPrice(product.Fprice, quantity, size, detail, fabric, headboard, ottoman);
+    const totalPrice = calculateTotalPrice(quantity, size, detail, fabric, headboard, ottoman);
 
 
-    async function AddToCart(product) {
-        if (product.category === "bed") {
+    async function AddToCart(product,
+        size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice) {
+
+        if (product?.category === "bed") {
             if (!size, !detail, !fabric, !color, !headboard, !base) {
                 return setError("options")
             }
-        } else if (product.category === "sofa") {
+        } else if (product?.category === "sofa") {
             if (!size, !color) {
                 return setError("options")
             }
-        } else if (product.category === "mattress") {
+        } else if (product?.category === "mattress") {
             if (!size) {
                 return setError("options")
             }
-        } else if (product.category === "ottoman-box") {
+        } else if (product?.category === "ottoman-box") {
             if (!detail, !fabric, !color) {
                 return setError("options")
             }
-        } else if (product.category === "footstools") {
+        } else if (product?.category === "footstools") {
             if (!fabric, !color) {
                 return setError("options")
             }
@@ -196,19 +277,156 @@ const SingleAdd = () => {
             toast.warning("Login with different account")
         }
         else {
-
-            const totalPrice = product.Fprice * quantity;
-            product.productId = product._id;
-            product.userId = cu._id;
-            product.size = size;
-            product.color = color;
-            product.fabric = fabric;
-            product.detail = detail;
-            product.base = base;
-            product.Fprice = totalPrice;
-            product.image = product.images[0];
-            console.log(product)
             try {
+
+                const calculateTotalPrice = (quantity, size, mattress, detail, headboard, ottoman) => {
+                    let totalPrice = (product?.Fprice || 0) * quantity;
+
+                    if (product?.category === "bed") {
+                        if (size !== undefined && size !== '') {
+                            if (size === "4ft-small-double-(£120)") {
+                                totalPrice += 120;
+                            }
+                            else if (size === "4'6ft-standard-ouble-(+£180)") {
+                                totalPrice += 180;
+                            }
+                            else if (size === "5ft-king-(£250)") {
+                                totalPrice += 250;
+                            }
+                            else if (size === "6ft-super-king-(£300)") {
+                                totalPrice += 300;
+                            } else {
+                                totalPrice += 0;
+                            }
+                        }
+                        if (headboard !== undefined && headboard !== '') {
+                            if (headboard === "extra-premium-(65)-(+£79.00)") {
+                                totalPrice += 79;
+                            }
+                            else if (headboard === "exclusive-(70)-(+£129.00)") {
+                                totalPrice += 129;
+                            }
+                            else if (headboard === "extra-exclusive-(80)-(+£200.00)") {
+                                totalPrice += 200;
+                            }
+                            else if (headboard === "diamond-(90)-(+£380.00)") {
+                                totalPrice += 380;
+                            } else {
+                                totalPrice += 0;
+                            }
+                        }
+                        if (detail !== undefined && detail !== '') {
+                            if (detail === "button-(+£10.0)") {
+                                totalPrice += 10;
+                            }
+                        }
+                        if (mattress !== undefined && mattress !== '') {
+                            if (mattress === "small-double-(+£70)") {
+                                totalPrice += 70;
+                            } else if (mattress === "double-+(£130)") {
+                                totalPrice += 130;
+                            } else if (mattress === "king-+(£180)") {
+                                totalPrice += 180;
+                            } else if (mattress === "super-king-+(£220)") {
+                                totalPrice += 220;
+                            }
+                        }
+                        if (ottoman !== undefined && ottoman !== '') {
+                            if (ottoman === "Yes + £90.00") {
+                                totalPrice += 90;
+                            }
+                        }
+                        if (base !== undefined && base !== '') {
+                            if (base === "ottoman-gaslift-(+£120.00)") {
+                                totalPrice += 120;
+                            } else if (base === "solid-base-(+£60.00))") {
+                                totalPrice += 60;
+                            }
+                        }
+
+                    }
+                    if (product?.category === "sofa") {
+                        if (size !== undefined && size !== '') {
+
+                            if (size === "corner-sofa-+(£350)") {
+                                totalPrice += 350;
+                            }
+                            else if (size === "5+2-seater-+(£450)") {
+                                totalPrice += 450;
+                            }
+                            else if (size === "3-seater-+(£200)") {
+                                totalPrice += 200;
+                            }
+                            else if (size === "2-seater-+(£100)") {
+                                totalPrice += 100;
+                            } else {
+                                totalPrice += 0;
+                            }
+                        }
+
+
+                    }
+                    if (product?.category === "mattress") {
+                        if (size !== undefined && size !== '') {
+
+                            if (size === "small-double-+(£60)") {
+                                totalPrice += 60;
+                            }
+                            else if (size === "double-+(£90)") {
+                                totalPrice += 90;
+                            }
+                            else if (size === "king-+(£150)") {
+                                totalPrice += 150;
+                            }
+                            else if (size === "super-king-+(£190)") {
+                                totalPrice += 190;
+                            } else {
+                                totalPrice += 0;
+                            }
+                        }
+                        if (size !== undefined && size !== '') {
+
+                            if (size === "small-double-+(£60)") {
+                                totalPrice += 60;
+                            }
+                            else if (size === "double-+(£90)") {
+                                totalPrice += 90;
+                            }
+                            else if (size === "king-+(£150)") {
+                                totalPrice += 150;
+                            }
+                            else if (size === "super-king-+(£190)") {
+                                totalPrice += 190;
+                            } else {
+                                totalPrice += 0;
+                            }
+                        }
+                        if (ottoman !== undefined && ottoman !== "") {
+                            if (ottoman === "pillow-Yes-(+£50.00)") {
+                                totalPrice += 50;
+                            }
+                        }
+
+                    }
+
+                    return totalPrice;
+                };
+
+                const totalPrice = calculateTotalPrice(quantity, size, detail, fabric, headboard, ottoman);
+
+                product.productId = product?._id;
+                product.userId = cu?._id;
+                product.size = size;
+                product.color = color;
+                product.fabric = fabric;
+                product.detail = detail;
+                product.base = base;
+                product.headboard = headboard;
+                product.ottoman = ottoman;
+                product.mattress = mattress;
+                product.Fprice = totalPrice;
+                product.image = product?.images[0];
+
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
                 if (response.data === "Product Added") {
@@ -227,7 +445,22 @@ const SingleAdd = () => {
             }
         }
     };
+    
+    async function Order() {
+        
+        await AddToCart(product, size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice);
 
+        if (cu._id) {
+            if (cu._id && cu.email !== "asd@gmail.com") {
+                move(`/cart-checkout/${cu._id}`);
+            }
+        } else if (cu._id === undefined || cu.email !== 'asd@gmail.com') {
+            toast.warning("Login to see cart");
+            move('/login');
+        }
+    }
+
+    
     const handleLeftArrowClick = () => {
         setSelectedImage((prevSelectedImage) => (prevSelectedImage - 1 + totalImages) % totalImages);
     };
@@ -277,17 +510,6 @@ const SingleAdd = () => {
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-GB', options);
     };
-
-    function Order() {
-        if (cu._id === undefined || cu.email === "asd@gmail.com") {
-            toast.warning("Login to Place Order")
-            move(`/login`)
-        }
-        else {
-            move(`/cart-checkout/${cu._id}`)
-            AddToCart()
-        }
-    }
 
     return <>
         {loading ? (
@@ -344,7 +566,7 @@ const SingleAdd = () => {
                             </div>
                         </div>
                         <div className='col-lg-5 col-sm-12' >
-                            <div className={`s_content ${product.category === "bed" ? "bed_class" : ""}`}>
+                            <div className={`s_content ${product?.category === "bed" ? "bed_class" : ""}`}>
                                 <h1 className='text-center fs-1 ' style={{ color: "#1b2950" }}>{product?.title}</h1>
                                 {comments.filter((item) => item.productId === productId).length > 0 &&
                                     <span className='mt-2 mb-3' style={{ color: "red" }}><RiStarSFill /><RiStarSFill /><RiStarSFill />
@@ -356,21 +578,21 @@ const SingleAdd = () => {
 
                                 {product.discount && product.discount > 0 ? (
                                     <>
-                                        {product.category === "bed" ? (
+                                        {product?.category === "bed" ? (
                                             <div className='text-center'>
                                                 <span className='fw-bold fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed()}`}</span>
-                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed()}`}</s></span>
+                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product?.price.toFixed()}`}</s></span>
                                             </div>
                                         ) : (
                                             <div>
                                                 <span className='fw-bold fs-5' style={{ color: "red" }}>{`£${totalPrice?.toFixed()}`}</span>
-                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product.price.toFixed()}`}</s></span>
+                                                <span className='fs-6' style={{ color: "red" }}><s>{`£${product?.price.toFixed()}`}</s></span>
                                             </div>
                                         )}
                                     </>
                                 ) : (
                                     <>
-                                        {product.category === "bed" ? (
+                                        {product?.category === "bed" ? (
                                             <span className='fw-bolder fs-5 text-center' style={{ color: "red" }}>
                                                 {`£${totalPrice?.toFixed()}`}
                                             </span>
@@ -387,7 +609,7 @@ const SingleAdd = () => {
                                 <div className='single_form  mt-3'>
                                     {/*.................................... Sofa Start .......................... */}
 
-                                    {product.category === "sofa" &&
+                                    {product?.category === "sofa" &&
                                         <>
                                             <div>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Size
@@ -406,16 +628,16 @@ const SingleAdd = () => {
                                                         }
                                                     }}>
                                                     <option value="select size">Select Size</option>
-                                                    <option value="corner-sofa">Corner Sofa</option>
-                                                    <option value="5+2-seater">3 + 2 Sofa Set</option>
-                                                    <option value="3-seater">3 Seater</option>
-                                                    <option value="2-seater">2 Seater</option>
+                                                    <option value="corner-sofa-+(£350)">Corner Sofa +(£350)</option>
+                                                    <option value="5+2-seater-+(£450)">3 + 2 Sofa Set +(£450)</option>
+                                                    <option value="3-seater-+(£200)">3 Seater +(£200)</option>
+                                                    <option value="2-seater-+(£100)">2 Seater +(£100)</option>
                                                     <option value="1-seater">1 Seater</option>
                                                 </select>
                                             </div>
 
                                             <div className='mt-3'>
-                                                {product.category === "sofa" &&
+                                                {product?.category === "sofa" &&
                                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
                                                         <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                             {color ? color.replace(/-/g, " ") : ""}
@@ -426,7 +648,7 @@ const SingleAdd = () => {
                                                 <select onChange={(e) => {
                                                     if (e.target.value === "select color") {
                                                         return setError("color")
-                                                    } else if (product.category === "mattress" && e.target.value === "select color") {
+                                                    } else if (product?.category === "mattress" && e.target.value === "select color") {
                                                         return setColor("Not selected")
                                                     } else {
                                                         setColor(e.target.value)
@@ -459,7 +681,7 @@ const SingleAdd = () => {
 
                                     {/*........................ Bed Start ..................... */}
 
-                                    {product.category === "bed" && (
+                                    {product?.category === "bed" && (
                                         <>
                                             <div>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
@@ -685,7 +907,7 @@ const SingleAdd = () => {
 
                                 {/*.................................... Mattress Start .......................... */}
 
-                                {product.category === "mattress" &&
+                                {product?.category === "mattress" &&
                                     <>
                                         <div className='mt-3'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size
@@ -705,10 +927,10 @@ const SingleAdd = () => {
                                                 className="form-select mb-2 mr-sm-2">
                                                 <option value="select size">Please Choose</option>
                                                 <option value="Single">Single</option>
-                                                <option value="small-double">Small Double</option>
-                                                <option value="double">Double</option>
-                                                <option value="king">King</option>
-                                                <option value="super-king">Super King</option>
+                                                <option value="small-double-+(£60)">Small Double +(£60)</option>
+                                                <option value="double-+(£90)">Double +(£90)</option>
+                                                <option value="king-+(£150)">King +(£150)</option>
+                                                <option value="super-king-+(£190)">Super King +(£190)</option>
                                             </select>
                                         </div>
 
@@ -727,7 +949,7 @@ const SingleAdd = () => {
                                                         name="flexRadioDefault"
                                                         id="flexRadioDefault1"
                                                         onChange={() => {
-                                                            setOttoman("Yes + £50.00")
+                                                            setOttoman("pillow-Yes-(+£50.00)")
                                                         }}
                                                     />
                                                     <label className="form-check-label" htmlFor="flexRadioDefault1">
@@ -760,7 +982,7 @@ const SingleAdd = () => {
 
                                 {/*.................................... Ottoman Start .......................... */}
 
-                                {product.category === "ottoman-box" &&
+                                {product?.category === "ottoman-box" &&
                                     <>
                                         <div className='mt-3'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
@@ -846,7 +1068,7 @@ const SingleAdd = () => {
 
                                 {/*.................................... Footstools Start .......................... */}
 
-                                {product.category === "footstools" &&
+                                {product?.category === "footstools" &&
                                     <>
                                         <div className='mt-3'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
@@ -930,7 +1152,8 @@ const SingleAdd = () => {
                             }
 
                             <div className='s_btn my-3'>
-                                <button className='btn s_cart' onClick={() => AddToCart(product)}>Add to Cart</button>
+                                <button className='btn s_cart' onClick={() => AddToCart(product,
+                                    size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice)}>Add to Cart</button>
                                 <button className='btn s_cart' onClick={(Order)}>Order now</button>
                             </div>
                             <div className=''>
