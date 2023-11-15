@@ -1213,7 +1213,6 @@ const SingleAdd = () => {
                                     </div>
                                 </>
                             }
-                            {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
 
                             {product?.category === "bed" &&
                                 <div className="table-responsive">
@@ -1262,6 +1261,9 @@ const SingleAdd = () => {
                                     </table>
                                 </div>
                             }
+
+                            {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
+
                         </div>
                     </div>
 
