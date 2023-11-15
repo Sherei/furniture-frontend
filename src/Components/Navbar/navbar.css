@@ -3,11 +3,9 @@
   top: 0;
   z-index: 100;
 }
-
 .logo_navbar {
   width: 200px;
   max-height: 150px;
-
 }
 
 .navbar {
@@ -250,14 +248,58 @@
   background-color: #F7EEDD;
   border: none;
 }
-.dropdown-menu li{
+
+.dropdown-menu li {
   border-bottom: 1px solid lightgray;
 }
 
 .menu3 {
   background-color: #F7EEDD !important;
 }
+.cart_number{
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  color: white;
+  padding: 2px;
+  font-size: 12px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* ///////////////////////Side cart start ///////////////////////////// */
+
+.side_cart {
+  position: absolute !important;
+  position: fixed !important;
+  height: 100vh;
+  width: 320px;
+  top: 0px;
+  right: -400px;
+  background-color: #F7EEDD;
+  z-index: 5000;
+  transition: all ease-in-out 2s; /* Add this line for initial transition */
+}
+.side_open {
+  right: 0px;
+}
+
+.side_cart_cross{
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  color: red;
+}
+.side_remove{
+  border: none;
+  background-color: transparent;
+}
 @media screen and (max-width:550px) {
 
   .nav_contact2 span {

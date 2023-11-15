@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser, FaRegHeart, FaAngleDown } from "react-icons/fa"
+import { FaRegUser, FaRegHeart, FaAngleDown, FaArrowRight } from "react-icons/fa"
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -11,18 +11,26 @@ import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify"
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import Lottie from 'lottie-react';
+import CartAnimation from "../Animations/CartAnimation.json"
 import "./navbar.css";
 
 export const Navbar = () => {
 
   const move = useNavigate()
+
   const cu = useSelector(store => store.userSection.cu)
+
+  const cartItems = useSelector(store => store.Cart.cart.filter(item => item.userId === cu._id));
+  const cartLength = cartItems.length;
+
   const dispatch = useDispatch()
   const [cart, setCart] = useState([])
   const [loading, setLoading] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [login, setLogin] = useState("close");
+  const [open, setOpen] = useState("close");
   const [Error, setError] = useState("");
 
   useEffect(() => {
@@ -49,7 +57,6 @@ export const Navbar = () => {
           setCart(res.data);
         }
       } catch (e) {
-        // console.log(e);
       } finally {
         setLoading(false);
       }
@@ -100,14 +107,121 @@ export const Navbar = () => {
 
   const filterCart = cart?.filter((item) => item.userId === cu._id)
 
+  const DeleteCartItem = (itemId) => {
+    try {
+      axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
+        setCart(cart.filter((data) => itemId !== data._id));
+        dispatch({
+          type: "REMOVE_CART",
+          payload: itemId,
+        });
+        toast.success("Item removed");
+      });
+
+    } catch (e) {
+      // console.log(e)
+    } finally {
+      setLoading(false);
+    }
+  };
+
   function Logout() {
     dispatch({
       type: 'LOGOUT_USER'
     });
     toast.success("Logout");
+    move('/login')
   }
 
   return <>
+
+    {open === "open" && (
+      <div className={`side_cart ${open === "open" ? "side_open" : ""}`}>
+        <div className='pt-3' style={{ position: "relative" }}>
+          <div className='px-2 d-flex justify-content-between' style={{ height: "fit-content" }}>
+            <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
+            <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
+          </div>
+          <div style={{ height: "80vh", overflow: "auto" }}>
+            {filterCart?.length === 0 ? (
+              <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+                <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+                <button
+                  className='btn review_btn'
+                  style={{ width: "fit-content" }}
+                  onClick={() => {
+                    move('/Products/all');
+                    setOpen('close');
+                  }}
+                >
+                  Browse Products <FaArrowRight />
+                </button>
+              </div>
+            ) : (
+              filterCart?.map((item, index) => (
+                <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
+                  style={{
+                    maxWidth: "320px",
+                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                  }}
+                >
+                  <div className='side_img_main' style={{ maxWidth: "120px", height: "80px" }}>
+                    <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
+                  </div>
+                  <div className='d-flex flex-column gap-2 justify-content-between' style={{ maxWidth: "200px", maxHeight: "100px" }}>
+                    <p className='m-0 fs-6'>{item?.title.slice(0, 30)}...</p>
+                    <div className='d-flex align-items-center justify-content-between'>
+                      <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.Fprice}</p>
+                      <button className='side_remove text-muted' onClick={() => DeleteCartItem(item._id)}>Remove</button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+          {filterCart?.length > 0 &&
+            <div className='border d-flex justify-content-center flex-wrap gap-2' style={{ height: "fit-content" }}>
+              <button className='btn'
+                style={{
+                  backgroundColor: "#1b2950",
+                  color: "white",
+                  fontWeight: "500",
+                  width: "120px",
+                }}
+                onClick={() => {
+                  if (cu._id === undefined) {
+                    setLogin("login")
+                    toast.warning("Login to see your Cart")
+                  } else if (cu.email === "asd@gmail.com") {
+                    toast.warning("Login too see cart")
+                  } else {
+                    setOpen("close")
+                    move(`/cart/${cu._id}`)
+                  }
+                }}>VIEW CART</button>
+              <button className='btn'
+                style={{
+                  backgroundColor: "#8B0000",
+                  color: "white",
+                  fontWeight: "500",
+                  width: "120px"
+                }}
+                onClick={() => {
+                  setOpen("close")
+                  move(`/cart-checkout/${cu._id}`)
+                }}
+              >
+                Order Now
+              </button>
+              <a href="https://wa.me/+923067208343" target='black'>
+
+              <button className='btn' style={{ backgroundColor: "rgb(38,211,103)", color: "white", fontWeight: "500" }}>Order Via WhatsApp</button>
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    )}
 
     <div className='container-fluid nav_contact2 ' style={{ backgroundColor: "#F7EEDD" }}>
       <div className='row py-2'>
@@ -129,9 +243,7 @@ export const Navbar = () => {
 
     <div style={{ position: "relative" }}>
 
-
       <div className={`${isSticky ? 'fixed-top navbar-custom' : ''}`} style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }}>
-
         <div className={`py-2 nav_padding container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
           <div className="row">
             <div className="cols-12 nav1">
@@ -161,20 +273,23 @@ export const Navbar = () => {
                   <FaRegHeart />
                 </li>
                 <li className="nav-item" onClick={() => {
-                  if (cu._id === undefined) {
+                  if (cu._id === undefined || cu.email === "asd@gmail.com") {
                     setLogin("login")
+                    dispatch({
+                      type: 'LOGOUT_USER'
+                    });
                     toast.warning("Login to see your Cart")
-
-                  } else if (cu.email === "asd@gmail.com") {
-                    toast.warning("Login too see cart")
+                    move('/')
                   } else {
-                    move(`/cart/${cu._id}`)
+                    setOpen("open")
                   }
-
-                }}  >
-                  <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none" }}>
-                    <span className={`fs-2 ${filterCart?.length > 0 ? 'cart-red' : 'cart-white'}`}>
+                }}>
+                  <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none", position: "relative" }}>
+                    <span className={`fs-2`}>
                       <FiShoppingCart />
+                      {/* <p className='m-0 cart_number'>
+                        {cartLength}
+                      </p> */}
                     </span>
                   </NavLink>
                 </li>
@@ -247,7 +362,7 @@ export const Navbar = () => {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        
+
                         style={{ borderBottom: "none" }}>
                         <img src="/profile.png"
                           className="nav_image"

@@ -116,7 +116,7 @@ const Checkout = () => {
                 <div className='border col-lg-8 col-sm-12 py-3 px-3 mt-5 mt-lg-0'>
                     <h4 className="mb-3">Billing address</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
-                        <div className="row">
+                        <div className="row py-3" style={{ backgroundColor: "white" }}>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>First Name *</label>
                                 <input type="text" className="form-control login_form_input"{...register('name1', { required: true })} />
@@ -127,7 +127,6 @@ const Checkout = () => {
                                 <label htmlFor="" className='form_label'>Last Name</label>
                                 <input type="text" className="form-control login_form_input"{...register('name2')} />
                             </div>
-
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Mobile*</label>
                                 <input type="number" className="form-control login_form_input" {...register('number1', { required: true })} />
@@ -138,7 +137,8 @@ const Checkout = () => {
                                 <label htmlFor="" className='form_label'>Telephone</label>
                                 <input type="text" className="form-control login_form_input" {...register('number2')} />
                             </div>
-
+                        </div>
+                        <div className='row my-3'>
                             <div className="col-md-12 mb-3">
                                 <label htmlFor="" className='form_label'>E-mail *</label>
                                 <input type="text" className="form-control login_form_input" {...register('email', {
@@ -154,38 +154,35 @@ const Checkout = () => {
                                 })} />
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
                             </div>
-
-
                             <div className="col-md-12 mb-3">
                                 <label htmlFor="" className='form_label'>Shipping Address *</label>
                                 <input type="text" className="form-control login_form_input" {...register('shipping', { required: true })} />
                                 {errors.shipping ? <div className='error'>This Field is required</div> : null}
                             </div>
-
                         </div>
                         <hr className="mb-4" />
+                        <div className='py-3 px-2' style={{backgroundColor:"white"}}>
+                            <h4 className="mb-3">Payment</h4>
 
-                        <h4 className="mb-3">Payment</h4>
-
-                        <div class="form-check" onClick={() => setMethod("cash")}>
-                            <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" {...register('payment', { required: true })} />
-                            <label class="form-check-label" for="cashOnDelivery">
-                                Cash on Delivery
-                            </label>
-                            {errors.payment ? <div className='error'>This Field is required</div> : null}
-                        </div>
-                        <a href="https://wa.me/+923067208343" target='blank'>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" name="payment" id="Whatsapp" />
-                                <label class="form-check-label">
-                                    Buy Via Whatsapp
+                            <div class="form-check" onClick={() => setMethod("cash")}>
+                                <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" {...register('payment', { required: true })} />
+                                <label class="form-check-label" for="cashOnDelivery">
+                                    Cash on Delivery
                                 </label>
                                 {errors.payment ? <div className='error'>This Field is required</div> : null}
                             </div>
-                        </a>
-
+                            <a href="https://wa.me/+923067208343" target='blank'>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="radio" name="payment" id="Whatsapp" />
+                                    <label class="form-check-label">
+                                        Buy Via Whatsapp
+                                    </label>
+                                    {errors.payment ? <div className='error'>This Field is required</div> : null}
+                                </div>
+                            </a>
+                        </div>
                         <hr className="mb-4" />
-                        <button className="fw-bolder btn btn-lg" style={{width:"100%",backgroundColor:"#8B0000", color:"white"}}>
+                        <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "#8B0000", color: "white" }}>
                             PROCEED TO CHECKOUT
                         </button>
                         <p className='my-3 text-center fw-bolder fs-3'>OR</p>

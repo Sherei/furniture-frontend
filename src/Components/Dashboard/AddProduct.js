@@ -421,12 +421,9 @@ export const AddProduct = () => {
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
                   <input {...register('feature7')} className="form-control" />
                 </div>
+              
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 1</label>
-                  <input {...register('note1')} className="form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Note 2</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Note</label>
                   <input {...register('note2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>

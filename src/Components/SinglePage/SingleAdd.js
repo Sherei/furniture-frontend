@@ -241,6 +241,7 @@ const SingleAdd = () => {
     const totalPrice = calculateTotalPrice(quantity, size, detail, fabric, headboard, ottoman);
 
 
+
     async function AddToCart(product,
         size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice) {
 
@@ -431,6 +432,10 @@ const SingleAdd = () => {
 
                 if (response.data === "Product Added") {
                     toast.success("Added to Cart");
+                    dispatch({
+                        type: "ADD_TO_CART",
+                        payload: product,
+                    });
                 }
             } catch (error) {
 
@@ -445,9 +450,9 @@ const SingleAdd = () => {
             }
         }
     };
-    
+
     async function Order() {
-        
+
         await AddToCart(product, size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice);
 
         if (cu._id) {
@@ -460,7 +465,7 @@ const SingleAdd = () => {
         }
     }
 
-    
+
     const handleLeftArrowClick = () => {
         setSelectedImage((prevSelectedImage) => (prevSelectedImage - 1 + totalImages) % totalImages);
     };
@@ -1178,7 +1183,8 @@ const SingleAdd = () => {
                             {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
                             {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead3}</p>}
                             {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
-                            {product?.note1 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note1}</p>}
+                            {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
+                            {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
 
                             {product?.dimensionHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimensionHead}</p>}
                             <ul>
@@ -1204,16 +1210,6 @@ const SingleAdd = () => {
                                     <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
                                         {product.images[1] && <img src={product.images[1]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
                                         {product.images[2] && <img src={product.images[2]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
-                                    </div>
-                                </>
-                            }
-                            {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
-                            {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
-                            {(product?.images && product.images.length > 0) &&
-                                <>
-                                    <div className='my-4 d-flex flex-wrap justify-content-center gap-5'>
-                                        {product.images[3] && <img src={product.images[3]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
-                                        {product.images[4] && <img src={product.images[4]} className='img-fluid rounded' alt="No Network" style={{ maxHeight: "400px" }} />}
                                     </div>
                                 </>
                             }
