@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import "./checkout.css"
 import Loader from '../Loader/Loader';
+import Lottie from 'lottie-react';
+import CartAnimation from "../Animations/CartAnimation.json"
+import { FaArrowRight, FaAngleDown } from "react-icons/fa"
 
 const Checkout = () => {
     useEffect(() => {
@@ -52,6 +55,24 @@ const Checkout = () => {
 
     const filterCart = cart.filter((item) => userId === item.userId)
 
+    const DeleteCartItem = (itemId) => {
+        try {
+          axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
+            setCart(cart.filter((data) => itemId !== data._id));
+            toast.success("Item removed");
+            dispatch({
+              type: "REMOVE_CART",
+              payload: itemId,
+            });
+          });
+    
+        } catch (e) {
+          // console.log(e)
+        } finally {
+          setLoading(false);
+        }
+      };
+    
     const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.Fprice;
     }, 0);
@@ -120,6 +141,16 @@ const Checkout = () => {
         }
     };
 
+
+    if (filterCart?.length === 0) {
+        return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+            <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
+                Browse Products <FaArrowRight />
+            </button>
+        </div>
+    }
+
     if (loading) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
@@ -128,10 +159,10 @@ const Checkout = () => {
         );
     }
 
-    if (cu._id === undefined || cu.email === "asd@gmail.com") {
-        toast.warning("Login to See cart")
-        return move("/login")
-    }
+    // if (cu._id === undefined || cu.email === "asd@gmail.com") {
+    //     toast.warning("Login to See cart")
+    //     return move("/login")
+    // }
 
     return <>
         <div className='container-fluid my-5'>
@@ -190,7 +221,7 @@ const Checkout = () => {
 
                         <hr className="mb-4" />
                         <div className="col-md-12 mb-3">
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping method</p>
+                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
                             <div className='px-3 py-3 d-flex justify-content-between align-items-center  rounded-3'
                                 style={{ border: "1px solid lightgray" }}>
                                 <p className='m-0'>Standard</p>
@@ -219,6 +250,12 @@ const Checkout = () => {
                             </button>
                         </a>
                     </form>
+
+                    <div className='my-5 checout_display2'>
+                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Refund policy</p></a> 
+                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Privacy policy</p></a> 
+                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Terms of service</p></a> 
+                    </div>
                 </div>
 
 
@@ -240,33 +277,44 @@ const Checkout = () => {
                                 </div>
                                 <div className='col-9 d-flex justify-content-between '>
                                     <div>
-                                        <p className='m-0'>{item?.title}</p>
+                                        <p className='m-0'>{item?.title.slice(0, 50)}</p>
                                         <div
                                             className={`chk_detail ${expandedItems[index] ? 'detail_height' : ''}`}
-                                            onClick={() => toggleDetails(index)}
                                         >
-                                            {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}/</p>}
-                                            {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}/</p>}
-                                            {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}/</p>}
-                                            {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}/</p>}
-                                            {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}/</p>}
-                                            {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}/</p>}
-                                            {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}/</p>}
-                                            {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
-                                            {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
+                                            {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}</p>}
+                                            {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}</p>}
+                                            {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}</p>}
+                                            {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}</p>}
+                                            {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}</p>}
+                                            {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}</p>}
+                                            {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}</p>}
+                                            {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
+                                            {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
                                         </div>
                                     </div>
                                     <div>
                                         <p className='text-center fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
+                                        <div>
+                                            <FaAngleDown style={{ transform: expandedItems[index] ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                                onClick={() => toggleDetails(index)} />
+                                        </div>
+                                        <div>
+                                            <button className='btn text-muted' style={{
+                                                border:"none",
+                                                backgroundColor:"transparent",
+
+                                            }}onClick={() => DeleteCartItem(item._id)}>remove</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </>
                     })
                     }
-                    <div className='row mt-3'>
+
+                    <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
                         <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
-                            <p className='m-0 fs-6'>Sub Total</p>
+                            <p className='m-0 fs-6'>Subtotal</p>
                             <p className='m-0 fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
                         <div className='px-3 col-12 text-muted d-flex justify-content-between align-items-center'>
@@ -279,6 +327,11 @@ const Checkout = () => {
                         </div>
                     </div>
 
+                    <div className='my-5 d-flex justify-content-around flex-wrap checout_display1'>
+                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Refund policy</p></a> 
+                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Privacy policy</p></a> 
+                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Terms of service</p></a> 
+                    </div>
                 </div>
             </div >
         </div >

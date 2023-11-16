@@ -3,16 +3,31 @@
     overflow: hidden;
 }
 .chk_detail:hover, .detail_height:hover{
+
     cursor: pointer;
 }
+
 .detail_height{
 
     height: fit-content !important;
     transition: all linear 0.3s;
 }
+.checout_display2{
+    display: flex !important;
+    justify-content: space-around !important;
+    flex-wrap: wrap !important;
+    display: none !important;
+}
+
 @media screen and (max-width:992px) {
     .checkout_display{
         display: flex;
         flex-direction: column-reverse;
+    }
+    .checout_display1{
+        display: none !important;
+    }
+    .checout_display2{
+        display: block !important;
     }
 }
