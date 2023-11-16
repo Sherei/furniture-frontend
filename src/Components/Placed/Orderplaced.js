@@ -62,7 +62,7 @@ const Orderplaced = () => {
                         position: "absolute",
                         width: "100%",
                         height: "100%",
-                        zIndex: 1000,
+                        zIndex: 500,
 
                     }} />
                 <center>
@@ -74,19 +74,21 @@ const Orderplaced = () => {
 
                         </p>
                         <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'
-                            style={{ zIndex: 101 }}>
+                            >
                             <button className="review_btn my-3" onClick={() => {
                                 move(`/user-profile/${cu._id}`)
                             }}
-                            style={{ zIndex: 20000 }}>
+                                style={{  zIndex: 5000, width: "fit-content" }}>
                                 My Order <FaArrowRight />
                             </button>
-                            <a href="/Products">
-                                <button className="review_btn my-3" 
-                            style={{ zIndex: 20000, width:"fit-content" }}>
-                                    Browse Products <FaArrowRight />
-                                </button>
-                            </a>
+                                <button className="review_btn my-3"
+                                style={{  zIndex: 5000, width: "fit-content" }}
+                                onClick={() => {
+                                    move(`/products`)
+                                }}>
+                                Browse  More Products <FaArrowRight />
+                            </button>
+
                         </div>
                     </div>
                 </center>

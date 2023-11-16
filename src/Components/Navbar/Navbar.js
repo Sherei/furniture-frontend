@@ -182,7 +182,7 @@ export const Navbar = () => {
             )}
           </div>
 
-          {(cartItems?.length > 1 || filterCart?.length > 0) &&
+          {(cartItems?.length > 0 || filterCart?.length > 0) &&
             <div className='border d-flex justify-content-center flex-wrap gap-2' style={{ height: "fit-content" }}>
               <button className='btn'
                 style={{

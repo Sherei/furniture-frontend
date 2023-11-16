@@ -4,9 +4,9 @@ import { FaArrowRight } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import  Products  from "../Products/Products"
+import Products from "../Products/Products"
 import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
@@ -19,7 +19,8 @@ export const Cart = () => {
       behavior: 'smooth'
     });
   }, []);
-  
+
+  const dispatch = useDispatch()
   const cu = useSelector(store => store.userSection.cu)
   const move = useNavigate()
   const { userId } = useParams();
@@ -68,6 +69,10 @@ export const Cart = () => {
       axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
         setCart(cart.filter((data) => itemId !== data._id));
         toast.success("Item removed");
+        dispatch({
+          type: "REMOVE_CART",
+          payload: itemId,
+        });
       });
 
     } catch (e) {
@@ -128,7 +133,7 @@ export const Cart = () => {
   if (filterCart?.length === 0) {
     return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
       <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-      <button className='btn review_btn' style={{width:"fit-content"}} onClick={() => move('/Products/all')}>
+      <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
         Browse Products <FaArrowRight />
       </button>
     </div>
@@ -194,7 +199,7 @@ export const Cart = () => {
                       <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
                       <td className="color-red text-center">{`${item?.discount}%`}</td>
                       <td className='text-center'>
-                        
+
                         <input
                           className='cart_input border text-center'
                           type="number"
@@ -239,7 +244,7 @@ export const Cart = () => {
             </div>
           </div>
           <div>
-            <button className='btn review_btn' style={{width:"fit-content"}} onClick={updateCart}>
+            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={updateCart}>
               Update Cart
             </button>
           </div>
@@ -248,7 +253,7 @@ export const Cart = () => {
 
       {filterCart.length > 0 && (
         <div className="card-body mt-5">
-          <button type="button" className="fw-bolder btn btn-lg" style={{width:"fit-content", backgroundColor:"#8B0000", color:"white"}} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+          <button type="button" className="fw-bolder btn btn-lg" style={{ width: "fit-content", backgroundColor: "#8B0000", color: "white" }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
             Proceed to Pay
           </button>
         </div>

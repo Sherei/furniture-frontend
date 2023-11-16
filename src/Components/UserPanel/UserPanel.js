@@ -43,7 +43,21 @@ const UserPanel = () => {
     }, []);
 
     const filterOrder = order.filter((item) => item.userId === cu._id);
+    
+    const formatDateTime = (dateStr) => {
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+        };
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-GB', options);
+      };
 
+      
     if (cu._id === undefined || cu.email === 'asd@gmail.com') {
         return <>
             <Error />
@@ -166,16 +180,14 @@ const UserPanel = () => {
                                             <Loader />
                                         </div>
                                     ) : (
-                                        <div className='table-responsive' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
+                                        <div className='table-responsive py-3 px-2' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
                                             <table className='table table-bordered'>
                                                 <thead>
                                                     <tr className='text-center'>
                                                         <th>Sr#</th>
                                                         <th>OrderId</th>
                                                         <th>Name</th>
-                                                        <th>Email</th>
                                                         <th>Contact</th>
-                                                        <th>Shipping</th>
                                                         <th>Products</th>
                                                         <th>Price</th>
                                                         <th>Date</th>
@@ -194,12 +206,10 @@ const UserPanel = () => {
                                                                 <td>{index + 1}</td>
                                                                 <td>{data?.orderId}</td>
                                                                 <td>{data?.name1}</td>
-                                                                <td>{data?.email}</td>
                                                                 <td>{data?.number1}</td>
-                                                                <td>{data?.shipping}</td>
                                                                 <td className='text-center'>{orderItemsLength}</td>
                                                                 <td className='text-center'>{totalFprice?.toFixed(2)}</td>
-                                                                <td>{data.date.slice(0, 10)}</td>
+                                                                <td>{formatDateTime(data.date)}</td>
                                                                 <td className='text-center'>
                                                                     <a href={`/order-detail/${data._id}`}>Detail</a>
                                                                 </td>

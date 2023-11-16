@@ -22,6 +22,9 @@ const Cart = (oldData = {
     } else if (newData.type === "REMOVE_CART") {
         oldData.cart = oldData.cart.filter(item => item._id !== newData.payload);
     }
+    else if (newData.type === "REMOVE_MULTIPLE_ITEMS") {
+        oldData.cart = oldData.cart.filter(item => item.userId !== newData.payload);
+    }
     return { ...oldData, cart: Array.isArray(oldData.cart) ? oldData.cart : [] };
 };
 

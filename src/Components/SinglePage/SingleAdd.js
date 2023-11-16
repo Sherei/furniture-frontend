@@ -425,6 +425,9 @@ const SingleAdd = () => {
                 product.ottoman = ottoman;
                 product.mattress = mattress;
                 product.Fprice = totalPrice;
+                product.price = product?.price;
+                product.quantity = quantity;
+                product.discount = product?.discount;
                 product.image = product?.images[0];
 
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
@@ -881,20 +884,6 @@ const SingleAdd = () => {
                                                         /> &nbsp;
                                                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                                                             Yes + £90.00
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            className="form-check-input"
-                                                            type="radio"
-                                                            name="flexRadioDefault"
-                                                            id="flexRadioDefault1"
-                                                            onChange={() => {
-                                                                setOttoman("No")
-                                                            }}
-                                                        /> &nbsp;
-                                                        <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                                            No
                                                         </label>
                                                     </div>
                                                 </div>
