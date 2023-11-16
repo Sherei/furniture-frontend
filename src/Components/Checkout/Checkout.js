@@ -114,10 +114,10 @@ const Checkout = () => {
         <div className='container-fluid my-5'>
             <div className='row checkout_display d-flex justify-content-center'>
                 <div className='col-lg-6 col-sm-12 py-3 px-3 mt-5 mt-lg-0'>
-                    <h4 className="mb-3">Billing address</h4>
+                    <h4 className="mb-3 fw-bolder">Delivery</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row py-3" style={{ backgroundColor: "white" }}>
-                            <p className='fs-5 fw-bolder'>Personal Information</p>
+                            <p className='fs-5' style={{fontWeight:"600"}}>Personal Information</p>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>First Name *</label>
                                 <input type="text" className="form-control login_form_input"{...register('name1', { required: true })} />
@@ -135,8 +135,7 @@ const Checkout = () => {
                         </div>
 
                         <div className="row py-3">
-                            <p className='fs-5 fw-bolder'>Contact Information</p>
-
+                            <p className='fs-5'style={{fontWeight:"600"}}>Contact Information</p>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Country*</label>
                                 <input type="text" className="form-control login_form_input" {...register('country', { required: true })} />
@@ -175,7 +174,7 @@ const Checkout = () => {
 
                         <hr className="mb-4" />
                         <div className="col-md-12 mb-3">
-                            <p className='fs-5 fw-bolder'>Shipping method</p>
+                            <p className='fs-5'style={{fontWeight:"600"}}>Shipping method</p>
                             <div className='px-3 py-4 d-flex justify-content-between align-items-center  rounded-3' style={{ border: "1px solid black", backgroundColor: "white" }}>
                                 <p className='m-0'>Standard</p>
                                 <p className='m-0'>&pound;100</p>
@@ -183,7 +182,7 @@ const Checkout = () => {
                         </div>
 
                         <div className='py-3 px-2'>
-                            <p className='fs-5 fw-bolder'>Payment</p>
+                            <p className='fs-5' style={{fontWeight:"600"}}>Payment</p>
                             <div className="col-md-12 mb-3">
                                 <input type="text" className="form-control py-3 rounded"
                                     value="Cash on Delivery (COD)" {...register('payment')}
@@ -228,7 +227,7 @@ const Checkout = () => {
                     })
                     }
                     <div className='row mt-3'>
-                        <div className='px-3 pt-3 col-12 text-muted d-flex justify-content-between align-items-center'>
+                        <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center' style={{fontWeight:"600"}}>
                             <p className='m-0 fs-6'>Sub Total</p>
                             <p className='m-0 fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
@@ -236,7 +235,7 @@ const Checkout = () => {
                             <p className='m-0 fs-6'>Shipping</p>
                             <p className='m-0 fs-6'>{`£${shippingFee}`}</p>
                         </div>
-                        <div className='px-3 col-12 text-muted d-flex justify-content-between align-items-center'>
+                        <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{fontWeight:"600"}}>
                             <p className='m-0 fs-5'>Total</p>
                             <p className='m-0 fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>
