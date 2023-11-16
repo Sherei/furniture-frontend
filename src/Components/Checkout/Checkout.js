@@ -25,6 +25,7 @@ const Checkout = () => {
     const { userId } = useParams();
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState([])
+    const [details, setDetails] = useState(false)
 
     useEffect(() => {
         setLoading(true);
@@ -97,6 +98,13 @@ const Checkout = () => {
         }
     };
 
+    const handleDetailToggle = (itemId) => {
+        setDetails((prevDetails) => ({
+            ...prevDetails,
+            [itemId]: !prevDetails[itemId],
+        }));
+    };
+
     if (loading) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
@@ -117,48 +125,48 @@ const Checkout = () => {
                     <h4 className="mb-3 fw-bolder">Delivery</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row py-3" style={{ backgroundColor: "white" }}>
-                            <p className='fs-5' style={{fontWeight:"600"}}>Personal Information</p>
+                            <p className='fs-5' style={{ fontWeight: "600" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>First Name *</label>
-                                <input type="text" className="form-control login_form_input"{...register('name1', { required: true })} />
+                                <input type="text" className="form-control "{...register('name1', { required: true })} />
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Last Name</label>
-                                <input type="text" className="form-control login_form_input"{...register('name2')} />
+                                <input type="text" className="form-control "{...register('name2')} />
                             </div>
                             <div className="col-md-12 mb-3">
                                 <label htmlFor="" className='form_label'>Shipping Address *</label>
-                                <input type="text" className="form-control login_form_input" {...register('shipping', { required: true })} />
+                                <input type="text" className="form-control " {...register('shipping', { required: true })} />
                                 {errors.shipping ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
 
                         <div className="row py-3">
-                            <p className='fs-5'style={{fontWeight:"600"}}>Contact Information</p>
+                            <p className='fs-5' style={{ fontWeight: "600" }}>Contact Information</p>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Country*</label>
-                                <input type="text" className="form-control login_form_input" {...register('country', { required: true })} />
+                                <input type="text" className="form-control " {...register('country', { required: true })} />
                                 {errors.country ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>City*</label>
-                                <input type="text" className="form-control login_form_input" {...register('city', { required: true })} />
+                                <input type="text" className="form-control " {...register('city', { required: true })} />
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Postal Code*</label>
-                                <input type="number" className="form-control login_form_input" {...register('postal', { required: true })} />
+                                <input type="number" className="form-control " {...register('postal', { required: true })} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Mobile*</label>
-                                <input type="number" className="form-control login_form_input" {...register('number1', { required: true })} />
+                                <input type="number" className="form-control " {...register('number1', { required: true })} />
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mb-3">
                                 <label htmlFor="" className='form_label'>E-mail</label>
-                                <input type="text" className="form-control login_form_input" {...register('email', {
+                                <input type="text" className="form-control " {...register('email', {
                                     validate: function (typedValue) {
                                         if (typedValue.match(
                                             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -174,7 +182,7 @@ const Checkout = () => {
 
                         <hr className="mb-4" />
                         <div className="col-md-12 mb-3">
-                            <p className='fs-5'style={{fontWeight:"600"}}>Shipping method</p>
+                            <p className='fs-5' style={{ fontWeight: "600" }}>Shipping method</p>
                             <div className='px-3 py-4 d-flex justify-content-between align-items-center  rounded-3' style={{ border: "1px solid black", backgroundColor: "white" }}>
                                 <p className='m-0'>Standard</p>
                                 <p className='m-0'>&pound;100</p>
@@ -182,7 +190,7 @@ const Checkout = () => {
                         </div>
 
                         <div className='py-3 px-2'>
-                            <p className='fs-5' style={{fontWeight:"600"}}>Payment</p>
+                            <p className='fs-5' style={{ fontWeight: "600" }}>Payment</p>
                             <div className="col-md-12 mb-3">
                                 <input type="text" className="form-control py-3 rounded"
                                     value="Cash on Delivery (COD)" {...register('payment')}
@@ -205,7 +213,7 @@ const Checkout = () => {
 
 
 
-                <div className='col-lg-4 col-sm-12 px-4 py-3' style={{backgroundColor:"white"}}>
+                <div className='col-lg-4 col-sm-12 px-4 py-3' style={{ backgroundColor: "white" }}>
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between'>
                             <p className='fw-bolder fs-4'>CART ITEMS</p>
@@ -213,21 +221,40 @@ const Checkout = () => {
                         </div>
                     </div>
                     {filterCart?.map((item) => {
+                        const itemId = item?.id;
                         return <>
-                            <div className='row border mb-1 pt-3'>
+                            <div className='row border mb-1 pt-3' key={itemId}>
                                 <div className='col-3'>
                                     <img className='img-fluid' src={item?.image} alt="No Internet" style={{ width: "100%", height: "auto" }} />
                                 </div>
-                                <div className='col-9'>
-                                    <p className='checout_tittle text-muted'>{item?.title}</p>
-                                    <p className='text-end fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
+                                <div className='col-9 d-flex justify-content-between '>
+                                    <div>
+                                        <p className='checout_tittle  m-0'>{item?.title.slice(0, 30)}..</p>
+                                        <div
+                                            className={`chk_detail ${details[itemId] ? 'detail_height' : ''}`}
+                                            onClick={() => handleDetailToggle(itemId)}
+                                        >
+                                            {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}</p>}
+                                            {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}</p>}
+                                            {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}</p>}
+                                            {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard Height: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}</p>}
+                                            {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}</p>}
+                                            {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}</p>}
+                                            {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}</p>}
+                                            {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
+                                            {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className='text-center fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
+                                    </div>
                                 </div>
                             </div>
                         </>
                     })
                     }
                     <div className='row mt-3'>
-                        <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center' style={{fontWeight:"600"}}>
+                        <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center' style={{ fontWeight: "600" }}>
                             <p className='m-0 fs-6'>Sub Total</p>
                             <p className='m-0 fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
@@ -235,7 +262,7 @@ const Checkout = () => {
                             <p className='m-0 fs-6'>Shipping</p>
                             <p className='m-0 fs-6'>{`£${shippingFee}`}</p>
                         </div>
-                        <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{fontWeight:"600"}}>
+                        <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600" }}>
                             <p className='m-0 fs-5'>Total</p>
                             <p className='m-0 fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>

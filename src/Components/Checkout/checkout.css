@@ -1,6 +1,14 @@
+.chk_detail{
+    height: 20px;
+    overflow: hidden;
+}
+.chk_detail:hover, .detail_height:hover{
+    cursor: pointer;
+}
+.detail_height{
 
-@media screen and (max-width:768px) {
-    
+    height: fit-content !important;
+    transition: all linear 0.3s;
 }
 @media screen and (max-width:992px) {
     .checkout_display{
