@@ -111,9 +111,9 @@ const Checkout = () => {
     }
 
     return <>
-        <div className='container my-5'>
-            <div className='row checkout_display'>
-                <div className='border col-lg-8 col-sm-12 py-3 px-3 mt-5 mt-lg-0'>
+        <div className='container-fluid my-5'>
+            <div className='row checkout_display d-flex justify-content-center'>
+                <div className='col-lg-6 col-sm-12 py-3 px-3 mt-5 mt-lg-0'>
                     <h4 className="mb-3">Billing address</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row py-3" style={{ backgroundColor: "white" }}>
@@ -176,7 +176,7 @@ const Checkout = () => {
                         <hr className="mb-4" />
                         <div className="col-md-12 mb-3">
                             <p className='fs-5 fw-bolder'>Shipping method</p>
-                            <div className='py-4 d-flex justify-content-between align-items-center px-5 rounded-3' style={{ border: "1px solid black", backgroundColor: "white" }}>
+                            <div className='px-3 py-4 d-flex justify-content-between align-items-center  rounded-3' style={{ border: "1px solid black", backgroundColor: "white" }}>
                                 <p className='m-0'>Standard</p>
                                 <p className='m-0'>&pound;100</p>
                             </div>
@@ -192,13 +192,13 @@ const Checkout = () => {
                             </div>
                         </div>
                         <hr className="mb-4" />
-                        <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "#8B0000", color: "white" }}>
-                            PROCEED TO CHECKOUT
+                        <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}>
+                            COMPLETE ORDER
                         </button>
                         <p className='my-3 text-center fw-bolder fs-3'>OR</p>
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className="btn review_btn btn-lg fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
-                                COMPLETE ORDER VIA WHATSAPP
+                                ORDER VIA WHATSAPP
                             </button>
                         </a>
                     </form>
@@ -206,7 +206,7 @@ const Checkout = () => {
 
 
 
-                <div className='col-lg-4 col-sm-12 px-4 '>
+                <div className='col-lg-4 col-sm-12 px-4 py-3' style={{backgroundColor:"white"}}>
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between'>
                             <p className='fw-bolder fs-4'>CART ITEMS</p>
