@@ -106,7 +106,7 @@ export const Navbar = () => {
   };
 
   const filterCart = cart?.filter((item) => item.userId === cu._id)
-
+  const filterCartLength = filterCart.length
   const DeleteCartItem = (itemId) => {
     try {
       axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
@@ -143,7 +143,7 @@ export const Navbar = () => {
             <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
           </div>
           <div style={{ height: "80vh", overflow: "auto" }}>
-            {cartItems?.length === 0 ? (
+            {(cartItems?.length === 0 && filterCart.length === 0) ? (
               <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
                 <button
@@ -158,47 +158,50 @@ export const Navbar = () => {
                 </button>
               </div>
             ) : (
-              cartItems?.map((item, index) => (
-                <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
-                  style={{
-                    maxWidth: "320px",
-                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                  }}
-                >
-                  <div className='side_img_main' style={{ maxWidth: "120px", height: "80px" }}>
-                    <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
-                  </div>
-                  <div className='d-flex flex-column gap-2 justify-content-between' style={{ maxWidth: "200px", maxHeight: "100px" }}>
-                    <p className='m-0 fs-6'>{item?.title.slice(0, 30)}...</p>
-                    <div className='d-flex align-items-center justify-content-between'>
-                      <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.Fprice}</p>
-                      <button className='side_remove text-muted' onClick={() => DeleteCartItem(item._id)}>Remove</button>
+              <>
+                {(filterCart.length !== 0 ? filterCart : cartItems).map((item, index) => (
+                  <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
+                    style={{
+                      maxWidth: "320px",
+                      boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                    }}
+                  >
+                    <div className='side_img_main' style={{ width: "100px", height: "80px" }}>
+                      <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
+                    </div>
+                    <div className='d-flex flex-column gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
+                      <p className='m-0 fs-6'>{item?.title.slice(0, 45)}...</p>
+                      <div className='d-flex align-items-center justify-content-between'>
+                        <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.Fprice}</p>
+                        <button className='side_remove text-muted' onClick={() => DeleteCartItem(item._id)}>Remove</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                ))}
+              </>
             )}
           </div>
-          <button className='btn'
-            style={{
-              backgroundColor: "#1b2950",
-              color: "white",
-              fontWeight: "500",
-              width: "120px",
-            }}
-            onClick={() => {
-              if (cu._id === undefined) {
-                setLogin("login")
-                toast.warning("Login to see your Cart")
-              } else if (cu.email === "asd@gmail.com") {
-                toast.warning("Login too see cart")
-              } else {
-                setOpen("close")
-                move(`/cart/${cu._id}`)
-              }
-            }}>VIEW CART</button>
-          {cartItems?.length > 0 &&
+
+          {(cartItems?.length > 1 || filterCart?.length > 0) &&
             <div className='border d-flex justify-content-center flex-wrap gap-2' style={{ height: "fit-content" }}>
+              <button className='btn'
+                style={{
+                  backgroundColor: "#1b2950",
+                  color: "white",
+                  fontWeight: "500",
+                  width: "120px",
+                }}
+                onClick={() => {
+                  if (cu._id === undefined) {
+                    setLogin("login")
+                    toast.warning("Login to see your Cart")
+                  } else if (cu.email === "asd@gmail.com") {
+                    toast.warning("Login too see cart")
+                  } else {
+                    setOpen("close")
+                    move(`/cart/${cu._id}`)
+                  }
+                }}>VIEW CART</button>
               <button className='btn'
                 style={{
                   backgroundColor: "#8B0000",
@@ -215,7 +218,7 @@ export const Navbar = () => {
               </button>
               <a href="https://wa.me/+923067208343" target='black'>
 
-              <button className='btn' style={{ backgroundColor: "rgb(38,211,103)", color: "white", fontWeight: "500" }}>Order Via WhatsApp</button>
+                <button className='btn' style={{ backgroundColor: "rgb(38,211,103)", color: "white", fontWeight: "500" }}>Order Via WhatsApp</button>
               </a>
             </div>
           }
@@ -288,7 +291,7 @@ export const Navbar = () => {
                     <span className={`fs-2`}>
                       <FiShoppingCart />
                       <p className='m-0 cart_number'>
-                        {cartLength}
+                        {cartLength ? cartLength : filterCartLength}
                       </p>
                     </span>
                   </NavLink>

@@ -4,8 +4,8 @@
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    white-space: nowrap; /* Prevent items from wrapping to the next line */
-    padding-bottom: 20px; /* Add some space at the bottom for better appearance */
+    white-space: nowrap; 
+    padding-bottom: 20px; 
   }
   
 .cart-items-container::-webkit-scrollbar {
