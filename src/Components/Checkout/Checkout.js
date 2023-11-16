@@ -50,7 +50,7 @@ const Checkout = () => {
     const shippingFee = 100;
 
     const total = totalSum + shippingFee;
-    
+
     const Order = async (data) => {
 
         setLoading(true);
@@ -175,18 +175,18 @@ const Checkout = () => {
 
                         <hr className="mb-4" />
                         <div className="col-md-12 mb-3">
-                            <label htmlFor="" className='form_label'>Shipping Method</label>
+                            <p className='fs-5 fw-bolder'>Shipping method</p>
                             <div className='py-4 d-flex justify-content-between align-items-center px-5 rounded-3' style={{ border: "1px solid black", backgroundColor: "white" }}>
                                 <p className='m-0'>Standard</p>
                                 <p className='m-0'>&pound;100</p>
                             </div>
                         </div>
 
-                        <div className='py-3 px-2' style={{ backgroundColor: "white" }}>
-                            <h4 className="mb-3">Payment</h4>
+                        <div className='py-3 px-2'>
+                            <p className='fs-5 fw-bolder'>Payment</p>
                             <div className="col-md-12 mb-3">
                                 <input type="text" className="form-control py-3 rounded"
-                                 value="Cash on Delivery (COD)" {...register('payment')}
+                                    value="Cash on Delivery (COD)" {...register('payment')}
                                     style={{ border: "1px solid black", backgroundColor: "white" }}
                                 />
                             </div>
