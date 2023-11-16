@@ -13,9 +13,6 @@
     transition: all linear 0.3s;
 }
 .checout_display2{
-    display: flex !important;
-    justify-content: space-around !important;
-    flex-wrap: wrap !important;
     display: none !important;
 }
 

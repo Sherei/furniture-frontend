@@ -57,22 +57,22 @@ const Checkout = () => {
 
     const DeleteCartItem = (itemId) => {
         try {
-          axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
-            setCart(cart.filter((data) => itemId !== data._id));
-            toast.success("Item removed");
-            dispatch({
-              type: "REMOVE_CART",
-              payload: itemId,
+            axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
+                setCart(cart.filter((data) => itemId !== data._id));
+                toast.success("Item removed");
+                dispatch({
+                    type: "REMOVE_CART",
+                    payload: itemId,
+                });
             });
-          });
-    
+
         } catch (e) {
-          // console.log(e)
+            // console.log(e)
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-      };
-    
+    };
+
     const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.Fprice;
     }, 0);
@@ -251,10 +251,10 @@ const Checkout = () => {
                         </a>
                     </form>
 
-                    <div className='my-5 checout_display2'>
-                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Refund policy</p></a> 
-                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Privacy policy</p></a> 
-                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Terms of service</p></a> 
+                    <div className='my-5 d-flex gap-3 flex-wrap  checout_display2'>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
                     </div>
                 </div>
 
@@ -275,7 +275,7 @@ const Checkout = () => {
                                         {item?.quantity}
                                     </p>
                                 </div>
-                                <div className='col-9 d-flex justify-content-between '>
+                                <div className='col-9 d-flex justify-content-between'>
                                     <div>
                                         <p className='m-0'>{item?.title.slice(0, 50)}</p>
                                         <div
@@ -294,16 +294,20 @@ const Checkout = () => {
                                     </div>
                                     <div>
                                         <p className='text-center fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
-                                        <div>
+                                        <button style={{
+                                            border: "none",
+                                            backgroundColor: "transparent",
+
+                                        }}>
                                             <FaAngleDown style={{ transform: expandedItems[index] ? 'rotate(180deg)' : 'rotate(0deg)' }}
                                                 onClick={() => toggleDetails(index)} />
-                                        </div>
+                                        </button>
                                         <div>
-                                            <button className='btn text-muted' style={{
-                                                border:"none",
-                                                backgroundColor:"transparent",
+                                            <button className='text-muted' style={{
+                                                border: "none",
+                                                backgroundColor: "transparent",
 
-                                            }}onClick={() => DeleteCartItem(item._id)}>remove</button>
+                                            }} onClick={() => DeleteCartItem(item._id)}>remove</button>
                                         </div>
                                     </div>
                                 </div>
@@ -318,19 +322,19 @@ const Checkout = () => {
                             <p className='m-0 fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
                         <div className='px-3 col-12 text-muted d-flex justify-content-between align-items-center'>
-                            <p className='m-0 fs-6'>Shipping</p>
-                            <p className='m-0 fs-6'>{`£${shippingFee}`}</p>
+                            <p className=' fs-6'>Shipping</p>
+                            <p className=' fs-6'>{`£${shippingFee}`}</p>
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
-                            <p className='m-0 fs-5'>Total</p>
-                            <p className='m-0 fs-5'>{`£${total?.toFixed(2)}`}</p>
+                            <p className=' fs-5'>Total</p>
+                            <p className=' fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>
                     </div>
 
-                    <div className='my-5 d-flex justify-content-around flex-wrap checout_display1'>
-                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Refund policy</p></a> 
-                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Privacy policy</p></a> 
-                       <a href=""><p style={{borderBottom:"1px solid rgb(10,88,211)"}}>Terms of service</p></a> 
+                    <div className='my-5 d-flex gap-3 flex-wrap checout_display1'>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
                     </div>
                 </div>
             </div >
