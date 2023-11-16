@@ -140,7 +140,7 @@ const OrderDetail = () => {
                                             </td>
                                             <td>{data?.category}</td>
                                             <td>{data?.subCategory ? data?.subCategory : "No subcategory"}</td>
-                                            <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed(2)}`}</td>
+                                            <td className='text-center'>{`1 X £${parseFloat(data?.price)?.toFixed(2)}`}</td>
                                             <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>
                                             <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed(2)}%`}</td>
                                             <td className='text-center'>{`£${parseFloat(data?.Fprice)?.toFixed(2)}`}</td>
@@ -158,7 +158,7 @@ const OrderDetail = () => {
                 )}
             </div>
             <div className='col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end'>
-                <div className='update mb-3 p-3 border'>
+                <div className='update mb-3 p-3 border' style={{width:"250px"}}>
                     <div className='d-flex justify-content-between'>
                         <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>Summary</p>
                     </div>
@@ -169,7 +169,7 @@ const OrderDetail = () => {
                     <div className='fw-normal d-flex justify-content-between'>
                         <p>After Discount</p>
                     </div>
-                    <div className='fw-normal d-flex justify-content-between'>
+                    <div className='fw-bold d-flex justify-content-between'>
                         <p>Net Total:</p>
                         <p>£{totalSum.toFixed(2)}</p>
                     </div>
