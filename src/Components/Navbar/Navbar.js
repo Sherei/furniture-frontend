@@ -143,7 +143,7 @@ export const Navbar = () => {
             <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
           </div>
           <div style={{ height: "80vh", overflow: "auto" }}>
-            {filterCart?.length === 0 ? (
+            {cartItems?.length === 0 ? (
               <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
                 <button
@@ -158,7 +158,7 @@ export const Navbar = () => {
                 </button>
               </div>
             ) : (
-              filterCart?.map((item, index) => (
+              cartItems?.map((item, index) => (
                 <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
                   style={{
                     maxWidth: "320px",
@@ -179,26 +179,26 @@ export const Navbar = () => {
               ))
             )}
           </div>
-          {filterCart?.length > 0 &&
+          <button className='btn'
+            style={{
+              backgroundColor: "#1b2950",
+              color: "white",
+              fontWeight: "500",
+              width: "120px",
+            }}
+            onClick={() => {
+              if (cu._id === undefined) {
+                setLogin("login")
+                toast.warning("Login to see your Cart")
+              } else if (cu.email === "asd@gmail.com") {
+                toast.warning("Login too see cart")
+              } else {
+                setOpen("close")
+                move(`/cart/${cu._id}`)
+              }
+            }}>VIEW CART</button>
+          {cartItems?.length > 0 &&
             <div className='border d-flex justify-content-center flex-wrap gap-2' style={{ height: "fit-content" }}>
-              <button className='btn'
-                style={{
-                  backgroundColor: "#1b2950",
-                  color: "white",
-                  fontWeight: "500",
-                  width: "120px",
-                }}
-                onClick={() => {
-                  if (cu._id === undefined) {
-                    setLogin("login")
-                    toast.warning("Login to see your Cart")
-                  } else if (cu.email === "asd@gmail.com") {
-                    toast.warning("Login too see cart")
-                  } else {
-                    setOpen("close")
-                    move(`/cart/${cu._id}`)
-                  }
-                }}>VIEW CART</button>
               <button className='btn'
                 style={{
                   backgroundColor: "#8B0000",
@@ -287,9 +287,9 @@ export const Navbar = () => {
                   <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none", position: "relative" }}>
                     <span className={`fs-2`}>
                       <FiShoppingCart />
-                      {/* <p className='m-0 cart_number'>
+                      <p className='m-0 cart_number'>
                         {cartLength}
-                      </p> */}
+                      </p>
                     </span>
                   </NavLink>
                 </li>

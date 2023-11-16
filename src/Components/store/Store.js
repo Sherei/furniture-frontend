@@ -1,4 +1,6 @@
 import { createStore, combineReducers } from 'redux'
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const userSection = (oldData = {
     cu: {}
@@ -10,23 +12,26 @@ const userSection = (oldData = {
         localStorage.removeItem('userToken');
     }
     return ({ ...oldData })
-
 }
 
 const Cart = (oldData = {
     cart: []
 }, newData) => {
     if (newData.type === "ADD_TO_CART") {
-        oldData.cart.push(newData.payload);  
-    }  else if (newData.type === "REMOVE_CART") {
-       oldData.cart = oldData.cart.filter(item => item._id !== newData.payload);
+        oldData.cart.push(newData.payload);
+    } else if (newData.type === "REMOVE_CART") {
+        oldData.cart = oldData.cart.filter(item => item._id !== newData.payload);
     }
     return { ...oldData, cart: Array.isArray(oldData.cart) ? oldData.cart : [] };
 };
 
+const persistConfig = {
+    key: "Product",
+    storage
+}
 
-
-let allSections = combineReducers({ userSection, Cart });
-let meraStore = createStore(allSections, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
-export default meraStore
+const allSections = combineReducers({ userSection, Cart });
+const persistedReducer = persistReducer(persistConfig, allSections);
+const meraStore = createStore(persistedReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+export const persistor = persistStore(meraStore);
+export default meraStore;

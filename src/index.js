@@ -1,17 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import meraStore from './Components/store/Store';
+import meraStore, { persistor } from './Components/store/Store';
+import { PersistGate } from 'redux-persist/integration/react';
+import App from './App'; 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-     <Provider store={meraStore}>
+ReactDOM.render(
+  <Provider store={meraStore}>
+    <PersistGate loading={null} persistor={persistor}>
       <App />
-    </Provider>
-  </React.StrictMode>
+    </PersistGate>
+  </Provider>,
+  document.getElementById('root')
 );
-reportWebVitals();

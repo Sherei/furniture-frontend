@@ -25,7 +25,6 @@ const Checkout = () => {
     const { userId } = useParams();
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState([])
-    const [method, setMethod] = useState('')
 
     useEffect(() => {
         setLoading(true);
@@ -48,7 +47,10 @@ const Checkout = () => {
         return accumulator + item.Fprice;
     }, 0);
 
+    const shippingFee = 100;
 
+    const total = totalSum + shippingFee;
+    
     const Order = async (data) => {
 
         setLoading(true);
@@ -76,9 +78,7 @@ const Checkout = () => {
             data.orderId = orderId;
             data.userId = userId;
             data.orderItems = orderItemsJSON;
-
-            console.log("order items are ::", orderItems)
-
+            data.toal = total;
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -117,32 +117,50 @@ const Checkout = () => {
                     <h4 className="mb-3">Billing address</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row py-3" style={{ backgroundColor: "white" }}>
+                            <p className='fs-5 fw-bolder'>Personal Information</p>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>First Name *</label>
                                 <input type="text" className="form-control login_form_input"{...register('name1', { required: true })} />
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
-
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Last Name</label>
                                 <input type="text" className="form-control login_form_input"{...register('name2')} />
+                            </div>
+                            <div className="col-md-12 mb-3">
+                                <label htmlFor="" className='form_label'>Shipping Address *</label>
+                                <input type="text" className="form-control login_form_input" {...register('shipping', { required: true })} />
+                                {errors.shipping ? <div className='error'>This Field is required</div> : null}
+                            </div>
+                        </div>
+
+                        <div className="row py-3">
+                            <p className='fs-5 fw-bolder'>Contact Information</p>
+
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>Country*</label>
+                                <input type="text" className="form-control login_form_input" {...register('country', { required: true })} />
+                                {errors.country ? <div className='error'>This Field is required</div> : null}
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>City*</label>
+                                <input type="text" className="form-control login_form_input" {...register('city', { required: true })} />
+                                {errors.city ? <div className='error'>This Field is required</div> : null}
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <label htmlFor="" className='form_label'>Postal Code*</label>
+                                <input type="number" className="form-control login_form_input" {...register('postal', { required: true })} />
+                                {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="" className='form_label'>Mobile*</label>
                                 <input type="number" className="form-control login_form_input" {...register('number1', { required: true })} />
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
-
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="" className='form_label'>Telephone</label>
-                                <input type="text" className="form-control login_form_input" {...register('number2')} />
-                            </div>
-                        </div>
-                        <div className='row my-3'>
                             <div className="col-md-12 mb-3">
-                                <label htmlFor="" className='form_label'>E-mail *</label>
+                                <label htmlFor="" className='form_label'>E-mail</label>
                                 <input type="text" className="form-control login_form_input" {...register('email', {
-                                    required: true, validate: function (typedValue) {
+                                    validate: function (typedValue) {
                                         if (typedValue.match(
                                             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                                         )) {
@@ -152,34 +170,26 @@ const Checkout = () => {
                                         }
                                     }
                                 })} />
-                                {errors.email ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-12 mb-3">
-                                <label htmlFor="" className='form_label'>Shipping Address *</label>
-                                <input type="text" className="form-control login_form_input" {...register('shipping', { required: true })} />
-                                {errors.shipping ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
-                        <hr className="mb-4" />
-                        <div className='py-3 px-2' style={{backgroundColor:"white"}}>
-                            <h4 className="mb-3">Payment</h4>
 
-                            <div class="form-check" onClick={() => setMethod("cash")}>
-                                <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" {...register('payment', { required: true })} />
-                                <label class="form-check-label" for="cashOnDelivery">
-                                    Cash on Delivery
-                                </label>
-                                {errors.payment ? <div className='error'>This Field is required</div> : null}
+                        <hr className="mb-4" />
+                        <div className="col-md-12 mb-3">
+                            <label htmlFor="" className='form_label'>Shipping Method</label>
+                            <div className='py-4 d-flex justify-content-between align-items-center px-5 rounded-3' style={{ border: "1px solid black", backgroundColor: "white" }}>
+                                <p className='m-0'>Standard</p>
+                                <p className='m-0'>&pound;100</p>
                             </div>
-                            <a href="https://wa.me/+923067208343" target='blank'>
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="payment" id="Whatsapp" />
-                                    <label class="form-check-label">
-                                        Buy Via Whatsapp
-                                    </label>
-                                    {errors.payment ? <div className='error'>This Field is required</div> : null}
-                                </div>
-                            </a>
+                        </div>
+
+                        <div className='py-3 px-2' style={{ backgroundColor: "white" }}>
+                            <h4 className="mb-3">Payment</h4>
+                            <div className="col-md-12 mb-3">
+                                <input type="text" className="form-control py-3 rounded"
+                                 value="Cash on Delivery (COD)" {...register('payment')}
+                                    style={{ border: "1px solid black", backgroundColor: "white" }}
+                                />
+                            </div>
                         </div>
                         <hr className="mb-4" />
                         <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "#8B0000", color: "white" }}>
@@ -218,15 +228,23 @@ const Checkout = () => {
                     })
                     }
                     <div className='row mt-3'>
-                        <div className='px-3 py-3 col-12 d-flex justify-content-between align-items-center'>
-                            <p className='m-0 fw-bolder fs-5'>Total</p>
-                            <p className='fw-bolder m-0 fs-5' style={{ color: "red" }} >{`£${totalSum?.toFixed(2)}`}</p>
+                        <div className='px-3 pt-3 col-12 text-muted d-flex justify-content-between align-items-center'>
+                            <p className='m-0 fs-6'>Sub Total</p>
+                            <p className='m-0 fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
+                        </div>
+                        <div className='px-3 col-12 text-muted d-flex justify-content-between align-items-center'>
+                            <p className='m-0 fs-6'>Shipping</p>
+                            <p className='m-0 fs-6'>{`£${shippingFee}`}</p>
+                        </div>
+                        <div className='px-3 col-12 text-muted d-flex justify-content-between align-items-center'>
+                            <p className='m-0 fs-5'>Total</p>
+                            <p className='m-0 fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>
                     </div>
 
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
 
     </>
 

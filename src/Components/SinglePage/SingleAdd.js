@@ -611,7 +611,7 @@ const SingleAdd = () => {
 
 
 
-                                <div className='single_form  mt-3'>
+                                <div className='single_form  mt-1'>
                                     {/*.................................... Sofa Start .......................... */}
 
                                     {product?.category === "sofa" &&
@@ -622,8 +622,7 @@ const SingleAdd = () => {
                                                         {size ? size.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
-                                                <p className='mt-2 mb-0'>Please Choose Size</p>
-
+                                                <p className='mt-1 mb-0'>Please Choose Size</p>
                                                 <select className="form-control form-select  mb-2 mr-sm-2"
                                                     onChange={(e) => {
                                                         if (e.target.value === "select size") {
@@ -641,7 +640,7 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 {product?.category === "sofa" &&
                                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
                                                         <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
@@ -649,7 +648,7 @@ const SingleAdd = () => {
                                                         </span>
                                                     </label>
                                                 }
-                                                <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                                <p className='mt-1 mb-0'>Please Choose Colour</p>
                                                 <select onChange={(e) => {
                                                     if (e.target.value === "select color") {
                                                         return setError("color")
@@ -692,10 +691,8 @@ const SingleAdd = () => {
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Size
                                                     <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>{size ? size.replace(/-/g, " ") : ""} </span>
                                                 </label>
-                                                <p className='mt-2 mb-0'>Please Choose Size</p>
-
+                                                <p className='mt-1 mb-0'>Please Choose Size</p>
                                                 <select className="form-control form-select mb-2 mr-sm-2"
-
                                                     onChange={(e) => {
                                                         if (e.target.value === "select size") {
                                                             return setError("bed-size")
@@ -712,14 +709,14 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
                                                     <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                         {fabric ? fabric.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
 
-                                                <p className='mt-2 mb-0'>Please Choose Fabric</p>
+                                                <p className='mt-1 mb-0'>Please Choose Fabric</p>
                                                 <select className="form-select mb-2 mr-sm-2"
                                                     onChange={(e) => {
                                                         if (e.target.value === "select fabric") {
@@ -735,13 +732,13 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Headboard Height
                                                     <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                         {headboard ? headboard.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
-                                                <p className='mt-2 mb-0'>Please Choose Headboard Height</p>
+                                                <p className='mt-1 mb-0'>Please Choose Headboard Height</p>
                                                 <select className="form-select mb-2 mr-sm-2"
                                                     onChange={(e) => {
                                                         if (e.target.value === "headboard") {
@@ -760,14 +757,14 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
                                                     <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                         {color ? color.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
 
-                                                <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                                <p className='mt-1 mb-0'>Please Choose Colour</p>
                                                 <select onChange={(e) => {
                                                     if (e.target.value === "select color") {
                                                         return setError("color")
@@ -794,13 +791,13 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail
                                                     <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                         {detail ? detail.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
-                                                <p className='mt-2 mb-0'>Please Choose more Detail</p>
+                                                <p className='mt-1 mb-0'>Please Choose more Detail</p>
                                                 <select
                                                     onChange={(e) => {
                                                         if (e.target.value === "select detail") {
@@ -816,13 +813,13 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Bed Base
                                                     <span style={{ color: "red" }}>* </span>&nbsp; <span className='lable_Case'>
                                                         {base ? base.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
-                                                <p className='mt-2 mb-0'>Please Choose Bed Base</p>
+                                                <p className='mt-1 mb-0'>Please Choose Bed Base</p>
                                                 <select
                                                     onChange={(e) => {
 
@@ -839,13 +836,13 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size
                                                     &nbsp; <span className='lable_Case'>
                                                         {mattress ? mattress.replace(/-/g, " ") : ""}
                                                     </span>
                                                 </label>
-                                                <p className='mt-2 mb-0'>Please Choose Mattress Size</p>
+                                                <p className='mt-1 mb-0'>Please Choose Mattress Size</p>
                                                 <select
                                                     onChange={(e) => {
                                                         if (e.target.value === "select size") {
@@ -865,7 +862,7 @@ const SingleAdd = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='mt-3'>
+                                            <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>
                                                     Matching Ottoman Box
                                                     &nbsp; <span className='lable_Case'>
@@ -914,13 +911,13 @@ const SingleAdd = () => {
 
                                 {product?.category === "mattress" &&
                                     <>
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Size
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                                     {size ? size.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
-                                            <p className='mt-2 mb-0'>Please Choose Mattress Size</p>
+                                            <p className='mt-1 mb-0'>Please Choose Mattress Size</p>
                                             <select
                                                 onChange={(e) => {
                                                     if (e.target.value === "select size") {
@@ -939,7 +936,7 @@ const SingleAdd = () => {
                                             </select>
                                         </div>
 
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Mattress Pillow Topper
                                                 &nbsp; <span className='lable_Case'>
                                                     {ottoman ? ottoman.replace(/-/g, " ") : ""}
@@ -989,13 +986,13 @@ const SingleAdd = () => {
 
                                 {product?.category === "ottoman-box" &&
                                     <>
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                                     {fabric ? fabric.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
-                                            <p className='mt-2 mb-0'>Please Choose Fabric</p>
+                                            <p className='mt-1 mb-0'>Please Choose Fabric</p>
                                             <select className="form-select mb-2 mr-sm-2"
                                                 onChange={(e) => {
                                                     if (e.target.value === "select fabric") {
@@ -1011,14 +1008,14 @@ const SingleAdd = () => {
                                             </select>
                                         </div>
 
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                                     {color ? color.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
 
-                                            <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                            <p className='mt-1 mb-0'>Please Choose Colour</p>
                                             <select onChange={(e) => {
                                                 if (e.target.value === "select color") {
                                                     return setError("color")
@@ -1045,13 +1042,13 @@ const SingleAdd = () => {
                                             </select>
                                         </div>
 
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                                     {detail ? detail.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
-                                            <p className='mt-2 mb-0'>Please Choose more Detail</p>
+                                            <p className='mt-1 mb-0'>Please Choose more Detail</p>
                                             <select
                                                 onChange={(e) => {
                                                     if (e.target.value === "select detail") {
@@ -1075,13 +1072,13 @@ const SingleAdd = () => {
 
                                 {product?.category === "footstools" &&
                                     <>
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Fabric
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                                     {fabric ? fabric.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
-                                            <p className='mt-2 mb-0'>Please Choose Fabric</p>
+                                            <p className='mt-1 mb-0'>Please Choose Fabric</p>
                                             <select className="form-select mb-2 mr-sm-2"
                                                 onChange={(e) => {
                                                     if (e.target.value === "select fabric") {
@@ -1097,13 +1094,13 @@ const SingleAdd = () => {
                                             </select>
                                         </div>
 
-                                        <div className='mt-3'>
+                                        <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Colour
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>
                                                     {color ? color.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
-                                            <p className='mt-2 mb-0'>Please Choose Colour</p>
+                                            <p className='mt-1 mb-0'>Please Choose Colour</p>
                                             <select onChange={(e) => {
                                                 if (e.target.value === "select color") {
                                                     return setError("color")
@@ -1134,8 +1131,8 @@ const SingleAdd = () => {
 
                                 {/*.................................... Footstools End .......................... */}
                             </div>
-                            <div className='sigle_quatity_main mt-3'>
-                                <div className='mt-3'>
+                            <div className='sigle_quatity_main mt-1'>
+                                <div className='mt-2'>
                                     <p style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
                                 </div>
                                 <div className='sigle_quatity'>
