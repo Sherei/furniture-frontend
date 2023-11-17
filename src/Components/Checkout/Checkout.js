@@ -112,9 +112,6 @@ const Checkout = () => {
             });
 
             const orderItemsJSON = JSON.stringify(orderItems);
-
-            const total = totalSum + shippingFee;
-            data.total = total;
             data.orderId = orderId;
             data.userId = userId;
             data.orderItems = orderItemsJSON;
@@ -270,7 +267,7 @@ const Checkout = () => {
                         return <>
                             <div className='row border mb-1 pt-3' key={index}>
                                 <div className='col-3' style={{ position: "relative" }}>
-                                    <img className='img-fluid' src={item?.image} alt="No Internet" style={{ width: "100%", height: "100px" }} />
+                                    <img className='img-fluid' src={item?.image} alt="No Internet" />
                                     <p className='m-0 cart_number'>
                                         {item?.quantity}
                                     </p>
@@ -292,16 +289,20 @@ const Checkout = () => {
                                             {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
                                         </div>
                                     </div>
-                                    <div>
-                                        <p className='text-center fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
-                                        <button style={{
-                                            border: "none",
-                                            backgroundColor: "transparent",
+                                    <div className="d-flex justify-content-between flex-column">
+                                        <div>
+                                            <p className='text-center fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
+                                            <div className='text-center' >
+                                                <button style={{
+                                                    border: "none",
+                                                    backgroundColor: "transparent",
 
-                                        }}>
-                                            <FaAngleDown style={{ transform: expandedItems[index] ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                                                onClick={() => toggleDetails(index)} />
-                                        </button>
+                                                }}>
+                                                    <FaAngleDown style={{ transform: expandedItems[index] ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                                        onClick={() => toggleDetails(index)} />
+                                                </button>
+                                            </div>
+                                        </div>
                                         <div>
                                             <button className='text-muted' style={{
                                                 border: "none",
