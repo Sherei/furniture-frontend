@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillDelete } from "react-icons/ai"
-import { FaArrowRight } from "react-icons/fa"
+import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -26,7 +26,7 @@ export const Cart = () => {
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
-  const [itemQuantities, setItemQuantities] = useState({});
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     setLoading(true);
@@ -38,12 +38,6 @@ export const Cart = () => {
             quantity: item.quantity,
           }));
           setCart(cartData);
-
-          const initialItemQuantities = {};
-          cartData.forEach((item) => {
-            initialItemQuantities[item._id] = item.quantity;
-          });
-          setItemQuantities(initialItemQuantities);
         }
       } catch (e) {
         // console.log(e);
@@ -55,14 +49,6 @@ export const Cart = () => {
 
   const filterCart = cart.filter((item) => userId === item.userId);
 
-
-  const handleItemQuantityChange = (itemId, newQuantity) => {
-    setItemQuantities({
-      ...itemQuantities,
-      [itemId]: newQuantity,
-
-    });
-  };
 
   const DeleteCartItem = (itemId) => {
     try {
@@ -82,26 +68,69 @@ export const Cart = () => {
     }
   };
 
+  const handleQuantityChange = (itemId, newQuantity) => {
+
+    setCart((prevCart) =>
+      prevCart.map((item) => {
+        if (item._id === itemId) {
+          const { size, headboard, detail, ottoman, base, mattress } = item;
+
+          let additionalPrices = 0;
+          if (item.category === 'bed') {
+            if (size === '4ft-small-double') additionalPrices += 120;
+            else if (size === "4'6ft-standard-ouble") additionalPrices += 180;
+            else if (size === "5ft-king") additionalPrices += 250;
+            else if (size === "6ft-super-king") additionalPrices += 300;
+
+            if (headboard === 'extra-premium') additionalPrices += 79;
+            else if (headboard === 'exclusive') additionalPrices += 129;
+            else if (headboard === 'extra-exclusive') additionalPrices += 200;
+            else if (headboard === 'diamond') additionalPrices += 380;
+            if (size === 'small-double') additionalPrices += 70;
+            else if (size === "double") additionalPrices += 130;
+            else if (size === "king") additionalPrices += 180;
+            else if (size === "super-king") additionalPrices += 220;
+            if (detail === 'button') additionalPrices += 10;
+            if (ottoman === 'Yes') additionalPrices += 90;
+          }
+          if (item.category === 'sofa') {
+            if (size === 'corner-sofa') additionalPrices += 350;
+            else if (size === "5+2-seater") additionalPrices += 450;
+            else if (size === "3-seater") additionalPrices += 200;
+            else if (size === "2-seater") additionalPrices += 100;
+          }
+          if (item.category === 'mattress') {
+            if (size === 'small-double') additionalPrices += 60;
+            else if (size === "double") additionalPrices += 90;
+            else if (size === "king") additionalPrices += 150;
+            else if (size === "super-king") additionalPrices += 190;
+          }
+
+          const updatedFprice = (item.price + additionalPrices) * newQuantity;
+
+          return {
+            ...item,
+            quantity: newQuantity,
+            total: updatedFprice,
+          };
+        }
+
+        return item;
+      })
+    );
+  };
+
+  const shippingFee = 50;
+
+  const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
+  const total = subtotal + shippingFee;
 
   const updateCart = () => {
-
-    const updatedCart = cart.map((item) => {
-      const newQuantity = itemQuantities[item._id] || item.quantity;
-      const updatedFprice = item.price * newQuantity * (1 - item.discount / 100);
-
-      return {
-        ...item,
-        quantity: newQuantity,
-        Fprice: updatedFprice,
-      };
-    });
-
     try {
       setLoading(true);
       axios
-        .put(`${process.env.REACT_APP_BASE_URL}/updateCart`, updatedCart)
+        .put(`${process.env.REACT_APP_BASE_URL}/updateCart`, cart)
         .then(() => {
-          setCart(updatedCart);
           toast.success("Cart updated successfully");
         })
         .catch((error) => {
@@ -114,21 +143,17 @@ export const Cart = () => {
     }
   };
 
+  const Increment = (itemId) => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+    handleQuantityChange(itemId, quantity + 1);
+  };
 
-  const total = filterCart.reduce((accumulator, item) => {
-
-    const itemQuantity = itemQuantities[item._id] || 0;
-
-    const updatedPrice = item.price * itemQuantity;
-
-    return accumulator + updatedPrice;
-  }, 0);
-
-
-  const netTotal = filterCart.reduce((accumulator, item) => {
-    return accumulator + item.Fprice;
-  }, 0);
-
+  const Decrement = (itemId) => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+      handleQuantityChange(itemId, quantity - 1);
+    }
+  };
 
   if (filterCart?.length === 0) {
     return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
@@ -155,109 +180,188 @@ export const Cart = () => {
 
   return (
 
-    <div className="container h-100 py-5">
-      <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-12">
-          <div className="d-flex justify-content-between align-items-center mb-4 px-lg-5 px-md-5 px-xlg-5">
-            <h3 className="fw-normal mb-0 text-black" style={{ fontWeight: '700' }}>Shopping Cart</h3>
-            <div>
-              <h3 className="fw-normal mb-0 text-black">Length: {filterCart?.length}</h3>
-            </div>
+    <div className="container-fluid h-100 py-5">
+      <div className="row d-flex justify-content-center min-h-100 gap-4">
+        <div className="col-lg-8 col-md-12 col-sm-12">
+          <div className="mb-4">
+            <h3 className="fw-bolder mb-0 ">Shopping Cart</h3>
           </div>
+          {filterCart.map((item, index) => {
+            return <div className='d-flex gap-4 my-3 border py-3 cart_display_layout1' style={{
+              marginBottom: "1px solid lightgray"
+            }} key={index}>
+              <div className='row'>
+                <div className='col-4'>
+                  <div className='text-center' onClick={() => move(`single_Add/${item._id}`)}>
+                    <img
+                      src={item?.image}
+                      className="img-fluid rounded-3"
+                      alt="No Internet"
+                      style={{ width: "150px" }}
+                    />
+                  </div>
+                </div>
+                <div className='col-8'>
+                  <div className='w-100'>
+                    <div className='d-flex justify-content-between align-items-center'>
+                      <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                        {item?.title}
+                      </p>
+                      <button className='btn' onClick={() => DeleteCartItem(item._id)}>
+                        <AiFillDelete />
+                      </button>
+                    </div>
+                    <hr />
 
-          {filterCart?.length > 0 && (
-            <div className="table-responsive">
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Sr#</th>
-                    <th>Product Code</th>
-                    <th>Image</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Discount</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filterCart?.map((item, index) => (
-                    <tr key={item._id} className='cart_row'>
-                      <td className='text-center'>{index + 1}</td>
-                      <td className='text-center'>{item?.sn}</td>
-                      <td className='text-center'>
-                        <img
-                          src={item?.image}
-                          className="img-fluid rounded-3"
-                          alt="No Internet"
-                          style={{ width: "100px" }}
-                        />
-                      </td>
-                      <td>{item?.title?.slice(0, 15)}</td>
+                    <div className='d-flex justify-content-between '>
+                      <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                        Price
+                      </p>
+                      <p>
+                        &pound;{item?.total}
+                      </p>
+                    </div>
+                    <hr />
+                    <div className='d-flex justify-content-between  align-items-center'>
+                      <p className='mb-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                        Quantity
+                      </p>
+                      <div className="sigle_quatity px-3" style={{ border: "none" }}>
+                        <button className="plus_btn" onClick={() => Decrement(item?._id)}>
+                          <FaMinus />
+                        </button>
+                        <p className="input_single text-center m-0 p-0">{item.quantity}</p>
+                        <button className="plus_btn" onClick={() => Increment(item?._id)}>
+                          <FaPlus />
+                        </button>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className='d-flex justify-content-between  align-items-center'>
+                      <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )" }}>
+                        Subtotal
+                      </p>
+                      <p className='m-0 fw-bolder fs-5' style={{ color: "red" }}>&pound;{item?.total}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                      <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
-                      <td className="color-red text-center">{`${item?.discount}%`}</td>
-                      <td className='text-center'>
+          })
+          }
 
-                        <input
-                          className='cart_input border text-center'
-                          type="number"
-                          min={1}
-                          style={{ width: "60px" }}
-                          defaultValue={itemQuantities[item?._id]}
-                          onChange={(e) => handleItemQuantityChange(item?._id, parseInt(e.target.value))}
-                        />
-                      </td>
-                      <td className='text-center'>{`£${(item?.Fprice).toFixed(2)}`}</td>
-                      <td className='text-center'>
-                        <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
-                          <AiFillDelete />
-                        </a>
-                      </td>
+          <div className='cart-display'>
+            {filterCart?.length > 0 && (
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Product Code</th>
+                      <th>Image</th>
+                      <th>Title</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Total Price</th>
+                      <th>Remove</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      </div>
+                  </thead>
+                  <tbody>
+                    {filterCart?.map((item, index) => (
+                      <tr key={item._id} className='cart_row'>
+                        <td className='text-center'>{item?.sn}</td>
+                        <td className='text-center' onClick={() => move(`single_Add/${item._id}`)}>
+                          <img
+                            src={item?.image}
+                            className="img-fluid rounded-3"
+                            alt="No Internet"
+                            style={{ width: "100px" }}
+                          />
+                        </td>
+                        <td onClick={() => move(`/single_Add/${item._id}`)}>{item?.title?.slice(0, 15)}</td>
+                        <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
+                        <td className='text-center'>
+                          <div className="sigle_quatity px-3" style={{ border: "none" }}>
+                            <button className="plus_btn" onClick={() => Decrement(item._id)}>
+                              <FaMinus />
+                            </button>
 
-      <div className='row d-flex justify-content-end'>
-        <div className='col-lg-3 col-md-3 col-sm-12'>
-          <div className='update mb-3 p-3 border'>
-            <div className='d-flex justify-content-between'>
-              <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>Summary</p>
-            </div>
-            <div className='fw-normal d-flex justify-content-between'>
-              <p>Items:</p>
-              <p>{filterCart.length}</p>
-            </div>
+                            <p className="input_single text-center m-0 p-0">{item.quantity}</p>
 
-            <div className='fw-normal d-flex justify-content-between'>
-              <p>After Discount</p>
-            </div>
-            <div className='fw-normal d-flex justify-content-between'>
-              <p>Net Total:</p>
-              <p>{`£${netTotal.toFixed(2)}`}</p>
-            </div>
+                            <button className="plus_btn" onClick={() => Increment(item._id)}>
+                              <FaPlus />
+                            </button>
+                          </div>
+                        </td>
+                        <td className='text-center'>{`£${(item?.total).toFixed(2)}`}</td>
+                        <td className='text-center'>
+                          <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
+                            <AiFillDelete />
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
-          <div>
+          <div className='d-flex justify-content-end'>
             <button className='btn review_btn' style={{ width: "fit-content" }} onClick={updateCart}>
               Update Cart
             </button>
           </div>
+
+        </div>
+
+        <div className='col-lg-3 col-md-12 col-sm-12'>
+          <div className='update mb-3 p-3 border'>
+            <div className='d-flex justify-content-between'>
+              <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>CART TOTALS</p>
+              <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>{filterCart?.length}</p>
+            </div>
+            <div className='fw-normal d-flex justify-content-between'>
+              <p className='fw-bolder'>Subtotal:</p>
+              <p className='text-muted'>&pound;{subtotal.toFixed(2)}</p>
+            </div>
+            <hr />
+
+            <div className='fw-normal d-flex justify-content-between align-items-center gap-3'>
+              <p className='fw-bolder m-0'>Shipping:</p>
+              <div>
+                <p className='text-muted m-0  text-end'>&pound;{shippingFee}</p>
+                <p className='m-0 text-end' style={{ fontSize: "12px" }}>Shipping options will be updated during checkout.</p>
+              </div>
+            </div>
+            <hr />
+            <div className='fw-normal d-flex justify-content-between mt-4'>
+              <p className='fw-bolder'>Total:</p>
+              <p className='fw-bolder fs-5' style={{ color: "red" }}>&pound;{total.toFixed(2)}</p>
+            </div>
+            {filterCart.length > 0 && (
+              <div className="card-body">
+                <button type="button" className="btn fs-6" style={{
+                  backgroundColor: "#8B0000", color: "white", width: "100%", fontWeight: "600"
+                }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+                  Proceed to Checkout
+                </button>
+                <p className='text-center fw-bolder my-3'>
+                  --OR--
+                </p>
+                <a href="https://wa.me/+923067208343" target='black'>
+                  <button type="button" className="btn fs-6" style={{
+                    backgroundColor: "#25d366", color: "White", width: "100%", fontWeight: "600"
+                  }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+                    Buy via WhatsApp
+                  </button>
+                </a>
+              </div>
+            )}
+
+          </div>
         </div>
       </div>
 
-      {filterCart.length > 0 && (
-        <div className="card-body mt-5">
-          <button type="button" className="fw-bolder btn btn-lg" style={{ width: "fit-content", backgroundColor: "#8B0000", color: "white" }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
-            Proceed to Pay
-          </button>
-        </div>
-      )}
     </div>
   );
 };

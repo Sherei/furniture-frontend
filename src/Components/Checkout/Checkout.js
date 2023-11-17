@@ -74,10 +74,10 @@ const Checkout = () => {
     };
 
     const totalSum = filterCart.reduce((accumulator, item) => {
-        return accumulator + item.Fprice;
+        return accumulator + item.total;
     }, 0);
 
-    const shippingFee = 100;
+    const shippingFee = 50;
 
     const total = totalSum + shippingFee;
 
@@ -106,7 +106,7 @@ const Checkout = () => {
                     headboard: item.headboard,
                     ottoman: item.ottoman,
                     mattress: item.mattress,
-                    Fprice: parseFloat(item.Fprice).toString(),
+                    Fprice: parseFloat(item.total).toString(),
                 };
                 orderItems.push(itemData);
             });
@@ -175,7 +175,9 @@ const Checkout = () => {
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Last name' className="form-control py-3"{...register('name2')} />
+                                <input type="text" placeholder='Last name *' className="form-control py-3"{...register('name2', { required: true })} />
+                                {errors.name2 ? <div className='error'>This Field is required</div> : null}
+
                             </div>
                             <div className="col-md-12 mb-3">
                                 <input type="text" placeholder='Address*' className="form-control py-3" {...register('shipping', { required: true })} />
@@ -194,7 +196,7 @@ const Checkout = () => {
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='Postal Code*' className="form-control py-3" {...register('postal', { required: true })} />
+                                <input type="number" placeholder='PostCode*' className="form-control py-3" {...register('postal', { required: true })} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
@@ -202,8 +204,8 @@ const Checkout = () => {
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='E-mail' className="form-control py-3" {...register('email', {
-                                    validate: function (typedValue) {
+                                <input type="text" placeholder='E-mail *' className="form-control py-3" {...register('email', {
+                                    required: "true", validate: function (typedValue) {
                                         if (typedValue.match(
                                             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                                         )) {
@@ -213,6 +215,9 @@ const Checkout = () => {
                                         }
                                     }
                                 })} />
+                                {errors.email ? <div className='error'>This Field is required</div> : null}
+                                <p className='mt-2 mb-0 fw-bold'>Note: &nbsp;&nbsp; Remeber all orders are delivered on ground floor.
+                                    Extra charges for uplift or desired room.</p>
                             </div>
                         </div>
 
@@ -222,14 +227,14 @@ const Checkout = () => {
                             <div className='px-3 py-3 d-flex justify-content-between align-items-center  rounded-3'
                                 style={{ border: "1px solid lightgray" }}>
                                 <p className='m-0'>Standard</p>
-                                <p className='m-0'>&pound;100</p>
+                                <p className='m-0'>&pound;50</p>
                             </div>
                         </div>
-                        <div className='py-3 px-2'>
+                        <div className='py-3'>
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Payment</p>
                             <div className="col-md-12 mb-3">
                                 <input type="text" className="form-control py-3 rounded"
-                                    value="Cash on Delivery (COD)" {...register('payment')}
+                                    value="Cash on Delivery (COD) &pound;50 Deposit Required" {...register('payment')}
                                     style={{ border: "1px solid lightgray" }}
                                 />
                             </div>
@@ -241,18 +246,36 @@ const Checkout = () => {
                             COMPLETE ORDER
                         </button>
                         <p className='my-3 text-center fw-bolder fs-3'>OR</p>
-                        <a href="https://wa.me/+923067208343" target='blank'>
-                            <button className="btn review_btn btn-lg fw-bolder" style={{ backgroundColor: "rgb(38,211,103)" }}>
-                                ORDER VIA WHATSAPP
+                        <div className='d-flex justify-content-center flex-wrap gap-4'>
+                            <a href="https://wa.me/+923067208343" target='blank'>
+                                <button className="btn review_btn btn-lg"
+                                    style={{
+                                        backgroundColor: "rgb(38,211,103)",
+                                        width: "fit-content",
+                                        fontWeight: "600",
+
+                                    }}>
+                                    Order Via WhatsApp
+                                </button>
+                            </a>
+                            <button className="btn review_btn btn-lg"
+                                style={{
+                                    backgroundColor: "#8B0000",
+                                    fontWeight: "600",
+                                    width: "fit-content"
+                                }}
+                                onClick={() => move('/products/all')}
+                            >
+                                Continue Shopping
                             </button>
-                        </a>
+                        </div>
                     </form>
 
-                    <div className='my-5 d-flex gap-3 flex-wrap  checout_display2'>
+                    <div className='my-5 d-flex gap-3 checkout_link_display'>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
-                    </div>
+                    </div>                   
                 </div>
 
 
@@ -265,7 +288,7 @@ const Checkout = () => {
                     </div>
                     {filterCart?.map((item, index) => {
                         return <>
-                            <div className='row border mb-1 pt-3' key={index}>
+                            <div className='row border mb-1 py-3' key={index}>
                                 <div className='col-3' style={{ position: "relative" }}>
                                     <img className='img-fluid' src={item?.image} alt="No Internet" />
                                     <p className='m-0 cart_number'>
@@ -291,7 +314,7 @@ const Checkout = () => {
                                     </div>
                                     <div className="d-flex justify-content-between flex-column">
                                         <div>
-                                            <p className='text-center fw-bolder'>{`£${item?.Fprice?.toFixed(2)}`}</p>
+                                            <p className='text-center fw-bolder'>{`£${item?.total?.toFixed(2)}`}</p>
                                             <div className='text-center' >
                                                 <button style={{
                                                     border: "none",
@@ -304,8 +327,7 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <button className='text-muted' style={{
-                                                border: "none",
+                                            <button className='btn btn-outline-secondary text-muted' style={{
                                                 backgroundColor: "transparent",
 
                                             }} onClick={() => DeleteCartItem(item._id)}>remove</button>

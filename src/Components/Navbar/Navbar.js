@@ -32,7 +32,7 @@ export const Navbar = () => {
   const [login, setLogin] = useState("close");
   const [open, setOpen] = useState("close");
   const [Error, setError] = useState("");
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -107,6 +107,9 @@ export const Navbar = () => {
 
   const filterCart = cart?.filter((item) => item.userId === cu._id)
   const filterCartLength = filterCart.length
+  const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
+
+
   const DeleteCartItem = (itemId) => {
     try {
       axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
@@ -142,7 +145,7 @@ export const Navbar = () => {
             <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
             <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
           </div>
-          <div style={{ height: "80vh", overflow: "auto" }}>
+          <div style={{ height: "70vh", overflow: "auto" }}>
             {(cartItems?.length === 0 && filterCart.length === 0) ? (
               <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
@@ -159,8 +162,9 @@ export const Navbar = () => {
               </div>
             ) : (
               <>
-                {(filterCart.length !== 0 ? filterCart : cartItems).map((item, index) => (
-                  <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
+                {(filterCart.length !== 0 ? filterCart : cartItems).map((item, index) => {
+                
+                 return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
                     style={{
                       maxWidth: "320px",
                       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
@@ -172,24 +176,29 @@ export const Navbar = () => {
                     <div className='d-flex flex-column gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
                       <p className='m-0 fs-6'>{item?.title.slice(0, 45)}...</p>
                       <div className='d-flex align-items-center justify-content-between'>
-                        <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.Fprice}</p>
+                        <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
                         <button className='side_remove text-muted' onClick={() => DeleteCartItem(item._id)}>Remove</button>
                       </div>
                     </div>
                   </div>
-                ))}
+                }
+                )}
               </>
             )}
           </div>
 
           {(cartItems?.length > 0 || filterCart?.length > 0) &&
-            <div className='border d-flex justify-content-center flex-wrap gap-2' style={{ height: "fit-content" }}>
+            <div className='' style={{ height: "fit-content" }}>
+              <div className='d-flex justify-content-between fw-bolder fs-4'>
+                <p className=''>Subtotal</p>
+                <p>{subtotal}</p>
+              </div>
               <button className='btn'
                 style={{
                   backgroundColor: "#1b2950",
                   color: "white",
                   fontWeight: "500",
-                  width: "120px",
+                  width: "100%"
                 }}
                 onClick={() => {
                   if (cu._id === undefined) {
@@ -202,24 +211,24 @@ export const Navbar = () => {
                     move(`/cart/${cu._id}`)
                   }
                 }}>VIEW CART</button>
-              <button className='btn'
+              <button className='btn mt-3'
                 style={{
                   backgroundColor: "#8B0000",
                   color: "white",
                   fontWeight: "500",
-                  width: "120px"
+                  width: "100%"
                 }}
                 onClick={() => {
                   setOpen("close")
                   move(`/cart-checkout/${cu._id}`)
                 }}
               >
-                Order Now
+                Checok out
               </button>
-              <a href="https://wa.me/+923067208343" target='black'>
+              {/* <a href="https://wa.me/+923067208343" target='black'>
 
                 <button className='btn' style={{ backgroundColor: "rgb(38,211,103)", color: "white", fontWeight: "500" }}>Order Via WhatsApp</button>
-              </a>
+              </a> */}
             </div>
           }
         </div>

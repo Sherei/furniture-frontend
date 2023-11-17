@@ -281,7 +281,8 @@
   width: 320px;
   top: 0px;
   right: -400px;
-  background-color: #F7EEDD;
+  padding: 0px 10px;
+  background-color: white;
   z-index: 5000;
   transition: all ease-in-out 2s; /* Add this line for initial transition */
 }

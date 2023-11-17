@@ -53,18 +53,26 @@
     height: fit-content;
     background-color: white;
     border-radius: 5px;
+
 }
 .cart_input{
-    
     background-color: transparent;
 }
 .cart_animation{
     width: 40% !important;
     height: auto !important;
 }
+.cart_display_layout1{
+    display: none !important;
+}
 @media(max-width:768px) {
     .cart-total {
        justify-content: center;
-
+    }
+    .cart_display_layout1{
+        display: block !important;
+    }
+    .cart-display{
+        display: none !important;
     }
 }

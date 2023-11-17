@@ -199,7 +199,7 @@ const UserPanel = () => {
                                                         const orderItemsLength = data.orderItems.length;
                                                         let totalFprice = 0;
                                                         data.orderItems.forEach((item) => {
-                                                            totalFprice += parseFloat(item?.Fprice);
+                                                            totalFprice += parseFloat(item?.total);
                                                         });
                                                         return (
                                                             <tr key={index} className='text-center'>
