@@ -340,7 +340,7 @@ export const Cart = () => {
             </div>
             {filterCart.length > 0 && (
               <div className="card-body">
-                <button type="button" className="btn fs-6" style={{
+                <button type="button" className="btn fs-5 py-2" style={{
                   backgroundColor: "#8B0000", color: "white", width: "100%", fontWeight: "600"
                 }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
                   Proceed to Checkout
@@ -348,11 +348,11 @@ export const Cart = () => {
                 <p className='text-center fw-bolder my-3'>
                   --OR--
                 </p>
-                <a href="https://wa.me/+923067208343" target='black'>
-                  <button type="button" className="btn fs-6" style={{
-                    backgroundColor: "#25d366", color: "White", width: "100%", fontWeight: "600"
+                <a href="/products/all">
+                  <button type="button" className="btn fs-5 py-2" style={{
+                    backgroundColor: "rgb(27, 41, 80)", color: "White", width: "100%", fontWeight: "600"
                   }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
-                    Buy via WhatsApp
+                    Continue Shopping
                   </button>
                 </a>
               </div>
