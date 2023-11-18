@@ -127,8 +127,8 @@ function App() {
             <Navbar />
             <main>
               <Routes>
-                <Route exact element={<Home />} path='/' />
-                <Route exact element={<UserPanel />} path='/user-profile/:userId' />
+                <Route exact path='/' element={<Home />} />
+                <Route exact path='/user-profile/:userId' element={<UserPanel />} />
                 <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
                 <Route exact path='/Products' element={<Products />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
@@ -151,16 +151,16 @@ function App() {
             <Footer />
           </BrowserRouter>
           <ToastContainer
-           position="top-center"
-           autoClose={1000}
-           hideProgressBar={false}
-           newestOnTop={false}
-           closeOnClick
-           rtl={false}
-           pauseOnFocusLoss
-           draggable
-           pauseOnHover
-           theme="colored"
+            position="top-center"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
           />
         </div>
       </>

@@ -202,8 +202,8 @@ export const Cart = () => {
                   </div>
                 </div>
                 <div className='col-8'>
-                  <div className='w-100'>
-                    <div className='d-flex justify-content-between align-items-center'>
+                  <div className='w-100 px-2'>
+                    <div className='py-2 d-flex justify-content-between align-items-center'>
                       <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
                         {item?.title}
                       </p>
@@ -211,22 +211,22 @@ export const Cart = () => {
                         <AiFillDelete />
                       </button>
                     </div>
-                    <hr />
+                    <hr  className='m-0 p-0'/>
 
-                    <div className='d-flex justify-content-between '>
+                    <div className='py-2 d-flex justify-content-between align-items-center'>
                       <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
                         Price
                       </p>
-                      <p>
+                      <p className='m-0'>
                         &pound;{item?.total}
                       </p>
                     </div>
-                    <hr />
-                    <div className='d-flex justify-content-between  align-items-center'>
+                    <hr className='m-0 p-0'/>
+                    <div className='py-2  d-flex justify-content-between align-items-center'>
                       <p className='mb-0' style={{ color: "rgb(2, 2, 94 )" }}>
                         Quantity
                       </p>
-                      <div className="sigle_quatity px-3" style={{ border: "none" }}>
+                      <div className="sigle_quatity " style={{ border: "none" }}>
                         <button className="plus_btn" onClick={() => Decrement(item?._id)}>
                           <FaMinus />
                         </button>
@@ -236,8 +236,8 @@ export const Cart = () => {
                         </button>
                       </div>
                     </div>
-                    <hr />
-                    <div className='d-flex justify-content-between  align-items-center'>
+                    <hr className='m-0 p-0'/>
+                    <div className='py-2 d-flex justify-content-between align-items-center'>
                       <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )" }}>
                         Subtotal
                       </p>

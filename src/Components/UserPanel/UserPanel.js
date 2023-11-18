@@ -43,21 +43,21 @@ const UserPanel = () => {
     }, []);
 
     const filterOrder = order.filter((item) => item.userId === cu._id);
-    
+
     const formatDateTime = (dateStr) => {
         const options = {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
         };
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-GB', options);
-      };
+    };
 
-      
+
     if (cu._id === undefined || cu.email === 'asd@gmail.com') {
         return <>
             <Error />
@@ -168,7 +168,7 @@ const UserPanel = () => {
                                 <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ height: '50vh', backgroundColor: '#eee' }}>
                                     <p className='fw-bolder text-muted'>No Order Placed yet</p>
                                     <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
-                                    <button className='btn review_btn' style={{width:"fit-content"}} onClick={() => move('/Products/all')}>
+                                    <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
                                         Browse Products <FaArrowRight />
                                     </button>
                                 </div>
@@ -180,44 +180,90 @@ const UserPanel = () => {
                                             <Loader />
                                         </div>
                                     ) : (
-                                        <div className='table-responsive py-3 px-2' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
-                                            <table className='table table-bordered'>
-                                                <thead>
-                                                    <tr className='text-center'>
-                                                        <th>Sr#</th>
-                                                        <th>OrderId</th>
-                                                        <th>Name</th>
-                                                        <th>Contact</th>
-                                                        <th>Products</th>
-                                                        <th>Price</th>
-                                                        <th>Date</th>
-                                                        <th>Detail</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {filterOrder?.map((data, index) => {
-                                                        const orderItemsLength = data.orderItems.length;
-                                                        let totalFprice = 0;
-                                                        data.orderItems.forEach((item) => {
-                                                            totalFprice += parseFloat(item?.total);
-                                                        });
-                                                        return (
-                                                            <tr key={index} className='text-center'>
-                                                                <td>{index + 1}</td>
-                                                                <td>{data?.orderId}</td>
-                                                                <td>{data?.name1}</td>
-                                                                <td>{data?.number1}</td>
-                                                                <td className='text-center'>{orderItemsLength}</td>
-                                                                <td className='text-center'>{totalFprice?.toFixed(2)}</td>
-                                                                <td>{formatDateTime(data.date)}</td>
-                                                                <td className='text-center'>
+                                        <div className='py-3 px-2' style={{ backgroundColor: 'white', height: '58vh', overflow: "auto" }}>
+                                            
+                                            {filterOrder?.map((data, index) => {
+                                                const orderItemsLength = data.orderItems.length;
+                                                let totalFprice = 0;
+                                                data.orderItems.forEach((item) => {
+                                                    totalFprice += parseFloat(item?.total);
+                                                });
+                                                return <>
+                                                    <div className='d-flex gap-4 my-3 border' style={{
+                                                        marginBottom: "3px solid lightgray"
+                                                    }} key={index}>
+                                                        <div className='w-100 px-2'>
+                                                            <div className='py-2 d-flex justify-content-between align-items-center'>
+                                                                <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                                                                    Order Id
+                                                                </p>
+                                                                <p className='m-0'>
+                                                                    {data?.orderId}
+                                                                </p>
+                                                            </div>
+                                                            <hr className='m-0 p-0' />
+
+                                                            <div className='py-2 d-flex justify-content-between align-items-center'>
+                                                                <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                                                                    Name
+                                                                </p>
+                                                                <p className='m-0'>
+                                                                    {data?.name1}
+                                                                </p>
+                                                            </div>
+                                                            <hr className='m-0 p-0' />
+                                                            <div className='py-2  d-flex justify-content-between align-items-center'>
+                                                                <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                                                                    Contact
+                                                                </p>
+                                                                <p className='m-0'>
+                                                                    {data?.number1}
+                                                                </p>
+                                                            </div>
+                                                            <hr className='m-0 p-0' />
+                                                            <div className='py-2  d-flex justify-content-between align-items-center'>
+                                                                <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                                                                    Items
+                                                                </p>
+                                                                <p className='m-0'>
+                                                                    {orderItemsLength}
+                                                                </p>
+                                                            </div>
+                                                            <hr className='m-0 p-0' />
+                                                            <div className='py-2  d-flex justify-content-between align-items-center'>
+                                                                <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                                                                    Total
+                                                                </p>
+                                                                <p className='m-0'>
+                                                                    {totalFprice?.toFixed(2)}
+                                                                </p>
+                                                            </div>
+                                                            <hr className='m-0 p-0' />
+                                                            <div className='py-2  d-flex justify-content-between align-items-center'>
+                                                                <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                                                                    Date
+                                                                </p>
+                                                                <p className='m-0'>
+                                                                    {formatDateTime(data.date)}
+                                                                </p>
+                                                            </div>
+                                                            <hr className='m-0 p-0' />
+
+                                                            <div className='py-2  d-flex justify-content-end'>
+                                                                <button className='btn'
+                                                                    style={{
+                                                                        border: "none",
+                                                                        backgroundColor: "transparent",
+                                                                        color: "rgb(2, 2, 94 )"
+                                                                    }}>
                                                                     <a href={`/order-detail/${data._id}`}>Detail</a>
-                                                                </td>
-                                                            </tr>
-                                                        );
-                                                    })}
-                                                </tbody>
-                                            </table>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </>
+                                            })}
                                         </div>
                                     )}
                                 </>
