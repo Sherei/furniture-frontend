@@ -197,7 +197,7 @@ export const Cart = () => {
 
         <div className="col-lg-8 col-md-12 col-sm-12">
 
-          <div className='my-4' style={{ height: "50vh", overflow: "auto" }}>
+          <div className='my-4'>
             {filterCart.map((item, index) => {
               return <div className='d-flex gap-4 my-3 border py-3 cart_display_layout1' style={{
                 marginBottom: "1px solid lightgray"
