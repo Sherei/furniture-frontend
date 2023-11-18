@@ -189,7 +189,7 @@ const UserPanel = () => {
                                                     totalFprice += parseFloat(item?.total);
                                                 });
                                                 return <>
-                                                    <div className='d-flex gap-4 my-3 border' style={{
+                                                    <div className='d-flex gap-4 my-3 border px-3' style={{
                                                         marginBottom: "3px solid lightgray"
                                                     }} key={index}>
                                                         <div className='w-100 px-2'>
@@ -235,7 +235,7 @@ const UserPanel = () => {
                                                                     Total
                                                                 </p>
                                                                 <p className='m-0'>
-                                                                    {totalFprice?.toFixed(2)}
+                                                                    {data?.total}
                                                                 </p>
                                                             </div>
                                                             <hr className='m-0 p-0' />

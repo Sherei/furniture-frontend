@@ -152,7 +152,7 @@ function App() {
           </BrowserRouter>
           <ToastContainer
           style={{
-            width:"200px",
+            minWidth:"250px",
           }}
             position="top-center"
             autoClose={1000}

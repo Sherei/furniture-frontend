@@ -267,9 +267,8 @@ const SingleAdd = () => {
                 product.total = totalPrice;
                 product.price = product?.Fprice;
                 product.quantity = quantity;
-                product.discount = product?.discount;
                 product.image = product?.images[0];
-
+                product.discount = product?.discount;
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
                 if (response.data === "Product Added") {

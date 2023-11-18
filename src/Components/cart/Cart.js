@@ -156,12 +156,20 @@ export const Cart = () => {
   };
 
   if (filterCart?.length === 0) {
-    return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-      <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-      <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-        Browse Products <FaArrowRight />
-      </button>
-    </div>
+    if (loading) {
+      return (
+        <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+          <Loader />
+        </div>
+      );
+    } else {
+      return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+        <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+        <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
+          Browse Products <FaArrowRight />
+        </button>
+      </div>
+    }
   }
 
   if (loading) {
@@ -182,23 +190,35 @@ export const Cart = () => {
 
     <div className="container-fluid h-100 py-5">
       <div className="row d-flex justify-content-center min-h-100 gap-4">
+
         <div className="col-lg-8 col-md-12 col-sm-12">
-          <div className="mb-4">
-            <h3 className="fw-bolder mb-0 ">Shopping Cart</h3>
-          </div>
-          {filterCart.map((item, index) => {
-            return <div className='d-flex gap-4 my-3 border py-3 cart_display_layout1' style={{
-              marginBottom: "1px solid lightgray"
-            }} key={index}>
-              <div className='row'>
-                <div className='col-4'>
-                  <div className='text-center' onClick={() => move(`single_Add/${item._id}`)}>
-                    <img
-                      src={item?.image}
-                      className="img-fluid rounded-3"
-                      alt="No Internet"
-                      style={{ width: "150px" }}
-                    />
+
+          <div className='my-4' style={{ height: "50vh", overflow: "auto" }}>
+            {filterCart.map((item, index) => {
+              return <div className='d-flex gap-4 my-3 border py-3 cart_display_layout1' style={{
+                marginBottom: "1px solid lightgray"
+              }} key={index}>
+                <div className='row'>
+                  <div className='col-4'>
+                    <div className='text-center' onClick={() => move(`single_Add/${item._id}`)} style={{ position: "relative" }}>
+                      <img
+                        src={item?.image}
+                        className="img-fluid rounded-3"
+                        alt="No Internet"
+                        style={{ width: "150px" }}
+                      />
+                      {(item?.discount && item.discount > 1) &&
+                        <div className='p-1'
+                          style={{
+                            position: "absolute", top: "-5px", right: "-5px",
+                            backgroundColor: "red", color: "white",
+                            borderRadius:"40px",
+                         }}>
+                      <p className='m-0' style={{ fontSize: "10px" }}>
+                        {`-${item?.discount}%`}
+                      </p>
+                    </div>
+                      }
                   </div>
                 </div>
                 <div className='col-8'>
@@ -211,45 +231,45 @@ export const Cart = () => {
                         <AiFillDelete />
                       </button>
                     </div>
-                    <hr  className='m-0 p-0'/>
+                    <hr className='m-0 p-0' />
 
                     <div className='py-2 d-flex justify-content-between align-items-center'>
                       <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
                         Price
                       </p>
                       <p className='m-0'>
-                        &pound;{item?.total}
+                        &pound;{item?.total.toFixed()}
                       </p>
                     </div>
-                    <hr className='m-0 p-0'/>
+                    <hr className='m-0 p-0' />
                     <div className='py-2  d-flex justify-content-between align-items-center'>
                       <p className='mb-0' style={{ color: "rgb(2, 2, 94 )" }}>
                         Quantity
                       </p>
                       <div className="sigle_quatity " style={{ border: "none" }}>
-                        <button className="plus_btn" onClick={() => Decrement(item?._id)}>
-                          <FaMinus />
-                        </button>
+                        {/* <button className="plus_btn" onClick={() => Decrement(item?._id)}>
+                            <FaMinus />
+                          </button> */}
                         <p className="input_single text-center m-0 p-0">{item.quantity}</p>
-                        <button className="plus_btn" onClick={() => Increment(item?._id)}>
-                          <FaPlus />
-                        </button>
+                        {/* <button className="plus_btn" onClick={() => Increment(item?._id)}>
+                            <FaPlus />
+                          </button> */}
                       </div>
                     </div>
-                    <hr className='m-0 p-0'/>
+                    <hr className='m-0 p-0' />
                     <div className='py-2 d-flex justify-content-between align-items-center'>
                       <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )" }}>
                         Subtotal
                       </p>
-                      <p className='m-0 fw-bolder fs-5' style={{ color: "red" }}>&pound;{item?.total}</p>
+                      <p className='m-0 fw-bolder fs-5' style={{ color: "red" }}>&pound;{item?.total.toFixed()}</p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
 
-          })
-          }
+            })
+            }
 
           <div className='cart-display'>
             {filterCart?.length > 0 && (
@@ -271,29 +291,42 @@ export const Cart = () => {
                       <tr key={item._id} className='cart_row'>
                         <td className='text-center'>{item?.sn}</td>
                         <td className='text-center' onClick={() => move(`single_Add/${item._id}`)}>
-                          <img
-                            src={item?.image}
-                            className="img-fluid rounded-3"
-                            alt="No Internet"
-                            style={{ width: "100px" }}
-                          />
-                        </td>
-                        <td onClick={() => move(`/single_Add/${item._id}`)}>{item?.title?.slice(0, 15)}</td>
-                        <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
-                        <td className='text-center'>
-                          <div className="sigle_quatity px-3" style={{ border: "none" }}>
-                            <button className="plus_btn" onClick={() => Decrement(item._id)}>
-                              <FaMinus />
-                            </button>
-
-                            <p className="input_single text-center m-0 p-0">{item.quantity}</p>
-
-                            <button className="plus_btn" onClick={() => Increment(item._id)}>
-                              <FaPlus />
-                            </button>
+                          <div className='text-center' onClick={() => move(`single_Add/${item._id}`)} style={{ position: "relative" }}>
+                            <img
+                              src={item?.image}
+                              className="img-fluid rounded-3"
+                              alt="No Internet"
+                              style={{ width: "100px" }}
+                            />
+                            {(item?.discount && item.discount > 1) &&
+                              <div className='p-1'
+                               style={{ position: "absolute", top: "-5px", right: "-5px", 
+                               backgroundColor: "red", color: "white",
+                               borderRadius:"40px",
+                               }}>
+                                <p className='m-0' style={{ fontSize: "10px" }}>
+                                  {`-${item?.discount}%`}
+                                </p>
+                              </div>
+                            }
                           </div>
                         </td>
-                        <td className='text-center'>{`£${(item?.total).toFixed(2)}`}</td>
+                        <td onClick={() => move(`/single_Add/${item._id}`)}>{item?.title?.slice(0, 15)}</td>
+                        <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
+                        <td className='text-center'>
+                          <div className="sigle_quatity px-3" style={{ border: "none" }}>
+                            {/* <button className="plus_btn" onClick={() => Decrement(item._id)}>
+                                <FaMinus />
+                              </button> */}
+
+                            <p className="input_single text-center m-0 p-0">{item.quantity}</p>
+                            {/* 
+                              <button className="plus_btn" onClick={() => Increment(item._id)}>
+                                <FaPlus />
+                              </button> */}
+                          </div>
+                        </td>
+                        <td className='text-center'>{`£${(item?.total).toFixed()}`}</td>
                         <td className='text-center'>
                           <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                             <AiFillDelete />
@@ -306,62 +339,66 @@ export const Cart = () => {
               </div>
             )}
           </div>
-          <div className='d-flex justify-content-end'>
-            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={updateCart}>
-              Update Cart
-            </button>
-          </div>
 
         </div>
+        <div className='d-flex justify-content-end'>
+          <button className='btn review_btn' style={{ width: "fit-content" }} onClick={updateCart}>
+            Update Cart
+          </button>
+        </div>
 
-        <div className='col-lg-3 col-md-12 col-sm-12'>
-          <div className='update mb-3 p-3 border'>
-            <div className='d-flex justify-content-between'>
-              <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>CART TOTALS</p>
-              <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>{filterCart?.length}</p>
-            </div>
-            <div className='fw-normal d-flex justify-content-between'>
-              <p className='fw-bolder'>Subtotal:</p>
-              <p className='text-muted'>&pound;{subtotal.toFixed(2)}</p>
-            </div>
-            <hr />
+      </div>
 
-            <div className='fw-normal d-flex justify-content-between align-items-center gap-3'>
-              <p className='fw-bolder m-0'>Shipping:</p>
-              <div>
-                <p className='text-muted m-0  text-end'>&pound;{shippingFee}</p>
-                <p className='m-0 text-end' style={{ fontSize: "12px" }}>Shipping options will be updated during checkout.</p>
-              </div>
-            </div>
-            <hr />
-            <div className='fw-normal d-flex justify-content-between mt-4'>
-              <p className='fw-bolder'>Total:</p>
-              <p className='fw-bolder fs-5' style={{ color: "red" }}>&pound;{total.toFixed(2)}</p>
-            </div>
-            {filterCart.length > 0 && (
-              <div className="card-body">
-                <button type="button" className="btn fs-5 py-2" style={{
-                  backgroundColor: "#8B0000", color: "white", width: "100%", fontWeight: "600"
-                }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
-                  Proceed to Checkout
-                </button>
-                <p className='text-center fw-bolder my-3'>
-                  --OR--
-                </p>
-                <a href="/products/all">
-                  <button type="button" className="btn fs-5 py-2" style={{
-                    backgroundColor: "rgb(27, 41, 80)", color: "White", width: "100%", fontWeight: "600"
-                  }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
-                    Continue Shopping
-                  </button>
-                </a>
-              </div>
-            )}
-
+      <div className='col-lg-3 col-md-12 col-sm-12'>
+        <div className='update mb-3 p-3 border'>
+          <div className='d-flex justify-content-between'>
+            <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>CART TOTALS</p>
+            <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>{filterCart?.length}</p>
           </div>
+          <div className='fw-normal d-flex justify-content-between'>
+            <p className='fw-bolder m-0'>Subtotal:</p>
+            <p className='text-muted m-0'>&pound;{subtotal.toFixed(2)}</p>
+          </div>
+          <hr className='m-1' />
+
+          <div className='fw-normal d-flex justify-content-between align-items-center gap-3'>
+            <p className='fw-bolder m-0'>Shipping:</p>
+            <div>
+              <p className='text-muted m-0  text-end'>&pound;{shippingFee}</p>
+              <p className='m-0 text-end' style={{ fontSize: "12px" }}>Shipping options will be updated during checkout.</p>
+            </div>
+          </div>
+          <hr className='m-1' />
+          <div className='fw-normal d-flex justify-content-between mt-4'>
+            <p className='fw-bolder m-0'>Total:</p>
+            <p className='fw-bolder fs-5 m-0' style={{ color: "red" }}>&pound;{total.toFixed(2)}</p>
+          </div>
+          {filterCart.length > 0 && (
+            <div className="card-body my-4">
+              <button type="button" className="btn fs-5 py-2" style={{
+                backgroundColor: "#8B0000", color: "white", width: "100%", fontWeight: "600"
+              }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+                Proceed to Checkout
+              </button>
+              <p className='text-center fw-bolder my-3'>
+                --OR--
+              </p>
+              <a href="/products/all">
+                <button type="button" className="btn fs-5 py-2" style={{
+                  backgroundColor: "rgb(27, 41, 80)", color: "White", width: "100%", fontWeight: "600"
+                }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+                  Continue Shopping
+                </button>
+              </a>
+            </div>
+          )}
+
         </div>
       </div>
 
+
     </div>
+
+    </div >
   );
 };

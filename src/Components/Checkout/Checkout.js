@@ -84,8 +84,11 @@ const Checkout = () => {
     const Order = async (data) => {
 
         setLoading(true);
-
         try {
+            const totalSum = filterCart.reduce((accumulator, item) => {
+                return accumulator + item.total;
+            }, 0);
+        
             const orderItems = [];
             const orderId = uuidv4().substr(0, 10);
             filterCart.forEach((item) => {
@@ -96,6 +99,7 @@ const Checkout = () => {
                     image: item.image,
                     subCategory: item.subCategory,
                     price: parseFloat(item.price).toString(),
+                    total: parseFloat(item.total).toString(),
                     quantity: parseInt(item.quantity).toString(),
                     discount: item.discount,
                     size: item.size,
@@ -106,13 +110,17 @@ const Checkout = () => {
                     headboard: item.headboard,
                     ottoman: item.ottoman,
                     mattress: item.mattress,
-                    Fprice: parseFloat(item.total).toString(),
                 };
                 orderItems.push(itemData);
             });
 
+            const shippingFee = 50;
+
+            const total = totalSum + shippingFee;
+            
             const orderItemsJSON = JSON.stringify(orderItems);
             data.orderId = orderId;
+            data.total = total;
             data.userId = userId;
             data.orderItems = orderItemsJSON;
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
@@ -245,8 +253,18 @@ const Checkout = () => {
                         >
                             COMPLETE ORDER
                         </button>
-                        <p className='my-3 text-center fw-bolder fs-3'>OR</p>
+                        <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
                         <div className='d-flex justify-content-center flex-wrap gap-4'>
+                            <button className="btn review_btn btn-lg"
+                                style={{
+                                    backgroundColor: "#8B0000",
+                                    fontWeight: "600",
+                                    width: "fit-content"
+                                }}
+                                onClick={() => move('/products/all')}
+                            >
+                                Continue Shopping
+                            </button>
                             <a href="https://wa.me/+923067208343" target='blank'>
                                 <button className="btn review_btn btn-lg"
                                     style={{
@@ -258,16 +276,6 @@ const Checkout = () => {
                                     Order Via WhatsApp
                                 </button>
                             </a>
-                            <button className="btn review_btn btn-lg"
-                                style={{
-                                    backgroundColor: "#8B0000",
-                                    fontWeight: "600",
-                                    width: "fit-content"
-                                }}
-                                onClick={() => move('/products/all')}
-                            >
-                                Continue Shopping
-                            </button>
                         </div>
                     </form>
 
@@ -275,7 +283,7 @@ const Checkout = () => {
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
-                    </div>                   
+                    </div>
                 </div>
 
 

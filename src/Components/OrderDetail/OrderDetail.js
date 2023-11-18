@@ -143,7 +143,7 @@ const OrderDetail = () => {
                                             <td className='text-center'>{`1 X £${parseFloat(data?.price)?.toFixed(2)}`}</td>
                                             <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>
                                             <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed(2)}%`}</td>
-                                            <td className='text-center'>{`£${parseFloat(data?.Fprice)?.toFixed(2)}`}</td>
+                                            <td className='text-center'>{`£${parseFloat(data?.total)?.toFixed(2)}`}</td>
                                             {/* <td className='text-center'>{formatDateTime(data.date)}</td> */}
                                         </tr>
                                     ))

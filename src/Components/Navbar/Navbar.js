@@ -190,7 +190,7 @@ export const Navbar = () => {
             <div className='' style={{ height: "fit-content" }}>
               <div className='d-flex justify-content-between fw-bolder fs-4'>
                 <p className=''>Subtotal</p>
-                <p>{subtotal}</p>
+                <p>&pound;{subtotal}</p>
               </div>
               <button className='btn'
                 style={{

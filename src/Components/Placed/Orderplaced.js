@@ -51,7 +51,11 @@ const Orderplaced = () => {
     }
 
     if (cu._id === undefined || cu.email === "asd@gmail.com" || filterOrder.length < 1) {
-        return <Error />;
+        return <>
+            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                <Loader />
+            </div>
+        </>
     }
 
     return (
