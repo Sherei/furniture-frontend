@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { Error } from '../Error/Error';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,12 +13,14 @@ import CartAnimation from "../Animations/CartAnimation.json"
 import { FaArrowRight, FaAngleDown } from "react-icons/fa"
 
 const Checkout = () => {
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     }, []);
+    
     const cu = useSelector(store => store.userSection.cu)
     const dispatch = useDispatch()
 
@@ -117,7 +118,7 @@ const Checkout = () => {
             const shippingFee = 50;
 
             const total = totalSum + shippingFee;
-            
+
             const orderItemsJSON = JSON.stringify(orderItems);
             data.orderId = orderId;
             data.total = total;
@@ -136,8 +137,8 @@ const Checkout = () => {
                     payload: userId,
                 });
                 toast.success("Order is Placed");
-
-                move(`/order-placed/${userId}`);
+                window.location.reload();
+                window.location.href = `/order-placed/${userId}`;
             }
         } catch (e) {
             // console.log(e);
@@ -147,15 +148,6 @@ const Checkout = () => {
     };
 
 
-    if (filterCart?.length === 0) {
-        return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-            <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-                Browse Products <FaArrowRight />
-            </button>
-        </div>
-    }
-
     if (loading) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
@@ -163,16 +155,27 @@ const Checkout = () => {
             </div>
         );
     }
-
-    // if (cu._id === undefined || cu.email === "asd@gmail.com") {
-    //     toast.warning("Login to See cart")
-    //     return move("/login")
-    // }
+    
+    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0 ) {
+        if (loading) {
+          return (
+            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+              <Loader />
+            </div>
+          );
+        } else {
+          return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+            <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
+              Browse Products <FaArrowRight />
+            </button>
+          </div>
+        }
+      }
 
     return <>
         <div className='container-fluid my-5'>
             <div className='row checkout_display d-flex justify-content-center'>
-
                 <div className='col-lg-6 col-sm-12 py-3 px-3 mt-5 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
@@ -255,24 +258,15 @@ const Checkout = () => {
                         </button>
                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
                         <div className='d-flex justify-content-center flex-wrap gap-4'>
-                            <button className="btn review_btn btn-lg"
-                                style={{
-                                    backgroundColor: "#8B0000",
-                                    fontWeight: "600",
-                                    width: "fit-content"
-                                }}
+                            <button className="btn btn-lg chk_btn"
+                                style={{backgroundColor: "#8B0000"}}
                                 onClick={() => move('/products/all')}
                             >
                                 Continue Shopping
                             </button>
                             <a href="https://wa.me/+923067208343" target='blank'>
-                                <button className="btn review_btn btn-lg"
-                                    style={{
-                                        backgroundColor: "rgb(38,211,103)",
-                                        width: "fit-content",
-                                        fontWeight: "600",
-
-                                    }}>
+                                <button className="btn btn-lg chk_btn"
+                                    style={{backgroundColor: "rgb(38,211,103)"}}>
                                     Order Via WhatsApp
                                 </button>
                             </a>

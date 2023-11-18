@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import axios from 'axios';
-import { Error } from '../Error/Error';
 import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import celebration from "../Animations/celebration.json"

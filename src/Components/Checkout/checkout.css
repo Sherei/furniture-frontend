@@ -11,6 +11,11 @@
     opacity: 0;
     /* display: none !important; */
 }
+.chk_btn{
+    color: white;
+    font-weight: 600;
+    width: 350px;
+}
 
 @media screen and (max-width:992px) {
     .checkout_display{
@@ -24,4 +29,15 @@
         opacity: 1;
         /* display: inline-block !important; */
     }
+}
+@media screen and (max-width:450px){
+    .checkout_link_display{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width:768px) {
+    .chk_btn{
+        width: 100% !important;
+    }
+    
 }
