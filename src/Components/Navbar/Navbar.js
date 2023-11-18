@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser,FaSearch , FaAngleDown, FaArrowRight } from "react-icons/fa"
+import { FaRegUser, FaSearch, FaAngleDown, FaArrowRight } from "react-icons/fa"
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -169,15 +169,15 @@ export const Navbar = () => {
                       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
                     }}
                   >
-                    <div className='side_img_main' style={{ width: "100px", height: "80px" }}>
+                    <div className='side_img_main' style={{ width: "100px", minHeight: "80px" }}>
                       <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
                     </div>
-                    <div className='d-flex flex-column gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
-                      <p className='m-0 fs-6'>{item?.title.slice(0, 45)}...</p>
-                      <div className='d-flex align-items-center justify-content-between'>
+                    <div className='d-flex gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
+                      <div className='d-flex flex-column justify-content-around'>
+                        <p className='m-0' style={{ fontSize: "13px" }}>{item?.title}</p>
                         <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
-                        <button className='side_remove text-muted' onClick={() => DeleteCartItem(item._id)}>Remove</button>
                       </div>
+                        <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1/></button>
                     </div>
                   </div>
                 }
@@ -188,7 +188,7 @@ export const Navbar = () => {
 
           {(filterCart?.length > 0) &&
             <div className='' style={{ height: "fit-content" }}>
-              <div className='d-flex justify-content-between fw-bolder fs-4'>
+              <div className='d-flex justify-content-between fw-bolder fs-5'>
                 <p className=''>Subtotal</p>
                 <p>&pound;{subtotal}</p>
               </div>
@@ -281,7 +281,7 @@ export const Navbar = () => {
               </div>
               <div className='d-flex align-items-center'>
                 <li className="nav-item heart">
-                  <FaSearch/>
+                  <FaSearch />
                 </li>
                 {cu._id == undefined &&
                   <li className="nav-item">
@@ -350,12 +350,12 @@ export const Navbar = () => {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        style={{ borderBottom: "none", color:"white" }}
-                        >
+                        style={{ borderBottom: "none", color: "white" }}
+                      >
 
-                       <div className='fs-2'style={{color:"white"}}>
-                        <FaRegUser />
-                      </div>
+                        <div className='fs-2' style={{ color: "white" }}>
+                          <FaRegUser />
+                        </div>
 
                       </NavLink>
                       <ul className="dropdown-menu menu3" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -371,7 +371,7 @@ export const Navbar = () => {
                   </>
 
                 }
-                                <li className="nav-item" onClick={() => {
+                <li className="nav-item" onClick={() => {
                   if (cu._id === undefined || cu.email === "asd@gmail.com") {
                     setLogin("login")
                     dispatch({

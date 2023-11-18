@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AiFillDelete } from "react-icons/ai"
+import { RxCross1 } from "react-icons/rx";
 import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -228,26 +228,26 @@ export const Cart = () => {
                   <div className='col-8'>
                     <div className='w-100 px-2'>
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize:"14px" }}>
                           {item?.title}
                         </p>
-                        <button className='btn' onClick={() => DeleteCartItem(item._id)}>
-                          <AiFillDelete />
+                        <button className='btn text-danger' onClick={() => DeleteCartItem(item._id)}>
+                          <RxCross1 />
                         </button>
                       </div>
                       <hr className='m-0 p-0' />
 
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )",fontSize:"14px"}}>
                           Price
                         </p>
-                        <p className='m-0'>
+                        <p className='m-0' style={{ fontSize:"14px"}}>
                           &pound;{item?.total.toFixed()}
                         </p>
                       </div>
                       <hr className='m-0 p-0' />
                       <div className='py-2  d-flex justify-content-between align-items-center'>
-                        <p className='mb-0' style={{ color: "rgb(2, 2, 94 )" }}>
+                        <p className='mb-0' style={{ color: "rgb(2, 2, 94 )", fontSize:"14px" }}>
                           Quantity
                         </p>
                         <div className="sigle_quatity " style={{ border: "none" }}>
@@ -262,10 +262,10 @@ export const Cart = () => {
                       </div>
                       <hr className='m-0 p-0' />
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )" }}>
+                        <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )", fontSize:"14px" }}>
                           Subtotal
                         </p>
-                        <p className='m-0 fw-bolder fs-5' style={{ color: "red" }}>&pound;{item?.total.toFixed()}</p>
+                        <p className='m-0 fw-bolder fs-5' style={{ color: "red",fontSize:"17px" }}>&pound;{item?.total.toFixed()}</p>
                       </div>
                     </div>
                   </div>
@@ -331,8 +331,8 @@ export const Cart = () => {
                           </td>
                           <td className='text-center'>{`£${(item?.total).toFixed()}`}</td>
                           <td className='text-center'>
-                            <a href="#!" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
-                              <AiFillDelete />
+                            <a href="" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
+                              <RxCross1 />
                             </a>
                           </td>
                         </tr>
@@ -345,7 +345,7 @@ export const Cart = () => {
 
           </div>
           <div className='d-flex justify-content-end'>
-            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={updateCart}>
+            <button className='btn review_btn' style={{ width: "1005" }} onClick={updateCart}>
               Update Cart
             </button>
           </div>
@@ -359,23 +359,24 @@ export const Cart = () => {
               <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>{filterCart?.length}</p>
             </div>
             <div className='fw-normal d-flex justify-content-between'>
-              <p className='fw-bolder m-0'>Subtotal:</p>
-              <p className='text-muted m-0'>&pound;{subtotal.toFixed(2)}</p>
+              <p className='fw-bolder m-0' style={{fontSize:"15px"}}>Subtotal:</p>
+              <p className='text-muted m-0' style={{fontSize:"15px"}}>&pound;{subtotal.toFixed(2)}</p>
             </div>
             <hr className='m-1' />
 
             <div className='fw-normal d-flex justify-content-between align-items-center gap-3'>
-              <p className='fw-bolder m-0'>Shipping:</p>
+              <p className='fw-bolder m-0' style={{fontSize:"15px"}}>Shipping:</p>
               <div>
-                <p className='text-muted m-0  text-end'>Standard Delivery: <span className='fw-bolder'>&pound;{shippingFee.toFixed(2)}</span> </p>
-                <p className='m-0 text-end' style={{ fontSize: "12px" }}>Shipping options will be updated during checkout.</p>
+                <p className='text-muted m-0  text-end' style={{fontSize:"13px"}}>Standard Delivery: <span className='fw-bolder'>&pound;{shippingFee.toFixed(2)}</span> </p>
+                <p className='m-0 text-end' style={{ fontSize: "11px" }}>Shipping options will be updated during checkout.</p>
               </div>
             </div>
             <hr className='m-1' />
             <div className='fw-normal d-flex justify-content-between mt-4'>
-              <p className='fw-bolder m-0'>Total:</p>
-              <p className='fw-bolder fs-5 m-0' style={{ color: "red" }}>&pound;{total.toFixed(2)}</p>
+              <p className='fw-bolder m-0' style={{fontSize:"17px"}}>Total:</p>
+              <p className='fw-bolder m-0' style={{ color: "red",fontSize:"17px" }}>&pound;{total.toFixed(2)}</p>
             </div>
+
             {filterCart.length > 0 && (
               <div className="card-body my-4">
                 <button type="button" className="btn fs-5 py-2" style={{
