@@ -385,7 +385,7 @@ export const Cart = () => {
                 <a href="https://wa.me/+923067208343" target='blank'>
                   <button type="button" className="btn fs-5 py-2" style={{
                     backgroundColor: "#25d366", color: "White", width: "100%", fontWeight: "600"
-                  }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
+                  }}>
                     Order via WhatsApp
                   </button>
                 </a>
