@@ -257,15 +257,15 @@ const Checkout = () => {
                             COMPLETE ORDER
                         </button>
                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
-                        <div className='d-flex justify-content-center flex-wrap gap-4'>
-                            <button className="btn btn-lg chk_btn"
+                        <div className='d-flex justify-content-center flex-wrap gap-4 chk_btn'>
+                            <button className="btn btn-lg"
                                 style={{backgroundColor: "#8B0000"}}
                                 onClick={() => move('/products/all')}
                             >
                                 Continue Shopping
                             </button>
                             <a href="https://wa.me/+923067208343" target='blank'>
-                                <button className="btn btn-lg chk_btn"
+                                <button className="btn btn-lg"
                                     style={{backgroundColor: "rgb(38,211,103)"}}>
                                     Order Via WhatsApp
                                 </button>

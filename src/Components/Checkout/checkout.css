@@ -11,10 +11,10 @@
     opacity: 0;
     /* display: none !important; */
 }
-.chk_btn{
+.chk_btn button{
     color: white;
     font-weight: 600;
-    width: 350px;
+    width: 250px;
 }
 
 @media screen and (max-width:992px) {
@@ -36,8 +36,7 @@
     }
 }
 @media screen and (max-width:768px) {
-    .chk_btn{
+    .chk_btn button, .chk_btn a{
         width: 100% !important;
     }
-    
 }
