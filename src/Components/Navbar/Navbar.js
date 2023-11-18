@@ -299,7 +299,7 @@ export const Navbar = () => {
                     <span className={`fs-2`}>
                       <FiShoppingCart />
                       <p className='m-0 cart_number'>
-                        {cartLength ? cartLength : filterCartLength}
+                        {filterCartLength}
                       </p>
                     </span>
                   </NavLink>
