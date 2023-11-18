@@ -280,7 +280,7 @@ const SingleAdd = () => {
                     });
                     localStorage.setItem("cart", JSON.stringify(product));
                     window.location.reload();
-                    move(`/cart/${cu._id}`)
+                    window.location.href = `/cart/${cu._id}`;
                 }
             } catch (error) {
 

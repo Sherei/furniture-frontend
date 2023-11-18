@@ -32,7 +32,7 @@ export const Navbar = () => {
   const [login, setLogin] = useState("close");
   const [open, setOpen] = useState("close");
   const [Error, setError] = useState("");
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -146,7 +146,7 @@ export const Navbar = () => {
             <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
           </div>
           <div style={{ height: "70vh", overflow: "auto" }}>
-            {(cartItems?.length === 0 && filterCart.length === 0) ? (
+            {filterCart.length === 0 ? (
               <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
                 <button
@@ -162,9 +162,8 @@ export const Navbar = () => {
               </div>
             ) : (
               <>
-                {(filterCart.length !== 0 ? filterCart : cartItems).map((item, index) => {
-                
-                 return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
+                {filterCart?.map((item, index) => {
+                  return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
                     style={{
                       maxWidth: "320px",
                       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
@@ -187,7 +186,7 @@ export const Navbar = () => {
             )}
           </div>
 
-          {(cartItems?.length > 0 || filterCart?.length > 0) &&
+          {(filterCart?.length > 0) &&
             <div className='' style={{ height: "fit-content" }}>
               <div className='d-flex justify-content-between fw-bolder fs-4'>
                 <p className=''>Subtotal</p>

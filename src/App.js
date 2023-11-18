@@ -151,6 +151,9 @@ function App() {
             <Footer />
           </BrowserRouter>
           <ToastContainer
+          style={{
+            width:"fit-content",
+          }}
             position="top-center"
             autoClose={1000}
             hideProgressBar={false}
