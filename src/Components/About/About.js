@@ -29,7 +29,7 @@ const About = () => {
                                 You can contact us on WhatsApp to discuss further. We personally prefer to chat with our customer before taking an order to understand their needs.
                                 We are available six days a week and would be happy to provide you with any additional information you may need.
                             </p>
-                            <div className='mt-5'>
+                            <div className='mt-5 text-center'>
                                 <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
                                     <button className='btn hero_facebook' >Explore On Facebook</button>
                                 </a>

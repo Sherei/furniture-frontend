@@ -88,27 +88,31 @@
 .categories p {
     font-size: 15px;
     font-weight: 400;
-    color: rgb(129, 128, 128);
+    /* color: rgb(129, 128, 128); */
 }
 
 .categories p:hover {
     padding: 3px 5px;
-    color: white;
+    /* color: white; */
     cursor: pointer;
     transform: scale(1.03);
-    background-color: #1B2950;
+    /* background-color: #1B2950; */
     transition: all linear 0.3s;
 }
 .accordian_btn{
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: none !important;
+    outline: none !important;
+    padding: 0px 10px !important;
 }
 .accordian_btn2{
     /* width: 100%; */
+    border: none !important;
+    outline: none !important;
     background-color: transparent;
-    border: none;
-    outline: none;
-    padding: 15px 5px;
-    color: rgb(129, 128, 128);
+    padding: 10px 10px !important;
+    /* color: rgb(129, 128, 128); */
     font-weight: 700;
 }
 
@@ -295,10 +299,15 @@
     font-weight: 600;
 }
 .accordian-item1{
-    border: none;
-    outline: none;
+    border: none !important;
+    outline: none !important;
     padding: 0px;
 }
+.accordian-item1:hover, .accordian-item1:focus{
+    border: none !important;
+    outline: none !important;
+    
+} 
 @media screen and (max-width:768px) {
     .p_img_box {
         height: auto;

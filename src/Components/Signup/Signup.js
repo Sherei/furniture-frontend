@@ -50,7 +50,8 @@ const Signup = () => {
             <div className='row d-flex justify-content-center'>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
                     <div>
-                        <p className='m-0 fs-5 text-center fw-bolder'>Create Your Account</p>
+                        <p className='m-0 fs-2 text-center fw-bolder'>Create Your Account</p>
+                        <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
                         {Error === "Email Taken" &&
@@ -89,21 +90,12 @@ const Signup = () => {
                             }
 
                         </div>
-                        <div className='mt-2'>
-                            <input type="text" placeholder='Contact Number *' className="form-control login_form_input"{...register('number', { required: true })} />
-                            {errors.number && errors.number.type == 'required' ? <div className='error'>This Field is required</div> : null}
-                        </div>
-                        <div className='mt-2'>
-                            <input type="text"placeholder='Shipping Address *' className="form-control login_form_input"{...register('address', { required: true })} />
-                            {errors.address && errors.address.type == 'required' ? <div className='error'>This Field is required</div> : null}
-                        </div>
-                  
-                        <button className='btn border rounded login_btn mt-5'>Submit</button>
+                        <button className='btn border rounded login_btn mt-3'>Create my account</button>
 
                     </form>
                 </div>
             </div>
-            <div className='row mt-5'>
+            <div className='row '>
                 <Benefits />
             </div>
         </div>

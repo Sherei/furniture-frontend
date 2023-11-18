@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser, FaRegHeart, FaAngleDown, FaArrowRight } from "react-icons/fa"
+import { FaRegUser,FaSearch , FaAngleDown, FaArrowRight } from "react-icons/fa"
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -222,7 +222,7 @@ export const Navbar = () => {
                   move(`/cart-checkout/${cu._id}`)
                 }}
               >
-                Checok out
+                Check Out
               </button>
               {/* <a href="https://wa.me/+923067208343" target='black'>
 
@@ -280,29 +280,8 @@ export const Navbar = () => {
                 </a>
               </div>
               <div className='d-flex align-items-center'>
-                <li className="nav-item heart fs-2">
-                  <FaRegHeart />
-                </li>
-                <li className="nav-item" onClick={() => {
-                  if (cu._id === undefined || cu.email === "asd@gmail.com") {
-                    setLogin("login")
-                    dispatch({
-                      type: 'LOGOUT_USER'
-                    });
-                    toast.warning("Login to see your Cart")
-                    move('/')
-                  } else {
-                    setOpen("open")
-                  }
-                }}>
-                  <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none", position: "relative" }}>
-                    <span className={`fs-2`}>
-                      <FiShoppingCart />
-                      <p className='m-0 cart_number'>
-                        {filterCartLength}
-                      </p>
-                    </span>
-                  </NavLink>
+                <li className="nav-item heart">
+                  <FaSearch/>
                 </li>
                 {cu._id == undefined &&
                   <li className="nav-item">
@@ -361,25 +340,23 @@ export const Navbar = () => {
                     </NavLink>
                   </li>
                 }
-
                 {cu._id != undefined &&
                   <>
                     <li className="nav-item dropdown">
                       <NavLink
                         to="/"
-                        className="nav-link dropdown-toggle 
-                      dropdown-toggle1 px-0"
+                        className="nav-link dropdown-toggle1"
                         id="navbarDarkDropdownMenuLink1"
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
+                        style={{ borderBottom: "none", color:"white" }}
+                        >
 
-                        style={{ borderBottom: "none" }}>
-                        <img src="/profile.png"
-                          className="nav_image"
-                          alt=""
+                       <div className='fs-2'style={{color:"white"}}>
+                        <FaRegUser />
+                      </div>
 
-                        />
                       </NavLink>
                       <ul className="dropdown-menu menu3" aria-labelledby="navbarDarkDropdownMenuLink">
                         {cu?.email != "asd@gmail.com" &&
@@ -394,6 +371,27 @@ export const Navbar = () => {
                   </>
 
                 }
+                                <li className="nav-item" onClick={() => {
+                  if (cu._id === undefined || cu.email === "asd@gmail.com") {
+                    setLogin("login")
+                    dispatch({
+                      type: 'LOGOUT_USER'
+                    });
+                    toast.warning("Login to see your Cart")
+                    move('/')
+                  } else {
+                    setOpen("open")
+                  }
+                }}>
+                  <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none", position: "relative" }}>
+                    <span className={`fs-2`}>
+                      <FiShoppingCart />
+                      <p className='m-0 cart_number'>
+                        {filterCartLength}
+                      </p>
+                    </span>
+                  </NavLink>
+                </li>
               </div>
             </div>
           </div>

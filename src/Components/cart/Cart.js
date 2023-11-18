@@ -120,7 +120,11 @@ export const Cart = () => {
     );
   };
 
-  const shippingFee = 50;
+  const totalQuantity = filterCart.reduce((accumulator, item) => {
+    return accumulator + item.quantity;
+  }, 0);
+  
+  const shippingFee = totalQuantity * 50;
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
   const total = subtotal + shippingFee;
@@ -310,7 +314,7 @@ export const Cart = () => {
                               }
                             </div>
                           </td>
-                          <td onClick={() => move(`/single_Add/${item._id}`)}>{item?.title?.slice(0, 15)}</td>
+                          <td onClick={() => move(`/single_Add/${item._id}`)}>{item?.title}</td>
                           <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
                           <td className='text-center'>
                             <div className="sigle_quatity" style={{ border: "none" }}>
@@ -363,7 +367,7 @@ export const Cart = () => {
             <div className='fw-normal d-flex justify-content-between align-items-center gap-3'>
               <p className='fw-bolder m-0'>Shipping:</p>
               <div>
-                <p className='text-muted m-0  text-end'>&pound;{shippingFee}</p>
+                <p className='text-muted m-0  text-end'>Standard Delivery: <span className='fw-bolder'>&pound;{shippingFee.toFixed(2)}</span> </p>
                 <p className='m-0 text-end' style={{ fontSize: "12px" }}>Shipping options will be updated during checkout.</p>
               </div>
             </div>
@@ -379,8 +383,8 @@ export const Cart = () => {
                 }} onClick={() => { move(`/cart-checkout/${cu._id}`) }}>
                   Proceed to Checkout
                 </button>
-                <p className='text-center fw-bolder my-3'>
-                  --OR--
+                <p className='text-center  my-3'>
+                  --or--
                 </p>
                 <a href="https://wa.me/+923067208343" target='blank'>
                   <button type="button" className="btn fs-5 py-2" style={{

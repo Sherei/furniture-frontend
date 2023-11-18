@@ -20,7 +20,7 @@ const Checkout = () => {
             behavior: 'smooth'
         });
     }, []);
-    
+
     const cu = useSelector(store => store.userSection.cu)
     const dispatch = useDispatch()
 
@@ -77,8 +77,11 @@ const Checkout = () => {
     const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.total;
     }, 0);
+    const totalQuantity = filterCart.reduce((accumulator, item) => {
+        return accumulator + item.quantity;
+    }, 0);
 
-    const shippingFee = 50;
+    const shippingFee = totalQuantity * 50;
 
     const total = totalSum + shippingFee;
 
@@ -89,7 +92,7 @@ const Checkout = () => {
             const totalSum = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.total;
             }, 0);
-        
+
             const orderItems = [];
             const orderId = uuidv4().substr(0, 10);
             filterCart.forEach((item) => {
@@ -120,10 +123,19 @@ const Checkout = () => {
             const total = totalSum + shippingFee;
 
             const orderItemsJSON = JSON.stringify(orderItems);
+            data.orderItems = orderItemsJSON;
+            data.name1 = data.name1;
+            data.name2 = data.name2;
             data.orderId = orderId;
             data.total = total;
             data.userId = userId;
-            data.orderItems = orderItemsJSON;
+            data.shipping = data.shipping;
+            data.email = data.email;
+            data.country = data.country;
+            data.city = data.city;
+            data.postal = data.postal;
+            data.note = data.note;
+            data.payment = data.payment;
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,28 +167,28 @@ const Checkout = () => {
             </div>
         );
     }
-    
-    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0 ) {
+
+    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
         if (loading) {
-          return (
-            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-              <Loader />
-            </div>
-          );
+            return (
+                <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                    <Loader />
+                </div>
+            );
         } else {
-          return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-            <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-              Browse Products <FaArrowRight />
-            </button>
-          </div>
+            return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+                <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+                <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
+                    Browse Products <FaArrowRight />
+                </button>
+            </div>
         }
-      }
+    }
 
     return <>
-        <div className='container-fluid my-5'>
+        <div className='container-fluid mt-3'>
             <div className='row checkout_display d-flex justify-content-center'>
-                <div className='col-lg-6 col-sm-12 py-3 px-3 mt-5 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
+                <div className='col-lg-6 col-sm-12 pt-3 px-3 mt-3 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <div className="row py-3">
@@ -195,15 +207,15 @@ const Checkout = () => {
                                 {errors.shipping ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
-
+                        <hr />
                         <div className="row py-3">
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Add appartment, suite, contact etc...</p>
+                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Street</p>
                             <div className="col-md-6 mb-3">
                                 <input type="text" placeholder='Country*' className="form-control py-3" {...register('country', { required: true })} />
                                 {errors.country ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='City*' className="form-control py-3" {...register('city', { required: true })} />
+                                <input type="text" placeholder='Town/City*' className="form-control py-3" {...register('city', { required: true })} />
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
@@ -251,40 +263,39 @@ const Checkout = () => {
                             </div>
                         </div>
                         <hr className="mb-4" />
+                        <div className='py-3'>
+                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Order notes</p>
+                            <div className="col-md-12 mb-3">
+                                <textarea type="text" placeholder='Notes about your order, e.g. special notes for delivery.'
+                                    className="form-control py-3 rounded" rows={7} {...register('note')}
+                                    style={{ border: "1px solid lightgray" }}
+                                />
+                            </div>
+                        </div>
+                        <hr className="mb-4" />
+
                         <button className="fw-bolder btn btn-lg"
                             style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
                         >
                             COMPLETE ORDER
                         </button>
                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
-                        <div className='d-flex justify-content-center flex-wrap gap-4 chk_btn'>
-                            <button className="btn btn-lg"
-                                style={{backgroundColor: "#8B0000"}}
-                                onClick={() => move('/products/all')}
-                            >
-                                Continue Shopping
+
+                        <a href="https://wa.me/+923067208343" target='blank'>
+                            <button className="w-100 btn btn-lg chk_btn"
+                                style={{ backgroundColor: "rgb(38,211,103)" }}>
+                                Order Via WhatsApp
                             </button>
-                            <a href="https://wa.me/+923067208343" target='blank'>
-                                <button className="btn btn-lg"
-                                    style={{backgroundColor: "rgb(38,211,103)"}}>
-                                    Order Via WhatsApp
-                                </button>
-                            </a>
-                        </div>
+                        </a>
+
                     </form>
 
-                    <div className='my-5 d-flex gap-3 checkout_link_display'>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
-                    </div>
                 </div>
 
-
-                <div className='col-lg-4 col-sm-12 px-4 py-3'>
+                <div className='col-lg-4 col-sm-12 px-4 pt-5 pt-lg-3'>
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
-                            <p className='fw-bolder fs-4'>CART ITEMS</p>
+                            <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
                             <p className='fw-bolder fs-4'>{filterCart?.length}</p>
                         </div>
                     </div>
@@ -342,17 +353,17 @@ const Checkout = () => {
                     }
 
                     <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
-                        <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
-                            <p className='m-0 fs-6'>Subtotal</p>
-                            <p className='m-0 fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
+                        <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
+                            <p className='fs-6'>Subtotal</p>
+                            <p className='fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
-                        <div className='px-3 col-12 text-muted d-flex justify-content-between align-items-center'>
+                        <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
                             <p className=' fs-6'>Shipping</p>
                             <p className=' fs-6'>{`£${shippingFee}`}</p>
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
-                            <p className=' fs-5'>Total</p>
-                            <p className=' fs-5'>{`£${total?.toFixed(2)}`}</p>
+                            <p className='fs-5'>Total</p>
+                            <p className='fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>
                     </div>
 
@@ -362,7 +373,31 @@ const Checkout = () => {
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
                     </div>
                 </div>
-            </div >
+            </div>
+            <div className='row d-flex justify-content-center'>
+                <div className='col-lg-10 col-sm-12 mt-5'>
+                    <div className='row'>
+                        <div className='col-lg-6 col-sm-12 chk_secure1'>
+                            <div className=''>
+                                <p>Secure Shopping</p>
+                            </div>
+                            <div className='d-flex gap-3'>
+                                <img src="/chk1.png" className='img-fluid' alt="No Network" />
+                            </div>
+                        </div>
+                        <div className='col-lg-6 col-sm-12 chk_secure2'>
+                            <div className=''>
+                                <p>Reason to buy from us</p>
+                            </div>
+                            <div className='d-flex gap-3'>
+                                <img src="/chk2.png" className='img-fluid' alt="No Network" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div >
 
     </>
