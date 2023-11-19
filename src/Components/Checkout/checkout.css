@@ -13,6 +13,9 @@
     font-weight: 600;
     width: 250px;
 }
+.chk_btns2{
+    display: none;
+}
 
 .chk_secure1,
 .chk_secure2 {
@@ -25,13 +28,20 @@
     align-items: flex-end;
 }
 
-
 @media screen and (max-width:450px) {
     .checkout_link_display {
         font-size: 12px;
     }
 }
-
+@media screen and (max-width:992px) {
+    .chk_btns2{
+        display: block;
+    }
+    .chk_btna1{
+        display: none;
+    }
+  
+}
 @media screen and (max-width:768px) {
 
     .chk_btn button,

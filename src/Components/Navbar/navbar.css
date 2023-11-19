@@ -3,6 +3,7 @@
   top: 0;
   z-index: 100;
 }
+
 .logo_navbar {
   width: 200px;
   max-height: 150px;
@@ -19,9 +20,7 @@
 }
 
 .nav1 {
-  display: flex;
   vertical-align: middle;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -63,9 +62,10 @@
   color: white !important;
 }
 
-.nav-link{
+.nav-link {
   padding: 10px 5px;
 }
+
 .nav-item a,
 .nav-item2 a {
   color: black !important;
@@ -131,10 +131,6 @@
   color: white;
 }
 
-.nav_contact2 {
-  display: none;
-}
-
 .nav_cotact a:hover {
   cursor: pointer;
 }
@@ -170,7 +166,7 @@
 }
 
 .additional-class {
-  top: -57px;
+  top: -52px;
 }
 
 .custom-toggler .line1,
@@ -221,7 +217,7 @@
   content: "";
   position: absolute;
   top: -10px;
-  right: 52px;
+  right: 71px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -257,7 +253,8 @@
 .menu3 {
   background-color: #F7EEDD !important;
 }
-.cart_number{
+
+.cart_number {
   position: absolute;
   top: 5px;
   right: 3px;
@@ -285,26 +282,71 @@
   padding: 0px 10px;
   background-color: white;
   z-index: 5000;
-  transition: all ease-in-out 2s; /* Add this line for initial transition */
+  transition: all ease-in-out 2s;
+  /* Add this line for initial transition */
 }
+
 .side_open {
   right: 0px;
 }
 
-.side_cart_cross{
+.side_cart_cross {
   font-weight: 600;
   font-size: 15px;
   border: none;
   background-color: transparent;
   color: red;
 }
-.side_remove{
+
+.side_remove {
   position: absolute;
   top: 10px;
   right: 10px;
   border: none;
   background-color: transparent;
 }
+
+.nav_search_icon {
+  display: none;
+}
+
+.nav_cotact input {
+  width: 100% !important;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid lightgray;
+  color: white;
+}
+
+.nav_cotact input::placeholder {
+  color: white;
+}
+
+.nav_cotact input:focus {
+  background-color: transparent;
+  color: white;
+}
+
+.nav1_row {
+  padding-right: 18px;
+}
+
+.nav_search {
+  display: none;
+}
+
+.nav_searchbar {
+  position: absolute;
+  top: 78px;
+  right: 50px;
+  width: 250px;
+  z-index: 10000;
+}
+
+.nav_searchbar input {
+  padding: 10px;
+}
+
 @media screen and (max-width:550px) {
 
   .nav_contact2 span {
@@ -319,6 +361,17 @@
 }
 
 @media screen and (max-width:991px) {
+  .nav_search {
+    display: block;
+  }
+
+  .heart {
+    display: none;
+  }
+
+  .nav_cotact input {
+    display: none;
+  }
 
   .custom-toggler {
     opacity: 1;
@@ -346,10 +399,6 @@
 
   .nav_cotact {
     display: none;
-  }
-
-  .nav_contact2 {
-    display: block;
   }
 
   .navbar-custom .login_div {

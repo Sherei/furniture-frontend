@@ -89,6 +89,7 @@ const OrderDetail = () => {
                     {order.appartment && <p><b>Appartment: </b>{order?.appartment}</p>}
                     <p><b>Shipping Address: </b>{order?.shipping}</p>
                     <p><b>Total Products: </b>{order?.orderItems.length}</p >
+                    {order.note && <p><b>Note: {order?.note}</b></p >}
                     {/* <p><b>Date: </b>{order?.formatDateTime(order.date)}</p > */}
                 </div>
             </div>

@@ -17,7 +17,7 @@ const Footer = () => {
     reset()
   }
   return <>
-    <div className='container-fluid mx-0 mt-5 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
+    <div className='container-fluid mx-0 mt-3 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
       <div className='row footer_row ' style={{ minHeight: "60vh" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
           <p className='fw-bolder fs-5' style={{ color: "white" }}>ABOUT US</p>

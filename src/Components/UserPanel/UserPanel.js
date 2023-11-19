@@ -59,9 +59,19 @@ const UserPanel = () => {
 
 
     if (cu._id === undefined || cu.email === 'asd@gmail.com') {
-        return <>
-            <Error />
-        </>
+        if (loading) {
+            return (
+                <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                    <Loader />
+                </div>
+            );
+        } else {
+            return <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                <Loader />
+                move('/')
+            </div>
+
+        }
     }
 
     return (
@@ -139,7 +149,7 @@ const UserPanel = () => {
                                             <p className="text-muted mb-0">{cu.password}</p>
                                         </div>
                                     </div> */}
-                            
+
                                 </div>
                             </div>
                         </div>
@@ -164,7 +174,7 @@ const UserPanel = () => {
                                         </div>
                                     ) : (
                                         <div className='py-3 px-2' style={{ backgroundColor: 'white', height: '58vh', overflow: "auto" }}>
-                                            
+
                                             {filterOrder?.map((data, index) => {
                                                 const orderItemsLength = data.orderItems.length;
                                                 let totalFprice = 0;
@@ -218,7 +228,7 @@ const UserPanel = () => {
                                                                     Total
                                                                 </p>
                                                                 <p className='m-0'>
-                                                                   &pound;{data?.total.toFixed(2)}
+                                                                    &pound;{data?.total.toFixed(2)}
                                                                 </p>
                                                             </div>
                                                             <hr className='m-0 p-0' />

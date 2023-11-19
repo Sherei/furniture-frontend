@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser, FaSearch, FaAngleDown, FaArrowRight } from "react-icons/fa"
+import { FaRegUser, FaSearch, FaAngleDown, FaArrowRight, FaHeart } from "react-icons/fa"
 import { IoSearchSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,13 +27,24 @@ export const Navbar = () => {
 
   const dispatch = useDispatch()
   const [cart, setCart] = useState([])
-  const [loading, setLoading] = useState(true);
-  const [isSticky, setIsSticky] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [login, setLogin] = useState("close");
   const [open, setOpen] = useState("close");
   const [Error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [isSticky, setIsSticky] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [search, setSearch] = useState(false)
 
+  const handleSearchToggle = () => {
+    setSearch(!search);
+  };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  const toggleLogin = () => {
+    setLogin(!login);
+  };
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -64,9 +75,7 @@ export const Navbar = () => {
     });
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -167,7 +176,7 @@ export const Navbar = () => {
                   return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
                     style={{
                       maxWidth: "320px",
-                      position:"relative",
+                      position: "relative",
                       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
                     }}
                   >
@@ -236,18 +245,18 @@ export const Navbar = () => {
       </div>
     )}
 
-    <div className='container-fluid nav_contact2 ' style={{ backgroundColor: "#F7EEDD" }}>
+    <div className='container-fluid nav_contact2' style={{ backgroundColor: "#F7EEDD" }}>
       <div className='row py-2'>
-        <div className='col  d-flex justify-content-center align-items-center gap-sm-2'>
-          <a href="tel:00923067208343" target='blak' className='fs-6'>
-            <span className='nav_cotact_icon' style={{ color: "rgb(2, 2, 94)" }}><TbPhoneCall></TbPhoneCall></span> &nbsp;
+        <div className='col d-flex justify-content-center align-items-center gap-lg-5 gap-md-5 gap-2 '>
+          <a href="tel:00923067208343" target='blank' className='fs-6'>
+            <span className='nav_cotact_icon' style={{ color: "rgb(2, 2, 94)" }}><TbPhoneCall /></span> &nbsp;
             <span className='ml-2' style={{ color: "rgb(2, 2, 94)" }}>
               00923067208343
             </span>&nbsp;
           </a>
-          <a href="mailto:sharjeelakhtar245@gmail.com" target='blak'>
-            <span className='nav_cotact_icon' style={{ color: "rgb(2, 2, 94)" }}><AiFillMail></AiFillMail></span>&nbsp;
-            <span className='m-0' style={{ color: "rgb(2, 2, 94)" }}>sharjeelakhtar245@gmail.com</span>&nbsp;
+          <a href="mailto:sharjeelakhtar245@gmail.com" target='blank'>
+            <span className='nav_cotact_icon' style={{ color: "rgb(2, 2, 94)" }}><AiFillMail /></span>&nbsp;
+            <span className='m-0 text-lowercase' style={{ color: "rgb(2, 2, 94)" }}>sharjeelakhtar245@gmail.com</span>&nbsp;
           </a>
         </div>
       </div>
@@ -255,153 +264,152 @@ export const Navbar = () => {
     </div>
 
     <div style={{ position: "relative" }}>
-
       <div className={`${isSticky ? 'fixed-top navbar-custom' : ''}`} style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }}>
         <div className={`py-2 nav_padding container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
           <div className="row">
-            <div className="cols-12 nav1">
-              <NavLink to="/" className="ms-md-2">
-                <img className='logo_navbar'
-                  src="/logo.png"
-                />
-              </NavLink>
-              <div className='nav_cotact'>
-                <div>
-                  <a href="tel:00923067208343" target='blak'>
-                    <p className='m-0'>Tell: &nbsp;<span className='nav_cotact_icon'><TbPhoneCall></TbPhoneCall></span> </p>
-                    <p className='m-0'>
-                      00923067208343
-                    </p>
-                  </a>
+            <div className="col nav1">
+              <div className='row nav1_row'>
+                <div className='col-3 d-flex align-items-center'>
+                  <NavLink to="/" className="ms-md-2">
+                    <img className='logo_navbar'
+                      src="/logo.png"
+                    />
+                  </NavLink>
                 </div>
-                <a href="mailto:sharjeelakhtar245@gmail.com" target='blak'>
-                  <div>
-                    <p className='m-0'>Mail &nbsp; <span className='nav_cotact_icon'><AiFillMail></AiFillMail></span></p>
-                    <p className='m-0'>sharjeelakhtar245@gmail.com</p>
+                <div className='col-6 d-flex align-items-center nav_cotact'>
+                  <input type="search" placeholder='Search Anything' className='form-control' />
+                </div>
+                {search && (
+                  <div className='col-12 d-flex align-items-center nav_searchbar'>
+                    <input type="search" placeholder='Search Anything' className='form-control' />
                   </div>
-                </a>
-              </div>
-
-
-              <div className='d-flex align-items-center'>
-
-                <li className="nav-item px-0">
-                  <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
-                    <div className='fs-2'>
-                      <IoSearchSharp />
-                    </div>
-                  </NavLink>
-                </li>
-                {cu._id == undefined &&
-                  <li className="nav-item px-0">
-                    <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
-                      <div className='fs-2' onClick={() => { setLogin("login") }}>
-                        <FaRegUser />
-                      </div>
-                      {login === "login" &&
-                        <div className='login_div p-4'>
-                          <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin("close") }}><RxCross1 /></div>
-                          <div>
-                            <p className='m-0 fs-5 text-center fw-bolder mt-2'>Login to my Account</p>
-                          </div>
-                          <form action="" onSubmit={handleSubmit(Login)}>
-                            {Error === "Invalid Credentials" &&
-                              <div className='error'> Invalid Credentials </div>
-                            }
-                            <div style={{ position: "relative" }} className='mt-3'>
-                              <input type="text" className="form-control login_form_input" placeholder='E-mail' {...register('email', {
-                                required: true, validate: function (typedValue) {
-                                  if (typedValue.match(
-                                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                                  )) {
-                                    return true;
-                                  } else {
-                                    return false;
-                                  }
-                                }
-                              })} />
-                              {errors.email ? <div className='error'> Please Enter Your Valid Email </div> : null}
-
-                            </div>
-
-                            <div style={{ position: "relative" }} className='mt-3'>
-                              <input type="password" className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
-                              {errors.password ? <div className='error'> Please Enter Your Password </div> : null}
-
-                            </div>
-                            <button className='btn rounded login_btn mt-3' onClick={handleSubmit(Login)}>Login</button>
-                            <div className='mt-3'>
-                              <p className='m-0 fs-6'>
-                                I don't have an account?{' '}
-                                <NavLink to="/signup">
-                                  <span className="register_btn" onClick={() => {
-                                    setLogin('close')
-                                  }} >
-                                    Register
-                                  </span>
-                                </NavLink>
-
-                              </p>
-                            </div>
-                          </form>
+                )}
+                <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center'>
+                  <div className='d-flex align-items-end'>
+                    <li className="nav-item px-0">
+                      <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
+                        <div className='fs-2 heart'>
+                          <FaHeart />
                         </div>
-                      }
-                    </NavLink>
-                  </li>
-                }
-                {cu._id != undefined &&
-                  <>
-                    <li className="nav-item dropdown px-0">
-                      <NavLink
-                        to="/"
-                        className="nav-link dropdown-toggle1 "
-                        id="navbarDarkDropdownMenuLink1"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        style={{ borderBottom: "none", color: "white" }}
-                      >
-
-                        <div className='fs-2' style={{ color: "white" }}>
-                          <FaRegUser />
+                        <div className='fs-2 nav_search' onClick={handleSearchToggle}>
+                          <IoSearchSharp />
                         </div>
-
                       </NavLink>
-                      <ul className="dropdown-menu menu3" aria-labelledby="navbarDarkDropdownMenuLink">
-                        {cu?.email != "asd@gmail.com" &&
-                          <li><NavLink className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</NavLink></li>
-                        }
-                        {cu?.email === "asd@gmail.com" &&
-                          <li> <NavLink className="dropdown-item" to="/admin-dashboard">Admin </NavLink></li>
-                        }
-                        <li> <NavLink className="dropdown-item" to="/" onClick={Logout}>Logout </NavLink></li>
-                      </ul>
                     </li>
-                  </>
+                    {cu._id == undefined &&
+                      <li className="nav-item px-0">
+                        <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
+                          <div className='fs-2' onClick={toggleLogin}>
+                            <FaRegUser />
+                          </div>
+                          {login && (
+                            <div className='login_div p-4'>
+                              <div className='d-flex justify-content-end' style={{ color: "black" }} onClick={() => { setLogin(false) }}><RxCross1 /></div>
+                              <div>
+                                <p className='m-0 fs-5 text-center fw-bolder mt-2'>Login to my Account</p>
+                              </div>
+                              <form action="" onSubmit={handleSubmit(Login)}>
+                                {Error === "Invalid Credentials" &&
+                                  <div className='error'> Invalid Credentials </div>
+                                }
+                                <div style={{ position: "relative" }} className='mt-3'>
+                                  <input type="text" className="form-control login_form_input" placeholder='E-mail' {...register('email', {
+                                    required: true, validate: function (typedValue) {
+                                      if (typedValue.match(
+                                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                                      )) {
+                                        return true;
+                                      } else {
+                                        return false;
+                                      }
+                                    }
+                                  })} />
+                                  {errors.email ? <div className='error'> Please Enter Your Valid Email </div> : null}
 
-                }
-                <li className="nav-item px-0" onClick={() => {
-                  if (cu._id === undefined || cu.email === "asd@gmail.com") {
-                    setLogin("login")
-                    dispatch({
-                      type: 'LOGOUT_USER'
-                    });
-                    toast.warning("Login to see your Cart")
-                    move('/')
-                  } else {
-                    setOpen("open")
-                  }
-                }}>
-                  <NavLink className="nav-link nav-link1" style={{ border: "none", position: "relative" }}>
-                    <span className={`fs-2`}>
-                      <FiShoppingCart />
-                      <p className='m-0 cart_number'>
-                        {filterCartLength}
-                      </p>
-                    </span>
-                  </NavLink>
-                </li>
+                                </div>
+
+                                <div style={{ position: "relative" }} className='mt-3'>
+                                  <input type="password" className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+                                  {errors.password ? <div className='error'> Please Enter Your Password </div> : null}
+
+                                </div>
+                                <button className='btn rounded login_btn mt-3' onClick={handleSubmit(Login)}>Login</button>
+                                <div className='mt-3'>
+                                  <p className='m-0 fs-6'>
+                                    I don't have an account?{' '}
+                                    <NavLink to="/signup">
+                                      <span className="register_btn" onClick={() => {
+                                        setLogin(false)
+                                      }} >
+                                        Register
+                                      </span>
+                                    </NavLink>
+
+                                  </p>
+                                </div>
+                              </form>
+                            </div>
+                          )}
+                        </NavLink>
+                      </li>
+                    }
+                    {cu._id != undefined &&
+                      <>
+                        <li className="nav-item dropdown px-0">
+                          <NavLink
+                            to="/"
+                            className="nav-link dropdown-toggle1 "
+                            id="navbarDarkDropdownMenuLink1"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            style={{ borderBottom: "none", color: "white" }}
+                          >
+
+                            <div className='fs-2' style={{ color: "white" }}>
+                              <FaRegUser />
+                            </div>
+
+                          </NavLink>
+                          <ul className="dropdown-menu menu3" aria-labelledby="navbarDarkDropdownMenuLink">
+                            {cu?.email != "asd@gmail.com" &&
+                              <li><NavLink className="dropdown-item" to={`/user-profile/${cu._id}`}>Profile</NavLink></li>
+                            }
+                            {cu?.email === "asd@gmail.com" &&
+                              <li> <NavLink className="dropdown-item" to="/admin-dashboard">Admin </NavLink></li>
+                            }
+                            <li> <NavLink className="dropdown-item" to="/" onClick={Logout}>Logout </NavLink></li>
+                          </ul>
+                        </li>
+                      </>
+
+                    }
+                    <li className="nav-item px-0" onClick={() => {
+                      if (cu._id === undefined || cu.email === "asd@gmail.com") {
+                        setLogin(true)
+                        dispatch({
+                          type: 'LOGOUT_USER'
+                        });
+                        toast.warning("Login to see your Cart")
+                        move('/')
+                      } else {
+                        setOpen("open")
+                      }
+                    }}>
+                      <NavLink className="nav-link nav-link1" style={{ border: "none", position: "relative" }}>
+                        <span className={`fs-2`}>
+                          <FiShoppingCart />
+                          <p className='m-0 cart_number'>
+                            {filterCartLength}
+                          </p>
+                        </span>
+                      </NavLink>
+                    </li>
+                  </div>
+                </div>
               </div>
+
+
             </div>
           </div>
         </div>

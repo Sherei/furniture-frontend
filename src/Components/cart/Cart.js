@@ -79,7 +79,6 @@ export const Cart = () => {
             else if (size === "4'6ft-standard-ouble") additionalPrices += 180;
             else if (size === "5ft-king") additionalPrices += 250;
             else if (size === "6ft-super-king") additionalPrices += 300;
-
             if (headboard === 'extra-premium') additionalPrices += 79;
             else if (headboard === 'exclusive') additionalPrices += 129;
             else if (headboard === 'extra-exclusive') additionalPrices += 200;
@@ -91,12 +90,14 @@ export const Cart = () => {
             if (detail === 'button') additionalPrices += 10;
             if (ottoman === 'Yes') additionalPrices += 90;
           }
+
           if (item.category === 'sofa') {
             if (size === 'corner-sofa') additionalPrices += 350;
             else if (size === "5+2-seater") additionalPrices += 450;
             else if (size === "3-seater") additionalPrices += 200;
             else if (size === "2-seater") additionalPrices += 100;
           }
+
           if (item.category === 'mattress') {
             if (size === 'small-double') additionalPrices += 60;
             else if (size === "double") additionalPrices += 90;

@@ -88,7 +88,7 @@ const Checkout = () => {
 
         setLoading(true);
         try {
-            
+
             const orderItems = [];
             const orderId = uuidv4().substr(0, 10);
 
@@ -120,7 +120,7 @@ const Checkout = () => {
             const totalQuantity = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.quantity;
             }, 0);
-            const shippingFee = totalQuantity * 50;        
+            const shippingFee = totalQuantity * 50;
             const Ordertotal = totalSum + shippingFee;
 
             const orderItemsJSON = JSON.stringify(orderItems);
@@ -128,7 +128,9 @@ const Checkout = () => {
             data.orderId = orderId;
             data.total = Ordertotal;
             data.userId = userId;
-            
+            data.street = data.street;
+            data.appartment = data.appartment;
+
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ const Checkout = () => {
                     type: "REMOVE_MULTIPLE_ITEMS",
                     payload: userId,
                 });
-               await toast.success("Order is Placed");
+                await toast.success("Order is Placed");
                 window.location.reload();
                 window.location.href = `/order-placed/${userId}`;
             }
@@ -183,7 +185,7 @@ const Checkout = () => {
             <div className='row checkout_display d-flex justify-content-center'>
                 <div className='col-lg-6 col-sm-12 pt-3 px-3 mt-3 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
-                    <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
+                        <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
@@ -264,21 +266,22 @@ const Checkout = () => {
                             </div>
                         </div>
                         <hr className="mb-4" />
-
-                        <button className="fw-bolder btn btn-lg"
-                            style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                        >
-                            COMPLETE ORDER
-                        </button>
-                        <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
-
-                        <a href="https://wa.me/+923067208343" target='blank'>
-                            <button className="w-100 btn btn-lg chk_btn"
-                                style={{ backgroundColor: "rgb(38,211,103)" }}>
-                                Order Via WhatsApp
+                        
+                        <div className='chk_btns chk_btna1 mt-5'>
+                            <button className="fw-bolder btn btn-lg"
+                                style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
+                            >
+                                COMPLETE ORDER
                             </button>
-                        </a>
+                            <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
 
+                            <a href="https://wa.me/+923067208343" target='blank'>
+                                <button className="w-100 btn btn-lg chk_btn"
+                                    style={{ backgroundColor: "rgb(38,211,103)" }}>
+                                    Order Via WhatsApp
+                                </button>
+                            </a>
+                        </div>
                     </form>
 
                 </div>
@@ -357,11 +360,21 @@ const Checkout = () => {
                             <p className='fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>
                     </div>
+                    <div className='chk_btns chk_btns2 mt-5'>
+                        <button className="fw-bolder btn btn-lg"
+                            style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
+                            onClick={handleSubmit(Order)}
+                        >
+                            COMPLETE ORDER
+                        </button>
+                        <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
 
-                    <div className='my-5 d-flex gap-3 flex-wrap checout_display1'>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
+                        <a href="https://wa.me/+923067208343" target='blank'>
+                            <button className="w-100 btn btn-lg chk_btn"
+                                style={{ backgroundColor: "rgb(38,211,103)" }}>
+                                Order Via WhatsApp
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -387,6 +400,11 @@ const Checkout = () => {
 
                     </div>
                 </div>
+                <div className='my-5 d-flex gap-3 flex-wrap checout_display2'>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
+                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
+                    </div>
 
             </div>
         </div >
