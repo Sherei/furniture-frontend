@@ -400,7 +400,7 @@ const Checkout = () => {
 
                     </div>
                 </div>
-                <div className='my-5 d-flex gap-3 flex-wrap checout_display2'>
+                <div className='my-5 d-flex gap-3 justify-content-center flex-wrap checout_display2'>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
                         <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
