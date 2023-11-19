@@ -81,12 +81,15 @@ const OrderDetail = () => {
             </div>
             <div className='row' id="orderDetail">
                 <div className='col-12'>
-                    <p><b>Customer Name:</b> {order?.name1} {order?.name2}</p>
-                    <p><b>Customer E-mail: </b>{order?.email}</p>
+                    <p><b>Tracking Id: </b>{order?.orderId}</p >
+                    <p><b>Name:</b> {order?.name1} {order?.name2}</p>
+                    {order?.email && <p><b>E-mail: </b>{order?.email}</p>}
                     <p><b>Mobile Number: </b>{order?.number1}</p>
+                    <p><b>Street & House number: </b>{order?.street}</p>
+                    {order.appartment && <p><b>Appartment: </b>{order?.appartment}</p>}
                     <p><b>Shipping Address: </b>{order?.shipping}</p>
                     <p><b>Total Products: </b>{order?.orderItems.length}</p >
-                    <p><b>Tracking Id: </b>{order?.orderId}</p >
+                    {/* <p><b>Date: </b>{order?.formatDateTime(order.date)}</p > */}
                 </div>
             </div>
             <div className='col-12'>
@@ -109,7 +112,6 @@ const OrderDetail = () => {
                                     <th>Quantity</th>
                                     <th>Discount</th>
                                     <th>Final Price</th>
-                                    {/* <th>Date</th> */}
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,11 +142,10 @@ const OrderDetail = () => {
                                             </td>
                                             <td>{data?.category}</td>
                                             <td>{data?.subCategory ? data?.subCategory : "No subcategory"}</td>
-                                            <td className='text-center'>{`1 X £${parseFloat(data?.price)?.toFixed(2)}`}</td>
+                                            <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed()}`}</td>
                                             <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>
-                                            <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed(2)}%`}</td>
+                                            <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed()}%`}</td>
                                             <td className='text-center'>{`£${parseFloat(data?.total)?.toFixed(2)}`}</td>
-                                            {/* <td className='text-center'>{formatDateTime(data.date)}</td> */}
                                         </tr>
                                     ))
                                 ) : (
@@ -158,7 +159,7 @@ const OrderDetail = () => {
                 )}
             </div>
             <div className='col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end'>
-                <div className='update mb-3 p-3 border' style={{width:"250px"}}>
+                <div className='update mb-3 p-3 border' style={{ width: "300px" }}>
                     <div className='d-flex justify-content-between'>
                         <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>Summary</p>
                     </div>
@@ -166,12 +167,12 @@ const OrderDetail = () => {
                         <p>Items:</p>
                         <p>{order.orderItems.length}</p>
                     </div>
-                    <div className='fw-normal d-flex justify-content-between'>
+                    {/* <div className='fw-normal d-flex justify-content-between'>
                         <p>After Discount</p>
-                    </div>
+                    </div> */}
                     <div className='fw-bold d-flex justify-content-between'>
                         <p>Net Total:</p>
-                        <p>£{totalSum.toFixed(2)}</p>
+                        <p>&pound;{order?.total}</p>
                     </div>
                     <div className=''>
                         <a href="https://wa.me/+923067208343">

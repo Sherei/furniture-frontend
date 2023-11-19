@@ -270,9 +270,10 @@ const SingleAdd = () => {
                 product.image = product?.images[0];
                 product.discount = product?.discount;
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
-
+                
                 if (response.data === "Product Added") {
-                    toast.success("Added to Cart");
+                    await toast.success("Added to Cart");
+
                     dispatch({
                         type: "ADD_TO_CART",
                         payload: product,
@@ -963,14 +964,14 @@ const SingleAdd = () => {
                                     <p style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
                                 </div>
                                 <div className='sigle_quatity'>
-                                    <button className="plus_btn" onClick={Decrement}>
+                                    <button className="plus_btn fs-6" onClick={Decrement}>
                                         <FaMinus />
                                     </button>
 
                                     <p className="input_single text-center m-0 p-0">
                                         {quantity}
                                     </p>
-                                    <button className="plus_btn" onClick={Increment}>
+                                    <button className="plus_btn fs-6" onClick={Increment}>
                                         <FaPlus />
                                     </button>
                                 </div>
@@ -981,13 +982,13 @@ const SingleAdd = () => {
                             }
 
                             <div className='s_btn my-3'>
-                                <button className='btn s_cart' onClick={() => AddToCart(product,
+                                <button className='btn s_cart fw-bolder' onClick={() => AddToCart(product,
                                     size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice)}>Add to Cart</button>
-                                <button className='btn s_cart' onClick={(Order)}>Order now</button>
+                                <button className='btn s_cart fw-bolder' onClick={(Order)}>Order now</button>
                             </div>
                             <div className=''>
                                 <a href="https://wa.me/+923067208343" target='blank'>
-                                    <button className='btn s_whatsapp'>Buy via WhatsApp</button>
+                                    <button className='btn s_whatsapp fw-bolder'>Buy via WhatsApp</button>
                                 </a>
                             </div>
                         </div>

@@ -61,13 +61,9 @@
     object-fit: cover;
 }
 
-.hero_detail {
-  
-
-}
-.hero_shop{
+.hero_shop {
     position: absolute;
-    bottom:  30px;
+    bottom: 30px;
     left: 30px;
     background-color: #1b2950;
     border: none;
@@ -76,7 +72,8 @@
     padding: 15px 30px;
     font-weight: 600;
 }
-.hero_shop:hover{
+
+.hero_shop:hover {
     color: #F7EEDD;
     background-color: #1b2950;
     transform: scale(1.02);
@@ -96,6 +93,10 @@
     .hero_main {
         margin-top: 5px !important;
         width: 100%;
+    }
+
+    .swiper-slide img {
+        height: 350px;
     }
 
 }

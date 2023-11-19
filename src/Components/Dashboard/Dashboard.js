@@ -14,10 +14,10 @@ export const Dashboard = () => {
 
     useEffect(() => {
         window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+            top: 0
         });
     }, []);
+    
     let cu = useSelector(store => store.userSection.cu)
     const [users, setUsers] = useState([])
     const [product, setProducts] = useState([])

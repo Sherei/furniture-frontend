@@ -3,6 +3,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
 import { FaRegUser, FaSearch, FaAngleDown, FaArrowRight } from "react-icons/fa"
+import { IoSearchSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -140,14 +141,14 @@ export const Navbar = () => {
 
     {open === "open" && (
       <div className={`side_cart ${open === "open" ? "side_open" : ""}`}>
-        <div className='pt-3' style={{ position: "relative" }}>
-          <div className='px-2 d-flex justify-content-between' style={{ height: "fit-content" }}>
-            <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
-            <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
-          </div>
-          <div style={{ height: "70vh", overflow: "auto" }}>
+        <div className='pt-3 d-flex flex-column justify-content-between min-vh-100' style={{ position: "relative" }}>
+          <div className=''>
+            <div className='px-2 d-flex justify-content-between' style={{ height: "fit-content" }}>
+              <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
+              <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
+            </div>
             {filterCart.length === 0 ? (
-              <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+              <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '80vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
                 <button
                   className='btn review_btn'
@@ -166,6 +167,7 @@ export const Navbar = () => {
                   return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
                     style={{
                       maxWidth: "320px",
+                      position:"relative",
                       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
                     }}
                   >
@@ -177,7 +179,7 @@ export const Navbar = () => {
                         <p className='m-0' style={{ fontSize: "13px" }}>{item?.title}</p>
                         <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
                       </div>
-                        <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1/></button>
+                      <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1 /></button>
                     </div>
                   </div>
                 }
@@ -279,12 +281,19 @@ export const Navbar = () => {
                   </div>
                 </a>
               </div>
+
+
               <div className='d-flex align-items-center'>
-                <li className="nav-item heart">
-                  <FaSearch />
+
+                <li className="nav-item px-0">
+                  <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
+                    <div className='fs-2'>
+                      <IoSearchSharp />
+                    </div>
+                  </NavLink>
                 </li>
                 {cu._id == undefined &&
-                  <li className="nav-item">
+                  <li className="nav-item px-0">
                     <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
                       <div className='fs-2' onClick={() => { setLogin("login") }}>
                         <FaRegUser />
@@ -342,10 +351,10 @@ export const Navbar = () => {
                 }
                 {cu._id != undefined &&
                   <>
-                    <li className="nav-item dropdown">
+                    <li className="nav-item dropdown px-0">
                       <NavLink
                         to="/"
-                        className="nav-link dropdown-toggle1"
+                        className="nav-link dropdown-toggle1 "
                         id="navbarDarkDropdownMenuLink1"
                         role="button"
                         data-bs-toggle="dropdown"
@@ -371,7 +380,7 @@ export const Navbar = () => {
                   </>
 
                 }
-                <li className="nav-item" onClick={() => {
+                <li className="nav-item px-0" onClick={() => {
                   if (cu._id === undefined || cu.email === "asd@gmail.com") {
                     setLogin("login")
                     dispatch({
@@ -383,7 +392,7 @@ export const Navbar = () => {
                     setOpen("open")
                   }
                 }}>
-                  <NavLink className="nav-link nav-link1 px-lg-2 px-1" style={{ border: "none", position: "relative" }}>
+                  <NavLink className="nav-link nav-link1" style={{ border: "none", position: "relative" }}>
                     <span className={`fs-2`}>
                       <FiShoppingCart />
                       <p className='m-0 cart_number'>
@@ -425,7 +434,6 @@ export const Navbar = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item  nav-item2 dropdown">
-
                   <a
                     className="nav-link d-flex justify-content-between gap-1"
                     href="#"

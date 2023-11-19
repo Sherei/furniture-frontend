@@ -27,7 +27,7 @@ const Hero = () => {
                             modules={[Navigation, Autoplay]}
                             className="mySwiper"
                             autoplay={{
-                                delay: 3000,
+                                delay: 10000,
                                 disableOnInteraction: false,
                             }}
                             loop={true}
@@ -38,9 +38,7 @@ const Hero = () => {
                                 return <SwiperSlide>
                                     <div className='slide' key={index} style={{ position: "relative" }}>
                                         <img src={data.img} alt="No Network" />
-                                       
                                             <button className='btn hero_shop' onClick={() => move('/products/all')}>SHOP NOW</button>
-                                      
                                     </div>
                                 </SwiperSlide>
                             })

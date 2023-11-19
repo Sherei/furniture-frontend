@@ -130,15 +130,6 @@ const UserPanel = () => {
                                             <p className="text-muted mb-0">{cu.email}</p>
                                         </div>
                                     </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <p className="mb-0">Phone</p>
-                                        </div>
-                                        <div className="col-sm-9">
-                                            <p className="text-muted mb-0">{cu.number}</p>
-                                        </div>
-                                    </div>
                                     {/* <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
@@ -148,15 +139,7 @@ const UserPanel = () => {
                                             <p className="text-muted mb-0">{cu.password}</p>
                                         </div>
                                     </div> */}
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <p className="mb-0">Address</p>
-                                        </div>
-                                        <div className="col-sm-9">
-                                            <p className="text-muted mb-0">{cu.address}</p>
-                                        </div>
-                                    </div>
+                            
                                 </div>
                             </div>
                         </div>
@@ -235,7 +218,7 @@ const UserPanel = () => {
                                                                     Total
                                                                 </p>
                                                                 <p className='m-0'>
-                                                                    {data?.total}
+                                                                   &pound;{data?.total.toFixed(2)}
                                                                 </p>
                                                             </div>
                                                             <hr className='m-0 p-0' />

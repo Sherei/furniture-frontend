@@ -16,8 +16,7 @@ const Checkout = () => {
 
     useEffect(() => {
         window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+            top: 0
         });
     }, []);
 
@@ -89,12 +88,10 @@ const Checkout = () => {
 
         setLoading(true);
         try {
-            const totalSum = filterCart.reduce((accumulator, item) => {
-                return accumulator + item.total;
-            }, 0);
-
+            
             const orderItems = [];
             const orderId = uuidv4().substr(0, 10);
+
             filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
@@ -117,25 +114,21 @@ const Checkout = () => {
                 };
                 orderItems.push(itemData);
             });
-
-            const shippingFee = 50;
-
-            const total = totalSum + shippingFee;
+            const totalSum = filterCart.reduce((accumulator, item) => {
+                return accumulator + item.total;
+            }, 0);
+            const totalQuantity = filterCart.reduce((accumulator, item) => {
+                return accumulator + item.quantity;
+            }, 0);
+            const shippingFee = totalQuantity * 50;        
+            const Ordertotal = totalSum + shippingFee;
 
             const orderItemsJSON = JSON.stringify(orderItems);
             data.orderItems = orderItemsJSON;
-            data.name1 = data.name1;
-            data.name2 = data.name2;
             data.orderId = orderId;
-            data.total = total;
+            data.total = Ordertotal;
             data.userId = userId;
-            data.shipping = data.shipping;
-            data.email = data.email;
-            data.country = data.country;
-            data.city = data.city;
-            data.postal = data.postal;
-            data.note = data.note;
-            data.payment = data.payment;
+            
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -148,7 +141,7 @@ const Checkout = () => {
                     type: "REMOVE_MULTIPLE_ITEMS",
                     payload: userId,
                 });
-                toast.success("Order is Placed");
+               await toast.success("Order is Placed");
                 window.location.reload();
                 window.location.href = `/order-placed/${userId}`;
             }
@@ -189,8 +182,8 @@ const Checkout = () => {
         <div className='container-fluid mt-3'>
             <div className='row checkout_display d-flex justify-content-center'>
                 <div className='col-lg-6 col-sm-12 pt-3 px-3 mt-3 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
-                    <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
+                    <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
@@ -209,7 +202,15 @@ const Checkout = () => {
                         </div>
                         <hr />
                         <div className="row py-3">
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Street</p>
+                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Address</p>
+                            <div className="col-md-12 mb-3">
+                                <input type="text" placeholder='House Number & Street Name*' className="form-control py-3" {...register('street', { required: true })} />
+                                {errors.street ? <div className='error'>This Field is required</div> : null}
+                            </div>
+                            <div className="col-md-12 mb-3">
+                                <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-3" {...register('appartment')} />
+                                {errors.appartment ? <div className='error'>This Field is required</div> : null}
+                            </div>
                             <div className="col-md-6 mb-3">
                                 <input type="text" placeholder='Country*' className="form-control py-3" {...register('country', { required: true })} />
                                 {errors.country ? <div className='error'>This Field is required</div> : null}
@@ -227,19 +228,9 @@ const Checkout = () => {
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='E-mail *' className="form-control py-3" {...register('email', {
-                                    required: "true", validate: function (typedValue) {
-                                        if (typedValue.match(
-                                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                                        )) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    }
-                                })} />
+                                <input type="email" placeholder='e-mail' className="form-control py-3" {...register('email')} />
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
-                                <p className='mt-2 mb-0 fw-bold'>Note: &nbsp;&nbsp; Remeber all orders are delivered on ground floor.
+                                <p className='mt-2 mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: &nbsp;&nbsp; Remeber all orders are delivered on ground floor.
                                     Extra charges for uplift or desired room.</p>
                             </div>
                         </div>
@@ -256,10 +247,10 @@ const Checkout = () => {
                         <div className='py-3'>
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Payment</p>
                             <div className="col-md-12 mb-3">
-                                <input type="text" className="form-control py-3 rounded"
-                                    value="Cash on Delivery (COD) &pound;50 Deposit Required" {...register('payment')}
-                                    style={{ border: "1px solid lightgray" }}
-                                />
+                                <div className='px-3 py-3 d-flex justify-content-between align-items-center  rounded-3'
+                                    style={{ border: "1px solid lightgray" }}>
+                                    <p className='m-0'>Cash on Delivery (COD) &pound;50 Deposit Required</p>
+                                </div>
                             </div>
                         </div>
                         <hr className="mb-4" />

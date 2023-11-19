@@ -15,8 +15,7 @@ import './cart.css';
 export const Cart = () => {
   useEffect(() => {
     window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+      top: 0
     });
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaTh,
   FaBars,
@@ -22,6 +22,12 @@ import "./sidebar.css"
 
 
 const Sidebar = () => {
+  useEffect(() => {
+    window.scrollTo({
+        top: 0,
+    });
+}, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState('dashboard');
 

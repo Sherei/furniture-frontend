@@ -108,7 +108,8 @@ const Review = () => {
                 </div>
 
                 <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5'>
-                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >Leave us a Review</h1>
+                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >
+                        Leave Your Feedback</h1>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -140,7 +141,7 @@ const Review = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
-                                Comment *
+                            Write a Review *
                             </label>
                             <textarea
                                 {...register('comment', { required: true })}
@@ -148,7 +149,7 @@ const Review = () => {
                                 className="form-control"
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
-                                rows={5}
+                                rows={7}
                             />
                             {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
 

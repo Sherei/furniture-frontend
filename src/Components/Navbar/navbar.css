@@ -63,7 +63,9 @@
   color: white !important;
 }
 
-
+.nav-link{
+  padding: 10px 5px;
+}
 .nav-item a,
 .nav-item2 a {
   color: black !important;
@@ -100,7 +102,6 @@
 
 .heart {
   color: white;
-  padding-right: 10px;
 }
 
 .dropdown-toggle1::after {
@@ -220,7 +221,7 @@
   content: "";
   position: absolute;
   top: -10px;
-  right: 69px;
+  right: 52px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -298,6 +299,9 @@
   color: red;
 }
 .side_remove{
+  position: absolute;
+  top: 10px;
+  right: 10px;
   border: none;
   background-color: transparent;
 }
