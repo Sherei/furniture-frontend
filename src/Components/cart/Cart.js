@@ -73,7 +73,6 @@ export const Cart = () => {
       prevCart.map((item) => {
         if (item._id === itemId) {
           const { size, headboard, detail, ottoman, base, mattress } = item;
-
           let additionalPrices = 0;
           if (item.category === 'bed') {
             if (size === '4ft-small-double') additionalPrices += 120;
@@ -105,7 +104,7 @@ export const Cart = () => {
             else if (size === "super-king") additionalPrices += 190;
           }
 
-          const updatedFprice = (item.price + additionalPrices) * newQuantity;
+          const updatedFprice = (item.price * newQuantity) + additionalPrices;
 
           return {
             ...item,
@@ -122,7 +121,7 @@ export const Cart = () => {
   const totalQuantity = filterCart.reduce((accumulator, item) => {
     return accumulator + item.quantity;
   }, 0);
-  
+
   const shippingFee = totalQuantity * 50;
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
@@ -227,7 +226,7 @@ export const Cart = () => {
                   <div className='col-8'>
                     <div className='w-100 px-2'>
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize:"14px" }}>
+                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                           {item?.title}
                         </p>
                         <button className='btn text-danger' onClick={() => DeleteCartItem(item._id)}>
@@ -237,16 +236,16 @@ export const Cart = () => {
                       <hr className='m-0 p-0' />
 
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )",fontSize:"14px"}}>
+                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                           Price
                         </p>
-                        <p className='m-0' style={{ fontSize:"14px"}}>
+                        <p className='m-0' style={{ fontSize: "14px" }}>
                           &pound;{item?.total.toFixed()}
                         </p>
                       </div>
                       <hr className='m-0 p-0' />
                       <div className='py-2  d-flex justify-content-between align-items-center'>
-                        <p className='mb-0' style={{ color: "rgb(2, 2, 94 )", fontSize:"14px" }}>
+                        <p className='mb-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                           Quantity
                         </p>
                         <div className="sigle_quatity " style={{ border: "none" }}>
@@ -261,10 +260,10 @@ export const Cart = () => {
                       </div>
                       <hr className='m-0 p-0' />
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )", fontSize:"14px" }}>
+                        <p className='mb-0 text-black' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                           Subtotal
                         </p>
-                        <p className='m-0 fw-bolder fs-5' style={{ color: "red",fontSize:"17px" }}>&pound;{item?.total.toFixed()}</p>
+                        <p className='m-0 fw-bolder fs-5' style={{ color: "red", fontSize: "17px" }}>&pound;{item?.total.toFixed()}</p>
                       </div>
                     </div>
                   </div>
@@ -358,22 +357,22 @@ export const Cart = () => {
               <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>{filterCart?.length}</p>
             </div>
             <div className='fw-normal d-flex justify-content-between'>
-              <p className='fw-bolder m-0' style={{fontSize:"15px"}}>Subtotal:</p>
-              <p className='text-muted m-0' style={{fontSize:"15px"}}>&pound;{subtotal.toFixed(2)}</p>
+              <p className='fw-bolder m-0' style={{ fontSize: "15px" }}>Subtotal:</p>
+              <p className='text-muted m-0' style={{ fontSize: "15px" }}>&pound;{subtotal.toFixed(2)}</p>
             </div>
             <hr className='m-1' />
 
             <div className='fw-normal d-flex justify-content-between align-items-center gap-3'>
-              <p className='fw-bolder m-0' style={{fontSize:"15px"}}>Shipping:</p>
+              <p className='fw-bolder m-0' style={{ fontSize: "15px" }}>Shipping:</p>
               <div>
-                <p className='text-muted m-0  text-end' style={{fontSize:"13px"}}>Standard Delivery: <span className='fw-bolder'>&pound;{shippingFee.toFixed(2)}</span> </p>
+                <p className='text-muted m-0  text-end' style={{ fontSize: "13px" }}>Standard Delivery: <span className='fw-bolder'>&pound;{shippingFee.toFixed(2)}</span> </p>
                 <p className='m-0 text-end' style={{ fontSize: "11px" }}>Shipping options will be updated during checkout.</p>
               </div>
             </div>
             <hr className='m-1' />
             <div className='fw-normal d-flex justify-content-between mt-4'>
-              <p className='fw-bolder m-0' style={{fontSize:"17px"}}>Total:</p>
-              <p className='fw-bolder m-0' style={{ color: "red",fontSize:"17px" }}>&pound;{total.toFixed(2)}</p>
+              <p className='fw-bolder m-0' style={{ fontSize: "17px" }}>Total:</p>
+              <p className='fw-bolder m-0' style={{ color: "red", fontSize: "17px" }}>&pound;{total.toFixed(2)}</p>
             </div>
 
             {filterCart.length > 0 && (
