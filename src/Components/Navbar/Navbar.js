@@ -26,9 +26,12 @@ export const Navbar = () => {
   const cartLength = cartItems.length;
 
   const dispatch = useDispatch()
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [cart, setCart] = useState([])
   const [open, setOpen] = useState("close");
   const [Error, setError] = useState("");
+  const [searchValue, setSearchValue] = useState("")
   const [loading, setLoading] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
   const [login, setLogin] = useState(false);
@@ -44,7 +47,7 @@ export const Navbar = () => {
   const toggleLogin = () => {
     setLogin(!login);
   };
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -61,6 +64,7 @@ export const Navbar = () => {
     };
   }, []);
 
+
   useEffect(() => {
     setLoading(true);
     axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
@@ -75,7 +79,38 @@ export const Navbar = () => {
     });
   }, []);
 
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+      try {
+        if (res) {
+          setProducts(res.data);
+        }
+      } catch (e) {
+        // Handle any errors here
+      } finally {
+        setLoading(false);
+      }
+    });
+  }, []);
+  
+  useEffect(() => {
 
+    const filtered = products?.filter((product) => {
+      const searchResult = searchValue?.toLowerCase();
+      const title = product?.title?.toLowerCase();
+      const category = product?.category?.toLowerCase();
+      const subCategory = product?.subCategory?.toLowerCase();
+      const titleMatch = title?.includes(searchResult);
+      const categoryMatch = category?.includes(searchResult);
+      const subCategoryMatch = subCategory?.includes(searchResult);
+  
+      return titleMatch || categoryMatch || subCategoryMatch;
+    });
+  
+    setFilteredProducts(filtered);
+  }, [searchValue]);
+  
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -116,6 +151,7 @@ export const Navbar = () => {
   };
 
   const filterCart = cart?.filter((item) => item.userId === cu._id)
+
   const filterCartLength = filterCart.length
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
@@ -277,11 +313,13 @@ export const Navbar = () => {
                   </NavLink>
                 </div>
                 <div className='col-6 d-flex align-items-center nav_cotact'>
-                  <input type="search" placeholder='Search Anything' className='form-control' />
+                  <input type="search" placeholder='Search Anything' className='form-control'
+                    onChange={(e) => setSearchValue(e.target.value)} />
                 </div>
                 {search && (
                   <div className='col-12 d-flex align-items-center nav_searchbar'>
-                    <input type="search" placeholder='Search Anything' className='form-control' />
+                    <input type="search" placeholder='Search Anything' className='form-control'
+                      onChange={(e) => setSearchValue(e.target.value)} />
                   </div>
                 )}
                 <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center'>
@@ -540,5 +578,59 @@ export const Navbar = () => {
 
       </div>
     </div>
+    
+    {searchValue && (
+      <div className='container'>
+        <div className='my-4 fs-2'>
+          Search Result...
+        </div>
+        <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
+          {filteredProducts?.map((product, index) => (
+            <div className="col " key={index} >
+              <div className='product_box'>
+                <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
+                  <img src={product.images[0]} alt="No network" />
+                  {product.discount && product.discount > 0 ? (
+                    <div className='discount'>
+                      {`${product.discount}%`}
+                    </div>
+                  ) : null}
+                  <div className='overlay'>
+                    {product.images[1] &&
+                      <img src={product.images[1]} alt="" />
+                    }
+                  </div>
+                </div>
+                <p className='card_title px-2'>{product.title}</p>
+                {product.description &&
+                  <p className='p_description px-2'>{product.description}</p>
+                }
+                <div className='text-left'>
+                  {product.discount && product.discount > 0 ? (
+                    <>
+                      <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(1)}`}</span>
+                      <span className='card_price'><s>{`£${product.price?.toFixed(1)}`}</s></span>
+                    </>
+                  ) : (
+                    <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(2)}`}</span>
+                  )}
+                </div>
+                <div className='product_btns'>
+                  <button className='btn p_detail_btn' onClick={() => move("/single_Add/" + product._id)}>
+                    View Detail
+                  </button>
+                  <a href='https://wa.me/+923067208343' target="blank">
+                    <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+          }
+        </div>
+      </div>
+      )
+    }
+
   </>
 };

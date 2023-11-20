@@ -15,7 +15,6 @@
 }
 
 .nav_padding {
-  padding-left: 45px;
   padding-right: 10px;
 }
 
@@ -336,14 +335,16 @@
 }
 
 .nav_searchbar {
+  /* border: 1px solid red; */
   position: absolute;
-  top: 78px;
-  right: 50px;
-  width: 250px;
+  top: 75px;
+  right: 0px;
+  width: 100%;
   z-index: 10000;
 }
 
 .nav_searchbar input {
+  width: 100%;
   padding: 10px;
 }
 
@@ -363,6 +364,10 @@
 @media screen and (max-width:991px) {
   .nav_search {
     display: block;
+  }
+
+  .nav_padding {
+    padding-left: 45px;
   }
 
   .heart {
