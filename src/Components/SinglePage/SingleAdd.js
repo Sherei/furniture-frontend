@@ -960,8 +960,8 @@ const SingleAdd = () => {
                                 {/*.................................... Footstools End .......................... */}
                             </div>
                             <div className='sigle_quatity_main mt-1'>
-                                <div className='mt-2'>
-                                    <p style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
+                                <div className=''>
+                                    <p className='m-0' style={{ fontSize: "17px", color: "#1b2950", fontWeight: "600" }}>Quantity: </p>
                                 </div>
                                 <div className='sigle_quatity'>
                                     <button className="plus_btn fs-6" onClick={Decrement}>
