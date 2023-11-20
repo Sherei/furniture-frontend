@@ -16,7 +16,7 @@ const Products = () => {
             top: 0
         });
     }, []);
-    
+
     const cu = useSelector(store => store.userSection.cu)
     const { prodctName } = useParams()
     const [data, setData] = useState([]);
@@ -26,10 +26,19 @@ const Products = () => {
     const [category, setCategory] = useState("");
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('')
-
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(10000);
     const move = useNavigate()
 
+    const handleMinRangeChange = (e) => {
+        const value = parseInt(e.target.value);
+        setMinPrice(value);
+    };
 
+    const handleMaxRangeChange = (e) => {
+        const value = parseInt(e.target.value);
+        setMaxPrice(value);
+    };
     useEffect(() => {
         setLoading(true);
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -80,6 +89,8 @@ const Products = () => {
         const Lcategory = (category ?? "").toLowerCase();
         const LproductName = (prodctName ?? "").toLowerCase();
 
+        const priceInRange = parseInt(product.price) >= minPrice && parseInt(product.price) <= maxPrice;
+
         const LsearchMatch = Lcategory.includes(Lsearch) ||
             product?.category?.toLowerCase().includes(Lsearch) ||
             product?.title?.toLowerCase().includes(Lsearch);
@@ -92,7 +103,7 @@ const Products = () => {
             product?.subCategory?.toLowerCase().includes(Lcategory)
         );
 
-        return productNameMatches && categoryMatches && LsearchMatch;
+        return productNameMatches && categoryMatches && LsearchMatch && priceInRange;
     });
 
 
@@ -125,7 +136,7 @@ const Products = () => {
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne"
-                                        aria-expanded="true"
+                                        aria-expanded="false"
                                         aria-controls="collapseOne"
                                     >
                                         <p className='fw-bolder fs-6 pt-2'>All Sofas</p>
@@ -133,7 +144,7 @@ const Products = () => {
                                 </h2>
                                 <div
                                     id="collapseOne"
-                                    className="accordion-collapse collapse show"
+                                    className="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div className="accordion-body">
@@ -159,7 +170,7 @@ const Products = () => {
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo"
-                                        aria-expanded="true"
+                                        aria-expanded="false"
                                         aria-controls="collapseTwo"
                                     >
                                         <p className='fw-bolder fs-6 pt-2'>All Beds</p>
@@ -167,7 +178,7 @@ const Products = () => {
                                 </h2>
                                 <div
                                     id="collapseTwo"
-                                    className="accordion-collapse collapse show"
+                                    className="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div className="accordion-body">
@@ -182,29 +193,33 @@ const Products = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            <button className='btn accordian_btn2' onClick={() => setCategory("ottoman-beds")}>Ottoman Box</button> <br />
+                            {prodctName === "ottoman-box" && <>
+                                <button className='btn accordian_btn2' onClick={() => setCategory("ottoman-beds")}>
+                                    Ottoman Box
+                                </button> <br />
+                            </>
+                            }
 
                             <button className='btn accordian_btn2' onClick={() => setCategory("mattress")}>Mattress</button> <br />
 
                             <button className='btn accordian_btn2' onClick={() => setCategory("footstools")}>Footstool</button>
 
-                            <div className=" mt-2 accordion-item accordian-item1">
+                            <div className="accordion-item accordian-item1">
                                 <h2 className="accordion-header custom_header">
                                     <button
                                         className="accordion-button accordian_btn"
                                         type="button"
                                         data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree"
-                                        aria-expanded="true"
-                                        aria-controls="collapseThree"
+                                        data-bs-target="#collapseFour"
+                                        aria-expanded="false"
+                                        aria-controls="collapseFour"
                                     >
-                                        <p className='fw-bolder fs-6'>Sort by</p>
+                                        <p className='fw-bolder fs-6 pt-2'>Sort by</p>
                                     </button>
                                 </h2>
                                 <div
-                                    id="collapseThree"
-                                    className="accordion-collapse collapse show"
+                                    id="collapseFour"
+                                    className="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div className="accordion-body">
@@ -213,6 +228,35 @@ const Products = () => {
                                         <p onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
                                     </div>
                                 </div>
+                            </div>
+                            <button className='btn accordian_btn2'>Filter by Price</button>
+
+                            <div className='px-2' >
+                                <label htmlFor="minPriceRange">Min Price: {minPrice}</label>
+                                <input
+                                    type="range"
+                                    id="minPriceRange"
+                                    className='w-100'
+                                    min={0}
+                                    max={9000}
+                                    step={10}
+                                    value={minPrice}
+                                    onChange={handleMinRangeChange}
+                                />
+                            </div>
+
+                            <div className='px-2'>
+                                <label htmlFor="maxPriceRange">Max Price: {maxPrice}</label>
+                                <input
+                                    type="range"
+                                    id="maxPriceRange"
+                                    className='w-100'
+                                    min={0}
+                                    max={10000}
+                                    step={10}
+                                    value={maxPrice}
+                                    onChange={handleMaxRangeChange}
+                                />
                             </div>
                         </div>
                     </div>
