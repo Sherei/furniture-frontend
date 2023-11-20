@@ -93,7 +93,7 @@ export const Navbar = () => {
       }
     });
   }, []);
-  
+
   useEffect(() => {
 
     const filtered = products?.filter((product) => {
@@ -104,13 +104,13 @@ export const Navbar = () => {
       const titleMatch = title?.includes(searchResult);
       const categoryMatch = category?.includes(searchResult);
       const subCategoryMatch = subCategory?.includes(searchResult);
-  
+
       return titleMatch || categoryMatch || subCategoryMatch;
     });
-  
+
     setFilteredProducts(filtered);
   }, [searchValue]);
-  
+
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -578,12 +578,17 @@ export const Navbar = () => {
 
       </div>
     </div>
-    
+
     {searchValue && (
       <div className='container'>
         <div className='my-4 fs-2'>
           Search Result...
         </div>
+        {filteredProducts.length ===0 && (
+          <div className='mb-5'>
+            <p>No result found Try with different keyword</p>
+          </div>
+        )}
         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
           {filteredProducts?.map((product, index) => (
             <div className="col " key={index} >
@@ -629,7 +634,7 @@ export const Navbar = () => {
           }
         </div>
       </div>
-      )
+    )
     }
 
   </>
