@@ -299,8 +299,9 @@
 
 .side_remove {
   position: absolute;
-  top: 20px;
-  right: 1px;
+  bottom: 13px;
+  right: 3px;
+  font-weight: 700;
   border: none;
   background-color: transparent;
 }
