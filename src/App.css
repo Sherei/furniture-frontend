@@ -8,9 +8,12 @@ body {
 
 * {
   font-family: 'Poppins', sans-serif;
-  text-transform: capitalize !important;
+  /* text-transform: capitalize !important; */
 }
+p{
+  text-transform: capitalize !important;
 
+}
 a {
   text-decoration: none !important;
 }

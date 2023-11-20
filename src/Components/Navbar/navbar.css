@@ -118,7 +118,6 @@
 
 .nav_cotact {
   display: flex;
-  gap: 50px;
 }
 
 .nav_cotact p {
@@ -255,9 +254,9 @@
 
 .cart_number {
   position: absolute;
-  top: 5px;
-  right: 3px;
-  width: 15px;
+  top: 18px;
+  right: 0px;
+  width: 18px;
   height: 15px;
   background-color: red;
   color: white;
@@ -309,22 +308,36 @@
 .nav_search_icon {
   display: none;
 }
-
+.nav_search_btn{
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  padding: 1px 20px !important;
+  font-size: 29px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+}
 .nav_cotact input {
   width: 100% !important;
   padding: 10px;
-  background-color: transparent;
-  border: 1px solid lightgray;
-  color: white;
+  border: none;
+  outline: none;
+  background-color: white !important;
+  /* border: 1px solid #1b2950; */
+  color: #1b2950;
 }
 
 .nav_cotact input::placeholder {
-  color: white;
+  color: #1b2950;
 }
 
 .nav_cotact input:focus {
   background-color: transparent;
-  color: white;
+  color: #1b2950;
+  border: none;
+  outline: none;
 }
 
 .nav1_row {
@@ -366,7 +379,9 @@
   .nav_search {
     display: block;
   }
-
+  .nav_search_btn{
+    display: none !important;
+  }
   .nav_padding {
     padding-left: 45px;
   }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser, FaSearch, FaAngleDown, FaArrowRight, FaHeart } from "react-icons/fa"
+import { FaRegUser, FaAngleDown, FaArrowRight, FaHeart } from "react-icons/fa"
 import { IoSearchSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
@@ -104,21 +104,21 @@ export const Navbar = () => {
       const titleMatch = title?.includes(searchResult);
       const categoryMatch = category?.includes(searchResult);
       const subCategoryMatch = subCategory?.includes(searchResult);
-      const description = description?.includes(searchResult);
-      const descriptionHead2 = descriptionHead2?.includes(searchResult);
-      const description2 = description2?.includes(searchResult);
-      const descriptionHead3 = descriptionHead3?.includes(searchResult);
-      const description3 = description3?.includes(searchResult);
-      const descriptionHead4 = descriptionHead4?.includes(searchResult);
-      const description4 = description4?.includes(searchResult);
-      const featureHead = featureHead?.includes(searchResult);
-      const feature1 = feature1?.includes(searchResult);
-      const feature2 = feature2?.includes(searchResult);
-      const feature3 = feature3?.includes(searchResult);
-      const feature4 = feature4?.includes(searchResult);
-      const feature5 = feature5?.includes(searchResult);
-      const feature6 = feature6?.includes(searchResult);
-      const feature7 = feature7?.includes(searchResult);
+      const description = product?.description?.includes(searchResult);
+      const descriptionHead2 = product?.descriptionHead2?.includes(searchResult);
+      const description2 = product?.description2?.includes(searchResult);
+      const descriptionHead3 = product?.descriptionHead3?.includes(searchResult);
+      const description3 = product?.description3?.includes(searchResult);
+      const descriptionHead4 = product?.descriptionHead4?.includes(searchResult);
+      const description4 = product?.description4?.includes(searchResult);
+      const featureHead = product?.featureHead?.includes(searchResult);
+      const feature1 = product?.feature1?.includes(searchResult);
+      const feature2 = product?.feature2?.includes(searchResult);
+      const feature3 = product?.feature3?.includes(searchResult);
+      const feature4 = product?.feature4?.includes(searchResult);
+      const feature5 = product?.feature5?.includes(searchResult);
+      const feature6 = product?.feature6?.includes(searchResult);
+      const feature7 = product?.feature7?.includes(searchResult);
 
       return titleMatch || categoryMatch || subCategoryMatch || description || description2 || description3 ||
         description4 || descriptionHead2 || descriptionHead3 || descriptionHead4 || featureHead || feature1 || feature2 || feature3
@@ -329,9 +329,10 @@ export const Navbar = () => {
                     />
                   </NavLink>
                 </div>
-                <div className='col-6 d-flex align-items-center nav_cotact'>
-                  <input type="search" placeholder='Search Anything' className='form-control'
+                <div className='col-6 d-flex align-items-center nav_cotact' style={{ position: "relative" }}>
+                  <input type="search" placeholder='Search Anything' className=''
                     onChange={(e) => setSearchValue(e.target.value)} />
+                  <button className='nav_search_btn '><IoSearchSharp /></button>
                 </div>
                 {search && (
                   <div className='col-12 d-flex align-items-center nav_searchbar'>

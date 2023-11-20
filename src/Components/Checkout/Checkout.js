@@ -165,11 +165,9 @@ const Checkout = () => {
 
     if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
         if (loading) {
-            return (
                 <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                     <Loader />
                 </div>
-            );
         } else {
             return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
@@ -197,9 +195,9 @@ const Checkout = () => {
                                 {errors.name2 ? <div className='error'>This Field is required</div> : null}
 
                             </div>
-                            <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='Address*' className="form-control py-3" {...register('shipping', { required: true })} />
-                                {errors.shipping ? <div className='error'>This Field is required</div> : null}
+                            <div className="col-12 mb-3">
+                                <input type="number" placeholder='Contact Number*' className="form-control py-3" {...register('number1', { required: true })} />
+                                {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
                         <hr />
@@ -225,14 +223,13 @@ const Checkout = () => {
                                 <input type="number" placeholder='PostCode*' className="form-control py-3" {...register('postal', { required: true })} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
+                         
                             <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='Contact Number*' className="form-control py-3" {...register('number1', { required: true })} />
-                                {errors.number1 ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-12 mb-3">
-                                <input type="email" placeholder='e-mail' className="form-control py-3" {...register('email')} />
+                                <input type="email" placeholder='E-mail' className="form-control py-3" {...register('email')} />
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
-                                <p className='mt-2 mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: &nbsp;&nbsp; Remeber all orders are delivered on ground floor.
+                            </div>
+                            <div className="col-md-12 mt-3">
+                                <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: &nbsp;&nbsp; Remeber all orders are delivered on ground floor.
                                     Extra charges for uplift or desired room.</p>
                             </div>
                         </div>
@@ -298,7 +295,10 @@ const Checkout = () => {
                             <div className='row border mb-1 py-3' key={index}>
                                 <div className='col-3' style={{ position: "relative" }}>
                                     <img className='img-fluid' src={item?.image} alt="No Internet" />
-                                    <p className='m-0 cart_number'>
+                                    <p className='m-0 cart_number' style={{
+                                        top:"-4px",
+                                        right:"4px,"
+                                    }}>
                                         {item?.quantity}
                                     </p>
                                 </div>

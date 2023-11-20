@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import Loader from "../Loader/Loader"
 
 
-const Sofas = () => {
+const CornerSofas = () => {
     let cu = useSelector(store => store.userSection.cu);
 
     const [data, setData] = useState([]);
@@ -33,11 +33,11 @@ const Sofas = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }}  >All Sofas</p>
+                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }}  >Corner Sofas</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
-                            move("/Products/sofa");
+                            move("/Products/corner-sofas");
                         }}>
                             View All
                         </p>
@@ -45,7 +45,7 @@ const Sofas = () => {
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
 
-                    {data?.filter((product) => product.category === "sofa").length === 0 &&
+                    {data?.filter((product) => product.subCategory === "corner-sofas").length === 0 &&
                         <div className='px-4'>
                             No product available related to this category
                         </div>
@@ -57,7 +57,7 @@ const Sofas = () => {
                             </div>
                         ) : (
                             data
-                                .filter((item) => item.category === "sofa")
+                                .filter((item) => item.subCategory === "corner-sofas")
                                 .slice(0, 15)
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
@@ -103,4 +103,4 @@ const Sofas = () => {
     )
 }
 
-export default Sofas;
+export default CornerSofas;
