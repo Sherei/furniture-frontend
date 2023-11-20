@@ -104,8 +104,25 @@ export const Navbar = () => {
       const titleMatch = title?.includes(searchResult);
       const categoryMatch = category?.includes(searchResult);
       const subCategoryMatch = subCategory?.includes(searchResult);
+      const description = description?.includes(searchResult);
+      const descriptionHead2 = descriptionHead2?.includes(searchResult);
+      const description2 = description2?.includes(searchResult);
+      const descriptionHead3 = descriptionHead3?.includes(searchResult);
+      const description3 = description3?.includes(searchResult);
+      const descriptionHead4 = descriptionHead4?.includes(searchResult);
+      const description4 = description4?.includes(searchResult);
+      const featureHead = featureHead?.includes(searchResult);
+      const feature1 = feature1?.includes(searchResult);
+      const feature2 = feature2?.includes(searchResult);
+      const feature3 = feature3?.includes(searchResult);
+      const feature4 = feature4?.includes(searchResult);
+      const feature5 = feature5?.includes(searchResult);
+      const feature6 = feature6?.includes(searchResult);
+      const feature7 = feature7?.includes(searchResult);
 
-      return titleMatch || categoryMatch || subCategoryMatch;
+      return titleMatch || categoryMatch || subCategoryMatch || description || description2 || description3 ||
+        description4 || descriptionHead2 || descriptionHead3 || descriptionHead4 || featureHead || feature1 || feature2 || feature3
+        || feature4 || feature5 || feature6 || feature7;
     });
 
     setFilteredProducts(filtered);
@@ -584,7 +601,7 @@ export const Navbar = () => {
         <div className='my-4 fs-2'>
           Search Result...
         </div>
-        {filteredProducts.length ===0 && (
+        {filteredProducts.length === 0 && (
           <div className='mb-5'>
             <p>No result found Try with different keyword</p>
           </div>
