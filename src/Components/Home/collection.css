@@ -1,0 +1,15 @@
+.all_title {
+    text-transform: uppercase;
+    text-align: center;
+    color: #02025E;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.all_collection_main:hover {
+    cursor: pointer;
+}
+.all_collection_main:hover .all_img{
+    transform: scale(1.5);
+    transition: all linear 5s;
+}
