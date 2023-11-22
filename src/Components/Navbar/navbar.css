@@ -5,7 +5,7 @@
 }
 
 .logo_navbar {
-  width: 150px;
+  width: 125px;
   max-height: 80px;
 }
 
@@ -355,10 +355,10 @@
   padding: 10px;
 }
 @media screen and (max-width:768px) {
-  .logo_navbar {
+  /* .logo_navbar {
     width: 125px;
     height: 100px;
-  }
+  } */
 }
 
 @media screen and (max-width:550px) {
@@ -376,10 +376,6 @@
   .nav_search_btn{
     display: none !important;
   }
-  .nav_padding {
-    padding-left: 45px;
-  }
-
   .heart {
     display: none;
   }
