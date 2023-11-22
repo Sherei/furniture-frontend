@@ -5,10 +5,7 @@ import axios from 'axios';
 import "./home_category.css"
 
 const Categories = () => {
-  let array = [
 
-    { img: "/footstools.jpg", title: "Fotstools", path: "/Products/" },
-  ]
   const move = useNavigate()
 
   const [product, setProduct] = useState([])
@@ -34,7 +31,7 @@ const Categories = () => {
                     </div>
                     <div>
                         <p className='view ' onClick={() => {
-                            move("/Products/all");
+                            move("/categories");
                         }}>
                             View All
                         </p>

@@ -325,7 +325,7 @@ export const Navbar = () => {
           <div className="row">
             <div className="col nav1">
               <div className='row nav1_row'>
-                <div className='col-3 d-flex align-items-center justify-content-start p-0' style={{position:"relative"}}>
+                <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{position:"relative"}}>
                   <div>
                     <button
                       className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
@@ -346,7 +346,7 @@ export const Navbar = () => {
                   <div>
                     <NavLink to="/" className="ms-md-2">
                       <img className='logo_navbar'
-                        src="/sofa10.PNG"
+                        src="/logo10.png"
                       />
                     </NavLink>
                   </div>

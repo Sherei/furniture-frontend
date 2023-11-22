@@ -27,6 +27,7 @@ import Sidebar from './Components/Dashboard/Sidebar';
 import './App.css';
 import { AddProduct } from './Components/Dashboard/AddProduct';
 import AllBlog from './Components/Blog/AllBlog';
+import Allcategories from './Components/Home/Allcategories';
 ReactGA.initialize('G-Y946N662J4');
 
 function App() {
@@ -145,6 +146,7 @@ function App() {
                 <Route path='/faq' element={<Faq />} />
                 <Route path='/single-blog/:Name' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
+                <Route path='/categories' element={<Allcategories/>} />
                 <Route exact path='*' element={<Home />} />
               </Routes>
             </main>
