@@ -5,8 +5,8 @@
 }
 
 .logo_navbar {
-  width: 150px;
-  max-height: 100px;
+  width: 200px;
+  max-height: 150px;
 }
 
 .navbar {
@@ -356,7 +356,8 @@
 }
 @media screen and (max-width:768px) {
   .logo_navbar {
-    width: 100px;
+    width: 150px;
+    height: 100px;
   }
 }
 
