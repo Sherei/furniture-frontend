@@ -229,7 +229,7 @@ const Checkout = () => {
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mt-3">
-                                <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: &nbsp;&nbsp; Remeber all orders are delivered on ground floor.
+                                <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: &nbsp;&nbsp; Remember all orders are delivered on ground floor.
                                     Extra charges for uplift or desired room.</p>
                             </div>
                         </div>

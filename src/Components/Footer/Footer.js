@@ -47,44 +47,46 @@ const Footer = () => {
         <div className='footer_menus col-lg-5 col-md-12 col-sm-12 d-flex gap-5 px-lg-5'>
           <div>
             <p className='fw-bolder fs-5'>INFORMATION</p>
-            <NavLink to='products'>
+            <NavLink to='/products/all'>
               <p>Shop Now</p>
             </NavLink>
-            <Link to='case'>
+            <Link to='review'>
               <p>Reviews</p>
             </Link>
             <NavLink to='/faq'>
               <p>Faq's</p>
             </NavLink>
-            <Link to='about'>
-              <p>Contact Us</p>
-            </Link>
+            <a href="https://wa.me/+923067208343" target='blank'>
+              <Link to='about'>
+                <p>Contact Us</p>
+              </Link>
+            </a>
           </div>
           <div>
             <p className='fw-bolder fs-5'>Popular Categories</p>
-            <Link to='about'>
+            <NavLink to='/products/sofa'>
               <p>All Sofas</p>
-            </Link>
-            <Link to='about'>
+            </NavLink>
+            <NavLink to='/products/bed'>
               <p>All Beds</p>
-            </Link>
-            <Link to='about'>
+            </NavLink>
+            <NavLink to='/products/sofa-beds'>
               <p>Sofa Beds</p>
-            </Link>
-            <Link to='about'>
+            </NavLink>
+            <NavLink to='/products/ottoman-box'>
               <p>Ottomon Box</p>
-            </Link>
-            <Link to='case'>
+            </NavLink>
+            <NavLink to='/products/recliner-sofas'>
               <p>Recliner Sofas</p>
-            </Link>
-            <Link to='about'>
+            </NavLink>
+            <NavLink to='/products/footstools'>
               <p>Footstools</p>
-            </Link>
+            </NavLink>
           </div>
 
         </div>
 
-        
+
         <div className='footer_menus col-lg-4 col-md-12 col-sm-12 mb-5'>
           <p className='fw-bolder fs-5'>NEWSLETTER</p>
           <div className='newsletter_box'>

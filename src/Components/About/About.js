@@ -2,7 +2,7 @@ import React from 'react'
 import "./about.css"
 const About = () => {
     return <>
-        <div className='container-fluid p-0'>
+        <div className='container-fluid p-0' id='about'>
             <div className='row p-0'>
                 <div className='col-lg-6 col-sm-12 p-0 about_img min-vh-100' >
                     <img src="/about.jpg" alt="No Network" className='img-fluid' style={{ height: "100%" }} />

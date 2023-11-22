@@ -25,7 +25,7 @@
 }
 
 .chk_secure2 {
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 @media screen and (max-width:450px) {

@@ -11,14 +11,16 @@ import "./products.css"
 
 const Products = () => {
 
+
+    const cu = useSelector(store => store.userSection.cu)
+    const { prodctName } = useParams()
+    
     useEffect(() => {
         window.scrollTo({
             top: 0
         });
-    }, []);
-
-    const cu = useSelector(store => store.userSection.cu)
-    const { prodctName } = useParams()
+    }, [prodctName]);
+    
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("")
     const [activeGrid, setActiveGrid] = useState("grid")

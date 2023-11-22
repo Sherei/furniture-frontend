@@ -44,6 +44,9 @@ export const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
   const toggleLogin = () => {
     setLogin(!login);
   };
@@ -318,16 +321,35 @@ export const Navbar = () => {
 
     <div style={{ position: "relative" }}>
       <div className={`${isSticky ? 'fixed-top navbar-custom' : ''}`} style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }}>
-        <div className={`py-2 nav_padding container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
+        <div className={`py-2 container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
           <div className="row">
             <div className="col nav1">
               <div className='row nav1_row'>
-                <div className='col-3 d-flex align-items-center'>
-                  <NavLink to="/" className="ms-md-2">
-                    <img className='logo_navbar'
-                      src="/logo.png"
-                    />
-                  </NavLink>
+                <div className='col-3 d-flex align-items-center justify-content-start gap-2 gap-md-1 p-0' style={{position:"relative"}}>
+                  <div>
+                    <button
+                      className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      onClick={toggleMenu}
+                    >
+                      <div className='d-flex flex-column gap-1 lines'>
+                        <div className={`line1 ${isMenuOpen ? 'cross-line1' : ''}`}></div>
+                        <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
+                        <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
+                      </div>
+                    </button>
+                  </div>
+                  <div>
+                    <NavLink to="/" className="ms-md-2">
+                      <img className='logo_navbar'
+                        src="/logo10.png"
+                      />
+                    </NavLink>
+                  </div>
                 </div>
                 <div className='col-6 d-flex align-items-center nav_cotact' style={{ position: "relative" }}>
                   <input type="search" placeholder='Search Anything' className=''
@@ -336,7 +358,7 @@ export const Navbar = () => {
                 </div>
                 {search && (
                   <div className='col-12 d-flex align-items-center nav_searchbar'>
-                    <input type="search" placeholder='Search Anything' className='form-control'
+                    <input type="search" placeholder='Search Anything' className=''
                       onChange={(e) => setSearchValue(e.target.value)} />
                   </div>
                 )}
@@ -465,30 +487,12 @@ export const Navbar = () => {
                 </div>
               </div>
 
-
             </div>
           </div>
         </div>
 
         <nav className={`navbar navbar-expand-lg container-fluid`}>
           <div className="container-fluid nav_bg p-0">
-            <button
-              className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onClick={toggleMenu}
-            >
-              <div className='d-flex flex-column gap-1 lines'>
-                <div className={`line1 ${isMenuOpen ? 'cross-line1' : ''}`}></div>
-                <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
-                <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
-              </div>
-            </button>
-
-
 
             <div className="collapse nav_bg navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -514,7 +518,7 @@ export const Navbar = () => {
                     </div>
                   </a>
                   <ul className="dropdown-menu dropdown_nav" aria-labelledby="navbarDropdown1">
-                    <li> <NavLink className="dropdown-item" to="/products/sofa">All Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="/products/sofa" >All Sofas </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/corner-sofas">Corner Sofas </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas">3+2 Sofa Sets</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
@@ -585,9 +589,9 @@ export const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/faq">
-                    FAQ's
-                  </NavLink>
+                  <Link className="nav-link" aria-current="page" to="about">
+                   About Us
+                  </Link>
                 </li>
               </ul>
             </div>
