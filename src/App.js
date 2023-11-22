@@ -146,7 +146,7 @@ function App() {
                 <Route path='/faq' element={<Faq />} />
                 <Route path='/single-blog/:Name' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
-                <Route path='/categories' element={<Allcategories/>} />
+                <Route path='/collections' element={<Allcategories/>} />
                 <Route exact path='*' element={<Home />} />
               </Routes>
             </main>

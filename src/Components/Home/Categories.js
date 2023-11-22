@@ -31,7 +31,7 @@ const Categories = () => {
                     </div>
                     <div>
                         <p className='view ' onClick={() => {
-                            move("/categories");
+                            move("/collections");
                         }}>
                             View All
                         </p>
