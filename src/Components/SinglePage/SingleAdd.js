@@ -97,6 +97,13 @@ const SingleAdd = () => {
     const handleBottomButtonClick = () => {
         setSelectedImage((selectedImage + 1) % product.images.length);
     };
+    const handleLeftButtonClick = () => {
+        setSelectedImage((selectedImage - 1 + product.images.length) % product.images.length);
+    };
+
+    const handleRightButtonClick = () => {
+        setSelectedImage((selectedImage + 1) % product.images.length);
+    };
 
     const Increment = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
@@ -396,13 +403,13 @@ const SingleAdd = () => {
                             </div>
                             {(product?.images && product?.images.length > 5) &&
                                 <>
-                                    <div className='mt-2 arrow_display1'>
+                                    <div className='mt-2 arrow_display1 text-center'>
                                         <button onClick={handleBottomButtonClick} className='plus_btn'><FaArrowDown /></button>
-                                        <button onClick={handleTopButtonClick} className='plus_btn'><FaArrowUp /></button>
+                                        <button onClick={handleTopButtonClick} className='plus_btn mx-2'><FaArrowUp /></button>
                                     </div>
-                                    <div className='my-2 arrow_display2'>
-                                        <button onClick={handleTopButtonClick} className='plus_btn'><FaArrowLeft /></button>
-                                        <button onClick={handleBottomButtonClick} className='plus_btn'><FaArrowRight /></button>
+                                    <div className='my-2 arrow_display2 text-center'>
+                                        <button onClick={handleLeftButtonClick} className='plus_btn'><FaArrowLeft /></button>
+                                        <button onClick={handleRightButtonClick} className='plus_btn mx-2'><FaArrowRight /></button>
                                     </div>
                                 </>
                             }
