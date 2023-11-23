@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaAngleRight, FaMinus, FaPlus, FaArrowLeft, FaArrowRight, FaStar, } from 'react-icons/fa';
+import { FaAngleRight, FaMinus, FaPlus, FaArrowLeft, FaArrowRight, FaArrowDown, FaArrowUp, FaStar, } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
 import { useNavigate, useParams } from 'react-router-dom';
 import Benefits from '../Benefits/Benefits';
@@ -89,6 +89,13 @@ const SingleAdd = () => {
 
     const handleThumbnailClick = (index) => {
         setSelectedImage(index);
+    };
+    const handleTopButtonClick = () => {
+        setSelectedImage((selectedImage - 1 + product.images.length) % product.images.length);
+    };
+
+    const handleBottomButtonClick = () => {
+        setSelectedImage((selectedImage + 1) % product.images.length);
     };
 
     const Increment = () => {
@@ -270,7 +277,7 @@ const SingleAdd = () => {
                 product.image = product?.images[0];
                 product.discount = product?.discount;
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
-                
+
                 if (response.data === "Product Added") {
                     await toast.success("Added to Cart");
 
@@ -374,7 +381,7 @@ const SingleAdd = () => {
                         <div className='col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center'>
                             <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product?.category} <FaAngleRight />  {product?.subCategory}</p>
                         </div>
-                        <div className='col-lg-1 col-md-2 col-sm-12 d-flex justify-content-center'>
+                        <div className='col-lg-1 col-md-2 col-sm-12 d-flex flex-column justify-content-center'>
                             <div className='small_images'>
                                 {product?.images &&
                                     product?.images.map((image, index) => (
@@ -387,6 +394,18 @@ const SingleAdd = () => {
                                         />
                                     ))}
                             </div>
+                            {(product?.images && product?.images.length > 5) &&
+                                <>
+                                    <div className='mt-2 arrow_display1'>
+                                        <button onClick={handleBottomButtonClick} className='plus_btn'><FaArrowDown /></button>
+                                        <button onClick={handleTopButtonClick} className='plus_btn'><FaArrowUp /></button>
+                                    </div>
+                                    <div className='my-2 arrow_display2'>
+                                        <button onClick={handleTopButtonClick} className='plus_btn'><FaArrowLeft /></button>
+                                        <button onClick={handleBottomButtonClick} className='plus_btn'><FaArrowRight /></button>
+                                    </div>
+                                </>
+                            }
                         </div>
 
                         <div className='col-lg-5 col-md-8 col-sm-12 mb-5' style={{ height: "fit-content" }} >

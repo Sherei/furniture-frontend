@@ -305,14 +305,32 @@
 }
 
 .description_display1 {
-    display: none;
+    display: none !important;
 }
 .description_display {
     display: block;
 }
+.arrow_display1{
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px;
+    display: block !important;
+}
+.arrow_display2{
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px;
+    display: none !important;
+}
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {
+    .arrow_display2{
+        display: block !important;
+    }
+    .arrow_display1{
+        display: none !important;
+    }
     .single_form select {
         width: 100%;
     }
@@ -331,6 +349,7 @@
 }
 
 @media screen and (max-width:992px) {
+  
     .small_images {
         gap: 40px;
     }
