@@ -1,17 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import Loader from "../Loader/Loader"
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { FaArrowLeft, FaArrowRight, } from 'react-icons/fa';
+import Loader from "../Loader/Loader"
 
 const Ottoman = () => {
-    let cu = useSelector(store => store.userSection.cu);
-
+   
+    const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     let move = useNavigate();
+
+    const containerRef = useRef(null);
+
+    const scrollLeft = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            container.scrollTo({
+                left: container.scrollLeft - 200,
+                behavior: 'smooth',
+            });
+        }
+    };
+    const scrollRight = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            container.scrollTo({
+                left: container.scrollLeft + 200,
+                behavior: 'smooth',
+            });
+        }
+    };
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -49,7 +70,7 @@ const Ottoman = () => {
                             No product available related to this category
                         </div>
                     }
-                    <div className='h_box_main'>
+                    <div className='h_box_main' ref={containerRef}>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                                 <Loader />
@@ -95,8 +116,9 @@ const Ottoman = () => {
                                 </div>
                                 ))
                         )}
-
                     </div>
+                    <button className='btn bed_left' onClick={scrollLeft}><FaArrowLeft /></button>
+                    <button className='btn bed_right' onClick={scrollRight}><FaArrowRight /></button>
                 </div>
             </div>
         </div>

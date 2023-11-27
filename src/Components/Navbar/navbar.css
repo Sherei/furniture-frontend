@@ -303,9 +303,9 @@
 }
 .nav_search_btn{
   position: absolute;
-  top: 22px;
+  top: 12px;
   right: 12px;
-  padding: 1px 20px !important;
+  padding: 0px 20px !important;
   font-size: 29px;
   border: none;
   outline: none;
@@ -435,7 +435,7 @@
   }
 }
 
-@media screen and (max-width:380px) {
+@media screen and (max-width:390px) {
 
   .nav_cotact_icon {
     display: none;

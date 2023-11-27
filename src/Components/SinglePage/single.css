@@ -1,5 +1,5 @@
 .small_images {
-    height: 60vh;
+    height: 50vh;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -203,7 +203,7 @@
     position: absolute;
     top: 40%;
     background-color: transparent;
-    font-size: 45px;
+    font-size: 35px;
 }
 
 .single_arrow1 {
@@ -267,6 +267,7 @@
     border: 1px solid lightgray !important;
 
 }
+
 .plus_btn:hover {
     border: none !important;
     outline: none !important;
@@ -307,30 +308,55 @@
 .description_display1 {
     display: none !important;
 }
+
 .description_display {
     display: block;
 }
-.arrow_display1{
+
+.arrow_display1 {
     display: flex !important;
     justify-content: center !important;
     gap: 10px;
     display: block !important;
 }
-.arrow_display2{
-    display: flex !important;
-    justify-content: center !important;
-    gap: 10px;
+
+.arrow_display2 {
     display: none !important;
 }
+
+.arrow_display2 .plus_btn1,.arrow_display2 .plus_btn2{
+    position: absolute !important;
+    top: 40px !important;
+    background-color: #1b2950;
+    color: white;
+    padding: 5px 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: none;
+    outline: none;
+}
+
+.arrow_display2 .plus_btn1 {
+    left: 0px;    
+}
+.arrow_display2 .plus_btn2 {
+    right: 0px;
+}
+
+
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {
-    .arrow_display2{
+    .arrow_display2 {
         display: block !important;
     }
-    .arrow_display1{
+
+    .arrow_display1 {
         display: none !important;
     }
+
     .single_form select {
         width: 100%;
     }
@@ -349,7 +375,7 @@
 }
 
 @media screen and (max-width:992px) {
-  
+
     .small_images {
         gap: 40px;
     }

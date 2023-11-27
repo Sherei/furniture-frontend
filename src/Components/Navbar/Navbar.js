@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
-import { FaRegUser, FaAngleDown, FaArrowRight, FaHeart } from "react-icons/fa"
+import { FaRegUser, FaAngleDown, FaArrowRight, FaHeart, FaEye, FaEyeSlash } from "react-icons/fa"
 import { IoSearchSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
@@ -37,6 +37,11 @@ export const Navbar = () => {
   const [login, setLogin] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [search, setSearch] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   const handleSearchToggle = () => {
     setSearch(!search);
@@ -325,7 +330,7 @@ export const Navbar = () => {
           <div className="row">
             <div className="col nav1">
               <div className='row nav1_row'>
-                <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{position:"relative"}}>
+                <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
                   <div>
                     <button
                       className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
@@ -346,7 +351,7 @@ export const Navbar = () => {
                   <div>
                     <NavLink to="/" className="ms-md-2">
                       <img className='logo_navbar'
-                        src="/logo1.PNG"
+                        src="/logo2.PNG"
                       />
                     </NavLink>
                   </div>
@@ -407,9 +412,15 @@ export const Navbar = () => {
                                 </div>
 
                                 <div style={{ position: "relative" }} className='mt-3'>
-                                  <input type="password" className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+                                  <input type={showPassword ? "text" : "password"} className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+                                  <button
+                                    type="button"
+                                    className="password-toggle-btn"
+                                    onClick={togglePasswordVisibility}
+                                  >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                  </button>
                                   {errors.password ? <div className='error'> Please Enter Your Password </div> : null}
-
                                 </div>
                                 <button className='btn rounded login_btn mt-3' onClick={handleSubmit(Login)}>Login</button>
                                 <div className='mt-3'>
@@ -590,7 +601,7 @@ export const Navbar = () => {
                 </li>
                 <li className="nav-item nav-item2">
                   <Link className="nav-link" aria-current="page" to="about">
-                   About Us
+                    About Us
                   </Link>
                 </li>
               </ul>

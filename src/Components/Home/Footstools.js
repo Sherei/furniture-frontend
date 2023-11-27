@@ -1,16 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import Loader from "../Loader/Loader"
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { FaArrowLeft, FaArrowRight, } from 'react-icons/fa';
+import Loader from "../Loader/Loader"
 
 const FootStools = () => {
-    let cu = useSelector(store => store.userSection.cu);
+
+    const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     let move = useNavigate();
+
+    const containerRef = useRef(null);
+
+    const scrollLeft = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            container.scrollTo({
+                left: container.scrollLeft - 200,
+                behavior: 'smooth',
+            });
+        }
+    };
+    const scrollRight = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            container.scrollTo({
+                left: container.scrollLeft + 200,
+                behavior: 'smooth',
+            });
+        }
+    };
+
+
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -48,7 +72,7 @@ const FootStools = () => {
                             No product available related to this category
                         </div>
                     }
-                    <div className='h_box_main'>
+                    <div className='h_box_main' ref={containerRef}>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                                 <Loader />
@@ -59,43 +83,44 @@ const FootStools = () => {
                                 .slice(0, 10)
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
-                                    <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
-                                    <a href="https://wa.me/+923067208343" target="blank">
-                                        <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
-                                    </a>
-                                    <div className='card_img_box'>
-                                        <img src={product?.images[0]} className='img-fluid' alt='No Network' />
-                                        {product?.discount && product?.discount > 0 ? (
-                                            <div className='discount'>
-                                                {`${product?.discount}%`}
+                                        <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
+                                        <a href="https://wa.me/+923067208343" target="blank">
+                                            <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
+                                        </a>
+                                        <div className='card_img_box'>
+                                            <img src={product?.images[0]} className='img-fluid' alt='No Network' />
+                                            {product?.discount && product?.discount > 0 ? (
+                                                <div className='discount'>
+                                                    {`${product?.discount}%`}
+                                                </div>
+                                            ) : null}
+                                            <div className='overlay'>
+                                                {product.images[1] &&
+                                                    <img src={product?.images[1]} alt="" />
+                                                }
                                             </div>
-                                        ) : null}
-                                        <div className='overlay'>
-                                            {product.images[1] &&
-                                                <img src={product?.images[1]} alt="" />
-                                            }
+                                        </div>
+
+                                        <p className='card_title px-2'>{product?.title}</p>
+                                        <div>
+                                            {product?.discount && product?.discount > 0 ? (
+                                                <>
+                                                    <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(1)}`}</span>
+                                                    <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span>
+                                                </>
+                                            ) : (
+                                                <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>
+                                            )}
+                                            <div className='card_btns'>
+
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <p className='card_title px-2'>{product?.title}</p>
-                                    <div>
-                                        {product?.discount && product?.discount > 0 ? (
-                                            <>
-                                                <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(1)}`}</span>
-                                                <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span>
-                                            </>
-                                        ) : (
-                                            <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>
-                                        )}
-                                        <div className='card_btns'>
-
-                                        </div>
-                                    </div>
-                                </div>
                                 ))
                         )}
-
                     </div>
+                    <button className='btn bed_left' onClick={scrollLeft}><FaArrowLeft /></button>
+                    <button className='btn bed_right' onClick={scrollRight}><FaArrowRight /></button>
                 </div>
             </div>
         </div>

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify';
-import { AiTwotoneMail } from "react-icons/ai"
-import { FaLock, FaPhoneAlt, FaUserAlt, FaLockOpen, FaAddressCard } from "react-icons/fa"
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 
@@ -16,9 +15,13 @@ const Signup = () => {
     }, []);
 
     const [Error, setError] = useState("");
-
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
+    
+        const togglePasswordVisibility = () => {
+          setShowPassword((prevShowPassword) => !prevShowPassword);
+        };
+    
     const move = useNavigate()
 
     async function SignUp(data) {
@@ -76,13 +79,26 @@ const Signup = () => {
                         </div>
                         {errors.email ? <div className='error'>This Field is required</div> : null}
 
-                        <div className='mt-2'>
-                            <input type="password" placeholder='Password *' className="form-control login_form_input" {...register('password', { required: true })} />
+                        <div className='mt-2' style={{position:"relative"}}>
+                            <input type={showPassword ? "text" : "password"} placeholder='Password *' className="form-control login_form_input" {...register('password', { required: true })} />
                             {errors.password ? <div className='error'>This Field is required</div> : null}
-
+                            <button
+                                type="button"
+                                className="password-toggle-btn"
+                                onClick={togglePasswordVisibility}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
                         </div>
-                        <div className='mt-2'>
-                            <input type="password"  placeholder='Confirm Password *' className="form-control login_form_input" {...register('cpassword', { required: true })} />
+                        <div className='mt-2'  style={{position:"relative"}}>
+                            <input type={showPassword ? "text" : "password"} placeholder='Confirm Password *' className="form-control login_form_input" {...register('cpassword', { required: true })} />
+                            <button
+                                type="button"
+                                className="password-toggle-btn"
+                                onClick={togglePasswordVisibility}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
                             {errors.cpassword ? <div className='error'>Re Enter Your Passowrd </div> : null}
 
                             {Error === "Password does not match" &&
@@ -90,7 +106,7 @@ const Signup = () => {
                             }
 
                         </div>
-                        <button className='btn border rounded login_btn mt-3'>Create my account</button>
+                        <button className='btn border rounded login_btn mt-4'>Create my account</button>
 
                     </form>
                 </div>

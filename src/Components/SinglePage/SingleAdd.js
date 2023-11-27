@@ -46,7 +46,8 @@ const SingleAdd = () => {
     const [ottoman, setOttoman] = useState('')
     const [mattress, setMattress] = useState('')
     const [Error, setError] = useState(1);
-
+    const [selectedImage, setSelectedImage] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     const dispatch = useDispatch()
 
@@ -67,6 +68,7 @@ const SingleAdd = () => {
         }
     }, [productId]);
 
+
     useEffect(() => {
         setLoading(true)
         try {
@@ -83,21 +85,44 @@ const SingleAdd = () => {
     }, []);
 
 
-    const [selectedImage, setSelectedImage] = useState(0);
 
     const totalImages = product?.images?.length || 0;
 
     const handleThumbnailClick = (index) => {
         setSelectedImage(index);
-    };
-    const handleTopButtonClick = () => {
-        setSelectedImage((selectedImage - 1 + product.images.length) % product.images.length);
+        setScrollPosition(index * 23);
     };
 
-    const handleBottomButtonClick = () => {
-        setSelectedImage((selectedImage + 1) % product.images.length);
+    const handleScroll = (direction) => {
+        const container = document.querySelector('.small_images');
+        if (container) {
+            const scrollAmount = 50;
+    
+            if (direction === 'up') {
+                container.scrollBy({
+                    top: -scrollAmount,
+                    behavior: 'smooth',
+                });
+            } else if (direction === 'down') {
+                container.scrollBy({
+                    top: scrollAmount,
+                    behavior: 'smooth',
+                });
+            } else if (direction === 'left') {
+                container.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth',
+                });
+            } else if (direction === 'right') {
+                container.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth',
+                });
+            }
+            setScrollPosition(direction === 'left' || direction === 'right' ? container.scrollLeft : container.scrollTop);
+        }
     };
-   
+    
 
     const Increment = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
@@ -382,7 +407,7 @@ const SingleAdd = () => {
                         <div className='col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center'>
                             <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product?.category} <FaAngleRight />  {product?.subCategory}</p>
                         </div>
-                        <div className='col-lg-1 col-md-2 col-sm-12 d-flex flex-column justify-content-center'>
+                        <div className='col-lg-1 col-md-2 col-sm-12 d-flex flex-column' style={{ position: "relative" }}>
                             <div className='small_images'>
                                 {product?.images &&
                                     product?.images.map((image, index) => (
@@ -395,16 +420,17 @@ const SingleAdd = () => {
                                         />
                                     ))}
                             </div>
-                            {(product?.images && product?.images.length > 5) &&
+                            {(product?.images && product?.images.length > 3) &&
                                 <>
-                                    <div className='mt-2 arrow_display1 text-center'>
-                                        <button onClick={handleBottomButtonClick} className='plus_btn'><FaArrowDown /></button>
-                                        <button onClick={handleTopButtonClick} className='plus_btn mx-2'><FaArrowUp /></button>
+                                    <div className='mt-3 arrow_display1 text-center'>
+                                        <button className='plus_btn' onClick={() => handleScroll('up')}><FaArrowUp /></button>
+                                        <button className='plus_btn' onClick={() => handleScroll('down')}><FaArrowDown /></button>
                                     </div>
-                                    <div className='my-2 arrow_display2 text-center'>
-                                        <button onClick={handleTopButtonClick} className='plus_btn'><FaArrowLeft /></button>
-                                        <button onClick={handleBottomButtonClick} className='plus_btn mx-2'><FaArrowRight /></button>
+                                    <div className='arrow_display2'>
+                                        <button className='plus_btn plus_btn1 mx-2' onClick={() => handleScroll('left')}><FaArrowLeft /></button>
+                                        <button className='plus_btn plus_btn2' onClick={() => handleScroll('right')}><FaArrowRight /></button>
                                     </div>
+
                                 </>
                             }
                         </div>

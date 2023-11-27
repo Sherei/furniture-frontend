@@ -6,7 +6,8 @@
   flex-shrink: 0;
   overflow: hidden;
 }
-.card_box:hover{
+
+.card_box:hover {
   cursor: pointer;
   transition: all ease 0.1s !important;
 }
@@ -18,20 +19,23 @@
   position: relative;
   overflow: hidden;
 }
-.card_img_box img{
+
+.card_img_box img {
   border-radius: 7px;
   width: 100%;
   height: 100%;
 }
-.discount{
+
+.discount {
   position: absolute;
-  width:fit-content;
+  width: fit-content;
   padding: 2px 15px;
   background-color: rgb(255, 0, 0);
   top: 10px;
   border-radius: 40px;
   color: white;
 }
+
 .card_title {
   font-size: 15px;
   font-weight: 600;
@@ -51,26 +55,30 @@
   font-weight: 600;
   margin-right: 4px;
 }
-.card_btns{
+
+.card_btns {
   display: none;
   width: 100%;
   height: 110px;
 }
-.card_box:hover .card_btns{
+
+.card_box:hover .card_btns {
   display: block;
 }
-.order_btn{
+
+.order_btn {
   position: absolute;
   right: -200px;
   bottom: 55px;
   border: none;
   outline: none;
-  background-color: rgb(2, 2, 94,0.9);
+  background-color: rgb(2, 2, 94, 0.9);
   color: white;
   width: 80%;
   font-weight: 500;
   padding: 10px 0px !important;
 }
+
 .view {
   font-weight: 600;
   color: rgb(2, 2, 94);
@@ -82,41 +90,44 @@
 }
 
 
-.card_whatsAp{
+.card_whatsAp {
   position: absolute;
   left: -200px;
   bottom: 6px;
   font-size: 15px;
   border: none;
   outline: none;
-  background-color: rgb(33, 211, 102,0.9);
+  background-color: rgb(33, 211, 102, 0.9);
   color: white;
   width: 80%;
   font-weight: 500;
   padding: 10px 20px;
 }
-.order_btn:hover{
+
+.order_btn:hover {
   font-weight: 600;
   color: white;
   background-color: rgb(2, 2, 94);
   transition: all linear 0.1s;
 }
-.card_whatsAp:hover{
+
+.card_whatsAp:hover {
   font-weight: 600;
   color: white;
   background-color: rgb(33, 211, 102);
   transition: all linear 0.1s;
 }
 
-.card_box:hover .order_btn{
+.card_box:hover .order_btn {
   right: 25px !important;
   transition: all ease-in-out 0.4s;
 }
 
-.card_box:hover .card_whatsAp{
+.card_box:hover .card_whatsAp {
   left: 25px !important;
   transition: all ease-in-out 0.8s;
 }
+
 .card_img_box .overlay {
   position: absolute;
   top: 0;
@@ -126,6 +137,51 @@
   /* background-color: rgba(0, 0, 0, 0.5); */
   transition: 0.3s ease;
 }
+
 .card_img_box:hover .overlay {
   left: 0;
+}
+
+.bed_left,
+.bed_right {
+  position: absolute;
+  /* position: fixed; */
+  top: 80px;
+  background-color: rgb(27, 41, 80, 0.8);
+  color: white;
+  border-radius: 100%;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  border: none;
+  outline: none;
+}
+
+.bed_left:hover,
+.bed_right:hover {
+  background-color: rgb(27, 41, 80);
+  color: white;
+}
+
+.bed_left {
+  left: 0px;
+}
+
+.bed_right {
+  right: 0px;
+}
+
+@media screen and (max-width:768px) {
+  .bed_left {
+    left: 10px;
+  }
+  
+  .bed_right {
+    right: 10px;
+  }
+  
 }

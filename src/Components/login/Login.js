@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import "./login.css"
 
@@ -22,6 +23,12 @@ export const Login = () => {
   const [Error, setError] = useState("");
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   const move = useNavigate()
 
@@ -63,7 +70,7 @@ export const Login = () => {
     }
   };
 
-  if(cu._id !==undefined){
+  if (cu._id !== undefined) {
     move('/products')
   }
   return <>
@@ -95,7 +102,15 @@ export const Login = () => {
             </div>
 
             <div style={{ position: "relative" }} className='mt-3'>
-              <input type="password" className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+              <input type={showPassword ? "text" : "password"} className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+
               {errors.password ? <div className='error'> Please Enter Your Password </div> : null}
 
             </div>
