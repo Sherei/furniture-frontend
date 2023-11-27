@@ -145,18 +145,15 @@
 .bed_left,
 .bed_right {
   position: absolute;
-  /* position: fixed; */
   top: 80px;
   background-color: rgb(27, 41, 80, 0.8);
   color: white;
   border-radius: 100%;
-  width: fit-content;
-  height: fit-content;
-  padding: 10px 9px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
   border: none;
   outline: none;
 }

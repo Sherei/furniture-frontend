@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { FaArrowLeft, FaArrowRight, } from 'react-icons/fa';
+import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
 import Loader from "../Loader/Loader"
 
 
@@ -119,8 +119,8 @@ const CornerSofas = () => {
                                 ))
                         )}
                     </div>
-                    <button className='btn bed_left' onClick={scrollLeft}><FaArrowLeft /></button>
-                    <button className='btn bed_right' onClick={scrollRight}><FaArrowRight /></button>
+                    <button className='btn bed_left' onClick={scrollLeft}><IoIosArrowBack /></button>
+                    <button className='btn bed_right' onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>
             </div>
         </div >
