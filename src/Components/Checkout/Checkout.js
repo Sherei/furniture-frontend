@@ -143,7 +143,7 @@ const Checkout = () => {
                     type: "REMOVE_MULTIPLE_ITEMS",
                     payload: userId,
                 });
-                await toast.success("Order is Placed");
+                toast.success("Order is Placed");
                 window.location.reload();
                 window.location.href = `/order-placed/${userId}`;
             }
@@ -165,9 +165,9 @@ const Checkout = () => {
 
     if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
         if (loading) {
-                <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                    <Loader />
-                </div>
+            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                <Loader />
+            </div>
         } else {
             return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
@@ -179,8 +179,17 @@ const Checkout = () => {
     }
 
     return <>
-        <div className='container-fluid mt-3'>
-            <div className='row checkout_display d-flex justify-content-center'>
+        <div className='container-fluid '>
+            <div className='row'>
+                <div className='col d-flex align-items-center justify-content-center py-5'
+                    style={{
+                        height: "200px",
+                        backgroundColor: 'rgb(27, 41, 80,0.3)'
+                    }}>
+                    <p className='fs-2 fw-bolder text-center' style={{ color: "rgb(27, 41, 80)" }}>Place Order!</p>
+                </div>
+            </div>
+            <div className='row checkout_display d-flex justify-content-center my-5'>
                 <div className='col-lg-6 col-sm-12 pt-3 px-3 mt-3 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
@@ -223,7 +232,7 @@ const Checkout = () => {
                                 <input type="number" placeholder='PostCode*' className="form-control py-3" {...register('postal', { required: true })} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
-                         
+
                             <div className="col-md-6 mb-3">
                                 <input type="email" placeholder='E-mail' className="form-control py-3" {...register('email')} />
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
@@ -263,7 +272,7 @@ const Checkout = () => {
                             </div>
                         </div>
                         <hr className="mb-4" />
-                        
+
                         <div className='chk_btns chk_btna1 mt-5'>
                             <button className="fw-bolder btn btn-lg"
                                 style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
@@ -295,8 +304,8 @@ const Checkout = () => {
                                 <div className='col-3' style={{ position: "relative" }}>
                                     <img className='img-fluid' src={item?.image} alt="No Internet" />
                                     <p className='m-0 cart_number' style={{
-                                        top:"-4px",
-                                        right:"4px,"
+                                        top: "-4px",
+                                        right: "4px,"
                                     }}>
                                         {item?.quantity}
                                     </p>
@@ -400,10 +409,10 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='my-5 d-flex gap-3 justify-content-center flex-wrap checout_display2'>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
-                        <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
-                    </div>
+                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
+                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
+                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
+                </div>
 
             </div>
         </div >

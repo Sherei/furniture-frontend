@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { FiShoppingCart } from "react-icons/fi";
 import Products from "../Products/Products"
 import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
@@ -191,11 +192,18 @@ export const Cart = () => {
 
   return (
 
-    <div className="container-fluid h-100 py-5">
-      <div className="row d-flex justify-content-center min-h-100 gap-4">
-
+    <div className="container-fluid h-100">
+      <div className='row'>
+        <div className='col d-flex align-items-center justify-content-center py-5'
+          style={{
+            height: "200px",
+            backgroundColor: 'rgb(27, 41, 80,0.3)'
+          }}>
+          <p className='fs-2 fw-bolder text-center' style={{ color: "rgb(27, 41, 80)" }}>Shopping Cart <FiShoppingCart /></p>
+        </div>
+      </div>
+      <div className="row d-flex justify-content-center min-h-100 gap-4 my-5">
         <div className="col-lg-8 col-md-12 col-sm-12">
-
           <div className='my-4'>
             {filterCart.map((item, index) => {
               return <div className='d-flex gap-4 my-3 border py-3 cart_display_layout1' style={{
