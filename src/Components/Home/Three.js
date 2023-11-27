@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Loader from "../Loader/Loader"
 
 const Three = () => {
 
-      
+
     const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -71,7 +71,7 @@ const Three = () => {
                             No product available related to this category
                         </div>
                     }
-                    <div className='h_box_main'ref={containerRef}>
+                    <div className='h_box_main' ref={containerRef}>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                                 <Loader />
@@ -88,18 +88,17 @@ const Three = () => {
                                         </a>
                                         <div className='card_img_box'>
                                             <img src={product?.images[0]} className='img-fluid' alt='No Network' />
-                                            {product?.discount && product?.discount > 0 ? (
-                                                <div className='discount'>
-                                                    {`${product?.discount}%`}
-                                                </div>
-                                            ) : null}
                                             <div className='overlay'>
                                                 {product.images[1] &&
                                                     <img src={product?.images[1]} alt="" />
                                                 }
                                             </div>
                                         </div>
-
+                                        {product?.discount && product?.discount > 0 ? (
+                                            <div className='discount'>
+                                                {`${product?.discount}%`}
+                                            </div>
+                                        ) : null}
                                         <p className='card_title px-2'>{product?.title}</p>
                                         <div>
                                             {product?.discount && product?.discount > 0 ? (

@@ -212,6 +212,10 @@
     width: 100%;
     height: 250px;
 }
+.p_img_box img:hover{
+transform: scale(1.09);
+transition: all linear 2s;
+}
 
 .p_img_box_grid {
     position: relative;

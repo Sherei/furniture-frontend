@@ -87,18 +87,17 @@ const Ottoman = () => {
                                     </a>
                                     <div className='card_img_box'>
                                         <img src={product?.images[0]} className='img-fluid' alt='No Network' />
-                                        {product?.discount && product?.discount > 0 ? (
-                                            <div className='discount'>
-                                                {`${product?.discount}%`}
-                                            </div>
-                                        ) : null}
                                         <div className='overlay'>
                                             {product.images[1] &&
                                                 <img src={product?.images[1]} alt="" />
                                             }
                                         </div>
                                     </div>
-
+                                    {product?.discount && product?.discount > 0 ? (
+                                            <div className='discount'>
+                                                {`${product?.discount}%`}
+                                            </div>
+                                        ) : null}
                                     <p className='card_title px-2'>{product?.title}</p>
                                     <div>
                                         {product?.discount && product?.discount > 0 ? (
