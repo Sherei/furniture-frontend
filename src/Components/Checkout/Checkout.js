@@ -280,7 +280,6 @@ const Checkout = () => {
                             </a>
                         </div>
                     </form>
-
                 </div>
 
                 <div className='col-lg-4 col-sm-12 px-4 pt-5 pt-lg-3'>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaAngleRight, FaMinus, FaPlus, FaArrowLeft, FaArrowRight, FaArrowDown, FaArrowUp, FaStar, } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
+import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router-dom';
 import Benefits from '../Benefits/Benefits';
 import Loader from '../Loader/Loader';
@@ -427,8 +428,8 @@ const SingleAdd = () => {
                                         <button className='plus_btn' onClick={() => handleScroll('down')}><FaArrowDown /></button>
                                     </div>
                                     <div className='arrow_display2'>
-                                        <button className='plus_btn plus_btn1 mx-2' onClick={() => handleScroll('left')}><FaArrowLeft /></button>
-                                        <button className='plus_btn plus_btn2' onClick={() => handleScroll('right')}><FaArrowRight /></button>
+                                        <button className='plus_btn plus_btn1 mx-2' onClick={() => handleScroll('left')}><IoIosArrowBack /></button>
+                                        <button className='plus_btn plus_btn2' onClick={() => handleScroll('right')}><IoIosArrowForward /></button>
                                     </div>
 
                                 </>
