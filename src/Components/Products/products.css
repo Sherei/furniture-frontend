@@ -6,7 +6,7 @@
 
 .showFilter {
     position: absolute;
-    height: 100vh;
+    min-height: 100vh;
     overflow: scroll;
     width: 300px !important;
     display: flex;
@@ -14,8 +14,8 @@
     gap: 40px !important;
     background-color: white;
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.5);
-    top: 120px;
-    border-radius: 7px;
+    top: 130px;
+    border-radius: 1px;
     padding: 20px 10px;
     z-index: 10000;
     right: 10px;
@@ -117,7 +117,7 @@
     background-color: transparent;
     padding: 10px 10px !important;
     /* color: rgb(129, 128, 128); */
-    font-weight: 700;
+    /* font-weight: 700; */
 }
 
 .accordian_btn2:hover{

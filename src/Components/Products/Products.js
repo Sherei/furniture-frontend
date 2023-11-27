@@ -141,7 +141,7 @@ const Products = () => {
                                         aria-expanded="false"
                                         aria-controls="collapseOne"
                                     >
-                                        <p className='fw-bolder fs-6 pt-2'>All Sofas</p>
+                                        <p className='fs-6 pt-2'>All Sofas</p>
                                     </button>
                                 </h2>
                                 <div
@@ -175,7 +175,7 @@ const Products = () => {
                                         aria-expanded="false"
                                         aria-controls="collapseTwo"
                                     >
-                                        <p className='fw-bolder fs-6 pt-2'>All Beds</p>
+                                        <p className='fs-6 pt-2'>All Beds</p>
                                     </button>
                                 </h2>
                                 <div
@@ -216,7 +216,7 @@ const Products = () => {
                                         aria-expanded="false"
                                         aria-controls="collapseFour"
                                     >
-                                        <p className='fw-bolder fs-6 pt-2'>Sort by</p>
+                                        <p className='fs-6 pt-2'>Sort by</p>
                                     </button>
                                 </h2>
                                 <div
@@ -343,8 +343,8 @@ const Products = () => {
                                 ))
                             }
                             {filterProduct.length === 0 &&
-                                <div className='col-12 d-flex justify-content-center align-items-center flex-wrap px-4'>
-                                    <p className='text-center'>No product available related to this category</p>
+                                <div className='col-12 d-flex justify-content-center vh-80 align-items-center flex-wrap px-4'>
+                                    <p className='text-center fs-2'>No product available</p>
                                 </div>
                             }
                         </div>
