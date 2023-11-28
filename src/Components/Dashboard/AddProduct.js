@@ -292,8 +292,6 @@ export const AddProduct = () => {
                       <option value="corner-sofas">Corner Sofas</option>
                       <option value="sofa-beds">Sofa Beds</option>
                       <option value="three-&-two-seater-sofas">3 & 2 Seater Sofas</option>
-                      <option value="fabric-sofas">Fabric sofas</option>
-                      <option value="chesterfield-sofas">Chesterfield Sofas</option>
                       <option value="u-shaped-sofas">U Shaped Sofas</option>
                       <option value="leather-sofas">Leather Sofas</option>
                       <option value="recliner-sofas">Recliner Sofas</option>

@@ -30,7 +30,7 @@ const Allcategories = () => {
         { img: "/3_1060x550_crop_center.webp", title: "All Beds", path: "/products/bed" },
         { img: "/3_1060x550_crop_center.webp", title: "Ottoman box", path: "/products/ottoman-box" },
         { img: "/3_1060x550_crop_center.webp", title: "Mattress", path: "/products/mattress" },
-        { img: "/3_1060x550_crop_center.webp", title: "FootStools & Puffs", path: "/products/footstools" },
+        { img: "/3_1060x550_crop_center.webp", title: "Footstools", path: "/products/footstools" },
     ]
 
     return <>
