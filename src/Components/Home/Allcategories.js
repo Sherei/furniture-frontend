@@ -13,7 +13,7 @@ const Allcategories = () => {
     const collection = [
         { img: "https://res.cloudinary.com/dlw9hxjr4/image/upload/v1699892038/glfklthcuf6edi9cpg8b.jpg", title: "Corner Sofas", path: "/products/corner-sofas" },
         { img: "/3_1060x550_crop_center.webp", title: "3+2 Seater Sofa Set", path: "/products/three-&-two-seater-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "Sofa-Bed", path: "/products/sofa-beds" },
+        { img: "/3_1060x550_crop_center.webp", title: "Sofa Beds", path: "/products/sofa-beds" },
         { img: "/3_1060x550_crop_center.webp", title: "Fabric Sofas", path: "/products/fabric-sofas" },
         { img: "/3_1060x550_crop_center.webp", title: "Chesterfield Sofas", path: "/products/chesterfield-sofas" },
         { img: "/3_1060x550_crop_center.webp", title: "U Shaped Sofas", path: "/products/u-shaped-sofas" },
