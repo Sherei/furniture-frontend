@@ -267,7 +267,6 @@ const SingleBlog = () => {
                                     Now that you know how to choose the perfect mattress, it’s time to start shopping. At Furniture Direct Online Store, we offer a wide range of high-quality mattresses to fit any budget and sleeping style. Visit our store
                                     today or shop online to find the mattress that will provide you with the best possible sleep.
                                 </p>
-
                             </div>
                         </>
                     }
