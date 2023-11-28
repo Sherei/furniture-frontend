@@ -54,7 +54,7 @@ export const Cart = () => {
     try {
       axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
         setCart(cart.filter((data) => itemId !== data._id));
-        toast.success("Item removed");
+      
         dispatch({
           type: "REMOVE_CART",
           payload: itemId,

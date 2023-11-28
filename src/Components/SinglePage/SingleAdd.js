@@ -408,7 +408,7 @@ const SingleAdd = () => {
                         <div className='col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center'>
                             <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product?.category} <FaAngleRight />  {product?.subCategory}</p>
                         </div>
-                        <div className='col-lg-1 col-md-2 col-sm-12 d-flex flex-column border' style={{ position: "relative" }}>
+                        <div className='col-lg-1 col-md-2 col-sm-12 p-0 m-0 d-flex flex-column border' style={{ position: "relative" }}>
                             <div className='small_images'>
                                 {product?.images &&
                                     product?.images.map((image, index) => (

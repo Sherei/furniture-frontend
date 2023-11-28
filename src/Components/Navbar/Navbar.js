@@ -193,9 +193,8 @@ export const Navbar = () => {
           type: "REMOVE_CART",
           payload: itemId,
         });
-        toast.success("Item removed");
       });
-
+      window.location.reload();
     } catch (e) {
       // console.log(e)
     } finally {
