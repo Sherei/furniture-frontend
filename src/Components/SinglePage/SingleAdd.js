@@ -310,7 +310,7 @@ const SingleAdd = () => {
                 }
             } catch (error) {
                 if (error.response && error.response.status === 400) {
-                    toast.warning("Product is Already into cart");
+                    toast.warning("Try Again Later");
                 } else {
                 }
 
