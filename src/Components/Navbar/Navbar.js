@@ -365,9 +365,10 @@ export const Navbar = () => {
                   <button className='nav_search_btn '><IoSearchSharp /></button>
                 </div>
                 {search && (
-                  <div className='col-12 nav_searchbar'>
+                  <div className='col-12 nav_searchbar' style={{ position: "relative" }}>
                     <input type="search" placeholder='Search Anything' className=''
                       onChange={(e) => setSearchValue(e.target.value)} />
+                    <button className='nav_search_btn '><IoSearchSharp /></button>
                   </div>
                 )}
                 <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center'>
