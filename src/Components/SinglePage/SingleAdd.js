@@ -1021,7 +1021,7 @@ const SingleAdd = () => {
                             <div className='s_btn my-3'>
                                 <button className='btn s_cart fw-bolder' onClick={() => AddToCart(product,
                                     size, color, fabric, detail, base, headboard, ottoman, mattress, totalPrice)}>Add to Cart</button>
-                                <button className='btn s_cart fw-bolder' onClick={(Order)}>Order now</button>
+                                <button className='btn s_cart fw-bolder' onClick={(Order)}>Order Now</button>
                             </div>
                             <div className=''>
                                 <a href="https://wa.me/+923067208343" target='blank'>

@@ -187,18 +187,18 @@ const Checkout = () => {
                     <p className='fs-2 fw-bolder text-center' style={{ color: "rgb(27, 41, 80)" }}>Place Order!</p>
                 </div>
             </div>
-            <div className='row checkout_display d-flex justify-content-center my-5'>
+            <div className='row checkout_display d-flex justify-content-center my-lg-5'>
                 <div className='col-lg-6 col-sm-12 pt-3 px-3 mt-3 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='First name*' className="form-control py-3" {...register('name1', { required: true })} />
+                                <input type="text" placeholder='First Name*' className="form-control py-3" {...register('name1', { required: true })} />
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Last name *' className="form-control py-3"{...register('name2', { required: true })} />
+                                <input type="text" placeholder='Last Name *' className="form-control py-3"{...register('name2', { required: true })} />
                                 {errors.name2 ? <div className='error'>This Field is required</div> : null}
 
                             </div>
@@ -227,7 +227,7 @@ const Checkout = () => {
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='PostCode*' className="form-control py-3" {...register('postal', { required: true })} />
+                                <input type="number" placeholder='Postcode*' className="form-control py-3" {...register('postal', { required: true })} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
 
@@ -236,7 +236,7 @@ const Checkout = () => {
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mt-3">
-                                <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: &nbsp;&nbsp; Remember all orders are delivered on ground floor.
+                                <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: Remember all orders are delivered on ground floor.
                                     Extra charges for uplift or desired room.</p>
                             </div>
                         </div>
