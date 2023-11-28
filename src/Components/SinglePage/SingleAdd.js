@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaAngleRight, FaMinus, FaPlus, FaArrowLeft, FaArrowRight, FaArrowDown, FaArrowUp, FaStar, } from 'react-icons/fa';
 import { RiStarSFill } from 'react-icons/ri';
-import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router-dom';
 import Benefits from '../Benefits/Benefits';
 import Loader from '../Loader/Loader';
@@ -98,7 +98,7 @@ const SingleAdd = () => {
         const container = document.querySelector('.small_images');
         if (container) {
             const scrollAmount = 50;
-    
+
             if (direction === 'up') {
                 container.scrollBy({
                     top: -scrollAmount,
@@ -123,7 +123,7 @@ const SingleAdd = () => {
             setScrollPosition(direction === 'left' || direction === 'right' ? container.scrollLeft : container.scrollTop);
         }
     };
-    
+
 
     const Increment = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
@@ -204,13 +204,7 @@ const SingleAdd = () => {
         else if (product?.category === "sofa") {
             if (size !== undefined && size !== '') {
 
-                if (size === "corner-sofa") {
-                    totalPrice += 350;
-                }
-                else if (size === "5+2-seater") {
-                    totalPrice += 450;
-                }
-                else if (size === "3-seater") {
+                if (size === "3-seater") {
                     totalPrice += 200;
                 }
                 else if (size === "2-seater") {
@@ -306,8 +300,6 @@ const SingleAdd = () => {
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
                 if (response.data === "Product Added") {
-                    await toast.success("Added to Cart");
-
                     dispatch({
                         type: "ADD_TO_CART",
                         payload: product,
@@ -317,11 +309,9 @@ const SingleAdd = () => {
                     window.location.href = `/cart/${cu._id}`;
                 }
             } catch (error) {
-
                 if (error.response && error.response.status === 400) {
                     toast.warning("Product is Already into cart");
                 } else {
-                    toast.error("An error occurred. Please try again later.");
                 }
 
             } finally {

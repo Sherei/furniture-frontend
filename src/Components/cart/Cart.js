@@ -54,7 +54,7 @@ export const Cart = () => {
     try {
       axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
         setCart(cart.filter((data) => itemId !== data._id));
-      
+
         dispatch({
           type: "REMOVE_CART",
           payload: itemId,
@@ -93,9 +93,7 @@ export const Cart = () => {
           }
 
           if (item.category === 'sofa') {
-            if (size === 'corner-sofa') additionalPrices += 350;
-            else if (size === "5+2-seater") additionalPrices += 450;
-            else if (size === "3-seater") additionalPrices += 200;
+            if (size === "3-seater") additionalPrices += 200;
             else if (size === "2-seater") additionalPrices += 100;
           }
 
