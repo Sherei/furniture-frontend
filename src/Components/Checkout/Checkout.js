@@ -369,10 +369,12 @@ const Checkout = () => {
                     <div className='chk_btns chk_btns2 mt-5'>
                         <button className="fw-bolder btn btn-lg"
                             style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                            onClick={handleSubmit(Order)} >
+                            onClick={handleSubmit(Order)}
+                        >
                             COMPLETE ORDER
                         </button>
                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
+
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className="w-100 btn btn-lg chk_btn"
                                 style={{ backgroundColor: "rgb(38,211,103)" }}>
@@ -401,8 +403,15 @@ const Checkout = () => {
                                 <img src="/chk2.png" className='img-fluid' alt="No Network" />
                             </div>
                         </div>
+
                     </div>
                 </div>
+                {/* <div className='my-5 d-flex gap-3 justify-content-center flex-wrap checout_display2'>
+                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
+                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
+                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
+                </div> */}
+
             </div>
         </div >
 
