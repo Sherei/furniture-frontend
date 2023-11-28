@@ -11,7 +11,7 @@ const About = () => {
                 justify-content-center min-vh-100 ' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
                     <div className='row '>
                         <div className='col-lg-10 col-md-10 col-sm-12'>
-                            <p className='fs-1 fw-bolder' style={{ color: "#F7EEDD" }}> The House of Luxury Sofa & Beds </p>
+                            <p className='fs-1 fw-bolder' style={{ color: "#F7EEDD" }}> The House of Luxury Sofa Beds </p>
                             <p className='about_text' >
                                 Sofa&Beds LTD is an independent company that manufacturer’s high-quality sofas, sofa beds, bedframes,
                                 and mattresses. We are proud to offer a wide selection of luxury beds and sofas crafted to the highest standards in Bradford, England. Our Sofa & Beds are made using only

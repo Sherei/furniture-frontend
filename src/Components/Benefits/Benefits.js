@@ -13,7 +13,7 @@ const Benefits = () => {
                     <div className='benefit_main_box mt-5 px-lg-5 px-sm-0 gap-5'>
                         <div className='benefit_box'>
                             <div  className='benefit_icon'><FaSyncAlt /></div>
-                            <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>12 Months Warrenty</p></div>
+                            <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600" }}>12 Months Warranty</p></div>
                             <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>The Most of the U.K</p></div>
                         </div>
                         <div className='benefit_box'>

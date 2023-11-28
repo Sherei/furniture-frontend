@@ -1,6 +1,7 @@
 .about_text{
     color: #fff;
     font-size: 14px;
+    text-transform: capitalize;
 }
 .hero_facebook{
     padding: 10px 40px;

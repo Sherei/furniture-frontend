@@ -53,13 +53,11 @@ const Footer = () => {
             <Link to='review'>
               <p>Reviews</p>
             </Link>
-            <NavLink to='/faq'>
-              <p>Faq's</p>
-            </NavLink>
+            <Link to='about'>
+              <p>About Us</p>
+            </Link>
             <a href="https://wa.me/+923067208343" target='blank'>
-              <Link to='about'>
                 <p>Contact Us</p>
-              </Link>
             </a>
           </div>
           <div>
@@ -104,7 +102,7 @@ const Footer = () => {
       <div className='row footer_row2'>
         <div className='col-12 footer_display'>
           <div>
-            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved SOFA & BEDS UK 2023 Created By Excellence Creative.</p>
+            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved SOFA BEDS UK 2023 Created By Excellence Creative.</p>
           </div>
           <div className='footer_icon'>
             <a href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>

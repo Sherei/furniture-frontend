@@ -18,6 +18,7 @@
     font-size: 15px;
     line-height: 25px;
     padding: 10px 0px;
+    text-transform: capitalize;
     border-bottom: 1px dotted #fff;
 }
 
