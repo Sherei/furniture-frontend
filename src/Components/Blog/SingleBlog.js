@@ -272,7 +272,7 @@ const SingleBlog = () => {
                         </>
                     }
                     <div className='my-5 text-center'>
-                        <button className='btn review_btn' onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
+                        <button className='btn review_btn' style={{width:"fit-content"}} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
                     </div>
                 </div>
             </div>

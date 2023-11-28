@@ -1031,8 +1031,7 @@ const SingleAdd = () => {
                         </div>
 
                     </div>
-
-
+                    
                     <div className='row my-5 d-flex justify-content-center'>
                         <div className='col-lg-10 col-md-10 col-sm-12'>
                             <p className='fs-2 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>
