@@ -148,8 +148,9 @@
 .bed_right {
   position: absolute;
   top: 80px;
-  background-color: rgb(27, 41, 80, 0.8);
-  color: white;
+  background-color: lightgray;
+  /* background-color: rgb(27, 41, 80, 0.8); */
+  color: rgb(27, 41, 80);
   border-radius: 100%;
   width: 40px;
   height: 40px;
