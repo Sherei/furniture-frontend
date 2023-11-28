@@ -188,7 +188,7 @@ const Checkout = () => {
                 </div>
             </div>
             <div className='row checkout_display d-flex justify-content-center my-lg-5'>
-                <div className='col-lg-6 col-sm-12 pt-3 px-3 mt-3 mt-lg-0' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
+                <div className='col-lg-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
                         <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
                         <div className="row py-3">
@@ -369,12 +369,10 @@ const Checkout = () => {
                     <div className='chk_btns chk_btns2 mt-5'>
                         <button className="fw-bolder btn btn-lg"
                             style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                            onClick={handleSubmit(Order)}
-                        >
+                            onClick={handleSubmit(Order)} >
                             COMPLETE ORDER
                         </button>
                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
-
                         <a href="https://wa.me/+923067208343" target='blank'>
                             <button className="w-100 btn btn-lg chk_btn"
                                 style={{ backgroundColor: "rgb(38,211,103)" }}>
@@ -384,7 +382,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-            <div className='row d-flex justify-content-center'>
+            <div className='row d-flex justify-content-center my-5'>
                 <div className='col-lg-10 col-sm-12 mt-5'>
                     <div className='row'>
                         <div className='col-lg-6 col-sm-12 chk_secure1'>
@@ -403,15 +401,8 @@ const Checkout = () => {
                                 <img src="/chk2.png" className='img-fluid' alt="No Network" />
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div className='my-5 d-flex gap-3 justify-content-center flex-wrap checout_display2'>
-                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Refund policy</p></a>
-                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
-                    <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
-                </div>
-
             </div>
         </div >
 
