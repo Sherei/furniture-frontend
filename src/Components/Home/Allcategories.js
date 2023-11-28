@@ -9,7 +9,7 @@ const Allcategories = () => {
         });
     }, []);
     const move = useNavigate()
-    
+
     const collection = [
         { img: "https://res.cloudinary.com/dlw9hxjr4/image/upload/v1699892038/glfklthcuf6edi9cpg8b.jpg", title: "Corner Sofas", path: "/products/corner-sofas" },
         { img: "/3_1060x550_crop_center.webp", title: "3+2 Seater Sofa Set", path: "/products/three-&-two-seater-sofas" },
@@ -43,7 +43,15 @@ const Allcategories = () => {
                     <div key={index} className='all_collection_main' onClick={() => move(item.path)}>
                         <div style={{ position: "relative", width: "100%", height: "200px", overflow: "hidden" }}>
                             <img src={item.img} alt="No Network" className='rounded-3 img-fluid all_img' style={{ width: "100%", height: "100%" }} />
-                            <div className='w-100' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+                            <div className='d-flex align-items-center' style={{
+                                position:"absolute",
+                                height:"200px",
+                                width:"350px",
+                                top:"0px",
+                                left:"0px",
+                                transform: "translate(-50%, -50%)",
+                                backgroundColor:"rgb(0,0,0,0.8)"
+                            }}>
                                 <p className='m-0 all_title'>{item.title}</p>
                             </div>
                         </div>

@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import "./login.css"
@@ -51,11 +50,9 @@ export const Login = () => {
         });
 
         if (loginUser.user.email === "asd@gmail.com") {
-          toast.success("Welcome Back Dear Admin");
           move('/admin-dashboard');
           reset();
         } else {
-          toast.success(`Welcome back dear`);
           move("/products/all");
           reset();
         }

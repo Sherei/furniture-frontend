@@ -45,15 +45,21 @@ export const Navbar = () => {
 
   const handleSearchToggle = () => {
     setSearch(!search);
+    setLogin(false);
+    setIsMenuOpen(false);
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setLogin(false);
+    setSearch(false);
   };
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
   const toggleLogin = () => {
     setLogin(!login);
+    setSearch(false);
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
@@ -156,11 +162,9 @@ export const Navbar = () => {
         });
 
         if (loginUser.user.email === "asd@gmail.com") {
-          toast.success("Welcome Back Dear Admin");
           move('/admin-dashboard');
           reset();
         } else {
-          toast.success("Welcome back dear");
           move("/products/all");
           reset();
         }
@@ -203,7 +207,6 @@ export const Navbar = () => {
     dispatch({
       type: 'LOGOUT_USER'
     });
-    toast.success("Logout");
     move('/login')
   }
 
@@ -362,7 +365,7 @@ export const Navbar = () => {
                   <button className='nav_search_btn '><IoSearchSharp /></button>
                 </div>
                 {search && (
-                  <div className='col-12 d-flex align-items-center nav_searchbar'>
+                  <div className='col-12 nav_searchbar'>
                     <input type="search" placeholder='Search Anything' className=''
                       onChange={(e) => setSearchValue(e.target.value)} />
                   </div>
@@ -533,8 +536,9 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/corner-sofas">Corner Sofas </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas">3+2 Sofa Sets</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
+                    {/* <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/chesterfield-sofas">Chesterfield Sofas </NavLink></li>
+      */}
                     <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas">U Shape Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/leather-sofas">Leather Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/recliner-sofas">Recliner Sofas</NavLink></li>
@@ -572,7 +576,7 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/bed">All Beds </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/ambassador-beds">Ambassador Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/panel-bed">Panel Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames">Wingback Bed Frames</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames">Wingback Bed</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/ottoman-beds">Ottoman Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/bespoke-beds">Bespoke Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/chesterfield-beds">Chesterfield Beds</NavLink></li>

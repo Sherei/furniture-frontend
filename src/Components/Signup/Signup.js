@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
-import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 
 const Signup = () => {
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -35,7 +35,6 @@ const Signup = () => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
 
             if (response.data === "User Created") {
-                toast.success("Account Created");
                 move('/login')
                 reset();
             }
@@ -48,6 +47,7 @@ const Signup = () => {
             }
         }
     }
+
     return <>
         <div className='container my-5'>
             <div className='row d-flex justify-content-center'>
