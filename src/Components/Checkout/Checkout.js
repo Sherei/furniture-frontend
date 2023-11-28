@@ -411,7 +411,6 @@ const Checkout = () => {
                     <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Privacy policy</p></a>
                     <a href=""><p style={{ borderBottom: "1px solid rgb(10,88,211)" }}>Terms of service</p></a>
                 </div> */}
-
             </div>
         </div >
 
