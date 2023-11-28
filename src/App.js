@@ -89,14 +89,18 @@ function App() {
 
 
   useEffect(() => {
-    axios.post(`${process.env.REACT_APP_BASE_URL}/session-check`, { token: localStorage.getItem('userToken') }).then((res) => {
-      if (res.data) {
-        dispatch({
-          type: 'LOGIN_USER',
-          payload: res.data,
-        });
-      }
-    });
+    try {
+      axios.post(`${process.env.REACT_APP_BASE_URL}/session-check`, { token: localStorage.getItem('userToken') }).then((res) => {
+        if (res.data) {
+          dispatch({
+            type: 'LOGIN_USER',
+            payload: res.data,
+          });
+        }
+      });
+    } catch (e) {
+
+    }
   }, []);
 
 
@@ -122,7 +126,7 @@ function App() {
 
             </div>
 
-          </a>
+          </a>  
 
           <BrowserRouter>
             <Navbar />
@@ -146,16 +150,16 @@ function App() {
                 <Route path='/faq' element={<Faq />} />
                 <Route path='/single-blog/:Name' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
-                <Route path='/collections' element={<Allcategories/>} />
+                <Route path='/collections' element={<Allcategories />} />
                 <Route exact path='*' element={<Home />} />
               </Routes>
             </main>
             <Footer />
           </BrowserRouter>
           <ToastContainer
-          style={{
-            minWidth:"250px",
-          }}
+            style={{
+              minWidth: "250px",
+            }}
             position="top-center"
             autoClose={1000}
             hideProgressBar={false}

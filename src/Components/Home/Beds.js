@@ -20,7 +20,7 @@ const Beds = () => {
         if (containerRef.current) {
             const container = containerRef.current;
             container.scrollTo({
-                left: container.scrollLeft - 200,
+                left: container.scrollLeft - 300,
                 behavior: 'smooth',
             });
         }
