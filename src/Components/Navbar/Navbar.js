@@ -35,14 +35,14 @@ export const Navbar = () => {
   const [loading, setLoading] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
   const [login, setLogin] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [search, setSearch] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
-
   const [isNavOpen, setNavOpen] = useState(false);
 
   const toggleNav = () => {
-    setNavOpen(!isMenuOpen);
+    setNavOpen(!isNavOpen);
+    setLogin(false);
+    setSearch(false);
   };
 
   const closeNav = () => {
@@ -56,20 +56,12 @@ export const Navbar = () => {
   const handleSearchToggle = () => {
     setSearch(!search);
     setLogin(false);
-    setIsMenuOpen(false);
-  };
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    setLogin(false);
-    setSearch(false);
-  };
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+    setNavOpen(false);
   };
   const toggleLogin = () => {
     setLogin(!login);
     setSearch(false);
-    setIsMenuOpen(false);
+    setNavOpen(false);
   };
 
   useEffect(() => {
@@ -536,12 +528,12 @@ export const Navbar = () => {
           <div className="container-fluid">
             <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNavDropdown">
               <ul className="navbar-nav">
-                <li className="nav-item " onClick={closeNav}>
+                <li className="nav-item nav-item2 " onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/">
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown nav-item2">
                   <a
                     className="nav-link d-flex justify-content-between gap-1 "
                     href="#"
@@ -571,17 +563,17 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={closeNav}>Arm Chair & Swivel Chair</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item "onClick={closeNav}>
+                <li className="nav-item nav-item2"onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas">
                     Corner Sofas
                   </NavLink>
                 </li>
-                <li className="nav-item " onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas">
                     3+2 Sofa Sets
                   </NavLink>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown nav-item2">
                   <a
                     className="nav-link d-flex justify-content-between gap-1 "
                     href="#"
@@ -611,27 +603,27 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/divan-beds"  onClick={closeNav}>Divan Beds</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item " onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
                     Ottoman Box
                   </NavLink>
                 </li>
-                <li className="nav-item " onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/footstools">
                     Footstools
                   </NavLink>
                 </li>
-                <li className="nav-item "onClick={closeNav}>
+                <li className="nav-item nav-item2"onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/mattress">
                     Mattresses
                   </NavLink>
                 </li>
-                <li className="nav-item  menu_hide" onClick={closeNav}>
+                <li className="nav-item  menu_hide nav-item2" onClick={closeNav}>
                   <Link className="nav-link" aria-current="page" to="review">
                     Reviews
                   </Link>
                 </li>
-                <li className="nav-item  menu_hide" onClick={closeNav}>
+                <li className="nav-item  menu_hide nav-item2" onClick={closeNav}>
                   <Link className="nav-link" aria-current="page" to="about">
                     About Us
                   </Link>
