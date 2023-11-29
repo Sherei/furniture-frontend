@@ -6,7 +6,7 @@
 
 .logo_navbar {
   width: 125px;
-  max-height: 80px;
+  height: 80px;
 }
 
 .navbar {
@@ -266,7 +266,7 @@
 .side_cart {
   position: absolute !important;
   position: fixed !important;
-  height: 100vh;
+  height: 100%;
   width: 320px;
   top: 0px;
   right: -400px;

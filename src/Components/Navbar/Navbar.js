@@ -213,15 +213,15 @@ export const Navbar = () => {
   return <>
 
     {open === "open" && (
-      <div className={`side_cart ${open === "open" ? "side_open" : ""}`}>
-        <div className='pt-3 d-flex flex-column justify-content-between min-vh-100' style={{ position: "relative" }}>
-          <div className=''>
-            <div className='px-2 d-flex justify-content-between' style={{ height: "fit-content" }}>
-              <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
-              <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
-            </div>
+      <div className={`side_cart px-2 ${open === "open" ? "side_open" : ""}`}>
+        <div className='pt-2 d-flex justify-content-between align-items-center'>
+          <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
+          <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
+        </div>
+        <div className='d-flex flex-column  justify-content-between' style={{ height: "90%" }}>
+          <div className='' style={{height:"80%", overflow:"auto"}}>
             {filterCart.length === 0 ? (
-              <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '80vh' }}>
+              <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
                 <button
                   className='btn review_btn'
@@ -274,7 +274,6 @@ export const Navbar = () => {
               </>
             )}
           </div>
-
           {(filterCart?.length > 0) &&
             <div className='' style={{ height: "fit-content" }}>
               <div className='d-flex justify-content-between fw-bolder fs-5'>
@@ -342,6 +341,7 @@ export const Navbar = () => {
     </div>
 
     <div style={{ position: "relative" }}>
+
       <div className={`${isSticky ? 'fixed-top navbar-custom' : ''}`} style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }}>
         <div className={`py-2 container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
           <div className="row">
@@ -520,7 +520,113 @@ export const Navbar = () => {
           </div>
         </div>
 
-        <nav className={`navbar navbar-expand-lg container-fluid`}>
+
+        <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#F7EEDD" }}>
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#">
+              Navbar
+            </a>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="#">
+                    Home
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Features
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Pricing
+                  </a>
+                </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Dropdown link
+                  </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Action
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li><li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li><li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li><li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li><li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li><li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li><li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Something else here
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+
+        {/* <nav className={`navbar navbar-expand-lg container-fluid`}>
           <div className="container-fluid nav_bg p-0">
 
             <div className="collapse nav_bg navbar-collapse" id="navbarSupportedContent">
@@ -551,9 +657,6 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/corner-sofas">Corner Sofas </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas">3+2 Sofa Sets</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
-                    {/* <li> <NavLink className="dropdown-item" to="products/fabric-sofas">Fabric sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/chesterfield-sofas">Chesterfield Sofas </NavLink></li>
-      */}
                     <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas">U Shape Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/leather-sofas">Leather Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/recliner-sofas">Recliner Sofas</NavLink></li>
@@ -626,10 +729,13 @@ export const Navbar = () => {
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> */}
 
       </div>
     </div>
+
+
+
 
     {searchValue && (
       <div className='container'>
