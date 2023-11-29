@@ -497,70 +497,71 @@ const SingleAdd = () => {
                                 <div className='single_form  mt-1'>
                                     {/*.................................... Sofa Start .......................... */}
 
-                                    {product?.category === "sofa" && (product?.subCategory !== "corner-sofas" && product?.subCategory !== "three-&-two-seater-sofas") && (
-                                        <div>
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                                                Size <span style={{ color: "red" }}>* </span>&nbsp;{" "}
-                                                <span className='lable_Case'>{size ? size.replace(/-/g, " ") : ""}</span>
-                                            </label>
-                                            <p className='mt-1 mb-0'>Please Choose Size</p>
-                                            <select
-                                                className='form-control form-select mb-2 mr-sm-2'
-                                                onChange={(e) => {
-                                                    if (e.target.value === "select size") {
-                                                        return setError("size");
-                                                    } else {
-                                                        setSize(e.target.value);
-                                                    }
-                                                }}
-                                            >
-                                                <option value='select size'>Select Size</option>
-                                                <option value='3-seater'>3 Seater +(£200)</option>
-                                                <option value='2-seater'>2 Seater +(£100)</option>
-                                                <option value='1-seater'>1 Seater</option>
-                                            </select>
-                                        </div>
-                                    )}
-                                    <div className='mt-1'>
-                                        {product?.category === "sofa" && (
-                                            <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                                                Colour <span style={{ color: "red" }}>* </span>&nbsp;{" "}
-                                                <span className='lable_Case'>{color ? color.replace(/-/g, " ") : ""}</span>
-                                            </label>
-                                        )}
-                                        <p className='mt-1 mb-0'>Please Choose Colour</p>
-                                        <select
-                                            onChange={(e) => {
-                                                if (e.target.value === "select color") {
-                                                    return setError("color");
-                                                } else if (product?.category === "mattress" && e.target.value === "select color") {
-                                                    return setColor("Not selected");
-                                                } else {
-                                                    setColor(e.target.value);
-                                                }
-                                            }}
-                                            className='form-select mb-2 mr-sm-2'
-                                        >
-                                            <option value='select color'>Please Choose</option>
-                                            <option value='black'>Black</option>
-                                            <option value='silver'>Silver</option>
-                                            <option value='grey'>Grey</option>
-                                            <option value='mink'>Mink</option>
-                                            <option value='royal-blue'>Royal Blue</option>
-                                            <option value='sky-blue'>Sky Blue</option>
-                                            <option value='white'>White</option>
-                                            <option value='mustered-gold'>Mustered Gold</option>
-                                            <option value='cream'>Cream</option>
-                                            <option value='pink'>Pink</option>
-                                            <option value='steel'>Steel</option>
-                                            <option value='teal'>Teal</option>
-                                            <option value='green'>Green</option>
-                                            <option value='duck-egg'>Duck Egg</option>
-                                            <option value='beige'>Beige</option>
-                                        </select>
-                                    </div>
+                                    {product?.category === "sofa" &&
+                                        <>
+                                            {(product.subCategory !== "corner-sofas" && product.subCategory !== "three-&-two-seater-sofas") &&
+                                                <div>
+                                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                                                        Size <span style={{ color: "red" }}>* </span>&nbsp;{" "}
+                                                        <span className='lable_Case'>{size ? size.replace(/-/g, " ") : ""}</span>
+                                                    </label>
+                                                    <p className='mt-1 mb-0'>Please Choose Size</p>
+                                                    <select
+                                                        className='form-control form-select mb-2 mr-sm-2'
+                                                        onChange={(e) => {
+                                                            if (e.target.value === "select size") {
+                                                                return setError("size");
+                                                            } else {
+                                                                setSize(e.target.value);
+                                                            }
+                                                        }}
+                                                    >
+                                                        <option value='select size'>Select Size</option>
+                                                        <option value='3-seater'>3 Seater +(£200)</option>
+                                                        <option value='2-seater'>2 Seater +(£100)</option>
+                                                        <option value='1-seater'>1 Seater</option>
+                                                    </select>
+                                                </div>
+                                            }
 
-
+                                            <div className='mt-1'>
+                                                <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                                                    Colour <span style={{ color: "red" }}>* </span>&nbsp;{" "}
+                                                    <span className='lable_Case'>{color ? color.replace(/-/g, " ") : ""}</span>
+                                                </label>
+                                                <p className='mt-1 mb-0'>Please Choose Colour</p>
+                                                <select
+                                                    onChange={(e) => {
+                                                        if (e.target.value === "select color") {
+                                                            return setError("color");
+                                                        } else if (product?.category === "mattress" && e.target.value === "select color") {
+                                                            return setColor("Not selected");
+                                                        } else {
+                                                            setColor(e.target.value);
+                                                        }
+                                                    }}
+                                                    className='form-select mb-2 mr-sm-2'
+                                                >
+                                                    <option value='select color'>Please Choose</option>
+                                                    <option value='black'>Black</option>
+                                                    <option value='silver'>Silver</option>
+                                                    <option value='grey'>Grey</option>
+                                                    <option value='mink'>Mink</option>
+                                                    <option value='royal-blue'>Royal Blue</option>
+                                                    <option value='sky-blue'>Sky Blue</option>
+                                                    <option value='white'>White</option>
+                                                    <option value='mustered-gold'>Mustered Gold</option>
+                                                    <option value='cream'>Cream</option>
+                                                    <option value='pink'>Pink</option>
+                                                    <option value='steel'>Steel</option>
+                                                    <option value='teal'>Teal</option>
+                                                    <option value='green'>Green</option>
+                                                    <option value='duck-egg'>Duck Egg</option>
+                                                    <option value='beige'>Beige</option>
+                                                </select>
+                                            </div>
+                                        </>
+                                    }
                                     {/*............................ Sofa End ............................ */}
 
 
@@ -878,7 +879,6 @@ const SingleAdd = () => {
                                                     {color ? color.replace(/-/g, " ") : ""}
                                                 </span>
                                             </label>
-
                                             <p className='mt-1 mb-0'>Please Choose Colour</p>
                                             <select onChange={(e) => {
                                                 if (e.target.value === "select color") {
@@ -905,7 +905,6 @@ const SingleAdd = () => {
                                                 <option value="beige">Beige</option>
                                             </select>
                                         </div>
-
                                         <div className='mt-1'>
                                             <label style={{ fontSize: "17px", fontWeight: "600" }}>Detail
                                                 <span style={{ color: "red" }}>* </span>  &nbsp; <span className='lable_Case'>

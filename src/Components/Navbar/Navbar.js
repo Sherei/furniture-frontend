@@ -39,6 +39,16 @@ export const Navbar = () => {
   const [search, setSearch] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
 
+  const [isNavOpen, setNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setNavOpen(!isMenuOpen);
+  };
+
+  const closeNav = () => {
+    setNavOpen(false);
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -349,37 +359,22 @@ export const Navbar = () => {
               <div className='row nav1_row'>
                 <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
                   <div>
+
                     <button
-                      className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
-                      type="button"
+                      className={`custom-toggler ${isNavOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
                       data-bs-toggle="collapse"
                       data-bs-target="#navbarNavDropdown"
                       aria-controls="navbarNavDropdown"
                       aria-expanded="false"
                       aria-label="Toggle navigation"
-                      onClick={toggleMenu}
+                      onClick={toggleNav}
                     >
                       <div className='d-flex flex-column gap-1 lines'>
-                        <div className={`line1 ${isMenuOpen ? 'cross-line1' : ''}`}></div>
-                        <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
-                        <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
+                        <div className={`line1 ${isNavOpen ? 'cross-line1' : ''}`}></div>
+                        <div className={`line2 ${isNavOpen ? 'cross-line2' : ''}`}></div>
+                        <div className={`line3 ${isNavOpen ? 'cross-line3' : ''}`}></div>
                       </div>
                     </button>
-                    {/* <button
-                      className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                      onClick={toggleMenu}
-                    >
-                      <div className='d-flex flex-column gap-1 lines'>
-                        <div className={`line1 ${isMenuOpen ? 'cross-line1' : ''}`}></div>
-                        <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
-                        <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
-                      </div>
-                    </button> */}
                   </div>
                   <div>
                     <NavLink to="/" className="ms-md-2">
@@ -539,124 +534,18 @@ export const Navbar = () => {
 
         <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              Navbar
-            </a>
-            {/* <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button> */}
-            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNavDropdown">
               <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Features
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Pricing
-                  </a>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Dropdown link
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li><li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li><li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li><li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li><li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li><li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li><li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-
-        {/* <nav className={`navbar navbar-expand-lg container-fluid`}>
-          <div className="container-fluid nav_bg p-0">
-
-            <div className="collapse nav_bg navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item nav-item2">
+                <li className="nav-item " onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/">
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item  nav-item2 dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    className="nav-link d-flex justify-content-between gap-1"
+                    className="nav-link d-flex justify-content-between gap-1 "
                     href="#"
-                    id="navbarDropdown1"
+                    id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -668,33 +557,35 @@ export const Navbar = () => {
                       <FaAngleDown />
                     </div>
                   </a>
-                  <ul className="dropdown-menu dropdown_nav" aria-labelledby="navbarDropdown1">
-                    <li> <NavLink className="dropdown-item" to="/products/sofa" >All Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/corner-sofas">Corner Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas">3+2 Sofa Sets</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/sofa-beds">Sofa Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas">U Shape Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/leather-sofas">Leather Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/recliner-sofas">Recliner Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair">Arm Chair & Swivel Chair</NavLink></li>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li> <NavLink className="dropdown-item" to="/products/sofa" onClick={closeNav}>All Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={closeNav}>Corner Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={closeNav}>3+2 Sofa Sets</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={closeNav}>Sofa Beds </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={closeNav}>U Shape Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={closeNav}>Leather Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/recliner-sofas" onClick={closeNav}>Recliner Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={closeNav}>Arm Chair & Swivel Chair</NavLink></li>
                   </ul>
                 </li>
-
-                <li className="nav-item nav-item2">
+                <li className="nav-item "onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas">
                     Corner Sofas
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2">
+                <li className="nav-item " onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas">
                     3+2 Sofa Sets
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2 dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    className="nav-link d-flex justify-content-between gap-1"
+                    className="nav-link d-flex justify-content-between gap-1 "
                     href="#"
-                    id="navbarDropdown2"
+                    id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -706,38 +597,41 @@ export const Navbar = () => {
                       <FaAngleDown />
                     </div>
                   </a>
-                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <li> <NavLink className="dropdown-item" to="products/bed">All Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ambassador-beds">Ambassador Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/panel-bed">Panel Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames">Wingback Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds">Ottoman Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/bespoke-beds">Bespoke Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/chesterfield-beds">Chesterfield Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/divan-beds">Divan Beds</NavLink></li>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li> <NavLink className="dropdown-item" to="products/bed"  onClick={closeNav}>All Beds </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/ambassador-beds"  onClick={closeNav}>Ambassador Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/panel-bed"  onClick={closeNav}>Panel Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames"  onClick={closeNav}>Wingback Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds"  onClick={closeNav}>Ottoman Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/bespoke-beds"  onClick={closeNav}>Bespoke Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/chesterfield-beds" onClick={closeNav}>Chesterfield Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/divan-beds"  onClick={closeNav}>Divan Beds</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item nav-item2">
+                <li className="nav-item " onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
                     Ottoman Box
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2">
+                <li className="nav-item " onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/footstools">
                     Footstools
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2">
+                <li className="nav-item "onClick={closeNav}>
                   <NavLink className="nav-link" aria-current="page" to="/products/mattress">
                     Mattresses
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2">
+                <li className="nav-item  menu_hide" onClick={closeNav}>
                   <Link className="nav-link" aria-current="page" to="review">
                     Reviews
                   </Link>
                 </li>
-                <li className="nav-item nav-item2">
+                <li className="nav-item  menu_hide" onClick={closeNav}>
                   <Link className="nav-link" aria-current="page" to="about">
                     About Us
                   </Link>
@@ -745,8 +639,7 @@ export const Navbar = () => {
               </ul>
             </div>
           </div>
-        </nav> */}
-
+        </nav>
       </div>
     </div>
 
