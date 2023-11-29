@@ -233,7 +233,7 @@ export const Cart = () => {
                   <div className='col-8'>
                     <div className='w-100 px-2'>
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
+                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }} onClick={() => move(`single_Add/${item._id}`)}>
                           {item?.title}
                         </p>
                         <button className='btn text-danger' onClick={() => DeleteCartItem(item._id)}>

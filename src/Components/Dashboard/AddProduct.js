@@ -317,7 +317,7 @@ export const AddProduct = () => {
                       <option value="Select subCategory">Select subCategory</option>
                       <option value="ambassador-beds">Ambassador Beds</option>
                       <option value="panel-bed">Panel Beds</option>
-                      <option value="wingback-beds-frames">Wingback bed Frames</option>
+                      <option value="wingback-beds-frames">Wingback Bed</option>
                       <option value="ottoman-beds">Ottoman Beds</option>
                       <option value="bespoke-beds">Bespoke Beds</option>
                       <option value="chesterfield-beds">Chesterfield Beds</option>

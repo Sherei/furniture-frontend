@@ -184,23 +184,24 @@ export const Navbar = () => {
   const filterCartLength = filterCart.length
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
-
-  const DeleteCartItem = (itemId) => {
+  const DeleteCartItem = async (itemId) => {
     try {
-      axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
-        setCart(cart.filter((data) => itemId !== data._id));
-        dispatch({
-          type: "REMOVE_CART",
-          payload: itemId,
-        });
+      setLoading(true);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`);
+      setCart(cart.filter((data) => itemId !== data._id));
+      dispatch({
+        type: "REMOVE_CART",
+        payload: itemId,
       });
       window.location.reload();
     } catch (e) {
-      // console.log(e)
+      // Handle error, if needed
+      // console.log(e);
     } finally {
       setLoading(false);
     }
   };
+
 
   function Logout() {
     dispatch({
@@ -243,12 +244,26 @@ export const Navbar = () => {
                       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
                     }}
                   >
-                    <div className='side_img_main' style={{ width: "100px", minHeight: "80px" }}>
+                    <div className='side_img_main' style={{ width: "100px", minHeight: "80px" }}
+                      onClick={() => {
+                        move(`single_Add/${item._id}`);
+                        setOpen("close");
+                      }}
+                    >
                       <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
                     </div>
                     <div className='d-flex gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
                       <div className='d-flex flex-column justify-content-around'>
-                        <p className='m-0' style={{ fontSize: "13px" }}>{item?.title}</p>
+                        <p
+                          className='m-0'
+                          style={{ fontSize: "13px" }}
+                          onClick={() => {
+                            move(`single_Add/${item._id}`);
+                            setOpen("close");
+                          }}
+                        >
+                          {item?.title}
+                        </p>
                         <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
                       </div>
                       <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1 /></button>
@@ -489,7 +504,7 @@ export const Navbar = () => {
                       }
                     }}>
                       <NavLink className="nav-link nav-link1" style={{ border: "none", position: "relative" }}>
-                        <span className={`fs-2`}>
+                        <span className="fs-2">
                           <FiShoppingCart />
                           <p className='m-0 cart_number'>
                             {filterCartLength}
@@ -576,7 +591,7 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/bed">All Beds </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/ambassador-beds">Ambassador Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/panel-bed">Panel Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames">Wingback Bed</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames">Wingback Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/ottoman-beds">Ottoman Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/bespoke-beds">Bespoke Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/chesterfield-beds">Chesterfield Beds</NavLink></li>
