@@ -219,7 +219,7 @@ export const Navbar = () => {
           <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
         </div>
         <div className='d-flex flex-column  justify-content-between' style={{ height: "90%" }}>
-          <div className='' style={{height:"80%", overflow:"auto"}}>
+          <div className='' style={{ height: "80%", overflow: "auto" }}>
             {filterCart.length === 0 ? (
               <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
@@ -351,6 +351,22 @@ export const Navbar = () => {
                   <div>
                     <button
                       className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarNavDropdown"
+                      aria-controls="navbarNavDropdown"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      onClick={toggleMenu}
+                    >
+                      <div className='d-flex flex-column gap-1 lines'>
+                        <div className={`line1 ${isMenuOpen ? 'cross-line1' : ''}`}></div>
+                        <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
+                        <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
+                      </div>
+                    </button>
+                    {/* <button
+                      className={`custom-toggler ${isMenuOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
                       data-bs-toggle="collapse"
                       data-bs-target="#navbarSupportedContent"
                       aria-controls="navbarSupportedContent"
@@ -363,7 +379,7 @@ export const Navbar = () => {
                         <div className={`line2 ${isMenuOpen ? 'cross-line2' : ''}`}></div>
                         <div className={`line3 ${isMenuOpen ? 'cross-line3' : ''}`}></div>
                       </div>
-                    </button>
+                    </button> */}
                   </div>
                   <div>
                     <NavLink to="/" className="ms-md-2">
@@ -526,7 +542,7 @@ export const Navbar = () => {
             <a className="navbar-brand" href="#">
               Navbar
             </a>
-            <button
+            {/* <button
               className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
@@ -536,7 +552,7 @@ export const Navbar = () => {
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon" />
-            </button>
+            </button> */}
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item">
