@@ -50,19 +50,15 @@ export const Cart = () => {
   const filterCart = cart.filter((item) => userId === item.userId);
 
 
-  const DeleteCartItem = (itemId) => {
+   const DeleteCartItem = async (itemId) => {
+
     try {
-      axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
-        setCart(cart.filter((data) => itemId !== data._id));
-
-        dispatch({
-          type: "REMOVE_CART",
-          payload: itemId,
-        });
-      });
-
+      // setLoading(true);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`);
+      setCart(cart.filter((data) => itemId !== data._id));
+      window.location.reload();
     } catch (e) {
-      // console.log(e)
+      // console.log(e);
     } finally {
       setLoading(false);
     }
@@ -336,9 +332,9 @@ export const Cart = () => {
                           </td>
                           <td className='text-center'>{`£${(item?.total).toFixed()}`}</td>
                           <td className='text-center'>
-                            <a href="" className="text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
+                            <button className=" btn text-danger" style={{ fontSize: "20px" }} onClick={() => DeleteCartItem(item._id)}>
                               <RxCross1 />
-                            </a>
+                            </button>
                           </td>
                         </tr>
                       ))}

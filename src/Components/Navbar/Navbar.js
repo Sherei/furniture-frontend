@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
@@ -19,7 +19,7 @@ import "./navbar.css";
 export const Navbar = () => {
 
   const move = useNavigate()
-
+  const ref = useRef();
   const cu = useSelector(store => store.userSection.cu)
 
   const cartItems = useSelector(store => store.Cart.cart.filter(item => item.userId === cu._id));
@@ -45,24 +45,38 @@ export const Navbar = () => {
     setSearch(false);
   };
 
-  const closeNav = () => {
+  const handleSearchToggle = () => {
+    setSearch(!search);
+    setLogin(false);
+    setNavOpen(false);
+  };
+
+  const toggleLogin = () => {
+    setLogin(!login);
+    setSearch(false);
     setNavOpen(false);
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+  
 
-  const handleSearchToggle = () => {
-    setSearch(!search);
-    setLogin(false);
-    setNavOpen(false);
-  };
-  const toggleLogin = () => {
-    setLogin(!login);
-    setSearch(false);
-    setNavOpen(false);
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+    
+        setNavOpen(false);
+        setLogin(false);
+        setOpen("close");
+        setSearch(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [ref]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -191,13 +205,8 @@ export const Navbar = () => {
       setLoading(true);
       await axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`);
       setCart(cart.filter((data) => itemId !== data._id));
-      dispatch({
-        type: "REMOVE_CART",
-        payload: itemId,
-      });
       window.location.reload();
     } catch (e) {
-      // Handle error, if needed
       // console.log(e);
     } finally {
       setLoading(false);
@@ -220,107 +229,105 @@ export const Navbar = () => {
           <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
           <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
         </div>
-        <div className='d-flex flex-column  justify-content-between' style={{ height: "90%" }}>
-          <div className='' style={{ height: "80%", overflow: "auto" }}>
-            {filterCart.length === 0 ? (
-              <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-                <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-                <button
-                  className='btn review_btn'
-                  style={{ width: "fit-content" }}
-                  onClick={() => {
-                    move('/Products/all');
-                    setOpen('close');
-                  }}
-                >
-                  Browse Products <FaArrowRight />
-                </button>
-              </div>
-            ) : (
-              <>
-                {filterCart?.map((item, index) => {
-                  return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
-                    style={{
-                      maxWidth: "320px",
-                      position: "relative",
-                      boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                    }}
-                  >
-                    <div className='side_img_main' style={{ width: "100px", minHeight: "80px" }}
-                      onClick={() => {
-                        move(`single_Add/${item._id}`);
-                        setOpen("close");
-                      }}
-                    >
-                      <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
-                    </div>
-                    <div className='d-flex gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
-                      <div className='d-flex flex-column justify-content-around'>
-                        <p
-                          className='m-0'
-                          style={{ fontSize: "13px" }}
-                          onClick={() => {
-                            move(`single_Add/${item._id}`);
-                            setOpen("close");
-                          }}
-                        >
-                          {item?.title}
-                        </p>
-                        <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
-                      </div>
-                      <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1 /></button>
-                    </div>
-                  </div>
-                }
-                )}
-              </>
-            )}
-          </div>
-          {(filterCart?.length > 0) &&
-            <div className='' style={{ height: "fit-content" }}>
-              <div className='d-flex justify-content-between fw-bolder fs-5'>
-                <p className=''>Subtotal</p>
-                <p>&pound;{subtotal}</p>
-              </div>
-              <button className='btn'
-                style={{
-                  backgroundColor: "#1b2950",
-                  color: "white",
-                  fontWeight: "500",
-                  width: "100%"
-                }}
+        <div className='' style={{ height: "72vh", overflow: "auto" }}>
+          {filterCart.length === 0 ? (
+            <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+              <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+              <button
+                className='btn review_btn'
+                style={{ width: "fit-content" }}
                 onClick={() => {
-                  if (cu._id === undefined) {
-                    setLogin("login")
-                    toast.warning("Login to see your Cart")
-                  } else if (cu.email === "asd@gmail.com") {
-                    toast.warning("Login too see cart")
-                  } else {
-                    setOpen("close")
-                    move(`/cart/${cu._id}`)
-                  }
-                }}>VIEW CART</button>
-              <button className='btn mt-3'
-                style={{
-                  backgroundColor: "#8B0000",
-                  color: "white",
-                  fontWeight: "500",
-                  width: "100%"
-                }}
-                onClick={() => {
-                  setOpen("close")
-                  move(`/cart-checkout/${cu._id}`)
+                  move('/Products/all');
+                  setOpen('close');
                 }}
               >
-                Check Out
+                Browse Products <FaArrowRight />
               </button>
-              {/* <a href="https://wa.me/+923067208343" target='black'>
+            </div>
+          ) : (
+            <>
+              {filterCart?.map((item, index) => {
+                return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
+                  style={{
+                    maxWidth: "320px",
+                    position: "relative",
+                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                  }}
+                >
+                  <div className='side_img_main' style={{ width: "100px", minHeight: "80px" }}
+                    onClick={() => {
+                      move(`single_Add/${item._id}`);
+                      setOpen("close");
+                    }}
+                  >
+                    <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
+                  </div>
+                  <div className='d-flex gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
+                    <div className='d-flex flex-column justify-content-around'>
+                      <p
+                        className='m-0'
+                        style={{ fontSize: "13px" }}
+                        onClick={() => {
+                          move(`single_Add/${item._id}`);
+                          setOpen("close");
+                        }}
+                      >
+                        {item?.title}
+                      </p>
+                      <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
+                    </div>
+                    <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1 /></button>
+                  </div>
+                </div>
+              }
+              )}
+            </>
+          )}
+        </div>
+        {(filterCart?.length > 0) &&
+          <div className=''>
+            <div className='d-flex justify-content-between fw-bolder fs-5'>
+              <p className='mb-1'>Subtotal</p>
+              <p className='mb-1'>&pound;{subtotal}</p>
+            </div>
+            <button className='btn'
+              style={{
+                backgroundColor: "#1b2950",
+                color: "white",
+                fontWeight: "500",
+                width: "100%"
+              }}
+              onClick={() => {
+                if (cu._id === undefined) {
+                  setLogin("login")
+                  toast.warning("Login to see your Cart")
+                } else if (cu.email === "asd@gmail.com") {
+                  toast.warning("Login too see cart")
+                } else {
+                  setOpen("close")
+                  move(`/cart/${cu._id}`)
+                }
+              }}>VIEW CART</button>
+            <button className='btn mt-1'
+              style={{
+                backgroundColor: "#8B0000",
+                color: "white",
+                fontWeight: "500",
+                width: "100%"
+              }}
+              onClick={() => {
+                setOpen("close")
+                move(`/cart-checkout/${cu._id}`)
+              }}
+            >
+              Check Out
+            </button>
+            {/* <a href="https://wa.me/+923067208343" target='black'>
 
                 <button className='btn' style={{ backgroundColor: "rgb(38,211,103)", color: "white", fontWeight: "500" }}>Order Via WhatsApp</button>
               </a> */}
-            </div>
-          }
-        </div>
+          </div>
+        }
       </div>
     )}
 
@@ -351,7 +358,6 @@ export const Navbar = () => {
               <div className='row nav1_row'>
                 <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
                   <div>
-
                     <button
                       className={`custom-toggler ${isNavOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
                       data-bs-toggle="collapse"
@@ -382,13 +388,11 @@ export const Navbar = () => {
                   <button className='nav_search_btn '><IoSearchSharp /></button>
                 </div>
                 {search && (
-                  <div className='col-12 nav_searchbar' style={{ position: "relative" }}>
-                    <input type="search" placeholder='Search Anything' className=''
-                      onChange={(e) => setSearchValue(e.target.value)} />
-                    <button className='nav_search_btn '><IoSearchSharp /></button>
+                  <div className={`nav_searchbar w-100 `} style={{backgroundColor:"#02025E", height:"55px"}}>
+                    <input type="search" placeholder='Search Anything' />
                   </div>
                 )}
-                <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center'>
+                <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center'ref={ref}>
                   <div className='d-flex align-items-end'>
                     <li className="nav-item px-0">
                       <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
@@ -528,7 +532,7 @@ export const Navbar = () => {
           <div className="container-fluid">
             <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNavDropdown">
               <ul className="navbar-nav">
-                <li className="nav-item nav-item2 " onClick={closeNav}>
+                <li className="nav-item nav-item2 " onClick={() => setNavOpen(false)}>
                   <NavLink className="nav-link" aria-current="page" to="/">
                     Home
                   </NavLink>
@@ -553,22 +557,22 @@ export const Navbar = () => {
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
-                    <li> <NavLink className="dropdown-item" to="/products/sofa" onClick={closeNav}>All Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={closeNav}>Corner Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={closeNav}>3+2 Sofa Sets</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={closeNav}>Sofa Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={closeNav}>U Shape Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={closeNav}>Leather Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/recliner-sofas" onClick={closeNav}>Recliner Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={closeNav}>Arm Chair & Swivel Chair</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="/products/sofa" onClick={() => setNavOpen(false)}>All Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={() => setNavOpen(false)}>Corner Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={() => setNavOpen(false)}>3+2 Sofa Sets</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={() => setNavOpen(false)}>Sofa Beds </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={() => setNavOpen(false)}>U Shape Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={() => setNavOpen(false)}>Leather Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/recliner-sofas" onClick={() => setNavOpen(false)}>Recliner Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={() => setNavOpen(false)}>Arm Chair & Swivel Chair</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item nav-item2"onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={() => setNavOpen(false)}>
                   <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas">
                     Corner Sofas
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={() => setNavOpen(false)}>
                   <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas">
                     3+2 Sofa Sets
                   </NavLink>
@@ -592,38 +596,39 @@ export const Navbar = () => {
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
+                    
                   >
-                    <li> <NavLink className="dropdown-item" to="products/bed"  onClick={closeNav}>All Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ambassador-beds"  onClick={closeNav}>Ambassador Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/panel-bed"  onClick={closeNav}>Panel Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames"  onClick={closeNav}>Wingback Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds"  onClick={closeNav}>Ottoman Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/bespoke-beds"  onClick={closeNav}>Bespoke Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/chesterfield-beds" onClick={closeNav}>Chesterfield Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/divan-beds"  onClick={closeNav}>Divan Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/bed" onClick={() => setNavOpen(false)}>All Beds </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/ambassador-beds" onClick={() => setNavOpen(false)}>Ambassador Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/panel-bed" onClick={() => setNavOpen(false)}>Panel Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames" onClick={() => setNavOpen(false)}>Wingback Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds" onClick={() => setNavOpen(false)}>Ottoman Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/bespoke-beds" onClick={() => setNavOpen(false)}>Bespoke Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/chesterfield-beds" onClick={() => setNavOpen(false)}>Chesterfield Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/divan-beds" onClick={() => setNavOpen(false)}>Divan Beds</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={() => setNavOpen(false)}>
                   <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
                     Ottoman Box
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={() => setNavOpen(false)}>
                   <NavLink className="nav-link" aria-current="page" to="/products/footstools">
                     Footstools
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2"onClick={closeNav}>
+                <li className="nav-item nav-item2" onClick={() => setNavOpen(false)}>
                   <NavLink className="nav-link" aria-current="page" to="/products/mattress">
                     Mattresses
                   </NavLink>
                 </li>
-                <li className="nav-item  menu_hide nav-item2" onClick={closeNav}>
+                <li className="nav-item  menu_hide nav-item2" onClick={() => setNavOpen(false)}>
                   <Link className="nav-link" aria-current="page" to="review">
                     Reviews
                   </Link>
                 </li>
-                <li className="nav-item  menu_hide nav-item2" onClick={closeNav}>
+                <li className="nav-item  menu_hide nav-item2" onClick={() => setNavOpen(false)}>
                   <Link className="nav-link" aria-current="page" to="about">
                     About Us
                   </Link>
@@ -635,65 +640,63 @@ export const Navbar = () => {
       </div>
     </div>
 
-
-
-
-    {searchValue && (
-      <div className='container'>
-        <div className='my-4 fs-2'>
-          Search Result...
-        </div>
-        {filteredProducts.length === 0 && (
-          <div className='mb-5'>
-            <p>No result found Try with different keyword</p>
+    {
+      searchValue && (
+        <div className='container'>
+          <div className='my-4 fs-2'>
+            Search Result...
           </div>
-        )}
-        <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
-          {filteredProducts?.map((product, index) => (
-            <div className="col " key={index} >
-              <div className='product_box'>
-                <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
-                  <img src={product.images[0]} alt="No network" />
-                  {product.discount && product.discount > 0 ? (
-                    <div className='discount'>
-                      {`${product.discount}%`}
+          {filteredProducts.length === 0 && (
+            <div className='mb-5'>
+              <p>No result found Try with different keyword</p>
+            </div>
+          )}
+          <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
+            {filteredProducts?.map((product, index) => (
+              <div className="col " key={index} >
+                <div className='product_box'>
+                  <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
+                    <img src={product.images[0]} alt="No network" />
+                    {product.discount && product.discount > 0 ? (
+                      <div className='discount'>
+                        {`${product.discount}%`}
+                      </div>
+                    ) : null}
+                    <div className='overlay'>
+                      {product.images[1] &&
+                        <img src={product.images[1]} alt="" />
+                      }
                     </div>
-                  ) : null}
-                  <div className='overlay'>
-                    {product.images[1] &&
-                      <img src={product.images[1]} alt="" />
-                    }
+                  </div>
+                  <p className='card_title px-2'>{product.title}</p>
+                  {product.description &&
+                    <p className='p_description px-2'>{product.description}</p>
+                  }
+                  <div className='text-left'>
+                    {product.discount && product.discount > 0 ? (
+                      <>
+                        <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(1)}`}</span>
+                        <span className='card_price'><s>{`£${product.price?.toFixed(1)}`}</s></span>
+                      </>
+                    ) : (
+                      <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(2)}`}</span>
+                    )}
+                  </div>
+                  <div className='product_btns'>
+                    <button className='btn p_detail_btn' onClick={() => move("/single_Add/" + product._id)}>
+                      View Detail
+                    </button>
+                    <a href='https://wa.me/+923067208343' target="blank">
+                      <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
+                    </a>
                   </div>
                 </div>
-                <p className='card_title px-2'>{product.title}</p>
-                {product.description &&
-                  <p className='p_description px-2'>{product.description}</p>
-                }
-                <div className='text-left'>
-                  {product.discount && product.discount > 0 ? (
-                    <>
-                      <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(1)}`}</span>
-                      <span className='card_price'><s>{`£${product.price?.toFixed(1)}`}</s></span>
-                    </>
-                  ) : (
-                    <span className='card_Fprice px-2 '> {`£${product.Fprice?.toFixed(2)}`}</span>
-                  )}
-                </div>
-                <div className='product_btns'>
-                  <button className='btn p_detail_btn' onClick={() => move("/single_Add/" + product._id)}>
-                    View Detail
-                  </button>
-                  <a href='https://wa.me/+923067208343' target="blank">
-                    <button className='btn p_whatsapp_btn'>Buy Via WhatsApp</button>
-                  </a>
-                </div>
               </div>
-            </div>
-          ))
-          }
+            ))
+            }
+          </div>
         </div>
-      </div>
-    )
+      )
     }
 
   </>

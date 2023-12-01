@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { BsFillGridFill, BsListStars } from "react-icons/bs"
-import { FaArrowAltCircleDown, FaFilter } from "react-icons/fa"
+import { FaFilter } from "react-icons/fa"
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from "../Loader/Loader"
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import "./products.css"
 
 
 const Products = () => {
 
-
     const cu = useSelector(store => store.userSection.cu)
     const { prodctName } = useParams()
-    
+
     useEffect(() => {
         window.scrollTo({
             top: 0
         });
     }, [prodctName]);
+
+    const ref = useRef();
     
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("")
@@ -27,20 +28,16 @@ const Products = () => {
     const [sort, setSortOrder] = useState("")
     const [category, setCategory] = useState("");
     const [loading, setLoading] = useState(true);
-    const [filter, setFilter] = useState('')
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(10000);
+    const [filter, setFilter] = useState(false)
     const move = useNavigate()
 
-    const handleMinRangeChange = (e) => {
-        const value = parseInt(e.target.value);
-        setMinPrice(value);
+    const Filter = (event) => {
+        setFilter(!filter)
+        console.log('Filter button clicked!', event.target.value);
     };
 
-    const handleMaxRangeChange = (e) => {
-        const value = parseInt(e.target.value);
-        setMaxPrice(value);
-    };
     useEffect(() => {
         setLoading(true);
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -56,7 +53,29 @@ const Products = () => {
         });
     }, []);
 
+    
+    // useEffect(() => {
+    //     const handleClickOutside = (event) => {
+    //         if (ref.current && !ref.current.contains(event.target)) {
+    //             setFilter(false)
+    //         }
+    //     };
+    //     document.addEventListener('click', handleClickOutside);
+    //     return () => {
+    //         document.removeEventListener('click', handleClickOutside);
+    //     };
+    // }, [ref]);
 
+
+    const handleMinRangeChange = (e) => {
+        const value = parseInt(e.target.value);
+        setMinPrice(value);
+    };
+
+    const handleMaxRangeChange = (e) => {
+        const value = parseInt(e.target.value);
+        setMaxPrice(value);
+    };
 
     const SearchInput = (e) => {
         setSearch(e.target.value)
@@ -74,10 +93,6 @@ const Products = () => {
         data.sort((a, b) => parseInt(a.price) - parseInt(b.price));
     } else {
         data.sort().reverse()
-    }
-
-    function Filter() {
-        setFilter("showFilter")
     }
 
     useEffect(() => {
@@ -123,11 +138,11 @@ const Products = () => {
                 </div>
             </div>
             <div className='row my-5'>
-                <div className={`${filter ? 'showFilter' : 'filter_col'}`}>
+                <div className={`${filter ? 'showFilter' : 'filter_col'}`} ref={ref}>
                     <div className='categories'>
                         <div className='d-flex justify-content-between'>
                             <p className='fs-5' style={{ color: "#1B2950" }}><FaFilter /> Filter</p>
-                            <span className='close px-3 fs-5' onClick={() => setFilter('')}>❌</span>
+                            <span className='close px-3 fs-5' onClick={()=>setFilter(false)}>❌</span>
                         </div>
                         <div className="" id="accordionExample">
 
@@ -289,7 +304,7 @@ const Products = () => {
                                 <p className='fw-bolder my-2'>{filterProduct.length} Products</p>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <button className='btn fs-4' role='button' onClick={Filter}><FaFilter /></button>
+                                <button className='btn fs-4' role='button'  onClick={Filter}><FaFilter /></button>
                             </div>
                         </div>
                     </div>
@@ -301,7 +316,7 @@ const Products = () => {
                         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
                                 filterProduct?.map((product, index) => (
-                                    <div className="col" style={{position:"relative"}} key={index} >
+                                    <div className="col" style={{ position: "relative" }} key={index} >
                                         <div className='product_box'>
                                             <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
                                                 <img src={product.images[0]} alt="No network" />
@@ -312,10 +327,10 @@ const Products = () => {
                                                 </div>
                                             </div>
                                             {product.discount && product.discount > 0 ? (
-                                                    <div className='discount'>
-                                                        {`${product.discount}%`}
-                                                    </div>
-                                                ) : null}
+                                                <div className='discount'>
+                                                    {`${product.discount}%`}
+                                                </div>
+                                            ) : null}
                                             <p className='card_title px-2'>{product.title}</p>
                                             {product.description &&
                                                 <p className='p_description px-2'>{product.description}</p>

@@ -248,13 +248,13 @@
 
 .cart_number {
   position: absolute;
-  top: 18px;
-  right: 0px;
-  width: 18px;
-  height: 15px;
+  top: 11px;
+  right: -2px;
+  width: fit-content;
+  height: fit-content;
   background-color: red;
   color: white;
-  padding: 2px;
+  padding: 0px 4px;
   font-size: 12px;
   border-radius: 50%;
   display: flex;
@@ -267,7 +267,7 @@
 .side_cart {
   position: absolute !important;
   position: fixed !important;
-  height: 100%;
+  height: 100vh;
   width: 320px;
   top: 0px;
   right: -400px;
@@ -336,6 +336,8 @@
 }
 
 .nav1_row {
+  display: flex;
+  justify-content: space-between;
   padding-right: 18px;
 }
 
@@ -343,35 +345,43 @@
   display: none;
 }
 
-.nav_searchbar {
-  /* border: 1px solid red; */
-  position: absolute;
-  top: 83px;
-  right: 0px;
-  width: 100%;
-  z-index: 10000;
-}
-
-.nav_searchbar input {
-  width: 100%;
-  padding: 10px;
-}
-
 @media screen and (max-width:992px) {
+  .login_div::before {
+    right: 67px !important;
+  }
+
   .menu_hide {
     display: none;
   }
-}
 
-@media screen and (max-width:550px) {
-
-  .nav_contact2 span {
-    font-size: 13px;
+  .nav_searchbar {
+    position: absolute;
+    top: 83px;
+    right: 0px;
+    width: 100%;
+    z-index: 1000;
   }
 
-}
+  .nav_searchbar input {
+    width: 100%;
+    padding: 8px 7px;
+  }
 
-@media screen and (max-width:991px) {
+  .nav_searchbar input:focus {
+    color: #1b2950;
+    border: none;
+    outline: none;
+
+  }
+
+  .nav_searchbar input::placeholder {
+    color: #1b2950;
+  }
+
+  .nav_cotact {
+    display: none;
+  }
+
   .nav_search {
     display: block;
   }
@@ -381,10 +391,6 @@
   }
 
   .heart {
-    display: none;
-  }
-
-  .nav_cotact input {
     display: none;
   }
 
@@ -412,8 +418,10 @@
     border: none;
   }
 
-  .nav_cotact {
-    display: none;
+  .nav_cotact,
+  .nav_cotact input,
+  .nav_cotact .nav_search_btn {
+    display: none !important;
   }
 
   .navbar-custom .login_div {
@@ -423,7 +431,6 @@
   .login_div {
     top: 75px;
   }
-
 
   .navbar {
     padding: 0px;
@@ -436,6 +443,13 @@
 
   .nav-link {
     border-bottom: 1px solid lightgray;
+  }
+
+}
+
+@media screen and (max-width:550px) {
+  .nav_contact2 span {
+    font-size: 13px;
   }
 }
 

@@ -398,7 +398,7 @@ const SingleAdd = () => {
                         <div className='col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center'>
                             <p style={{ textTransform: "capitalize" }}>home <FaAngleRight />products <FaAngleRight /> {product?.category} <FaAngleRight />  {product?.subCategory}</p>
                         </div>
-                        <div className='col-lg-1 col-md-2 col-sm-12 p-0 m-0 d-flex flex-column border' style={{ position: "relative" }}>
+                        <div className='col-lg-1 col-md-2 col-sm-12 p-0 m-0 d-flex flex-column align-items-center' style={{ position: "relative" }}>
                             <div className='small_images'>
                                 {product?.images &&
                                     product?.images.map((image, index) => (
@@ -1073,7 +1073,7 @@ const SingleAdd = () => {
                                 </>
                             }
 
-                            {product?.category === "bed" &&
+                            {/* {product?.category === "bed" &&
                                 <div className="table-responsive">
                                     <p className='fs-6 fw-bolder'>Dimensions: (Should be in table form)</p>
                                     <table className="table table-bordered">
@@ -1119,7 +1119,7 @@ const SingleAdd = () => {
                                         </tbody>
                                     </table>
                                 </div>
-                            }
+                            } */}
 
                             {product?.note2 && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>Note: {product.note2}</p>}
 
