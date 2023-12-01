@@ -123,6 +123,7 @@ const Checkout = () => {
             const totalQuantity = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.quantity;
             }, 0);
+            
             const shippingFee = totalQuantity * 50;
             const Ordertotal = totalSum + shippingFee;
 
