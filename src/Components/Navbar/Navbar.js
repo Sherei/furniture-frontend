@@ -367,7 +367,6 @@ export const Navbar = () => {
               <div className='row nav1_row'>
                 <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
                   <button
-                    // className={`custom-toggler`}
                     className={`custom-toggler fs-2 ${isNavOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown"
@@ -376,7 +375,7 @@ export const Navbar = () => {
                     aria-label="Toggle navigation"
                     onClick={toggleNav}
                   >
-                    <div className='fs-2 d-flex flex-column gap-1 lines'>
+                    <div className='fs-2 lines'>
                       {isNavOpen ? <RxCross1 /> : <HiOutlineBars3 />}
                     </div>
                     {/* <div className={`line1 ${isNavOpen ? 'cross-line1' : ''}`}></div>
