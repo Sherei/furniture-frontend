@@ -543,8 +543,8 @@ export const Navbar = () => {
           <div className="container-fluid">
             <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNavDropdown">
               <ul className="navbar-nav">
-                <li className="nav-item nav-item2 " onClick={closeNav}>
-                  <NavLink className="nav-link" aria-current="page" to="/">
+                <li className="nav-item nav-item2">
+                  <NavLink className="nav-link" aria-current="page" to="/" onClick={closeNav}>
                     Home
                   </NavLink>
                 </li>
@@ -578,13 +578,13 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={closeNav}>Arm Chair & Swivel Chair</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
-                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas">
+                <li className="nav-item nav-item2">
+                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas"onClick={closeNav}>
                     Corner Sofas
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
-                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas">
+                <li className="nav-item nav-item2">
+                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas"  onClick={closeNav}>
                     3+2 Sofa Sets
                   </NavLink>
                 </li>
@@ -619,28 +619,28 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/divan-beds" onClick={closeNav}>Divan Beds</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
-                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box">
+                <li className="nav-item nav-item2">
+                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box"  onClick={closeNav}>
                     Ottoman Box
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
-                  <NavLink className="nav-link" aria-current="page" to="/products/footstools">
+                <li className="nav-item nav-item2">
+                  <NavLink className="nav-link" aria-current="page" to="/products/footstools"  onClick={closeNav}>
                     Footstools
                   </NavLink>
                 </li>
-                <li className="nav-item nav-item2" onClick={closeNav}>
-                  <NavLink className="nav-link" aria-current="page" to="/products/mattress">
+                <li className="nav-item nav-item2">
+                  <NavLink className="nav-link" aria-current="page" to="/products/mattress"  onClick={closeNav}>
                     Mattresses
                   </NavLink>
                 </li>
-                <li className="nav-item  menu_hide nav-item2" onClick={closeNav}>
-                  <Link className="nav-link" aria-current="page" to="review">
+                <li className="nav-item  menu_hide nav-item2">
+                  <Link className="nav-link" aria-current="page" to="review"  onClick={closeNav}>
                     Reviews
                   </Link>
                 </li>
-                <li className="nav-item  menu_hide nav-item2" onClick={closeNav}>
-                  <Link className="nav-link" aria-current="page" to="about">
+                <li className="nav-item  menu_hide nav-item2">
+                  <Link className="nav-link" aria-current="page" to="about" onClick={closeNav}>
                     About Us
                   </Link>
                 </li>
