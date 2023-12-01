@@ -448,7 +448,7 @@
 }
 @media screen and (max-width:768px){
   .logo_navbar{
-    width: 85px;
+    width: 100px;
   }
 }
 @media screen and (max-width:550px) {
