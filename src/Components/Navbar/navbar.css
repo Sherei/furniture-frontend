@@ -165,8 +165,8 @@
 .custom-toggler .line2,
 .custom-toggler .line3 {
   width: 25px;
-  height: 3px;
-  background-color: #fff;
+  height: 2px;
+  background-color: #E7E7E9;
   transition: all 0.3s;
 }
 
@@ -356,7 +356,7 @@
 
   .nav_searchbar {
     position: absolute;
-    top: 83px;
+    top: 74px;
     right: 0px;
     width: 100%;
     z-index: 1000;

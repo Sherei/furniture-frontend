@@ -28,20 +28,23 @@
 }
 
 .blog1 {
-    border-radius: 50% 50% 0px 0px;
+    border-radius: 10% 30% 30%;
 }
 
 .blog2 {
-    border-radius: 100%;
+    
+    border-radius: 50% 50% 0px 0px;
 }
 
 .blog3 {
-    border-radius: 0px 0px 50% 50%;
+    border-radius: 30% 30% 10%;
+    /* border-radius: 0px 0px 50% 50%; */
 }
 
 .blog4 {
-    border-radius: 30% 30% 10%;
-
+    border-radius: 100%;
+    /* border-radius: 30% 30% 10%; */
+    
 }
 
 .blog1 img,

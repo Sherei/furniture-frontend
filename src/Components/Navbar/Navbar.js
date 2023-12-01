@@ -3,7 +3,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { TbPhoneCall } from "react-icons/tb"
 import { AiFillMail } from "react-icons/ai"
 import { FaRegUser, FaAngleDown, FaArrowRight, FaHeart, FaEye, FaEyeSlash } from "react-icons/fa"
-import { IoSearchSharp } from "react-icons/io5";
+import { FiSearch } from "react-icons/fi";
 import { RxCross1 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -60,12 +60,12 @@ export const Navbar = () => {
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-  
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-    
+
         setNavOpen(false);
         setLogin(false);
         setOpen("close");
@@ -385,29 +385,30 @@ export const Navbar = () => {
                 <div className='col-6 d-flex align-items-center nav_cotact' style={{ position: "relative" }}>
                   <input type="search" placeholder='Search Anything' className=''
                     onChange={(e) => setSearchValue(e.target.value)} />
-                  <button className='nav_search_btn '><IoSearchSharp /></button>
+                  <button className='nav_search_btn '><FiSearch /></button>
                 </div>
                 {search && (
-                  <div className={`nav_searchbar w-100 `} style={{backgroundColor:"#02025E", height:"55px"}}>
+                  <div className={`nav_searchbar w-100 `} style={{ backgroundColor: "#02025E", height: "55px" }}>
                     <input type="search" placeholder='Search Anything' />
+                    <button className='nav_search_btn '><FiSearch /></button>
                   </div>
                 )}
-                <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center'ref={ref}>
+                <div className='col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center' ref={ref}>
                   <div className='d-flex align-items-end'>
                     <li className="nav-item px-0">
                       <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
-                        <div className='fs-2 heart'>
+                        <div className='fs-2 heart' style={{ color: "#E7E7E9" }}>
                           <FaHeart />
                         </div>
-                        <div className='fs-2 nav_search' onClick={handleSearchToggle}>
-                          <IoSearchSharp />
+                        <div className='fs-2 nav_search' onClick={handleSearchToggle} style={{ color: "#E7E7E9" }}>
+                          <FiSearch />
                         </div>
                       </NavLink>
                     </li>
                     {cu._id == undefined &&
                       <li className="nav-item px-0">
                         <NavLink className="nav-link nav-link1" style={{ border: "none" }}>
-                          <div className='fs-2' onClick={toggleLogin}>
+                          <div className='fs-2' onClick={toggleLogin} style={{ color: "#E7E7E9" }}>
                             <FaRegUser />
                           </div>
                           {login && (
@@ -480,7 +481,7 @@ export const Navbar = () => {
                             style={{ borderBottom: "none", color: "white" }}
                           >
 
-                            <div className='fs-2' style={{ color: "white" }}>
+                            <div className='fs-2' style={{ color: "#E7E7E9" }}>
                               <FaRegUser />
                             </div>
 
@@ -511,7 +512,7 @@ export const Navbar = () => {
                       }
                     }}>
                       <NavLink className="nav-link nav-link1" style={{ border: "none", position: "relative" }}>
-                        <span className="fs-2">
+                        <span className="fs-2" style={{ color: "#E7E7E9" }}>
                           <FiShoppingCart />
                           <p className='m-0 cart_number'>
                             {filterCartLength}
@@ -596,7 +597,7 @@ export const Navbar = () => {
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
-                    
+
                   >
                     <li> <NavLink className="dropdown-item" to="products/bed" onClick={() => setNavOpen(false)}>All Beds </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/ambassador-beds" onClick={() => setNavOpen(false)}>Ambassador Beds</NavLink></li>

@@ -198,18 +198,18 @@ const SingleAdd = () => {
                 }
             }
         }
-        else if (product?.category === "sofa") {
-            if (size !== undefined && size !== '') {
-                if (size === "3-seater") {
-                    totalPrice += 200;
-                }
-                else if (size === "2-seater") {
-                    totalPrice += 100;
-                } else {
-                    totalPrice += 0;
-                }
-            }
-        }
+        // else if (product?.category === "sofa") {
+        //     if (size !== undefined && size !== '') {
+        //         if (size === "3-seater") {
+        //             totalPrice += 200;
+        //         }
+        //         else if (size === "2-seater") {
+        //             totalPrice += 100;
+        //         } else {
+        //             totalPrice += 0;
+        //         }
+        //     }
+        // }
         else if (product?.category === "mattress") {
             if (size !== undefined && size !== '') {
                 if (size === "small-double") {
@@ -249,12 +249,13 @@ const SingleAdd = () => {
                 return setError("options")
             }
         }
-        else if (product?.category === "sofa" && (product?.subCategory != "corner-sofas" || product?.subCategory != "three-&-two-seater-sofas"|| product?.subCategory != "u-shaped-sofas")) {
-            if (!size, !color) {
-                return setError("options")
-            }
-        }
-        else if (product?.category === "sofa") {
+        // else if (product?.category === "sofa" && (product?.subCategory != "corner-sofas" || product?.subCategory != "three-&-two-seater-sofas"|| product?.subCategory != "u-shaped-sofas")) {
+        //     if (!size, !color) {
+        //         return setError("options")
+        //     }
+        // }
+        // else
+         if (product?.category === "sofa") {
             if (!color) {
                 return setError("options")
             }
@@ -498,7 +499,7 @@ const SingleAdd = () => {
 
                                     {product?.category === "sofa" &&
                                         <>
-                                            {(product.subCategory !== "corner-sofas" && product.subCategory !== "three-&-two-seater-sofas"&& product.subCategory !== "u-shaped-sofas") &&
+                                            {/* {(product.subCategory !== "corner-sofas" && product.subCategory !== "three-&-two-seater-sofas"&& product.subCategory !== "u-shaped-sofas") &&
                                                 <div>
                                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>
                                                         Size <span style={{ color: "red" }}>* </span>&nbsp;{" "}
@@ -521,8 +522,7 @@ const SingleAdd = () => {
                                                         <option value='1-seater'>1 Seater</option>
                                                     </select>
                                                 </div>
-                                            }
-
+                                            } */}
                                             <div className='mt-1'>
                                                 <label style={{ fontSize: "17px", fontWeight: "600" }}>
                                                     Colour <span style={{ color: "red" }}>* </span>&nbsp;{" "}
@@ -1034,26 +1034,25 @@ const SingleAdd = () => {
                             <p className='fs-2 fw-bolder' style={{ color: "#1b2950", borderBottom: "1px solid #1b2950" }}>
                                 Product Detail
                             </p>
-
                             {product?.descriptionHead1 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead1}</p>}
-                            {product?.description && <p className='fs-6 text-muted'>{product.description}</p>}
+                            {product?.description && <p className='fs-6 '>{product.description}</p>}
                             {product?.descriptionHead2 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead2}</p>}
-                            {product?.description2 && <p className='fs-6 text-muted'>{product.description2}</p>}
+                            {product?.description2 && <p className='fs-6'>{product.description2}</p>}
                             {product?.descriptionHead3 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead3}</p>}
-                            {product?.description3 && <p className='fs-6 text-muted'>{product.description3}</p>}
+                            {product?.description3 && <p className='fs-6'>{product.description3}</p>}
                             {product?.descriptionHead4 && <p className='fs-6 my-3 fw-bolder' style={{ color: "#1b2950" }}>{product.descriptionHead4}</p>}
-                            {product?.description4 && <p className='fs-6 text-muted'>{product.description4}</p>}
+                            {product?.description4 && <p className='fs-6'>{product.description4}</p>}
 
                             {product?.dimensionHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimensionHead}</p>}
-                            <ul>
-                                {product?.dimension1 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension1}</p></li>}
-                                {product?.dimension2 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension2}</p></li>}
-                                {product?.dimension3 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension3}</p></li>}
-                                {product?.dimension4 && <li><p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.dimension4}</p></li>}
+                            <ul className='fs-6'>
+                                {product?.dimension1 && <li><p style={{ color: "#1b2950" }}>{product.dimension1}</p></li>}
+                                {product?.dimension2 && <li><p style={{ color: "#1b2950" }}>{product.dimension2}</p></li>}
+                                {product?.dimension3 && <li><p style={{ color: "#1b2950" }}>{product.dimension3}</p></li>}
+                                {product?.dimension4 && <li><p style={{ color: "#1b2950" }}>{product.dimension4}</p></li>}
                             </ul>
 
                             {product.featureHead && <p className='fs-6 fw-bolder' style={{ color: "#1b2950" }}>{product.featureHead}</p>}
-                            <ul>
+                            <ul className='fs-6'>
                                 {product?.feature1 && <p><li>{product.feature1}</li></p>}
                                 {product?.feature2 && <p><li>{product.feature2}</li></p>}
                                 {product?.feature3 && <p><li>{product.feature3}</li></p>}
