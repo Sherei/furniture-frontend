@@ -84,17 +84,16 @@ const Checkout = () => {
     const total = totalSum + shippingFee;
 
     const Order = async (data) => {
-        useEffect(() => {
-            window.scrollTo({
-                top: 0
-            });
-        }, []);
-        setLoading(true);
-        try {
 
+        setLoading(true);    
+        try {
+            useEffect(() => {
+                window.scrollTo({
+                    top: 0
+                });
+            }, []);
             const orderItems = [];
             const orderId = uuidv4().substr(0, 10);
-
             filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
@@ -151,6 +150,7 @@ const Checkout = () => {
                 window.location.reload();
                 window.location.href = `/order-placed/${userId}`;
             }
+
         } catch (e) {
             // console.log(e);
         } finally {
