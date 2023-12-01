@@ -2,29 +2,49 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Loader from "../Loader/Loader"
 
 
 const CornerSofas = () => {
-
     const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    let move = useNavigate();
-
+    const move = useNavigate();
     const containerRef = useRef(null);
+    const [showLeftArrow, setShowLeftArrow] = useState(false);
+    const [showRightArrow, setShowRightArrow] = useState(true);
+
+    const handleScroll = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            setShowLeftArrow(container.scrollLeft > 0);
+            setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth);
+        }
+    };
+
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
 
     const scrollLeft = () => {
         if (containerRef.current) {
             const container = containerRef.current;
             container.scrollTo({
-                left: container.scrollLeft - 200,
+                left: container.scrollLeft - 300,
                 behavior: 'smooth',
             });
         }
     };
+
     const scrollRight = () => {
         if (containerRef.current) {
             const container = containerRef.current;
@@ -34,7 +54,6 @@ const CornerSofas = () => {
             });
         }
     };
-
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -80,7 +99,7 @@ const CornerSofas = () => {
                         ) : (
                             data
                                 .filter((item) => item.subCategory === "corner-sofas")
-                                .slice(0, 15)
+                                .slice(0, 15).reverse()
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
@@ -96,10 +115,10 @@ const CornerSofas = () => {
                                             </div>
                                         </div>
                                         {product?.discount && product?.discount > 0 ? (
-                                                <div className='discount'>
-                                                    {`${product?.discount}%`}
-                                                </div>
-                                            ) : null}
+                                            <div className='discount'>
+                                                {`${product?.discount}%`}
+                                            </div>
+                                        ) : null}
 
                                         <p className='card_title px-2'>{product?.title}</p>
                                         <div>
@@ -119,8 +138,8 @@ const CornerSofas = () => {
                                 ))
                         )}
                     </div>
-                    <button className='btn bed_left' onClick={scrollLeft}><IoIosArrowBack /></button>
-                    <button className='btn bed_right' onClick={scrollRight}><IoIosArrowForward /></button>
+                    <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
+                    <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>
             </div>
         </div >

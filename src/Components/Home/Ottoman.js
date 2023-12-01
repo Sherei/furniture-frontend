@@ -2,28 +2,50 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Loader from "../Loader/Loader"
 
 const Ottoman = () => {
-   
+
+
     const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    let move = useNavigate();
-
+    const move = useNavigate();
     const containerRef = useRef(null);
+    const [showLeftArrow, setShowLeftArrow] = useState(false);
+    const [showRightArrow, setShowRightArrow] = useState(true);
+
+    const handleScroll = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            setShowLeftArrow(container.scrollLeft > 0);
+            setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth);
+        }
+    };
+
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
 
     const scrollLeft = () => {
         if (containerRef.current) {
             const container = containerRef.current;
             container.scrollTo({
-                left: container.scrollLeft - 200,
+                left: container.scrollLeft - 300,
                 behavior: 'smooth',
             });
         }
     };
+
     const scrollRight = () => {
         if (containerRef.current) {
             const container = containerRef.current;
@@ -54,7 +76,7 @@ const Ottoman = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex justify-content-between align-items-center hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{color:'rgb(2, 2, 94)'}} >Ottoman Box</p>
+                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }} >Ottoman Box</p>
                     </div>
                     <div>
                         <p className='view' onClick={() => {
@@ -78,46 +100,46 @@ const Ottoman = () => {
                         ) : (
                             data
                                 .filter((item) => item.category === "ottoman-box")
-                                .slice(0, 10)
+                                .slice(0, 10).reverse()
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
-                                    <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
-                                    <a href="https://wa.me/+923067208343" target="blank">
-                                        <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
-                                    </a>
-                                    <div className='card_img_box'>
-                                        <img src={product?.images[0]} className='img-fluid' alt='No Network' />
-                                        <div className='overlay'>
-                                            {product.images[1] &&
-                                                <img src={product?.images[1]} alt="" />
-                                            }
+                                        <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
+                                        <a href="https://wa.me/+923067208343" target="blank">
+                                            <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
+                                        </a>
+                                        <div className='card_img_box'>
+                                            <img src={product?.images[0]} className='img-fluid' alt='No Network' />
+                                            <div className='overlay'>
+                                                {product.images[1] &&
+                                                    <img src={product?.images[1]} alt="" />
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                    {product?.discount && product?.discount > 0 ? (
+                                        {product?.discount && product?.discount > 0 ? (
                                             <div className='discount'>
                                                 {`${product?.discount}%`}
                                             </div>
                                         ) : null}
-                                    <p className='card_title px-2'>{product?.title}</p>
-                                    <div>
-                                        {product?.discount && product?.discount > 0 ? (
-                                            <>
-                                                <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(1)}`}</span>
-                                                <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span>
-                                            </>
-                                        ) : (
-                                            <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>
-                                        )}
-                                        <div className='card_btns'>
+                                        <p className='card_title px-2'>{product?.title}</p>
+                                        <div>
+                                            {product?.discount && product?.discount > 0 ? (
+                                                <>
+                                                    <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(1)}`}</span>
+                                                    <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span>
+                                                </>
+                                            ) : (
+                                                <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>
+                                            )}
+                                            <div className='card_btns'>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 ))
                         )}
                     </div>
-                    <button className='btn bed_left' onClick={scrollLeft}><IoIosArrowBack /></button>
-                    <button className='btn bed_right' onClick={scrollRight}><IoIosArrowForward /></button>
+                    <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
+                    <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>
             </div>
         </div>

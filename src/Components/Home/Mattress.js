@@ -6,25 +6,54 @@ import { IoIosArrowForward,IoIosArrowBack } from "react-icons/io";
 import Loader from "../Loader/Loader"
 
 const Mattress = () => {
-
-
+    
     const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    let move = useNavigate();
-
+    const move = useNavigate();
     const containerRef = useRef(null);
+
+    // State variables to control arrow visibility
+    const [showLeftArrow, setShowLeftArrow] = useState(false);
+    const [showRightArrow, setShowRightArrow] = useState(true);
+
+    const handleScroll = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+
+            // Check if at the leftmost position
+            setShowLeftArrow(container.scrollLeft > 0);
+
+            // Check if at the rightmost position
+            setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth);
+        }
+    };
+
+    useEffect(() => {
+        // Attach the scroll event listener
+        if (containerRef.current) {
+            containerRef.current.addEventListener('scroll', handleScroll);
+        }
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
 
     const scrollLeft = () => {
         if (containerRef.current) {
             const container = containerRef.current;
             container.scrollTo({
-                left: container.scrollLeft - 200,
+                left: container.scrollLeft - 300,
                 behavior: 'smooth',
             });
         }
     };
+
     const scrollRight = () => {
         if (containerRef.current) {
             const container = containerRef.current;
@@ -78,7 +107,7 @@ const Mattress = () => {
                         ) : (
                             data
                                 .filter((item) => item.category === "mattress")
-                                .slice(0, 10)
+                                .slice(0, 10).reverse()
                                 .map((product, index) => (
 
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
@@ -117,8 +146,9 @@ const Mattress = () => {
                                 ))
                         )}
                     </div>
-                    <button className='btn bed_left' onClick={scrollLeft}><IoIosArrowBack /></button>
-                    <button className='btn bed_right' onClick={scrollRight}><IoIosArrowForward /></button>
+                    <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
+                    <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
+                
                 </div>
             </div>
         </div >

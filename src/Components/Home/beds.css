@@ -176,6 +176,9 @@
 .bed_right {
   right: 0px;
 }
+.hidden {
+  display: none;
+}
 
 @media screen and (max-width:768px) {
 

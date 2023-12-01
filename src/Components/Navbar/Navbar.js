@@ -657,7 +657,7 @@ export const Navbar = () => {
             </div>
           )}
           <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
-            {filteredProducts?.map((product, index) => (
+            {filteredProducts?.reverse().map((product, index) => (
               <div className="col " key={index} >
                 <div className='product_box'>
                   <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>

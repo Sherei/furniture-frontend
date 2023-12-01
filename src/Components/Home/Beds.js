@@ -7,14 +7,33 @@ import Loader from "../Loader/Loader"
 import "./beds.css";
 
 const Beds = () => {
-
     const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    let move = useNavigate();
-
+    const move = useNavigate();
     const containerRef = useRef(null);
+    const [showLeftArrow, setShowLeftArrow] = useState(false);
+    const [showRightArrow, setShowRightArrow] = useState(true);
+
+    const handleScroll = () => {
+        if (containerRef.current) {
+            const container = containerRef.current;
+            setShowLeftArrow(container.scrollLeft > 0);
+            setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth);
+        }
+    };
+
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
 
     const scrollLeft = () => {
         if (containerRef.current) {
@@ -25,6 +44,7 @@ const Beds = () => {
             });
         }
     };
+
     const scrollRight = () => {
         if (containerRef.current) {
             const container = containerRef.current;
@@ -35,16 +55,14 @@ const Beds = () => {
         }
     };
 
-
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            // axios.get("/product").then((res) => {
             try {
                 if (res) {
                     setData(res.data);
                 }
             } catch (e) {
-                // console.log(e);
+                // Handle error
             } finally {
                 setLoading(false);
             }
@@ -56,25 +74,23 @@ const Beds = () => {
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  hero_main'>
                     <div>
-                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }} >All Beds</p>
+                        <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }}>All Beds</p>
                     </div>
                     <div>
-                        <p className='view ' onClick={() => {
-                            move("/Products/bed");
-                        }}>
+                        <p className='view' onClick={() => move("/Products/bed")}>
                             View All
                         </p>
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data?.filter((product) => product.category === "bed").length === 0 &&
+                    {data?.filter((product) => product.category === "bed").length === 0 && (
                         <div className='px-4'>
                             No product available related to this category
                         </div>
-                    }
+                    )}
                     <div className='h_box_main' ref={containerRef}>
                         {loading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
+                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                                 <Loader />
                             </div>
                         ) : (
@@ -82,17 +98,15 @@ const Beds = () => {
                                 .filter((item) => item.category === "bed")
                                 .slice(0, 15)
                                 .map((product, index) => (
-                                    <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
+                                    <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)}>
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
                                         <a href="https://wa.me/+923067208343" target="blank">
-                                            <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
+                                            <button className='btn card_whatsAp'>Buy Via WhatsApp</button>
                                         </a>
                                         <div className='card_img_box'>
                                             <img src={product?.images[0]} className='img-fluid' alt='No Network' />
                                             <div className='overlay'>
-                                                {product.images[1] &&
-                                                    <img src={product?.images[1]} alt="" />
-                                                }
+                                                {product.images[1] && <img src={product?.images[1]} alt="" />}
                                             </div>
                                         </div>
                                         {product?.discount && product?.discount > 0 ? (
@@ -110,20 +124,18 @@ const Beds = () => {
                                             ) : (
                                                 <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>
                                             )}
-                                            <div className='card_btns'>
-
-                                            </div>
+                                            <div className='card_btns'></div>
                                         </div>
                                     </div>
                                 ))
                         )}
                     </div>
-                    <button className='btn bed_left' onClick={scrollLeft}><IoIosArrowBack /></button>
-                    <button className='btn bed_right' onClick={scrollRight}><IoIosArrowForward /></button>
+                    <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
+                    <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Beds;
