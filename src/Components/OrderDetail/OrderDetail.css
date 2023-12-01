@@ -21,3 +21,9 @@
     background-color: green; /* Change to your desired color for completed stages */
   }
   
+
+  @media screen and (max-width:768px) {
+    .table_display1{
+      display: none;
+    }
+  }

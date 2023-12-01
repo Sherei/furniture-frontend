@@ -200,7 +200,6 @@ const SingleAdd = () => {
         }
         else if (product?.category === "sofa") {
             if (size !== undefined && size !== '') {
-
                 if (size === "3-seater") {
                     totalPrice += 200;
                 }
@@ -250,7 +249,7 @@ const SingleAdd = () => {
                 return setError("options")
             }
         }
-        else if (product?.category === "sofa" && (product?.subCategory != "corner-sofas" || product?.subCategory != "three-&-two-seater-sofas")) {
+        else if (product?.category === "sofa" && (product?.subCategory != "corner-sofas" || product?.subCategory != "three-&-two-seater-sofas"|| product?.subCategory != "u-shaped-sofas")) {
             if (!size, !color) {
                 return setError("options")
             }
@@ -499,7 +498,7 @@ const SingleAdd = () => {
 
                                     {product?.category === "sofa" &&
                                         <>
-                                            {(product.subCategory !== "corner-sofas" && product.subCategory !== "three-&-two-seater-sofas") &&
+                                            {(product.subCategory !== "corner-sofas" && product.subCategory !== "three-&-two-seater-sofas"&& product.subCategory !== "u-shaped-sofas") &&
                                                 <div>
                                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>
                                                         Size <span style={{ color: "red" }}>* </span>&nbsp;{" "}

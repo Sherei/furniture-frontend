@@ -26,6 +26,7 @@ export const Cart = () => {
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
+  const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export const Cart = () => {
   const filterCart = cart.filter((item) => userId === item.userId);
 
 
-   const DeleteCartItem = async (itemId) => {
+  const DeleteCartItem = async (itemId) => {
 
     try {
       // setLoading(true);
@@ -153,6 +154,13 @@ export const Cart = () => {
     }
   };
 
+  const toggleDetails = (index) => {
+    setExpandedItems((prev) => ({
+        ...prev,
+        [index]: !prev[index],
+    }));
+};
+
   if (filterCart?.length === 0) {
     if (loading) {
       return (
@@ -229,8 +237,22 @@ export const Cart = () => {
                   <div className='col-8'>
                     <div className='w-100 px-2'>
                       <div className='py-2 d-flex justify-content-between align-items-center'>
-                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }} onClick={() => move(`single_Add/${item._id}`)}>
+                        <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                           {item?.title}
+                          <div
+                              className={`chk_detail ${expandedItems[index] ? 'detail_height' : ''}`}
+                              onClick={() => toggleDetails(index)}
+                            >
+                              {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}/</p>}
+                              {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}/</p>}
+                              {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}/</p>}
+                              {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}/</p>}
+                              {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}/</p>}
+                              {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}/</p>}
+                              {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}/</p>}
+                              {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
+                              {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
+                            </div>
                         </p>
                         <button className='btn text-danger' onClick={() => DeleteCartItem(item._id)}>
                           <RxCross1 />
@@ -293,7 +315,7 @@ export const Cart = () => {
                     <tbody>
                       {filterCart?.map((item, index) => (
                         <tr key={index} className='cart_row'>
-                          <td className='text-center' onClick={() => move(`single_Add/${item._id}`)}>
+                          <td className='text-center'>
                             <div className='text-center' onClick={() => move(`single_Add/${item._id}`)} style={{ position: "relative" }}>
                               <img
                                 src={item?.image}
@@ -315,7 +337,23 @@ export const Cart = () => {
                               }
                             </div>
                           </td>
-                          <td onClick={() => move(`/single_Add/${item._id}`)}>{item?.title}</td>
+                          <td>
+                            {item?.title}
+                            <div
+                              className={`chk_detail ${expandedItems[index] ? 'detail_height' : ''}`}
+                              onClick={() => toggleDetails(index)}
+                            >
+                              {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}/</p>}
+                              {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}/</p>}
+                              {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}/</p>}
+                              {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}/</p>}
+                              {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}/</p>}
+                              {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}/</p>}
+                              {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}/</p>}
+                              {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
+                              {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
+                            </div>
+                          </td>
                           <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
                           <td className='text-center'>
                             <div className="sigle_quatity" style={{ border: "none" }}>

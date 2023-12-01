@@ -84,7 +84,11 @@ const Checkout = () => {
     const total = totalSum + shippingFee;
 
     const Order = async (data) => {
-
+        useEffect(() => {
+            window.scrollTo({
+                top: 0
+            });
+        }, []);
         setLoading(true);
         try {
 
@@ -128,6 +132,7 @@ const Checkout = () => {
             data.total = Ordertotal;
             data.userId = userId;
             data.street = data.street;
+            data.shipping=shippingFee;
             data.appartment = data.appartment;
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {

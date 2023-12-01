@@ -4,7 +4,7 @@ body {
   margin: 0px !important;
   padding: 0px !important;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 * {
