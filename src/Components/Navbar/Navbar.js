@@ -5,6 +5,7 @@ import { AiFillMail } from "react-icons/ai"
 import { FaRegUser, FaAngleDown, FaArrowRight, FaHeart, FaEye, FaEyeSlash } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi";
 import { RxCross1 } from "react-icons/rx"
+import { HiOutlineBars3 } from "react-icons/hi2";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-scroll';
@@ -359,7 +360,8 @@ export const Navbar = () => {
                 <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
                   <div>
                     <button
-                      className={`custom-toggler ${isNavOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
+                      className={`custom-toggler`}
+                      // className={`custom-toggler ${isNavOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
                       data-bs-toggle="collapse"
                       data-bs-target="#navbarNavDropdown"
                       aria-controls="navbarNavDropdown"
@@ -368,10 +370,12 @@ export const Navbar = () => {
                       onClick={toggleNav}
                     >
                       <div className='d-flex flex-column gap-1 lines'>
-                        <div className={`line1 ${isNavOpen ? 'cross-line1' : ''}`}></div>
-                        <div className={`line2 ${isNavOpen ? 'cross-line2' : ''}`}></div>
-                        <div className={`line3 ${isNavOpen ? 'cross-line3' : ''}`}></div>
+                        {isNavOpen ? <RxCross1 /> : <HiOutlineBars3 />}
                       </div>
+                      {/* <div className={`line1 ${isNavOpen ? 'cross-line1' : ''}`}></div>
+                        <div className={`line2 ${isNavOpen ? 'cross-line2' : ''}`}></div>
+                        <div className={`line3 ${isNavOpen ? 'cross-line3' : ''}`}></div> */}
+
                     </button>
                   </div>
                   <div>
