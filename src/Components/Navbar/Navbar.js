@@ -51,6 +51,8 @@ export const Navbar = () => {
     event.preventDefault();
     event.stopPropagation();
     setNavOpen(false);
+    setSearch(false);
+    setLogin(false);
   };
   
   const handleSearchToggle = () => {
