@@ -249,13 +249,12 @@
   position: absolute;
   top: 11px;
   right: -2px;
-  width: fit-content;
-  height: fit-content;
+  width: 17px;
+  height: 17px;
   background-color: red;
   color: white;
-  padding: 0px 4px;
   font-size: 12px;
-  border-radius: 50%;
+  border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
