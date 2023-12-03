@@ -28,11 +28,11 @@ const SingleBlog = () => {
                             <h1 className='text-center fw-bolder'>How to Choose a Perfect Sofa</h1>
                         </>
                     }
-                    {Name === "clean-sofa" &&
+                    {Name === "clean-bed" &&
                         <>
                             <p className='text-center text-muted'>JUL 05, 2023
                                 JELENA PETKOVIC</p>
-                            <h1 className='text-center fw-bolder'>How to Clean Sofa</h1>
+                            <h1 className='text-center fw-bolder'>How to Clean Bed</h1>
                         </>
                     }
                     {Name === "perfect-mattress" &&
@@ -103,54 +103,56 @@ const SingleBlog = () => {
                             </div>
                         </>
                     }
-                    {Name === "clean-sofa" &&
+                    {Name === "clean-bed" &&
                         <>
 
                             <img src="/Sofa_Claning_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-5' >
-                                <p className='m-auto'>
-                                    Hey, <br /> <br />
-                                    We understand a sofa is often a large investment and you want to make sure it lasts as long as possible. With proper care, a high-quality sofa can last many years.
-                                    Here are some top tips to follow to care for your sofa and ensure it lasts longer.
-                                    <br /> <br />
-                                </p>
                                 <ul className='mt-4' style={{ width: "90%" }}>
                                     <li>
                                         <p>
-                                            <span className='fw-bolder'> Clean It Regularly</span> <br /> <br />
-                                            Dirt can damage fabric over time, so make sure you clean your sofa regularly to remove dust and debris.
-                                            Be gentle on the upholstery by using a special brush attachment with your vacuum.
+                                            <span className='fw-bolder'>Regular Bed Linen Cleaning:</span> <br /> <br />
+                                            Proper bed hygiene begins with regular cleaning of bed linens. It's essential to wash sheets, pillowcases,
+                                            and duvet covers at least once a week. Use a mild detergent suitable for bedding to remove sweat, oils, and any accumulated dirt. Washing at a higher temperature, around 60 degrees Celsius, helps to eliminate bacteria and allergens effectively.
+                                            Always check the care instructions for your specific linens to ensure they are laundered correctly.
                                             <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            <span className='fw-bolder'> Keep your sofa stain-free</span> <br /> <br />
-                                            Clean up spills immediately to prevent stains from setting in.
-                                            Blot liquids gently and don’t rub them in, and consider using an upholstery cleaner.
+                                            <span className='fw-bolder'>Mattress Maintenance:</span> <br /> <br />
+                                            Maintaining a clean mattress is crucial for a healthy sleep environment.
+                                            Vacuum your mattress every few months using the upholstery attachment to remove dust mites, dead skin cells,
+                                            and other debris. Consider using a mattress protector to prevent spills and stains. If a stain does occur, spot clean
+                                            it immediately with a mixture of mild detergent and water.
+                                            Allow the mattress to air dry thoroughly before putting on any bedding.
                                             <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            <span className='fw-bolder'>Keep out of direct sunlight</span> <br /> <br />
-                                            Direct sunlight can fade fabric following prolonged exposure. Position your sofa away from windows,
-                                            or block direct sunlight using blinds or curtains.
-                                            <br /> <br />
-                                        </p>
-                                    </li>
-                                    <li >
-                                        <p>
-                                            <span className='fw-bolder'>Use Throws</span><br /> <br />
-                                            Protect high-contact areas like armrests by using throws.
-                                            A good throw or blanket will also provide added protection from spills.
+                                            <span className='fw-bolder'>Pillow Care:</span> <br /> <br />
+                                            Pillows also play a significant role in bed cleanliness. Depending on the type of pillows you have,
+                                            they may be machine washable or may require spot cleaning. Always refer to the care instructions. Fluff and rotate
+                                            your pillows regularly to maintain their shape and distribute filling evenly. Consider replacing pillows every 1-2 years,
+                                            as they can accumulate dust mites and lose their support over time.
                                             <br /> <br />
                                         </p>
                                     </li>
 
+                                    <li >
+                                        <p>
+                                            <span className='fw-bolder'>Duvet and Blanket Cleaning:</span><br /> <br />
+                                            Duvets and blankets should be laundered according to their specific care instructions.
+                                            While some may be machine washable, others may require professional cleaning. Air out duvets and blankets
+                                            regularly to keep them fresh. If you spill something on them, address the stain promptly to prevent it from setting.
+                                            Airing them out in the sun can also help eliminate odors and kill bacteria.
+                                            <br /> <br />
+                                        </p>
+                                    </li>
                                 </ul>
                                 <p>
-                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>cleaning sofa, sofa maintenance</span>
+                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>cleaning bed, bed maintenance</span>
                                 </p>
 
                             </div>
@@ -271,7 +273,7 @@ const SingleBlog = () => {
                         </>
                     }
                     <div className='my-5 text-center'>
-                        <button className='btn review_btn' style={{width:"fit-content"}} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
+                        <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
                     </div>
                 </div>
             </div>

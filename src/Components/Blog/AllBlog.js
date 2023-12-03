@@ -17,7 +17,7 @@ const AllBlog = () => {
                     <h1 className='text-center fw-bolder'>Blog Posts</h1>
                     <p className='text-center text-muted'>November 08, 2023</p>
                     <div className='d-flex flex-wrap  gap-3 justify-content-center my-5 px-4 '>
-                        <div className='block_main mt-5' onClick={() => move("/single-blog/clean-sofa")}>
+                        <div className='block_main mt-5' onClick={() => move("/single-blog/clean-bed")}>
                             <div className='blog1'>
                                 <img src="/blog1.webp" alt="" />
                             </div>
