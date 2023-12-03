@@ -343,6 +343,11 @@
   display: none;
 }
 
+@media screen and (max-width:1027px) {
+  .nav_search_btn {
+    top: 11px;
+  }
+}
 @media screen and (max-width:992px) {
   .login_div::before {
     right: 67px !important;
