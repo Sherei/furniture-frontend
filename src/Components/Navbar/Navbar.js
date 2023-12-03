@@ -564,7 +564,7 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={(event) => closeNav(event)}>U Shape Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={(event) => closeNav(event)}>Leather Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/recliner-sofas" onClick={(event) => closeNav(event)}>Recliner Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={(event) => closeNav(event)}>Arm Chair & Swivel Chair</NavLink></li>
+                    {/* <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={(event) => closeNav(event)}>Arm Chair & Swivel Chair</NavLink></li> */}
                   </ul>
                 </li>
                 <li className="nav-item nav-item2">
@@ -602,7 +602,7 @@ export const Navbar = () => {
                     <li> <NavLink className="dropdown-item" to="products/ambassador-beds" onClick={(event) => closeNav(event)}>Ambassador Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/panel-bed" onClick={(event) => closeNav(event)}>Panel Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames" onClick={(event) => closeNav(event)}>Wingback Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds" onClick={(event) => closeNav(event)}>Ottoman Beds</NavLink></li>
+                    {/* <li> <NavLink className="dropdown-item" to="products/ottoman-beds" onClick={(event) => closeNav(event)}>Ottoman Beds</NavLink></li> */}
                     <li> <NavLink className="dropdown-item" to="products/bespoke-beds" onClick={(event) => closeNav(event)}>Bespoke Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/chesterfield-beds" onClick={(event) => closeNav(event)}>Chesterfield Beds</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/divan-beds" onClick={(event) => closeNav(event)}>Divan Beds</NavLink></li>

@@ -175,7 +175,7 @@ const Products = () => {
                                         <p onClick={() => setCategory("u-shaped-sofas")} className={setCategory === "u-shaped-sofas" ? 'activeCategory' : ''}>U Shaped Sofas</p>
                                         <p onClick={() => setCategory("leather-sofas")} className={setCategory === "leather-sofas" ? 'activeCategory' : ''}>Leather Sofas</p>
                                         <p onClick={() => setCategory("recliner-sofas")} className={setCategory === "recliner-sofas" ? 'activeCategory' : ''}>Recliner Sofas</p>
-                                        <p onClick={() => setCategory("arm-chair-&-swivel-chair")} className={setCategory === "arm-chair-&-swivel-chair" ? 'activeCategory' : ''}>Arm Chair & Swivel Chair</p>
+                                        {/* <p onClick={() => setCategory("arm-chair-&-swivel-chair")} className={setCategory === "arm-chair-&-swivel-chair" ? 'activeCategory' : ''}>Arm Chair & Swivel Chair</p> */}
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@ const Products = () => {
                                         <p onClick={() => setCategory("ambassador-beds")} className={setCategory === "ambassador-beds" ? 'activeCategory' : ''}>Ambassador Beds </p>
                                         <p onClick={() => setCategory("panel-bed")} className={setCategory === "panel-bed" ? 'activeCategory' : ''}>Panel Beds</p>
                                         <p onClick={() => setCategory("wingback-beds-frames")} className={setCategory === "wingback-beds-frames" ? 'activeCategory' : ''}>Wingback Beds</p>
-                                        <p onClick={() => setCategory("ottoman-beds")} className={setCategory === "ottoman-beds" ? 'activeCategory' : ''}>Ottoman Beds </p>
+                                        {/* <p onClick={() => setCategory("ottoman-beds")} className={setCategory === "ottoman-beds" ? 'activeCategory' : ''}>Ottoman Beds </p> */}
                                         <p onClick={() => setCategory("bespoke-beds")} className={setCategory === "bespoke-beds" ? 'activeCategory' : ''}>Bespoke Beds</p>
                                         <p onClick={() => setCategory("chesterfield-beds")} className={setCategory === "chesterfield-beds" ? 'activeCategory' : ''}>Chesterfield Beds</p>
                                         <p onClick={() => setCategory("divan-beds")} className={setCategory === "divan-beds" ? 'activeCategory' : ''}>Divan Beds</p>

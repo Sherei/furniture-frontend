@@ -295,7 +295,7 @@ export const AddProduct = () => {
                       <option value="u-shaped-sofas">U Shaped Sofas</option>
                       <option value="leather-sofas">Leather Sofas</option>
                       <option value="recliner-sofas">Recliner Sofas</option>
-                      <option value="arm-chair-&-swivel-chair">Arm Chair & Swivel Chair</option>
+                      {/* <option value="arm-chair-&-swivel-chair">Arm Chair & Swivel Chair</option> */}
                     </select>
                     {errors.subCategory ? <div className='error'>Select Sub Category</div> : null}
 
@@ -318,7 +318,7 @@ export const AddProduct = () => {
                       <option value="ambassador-beds">Ambassador Beds</option>
                       <option value="panel-bed">Panel Beds</option>
                       <option value="wingback-beds-frames">Wingback Bed</option>
-                      <option value="ottoman-beds">Ottoman Beds</option>
+                      {/* <option value="ottoman-beds">Ottoman Beds</option> */}
                       <option value="bespoke-beds">Bespoke Beds</option>
                       <option value="chesterfield-beds">Chesterfield Beds</option>
                       <option value="divan-beds">Divan Beds</option>
