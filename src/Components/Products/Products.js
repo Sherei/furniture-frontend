@@ -21,7 +21,7 @@ const Products = () => {
     }, [prodctName]);
 
     const ref = useRef();
-    
+
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("")
     const [activeGrid, setActiveGrid] = useState("grid")
@@ -53,7 +53,7 @@ const Products = () => {
         });
     }, []);
 
-    
+
     // useEffect(() => {
     //     const handleClickOutside = (event) => {
     //         if (ref.current && !ref.current.contains(event.target)) {
@@ -142,7 +142,7 @@ const Products = () => {
                     <div className='categories'>
                         <div className='d-flex justify-content-between'>
                             <p className='fs-5' style={{ color: "#1B2950" }}><FaFilter /> Filter</p>
-                            <span className='close px-3 fs-5' onClick={()=>setFilter(false)}>❌</span>
+                            <span className='close px-3 fs-5' onClick={() => setFilter(false)}>❌</span>
                         </div>
                         <div className="" id="accordionExample">
 
@@ -248,32 +248,41 @@ const Products = () => {
                             </div>
                             <button className='btn accordian_btn2'>Filter by Price</button>
 
-                            <div className='px-2' >
-                                <label htmlFor="minPriceRange">Min Price: {minPrice}</label>
-                                <input
-                                    type="range"
-                                    id="minPriceRange"
-                                    className='w-100'
-                                    min={0}
-                                    max={9000}
-                                    step={10}
-                                    value={minPrice}
-                                    onChange={handleMinRangeChange}
-                                />
+                            <div className='px-2' style={{ position: "relative" }} >
+                                <div className='d-flex'>
+                                    <input
+                                        type="range"
+                                        id="minPriceRange"
+                                        className='w-50'
+                                        min={0}
+                                        max={9000}
+                                        step={10}
+                                        value={minPrice}
+                                        onChange={handleMinRangeChange}
+                                        style={{ height: "2px" }}
+                                    />
+                                    <input
+                                        type="range"
+                                        id="maxPriceRange"
+                                        className='w-50'
+                                        min={0}
+                                        max={10000}
+                                        step={10}
+                                        value={maxPrice}
+                                        onChange={handleMaxRangeChange}
+                                        style={{
+                                            height: "2px",
+                                            position: "absolute",
+                                            top: "0px",
+                                            right: "4px",
+                                        }}
+                                    />
+                                </div>
+                                <p className='m-0 mt-2' style={{ color: "red" }}>&pound;{minPrice} - &pound;{maxPrice}</p>
                             </div>
 
                             <div className='px-2'>
-                                <label htmlFor="maxPriceRange">Max Price: {maxPrice}</label>
-                                <input
-                                    type="range"
-                                    id="maxPriceRange"
-                                    className='w-100'
-                                    min={0}
-                                    max={10000}
-                                    step={10}
-                                    value={maxPrice}
-                                    onChange={handleMaxRangeChange}
-                                />
+
                             </div>
                         </div>
                     </div>
@@ -304,7 +313,7 @@ const Products = () => {
                                 <p className='fw-bolder my-2'>{filterProduct.length} Products</p>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <button className='btn fs-4' role='button'  onClick={Filter}><FaFilter /></button>
+                                <button className='btn fs-4' role='button' onClick={Filter}><FaFilter /></button>
                             </div>
                         </div>
                     </div>

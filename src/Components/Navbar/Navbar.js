@@ -48,15 +48,12 @@ export const Navbar = () => {
     setSearch(false);
   };
   const closeNav = (event) => {
-    event.preventDefault(); // Prevents the default behavior of the link
-    event.stopPropagation(); // Stops the event from propagating up the DOM tree
-
+    event.preventDefault();
+    event.stopPropagation();
     setNavOpen(false);
     setSearch(false);
     setLogin(false);
-
     const href = event.currentTarget.getAttribute("href");
-
     if (href) {
       move(href);
     }
@@ -365,6 +362,7 @@ export const Navbar = () => {
         <div className={`py-2 container-fluid`} style={{ backgroundColor: "rgb(2, 2, 94)" }}>
           <div className="row">
             <div className="col nav1">
+
               <div className='row nav1_row'>
 
                 <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
@@ -541,7 +539,7 @@ export const Navbar = () => {
             <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/" onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/" onClick={(event) => closeNav(event)}>
                     Home
                   </NavLink>
                 </li>
@@ -566,22 +564,22 @@ export const Navbar = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li> <NavLink className="dropdown-item" to="/products/sofa" onClick={(event) => closeNav(event)}>All Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={closeNav}>Corner Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={closeNav}>3+2 Sofa Sets</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={closeNav}>Sofa Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={closeNav}>U Shape Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={closeNav}>Leather Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/recliner-sofas" onClick={closeNav}>Recliner Sofas</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={closeNav}>Arm Chair & Swivel Chair</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={(event) => closeNav(event)}>Sofa Beds </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={(event) => closeNav(event)}>U Shape Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={(event) => closeNav(event)}>Leather Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/recliner-sofas" onClick={(event) => closeNav(event)}>Recliner Sofas</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={(event) => closeNav(event)}>Arm Chair & Swivel Chair</NavLink></li>
                   </ul>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas" onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas" onClick={(event) => closeNav(event)}>
                     Corner Sofas
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas" onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>
                     3+2 Sofa Sets
                   </NavLink>
                 </li>
@@ -606,38 +604,38 @@ export const Navbar = () => {
                     aria-labelledby="navbarDropdownMenuLink"
 
                   >
-                    <li> <NavLink className="dropdown-item" to="products/bed" onClick={closeNav}>All Beds </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ambassador-beds" onClick={closeNav}>Ambassador Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/panel-bed" onClick={closeNav}>Panel Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames" onClick={closeNav}>Wingback Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds" onClick={closeNav}>Ottoman Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/bespoke-beds" onClick={closeNav}>Bespoke Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/chesterfield-beds" onClick={closeNav}>Chesterfield Beds</NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/divan-beds" onClick={closeNav}>Divan Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/bed" onClick={(event) => closeNav(event)}>All Beds </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/ambassador-beds" onClick={(event) => closeNav(event)}>Ambassador Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/panel-bed" onClick={(event) => closeNav(event)}>Panel Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/wingback-beds-frames" onClick={(event) => closeNav(event)}>Wingback Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/ottoman-beds" onClick={(event) => closeNav(event)}>Ottoman Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/bespoke-beds" onClick={(event) => closeNav(event)}>Bespoke Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/chesterfield-beds" onClick={(event) => closeNav(event)}>Chesterfield Beds</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="products/divan-beds" onClick={(event) => closeNav(event)}>Divan Beds</NavLink></li>
                   </ul>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box" onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box" onClick={(event) => closeNav(event)}>
                     Ottoman Box
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/footstools" onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/footstools" onClick={(event) => closeNav(event)}>
                     Footstools
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/mattress" onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/mattress" onClick={(event) => closeNav(event)}>
                     Mattresses
                   </NavLink>
                 </li>
                 <li className="nav-item  menu_hide nav-item2">
-                  <Link className="nav-link" aria-current="page" to="review" onClick={closeNav}>
+                  <Link className="nav-link" aria-current="page" to="review" onClick={(event) => closeNav(event)}>
                     Reviews
                   </Link>
                 </li>
                 <li className="nav-item  menu_hide nav-item2">
-                  <Link className="nav-link" aria-current="page" to="about" onClick={closeNav}>
+                  <Link className="nav-link" aria-current="page" to="about" onClick={(event) => closeNav(event)}>
                     About Us
                   </Link>
                 </li>
