@@ -64,7 +64,7 @@ const Categories = () => {
           <div className='h_box_main'>
             <div className="h_box" onClick={() => { move('/products/sofa') }}>
               <div className='h_box_img_main'>
-                <img src="/sofa.jpg" alt='No Network' />
+                <img src="/allsofa.jpg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>All Sofas</p>
@@ -74,7 +74,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/corner-sofas') }}>
               <div className='h_box_img_main'>
-                <img src="/corner.jpg" alt='No Network' />
+                <img src="/cornersofa.jpeg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>Corner Sofas</p>
@@ -94,7 +94,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/bed') }}>
               <div className='h_box_img_main'>
-                <img src="/bed.jpg" alt='No Network' />
+                <img src="/allbeds.jpg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>All Beds</p>
@@ -104,7 +104,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/ottoman-box') }}>
               <div className='h_box_img_main'>
-                <img src="/ottoman.jpg" alt='No Network' />
+                <img src="/ottomanbox.jpg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>Ottoman Box</p>
@@ -114,7 +114,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/mattress') }}>
               <div className='h_box_img_main'>
-                <img src="/matres.jpg" alt='No Network' />
+                <img src="/mattress.jpg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>Mattresses</p>

@@ -15,10 +15,10 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-.h_box:hover {
+.h_box:hover .h_box_img_main img {
     cursor: pointer;
-    transform: scale(1.07);
-    transition: all ease-in-out 0.2s;
+    transform: scale(1.09);
+    transition: all linear 1s;
 }
 
 .h_box_main::-webkit-scrollbar {
@@ -43,6 +43,7 @@
 .h_box_img_main {
     width: 100%;
     height: 190px;
+    overflow: hidden;
 }
 
 .h_box_img_main img {

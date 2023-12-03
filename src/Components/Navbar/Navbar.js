@@ -558,8 +558,8 @@ export const Navbar = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li><NavLink className="dropdown-item" onClick={() => { move("/products/sofa"); closeNav(); }}>All Sofas</NavLink></li>
-                    {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
-                    <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li> */}
+                      {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
+                      <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li> */}
                     <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={(event) => closeNav(event)}>Sofa Beds </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={(event) => closeNav(event)}>U Shape Sofas</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/leather-sofas" onClick={(event) => closeNav(event)}>Leather Sofas</NavLink></li>
