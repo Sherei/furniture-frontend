@@ -28,11 +28,11 @@ const SingleBlog = () => {
                             <h1 className='text-center fw-bolder'>How to Choose a Perfect Sofa</h1>
                         </>
                     }
-                    {Name === "clean-bed" &&
+                    {Name === "clean-sofa" &&
                         <>
                             <p className='text-center text-muted'>JUL 05, 2023
                                 JELENA PETKOVIC</p>
-                            <h1 className='text-center fw-bolder'>How to Clean Bed</h1>
+                            <h1 className='text-center fw-bolder'>How to Clean Sofa</h1>
                         </>
                     }
                     {Name === "perfect-mattress" &&
@@ -50,109 +50,124 @@ const SingleBlog = () => {
                                 className='mt-5 img-fluid'
                                 alt="No Network"
                             />
-                            <div className='my-5 px-5' >
+                            <div className='my-5 px-lg-5 px-2' >
                                 <p className='m-auto'>
-                                    Your bed is one of the most important pieces of furniture in your home, and choosing the right one can make a big difference in the overall look and feel of your bedroom. With so many different types of beds available, it can be overwhelming to select the perfect one for your space.
-                                    Here are some tips to help you find the ideal bed that meets your needs and
-                                    complements your decor.
+                                    Hey, <br /> <br />
+                                    Your bed holds a crucial role in shaping the ambiance of your home, impacting the overall aesthetics and
+                                    comfort of your bedroom. Given the plethora of bed options available, the task of choosing the perfect one can be daunting.
+                                    To guide you in this process, here are some recommendations:
                                 </p>
-                                <ol className='mt-4' style={{ width: "90%" }}>
+                                <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
                                         <p>
-                                            Determine your size requirements The first step in choosing a bed is determining what size you need. Consider the size of your bedroom and how much space you have available. Do you want a king, queen, full, or twin size bed? Keep in mind that the larger the bed,
-                                            the more space it will take up in your room.
+                                            <span className='fw-bolder'>Size Considerations:</span> <br /> <br />
+                                            Kick off your bed selection journey by determining the appropriate size. Take into account your room
+                                            dimensions and available space. Are you inclined towards a king, queen, full, or
+                                            twin size bed? Keep in mind that larger beds occupy more space in your room.\
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Choose a style that complements your decor Beds come in a variety of styles, from traditional to modern.
-                                            Think about the overall look and feel you want to create in your bedroom, and choose a style that complements your decor. If you have a traditional bedroom, for example, a sleigh bed or four-poster bed may be a good choice,
-                                            while a platform bed may work well in a modern space.
+                                            <span className='fw-bolder'>Harmonize with Your Decor Style:</span> <br /> <br />
+                                            Beds are available in an array of styles, ranging from traditional to modern. Contemplate the ambiance you wish to
+                                            create in your bedroom and opt for a style that harmonizes with your decor. For a traditional setting, consider a
+                                            sleigh bed or a four-poster bed, while a platform bed might be more fitting for a modern space.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Consider the material and finish The material and finish of your bed can also make a big impact on the overall
-                                            look of your bedroom. Consider the color and finish of your existing furniture and choose a bed that complements
-                                            those elements. Wood beds are a classic choice, while metal beds can add a touch of modernity to your space.
+                                            <span className='fw-bolder'>Material and Finish Selection:</span> <br /> <br />
+                                            The material and finish of your bed significantly contribute to the overall aesthetics of your bedroom.
+                                            Take note of the color and finish of your existing furniture and choose a bed that complements these elements.
+                                            Classic wood beds exude timeless elegance,
+                                            whereas metal beds can introduce a touch of modernity.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Think about storage options If you have limited storage space in your bedroom,
-                                            a bed with built-in storage can be a great option. Some beds have drawers or shelves built into the frame,
-                                            while others have a hydraulic lift system
-                                            that allows you to lift up the mattress and access storage space underneath.
+                                            <span className='fw-bolder'>Explore Storage Options:</span><br /> <br />
+                                            If storage space in your bedroom is limited, a bed with built-in storage can be a smart solution.
+                                            Some beds feature drawers or shelves integrated into the frame, while others leverage a hydraulic lift system,
+                                            allowing you to raise the mattress and access storage space underneath.
                                         </p>
                                     </li>
+
                                     <li >
                                         <p>
-                                            Choose a comfortable mattress A comfortable mattress is just as important as the bed itself.
-                                            When selecting a mattress, consider your preferred level of firmness and support. Do you prefer a softer mattress,
-                                            or something more firm?
-                                            Don't forget to consider factors such as allergies and back pain when choosing a mattress.
+                                            <span className='fw-bolder'>Prioritize Mattress Comfort:</span><br /> <br />
+                                            The importance of a comfortable mattress cannot be overstated. When selecting a mattress, factor in your preferred
+                                            level of firmness and support. Are you inclined towards a softer or firmer mattress? Additionally,
+                                            consider aspects such as allergies and back pain in your mattress decision-making process.
+                                            <br /> <br />
+                                            Armed with these insights, you're well-prepared to embark on your quest for the perfect bed. At Furniture Direct
+                                            Online Store, we offer a diverse range of beds catering to various styles and budgets. Explore our collection today to discover
+                                            the ideal bed that will stand as the focal point of your bedroom for years to come.
                                         </p>
                                     </li>
-                                </ol>
-                                <p className='m-auto' >
-                                    With these tips in mind, you're ready to start shopping for the perfect bed for your bedroom.
-                                    At Furniture Direct Online Store, we offer a wide variety of beds to fit any style and budget.
-                                    Visit us today to find the bed that will be the centerpiece of your bedroom for years to come
+
+                                </ul>
+                                <p>
+                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>choose bed, bed maintainance</span>
                                 </p>
 
                             </div>
+
                         </>
                     }
-                    {Name === "clean-bed" &&
+                    {Name === "clean-sofa" &&
                         <>
 
                             <img src="/Sofa_Claning_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
-                            <div className='my-5 px-5' >
-                                <ul className='mt-4' style={{ width: "90%" }}>
+                            <div className='my-5 px-lg-5 px-2' >
+                                <p className='m-auto'>
+                                    Hey, <br /> <br />
+                                    Securing a durable sofa is a substantial investment, and maintaining its longevity requires thoughtful care.
+                                    To ensure your high-quality sofa stands the test of time, consider these essential tips:<br /> <br />
+                                </p>
+                                <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
                                         <p>
-                                            <span className='fw-bolder'>Regular Bed Linen Cleaning:</span> <br /> <br />
-                                            Proper bed hygiene begins with regular cleaning of bed linens. It's essential to wash sheets, pillowcases,
-                                            and duvet covers at least once a week. Use a mild detergent suitable for bedding to remove sweat, oils, and any accumulated dirt. Washing at a higher temperature, around 60 degrees Celsius, helps to eliminate bacteria and allergens effectively.
-                                            Always check the care instructions for your specific linens to ensure they are laundered correctly.
+                                            <span className='fw-bolder'>Regular Cleaning Routine:</span> <br /> <br />
+                                            Upholstery can accumulate dirt over time, leading to wear and tear. Establish a regular cleaning schedule using a
+                                            vacuum with a soft brush attachment to gently remove dust and debris, preserving the fabric's integrity.
                                             <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            <span className='fw-bolder'>Mattress Maintenance:</span> <br /> <br />
-                                            Maintaining a clean mattress is crucial for a healthy sleep environment.
-                                            Vacuum your mattress every few months using the upholstery attachment to remove dust mites, dead skin cells,
-                                            and other debris. Consider using a mattress protector to prevent spills and stains. If a stain does occur, spot clean
-                                            it immediately with a mixture of mild detergent and water.
-                                            Allow the mattress to air dry thoroughly before putting on any bedding.
+                                            <span className='fw-bolder'>Prompt Stain Management:</span> <br /> <br />
+                                            Act swiftly to clean spills and prevent stubborn stains. Use a gentle touch when blotting liquids,
+                                            avoiding rubbing, and consider employing a
+                                            suitable upholstery cleaner for effective stain removal.
                                             <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            <span className='fw-bolder'>Pillow Care:</span> <br /> <br />
-                                            Pillows also play a significant role in bed cleanliness. Depending on the type of pillows you have,
-                                            they may be machine washable or may require spot cleaning. Always refer to the care instructions. Fluff and rotate
-                                            your pillows regularly to maintain their shape and distribute filling evenly. Consider replacing pillows every 1-2 years,
-                                            as they can accumulate dust mites and lose their support over time.
+                                            <span className='fw-bolder'>Shield from Sunlight Exposure:</span> <br /> <br />
+                                            Prolonged exposure to direct sunlight can result in fabric fading. Strategically position your sofa away
+                                            from windows or employ blinds and curtains to block harsh sunlight,
+                                            safeguarding the vibrant colors and texture of your upholstery.
                                             <br /> <br />
+                                        </p>
+                                    </li>
+                                    <li >
+                                        <p>
+                                            <span className='fw-bolder'>Utilize Throws for Protection:</span><br /> <br />
+                                            Safeguard high-contact areas, such as armrests, by incorporating throws or blankets.
+                                            These not only shield against potential spills but also add an extra layer of protection,
+                                            enhancing the lifespan of your sofa.
+                                            <br /> <br />
+                                            Remember, a well-maintained sofa not only elevates the aesthetic appeal of your living space but also ensures enduring comfort and functionality.
                                         </p>
                                     </li>
 
-                                    <li >
-                                        <p>
-                                            <span className='fw-bolder'>Duvet and Blanket Cleaning:</span><br /> <br />
-                                            Duvets and blankets should be laundered according to their specific care instructions.
-                                            While some may be machine washable, others may require professional cleaning. Air out duvets and blankets
-                                            regularly to keep them fresh. If you spill something on them, address the stain promptly to prevent it from setting.
-                                            Airing them out in the sun can also help eliminate odors and kill bacteria.
-                                            <br /> <br />
-                                        </p>
-                                    </li>
                                 </ul>
                                 <p>
-                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>cleaning bed, bed maintenance</span>
+                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>cleaning sofa, sofa maintenance</span>
                                 </p>
 
                             </div>
@@ -161,55 +176,63 @@ const SingleBlog = () => {
 
                     {Name === "perfect-sofa" &&
                         <>
-
                             <img src="/1_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
-                            <div className='my-5 px-5' >
+                            <div className='my-5 px-lg-5 px-2' >
                                 <p className='m-auto'>
-                                    A sofa is often the centerpiece of a living room and is where you and your
-                                    family and friends will spend countless hours lounging and relaxing. With so many different styles, sizes, and materials to choose from, it can be overwhelming to select the perfect sofa for your home.
-                                    Here are some tips to help you find the ideal sofa that meets your needs and complements your decor.
+                                    Hey, <br /> <br />
+                                    Your living room's focal point, the sofa, plays a crucial role in creating a cozy and inviting space for you,
+                                    your family, and friends. Choosing the right sofa can be a rewarding experience with these helpful tips:
                                 </p>
-                                <ol className='mt-4' style={{ width: "90%" }}>
+                                <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
                                         <p>
-                                            Determine your style Before you start shopping for a sofa, it’s important to determine what style you want. Do you prefer a modern, minimalist look, or something more traditional? Are you drawn to bright colors or neutral tones?
-                                            Knowing your style preferences will help you narrow down your options and make shopping for a sofa much easier.
+                                            <span className='fw-bolder'>Define Your Style:</span> <br /> <br />
+                                            Before delving into sofa options, identify your preferred style. Whether it's a modern, minimalist aesthetic or a
+                                            more traditional look, knowing your style preferences will streamline your search.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Consider the size and layout of your room The size of your room and its layout will also influence the type of sofa
-                                            you choose. If you have a small living room, for example, you may want a smaller sofa or even a loveseat to avoid overcrowding the space. On the other hand, if you have a large living room,
-                                            a sectional sofa or a larger sofa and armchair combination may be more appropriate.
+                                            <span className='fw-bolder'>Consider Room Size and Layout:</span> <br /> <br />
+                                            Assess the dimensions and layout of your living room. For smaller spaces, opt for a compact sofa or loveseat to
+                                            avoid overcrowding. In larger rooms, explore sectional sofas or
+                                            combinations of larger sofas and armchairs for a balanced arrangement.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Determine the level of comfort you need Different people have different comfort preferences when
-                                            it comes to sofas. Some people prefer a firmer seat, while others like something softer and more plush. Determine the level of comfort you need in a sofa,
-                                            and make sure to test it out by sitting on it in the store or showroom before making a purchase.
+                                            <span className='fw-bolder'>Evaluate Comfort Levels:</span> <br /> <br />
+                                            People have varying comfort preferences. Determine if you prefer a firmer or softer seat.
+                                            Test sofas in stores to gauge comfort before making a decision.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Choose a durable and easy-to-clean material Sofas come in a variety of materials, including leather,
-                                            fabric, and microfiber. If you have kids or pets, it’s especially important to choose a material that is durable
-                                            and easy to clean. Leather is a good choice for those who want a durable material that is easy to wipe clean,
-                                            while microfiber is a popular choice for families with children because it is resistant to stains and spills.
+                                            <span className='fw-bolder'>Choose Durable and Easy-to-Clean Materials:</span><br /> <br />
+                                            Selecting the right material is crucial, especially if you have kids or pets.
+                                            Leather is durable and easy to wipe clean, making it suitable for families.
+                                            Alternatively, microfiber is resistant to stains and spills.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Don’t forget about the details The details of a sofa can make a big difference in its overall look and feel.
-                                            Consider the armrests, the shape of the back, and the type of cushions used. Some sofas have high backs for added comfort and support, while others have lower backs for a more modern look. Think about
-                                            how the sofa will fit into your overall decor and choose details that complement your existing furniture and style.
+                                            <span className='fw-bolder'>Pay Attention to Details:</span><br /> <br />
+                                            The details of a sofa contribute to its overall aesthetic. Consider the design of armrests, the shape of the back,
+                                            and the type of cushions. High backs offer added comfort,
+                                            while lower backs create a modern look. Ensure these details complement your existing decor.
+                                            <br /> <br />
+                                            Make your sofa shopping experience enjoyable and successful with these considerations. At Furniture Direct Online
+                                            Store, we offer an extensive range of sofas to suit various styles and budgets. Explore our collection today to discover the perfect
+                                            sofa that will be the centerpiece of your living room for years to come.
                                         </p>
                                     </li>
-                                </ol>
-                                <p >
-                                    With these tips in mind, you’re ready to start shopping for the perfect sofa for your home.
-                                    At Furniture Direct Online Store, we offer a wide variety of sofas to fit any style and budget.
-                                    Visit us today to find the sofa that will be the centerpiece of your living room for years to come.
+                                </ul>
+                                <p>
+                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>choose perfect sofa, sofa maintenance</span>
                                 </p>
 
                             </div>
@@ -221,54 +244,52 @@ const SingleBlog = () => {
                             <img src="/2_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-5' >
                                 <p className='m-auto'>
-                                    Are you in the market for a new mattress? With so many options available,
-                                    it can be overwhelming to choose the perfect one for your needs. In this blog post,
-                                    we'll guide you through the process of selecting a mattress that will provide you with the best possible sleep.
+                                    In the hunt for a new mattress? The vast array of options can be overwhelming, but fear not – we've got you covered. Here's a step-by-step guide to
+                                    help you pick the mattress that promises the best sleep quality for you:
                                 </p>
-                                <ol className='mt-4' style={{ width: "90%" }}>
+
+                                <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
                                         <p>
-                                            Consider your sleeping position The position you sleep in affects the type of mattress you should choose.
-                                            For example, if you sleep on your back, you will want a firmer mattress that provides good support for your spine.
-                                            If you sleep on your side, you will want a softer mattress that allows your hips and shoulders to sink in a bit more. If you’re a stomach sleeper,
-                                            you may want to consider a firmer mattress to prevent your spine from arching.  </p>
-                                    </li>
-                                    <li >
-                                        <p>
-                                            Determine your budget Mattresses can vary greatly in price, from a few hundred dollars to several thousand.
-                                            Determine your budget before you start shopping so you can narrow down your options. Remember that a higher price doesn’t necessarily mean a better mattress –
-                                            focus on finding one that meets your needs within your budget.
+                                            <span className='fw-bolder'>Choosing the Right Mattress for Quality Sleep:</span> <br /> <br />
+                                            When embarking on the quest for the perfect mattress, understanding your preferred sleeping position is paramount. 
+                                            Tailoring your choice to match your sleep habits ensures that your spine receives the necessary support. Back sleepers tend to benefit from firmer mattresses that maintain spinal alignment, while side sleepers find comfort in softer options that allow hips and shoulders to sink in. Stomach sleepers, on the other hand, 
+                                            may opt for a firmer mattress to prevent spinal arching during the night.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Look for quality materials A good mattress should last you several years, so it’s important to choose one made
-                                            with quality materials. Look for mattresses that are made with high-density foam or innerspring coils, as they
-                                            tend to provide better support and durability. Be wary of mattresses made with cheap materials,
-                                            as they may not last as long or provide the support you need.
+                                            <span className='fw-bolder'>Establishing a Budget for Sweet Dreams:</span> <br /> <br />
+                                            Determining your budget before delving into the world of mattresses is a crucial first step. The market offers a 
+                                            wide range of options, spanning from budget-friendly to luxurious. It's essential to remember that a higher price tag doesn't necessarily equate to a better mattress. Focus on finding a 
+                                            mattress that caters to your specific needs while staying within your defined budget.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Try before you buy When shopping for a mattress, it’s important to actually lie down on it and try it out.
-                                            Don’t be afraid to spend a few minutes on each mattress you’re considering to get a sense of its comfort level.
-                                            If you’re shopping in-store, wear comfortable clothing and shoes you can easily slip off to lie down on each mattress. If you’re shopping online, make sure the store has a
-                                            good return policy in case the mattress isn’t right for you.
+                                            <span className='fw-bolder'>Prioritizing Quality Materials for Longevity:</span> <br /> <br />
+                                            The longevity of a mattress depends on the quality of its materials. High-density foam or innerspring coils often 
+                                            contribute to better support and increased durability. Investing in a mattress made with top-notch materials ensures that it withstands the test of time, 
+                                            providing you with a comfortable and supportive sleep surface for years to come.
+                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
                                         <p>
-                                            Consider additional features Finally, consider any additional features you may want in your mattress.
-                                            For example, some mattresses come with cooling gel layers or extra padding for comfort. Others may have adjustable
-                                            firmness levels or be designed to relieve pressure points.
-                                            Determine what features are important to you and seek out mattresses that have them.
+                                            <span className='fw-bolder'>Test Before You Rest: The Importance of Trying Out Mattresses:</span><br /> <br />
+                                            When shopping for a mattress, it's crucial to go beyond just visually assessing options. 
+                                            Take the time to lie down on each mattress you're considering. For in-store shoppers, wear comfortable clothing and easily removable shoes to fully experience the comfort level. Online shoppers should ensure that the store offers a reliable return policy, 
+                                            providing flexibility in case the mattress doesn't meet expectations.
+                                            <br /> <br />
                                         </p>
                                     </li>
-                                </ol>
-                                <p >
-                                    Now that you know how to choose the perfect mattress, it’s time to start shopping. At Furniture Direct Online Store, we offer a wide range of high-quality mattresses to fit any budget and sleeping style. Visit our store
-                                    today or shop online to find the mattress that will provide you with the best possible sleep.
+                                </ul>
+                                <p>
+                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>choose perfect mattress</span>
                                 </p>
+
                             </div>
                         </>
                     }
