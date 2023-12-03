@@ -48,13 +48,20 @@ export const Navbar = () => {
     setSearch(false);
   };
   const closeNav = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault(); // Prevents the default behavior of the link
+    event.stopPropagation(); // Stops the event from propagating up the DOM tree
+
     setNavOpen(false);
     setSearch(false);
     setLogin(false);
+
+    const href = event.currentTarget.getAttribute("href");
+
+    if (href) {
+      move(href);
+    }
   };
-  
+
   const handleSearchToggle = () => {
     setSearch(!search);
     setLogin(false);
@@ -75,11 +82,9 @@ export const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-
         setNavOpen(false);
         setLogin(false);
         setOpen("close");
-        setSearch(false);
       }
     };
     document.addEventListener('click', handleClickOutside);
@@ -331,10 +336,6 @@ export const Navbar = () => {
             >
               Check Out
             </button>
-            {/* <a href="https://wa.me/+923067208343" target='black'>
-
-                <button className='btn' style={{ backgroundColor: "rgb(38,211,103)", color: "white", fontWeight: "500" }}>Order Via WhatsApp</button>
-              </a> */}
           </div>
         }
       </div>
@@ -365,9 +366,10 @@ export const Navbar = () => {
           <div className="row">
             <div className="col nav1">
               <div className='row nav1_row'>
+
                 <div className='col-3 d-flex align-items-center justify-content-start gap-2 p-0' style={{ position: "relative" }}>
                   <button
-                    className={`custom-toggler fs-2 ${isNavOpen ? 'cross' : ''} ${cu._id !== undefined ? 'additional-class' : ''}`}
+                    className={`custom-toggler fs-2`}
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown"
@@ -378,10 +380,6 @@ export const Navbar = () => {
                     <div className='fs-2 lines'>
                       {isNavOpen ? <RxCross1 /> : <HiOutlineBars3 />}
                     </div>
-                    {/* <div className={`line1 ${isNavOpen ? 'cross-line1' : ''}`}></div>
-                        <div className={`line2 ${isNavOpen ? 'cross-line2' : ''}`}></div>
-                        <div className={`line3 ${isNavOpen ? 'cross-line3' : ''}`}></div> */}
-
                   </button>
                   <div>
                     <NavLink to="/" className="ms-md-2">
@@ -398,7 +396,7 @@ export const Navbar = () => {
                 </div>
                 {search && (
                   <div className={`nav_searchbar w-100 `} style={{ backgroundColor: "#02025E", height: "55px" }}>
-                    <input type="search" placeholder='Search Anything' />
+                    <input type="search" placeholder='Search Anything' onChange={(e) => setSearchValue(e.target.value)} />
                     <button className='nav_search_btn '><FiSearch /></button>
                   </div>
                 )}
@@ -567,7 +565,7 @@ export const Navbar = () => {
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
-                    <li> <NavLink className="dropdown-item" to="/products/sofa" onClick={closeNav}>All Sofas </NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="/products/sofa" onClick={(event) => closeNav(event)}>All Sofas </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={closeNav}>Corner Sofas </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={closeNav}>3+2 Sofa Sets</NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={closeNav}>Sofa Beds </NavLink></li>
@@ -578,12 +576,12 @@ export const Navbar = () => {
                   </ul>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas"onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/corner-sofas" onClick={closeNav}>
                     Corner Sofas
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas"  onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/three-&-two-seater-sofas" onClick={closeNav}>
                     3+2 Sofa Sets
                   </NavLink>
                 </li>
@@ -619,22 +617,22 @@ export const Navbar = () => {
                   </ul>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box"  onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/ottoman-box" onClick={closeNav}>
                     Ottoman Box
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/footstools"  onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/footstools" onClick={closeNav}>
                     Footstools
                   </NavLink>
                 </li>
                 <li className="nav-item nav-item2">
-                  <NavLink className="nav-link" aria-current="page" to="/products/mattress"  onClick={closeNav}>
+                  <NavLink className="nav-link" aria-current="page" to="/products/mattress" onClick={closeNav}>
                     Mattresses
                   </NavLink>
                 </li>
                 <li className="nav-item  menu_hide nav-item2">
-                  <Link className="nav-link" aria-current="page" to="review"  onClick={closeNav}>
+                  <Link className="nav-link" aria-current="page" to="review" onClick={closeNav}>
                     Reviews
                   </Link>
                 </li>
