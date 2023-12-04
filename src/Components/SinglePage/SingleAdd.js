@@ -328,6 +328,7 @@ const SingleAdd = () => {
             type: "ADD_TO_CART",
             payload: response.data.alldata,
           });
+          toast.success("Added to Cart");
           // window.location.reload();
           // window.location.href = `/cart/${cu._id}`;
         }
@@ -562,9 +563,8 @@ const SingleAdd = () => {
               </div>
               <div className="col-lg-5 col-sm-12">
                 <div
-                  className={`s_content ${
-                    product?.category === "bed" ? "bed_class" : ""
-                  }`}
+                  className={`s_content ${product?.category === "bed" ? "bed_class" : ""
+                    }`}
                 >
                   <h1
                     className="text-center fs-1 "
@@ -574,26 +574,26 @@ const SingleAdd = () => {
                   </h1>
                   {comments.filter((item) => item.productId === productId)
                     .length > 0 && (
-                    <span className="mt-2 mb-3" style={{ color: "red" }}>
-                      <RiStarSFill />
-                      <RiStarSFill />
-                      <RiStarSFill />
-                      <RiStarSFill />
-                      <RiStarSFill />
-                      <span
-                        className="text-center"
-                        style={{ color: "#1b2950" }}
-                      >
-                        (
-                        {
-                          comments.filter(
-                            (item) => item.productId === productId
-                          ).length
-                        }{" "}
-                        Review)
+                      <span className="mt-2 mb-3" style={{ color: "red" }}>
+                        <RiStarSFill />
+                        <RiStarSFill />
+                        <RiStarSFill />
+                        <RiStarSFill />
+                        <RiStarSFill />
+                        <span
+                          className="text-center"
+                          style={{ color: "#1b2950" }}
+                        >
+                          (
+                          {
+                            comments.filter(
+                              (item) => item.productId === productId
+                            ).length
+                          }{" "}
+                          Review)
+                        </span>
                       </span>
-                    </span>
-                  )}
+                    )}
                   <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
                   </p>
@@ -1551,7 +1551,7 @@ const SingleAdd = () => {
                     <Loader />
                   </div>
                 ) : comments.filter((item) => item.productId === productId)
-                    .length === 0 ? (
+                  .length === 0 ? (
                   <div
                     className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
                     style={{ height: "50vh", color: "rgb(2, 2, 94)" }}

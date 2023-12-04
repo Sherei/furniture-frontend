@@ -255,6 +255,7 @@ export const Navbar = () => {
   const filterCart = cart?.filter((item) => item.userId === cu._id);
 
   const filterCartLength = filterCart.length;
+  
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
   const DeleteCartItem = async (itemId) => {
@@ -268,6 +269,7 @@ export const Navbar = () => {
           type: "ADD_TO_CART",
           payload: resp.data.alldata,
         });
+        toast.success("Item Removed");
       }
     } catch (e) {
       // console.log(e);

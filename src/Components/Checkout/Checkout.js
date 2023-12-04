@@ -31,6 +31,7 @@ const Checkout = () => {
     const [cart, setCart] = useState([])
     const [expandedItems, setExpandedItems] = useState({});
 
+    const allCartItems = useSelector((store) => store.Cart.cart);
     const toggleDetails = (index) => {
         setExpandedItems((prev) => ({
             ...prev,
@@ -43,7 +44,10 @@ const Checkout = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
             try {
                 if (res) {
-                    setCart(res.data);
+                    dispatch({
+                        type: "ADD_TO_CART",
+                        payload: res.data,
+                    });
                 }
             } catch (e) {
                 // console.log(e);
@@ -53,25 +57,34 @@ const Checkout = () => {
         });
     }, []);
 
+    useEffect(() => {
+        if (allCartItems) {
+            setCart(allCartItems);
+        }
+    }, [allCartItems]);
+
     const filterCart = cart.filter((item) => userId === item.userId)
 
-    const DeleteCartItem = (itemId) => {
+    const DeleteCartItem = async (itemId) => {
         try {
-            axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`).then(() => {
-                setCart(cart.filter((data) => itemId !== data._id));
-                dispatch({
-                    type: "REMOVE_CART",
-                    payload: itemId,
-                });
+          setLoading(true);
+          const response = await axios.delete(
+            `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
+          );
+          if (response.data.status === "success") {
+            dispatch({
+              type: "ADD_TO_CART",
+              payload: response.data.alldata,
             });
-
+            toast.success("Item Removed");
+          }
         } catch (e) {
-            // console.log(e)
+          // console.log(e);
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    };
-
+      };
+    
     const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.total;
     }, 0);
@@ -86,7 +99,7 @@ const Checkout = () => {
     const Order = async (data) => {
 
         console.log("Order function is being executed");
-        
+
         setLoading(true);
         try {
             useEffect(() => {
@@ -202,16 +215,16 @@ const Checkout = () => {
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='First Name*' className="form-control py-2" {...register('name1', { required: true })} />
+                                <input type="text" placeholder='First Name*' className="form-control py-2" {...register('name1')} />
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Last Name *' className="form-control py-2"{...register('name2', { required: true })} />
+                                <input type="text" placeholder='Last Name *' className="form-control py-2"{...register('name2')} />
                                 {errors.name2 ? <div className='error'>This Field is required</div> : null}
 
                             </div>
                             <div className="col-12 mb-3">
-                                <input type="number" placeholder='Contact Number*' className="form-control py-2" {...register('number1', { required: true })} />
+                                <input type="number" placeholder='Contact Number*' className="form-control py-2" {...register('number1')} />
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
@@ -219,7 +232,7 @@ const Checkout = () => {
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Address</p>
                             <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='House Number & Street Name*' className="form-control py-2" {...register('street', { required: true })} />
+                                <input type="text" placeholder='House Number & Street Name*' className="form-control py-2" {...register('street')} />
                                 {errors.street ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mb-3">
@@ -227,15 +240,15 @@ const Checkout = () => {
                                 {errors.appartment ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Country*' className="form-control py-2" {...register('country', { required: true })} />
+                                <input type="text" placeholder='Country*' className="form-control py-2" {...register('country')} />
                                 {errors.country ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Town/City*' className="form-control py-2" {...register('city', { required: true })} />
+                                <input type="text" placeholder='Town/City*' className="form-control py-2" {...register('city')} />
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='Postcode*' className="form-control py-2" {...register('postal', { required: true })} />
+                                <input type="number" placeholder='Postcode*' className="form-control py-2" {...register('postal')} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
 

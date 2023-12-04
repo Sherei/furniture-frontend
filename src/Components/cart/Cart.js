@@ -28,6 +28,7 @@ export const Cart = () => {
   const [cart, setCart] = useState([]);
   const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1);
+  
   const allCartItems = useSelector((store) => store.Cart.cart);
 
   useEffect(() => {
@@ -41,29 +42,32 @@ export const Cart = () => {
           });
         }
       } catch (e) {
-        // console.log(e);
       } finally {
         setLoading(false);
       }
     });
   }, []);
 
+  useEffect(() => {
+    if (allCartItems) {
+      setCart(allCartItems);
+    }
+  }, [allCartItems]);
+
   const filterCart = cart.filter((item) => userId === item.userId);
 
   const DeleteCartItem = async (itemId) => {
     try {
-      // setLoading(true);
+      setLoading(true);
       const response = await axios.delete(
         `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
       );
-
       if (response.data.status === "success") {
         dispatch({
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-        // window.location.reload();
-        // window.location.href = `/cart/${cu._id}`;
+        toast.success("Item Removed");
       }
     } catch (e) {
       // console.log(e);
@@ -71,12 +75,8 @@ export const Cart = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    if (allCartItems) {
-      setCart(allCartItems);
-    }
-  }, [allCartItems]);
 
+  
   const handleQuantityChange = (itemId, newQuantity) => {
     setCart((prevCart) =>
       prevCart.map((item) => {
