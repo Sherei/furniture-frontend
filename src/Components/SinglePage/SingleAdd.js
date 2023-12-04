@@ -26,6 +26,8 @@ const SingleAdd = () => {
     }, []);
 
     let cu = useSelector(store => store.userSection.cu);
+    const cartOpen = useSelector(state => state.Cart.cartOpen);
+
 
     let move = useNavigate();
 
@@ -249,13 +251,7 @@ const SingleAdd = () => {
                 return setError("options")
             }
         }
-        // else if (product?.category === "sofa" && (product?.subCategory != "corner-sofas" || product?.subCategory != "three-&-two-seater-sofas"|| product?.subCategory != "u-shaped-sofas")) {
-        //     if (!size, !color) {
-        //         return setError("options")
-        //     }
-        // }
-        // else
-         if (product?.category === "sofa") {
+        if (product?.category === "sofa") {
             if (!color) {
                 return setError("options")
             }
@@ -307,15 +303,16 @@ const SingleAdd = () => {
                 let response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addToCart`, product)
 
                 if (response.data === "Product Added") {
-                    dispatch({
-                        type: "ADD_TO_CART",
-                        payload: product,
-                    });
+                    
                     window.location.reload();
-                    window.location.href = `/cart/${cu._id}`;
+                    // window.location.href = `/cart/${cu._id}`;
                 }
             } catch (error) {
-                alert(error)
+                return <>
+                    <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                        <Loader />
+                    </div>
+                </>
             } finally {
                 setLoading(false);
             }
@@ -335,6 +332,7 @@ const SingleAdd = () => {
             move('/login');
         }
     }
+
     const handleLeftArrowClick = () => {
         setSelectedImage((prevSelectedImage) => (prevSelectedImage - 1 + totalImages) % totalImages);
     };
@@ -359,18 +357,27 @@ const SingleAdd = () => {
                 toast.error("Error occurred");
             }
         } catch (e) {
-            // console.error(e);
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>
         }
     };
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
-            setComments(res.data);
-            setIsLoadingComments(false);
-        }).catch((error) => {
-            // console.error(error);
-            setIsLoadingComments(false);
-        });
+        try {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
+                setComments(res.data);
+                setIsLoadingComments(false);
+            })
+        } catch (e) {
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>
+        }
     }, []);
 
     const formatDateTime = (dateStr) => {

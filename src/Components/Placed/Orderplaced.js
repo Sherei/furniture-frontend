@@ -25,18 +25,22 @@ const Orderplaced = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/order`)
-            .then((res) => {
-                try {
+        try {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/order`)
+                .then((res) => {
                     if (res.data && res.data.length > 0) {
                         setOrder(res.data);
                     }
-                } catch (e) {
-                    // console.log(e);
-                } finally {
-                    setLoading(false);
-                }
-            });
+                });
+        } catch (e) {
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
     const filterOrder = order.filter((item) => userId === item.userId);
@@ -77,15 +81,15 @@ const Orderplaced = () => {
 
                         </p>
                         <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'
-                            >
+                        >
                             <button className="review_btn my-3" onClick={() => {
                                 move(`/user-profile/${cu._id}`)
                             }}
-                                style={{  zIndex: 5000, width: "fit-content" }}>
+                                style={{ zIndex: 5000, width: "fit-content" }}>
                                 My Order <FaArrowRight />
                             </button>
-                                <button className="review_btn my-3"
-                                style={{  zIndex: 5000, width: "fit-content" }}
+                            <button className="review_btn my-3"
+                                style={{ zIndex: 5000, width: "fit-content" }}
                                 onClick={() => {
                                     move(`/products`)
                                 }}>

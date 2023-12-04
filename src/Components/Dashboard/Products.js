@@ -30,7 +30,11 @@ export const Products = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        setIsLoading(false);
+        return <>
+          <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+            <Loader />
+          </div>
+        </>
       });
   }, []);
 
@@ -145,7 +149,7 @@ export const Products = () => {
                           <td className='text-center'>
                             <button
                               className="delete_btn" onClick={() => move(`/admin-dashboard-add-product/${data._id}`)}
-                              style={{color:"rgb(2, 2, 94)"}}>
+                              style={{ color: "rgb(2, 2, 94)" }}>
                               <FaPencilAlt />
                             </button>
                           </td>

@@ -5,12 +5,11 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from "../Loader/Loader"
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import "./products.css"
 
 
 const Products = () => {
-
+    
     const cu = useSelector(store => store.userSection.cu)
     const { prodctName } = useParams()
 
@@ -19,8 +18,6 @@ const Products = () => {
             top: 0
         });
     }, [prodctName]);
-
-    const ref = useRef();
 
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("")
@@ -33,38 +30,28 @@ const Products = () => {
     const [filter, setFilter] = useState(false)
     const move = useNavigate()
 
-    const Filter = (event) => {
+    const Filter = () => {
         setFilter(!filter)
-        console.log('Filter button clicked!', event.target.value);
     };
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            try {
-                if (res) {
-                    setData(res.data);
-                }
-            } catch (e) {
-
-            } finally {
-                setLoading(false);
-            }
-        });
+        try{
+            axios
+                .get(`${process.env.REACT_APP_BASE_URL}/product`)
+                .then((res) => {
+                    setData(res?.data);
+                })
+        }catch(e){
+                return <>
+                    <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                        <Loader />
+                    </div>
+                </>
+        }finally{
+            setLoading(false);
+        }
     }, []);
-
-
-    // useEffect(() => {
-    //     const handleClickOutside = (event) => {
-    //         if (ref.current && !ref.current.contains(event.target)) {
-    //             setFilter(false)
-    //         }
-    //     };
-    //     document.addEventListener('click', handleClickOutside);
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutside);
-    //     };
-    // }, [ref]);
 
 
     const handleMinRangeChange = (e) => {
@@ -123,7 +110,6 @@ const Products = () => {
         return productNameMatches && categoryMatches && LsearchMatch && priceInRange;
     });
 
-
     return <>
         <div className='container-fluid min-vh-100' style={{ overflow: "hidden" }}>
             <div className='row mt-5'>
@@ -138,7 +124,7 @@ const Products = () => {
                 </div>
             </div>
             <div className='row my-5'>
-                <div className={`${filter ? 'showFilter' : 'filter_col'}`} ref={ref}>
+                <div className={`${filter ? 'showFilter' : 'filter_col'}`}>
                     <div className='categories'>
                         <div className='d-flex justify-content-between'>
                             <p className='fs-5' style={{ color: "#1B2950" }}><FaFilter /> Filter</p>
@@ -324,9 +310,9 @@ const Products = () => {
                     ) : (
                         <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
                             {activeGrid === "grid" &&
-                                filterProduct?.reverse().map((product, index) => (
-                                    <div className="col" style={{ position: "relative" }} key={index} >
-                                        <div className='product_box'>
+                                data?.map((product, index) => (
+                                    <div className="col" >
+                                        <div className='product_box ' style={{ position: "relative" }}>
                                             <div className='p_img_box' onClick={() => move("/single_Add/" + product._id)}>
                                                 <img src={product.images[0]} alt="No network" />
                                                 <div className='overlay'>
@@ -341,9 +327,9 @@ const Products = () => {
                                                 </div>
                                             ) : null}
                                             <p className='card_title px-2'>{product.title}</p>
-                                            {product.description &&
+                                            {/* {product.description &&
                                                 <p className='p_description px-2'>{product.description}</p>
-                                            }
+                                            } */}
                                             <div className='text-left'>
                                                 {product.discount && product.discount > 0 ? (
                                                     <>

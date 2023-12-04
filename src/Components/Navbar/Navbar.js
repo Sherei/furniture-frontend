@@ -12,6 +12,8 @@ import { Link } from 'react-scroll';
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify"
 import axios from 'axios';
+import SingleAdd from '../SinglePage/SingleAdd';
+import Loader from '../Loader/Loader';
 import { useForm } from 'react-hook-form';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
@@ -30,7 +32,6 @@ export const Navbar = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [cart, setCart] = useState([])
-  const [open, setOpen] = useState("close");
   const [Error, setError] = useState("");
   const [searchValue, setSearchValue] = useState("")
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,25 @@ export const Navbar = () => {
   const [search, setSearch] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
+  const [open, setCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    if (cu._id === undefined || cu.email === "asd@gmail.com") {
+      setLogin(true)
+      dispatch({
+        type: 'LOGOUT_USER'
+      });
+
+      toast.warning("Login to see your Cart")
+      move('/')
+
+    } else {
+      setCartOpen(true)
+      setLogin(false)
+      setSearch(false)
+      setNavOpen(false);
+    }
+  }
 
   const toggleNav = (event) => {
     event.preventDefault();
@@ -47,6 +67,7 @@ export const Navbar = () => {
     setLogin(false);
     setSearch(false);
   };
+
   const closeNav = (event) => {
     setNavOpen(false);
     setSearch(false);
@@ -75,7 +96,7 @@ export const Navbar = () => {
       if (ref.current && !ref.current.contains(event.target)) {
         setNavOpen(false);
         setLogin(false);
-        setOpen("close");
+        setCartOpen(false);
       }
     };
     document.addEventListener('click', handleClickOutside);
@@ -103,30 +124,30 @@ export const Navbar = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
-      try {
+    try {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
         if (res) {
           setCart(res.data);
         }
-      } catch (e) {
-      } finally {
-        setLoading(false);
-      }
-    });
+      })
+    } catch (e) {
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-      try {
+    try {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
         if (res) {
           setProducts(res.data);
         }
-      } catch (e) {
-      } finally {
-        setLoading(false);
-      }
-    });
+      });
+    } catch (e) {
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -228,67 +249,72 @@ export const Navbar = () => {
 
   return <>
 
-    {open === "open" && (
-      <div className={`side_cart px-2 ${open === "open" ? "side_open" : ""}`}>
+    {open && (
+      <div className={`side_cart px-2 ${open === true ? "side_open" : ""}`}>
         <div className='pt-2 d-flex justify-content-between align-items-center'>
           <p className='fw-bolder fs-5 m-0'>SHOPPING CART</p>
-          <button className='m-0 side_cart_cross' onClick={() => setOpen("close")}><RxCross1 /> CLOSE</button>
+          <button className='m-0 side_cart_cross' onClick={() => setCartOpen(false)}><RxCross1 /> CLOSE</button>
         </div>
-        <div className='' style={{ height: "72vh", overflow: "auto" }}>
-          {filterCart.length === 0 ? (
-            <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-              <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-              <button
-                className='btn review_btn'
-                style={{ width: "fit-content" }}
-                onClick={() => {
-                  move('/Products/all');
-                  setOpen('close');
+        {filterCart.length === 0 ? (
+          <div className='py-0 d-flex flex-column align-items-center justify-content-center ' style={{height:"75vh"}}>
+            <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+            <button
+              className='btn review_btn'
+              style={{ width: "fit-content" }}
+              onClick={() => {
+                move('/Products/all');
+                setCartOpen('close');
+              }}
+            >
+              Browse Products <FaArrowRight />
+            </button>
+          </div>
+        ) : (
+          <div className='' style={{ height: "72vh", overflow: "auto" }}>
+            {filterCart?.map((item, index) => (
+              <div
+                className='px-2 mt-2 py-2 d-flex gap-2'
+                key={index}
+                style={{
+                  maxWidth: "320px",
+                  position: "relative",
+                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 }}
               >
-                Browse Products <FaArrowRight />
-              </button>
-            </div>
-          ) : (
-            <>
-              {filterCart?.map((item, index) => {
-                return <div className='px-2 mt-4 py-2 d-flex gap-2' key={index}
-                  style={{
-                    maxWidth: "320px",
-                    position: "relative",
-                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                <div
+                  className='side_img_main'
+                  style={{ width: "100px", minHeight: "80px" }}
+                  onClick={() => {
+                    move(`single_Add/${item._id}`);
+                    setCartOpen(false);
                   }}
                 >
-                  <div className='side_img_main' style={{ width: "100px", minHeight: "80px" }}
-                    onClick={() => {
-                      move(`single_Add/${item._id}`);
-                      setOpen("close");
-                    }}
-                  >
-                    <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
-                  </div>
-                  <div className='d-flex gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
-                    <div className='d-flex flex-column justify-content-around'>
-                      <p
-                        className='m-0'
-                        style={{ fontSize: "13px" }}
-                        onClick={() => {
-                          move(`single_Add/${item._id}`);
-                          setOpen("close");
-                        }}
-                      >
-                        {item?.title}
-                      </p>
-                      <p className='m-0 fw-bolder' style={{ color: "red" }}>&pound;{item?.total}</p>
-                    </div>
-                    <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}><RxCross1 /></button>
-                  </div>
+                  <img src={item?.image} alt="No Network" style={{ width: "100%", height: "100%" }} />
                 </div>
-              }
-              )}
-            </>
-          )}
-        </div>
+                <div className='d-flex gap-2 justify-content-between' style={{ width: "220px", maxHeight: "100px" }}>
+                  <div className='d-flex flex-column justify-content-around'>
+                    <p
+                      className='m-0'
+                      style={{ fontSize: "13px" }}
+                      onClick={() => {
+                        move(`single_Add/${item._id}`);
+                        setCartOpen(false);
+                      }}
+                    >
+                      {item?.title}
+                    </p>
+                    <p className='m-0 fw-bolder' style={{ color: "red" }}>
+                      &pound;{item?.total}
+                    </p>
+                  </div>
+                  <button className='side_remove text-danger' onClick={() => DeleteCartItem(item._id)}>
+                    <RxCross1 />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         {(filterCart?.length > 0) &&
           <div className=''>
             <div className='d-flex justify-content-between fw-bolder fs-5'>
@@ -309,7 +335,7 @@ export const Navbar = () => {
                 } else if (cu.email === "asd@gmail.com") {
                   toast.warning("Login too see cart")
                 } else {
-                  setOpen("close")
+                  setCartOpen(false)
                   move(`/cart/${cu._id}`)
                 }
               }}>VIEW CART</button>
@@ -321,7 +347,7 @@ export const Navbar = () => {
                 width: "100%"
               }}
               onClick={() => {
-                setOpen("close")
+                setCartOpen(false)
                 move(`/cart-checkout/${cu._id}`)
               }}
             >
@@ -498,18 +524,7 @@ export const Navbar = () => {
                       </>
 
                     }
-                    <li className="nav-item px-0" onClick={() => {
-                      if (cu._id === undefined || cu.email === "asd@gmail.com") {
-                        setLogin(true)
-                        dispatch({
-                          type: 'LOGOUT_USER'
-                        });
-                        toast.warning("Login to see your Cart")
-                        move('/')
-                      } else {
-                        setOpen("open")
-                      }
-                    }}>
+                    <li className="nav-item px-0" onClick={toggleCart}>
                       <NavLink className="nav-link nav-link1" style={{ border: "none", position: "relative" }}>
                         <span className="fs-2" style={{ color: "#E7E7E9" }}>
                           <FiShoppingCart />
@@ -558,7 +573,7 @@ export const Navbar = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li><NavLink className="dropdown-item" onClick={() => { move("/products/sofa"); closeNav(); }}>All Sofas</NavLink></li>
-                      {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
+                    {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
                       <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li> */}
                     <li> <NavLink className="dropdown-item" to="products/sofa-beds" onClick={(event) => closeNav(event)}>Sofa Beds </NavLink></li>
                     <li> <NavLink className="dropdown-item" to="products/u-shaped-sofas" onClick={(event) => closeNav(event)}>U Shape Sofas</NavLink></li>

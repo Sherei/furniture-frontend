@@ -29,17 +29,21 @@ const UserPanel = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/order`).then((res) => {
-            try {
+        try {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/order`).then((res) => {
                 if (res.data) {
                     setOrder(res.data);
                 }
-            } catch (e) {
-                // console.log(e);
-            } finally {
-                setLoading(false);
-            }
-        });
+            });
+        } catch (e) {
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
     const filterOrder = order.filter((item) => item.userId === cu._id);

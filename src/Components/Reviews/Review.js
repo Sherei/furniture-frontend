@@ -16,7 +16,7 @@ import "./review.css"
 const Review = () => {
 
     const [comments, setComments] = useState([])
-    const [isLoadingComments, setIsLoadingComments] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     let { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -32,20 +32,29 @@ const Review = () => {
                 toast.error("Error occurred");
             }
         } catch (e) {
-            // console.error(e);
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>;
         }
     };
 
     useEffect(() => {
-        // axios.get("/comments").then((res) => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
-            setComments(res.data);
-            setIsLoadingComments(false);
-        })
-            .catch((error) => {
-                // console.error(error);
-                setIsLoadingComments(false);
-            });
+        setLoading(true);
+        try {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
+                setComments(res.data);
+            })
+        } catch (e) {
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
     const length = comments.length
@@ -55,7 +64,7 @@ const Review = () => {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-           
+
         };
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-GB', options);
@@ -67,7 +76,7 @@ const Review = () => {
                 <div className='col-lg-6 col-md-6 col-sm-12 pt-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
                     <h1 className='text-center fs-1 fw-bolder' style={{ color: "white" }}>Our Customers</h1>
                     <p className='text-center fs-6' style={{ color: "white" }}>Over 10,000 happy customers!</p>
-                    {isLoadingComments ? (
+                    {loading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                             <Loader />
                         </div>
@@ -106,7 +115,7 @@ const Review = () => {
                 </div>
 
                 <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5'>
-                        <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >
+                    <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >
                         Leave Your Feedback</h1>
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="mb-3">
@@ -139,7 +148,7 @@ const Review = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">
-                            Write a Review *
+                                Write a Review *
                             </label>
                             <textarea
                                 {...register('comment', { required: true })}

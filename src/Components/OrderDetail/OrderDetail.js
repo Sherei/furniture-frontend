@@ -25,17 +25,22 @@ const OrderDetail = () => {
     const [expandedItems, setExpandedItems] = useState({});
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
+        setLoading(true);
+        try {
+            const fetchData = async () => {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/orderDetail?id=${OrderId}`);
                 setOrder(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching order details:', error);
-                setLoading(false);
-            }
-        };
-        fetchData();
+            };
+            fetchData();
+        } catch (error) {
+            return <>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                    <Loader />
+                </div>
+            </>
+        } finally {
+            setLoading(false);
+        }
     }, [OrderId]);
 
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Navbar/Navbar';
+import SingleAdd from './Components/SinglePage/SingleAdd';
 import { Login } from "./Components/login/Login";
 import Signup from "./Components/Signup/Signup"
 import { Cart } from "./Components/cart/Cart"
@@ -7,7 +8,6 @@ import { Error } from "./Components/Error/Error"
 import Home from "./Components/Home/Home"
 import Products from './Components/Products/Products';
 import Footer from "./Components/Footer/Footer"
-import SingleAdd from './Components/SinglePage/SingleAdd';
 import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
 import SingleBlog from './Components/Blog/SingleBlog';
