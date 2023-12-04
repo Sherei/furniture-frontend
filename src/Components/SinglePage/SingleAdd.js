@@ -318,18 +318,16 @@ const SingleAdd = () => {
         product.quantity = quantity;
         product.image = product?.images[0];
         product.discount = product?.discount;
-
         let response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/addToCart`,
           product
         );
-        console.log("response is::", response);
+        console.log(response);
         if (response.data.message === "Product Added") {
           dispatch({
             type: "ADD_TO_CART",
             payload: response.data.alldata,
           });
-          toast.success("Added to cart")
           // window.location.reload();
           // window.location.href = `/cart/${cu._id}`;
         }
@@ -402,7 +400,7 @@ const SingleAdd = () => {
           behavior: "smooth",
         });
       } else {
-        toast.error("Try Again later");
+        toast.error("Error occurred");
       }
     } catch (e) {
       return (

@@ -45,13 +45,13 @@ export const Navbar = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [open, setCartOpen] = useState(false);
-
   const toggleCart = () => {
     if (cu._id === undefined || cu.email === "asd@gmail.com") {
       setLogin(true);
       dispatch({
         type: "LOGOUT_USER",
       });
+
       toast.warning("Login to see your Cart");
       move("/");
     } else {
@@ -77,6 +77,8 @@ export const Navbar = () => {
   };
 
   const handleSearchToggle = () => {
+    console.log("efwer");
+
     setSearch(!search);
     setLogin(false);
     setNavOpen(false);
@@ -92,18 +94,20 @@ export const Navbar = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setNavOpen(false);
-        setLogin(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [ref]);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (ref.current && !ref.current.contains(event.target)) {
+  //       console.log("sdkjfhjkdhfjkd");
+  //       setNavOpen(false);
+  //       setLogin(false);
+  //       setCartOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("click", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, [ref]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -201,14 +205,12 @@ export const Navbar = () => {
 
     setFilteredProducts(filtered);
   }, [searchValue]);
-
-
   useEffect(() => {
     if (allCartItems) {
       setCart(allCartItems);
     }
   }, [allCartItems]);
-
+  console.log(isNavOpen);
   const {
     register,
     handleSubmit,
@@ -266,9 +268,9 @@ export const Navbar = () => {
           type: "ADD_TO_CART",
           payload: resp.data.alldata,
         });
-        toast.success("Romve from cart")
       }
     } catch (e) {
+      // console.log(e);
     } finally {
       setLoading(false);
     }

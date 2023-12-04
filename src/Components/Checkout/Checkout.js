@@ -85,14 +85,18 @@ const Checkout = () => {
 
     const Order = async (data) => {
 
-        setLoading(true);    
+        console.log("Order function is being executed");
+        
+        setLoading(true);
         try {
             useEffect(() => {
                 window.scrollTo({
                     top: 0
                 });
             }, []);
+
             const orderItems = [];
+
             const orderId = uuidv4().substr(0, 10);
             filterCart.forEach((item) => {
                 const itemData = {
@@ -122,7 +126,7 @@ const Checkout = () => {
             const totalQuantity = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.quantity;
             }, 0);
-            
+
             const shippingFee = totalQuantity * 50;
             const Ordertotal = totalSum + shippingFee;
 
@@ -132,14 +136,13 @@ const Checkout = () => {
             data.total = Ordertotal;
             data.userId = userId;
             data.street = data.street;
-            data.shipping=shippingFee;
+            data.shipping = shippingFee;
             data.appartment = data.appartment;
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-
             });
 
             if (response.data === "Order is Placed") {
@@ -147,12 +150,11 @@ const Checkout = () => {
                     type: "REMOVE_MULTIPLE_ITEMS",
                     payload: userId,
                 });
-                window.location.reload();
-                window.location.href = `/order-placed/${userId}`;
+                console.log("response is", response.data);
             }
 
         } catch (e) {
-            // console.log(e);
+            console.log(e);
         } finally {
             setLoading(false);
         }
@@ -278,9 +280,8 @@ const Checkout = () => {
                         <hr className="mb-4" />
 
                         <div className='chk_btns chk_btna1 mt-5'>
-                            <button className="fw-bolder btn btn-lg"
-                                style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                            >
+                            <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
+                                onClick={Order}>
                                 COMPLETE ORDER
                             </button>
                             <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
@@ -375,7 +376,7 @@ const Checkout = () => {
                     <div className='chk_btns chk_btns2 mt-5'>
                         <button className="fw-bolder btn btn-lg"
                             style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                            onClick={handleSubmit(Order)}
+
                         >
                             COMPLETE ORDER
                         </button>

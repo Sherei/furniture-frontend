@@ -30,6 +30,8 @@ const Signup = () => {
             if (data.password != data.cpassword) {
                 return setError("Password does not match")
             }
+            data.number = data.number.replace(/\s+/g, "");
+
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
 
             if (response.data === "User Created") {

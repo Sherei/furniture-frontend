@@ -52,7 +52,7 @@ export const Cart = () => {
 
   const DeleteCartItem = async (itemId) => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const response = await axios.delete(
         `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
       );
@@ -62,7 +62,8 @@ export const Cart = () => {
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-        toast.success("Romve from cart")
+        // window.location.reload();
+        // window.location.href = `/cart/${cu._id}`;
       }
     } catch (e) {
       // console.log(e);
