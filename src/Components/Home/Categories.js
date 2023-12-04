@@ -84,7 +84,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/three-&-two-seater-sofas') }}>
               <div className='h_box_img_main'>
-                <img src="/three.webp" alt='No Network' />
+                <img src="/3+2.jpg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>3+2 Sofa Sets</p>
