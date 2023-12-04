@@ -77,8 +77,7 @@ export const Navbar = () => {
   };
 
   const handleSearchToggle = () => {
-    console.log("efwer");
-
+  
     setSearch(!search);
     setLogin(false);
     setNavOpen(false);
@@ -210,7 +209,6 @@ export const Navbar = () => {
       setCart(allCartItems);
     }
   }, [allCartItems]);
-  console.log(isNavOpen);
   const {
     register,
     handleSubmit,
@@ -536,12 +534,12 @@ export const Navbar = () => {
                           className="nav-link nav-link1"
                           style={{ border: "none" }}
                         >
-                          <div
+                          {/* <div
                             className="fs-2 heart"
                             style={{ color: "#E7E7E9" }}
                           >
                             <FaHeart />
-                          </div>
+                          </div> */}
                           <div
                             className="fs-2 nav_search"
                             onClick={handleSearchToggle}
