@@ -486,7 +486,8 @@ const Products = () => {
               </div>
             ) : filterProduct.length === 0 ? (
               <div className="col-12 d-flex justify-content-center align-items-center flex-wrap px-4" style={{ height: "300px" }}>
-                {/* <Loader /> */} <p className="fs-3 bolder">No product available related to this category</p>
+                <Loader />
+                {/* <p className="fs-3 bolder">No product available related to this category</p> */}
               </div>
             ) : (
               <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
