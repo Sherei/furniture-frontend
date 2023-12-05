@@ -34,11 +34,15 @@ const Products = () => {
   };
 
   useEffect(() => {
-    console.log("djj");
+    console.log("Before axios request");
     setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+        console.log("Axios success");
         setData(res?.data);
+      }).finally(() => {
+        console.log("Finally block");
+        setLoading(false);
       });
     } catch (e) {
       return (
@@ -51,8 +55,6 @@ const Products = () => {
           </div>
         </>
       );
-    } finally {
-      setLoading(false);
     }
   }, []);
 
@@ -131,7 +133,7 @@ const Products = () => {
       setLoading(false)
     }
 
-  }, [data, search, category]);
+  }, [data, search, category, minPrice, maxPrice, sort]);
 
   return (
     <>
@@ -483,8 +485,8 @@ const Products = () => {
                 <Loader />
               </div>
             ) : filterProduct.length === 0 ? (
-              <div className="col-12 d-flex justify-content-center vh-80 align-items-center flex-wrap px-4">
-                <Loader />
+              <div className="col-12 d-flex justify-content-center align-items-center flex-wrap px-4" style={{ height: "300px" }}>
+                {/* <Loader /> */} <p className="fs-3 bolder">No product available related to this category</p>
               </div>
             ) : (
               <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">

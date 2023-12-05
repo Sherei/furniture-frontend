@@ -108,8 +108,9 @@
 }
 
 .dropdown-item.active {
-  color: white !important;
-  background-color: #1b2950 !important;
+  color: #1b2950 !important;
+  background-color: transparent !important;
+  /* background-color: #1b2950 !important; */
 }
 
 .nav_cotact {

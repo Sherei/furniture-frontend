@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast } from "react-toastify";
 import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 
@@ -25,21 +26,24 @@ const Signup = () => {
     const move = useNavigate()
 
     async function SignUp(data) {
+
+        console.log("Signup data is::", data)
+        
         try {
 
-            if (data.password != data.cpassword) {
-                return setError("Password does not match")
-            }
-            data.number = data.number.replace(/\s+/g, "");
+            // if (data.password != data.cpassword) {
+            //     return setError("Password does not match")
+            // }
+            // data.number = data.number.replace(/\s+/g, "");
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
 
             if (response.data === "User Created") {
+                toast.success("Account Created")
                 move('/login')
                 reset();
             }
         } catch (error) {
-
             if (error.response && error.response.status === 400) {
                 setError('Try with different E-mail')
             } else {
@@ -51,14 +55,14 @@ const Signup = () => {
     return <>
         <div className='container my-5'>
             <div className='row d-flex justify-content-center'>
-                <div className='col-lg-6 col-md-6 col-sm-12'>
+                <div className='col-lg-6 col-md-12 col-sm-12'>
                     <div>
                         <p className='m-0 fs-2 text-center fw-bolder'>Create Your Account</p>
                         <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
-                        {Error === "Email Taken" &&
-                            <div className='error'>This Email is Already Taken Try with different</div>
+                        {Error === "Try with different E-mail" &&
+                            <div className='error'>Try with different E-mail</div>
                         }
                         <div className='mt-3'>
                             <input type="text" placeholder='Name *' className="form-control login_form_input"{...register('name', { required: true })} />
@@ -90,7 +94,7 @@ const Signup = () => {
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </button>
                         </div>
-                        <div className='mt-2'  style={{position:"relative"}}>
+                        {/* <div className='mt-2'  style={{position:"relative"}}>
                             <input type={showPassword ? "text" : "password"} placeholder='Confirm Password *' className="form-control login_form_input" {...register('cpassword', { required: true })} />
                             <button
                                 type="button"
@@ -104,8 +108,7 @@ const Signup = () => {
                             {Error === "Password does not match" &&
                                 <div className='error'>Password does not match</div>
                             }
-
-                        </div>
+                        </div> */}
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
 
                     </form>

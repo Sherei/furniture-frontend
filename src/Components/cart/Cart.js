@@ -3,7 +3,6 @@ import { RxCross1 } from "react-icons/rx";
 import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { FiShoppingCart } from "react-icons/fi";
@@ -11,6 +10,7 @@ import Products from "../Products/Products";
 import Loader from "../Loader/Loader";
 import Lottie from "lottie-react";
 import CartAnimation from "../Animations/CartAnimation.json";
+import axios from "axios";
 import "./cart.css";
 
 export const Cart = () => {

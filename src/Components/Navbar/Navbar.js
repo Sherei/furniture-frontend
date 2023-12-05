@@ -77,7 +77,7 @@ export const Navbar = () => {
   };
 
   const handleSearchToggle = () => {
-  
+
     setSearch(!search);
     setLogin(false);
     setNavOpen(false);
@@ -253,7 +253,7 @@ export const Navbar = () => {
   const filterCart = cart?.filter((item) => item.userId === cu._id);
 
   const filterCartLength = filterCart.length;
-  
+
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
   const DeleteCartItem = async (itemId) => {
@@ -757,9 +757,8 @@ export const Navbar = () => {
           >
             <div className="container-fluid">
               <div
-                className={`collapse navbar-collapse ${
-                  isNavOpen ? "show" : ""
-                }`}
+                className={`collapse navbar-collapse ${isNavOpen ? "show" : ""
+                  }`}
                 id="navbarNavDropdown"
               >
                 <ul className="navbar-nav">
@@ -804,8 +803,26 @@ export const Navbar = () => {
                           All Sofas
                         </NavLink>
                       </li>
-                      {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
-                      <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li> */}
+                      <li>
+                        {" "}
+                        <NavLink
+                          className="dropdown-item"
+                          to="products/corner-sofas"
+                          onClick={(event) => closeNav(event)}
+                        >
+                          Corner Sofas{" "}
+                        </NavLink>
+                      </li>
+                      <li>
+                        {" "}
+                        <NavLink
+                          className="dropdown-item"
+                          to="products/three-&-two-seater-sofas"
+                          onClick={(event) => closeNav(event)}
+                        >
+                          3+2 Sofa Sets{" "}
+                        </NavLink>
+                      </li>
                       <li>
                         {" "}
                         <NavLink
