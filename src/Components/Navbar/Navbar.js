@@ -45,6 +45,7 @@ export const Navbar = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [open, setCartOpen] = useState(false);
+  
   const toggleCart = () => {
     if (cu._id === undefined || cu.email === "asd@gmail.com") {
       setLogin(true);
@@ -77,7 +78,6 @@ export const Navbar = () => {
   };
 
   const handleSearchToggle = () => {
-
     setSearch(!search);
     setLogin(false);
     setNavOpen(false);
@@ -93,20 +93,19 @@ export const Navbar = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (ref.current && !ref.current.contains(event.target)) {
-  //       console.log("sdkjfhjkdhfjkd");
-  //       setNavOpen(false);
-  //       setLogin(false);
-  //       setCartOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutside);
-  //   };
-  // }, [ref]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setNavOpen(false);
+        setLogin(false);
+        setCartOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [ref]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -139,6 +138,7 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    
     setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -153,6 +153,10 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     const filtered = products?.filter((product) => {
       const searchResult = searchValue?.toLowerCase();
       const title = product?.title?.toLowerCase();
