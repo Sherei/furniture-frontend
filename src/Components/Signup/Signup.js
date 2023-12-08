@@ -110,6 +110,11 @@ const Signup = () => {
                             }
                         </div> */}
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
+                        <p className='mt-2 fs-5'>Already have an account? &nbsp; 
+                            <a href="/login" style={{borderBottom:"1px solid blue"}}>
+                                Login
+                            </a>
+                        </p>
 
                     </form>
                 </div>

@@ -1071,10 +1071,10 @@ export const Navbar = () => {
                       <>
                         <span className="card_Fprice px-2 ">
                           {" "}
-                          {`£${product.Fprice?.toFixed(1)}`}
+                          {`£${product.Fprice?.toFixed(2)}`}
                         </span>
                         <span className="card_price">
-                          <s>{`£${product.price?.toFixed(1)}`}</s>
+                          <s>{`£${product.price?.toFixed(2)}`}</s>
                         </span>
                       </>
                     ) : (

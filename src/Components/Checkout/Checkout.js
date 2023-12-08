@@ -67,24 +67,24 @@ const Checkout = () => {
 
     const DeleteCartItem = async (itemId) => {
         try {
-          setLoading(true);
-          const response = await axios.delete(
-            `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
-          );
-          if (response.data.status === "success") {
-            dispatch({
-              type: "ADD_TO_CART",
-              payload: response.data.alldata,
-            });
-            toast.success("Item Removed");
-          }
+            setLoading(true);
+            const response = await axios.delete(
+                `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
+            );
+            if (response.data.status === "success") {
+                dispatch({
+                    type: "ADD_TO_CART",
+                    payload: response.data.alldata,
+                });
+                toast.success("Item Removed");
+            }
         } catch (e) {
-          // console.log(e);
+            // console.log(e);
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-      };
-    
+    };
+
     const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.total;
     }, 0);
@@ -96,20 +96,17 @@ const Checkout = () => {
 
     const total = totalSum + shippingFee;
 
-    const Order = async (data) => {
+    async function Order(data) {
 
-        console.log("Order function is being executed");
-
+        console.log("Order function : ", data);
+       
         setLoading(true);
+        window.scrollTo({
+            top: 0
+        });
+
         try {
-            useEffect(() => {
-                window.scrollTo({
-                    top: 0
-                });
-            }, []);
-
             const orderItems = [];
-
             const orderId = uuidv4().substr(0, 10);
             filterCart.forEach((item) => {
                 const itemData = {
@@ -142,7 +139,6 @@ const Checkout = () => {
 
             const shippingFee = totalQuantity * 50;
             const Ordertotal = totalSum + shippingFee;
-
             const orderItemsJSON = JSON.stringify(orderItems);
             data.orderItems = orderItemsJSON;
             data.orderId = orderId;
@@ -160,10 +156,10 @@ const Checkout = () => {
 
             if (response.data === "Order is Placed") {
                 dispatch({
-                    type: "REMOVE_MULTIPLE_ITEMS",
-                    payload: userId,
-                });
-                console.log("response is", response.data);
+                    type: "ADD_TO_CART",
+                    payload: response.data.alldata,
+                  });
+                  move(`/order-placed/${userId}`)
             }
 
         } catch (e) {
@@ -209,9 +205,9 @@ const Checkout = () => {
                 </div>
             </div>
             <div className='row checkout_display d-flex justify-content-center my-lg-5'>
-                <div className='col-lg-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
-                    <form action="" className="needs-validation" onSubmit={handleSubmit(Order)}>
-                        <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
+                <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
+                    <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
+                    <form action="" onSubmit={handleSubmit(Order)}>
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
@@ -224,7 +220,7 @@ const Checkout = () => {
 
                             </div>
                             <div className="col-12 mb-3">
-                                <input type="number" placeholder='Contact Number*' className="form-control py-2" {...register('number1')} />
+                                <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2" {...register('number1')} />
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
@@ -248,7 +244,7 @@ const Checkout = () => {
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='Postcode*' className="form-control py-2" {...register('postal')} />
+                                <input type="number" placeholder='Postcode*' min={0} className="form-control py-2" {...register('postal')} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
 
@@ -291,10 +287,8 @@ const Checkout = () => {
                             </div>
                         </div>
                         <hr className="mb-4" />
-
-                        <div className='chk_btns chk_btna1 mt-5'>
-                            <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                                onClick={Order}>
+                        <div className='chk_btns chk_btns1 mt-5'>
+                            <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}>
                                 COMPLETE ORDER
                             </button>
                             <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
@@ -309,7 +303,7 @@ const Checkout = () => {
                     </form>
                 </div>
 
-                <div className='col-lg-4 col-sm-12 px-4 pt-5 pt-lg-3'>
+                <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
                             <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
@@ -386,10 +380,9 @@ const Checkout = () => {
                             <p className='fs-5'>{`£${total?.toFixed(2)}`}</p>
                         </div>
                     </div>
-                    <div className='chk_btns chk_btns2 mt-5'>
+                    {/* <div className='chk_btns chk_btns2 mt-5'>
                         <button className="fw-bolder btn btn-lg"
                             style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-
                         >
                             COMPLETE ORDER
                         </button>
@@ -401,7 +394,7 @@ const Checkout = () => {
                                 Order Via WhatsApp
                             </button>
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className='row d-flex justify-content-center my-5'>

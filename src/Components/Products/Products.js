@@ -34,14 +34,14 @@ const Products = () => {
   };
 
   useEffect(() => {
-    console.log("Before axios request");
+    // console.log("Before axios request");
     setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-        console.log("Axios success");
+        // console.log("Axios success");
         setData(res?.data);
       }).finally(() => {
-        console.log("Finally block");
+        // console.log("Finally block");
         setLoading(false);
       });
     } catch (e) {
@@ -490,7 +490,7 @@ const Products = () => {
                 {/* <p className="fs-3 bolder">No product available related to this category</p> */}
               </div>
             ) : (
-              <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
+              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
                 {activeGrid === "grid" &&
                   filterProduct?.map((product, index) => (
                     <div className="col" key={index}>
@@ -552,13 +552,13 @@ const Products = () => {
               </div>
             )}
 
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 g-4 my-3">
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-2 g-4 my-3">
               {activeGrid === "list" &&
                 filterProduct?.map((product, index) => {
                   return (
                     <>
                       <div
-                        className="col d-flex grid_box_main"
+                        className="col d-flex gap-2 grid_box_main"
                         key={index}
                         onClick={() => move("/single_Add/" + product._id)}
                         style={{ overflow: "hidden" }}

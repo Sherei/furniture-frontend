@@ -37,16 +37,16 @@
     .chk_btns2{
         display: block;
     }
-    .chk_btna1{
-        display: none;
-    }
-  
+   
 }
 @media screen and (max-width:768px) {
 
     .chk_btn button,
     .chk_btn a {
         width: 100% !important;
+    }
+    .checkout_display{
+        flex-direction: column-reverse;
     }
 
     .chk_secure1,
