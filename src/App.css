@@ -28,7 +28,7 @@ main {
   padding: 0px !important;
   flex: 1 0 auto;
   background-color: rgb(240, 240, 235, 0.3);
-
+  overscroll-behavior: none !important;
 }
 
 .main_body {
