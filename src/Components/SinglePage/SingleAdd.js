@@ -10,6 +10,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 import { RiStarSFill } from "react-icons/ri";
+import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import Benefits from "../Benefits/Benefits";
@@ -63,6 +64,11 @@ const SingleAdd = () => {
   const [Error, setError] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [sucess, setSucess] = useState(false)
+
+  const toggleVerify = () => {
+    setSucess(!sucess);
+  };
 
   const dispatch = useDispatch();
 
@@ -322,15 +328,12 @@ const SingleAdd = () => {
           `${process.env.REACT_APP_BASE_URL}/addToCart`,
           product
         );
-        console.log(response);
         if (response.data.message === "Product Added") {
           dispatch({
             type: "ADD_TO_CART",
             payload: response.data.alldata,
           });
-          toast.success("Added to Cart");
-          // window.location.reload();
-          // window.location.href = `/cart/${cu._id}`;
+          toggleVerify();
         }
       } catch (error) {
         return (
@@ -348,6 +351,15 @@ const SingleAdd = () => {
       }
     }
   }
+  useEffect(() => {
+    if (sucess) {
+      const timeoutId = setTimeout(() => {
+        toggleVerify();
+      }, 5000);
+
+      return () => clearTimeout(timeoutId); 
+    }
+  }, [sucess]);
 
   async function Order() {
     await AddToCart(
@@ -461,8 +473,9 @@ const SingleAdd = () => {
         </div>
       ) : (
         <>
-          <div className="container-fluid">
+          <div className="container-fluid min-vh-100">
             <div className="row">
+
               <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
                 <p style={{ textTransform: "capitalize" }}>
                   home <FaAngleRight />
@@ -561,7 +574,18 @@ const SingleAdd = () => {
                   )}
                 </div>
               </div>
-              <div className="col-lg-5 col-sm-12">
+              <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
+                {sucess && (
+                  <div className="succes_box showVerify">
+                    <div className="d-flex justify-content-center w-100" style={{ position: "relative" }}>
+                      <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                      <button className="btn fw-bolder fs-3"
+                        style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
+                        onClick={() => setSucess(false)}> <RxCross1 /></button>
+                    </div>
+                    <p className="fw-bolder">Product Added</p>
+                  </div>
+                )}
                 <div
                   className={`s_content ${product?.category === "bed" ? "bed_class" : ""
                     }`}

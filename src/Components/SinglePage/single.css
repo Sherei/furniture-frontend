@@ -344,8 +344,41 @@
 .arrow_display2 .plus_btn2 {
     right: 0px;
 }
-
-
+.succes_box{
+    position: absolute !important;
+    left: 20% !important; 
+    top: 30% !important;
+    z-index: 10000 !important;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    color: #1b2950;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    border: 1px solid lightgray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    opacity: 0;
+    animation: fadeInOut 0.5s ease-in-out;
+  }
+  
+  .succes_box.showVerify {
+    opacity: 1;
+  }
+  
+  @keyframes fadeInOut {
+    0%{
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 @media screen and (min-width:769px) and (max-width:992px) {}
 
 @media screen and (max-width:768px) {
