@@ -103,7 +103,7 @@ export const Users = () => {
                           <th>Sr #</th>
                           <th>Name</th>
                           <th>Email</th>
-                          <th>Contact No</th>
+                          {/* <th>Contact No</th> */}
                           <th>Date</th>
                           <th>Delete</th>
                         </tr>
@@ -114,7 +114,7 @@ export const Users = () => {
                             <td>{index + 1}</td>
                             <td>{data.name}</td>
                             <td>{data.email}</td>
-                            <td>{data.number}</td>
+                            {/* <td>{data.number}</td> */}
                             <td className='text-center'>{formatDateTime(data.date)}</td>
                             <td className='text-center'>
                               <button className='delete_btn' onClick={() => DeleteUser(data._id)}>
