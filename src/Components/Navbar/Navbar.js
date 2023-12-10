@@ -773,7 +773,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="/"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       Home
                     </NavLink>
@@ -801,8 +801,8 @@ export const Navbar = () => {
                       <li>
                         <NavLink
                           className="dropdown-item"
+                          to="/products/sofa"
                           onClick={() => {
-                            move("/products/sofa");
                             closeNav();
                           }}
                         >
@@ -816,7 +816,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/sofa-beds"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Sofa Beds{" "}
                         </NavLink>
@@ -826,7 +826,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/u-shaped-sofas"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           U Shape Sofas
                         </NavLink>
@@ -836,7 +836,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/leather-sofas"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Leather Sofas
                         </NavLink>
@@ -846,7 +846,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/recliner-sofas"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Recliner Sofas
                         </NavLink>
@@ -859,7 +859,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="/products/corner-sofas"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       Corner Sofas
                     </NavLink>
@@ -869,7 +869,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="/products/three-&-two-seater-sofas"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       3+2 Sofa Sets
                     </NavLink>
@@ -899,7 +899,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/bed"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           All Beds{" "}
                         </NavLink>
@@ -909,7 +909,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/ambassador-beds"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Ambassador Beds
                         </NavLink>
@@ -919,7 +919,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/panel-bed"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Panel Beds
                         </NavLink>
@@ -929,7 +929,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/wingback-beds-frames"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Wingback Beds
                         </NavLink>
@@ -940,7 +940,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/bespoke-beds"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Bespoke Beds
                         </NavLink>
@@ -950,7 +950,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/chesterfield-beds"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Chesterfield Beds
                         </NavLink>
@@ -960,7 +960,7 @@ export const Navbar = () => {
                         <NavLink
                           className="dropdown-item"
                           to="products/divan-beds"
-                          onClick={(event) => closeNav(event)}
+                          onClick={() => closeNav()}
                         >
                           Divan Beds
                         </NavLink>
@@ -972,7 +972,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="/products/ottoman-box"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       Ottoman Box
                     </NavLink>
@@ -982,7 +982,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="/products/footstools"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       Footstools
                     </NavLink>
@@ -992,7 +992,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="/products/mattress"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       Mattresses
                     </NavLink>
@@ -1002,7 +1002,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="review"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       Reviews
                     </Link>
@@ -1012,7 +1012,7 @@ export const Navbar = () => {
                       className="nav-link"
                       aria-current="page"
                       to="about"
-                      onClick={(event) => closeNav(event)}
+                      onClick={() => closeNav()}
                     >
                       About Us
                     </Link>

@@ -34,14 +34,11 @@ const Products = () => {
   };
 
   useEffect(() => {
-    // console.log("Before axios request");
-    setLoading(true);
+   setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-        // console.log("Axios success");
-        setData(res?.data);
+       setData(res?.data);
       }).finally(() => {
-        // console.log("Finally block");
         setLoading(false);
       });
     } catch (e) {
