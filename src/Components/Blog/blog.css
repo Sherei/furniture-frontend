@@ -32,7 +32,7 @@
 }
 
 .blog2 {
-    
+
     border-radius: 50% 50% 0px 0px;
 }
 
@@ -42,9 +42,9 @@
 }
 
 .blog4 {
-    border-radius: 100%;
+    border-radius: 0px 0px 50% 50%;
     /* border-radius: 30% 30% 10%; */
-    
+
 }
 
 .blog1 img,

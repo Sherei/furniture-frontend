@@ -96,7 +96,7 @@ export const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setNavOpen(false);
+        // setNavOpen(false);
         setLogin(false);
         setCartOpen(false);
       }
@@ -692,6 +692,7 @@ export const Navbar = () => {
                               <div
                                 className="fs-2"
                                 style={{ color: "#E7E7E9" }}
+                                onClick={()=>setSearch(false)}
                               >
                                 <FaRegUser />
                               </div>
@@ -761,8 +762,9 @@ export const Navbar = () => {
           >
             <div className="container-fluid">
               <div
-                className={`collapse navbar-collapse ${isNavOpen ? "show" : ""
-                  }`}
+                className={`collapse navbar-collapse ${
+                  isNavOpen ? "show" : ""
+                }`}
                 id="navbarNavDropdown"
               >
                 <ul className="navbar-nav">
@@ -807,26 +809,8 @@ export const Navbar = () => {
                           All Sofas
                         </NavLink>
                       </li>
-                      <li>
-                        {" "}
-                        <NavLink
-                          className="dropdown-item"
-                          to="products/corner-sofas"
-                          onClick={(event) => closeNav(event)}
-                        >
-                          Corner Sofas{" "}
-                        </NavLink>
-                      </li>
-                      <li>
-                        {" "}
-                        <NavLink
-                          className="dropdown-item"
-                          to="products/three-&-two-seater-sofas"
-                          onClick={(event) => closeNav(event)}
-                        >
-                          3+2 Sofa Sets{" "}
-                        </NavLink>
-                      </li>
+                      {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
+                      <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li> */}
                       <li>
                         {" "}
                         <NavLink

@@ -344,11 +344,42 @@
   display: none;
 }
 
+.nav_searchbar {
+  position: absolute;
+  top: 74px;
+  right: 0px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav_searchbar input {
+  width: 100%;
+  padding: 8px 7px;
+}
+
+.nav_searchbar input:focus {
+  color: #1b2950;
+  border: none;
+  outline: none;
+
+}
+
+.nav_searchbar input::placeholder {
+  color: #1b2950;
+}
+
+@media screen and (min-width:769px) and (max-width:992px) {
+  .nav_searchbar {
+    top: 82px;
+  }
+}
+
 @media screen and (max-width:1027px) {
   .nav_search_btn {
     top: 11px;
   }
 }
+
 @media screen and (max-width:992px) {
   .login_div::before {
     right: 67px !important;
@@ -357,31 +388,6 @@
   .menu_hide {
     display: none;
   }
-
-  .nav_searchbar {
-    position: absolute;
-    top: 74px;
-    right: 0px;
-    width: 100%;
-    z-index: 1000;
-  }
-
-  .nav_searchbar input {
-    width: 100%;
-    padding: 8px 7px;
-  }
-
-  .nav_searchbar input:focus {
-    color: #1b2950;
-    border: none;
-    outline: none;
-
-  }
-
-  .nav_searchbar input::placeholder {
-    color: #1b2950;
-  }
-
   .nav_cotact {
     display: none;
   }
@@ -450,11 +456,13 @@
   }
 
 }
-@media screen and (max-width:768px){
-  .logo_navbar{
+
+@media screen and (max-width:768px) {
+  .logo_navbar {
     width: 100px;
   }
 }
+
 @media screen and (max-width:550px) {
   .nav_contact2 span {
     font-size: 13px;
@@ -462,7 +470,7 @@
 }
 
 @media screen and (max-width:390px) {
-  .nav_contact2{
+  .nav_contact2 {
     display: none;
   }
 }
