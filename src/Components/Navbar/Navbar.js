@@ -1042,10 +1042,10 @@ export const Navbar = () => {
 
       {searchValue && (
         <div className="container">
-          <div className="my-4 fs-2">Search Result...</div>
+          <div className="my-4 fs-5">Search Result...</div>
           {filteredProducts.length === 0 && (
             <div className="mb-5">
-              <p>No result found Try with different keyword</p>
+              <p className="m-0 fs-6">No result found...</p>
             </div>
           )}
           <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">

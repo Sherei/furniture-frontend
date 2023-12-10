@@ -462,7 +462,7 @@
 }
 
 @media screen and (max-width:390px) {
-  .nav_cotact_icon {
+  .nav_contact2{
     display: none;
   }
 }
