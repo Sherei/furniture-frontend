@@ -9,15 +9,15 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  animation: moveRightToLeft 20s linear infinite;
-  padding-right: 100%; /* Adjust the padding to control the speed of the animation */
+  animation: moveRightToLeft 70s linear infinite;
+  padding-right: 10px; 
 }
 
 @keyframes moveRightToLeft {
   0% {
-    transform: translateX(100%);
+    transform: translateX(50%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
