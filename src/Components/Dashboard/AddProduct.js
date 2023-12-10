@@ -361,7 +361,7 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
-                  <input {...register('description')} className="form-control" />
+                  <textarea rows={5} {...register('description')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 2</label>
@@ -369,7 +369,7 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 2</label>
-                  <input {...register('description2')} className="form-control" />
+                  <textarea rows={5} {...register('description2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 3</label>
@@ -377,7 +377,7 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 3</label>
-                  <input {...register('description3')} className="form-control" />
+                  <textarea rows={5} {...register('description3')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 4</label>
@@ -385,7 +385,7 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 4</label>
-                  <input {...register('description4')} className="form-control" />
+                  <textarea rows={5} {...register('description4')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature Heading</label>
@@ -393,36 +393,36 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 1</label>
-                  <input {...register('feature1')} className="form-control" />
+                  <textarea rows={5} {...register('feature1')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 2</label>
-                  <input {...register('feature2')} className="form-control" />
+                  <textarea rows={5} {...register('feature2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 3</label>
-                  <input {...register('feature3')} className="form-control" />
+                  <textarea rows={5} {...register('feature3')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 4</label>
-                  <input {...register('feature4')} className="form-control" />
+                  <textarea rows={5} {...register('feature4')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 5</label>
-                  <input {...register('feature5')} className="form-control" />
+                  <textarea rows={5} {...register('feature5')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 6</label>
-                  <input {...register('feature6')} className="form-control" />
+                  <textarea rows={5} {...register('feature6')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
-                  <input {...register('feature7')} className="form-control" />
+                  <textarea rows={5} {...register('feature7')} className="form-control" />
                 </div>
               
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note</label>
-                  <input {...register('note2')} className="form-control" />
+                  <textarea rows={5} {...register('note2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension Heading</label>
@@ -430,19 +430,19 @@ export const AddProduct = () => {
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 1</label>
-                  <input {...register('dimension1')} className="form-control" />
+                  <textarea rows={5} {...register('dimension1')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 2</label>
-                  <input {...register('dimension2')} className="form-control" />
+                  <textarea rows={5} {...register('dimension2')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 3</label>
-                  <input {...register('dimension3')} className="form-control" />
+                  <textarea rows={5} {...register('dimension3')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
-                  <input {...register('dimension4')} className="form-control" />
+                  <textarea rows={5} {...register('dimension4')} className="form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
