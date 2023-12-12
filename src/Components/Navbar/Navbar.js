@@ -783,9 +783,28 @@ export const Navbar = () => {
                           All Sofas
                         </NavLink>
                       </li>
-                      {/* <li> <NavLink className="dropdown-item" to="products/corner-sofas" onClick={(event) => closeNav(event)}>Corner Sofas </NavLink></li>
-                      <li> <NavLink className="dropdown-item" to="products/three-&-two-seater-sofas" onClick={(event) => closeNav(event)}>3+2 Sofa Sets</NavLink></li> */}
                       <li>
+                        {" "}
+                        <NavLink
+                          className="dropdown-item"
+                          to="products/corner-sofas"
+                          onClick={() => closeNav()}
+                        >
+                          Corner Sofas{" "}
+                        </NavLink>
+                      </li>
+                      <li>
+                        {" "}
+                        <NavLink
+                          className="dropdown-item"
+                          to="products/three-&-two-seater-sofas"
+                          onClick={() => closeNav()}
+                        >
+                          3+2 Sofa Sets{" "}
+                        </NavLink>
+                      </li>
+                      
+                     <li>
                         {" "}
                         <NavLink
                           className="dropdown-item"
