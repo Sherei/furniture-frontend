@@ -18,21 +18,21 @@ const SingleBlog = () => {
                     {Name === "perfect-bed" && <>
                         <p className='text-center text-muted'>APR 10, 2023
                             JELENA PETKOVIC</p>
-                        <h1 className='text-center fw-bolder'>How to Choose a Perfect Bed</h1>
+                        <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>How to Choose a Perfect Bed</h1>
                     </>
                     }
                     {Name === "perfect-sofa" &&
                         <>
                             <p className='text-center text-muted'>APR 10, 2023
                                 JELENA PETKOVIC</p>
-                            <h1 className='text-center fw-bolder'>How to Choose a Perfect Sofa</h1>
+                            <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>How to Choose a Perfect Sofa</h1>
                         </>
                     }
                     {Name === "clean-sofa" &&
                         <>
                             <p className='text-center text-muted'>JUL 05, 2023
                                 JELENA PETKOVIC</p>
-                            <h1 className='text-center fw-bolder'>How to Clean Sofa</h1>
+                            <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>How to Clean Sofa</h1>
                         </>
                     }
                     {Name === "perfect-mattress" &&
@@ -46,7 +46,7 @@ const SingleBlog = () => {
                     {Name === "perfect-bed" &&
                         <>
                             <img
-                                src="/3_1060x550_crop_center.webp"
+                                src="/bedblog.jpg"
                                 className='mt-5 img-fluid'
                                 alt="No Network"
                             />
@@ -59,49 +59,49 @@ const SingleBlog = () => {
                                 </p>
                                 <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
+                                        <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Size Considerations:</p>
                                         <p>
-                                            <span className='fw-bolder'>Size Considerations:</span> <br /> <br />
                                             Kick off your bed selection journey by determining the appropriate size. Take into account your room
                                             dimensions and available space. Are you inclined towards a king, queen, full, or
                                             twin size bed? Keep in mind that larger beds occupy more space in your room.\
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Harmonize with Your Decor Style:</p>
                                         <p>
-                                            <span className='fw-bolder'>Harmonize with Your Decor Style:</span> <br /> <br />
                                             Beds are available in an array of styles, ranging from traditional to modern. Contemplate the ambiance you wish to
                                             create in your bedroom and opt for a style that harmonizes with your decor. For a traditional setting, consider a
                                             sleigh bed or a four-poster bed, while a platform bed might be more fitting for a modern space.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Material and Finish Selection:</p>
                                         <p>
-                                            <span className='fw-bolder'>Material and Finish Selection:</span> <br /> <br />
                                             The material and finish of your bed significantly contribute to the overall aesthetics of your bedroom.
                                             Take note of the color and finish of your existing furniture and choose a bed that complements these elements.
                                             Classic wood beds exude timeless elegance,
                                             whereas metal beds can introduce a touch of modernity.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Explore Storage Options:</p>
                                         <p>
-                                            <span className='fw-bolder'>Explore Storage Options:</span><br /> <br />
                                             If storage space in your bedroom is limited, a bed with built-in storage can be a smart solution.
                                             Some beds feature drawers or shelves integrated into the frame, while others leverage a hydraulic lift system,
                                             allowing you to raise the mattress and access storage space underneath.
                                         </p>
                                     </li>
 
-                                    <li >
+                                    <li>
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Prioritize Mattress Comfort:</p>
                                         <p>
-                                            <span className='fw-bolder'>Prioritize Mattress Comfort:</span><br /> <br />
                                             The importance of a comfortable mattress cannot be overstated. When selecting a mattress, factor in your preferred
                                             level of firmness and support. Are you inclined towards a softer or firmer mattress? Additionally,
                                             consider aspects such as allergies and back pain in your mattress decision-making process.
-                                            <br /> <br />
+
                                             Armed with these insights, you're well-prepared to embark on your quest for the perfect bed. At Furniture Direct
                                             Online Store, we offer a diverse range of beds catering to various styles and budgets. Explore our collection today to discover
                                             the ideal bed that will stand as the focal point of your bedroom for years to come.
@@ -110,7 +110,7 @@ const SingleBlog = () => {
 
                                 </ul>
                                 <p>
-                                    Tags: <span style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>choose bed, bed maintainance</span>
+                                    Tags: <p style={{ borderBottom: "1px solid rgb(2, 2, 94)" }}>choose bed, bed maintainance</p>
                                 </p>
 
                             </div>
@@ -123,44 +123,44 @@ const SingleBlog = () => {
                             <img src="/Sofa_Claning_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-lg-5 px-2' >
                                 <p className='m-auto'>
-                                    Hey, <br /> <br />
+                                    Hey, <br /><br />
                                     Securing a durable sofa is a substantial investment, and maintaining its longevity requires thoughtful care.
-                                    To ensure your high-quality sofa stands the test of time, consider these essential tips:<br /> <br />
+                                    To ensure your high-quality sofa stands the test of time, consider these essential tips:
                                 </p>
                                 <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Regular Cleaning Routine:</p>
                                         <p>
-                                            <span className='fw-bolder'>Regular Cleaning Routine:</span> <br /> <br />
                                             Upholstery can accumulate dirt over time, leading to wear and tear. Establish a regular cleaning schedule using a
                                             vacuum with a soft brush attachment to gently remove dust and debris, preserving the fabric's integrity.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Prompt Stain Management:</p>
                                         <p>
-                                            <span className='fw-bolder'>Prompt Stain Management:</span> <br /> <br />
                                             Act swiftly to clean spills and prevent stubborn stains. Use a gentle touch when blotting liquids,
                                             avoiding rubbing, and consider employing a
                                             suitable upholstery cleaner for effective stain removal.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Shield from Sunlight Exposure:</p>
                                         <p>
-                                            <span className='fw-bolder'>Shield from Sunlight Exposure:</span> <br /> <br />
                                             Prolonged exposure to direct sunlight can result in fabric fading. Strategically position your sofa away
                                             from windows or employ blinds and curtains to block harsh sunlight,
                                             safeguarding the vibrant colors and texture of your upholstery.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Utilize Throws for Protection:</p>
                                         <p>
-                                            <span className='fw-bolder'>Utilize Throws for Protection:</span><br /> <br />
                                             Safeguard high-contact areas, such as armrests, by incorporating throws or blankets.
                                             These not only shield against potential spills but also add an extra layer of protection,
                                             enhancing the lifespan of your sofa.
-                                            <br /> <br />
+
                                             Remember, a well-maintained sofa not only elevates the aesthetic appeal of your living space but also ensures enduring comfort and functionality.
                                         </p>
                                     </li>
@@ -179,52 +179,50 @@ const SingleBlog = () => {
                             <img src="/1_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-lg-5 px-2' >
                                 <p className='m-auto'>
-                                    Hey, <br /> <br />
+                                    Hey, <br /><br />
                                     Your living room's focal point, the sofa, plays a crucial role in creating a cozy and inviting space for you,
                                     your family, and friends. Choosing the right sofa can be a rewarding experience with these helpful tips:
                                 </p>
                                 <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Define Your Style:</p>
                                         <p>
-                                            <span className='fw-bolder'>Define Your Style:</span> <br /> <br />
                                             Before delving into sofa options, identify your preferred style. Whether it's a modern, minimalist aesthetic or a
                                             more traditional look, knowing your style preferences will streamline your search.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Consider Room Size and Layout:</p>
                                         <p>
-                                            <span className='fw-bolder'>Consider Room Size and Layout:</span> <br /> <br />
                                             Assess the dimensions and layout of your living room. For smaller spaces, opt for a compact sofa or loveseat to
                                             avoid overcrowding. In larger rooms, explore sectional sofas or
                                             combinations of larger sofas and armchairs for a balanced arrangement.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Evaluate Comfort Levels:</p>
                                         <p>
-                                            <span className='fw-bolder'>Evaluate Comfort Levels:</span> <br /> <br />
                                             People have varying comfort preferences. Determine if you prefer a firmer or softer seat.
                                             Test sofas in stores to gauge comfort before making a decision.
-                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Choose Durable and Easy-to-Clean Materials:</p>
                                         <p>
-                                            <span className='fw-bolder'>Choose Durable and Easy-to-Clean Materials:</span><br /> <br />
                                             Selecting the right material is crucial, especially if you have kids or pets.
                                             Leather is durable and easy to wipe clean, making it suitable for families.
                                             Alternatively, microfiber is resistant to stains and spills.
-                                            <br /> <br />
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Pay Attention to Details:</p>
                                         <p>
-                                            <span className='fw-bolder'>Pay Attention to Details:</span><br /> <br />
                                             The details of a sofa contribute to its overall aesthetic. Consider the design of armrests, the shape of the back,
                                             and the type of cushions. High backs offer added comfort,
                                             while lower backs create a modern look. Ensure these details complement your existing decor.
-                                            <br /> <br />
+
                                             Make your sofa shopping experience enjoyable and successful with these considerations. At Furniture Direct Online
                                             Store, we offer an extensive range of sofas to suit various styles and budgets. Explore our collection today to discover the perfect
                                             sofa that will be the centerpiece of your living room for years to come.
@@ -250,39 +248,39 @@ const SingleBlog = () => {
 
                                 <ul className='mt-4' style={{ width: "95%" }}>
                                     <li>
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Choosing the Right Mattress for Quality Sleep:</p>
                                         <p>
-                                            <span className='fw-bolder'>Choosing the Right Mattress for Quality Sleep:</span> <br /> <br />
-                                            When embarking on the quest for the perfect mattress, understanding your preferred sleeping position is paramount. 
-                                            Tailoring your choice to match your sleep habits ensures that your spine receives the necessary support. Back sleepers tend to benefit from firmer mattresses that maintain spinal alignment, while side sleepers find comfort in softer options that allow hips and shoulders to sink in. Stomach sleepers, on the other hand, 
+                                            When embarking on the quest for the perfect mattress, understanding your preferred sleeping position is paramount.
+                                            Tailoring your choice to match your sleep habits ensures that your spine receives the necessary support. Back sleepers tend to benefit from firmer mattresses that maintain spinal alignment, while side sleepers find comfort in softer options that allow hips and shoulders to sink in. Stomach sleepers, on the other hand,
                                             may opt for a firmer mattress to prevent spinal arching during the night.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Establishing a Budget for Sweet Dreams:</p>
                                         <p>
-                                            <span className='fw-bolder'>Establishing a Budget for Sweet Dreams:</span> <br /> <br />
-                                            Determining your budget before delving into the world of mattresses is a crucial first step. The market offers a 
-                                            wide range of options, spanning from budget-friendly to luxurious. It's essential to remember that a higher price tag doesn't necessarily equate to a better mattress. Focus on finding a 
+                                            Determining your budget before delving into the world of mattresses is a crucial first step. The market offers a
+                                            wide range of options, pning from budget-friendly to luxurious. It's essential to remember that a higher price tag doesn't necessarily equate to a better mattress. Focus on finding a
                                             mattress that caters to your specific needs while staying within your defined budget.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Prioritizing Quality Materials for Longevity:</p>
                                         <p>
-                                            <span className='fw-bolder'>Prioritizing Quality Materials for Longevity:</span> <br /> <br />
-                                            The longevity of a mattress depends on the quality of its materials. High-density foam or innerspring coils often 
-                                            contribute to better support and increased durability. Investing in a mattress made with top-notch materials ensures that it withstands the test of time, 
+                                            The longevity of a mattress depends on the quality of its materials. High-density foam or innerspring coils often
+                                            contribute to better support and increased durability. Investing in a mattress made with top-notch materials ensures that it withstands the test of time,
                                             providing you with a comfortable and supportive sleep surface for years to come.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                     <li >
+                                            <p className='fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Test Before You Rest: The Importance of Trying Out Mattresses:</p>
                                         <p>
-                                            <span className='fw-bolder'>Test Before You Rest: The Importance of Trying Out Mattresses:</span><br /> <br />
-                                            When shopping for a mattress, it's crucial to go beyond just visually assessing options. 
-                                            Take the time to lie down on each mattress you're considering. For in-store shoppers, wear comfortable clothing and easily removable shoes to fully experience the comfort level. Online shoppers should ensure that the store offers a reliable return policy, 
+                                            When shopping for a mattress, it's crucial to go beyond just visually assessing options.
+                                            Take the time to lie down on each mattress you're considering. For in-store shoppers, wear comfortable clothing and easily removable shoes to fully experience the comfort level. Online shoppers should ensure that the store offers a reliable return policy,
                                             providing flexibility in case the mattress doesn't meet expectations.
-                                            <br /> <br />
+
                                         </p>
                                     </li>
                                 </ul>

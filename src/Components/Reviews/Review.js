@@ -146,7 +146,7 @@ const Review = () => {
                                     style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
                                     onClick={() => setSucess(false)}> <RxCross1 /></button>
                             </div>
-                            <p className="fw-bolder text-center">Feedback Submitted</p>
+                            <p className="fw-bolder text-center" style={{color:"rgb(2, 2, 94)"}}>Feedback Submitted</p>
                         </div>
                     )}
                     <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >
@@ -181,7 +181,7 @@ const Review = () => {
                             <label class="user-label">Write a Review *</label>
                             {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
                         </div>
-                        <button type="submit " className="btn mt-2 review_btn">
+                        <button type="submit" className="btn mt-2 review_btn">
                             Submit
                         </button>
                     </form>

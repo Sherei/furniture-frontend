@@ -572,19 +572,20 @@ export const Navbar = () => {
                             </div>
                             {login && (
                               <div className="login_div p-4">
-                                <div
-                                  className="d-flex justify-content-end"
-                                  style={{ color: "black" }}
-                                  onClick={() => {
-                                    setLogin(false);
-                                  }}
-                                >
-                                  <RxCross1 />
-                                </div>
-                                <div>
-                                  <p className="m-0 fs-5 text-center fw-bolder my-2">
-                                    Login to my Account
-                                  </p>
+                                <div className="d-flex justify-content-between align-items-center mb-4">
+                                  <div>
+                                    <p className="m-0 fs-5 text-center fw-bolder" style={{color:"rgb(2, 2, 94)"}}>
+                                      Login to my Account
+                                    </p>
+                                  </div>
+                                  <div
+                                    style={{ color: "rgb(2, 2, 94)" }}
+                                    onClick={() => {
+                                      setLogin(false);
+                                    }}
+                                  >
+                                    <RxCross1 />
+                                  </div>
                                 </div>
                                 <form action="" onSubmit={handleSubmit(Login)}>
                                   {Error === "Invalid Credentials" && (
@@ -593,7 +594,7 @@ export const Navbar = () => {
                                       Invalid Credentials{" "}
                                     </div>
                                   )}
-                                  <div className="input-group my-3">
+                                  <div className="input-group my-4">
                                     <input required="true"
                                       type="email"
                                       className="input w-100" {...register('email', {
@@ -803,8 +804,8 @@ export const Navbar = () => {
                           3+2 Sofa Sets{" "}
                         </NavLink>
                       </li>
-                      
-                     <li>
+
+                      <li>
                         {" "}
                         <NavLink
                           className="dropdown-item"
