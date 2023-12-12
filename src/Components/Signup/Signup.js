@@ -18,17 +18,17 @@ const Signup = () => {
     const [Error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    
-        const togglePasswordVisibility = () => {
-          setShowPassword((prevShowPassword) => !prevShowPassword);
-        };
-    
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+
     const move = useNavigate()
 
     async function SignUp(data) {
 
         console.log("Signup data is::", data)
-        
+
         try {
 
             // if (data.password != data.cpassword) {
@@ -62,30 +62,41 @@ const Signup = () => {
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
                         {Error === "Try with different E-mail" &&
-                            <div className='error'>Try with different E-mail</div>
+                            <div className='error mb-3'>Try with different E-mail</div>
                         }
-                        <div className='mt-3'>
-                            <input type="text" placeholder='Name *' className="form-control login_form_input"{...register('name', { required: true })} />
-                            {errors.name ? <div className='error'>This Field is required</div> : null}
+                        <div className="input-group mb-3">
+                            <input required="true"
+                                type="text"
+                                className="input w-100"
+                                {...register('name', { required: true })}
+                            />
+                            <label class="user-label">Name *</label>
+                            {errors.name ? <div className='error'>Name is required </div> : null}
                         </div>
-                        <div className='mt-2'>
-                            <input type="text" placeholder='Email *' className="form-control login_form_input" {...register('email', {
-                                required: true, validate: function (typedValue) {
-                                    if (typedValue.match(
-                                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                                    )) {
-                                        return true;
-                                    } else {
-                                        return false;
+                        <div className="input-group mb-3">
+                            <input required="true"
+                                type="email"
+                                className="input w-100" {...register('email', {
+                                    required: true, validate: function (typedValue) {
+                                        if (typedValue.match(
+                                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                                        )) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
                                     }
-                                }
-                            })} />
+                                })} />
+                            <label class="user-label">Email *</label>
+                            {errors.email ? <div className='error'>Email is required </div> : null}
                         </div>
-                        {errors.email ? <div className='error'>This Field is required</div> : null}
-
-                        <div className='mt-2' style={{position:"relative"}}>
-                            <input type={showPassword ? "text" : "password"} placeholder='Password *' className="form-control login_form_input" {...register('password', { required: true })} />
-                            {errors.password ? <div className='error'>This Field is required</div> : null}
+                        <div className="input-group mb-3">
+                            <input required="true"
+                                type={showPassword ? "text" : "password"}
+                                className="input w-100"
+                                {...register('password', { required: true })} />
+                            <label class="user-label">Passowrd *</label>
+                            {errors.password ? <div className='error'>Passowrd is required </div> : null}
                             <button
                                 type="button"
                                 className="password-toggle-btn"
@@ -94,24 +105,9 @@ const Signup = () => {
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </button>
                         </div>
-                        {/* <div className='mt-2'  style={{position:"relative"}}>
-                            <input type={showPassword ? "text" : "password"} placeholder='Confirm Password *' className="form-control login_form_input" {...register('cpassword', { required: true })} />
-                            <button
-                                type="button"
-                                className="password-toggle-btn"
-                                onClick={togglePasswordVisibility}
-                            >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </button>
-                            {errors.cpassword ? <div className='error'>Re Enter Your Passowrd </div> : null}
-
-                            {Error === "Password does not match" &&
-                                <div className='error'>Password does not match</div>
-                            }
-                        </div> */}
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
-                        <p className='mt-2 fs-5'>Already have an account? &nbsp; 
-                            <a href="/login" style={{borderBottom:"1px solid blue"}}>
+                        <p className='mt-2 fs-5'>Already have an account? &nbsp;
+                            <a href="/login" style={{ borderBottom: "1px solid blue" }}>
                                 Login
                             </a>
                         </p>

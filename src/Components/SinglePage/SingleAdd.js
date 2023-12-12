@@ -1645,52 +1645,35 @@ const SingleAdd = () => {
                   Product Feedback
                 </p>
                 <form action="" onSubmit={handleSubmit(Comment)}>
-                  <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">
-                      Name *
-                    </label>
-                    <input
-                      {...register("name", { required: true })}
-                      type="text"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                    />
-                    {errors.name ? (
-                      <div className="error">Name is required </div>
-                    ) : null}
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">
-                      Email *
-                    </label>
-                    <input
-                      {...register("email", { required: true })}
-                      type="email"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                    />
-                    {errors.email ? (
-                      <div className="error">Email is required </div>
-                    ) : null}
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">
-                      Comment *
-                    </label>
-                    <textarea
-                      {...register("comment", { required: true })}
-                      type="text"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      rows={5}
-                    />
-                    {errors.comment ? (
-                      <div className="error">Cannot submit empty comment</div>
-                    ) : null}
-                  </div>
+                <div className="input-group mb-3">
+                            <input required="true"
+                                type="text"
+                                className="input w-100"
+                                {...register('name', { required: true })}
+                            />
+                            <label class="user-label">Name *</label>
+                            {errors.name ? <div className='error'>Name is required </div> : null}
+                        </div>
+                        <div className="input-group mb-3">
+                            <input required="true"
+                                type="email"
+                                className="input w-100"
+                                {...register('email', { required: true })}
+                            />
+                            <label class="user-label">Email *</label>
+                            {errors.email ? <div className='error'>Name is required </div> : null}
+                        </div>
+                        <div className="input-group mb-3">
+                            <textarea required="true"
+                                type="text"
+                                autocomplete="off"
+                                className="input w-100"
+                                rows={7}
+                                {...register('comment', { required: true })}
+                            />
+                            <label class="user-label">Write a Review *</label>
+                            {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
+                        </div>
                   <button type="submit" className="btn review_btn">
                     Submit
                   </button>

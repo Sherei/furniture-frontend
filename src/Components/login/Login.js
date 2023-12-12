@@ -76,30 +76,36 @@ export const Login = () => {
         <div className='col-lg-6 col-md-6 col-sm-12'>
           <div>
             <p className='m-0 fs-3 text-center fw-bolder'>Login to my Account</p>
-            <p className='m-0 fs-6 text-center text-muted mt-3'>Enter your E-mail & Password</p>
+            <p className='m-0 fs-6 text-center text-muted my-3'>Enter your E-mail & Password</p>
           </div>
           <form action="" onSubmit={handleSubmit(Login)}>
             {Error === "Invalid Credentials" &&
-              <div className='error'> Invalid Credentials </div>
+              <div className='error mb-3'> Invalid Credentials </div>
             }
-            <div style={{ position: "relative" }} className='mt-3'>
-              <input type="text" className="form-control login_form_input" placeholder='E-mail' {...register('email', {
-                required: true, validate: function (typedValue) {
-                  if (typedValue.match(
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                  )) {
-                    return true;
-                  } else {
-                    return false;
+            <div className="input-group mb-3">
+              <input required="true"
+                type="email"
+                className="input w-100" {...register('email', {
+                  required: true, validate: function (typedValue) {
+                    if (typedValue.match(
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    )) {
+                      return true;
+                    } else {
+                      return false;
+                    }
                   }
-                }
-              })} />
-              {errors.email ? <div className='error'> Please Enter Your Valid Email </div> : null}
-
+                })} />
+              <label class="user-label">Email *</label>
+              {errors.email ? <div className='error'>Email is required </div> : null}
             </div>
-
-            <div style={{ position: "relative" }} className='mt-3'>
-              <input type={showPassword ? "text" : "password"} className="form-control login_form_input" placeholder='Password'{...register('password', { required: true, })} />
+            <div className="input-group mb-3">
+              <input required="true"
+                type={showPassword ? "text" : "password"}
+                className="input w-100"
+                {...register('password', { required: true })} />
+              <label class="user-label">Passowrd *</label>
+              {errors.password ? <div className='error'>Passowrd is required </div> : null}
               <button
                 type="button"
                 className="password-toggle-btn"
@@ -107,9 +113,6 @@ export const Login = () => {
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
-
-              {errors.password ? <div className='error'> Please Enter Your Password </div> : null}
-
             </div>
             <button className='btn rounded login_btn mt-3'>Login</button>
 
