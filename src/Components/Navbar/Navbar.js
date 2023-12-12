@@ -30,9 +30,10 @@ export const Navbar = () => {
   const move = useNavigate();
   const ref = useRef();
   const cu = useSelector((store) => store.userSection.cu);
-
   const allCartItems = useSelector((store) => store.Cart.cart);
   const dispatch = useDispatch();
+
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -45,7 +46,7 @@ export const Navbar = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [open, setCartOpen] = useState(false);
-  
+
   const toggleCart = () => {
     if (cu._id === undefined || cu.email === "asd@gmail.com") {
       setLogin(true);
@@ -138,7 +139,7 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    
+
     setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -157,6 +158,7 @@ export const Navbar = () => {
       top: 0,
       behavior: 'smooth',
     });
+    
     const filtered = products?.filter((product) => {
       const searchResult = searchValue?.toLowerCase();
       const title = product?.title?.toLowerCase();
@@ -206,13 +208,15 @@ export const Navbar = () => {
       );
     });
 
-    setFilteredProducts(filtered);
+  setFilteredProducts(filtered);
   }, [searchValue]);
+  
   useEffect(() => {
     if (allCartItems) {
       setCart(allCartItems);
     }
   }, [allCartItems]);
+  
   const {
     register,
     handleSubmit,
@@ -692,7 +696,7 @@ export const Navbar = () => {
                               <div
                                 className="fs-2"
                                 style={{ color: "#E7E7E9" }}
-                                onClick={()=>setSearch(false)}
+                                onClick={() => setSearch(false)}
                               >
                                 <FaRegUser />
                               </div>
@@ -762,9 +766,8 @@ export const Navbar = () => {
           >
             <div className="container-fluid">
               <div
-                className={`collapse navbar-collapse ${
-                  isNavOpen ? "show" : ""
-                }`}
+                className={`collapse navbar-collapse ${isNavOpen ? "show" : ""
+                  }`}
                 id="navbarNavDropdown"
               >
                 <ul className="navbar-nav">

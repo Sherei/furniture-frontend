@@ -35,7 +35,6 @@ const SingleAdd = () => {
   }, []);
 
   let cu = useSelector((store) => store.userSection.cu);
-  const cartOpen = useSelector((state) => state.Cart.cartOpen);
 
   let move = useNavigate();
 
@@ -46,12 +45,13 @@ const SingleAdd = () => {
     formState: { errors },
   } = useForm();
 
+  const allComments = useSelector((store) => store.Comment.comment);
+
+  const [comments, setComments] = useState([])
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  const [comments, setComments] = useState([]);
-  const [isLoadingComments, setIsLoadingComments] = useState(true);
   const [loading, setLoading] = useState(true);
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
@@ -357,7 +357,7 @@ const SingleAdd = () => {
         toggleVerify();
       }, 5000);
 
-      return () => clearTimeout(timeoutId); 
+      return () => clearTimeout(timeoutId);
     }
   }, [sucess]);
 
@@ -398,56 +398,48 @@ const SingleAdd = () => {
   };
 
   const Comment = async (cmnt) => {
+    setLoading(true)
     try {
       const commentWithProductId = { ...cmnt, productId };
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/comments`,
-        commentWithProductId
-      );
-      if (response.status === 200) {
-        toast.success("Comment Submitted");
-        reset();
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
+      if (response.data.message === "Feedback submitted") {
+        dispatch({
+          type: "ADD_COMMENT",
+          payload: response.data.alldata,
         });
+        setComments(response.data.alldata)
+        console.log("comment data is==", comments)
+        // reset();
+        toggleVerify();
       } else {
         toast.error("Error occurred");
       }
     } catch (e) {
-      return (
-        <>
-          <div
-            className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-            style={{ height: "50vh" }}
-          >
-            <Loader />
-          </div>
-        </>
-      );
+    } finally {
+      setLoading(false)
     }
   };
-
   useEffect(() => {
+    setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
-        setComments(res.data);
-        setIsLoadingComments(false);
+        if (res) {
+          dispatch({ type: "ADD_COMMENT", payload: res.data });
+        }
       });
     } catch (e) {
-      return (
-        <>
-          <div
-            className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-            style={{ height: "50vh" }}
-          >
-            <Loader />
-          </div>
-        </>
-      );
+    } finally {
+      setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (allComments) {
+      setComments(allComments);
+      setLoading(false);
+    }
+  }, [allComments]);
 
   const formatDateTime = (dateStr) => {
     const options = {
@@ -583,7 +575,7 @@ const SingleAdd = () => {
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
                         onClick={() => setSucess(false)}> <RxCross1 /></button>
                     </div>
-                    <p className="fw-bolder">Product Added</p>
+                    <p className="fw-bolder text-center">Product Added</p>
                   </div>
                 )}
                 <div
@@ -1567,7 +1559,7 @@ const SingleAdd = () => {
                 >
                   Product Reviews
                 </h1>
-                {isLoadingComments ? (
+                {loading ? (
                   <div
                     className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
                     style={{ height: "80vh" }}
@@ -1634,7 +1626,18 @@ const SingleAdd = () => {
                 )}
               </div>
 
-              <div className="col-lg-6 col-md-6 col-sm-12 pt-5 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2">
+              <div className="col-lg-6 col-md-6 col-sm-12 pt-5 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
+                {sucess && (
+                  <div className="succes_box showVerify">
+                    <div className="d-flex justify-content-center w-100" style={{ position: "relative" }}>
+                      <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                      <button className="btn fw-bolder fs-3"
+                        style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
+                        onClick={() => setSucess(false)}> <RxCross1 /></button>
+                    </div>
+                    <p className="fw-bolder text-center">Feedback Submitted</p>
+                  </div>
+                )}
                 <p
                   className="fw-bolder fs-2 text-center"
                   style={{ color: "rgb(2, 2, 94)" }}

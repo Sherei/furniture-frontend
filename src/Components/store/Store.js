@@ -29,12 +29,24 @@ const Cart = (
   return { ...oldData, cart: Array.isArray(oldData.cart) ? oldData.cart : [] };
 };
 
+const Comment = (
+  oldData = {
+    comment: [],
+  },
+  newData
+) => {
+  if (newData.type === "ADD_COMMENT") {
+    oldData.comment = newData.payload;
+  }
+  return { ...oldData, comment: Array.isArray(oldData.comment) ? oldData.comment : [] };
+};
+
 const persistConfig = {
   key: "Product",
   storage,
 };
 
-const allSections = combineReducers({ userSection, Cart });
+const allSections = combineReducers({ userSection, Cart, Comment });
 const persistedReducer = persistReducer(persistConfig, allSections);
 const meraStore = createStore(
   persistedReducer,

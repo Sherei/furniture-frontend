@@ -2,62 +2,85 @@ import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 
 import { useForm } from 'react-hook-form';
+import { RxCross1 } from "react-icons/rx";
 import { toast } from 'react-toastify';
 import Loader from "../Loader/Loader"
 import { FaStar } from "react-icons/fa"
 import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
 
 import "./review.css"
 
 const Review = () => {
 
+    const allComments = useSelector((store) => store.Comment.comment);
+    const dispatch = useDispatch()
+
     const [comments, setComments] = useState([])
+    const [sucess, setSucess] = useState(false)
     const [loading, setLoading] = useState(true);
 
     let { register, handleSubmit, reset, formState: { errors } } = useForm();
 
+    const toggleVerify = () => {
+        setSucess(!sucess);
+    };
+
 
     const Comment = async (cmnt) => {
+        setLoading(true)
         try {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, cmnt);
-            // const response = await axios.post("/comments", cmnt);
-            if (response.status === 200) {
-                toast.success("Comment Submitted");
-                reset()
+            if (response.data.message === "Feedback submitted") {
+                dispatch({
+                    type: "ADD_COMMENT",
+                    payload: response.data.alldata,
+                });
+                setComments(response.data.alldata)
+                reset();
+                toggleVerify();
+
             } else {
                 toast.error("Error occurred");
             }
         } catch (e) {
-            return <>
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                    <Loader />
-                </div>
-            </>;
+        } finally {
+            setLoading(false)
         }
     };
-
     useEffect(() => {
         setLoading(true);
         try {
             axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
-                setComments(res.data);
-            })
+                if (res) {
+                    dispatch({ type: "ADD_COMMENT", payload: res.data });
+                }
+            });
         } catch (e) {
-            return <>
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                    <Loader />
-                </div>
-            </>
         } finally {
             setLoading(false);
         }
     }, []);
 
-    const length = comments.length
+    useEffect(() => {
+        if (allComments) {
+            setComments(allComments);
+            setLoading(false);
+        }
+    }, [allComments]);
+
+    useEffect(() => {
+        if (sucess) {
+            const timeoutId = setTimeout(() => {
+                toggleVerify();
+            }, 5000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [sucess]);
 
     const formatDateTime = (dateStr) => {
         const options = {
@@ -94,9 +117,9 @@ const Review = () => {
                                 modules={[Autoplay]}
                                 className="mySwiper"
                             >
-                                {comments.map((item, index) => {
-                                    return <SwiperSlide className='review_slide'>
-                                        <div className='px-3 py-2' key={index} >
+                                {comments.reverse().map((item, index) => {
+                                    return <SwiperSlide className='review_slide' key={index}>
+                                        <div className='px-3 py-2'>
                                             <div className='text-center' style={{ color: "yellow" }}>
                                                 <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                                             </div>
@@ -114,7 +137,18 @@ const Review = () => {
                     )}
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5'>
+                <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5' style={{ position: "relative" }}>
+                    {sucess && (
+                        <div className="succes_box showVerify">
+                            <div className="d-flex justify-content-center w-100" style={{ position: "relative" }}>
+                                <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                                <button className="btn fw-bolder fs-3"
+                                    style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
+                                    onClick={() => setSucess(false)}> <RxCross1 /></button>
+                            </div>
+                            <p className="fw-bolder text-center">Feedback Submitted</p>
+                        </div>
+                    )}
                     <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >
                         Leave Your Feedback</h1>
                     <form action="" onSubmit={handleSubmit(Comment)}>

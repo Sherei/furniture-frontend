@@ -4,12 +4,17 @@ import { AiFillDelete } from 'react-icons/ai';
 import { FaDownload } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import { toast } from 'react-toastify';
+import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 
 const Comments = () => {
 
-    const [comment, setComment] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+   const allComments = useSelector((store) => store.Comment.comment);
+    const dispatch = useDispatch()
+
+    const [comments, setComments] = useState([])
+    const [loading, setLoading] = useState(true);
+
     const [search, setSearch] = useState('');
     const tableRef = useRef(null);
 
@@ -20,25 +25,31 @@ const Comments = () => {
     })
 
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_BASE_URL}/comments`)
-            // .get("/comments")
-            .then((res) => {
-                setComment(res.data);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                // console.error('Error fetching data:', error);
-                setIsLoading(false);
-            });
-    }, []);
+        setLoading(true);
+        try {
+          axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
+            if (res) {
+              dispatch({ type: "ADD_COMMENT", payload: res.data });
+            }
+          });
+        } catch (e) {
+        } finally {
+          setLoading(false);
+        }
+      }, []);
+
+    useEffect(() => {
+        if (allComments) {
+            setComments(allComments);
+            setLoading(false);
+        }
+    }, [allComments]);
 
     const handleSearchInputChange = (e) => {
         setSearch(e.target.value);
     };
 
-    const filteredComment = comment?.filter((data) => {
-
+    const filteredComment = comments?.filter((data) => {
         const lowerCaseSearch = search.toLowerCase();
         return (
             data?.name.toLowerCase().includes(lowerCaseSearch) ||
@@ -47,12 +58,24 @@ const Comments = () => {
         );
     });
 
-    const DeleteComment = (dataId) => {
-        axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteComment?id=${dataId}`).then(() => {
-            setComment(comment.filter((item) => dataId !== item._id));
-            toast.success("comment removed")
-        });
-
+    const DeleteComment = async (dataId) => {
+        try {
+            setLoading(true);
+            const resp = await axios.delete(
+              `${process.env.REACT_APP_BASE_URL}/deleteComment?id=${dataId}`
+            );
+            if (resp.data.message === "success") {
+              dispatch({
+                type: "ADD_COMMENT",
+                payload: resp.data.alldata,
+              });
+              toast.success("Item Removed");
+            }
+          } catch (e) {
+            // console.log(e);
+          } finally {
+            setLoading(false);
+          }
     };
 
     const formatDateTime = (dateStr) => {
@@ -92,7 +115,7 @@ const Comments = () => {
             </div>
             <div className='row px-0 py-3 user_row'>
                 <div className='col'>
-                    {isLoading ? (
+                    {loading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                             <Loader />
                         </div>
