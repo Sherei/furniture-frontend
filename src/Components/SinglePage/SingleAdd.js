@@ -575,7 +575,7 @@ const SingleAdd = () => {
                         onClick={() => setSucess(false)}> <RxCross1 /></button>
                     </div>
                       <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
-                    <p className="fw-bolder text-center">Product Added</p>
+                    <p className="fw-bolder text-center">Product Added into Cart</p>
                   </div>
                 )}
                 <div
