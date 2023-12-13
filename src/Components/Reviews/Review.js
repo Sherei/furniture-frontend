@@ -139,7 +139,7 @@ const Review = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5' style={{ position: "relative" }}>
                     {sucess && (
-                        <div className="succes_box showVerify">
+                        <div className="succes_box showVerify px-3">
                             <div className="text-end">
                                 <button className="btn fw-bolder fs-3"
                                     style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}

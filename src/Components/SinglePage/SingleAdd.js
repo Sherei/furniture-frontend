@@ -568,7 +568,7 @@ const SingleAdd = () => {
               </div>
               <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
                 {sucess && (
-                  <div className="succes_box showVerify">
+                  <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
@@ -1628,7 +1628,7 @@ const SingleAdd = () => {
 
               <div className="col-lg-6 col-md-6 col-sm-12 pt-5 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
                 {sucess && (
-                  <div className="succes_box showVerify">
+                  <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
