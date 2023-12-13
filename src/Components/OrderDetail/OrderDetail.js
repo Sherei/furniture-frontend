@@ -80,7 +80,7 @@ const OrderDetail = () => {
         <div className='container my-5'>
             <div className='row'>
                 <div className='col'>
-                    <center><p className='fw-bolder fs-3'>Order Detail</p></center>
+                    <center><p className='fw-bolder fs-3'style={{color:"rgb(2, 2, 94)"}}>Order Detail</p></center>
                 </div>
             </div>
             <div className='row' id="orderDetail">
