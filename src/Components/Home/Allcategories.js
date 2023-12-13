@@ -11,32 +11,32 @@ const Allcategories = () => {
     const move = useNavigate()
 
     const collection = [
-        { img: "https://res.cloudinary.com/dlw9hxjr4/image/upload/v1699892038/glfklthcuf6edi9cpg8b.jpg", title: "Corner Sofas", path: "/products/corner-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "3+2 Seater Sofa Set", path: "/products/three-&-two-seater-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "Sofa Beds", path: "/products/sofa-beds" },
-        { img: "/3_1060x550_crop_center.webp", title: "Fabric Sofas", path: "/products/fabric-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "Chesterfield Sofas", path: "/products/chesterfield-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "U Shaped Sofas", path: "/products/u-shaped-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "Leather Sofas", path: "/products/leather-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "Recliner Sofas", path: "/products/recliner-sofas" },
-        { img: "/3_1060x550_crop_center.webp", title: "All Sofas", path: "/products/sofa" },
-        { img: "/3_1060x550_crop_center.webp", title: "Ambassador Beds", path: "/products/ambassador-beds" },
-        { img: "/3_1060x550_crop_center.webp", title: "Panel Beds", path: "/products/panel-bed" },
-        { img: "/3_1060x550_crop_center.webp", title: "Wingback bed Frames", path: "/products/wingback-beds-frames" },
-        { img: "/3_1060x550_crop_center.webp", title: "Ottoman Beds", path: "/products/ottoman-beds" },
-        { img: "/3_1060x550_crop_center.webp", title: "Bespoke Beds", path: "/products/bespoke-beds" },
-        { img: "/3_1060x550_crop_center.webp", title: "Chesterfield Beds", path: "/products/chesterfield-beds" },
-        { img: "/3_1060x550_crop_center.webp", title: "Divan Beds", path: "/products/divan-beds" },
-        { img: "/3_1060x550_crop_center.webp", title: "All Beds", path: "/products/bed" },
-        { img: "/3_1060x550_crop_center.webp", title: "Ottoman box", path: "/products/ottoman-box" },
-        { img: "/3_1060x550_crop_center.webp", title: "Mattress", path: "/products/mattress" },
-        { img: "/3_1060x550_crop_center.webp", title: "Footstools", path: "/products/footstools" },
+        { img: "/cornersofa.jpeg", title: "Corner Sofas", path: "/products/corner-sofas" },
+        { img: "/3+2.jpg", title: "3+2 Seater Sofa Set", path: "/products/three-&-two-seater-sofas" },
+        { img: "/sofa-beds.webp", title: "Sofa Beds", path: "/products/sofa-beds" },
+        // { img: "/3_1060x550_crop_center.webp", title: "Fabric Sofas", path: "/products/fabric-sofas" },
+        // { img: "/3_1060x550_crop_center.webp", title: "Chesterfield Sofas", path: "/products/chesterfield-sofas" },
+        { img: "/u-shaped.jpg", title: "U Shaped Sofas", path: "/products/u-shaped-sofas" },
+        { img: "/leather.webp", title: "Leather Sofas", path: "/products/leather-sofas" },
+        { img: "/recliner.jpg", title: "Recliner Sofas", path: "/products/recliner-sofas" },
+        { img: "/blog3.jpg", title: "All Sofas", path: "/products/sofa" },
+        { img: "/ambassador.jpg", title: "Ambassador Beds", path: "/products/ambassador-beds" },
+        { img: "/panel.jpg", title: "Panel Beds", path: "/products/panel-bed" },
+        { img: "/wingback.jpg", title: "Wingback beds", path: "/products/wingback-beds-frames" },
+        // { img: "/3_1060x550_crop_center.webp", title: "Ottoman Beds", path: "/products/ottoman-beds" },
+        { img: "/bespoke.png", title: "Bespoke Beds", path: "/products/bespoke-beds" },
+        { img: "/chesterfield.jpg", title: "Chesterfield Beds", path: "/products/chesterfield-beds" },
+        { img: "/divanbed.webp", title: "Divan Beds", path: "/products/divan-beds" },
+        { img: "/blog2.jpg", title: "All Beds", path: "/products/bed" },
+        { img: "/ottomanbox.jpg", title: "Ottoman box", path: "/products/ottoman-box" },
+        { img: "/mattress.jpg", title: "Mattress", path: "/products/mattress" },
+        { img: "/footstools.jpg", title: "Footstools", path: "/products/footstools" },
     ]
 
     return <>
         <div className='container-fluid my-5'>
             <div className='my-5'>
-                <p className='fs-2 fw-bolder text-center'>All Collection</p>
+                <p className='fs-2 fw-bolder text-center' style={{color:"rgb(2, 2, 94)"}}>All Collection</p>
             </div>
             <div className="row px-lg-5 px-2 row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2  g-4">
                 {collection.map((item, index) => (

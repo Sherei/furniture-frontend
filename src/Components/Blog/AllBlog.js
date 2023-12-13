@@ -19,7 +19,7 @@ const AllBlog = () => {
                     <div className='d-flex flex-wrap  gap-3 justify-content-center my-5 px-4 '>
                         <div className='block_main mt-5' onClick={() => move("/single-blog/clean-sofa")}>
                             <div className='blog1'>
-                                <img src="/blog1.webp" alt="" />
+                                <img src="/blog1.webp" alt="No Network" />
                             </div>
                             <p className='text-muted text-center mt-4'>JULY 05 2023</p>
 
@@ -32,7 +32,7 @@ const AllBlog = () => {
                         </div>
                         <div className='block_main mt-5' onClick={() => move("/single-blog/perfect-bed")}>
                             <div className='blog2'>
-                                <img src="/blog2.webp" alt="" />
+                                <img src="/blog2.jpg" alt="No Network" />
                             </div>
                             <p className='text-muted text-center mt-4'>APRIL 10 2023</p>
 
@@ -46,7 +46,7 @@ const AllBlog = () => {
                         </div>
                         <div className='block_main mt-5' onClick={() => move("/single-blog/perfect-sofa")}>
                             <div className='blog3'>
-                                <img src="/blog3.webp" alt="" />
+                                <img src="/blog3.jpg" alt="No Network" />
                             </div>
                             <p className='text-muted text-center mt-4'>APRIL 10 2023</p>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{color:"rgb(2, 2, 94)"}}>How to choose a Perfect Sofa</p>
@@ -58,7 +58,7 @@ const AllBlog = () => {
                         </div>
                         <div className='block_main mt-5' onClick={() => move("/single-blog/perfect-mattress")}>
                             <div className='blog4'>
-                                <img src="/blog4.webp" alt="" />
+                                <img src="/blog4.webp" alt="No Network" />
                             </div>
                             <p className='text-muted text-center mt-4'>APRIL 10 2023</p>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{color:"rgb(2, 2, 94)"}}>How to choose a Perfect Mattress</p>

@@ -39,7 +39,7 @@ const SingleBlog = () => {
                         <>
                             <p className='text-center text-muted'>JUL 05, 2023
                                 JELENA PETKOVIC</p>
-                            <h1 className='text-center fw-bolder'>How To Choose a Perfect Mattress</h1>
+                            <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>How To Choose a Perfect Mattress</h1>
                         </>
                     }
 
@@ -176,7 +176,7 @@ const SingleBlog = () => {
 
                     {Name === "perfect-sofa" &&
                         <>
-                            <img src="/1_1060x550_crop_center.webp" className='mt-5 img-fluid' alt="No Network" />
+                            <img src="/blog3.jpg" className='mt-5 img-fluid' alt="No Network" />
                             <div className='my-5 px-lg-5 px-2' >
                                 <p className='m-auto'>
                                     Hey, <br /><br />

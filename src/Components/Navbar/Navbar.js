@@ -53,9 +53,7 @@ export const Navbar = () => {
       dispatch({
         type: "LOGOUT_USER",
       });
-
       toast.warning("Login to see your Cart");
-      move("/");
     } else {
       setCartOpen(true);
       setLogin(false);

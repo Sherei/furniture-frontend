@@ -117,12 +117,12 @@ const Review = () => {
                                 modules={[Autoplay]}
                                 className="mySwiper"
                             >
-                                {comments.reverse().map((item, index) => {
+                                {comments.map((item, index) => {
                                     return <SwiperSlide className='review_slide' key={index}>
                                         <div className='px-3 py-2'>
-                                            <div className='text-center' style={{ color: "yellow" }}>
+                                            {/* <div className='text-center' style={{ color: "yellow" }}>
                                                 <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                                            </div>
+                                            </div> */}
                                             <p className='review_detail text-center py-5 mt-3' >
                                                 {item.comment}
                                             </p>
@@ -140,13 +140,13 @@ const Review = () => {
                 <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5' style={{ position: "relative" }}>
                     {sucess && (
                         <div className="succes_box showVerify">
-                            <div className="d-flex justify-content-center w-100" style={{ position: "relative" }}>
-                                <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                            <div className="text-end">
                                 <button className="btn fw-bolder fs-3"
                                     style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
                                     onClick={() => setSucess(false)}> <RxCross1 /></button>
                             </div>
-                            <p className="fw-bolder text-center" style={{color:"rgb(2, 2, 94)"}}>Feedback Submitted</p>
+                            <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                            <p className="fw-bolder text-center" style={{ color: "rgb(2, 2, 94)" }}>Feedback Submitted</p>
                         </div>
                     )}
                     <h1 className='text-center fw-bolder mt-lg-2 mt-sm-5 mb-5' style={{ color: 'rgb(2, 2, 94)' }} >

@@ -16,14 +16,14 @@ const Blog = () => {
 
                         <div className='block_main ' onClick={() => move("/single-blog/clean-sofa")}>
                             <div className='blog1 text-center'>
-                                <img src="/blog1.webp" alt="" />
+                                <img src="/blog1.webp" alt="No Network" />
                             </div>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{color:"rgb(2, 2, 94)"}}>How to clean Sofa</p>
                             <p className='text-muted text-center mt-4 read'  >READ MORE</p>
                         </div>
                         <div className='block_main ' onClick={() => move("/single-blog/perfect-bed")}>
                             <div className='blog2'>
-                                <img src="/blog2.webp" alt="" />
+                                <img src="/blog2.jpg" alt="No Network" />
                             </div>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{color:"rgb(2, 2, 94)"}}>How to choose a Perfect Bed</p>
                             <p className='text-muted text-center mt-4 read' >READ MORE</p>
@@ -31,7 +31,7 @@ const Blog = () => {
                         </div>
                         <div className='block_main ' onClick={() => move("/single-blog/perfect-sofa")}>
                             <div className='blog3'>
-                                <img src="/blog3.webp" alt="" />
+                                <img src="/blog3.jpg" alt="No Network" />
                             </div>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{color:"rgb(2, 2, 94)"}}>How to choose a Perfect Sofa</p>
                             <p className='text-muted text-center mt-4 read'  >READ MORE</p>

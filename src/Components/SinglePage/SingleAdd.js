@@ -569,12 +569,12 @@ const SingleAdd = () => {
               <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
                 {sucess && (
                   <div className="succes_box showVerify">
-                    <div className="d-flex justify-content-center w-100" style={{ position: "relative" }}>
-                      <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                    <div className="text-end">
                       <button className="btn fw-bolder fs-3"
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
                         onClick={() => setSucess(false)}> <RxCross1 /></button>
                     </div>
+                      <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
                     <p className="fw-bolder text-center">Product Added</p>
                   </div>
                 )}
@@ -1589,7 +1589,7 @@ const SingleAdd = () => {
                           return (
                             <SwiperSlide className="review_slide">
                               <div className="px-3 py-2" key={index}>
-                                <div
+                                {/* <div
                                   className="text-center"
                                   style={{ color: "yellow" }}
                                 >
@@ -1598,7 +1598,7 @@ const SingleAdd = () => {
                                   <FaStar />
                                   <FaStar />
                                   <FaStar />
-                                </div>
+                                </div> */}
                                 <p className="review_detail text-center py-5 mt-3">
                                   {item.comment}
                                 </p>
@@ -1629,12 +1629,12 @@ const SingleAdd = () => {
               <div className="col-lg-6 col-md-6 col-sm-12 pt-5 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
                 {sucess && (
                   <div className="succes_box showVerify">
-                    <div className="d-flex justify-content-center w-100" style={{ position: "relative" }}>
-                      <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                    <div className="text-end">
                       <button className="btn fw-bolder fs-3"
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
                         onClick={() => setSucess(false)}> <RxCross1 /></button>
                     </div>
+                    <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
                     <p className="fw-bolder text-center">Feedback Submitted</p>
                   </div>
                 )}
@@ -1645,35 +1645,35 @@ const SingleAdd = () => {
                   Product Feedback
                 </p>
                 <form action="" onSubmit={handleSubmit(Comment)}>
-                <div className="input-group mb-3">
-                            <input required="true"
-                                type="text"
-                                className="input w-100"
-                                {...register('name', { required: true })}
-                            />
-                            <label class="user-label">Name *</label>
-                            {errors.name ? <div className='error'>Name is required </div> : null}
-                        </div>
-                        <div className="input-group mb-3">
-                            <input required="true"
-                                type="email"
-                                className="input w-100"
-                                {...register('email', { required: true })}
-                            />
-                            <label class="user-label">Email *</label>
-                            {errors.email ? <div className='error'>Name is required </div> : null}
-                        </div>
-                        <div className="input-group mb-3">
-                            <textarea required="true"
-                                type="text"
-                                autocomplete="off"
-                                className="input w-100"
-                                rows={7}
-                                {...register('comment', { required: true })}
-                            />
-                            <label class="user-label">Write a Review *</label>
-                            {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
-                        </div>
+                  <div className="input-group mb-3">
+                    <input required="true"
+                      type="text"
+                      className="input w-100"
+                      {...register('name', { required: true })}
+                    />
+                    <label class="user-label">Name *</label>
+                    {errors.name ? <div className='error'>Name is required </div> : null}
+                  </div>
+                  <div className="input-group mb-3">
+                    <input required="true"
+                      type="email"
+                      className="input w-100"
+                      {...register('email', { required: true })}
+                    />
+                    <label class="user-label">Email *</label>
+                    {errors.email ? <div className='error'>Name is required </div> : null}
+                  </div>
+                  <div className="input-group mb-3">
+                    <textarea required="true"
+                      type="text"
+                      autocomplete="off"
+                      className="input w-100"
+                      rows={7}
+                      {...register('comment', { required: true })}
+                    />
+                    <label class="user-label">Write a Review *</label>
+                    {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
+                  </div>
                   <button type="submit" className="btn review_btn">
                     Submit
                   </button>

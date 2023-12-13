@@ -84,5 +84,5 @@ input:valid~label,textarea:valid~label,textarea:focus~label {
     background-color: white;
     padding: 0 .2em;
     color: rgb(2, 2, 94) !important;
-    font-weight: 600;
+    font-weight: 500;
 }
