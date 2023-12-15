@@ -28,11 +28,11 @@ import "./navbar.css";
 
 export const Navbar = () => {
   const move = useNavigate();
-  const ref = useRef();
   const cu = useSelector((store) => store.userSection.cu);
   const allCartItems = useSelector((store) => store.Cart.cart);
   const dispatch = useDispatch();
 
+  const ref = useRef();
 
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -70,7 +70,7 @@ export const Navbar = () => {
     setSearch(false);
   };
 
-  const closeNav = (event) => {
+  const closeNav = () => {
     setNavOpen(false);
     setSearch(false);
     setLogin(false);
@@ -95,7 +95,6 @@ export const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        // setNavOpen(false);
         setLogin(false);
         setCartOpen(false);
       }
@@ -540,12 +539,6 @@ export const Navbar = () => {
                           className="nav-link nav-link1"
                           style={{ border: "none" }}
                         >
-                          {/* <div
-                            className="fs-2 heart"
-                            style={{ color: "#E7E7E9" }}
-                          >
-                            <FaHeart />
-                          </div> */}
                           <div
                             className="fs-2 nav_search"
                             onClick={handleSearchToggle}
@@ -572,7 +565,7 @@ export const Navbar = () => {
                               <div className="login_div p-4">
                                 <div className="d-flex justify-content-between align-items-center mb-4">
                                   <div>
-                                    <p className="m-0 fs-5 text-center fw-bolder" style={{color:"rgb(2, 2, 94)"}}>
+                                    <p className="m-0 fs-5 text-center fw-bolder" style={{ color: "rgb(2, 2, 94)" }}>
                                       Login to my Account
                                     </p>
                                   </div>
