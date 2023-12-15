@@ -168,7 +168,7 @@ export const AddProduct = () => {
     if (productId) {
       if (selectedCategory !== "bed" && selectedCategory !== "sofa") {
         setSelectedCategory('');
-        data.subCategory="";
+        data.subCategory = "";
       }
       data.images = cloudinaryUrls;
       data.discount = discount;
@@ -239,7 +239,7 @@ export const AddProduct = () => {
 
             <form>
               <div className='row'>
-               
+
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
@@ -419,7 +419,7 @@ export const AddProduct = () => {
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
                   <input {...register('feature7')} className="form-control" />
                 </div>
-              
+
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note</label>
                   <input {...register('note2')} className="form-control" />
