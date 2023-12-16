@@ -1,7 +1,3 @@
-.sidebarinfo {
-    display: flex;
-}
-
 .dashboard {
     width: 100%;
     padding: 0.5rem;
@@ -9,28 +5,14 @@
 }
 
 .sidebar {
-    background-color: #2b2c6c;
+    background-color: rgb(2, 2, 94);
     color: #fff;
     height: auto;
-    width: 200px;
     transition: all 0.5s;
 }
-
-.top_section {
-    display: flex;
-    align-items: center;
-    padding: 20px 15px;
-}
-
-.logo {
-    margin-top: 10px;
-    font-size: 30px;
-}
-
 .bars {
     display: flex;
     font-size: 25px;
-    margin-left: 50px;
 }
 .bars,.logo:hover{
     cursor: pointer;
@@ -53,7 +35,7 @@
 }
 
 .active {
-    /* border-bottom: 1px solid #2b2c6c; */
+    border-bottom: 1px solid #2b2c6c;
 }
 
 .icon,

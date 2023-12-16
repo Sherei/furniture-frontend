@@ -17,7 +17,7 @@ export const Dashboard = () => {
             top: 0
         });
     }, []);
-    
+
     let cu = useSelector(store => store.userSection.cu)
     const [users, setUsers] = useState([])
     const [product, setProducts] = useState([])
@@ -62,33 +62,34 @@ export const Dashboard = () => {
                             </h1>
                         </div>
                     </div>
-                    {data.map((item, index) => {
-                        return (
-                            <div className='col-lg-3 col-sm-5 mb-3' key={index} onClick={() => handleItemClick(item.id)}>
-                                <div className='dash_card'>
-                                    {item.title === "New Order" && (
-                                        <div>
-                                            <p className='color_card'>4+</p>
+                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-sm-2  g-4">
+                        {data.map((item, index) => {
+                            return (
+                                <div className='col' key={index} onClick={() => handleItemClick(item.id)}>
+                                    <div className='dash_card'>
+                                        {item.title === "New Order" && (
+                                            <div>
+                                                <p className='color_card'>4+</p>
+                                            </div>
+                                        )}
+                                        <div className='dash_icon' style={{ fontSize: "50px" }}>
+                                            {item.icon}
                                         </div>
-                                    )}
-                                    <div className='dash_icon' style={{ fontSize: "50px" }}>
-                                        {item.icon}
-                                    </div>
-                                    <div className='dash_detail' style={{ fontSize: "20px" }}>
-                                        <div>
-                                            <p style={{ fontWeight: "600" }}>{item.title}</p>
-                                        </div>
-                                        <div className='d-flex justify-content-end px-3'>
-                                            <p style={{ fontWeight: "600" }}>{item.desc}</p>
+                                        <div className='dash_detail' style={{ fontSize: "20px" }}>
+                                            <div>
+                                                <p style={{ fontWeight: "600" }}>{item.title}</p>
+                                            </div>
+                                            <div className='d-flex justify-content-end px-3'>
+                                                <p style={{ fontWeight: "600" }}>{item.desc}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-
+                            );
+                        })}
+                    </div>
                 </div>
-                
+
                 <div className='col-lg-12 col-sm-12' id='order'>
                     <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Orders />

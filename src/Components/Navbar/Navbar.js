@@ -33,6 +33,7 @@ export const Navbar = () => {
   const dispatch = useDispatch();
 
   const ref = useRef();
+  const cartRef = useRef();
 
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -98,6 +99,13 @@ export const Navbar = () => {
         setLogin(false);
         setCartOpen(false);
       }
+      else if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setLogin(false);
+        setCartOpen(false);
+        closeNav();
+        setSearch(false);
+      }
+
     };
     document.addEventListener("click", handleClickOutside);
     return () => {
@@ -291,7 +299,7 @@ export const Navbar = () => {
   return (
     <>
       {open && (
-        <div className={`side_cart px-2 ${open === true ? "side_open" : ""}`}>
+        <div className={`side_cart px-2 ${open === true ? "side_open" : ""}`} cartRef={ref}>
           <div className="pt-2 d-flex justify-content-between align-items-center">
             <p className="fw-bolder fs-5 m-0">SHOPPING CART</p>
             <button
@@ -426,10 +434,7 @@ export const Navbar = () => {
         </div>
       )}
 
-      <div
-        className="container-fluid nav_contact2"
-        style={{ backgroundColor: "#F7EEDD" }}
-      >
+      <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
         <div className="row py-2">
           <div className="col d-flex justify-content-center align-items-center gap-lg-5 gap-md-5 gap-2 ">
             <a href="tel:00923067208343" target="blank" className="fs-6">
@@ -529,10 +534,7 @@ export const Navbar = () => {
                       </button>
                     </div>
                   )}
-                  <div
-                    className="col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center"
-                    ref={ref}
-                  >
+                  <div className="col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center">
                     <div className="d-flex align-items-end">
                       <li className="nav-item px-0">
                         <NavLink
@@ -549,7 +551,7 @@ export const Navbar = () => {
                         </NavLink>
                       </li>
                       {cu._id == undefined && (
-                        <li className="nav-item px-0">
+                        <li className="nav-item px-0" ref={ref}>
                           <NavLink
                             className="nav-link nav-link1"
                             style={{ border: "none" }}
@@ -670,32 +672,22 @@ export const Navbar = () => {
                             >
                               {cu?.email != "asd@gmail.com" && (
                                 <li>
-                                  <NavLink
-                                    className="dropdown-item"
-                                    to={`/user-profile/${cu._id}`}
-                                  >
+                                  <NavLink className="dropdown-item" to={`/user-profile/${cu._id}`} >
                                     Profile
                                   </NavLink>
                                 </li>
                               )}
                               {cu?.email === "asd@gmail.com" && (
                                 <li>
-                                  {" "}
-                                  <NavLink
-                                    className="dropdown-item"
-                                    to="/admin-dashboard"
-                                  >
-                                    Admin{" "}
-                                  </NavLink>
-                                </li>
+                                <NavLink className="dropdown-item" to="/admin-dashboard" >
+                                  Admin
+                                </NavLink>
+                              </li>
                               )}
                               <li>
                                 {" "}
                                 <NavLink
-                                  className="dropdown-item"
-                                  to="/"
-                                  onClick={Logout}
-                                >
+                                  className="dropdown-item" to="/login" onClick={Logout} >
                                   Logout{" "}
                                 </NavLink>
                               </li>
@@ -722,7 +714,6 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-
           <nav
             className="navbar navbar-expand-lg navbar-light"
             style={{ backgroundColor: "#F7EEDD" }}

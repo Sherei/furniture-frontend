@@ -49,17 +49,16 @@ const Sidebar = () => {
   let move = useNavigate()
 
   return (
-    <div className="container-fluid sidebarinfo">
+    <div className="container-fluid d-flex p-0 m-0">
       <div style={{ width: isOpen ? '300px' : '50px' }} className="sidebar">
-        <div className="top_section">
-          <h1 style={{ display: isOpen ? 'block' : 'none' }} className="logo">
+        <div className="px-2 pt-3 d-flex justify-content-between text-center">
+          <p  className="fs-4 fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
             SOFA & BEDS
-          </h1>
-          <div style={{ marginLeft: isOpen ? '50px' : '0px' }} className="bars">
+          </p>
+          <div className="bars">
             <FaBars onClick={toggle} />
           </div>
         </div>
-
         <div className={`link ${activeComponent === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>
           <div className="icon">
             <FaTh />
