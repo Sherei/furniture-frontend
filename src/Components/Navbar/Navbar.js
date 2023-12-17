@@ -27,6 +27,7 @@ import CartAnimation from "../Animations/CartAnimation.json";
 import "./navbar.css";
 
 export const Navbar = () => {
+  
   const move = useNavigate();
   const cu = useSelector((store) => store.userSection.cu);
   const allCartItems = useSelector((store) => store.Cart.cart);

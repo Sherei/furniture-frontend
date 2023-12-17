@@ -24,10 +24,10 @@ import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
 import ReactGA from 'react-ga';
 import Sidebar from './Components/Dashboard/Sidebar';
-import './App.css';
 import { AddProduct } from './Components/Dashboard/AddProduct';
 import AllBlog from './Components/Blog/AllBlog';
 import Allcategories from './Components/Home/Allcategories';
+import './App.css';
 ReactGA.initialize('G-Y946N662J4');
 
 function App() {
