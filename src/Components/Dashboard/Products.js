@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import { FaDownload, FaPencilAlt } from 'react-icons/fa'
+import { FaPencilAlt } from 'react-icons/fa'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -12,15 +12,7 @@ export const Products = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const tableRef = useRef(null);
-
   let move = useNavigate()
-
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: 'Products',
-    sheet: 'Products'
-  })
 
   useEffect(() => {
     axios
@@ -80,7 +72,6 @@ export const Products = () => {
               Products List
             </h1>
           </div>
-          <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button>
           <div>
             <input
               type="search"
@@ -100,11 +91,15 @@ export const Products = () => {
             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
               <Loader />
             </div>
+          ) : filteredProduct.length === 0 ? (
+            <div className="col-12" style={{ height: "300px" }}>
+              <p className='text-center'>No Products Found...</p>
+            </div>
           ) : (
             <>
               {filteredProduct.length > 0 && (
                 <div className="table-responsive">
-                  <table className="table table-bordered" ref={tableRef}>
+                  <table className="table table-bordered">
                     <thead>
                       <tr>
                         <th>Sr#</th>

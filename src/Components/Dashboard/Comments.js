@@ -1,29 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
 import { FaDownload } from 'react-icons/fa'
-import { useDownloadExcel } from 'react-export-table-to-excel';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 
 const Comments = () => {
 
-   const allComments = useSelector((store) => store.Comment.comment);
+    const allComments = useSelector((store) => store.Comment.comment);
     const dispatch = useDispatch()
 
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true);
 
     const [search, setSearch] = useState('');
-    const tableRef = useRef(null);
-
-    const { onDownload } = useDownloadExcel({
-        currentTableRef: tableRef.current,
-        filename: 'Comments',
-        sheet: 'Comments'
-    })
-
     useEffect(() => {
         setLoading(true);
         try {
@@ -101,8 +92,7 @@ const Comments = () => {
                             Comments List
                         </h1>
                     </div>
-                    <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button>
-                    <div>
+                   <div>
                         <input
                             type="search"
                             className="w-100 form-control mb-2 mr-sm-2"
@@ -119,11 +109,15 @@ const Comments = () => {
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                             <Loader />
                         </div>
-                    ) : (
+                    ) : filteredComment.length === 0 ? (
+                        <div className="col-12" style={{ height: "300px" }}>
+                          <p className='text-center'>No Comment Found...</p>
+                        </div>
+                      ) : (
                         <>
                             {filteredComment.length > 0 && (
                                 <div className="table-responsive">
-                                    <table className="table table-bordered" ref={tableRef}>
+                                    <table className="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>Sr#</th>

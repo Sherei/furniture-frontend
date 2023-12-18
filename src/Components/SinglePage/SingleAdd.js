@@ -46,9 +46,9 @@ const SingleAdd = () => {
   } = useForm();
 
   const allComments = useSelector((store) => store.Comment.comment);
+  const { productId } = useParams();
 
   const [comments, setComments] = useState([])
-  const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -1548,7 +1548,7 @@ const SingleAdd = () => {
               </div>
             </div>
 
-            <div className="row mt-5 pt-5">
+            <div className="row my-5">
               <div
                 className="col-lg-6 col-md-6 col-sm-12 py-5"
                 style={{ backgroundColor: "rgb(2, 2, 94)" }}
@@ -1626,7 +1626,7 @@ const SingleAdd = () => {
                 )}
               </div>
 
-              <div className="col-lg-6 col-md-6 col-sm-12 pt-5 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
+              <div className="col-lg-6 col-md-6 col-sm-12 px-lg-5 px-3 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
                 {sucess && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">

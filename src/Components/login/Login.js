@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import "./login.css"
 
@@ -20,9 +20,7 @@ export const Login = () => {
   const cu = useSelector(store => store.userSection.cu)
 
   const [Error, setError] = useState("");
-
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -66,10 +64,11 @@ export const Login = () => {
       }
     }
   };
-
+  
   if (cu._id !== undefined) {
     move('/products')
   }
+
   return <>
     <div className='container my-5'>
       <div className='row d-flex justify-content-center'>

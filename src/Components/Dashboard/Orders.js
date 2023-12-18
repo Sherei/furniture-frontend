@@ -1,16 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import { FaDownload } from 'react-icons/fa';
-import { useDownloadExcel } from 'react-export-table-to-excel';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 export const Orders = () => {
+
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const tableRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -24,12 +22,6 @@ export const Orders = () => {
         setIsLoading(false);
       });
   }, []);
-
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: 'Orders',
-    sheet: 'Orders',
-  });
 
   const handleSearchInputChange = (e) => {
     setSearch(e.target.value);
@@ -98,6 +90,10 @@ export const Orders = () => {
               <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
                 <Loader />
               </div>
+            ) : orders.length === 0 ? (
+              <div className="col-12" style={{ height: "300px" }}>
+                <p className='text-center'>No Order Found...</p>
+              </div>
             ) : (
               <>
                 {orders.length > 0 ? (
@@ -164,7 +160,7 @@ export const Orders = () => {
                           );
                         })}
                       </tbody>
-                  
+
                     </table>
                   </div>
                 ) : (
@@ -180,4 +176,3 @@ export const Orders = () => {
     </>
   );
 };
-                  

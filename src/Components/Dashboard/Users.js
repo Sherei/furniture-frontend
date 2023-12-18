@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import { FaDownload } from 'react-icons/fa'
-import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import './users.css';
@@ -11,13 +9,6 @@ export const Users = () => {
   const [Users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const tableRef = useRef(null);
-
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: 'Users',
-    sheet: 'Users'
-  });
 
   useEffect(() => {
     axios
@@ -74,7 +65,7 @@ export const Users = () => {
             <div className="">
               <h1 className="p_head">Users List</h1>
             </div>
-            <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button>
+            {/* <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button> */}
             <div>
               <input
                 type="search"
@@ -93,11 +84,15 @@ export const Users = () => {
               <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                 <Loader />
               </div>
+            ) : filteredUser.length === 0 ? (
+              <div className="col-12" style={{ height: "300px" }}>
+                <p className='text-center'>No User Found...</p>
+              </div>
             ) : (
               <>
                 {filteredUser.length > 0 && (
                   <div className="table-responsive">
-                    <table className="table table-bordered" ref={tableRef}>
+                    <table className="table table-bordered">
                       <thead>
                         <tr>
                           <th>Sr #</th>

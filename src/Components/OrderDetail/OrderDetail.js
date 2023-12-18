@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
-import { FaArrowRight, FaDownload } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"

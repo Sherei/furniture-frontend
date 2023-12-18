@@ -19,8 +19,6 @@ import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import SingleAdd from "../SinglePage/SingleAdd";
-import Loader from "../Loader/Loader";
 import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import CartAnimation from "../Animations/CartAnimation.json";
