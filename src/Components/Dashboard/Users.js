@@ -31,9 +31,8 @@ export const Users = () => {
     const lowerCaseSearch = search.toLowerCase();
 
     return (
-      data?.name.toLowerCase().includes(lowerCaseSearch) ||
-      data?.email.toLowerCase().includes(lowerCaseSearch) ||
-      data?.number.toLowerCase().includes(lowerCaseSearch)
+      data?.name?.toLowerCase().includes(lowerCaseSearch) ||
+      data?.email?.toLowerCase().includes(lowerCaseSearch)
     );
   });
 
