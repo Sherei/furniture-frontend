@@ -222,7 +222,14 @@ export const AddProduct = () => {
       <div className='row border py-5 px-4'>
         <div className='col-lg-12 col-sm-12'>
           <div className='d-flex justify-content-between'>
+          {!product &&
             <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
+          
+          }
+           {product &&
+            <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Edit Product </h1>
+          
+          }
             <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
           </div>
           {Error === "Serial number" &&
