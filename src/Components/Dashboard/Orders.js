@@ -70,9 +70,7 @@ export const Orders = () => {
             <div className=''>
               <h1 className='p_head'>Orders List</h1>
             </div>
-            <button className='excel_btn btn' onClick={onDownload}>
-              <FaDownload />
-            </button>
+        
             <div>
               <input
                 type='search'
@@ -98,7 +96,7 @@ export const Orders = () => {
               <>
                 {orders.length > 0 ? (
                   <div className='table-responsive' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
-                    <table className='table table-bordered' ref={tableRef}>
+                    <table className='table table-bordered' >
                       <thead>
                         <tr className='text-center'>
                           <th>Sr#</th>
