@@ -55,9 +55,6 @@ export const Products = () => {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
     };
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-GB', options);
@@ -129,9 +126,8 @@ export const Products = () => {
                           <td className='text-center'>
                             {data.subCategory === undefined || data.subCategory === "" ? "No subCategory" : data.subCategory}
                           </td>
-                          <td className='text-center'>&pound; {data?.price?.toFixed(2)}</td>
-
-                          <td className='text-center'>&pound; {data?.Fprice?.toFixed(2)}</td>
+                          <td className='text-center'>&pound;{data?.price?.toFixed()}</td>
+                          <td className='text-center'>&pound;{data?.Fprice?.toFixed()}</td>
                           <td className='text-center'>{data.discount ? data.discount + '%' : '0%'}</td>
                           <td className='text-center'>{formatDateTime(data.date)}</td>
                           <td className='text-center'>

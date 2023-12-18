@@ -117,7 +117,7 @@ const Review = () => {
                                 modules={[Autoplay]}
                                 className="mySwiper"
                             >
-                                {comments.map((item, index) => {
+                                {comments?.map((item, index) => {
                                     return <SwiperSlide className='review_slide' key={index}>
                                         <div className='px-3 py-2'>
                                             {/* <div className='text-center' style={{ color: "yellow" }}>

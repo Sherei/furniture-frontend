@@ -54,9 +54,6 @@ export const Orders = () => {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
     };
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-GB', options);
@@ -142,9 +139,9 @@ export const Orders = () => {
                               <td>{data.name1}</td>
                               <td>{data.email}</td>
                               <td>{data.number1}</td>
-                              <td>{data.shipping}</td>
+                              <td>&pound;{data.shipping}</td>
                               <td className='text-center'>{orderItemsLength}</td>
-                              <td className='text-center'>{totalFprice?.toFixed(2)}</td>
+                              <td className='text-center'>&pound;{data.total?.toFixed()}</td>
                               <td className='text-center'>{formatDateTime(data.date)}</td>
                               <td className='text-center'>
                                 <a href={`/order-detail/${data._id}`}>Detail</a>

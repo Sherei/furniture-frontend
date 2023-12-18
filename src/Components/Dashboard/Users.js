@@ -48,9 +48,6 @@ export const Users = () => {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
     };
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-GB', options);

@@ -446,9 +446,6 @@ const SingleAdd = () => {
       year: "numeric",
       month: "long",
       day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
     };
     const date = new Date(dateStr);
     return date.toLocaleDateString("en-GB", options);
@@ -574,7 +571,7 @@ const SingleAdd = () => {
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
                         onClick={() => setSucess(false)}> <RxCross1 /></button>
                     </div>
-                      <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                    <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
                     <p className="fw-bolder text-center">Product Added into Cart</p>
                   </div>
                 )}
@@ -997,7 +994,7 @@ const SingleAdd = () => {
                             </span>
                           </label>
                           <div className="d-flex gap-2">
-                            <div>
+                            <div className="d-flex gap-2">
                               <input
                                 className="form-check-input"
                                 type="radio"
@@ -1007,13 +1004,23 @@ const SingleAdd = () => {
                                   setOttoman("Yes");
                                 }}
                               />{" "}
-                              &nbsp;
-                              <label
-                                className="form-check-label"
-                                htmlFor="flexRadioDefault1"
-                              >
+                              <p className="m-0">
                                 Yes + £90.00
-                              </label>
+                              </p>
+                            </div>
+                            <div className="d-flex gap-2">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault1"
+                                onChange={() => {
+                                  setOttoman("No");
+                                }}
+                              />{" "}
+                              <p className="m-0">
+                                No
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -1066,7 +1073,7 @@ const SingleAdd = () => {
                         </label>
 
                         <div className="d-flex gap-2">
-                          <div>
+                          <div className="d-flex gap-2">
                             <input
                               className="form-check-input"
                               type="radio"
@@ -1076,14 +1083,11 @@ const SingleAdd = () => {
                                 setOttoman("pillow");
                               }}
                             />
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexRadioDefault1"
-                            >
+                            <p className="m-0">
                               Yes + £50.00
-                            </label>
+                            </p>
                           </div>
-                          <div>
+                          <div className="d-flex gap-2">
                             <input
                               className="form-check-input"
                               type="radio"
@@ -1093,13 +1097,9 @@ const SingleAdd = () => {
                                 setOttoman("No");
                               }}
                             />{" "}
-                            &nbsp;
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexRadioDefault1"
-                            >
+                            <p className="m-0">
                               No
-                            </label>
+                            </p>
                           </div>
                         </div>
                       </div>
