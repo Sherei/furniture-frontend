@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import "./login.css"
