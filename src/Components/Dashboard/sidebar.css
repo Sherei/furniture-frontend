@@ -34,7 +34,7 @@
     transition: all 0.5s;
 }
 
-.active {
+.sidebar .active {
     border-bottom: 1px solid #2b2c6c;
 }
 

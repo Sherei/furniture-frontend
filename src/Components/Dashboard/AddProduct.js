@@ -93,10 +93,8 @@ export const AddProduct = () => {
     existingImages.forEach((img) => {
       newFormData.append('images', img);
     });
-
     for (const file of files) {
       const reader = new FileReader();
-
       reader.onload = (e) => {
         setImagePreviews((prevPreviews) => [...prevPreviews, e.target.result]);
       };
@@ -160,10 +158,8 @@ export const AddProduct = () => {
         const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData);
         cloudinaryUrls.push(response.data.url);
       } catch (error) {
-
       }
     }
-
 
     if (productId) {
       if (selectedCategory !== "bed" && selectedCategory !== "sofa") {
@@ -174,7 +170,6 @@ export const AddProduct = () => {
       data.discount = discount;
       data.price = price;
       data.Fprice = finalPrice;
-
       try {
         const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data);
         setLoading(false);

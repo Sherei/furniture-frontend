@@ -4,11 +4,9 @@ import SingleAdd from './Components/SinglePage/SingleAdd';
 import { Login } from "./Components/login/Login";
 import Signup from "./Components/Signup/Signup"
 import { Cart } from "./Components/cart/Cart"
-import { Error } from "./Components/Error/Error"
 import Home from "./Components/Home/Home"
 import Products from './Components/Products/Products';
 import Footer from "./Components/Footer/Footer"
-import Faq from "./Components/Faq/Faq"
 import Checkout from './Components/Checkout/Checkout';
 import SingleBlog from './Components/Blog/SingleBlog';
 import { useDispatch } from "react-redux";
@@ -28,6 +26,7 @@ import { AddProduct } from './Components/Dashboard/AddProduct';
 import AllBlog from './Components/Blog/AllBlog';
 import Allcategories from './Components/Home/Allcategories';
 import './App.css';
+
 ReactGA.initialize('G-Y946N662J4');
 
 function App() {
@@ -147,7 +146,7 @@ function App() {
                 <Route path='/placed' element={<Orderplaced />} />
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
-                <Route path='/faq' element={<Faq />} />
+                {/* <Route path='/faq' element={<Faq />} /> */}
                 <Route path='/single-blog/:Name' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
                 <Route path='/collections' element={<Allcategories />} />

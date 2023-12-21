@@ -1000,14 +1000,14 @@ export const Navbar = () => {
       </div>
 
       {searchValue && (
-        <div className="container">
+        <div className="container-fluid px-lg-3 px-2">
           <div className="my-4 fs-5">Search Result...</div>
           {filteredProducts.length === 0 && (
             <div className="mb-5">
               <p className="m-0 fs-6">No result found...</p>
             </div>
           )}
-          <div className="row row-cols-2 row-cols-md-4 row-cols-lg-4 row-cols-sm-2  g-4">
+          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
             {filteredProducts?.reverse().map((product, index) => (
               <div className="col " key={index}>
                 <div className="product_box">

@@ -7,7 +7,7 @@ const Loader = () => {
             width: "fit-contet",
             height: "fit-content",
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-            zIndex: "2500"
+            zIndex: "100"
         }}>
             <div>
                 <ClipLoader color="#1b2950" />
