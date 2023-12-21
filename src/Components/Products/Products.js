@@ -736,13 +736,13 @@ const Products = () => {
             <div className="search_bar1 mt-2 mb-3">
               <input
                 type="search"
-                className="form-control w-80 border"
+                className="form-control w-80 p-2 border"
                 placeholder="Search Anything"
                 value={search}
                 onChange={SearchInput}
               />
             </div>
-            <div className="mb-4 d-flex align-items-center justify-content-between">
+            <div className="mb-4 mt-1 d-flex align-items-center justify-content-between">
               <div className="d-flex align-items-center gap-1">
                 <div
                   className={`grid_icon ${activeGrid === "grid" ? "active" : ""
@@ -767,7 +767,7 @@ const Products = () => {
               <div className="search_bar d-flex align-items-center">
                 <input
                   type="search"
-                  className="form-control w-100 border"
+                  className="form-control w-100 p-2 border"
                   placeholder="Search Anything"
                   value={search}
                   onChange={SearchInput}
