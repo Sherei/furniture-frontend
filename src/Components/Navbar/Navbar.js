@@ -626,7 +626,7 @@ export const Navbar = () => {
                                   </button>
                                   <div className="mt-3">
                                     <p className="m-0 fs-6">
-                                      I don't have an account?{" "}
+                                      I don't have an account.{" "}
                                       <NavLink to="/signup">
                                         <span
                                           className="register_btn"

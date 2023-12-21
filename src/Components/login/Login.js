@@ -111,7 +111,7 @@ export const Login = () => {
               </button>
             </div>
             <button className='btn rounded login_btn mt-3'>Login</button>
-            <p className='mt-2 fs-6'>Already have an account? &nbsp;
+            <p className='mt-2 fs-6'>I don't have an account. &nbsp;
               <a href="/signup" style={{ borderBottom: "1px solid blue" }}>
                 Register
               </a>
