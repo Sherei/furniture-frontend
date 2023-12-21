@@ -1,5 +1,8 @@
-.filter_col_display {
-    display: none !important;
+
+.filter_col_display,
+.filter_btn_display,
+.search_bar1 {
+    display: none;
 }
 
 .filter_col {
@@ -18,9 +21,6 @@
     right: 0px;
     padding: 0px 10px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 40px !important;
     padding: 50px 10px;
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.5);
     z-index: 5000;
@@ -90,17 +90,16 @@
     transition: all linear 0.4s;
 }
 
-.search_bar {
+.search_bar input,
+.search_bar1 input {
     background-color: transparent;
-    padding: 10px 10px !important;
 }
-
-.categories p {
+.showFilter p {
     font-size: 15px;
     font-weight: 400;
 }
 
-.categories p:hover {
+.showFilter p:hover {
     padding: 0px 0px 0px 8px;
     cursor: pointer;
     transition: all linear 0.3s;
@@ -136,6 +135,11 @@
     padding-left: 7px;
     transition: all linear 0.3s;
     font-weight: 600;
+}
+
+.accordion-button {
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .activeCategory {
@@ -358,11 +362,17 @@
 }
 
 @media screen and (max-width:992px) {
-    .col_hide {
+
+    .col_hide,
+    .search_bar {
         display: none !important;
     }
 
-    .filter_col_display {
+    .search_bar1 {
         display: block !important;
+    }
+
+    .filter_btn_display {
+        display: block;
     }
 }

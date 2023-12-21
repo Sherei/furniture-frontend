@@ -713,6 +713,7 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
+          
           <nav
             className="navbar navbar-expand-lg navbar-light"
             style={{ backgroundColor: "#F7EEDD" }}

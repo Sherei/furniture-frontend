@@ -8,6 +8,7 @@ import axios from "axios";
 import "./products.css";
 
 const Products = () => {
+
   const cu = useSelector((store) => store.userSection.cu);
   const { prodctName } = useParams();
 
@@ -28,6 +29,7 @@ const Products = () => {
   const [filter, setFilter] = useState(false);
   const [filterProduct, setfilterProduct] = useState([]);
   const move = useNavigate();
+
 
   const Filter = () => {
     setFilter(!filter);
@@ -135,320 +137,313 @@ const Products = () => {
   return (
     <>
       <div
-        className="container-fluid min-vh-100"
+        className="container-fluid min-vh-100 my-lg-5 my-3"
         style={{ overflow: "hidden" }}
       >
-        <div className="row my-5">
-          <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
-            <div className="categories">
-              <div className="d-flex justify-content-between mb-3">
-                <p className="fs-5" style={{ color: "#1B2950" }}>
-                  <FaFilter /> Filter
-                </p>
-                <span
-                  className="close px-3 fs-5"
-                  onClick={() => setFilter(false)}
+        <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
+          <div className="d-flex justify-content-between mb-3">
+            <p className="fs-5" style={{ color: "#1B2950" }}>
+              <FaFilter /> Filter
+            </p>
+            <span
+              className="close px-3 fs-5"
+              onClick={() => setFilter(false)}
+            >
+              ❌
+            </span>
+          </div>
+          <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingOne">
+                <button
+                  className="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
                 >
-                  ❌
-                </span>
-              </div>
-              <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingOne">
-                    <button
-                      className="accordion-button"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      All Sofas
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseOne"
-                    className="accordion-collapse collapse show"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample"
+                  All Sofas
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <p
+                    onClick={() => setCategory("sofa")}
+                    className={
+                      setCategory === "sofa" ? "activeCategory" : ""
+                    }
                   >
-                    <div className="accordion-body">
-                      <p
-                        onClick={() => setCategory("sofa")}
-                        className={
-                          setCategory === "sofa" ? "activeCategory" : ""
-                        }
-                      >
-                        All in sofas
-                      </p>
-                      <p
-                        onClick={() => setCategory("corner-sofas")}
-                        className={
-                          setCategory === "corner-sofas" ? "activeCategory" : ""
-                        }
-                      >
-                        Corner Sofas
-                      </p>
-                      <p
-                        onClick={() => setCategory("sofa-sets")}
-                        className={
-                          setCategory === "sofa-sets" ? "activeCategory" : ""
-                        }
-                      >
-                        Sofa Sets{" "}
-                      </p>
-                      <p
-                        onClick={() => setCategory("sofa-beds")}
-                        className={
-                          setCategory === "sofa-beds" ? "activeCategory" : ""
-                        }
-                      >
-                        Sofa Beds
-                      </p>
-                      <p
-                        onClick={() => setCategory("three-&-two-seater-sofas")}
-                        className={
-                          setCategory === "three-&-two-seater-sofas"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        3 & 2 Seater Sofas
-                      </p>
-                      <p
-                        onClick={() => setCategory("u-shaped-sofas")}
-                        className={
-                          setCategory === "u-shaped-sofas"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        U Shaped Sofas
-                      </p>
-                      <p
-                        onClick={() => setCategory("leather-sofas")}
-                        className={
-                          setCategory === "leather-sofas"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        Leather Sofas
-                      </p>
-                      <p
-                        onClick={() => setCategory("recliner-sofas")}
-                        className={
-                          setCategory === "recliner-sofas"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        Recliner Sofas
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingTwo">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo"
-                      aria-expanded="false"
-                      aria-controls="collapseTwo"
-                    >
-                      All Beds
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseTwo"
-                    className="accordion-collapse collapse"
-                    aria-labelledby="headingTwo"
-                    data-bs-parent="#accordionExample"
+                    All in sofas
+                  </p>
+                  <p
+                    onClick={() => setCategory("corner-sofas")}
+                    className={
+                      setCategory === "corner-sofas" ? "activeCategory" : ""
+                    }
                   >
-                    <div className="accordion-body">
-                      <p
-                        onClick={() => setCategory("bed")}
-                        className={
-                          setCategory === "bed" ? "activeCategory" : ""
-                        }
-                      >
-                        All in Beds
-                      </p>
-                      <p
-                        onClick={() => setCategory("ambassador-beds")}
-                        className={
-                          setCategory === "ambassador-beds"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        Ambassador Beds{" "}
-                      </p>
-                      <p
-                        onClick={() => setCategory("panel-bed")}
-                        className={
-                          setCategory === "panel-bed" ? "activeCategory" : ""
-                        }
-                      >
-                        Panel Beds
-                      </p>
-                      <p
-                        onClick={() => setCategory("wingback-beds-frames")}
-                        className={
-                          setCategory === "wingback-beds-frames"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        Wingback Beds
-                      </p>
-                      <p
-                        onClick={() => setCategory("bespoke-beds")}
-                        className={
-                          setCategory === "bespoke-beds" ? "activeCategory" : ""
-                        }
-                      >
-                        Bespoke Beds
-                      </p>
-                      <p
-                        onClick={() => setCategory("chesterfield-beds")}
-                        className={
-                          setCategory === "chesterfield-beds"
-                            ? "activeCategory"
-                            : ""
-                        }
-                      >
-                        Chesterfield Beds
-                      </p>
-                      <p
-                        onClick={() => setCategory("divan-beds")}
-                        className={
-                          setCategory === "divan-beds" ? "activeCategory" : ""
-                        }
-                      >
-                        Divan Beds
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="m-0 p-0">
-                    <button
-                      className="accordion-button collapsed accordian2"
-                      aria-expanded="false"
-                      onClick={() => setCategory("ottoman-beds")}
-                    >
-                      Ottoman Box
-                    </button>
-                  </h2>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="m-0 p-0">
-                    <button
-                      className="accordion-button collapsed accordian2"
-                      aria-expanded="false"
-                      onClick={() => setCategory("mattress")}
-                    >
-                      Mattress
-                    </button>
-                  </h2>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="m-0 p-0">
-                    <button
-                      className="accordion-button collapsed accordian2"
-                      aria-expanded="false"
-                      onClick={() => setCategory("mattress")}
-                    >
-                      Footstools
-                    </button>
-                  </h2>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header m-0 p-0" id="headingThree">
-                    <button
-                      className="accordion-button"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree"
-                      aria-expanded="true"
-                      aria-controls="collapseThree"
-                    >
-                      Sort By
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseThree"
-                    className="accordion-collapse collapse"
-                    aria-labelledby="headingThree"
-                    data-bs-parent="#accordionExample"
+                    Corner Sofas
+                  </p>
+                  <p
+                    onClick={() => setCategory("sofa-sets")}
+                    className={
+                      setCategory === "sofa-sets" ? "activeCategory" : ""
+                    }
                   >
-                    <div className="accordion-body">
-                      <p onClick={() => setSortOrder("")}>All</p>
-                      <p onClick={() => setSortOrder("asc")}>Price (Highest)</p>
-                      <p onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="m-0 p-0">
-                    <button
-                      className="accordion-button collapsed accordian2"
-                      aria-expanded="false"
-                    >
-                      Filter by Price
-                    </button>
-                  </h2>
-                </div>
-                <div className="px-2" style={{ position: "relative" }}>
-                  <div className="d-flex">
-                    <input
-                      type="range"
-                      id="minPriceRange"
-                      className="w-50"
-                      min={0}
-                      max={9000}
-                      step={10}
-                      value={minPrice}
-                      onChange={handleMinRangeChange}
-                      style={{ height: "2px" }}
-                    />
-                    <input
-                      type="range"
-                      id="maxPriceRange"
-                      className="w-50"
-                      min={0}
-                      max={10000}
-                      step={10}
-                      value={maxPrice}
-                      onChange={handleMaxRangeChange}
-                      style={{
-                        height: "2px",
-                        position: "absolute",
-                        top: "0px",
-                        right: "4px",
-                      }}
-                    />
-                  </div>
-                  <p className="m-0 mt-2" style={{ color: "red" }}>
-                    &pound;{minPrice} - &pound;{maxPrice}
+                    Sofa Sets{" "}
+                  </p>
+                  <p
+                    onClick={() => setCategory("sofa-beds")}
+                    className={
+                      setCategory === "sofa-beds" ? "activeCategory" : ""
+                    }
+                  >
+                    Sofa Beds
+                  </p>
+                  <p
+                    onClick={() => setCategory("three-&-two-seater-sofas")}
+                    className={
+                      setCategory === "three-&-two-seater-sofas"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    3 & 2 Seater Sofas
+                  </p>
+                  <p
+                    onClick={() => setCategory("u-shaped-sofas")}
+                    className={
+                      setCategory === "u-shaped-sofas"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    U Shaped Sofas
+                  </p>
+                  <p
+                    onClick={() => setCategory("leather-sofas")}
+                    className={
+                      setCategory === "leather-sofas"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    Leather Sofas
+                  </p>
+                  <p
+                    onClick={() => setCategory("recliner-sofas")}
+                    className={
+                      setCategory === "recliner-sofas"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    Recliner Sofas
                   </p>
                 </div>
               </div>
             </div>
-            <div className="">
-              <button
-                className="btn btn-danger text-uppercase"
-                onClick={ClearFilter}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingTwo">
+                <button
+                  className="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  All Beds
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample"
               >
-                Clear filter
-              </button>
+                <div className="accordion-body">
+                  <p
+                    onClick={() => setCategory("bed")}
+                    className={
+                      setCategory === "bed" ? "activeCategory" : ""
+                    }
+                  >
+                    All in Beds
+                  </p>
+                  <p
+                    onClick={() => setCategory("ambassador-beds")}
+                    className={
+                      setCategory === "ambassador-beds"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    Ambassador Beds{" "}
+                  </p>
+                  <p
+                    onClick={() => setCategory("panel-bed")}
+                    className={
+                      setCategory === "panel-bed" ? "activeCategory" : ""
+                    }
+                  >
+                    Panel Beds
+                  </p>
+                  <p
+                    onClick={() => setCategory("wingback-beds-frames")}
+                    className={
+                      setCategory === "wingback-beds-frames"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    Wingback Beds
+                  </p>
+                  <p
+                    onClick={() => setCategory("bespoke-beds")}
+                    className={
+                      setCategory === "bespoke-beds" ? "activeCategory" : ""
+                    }
+                  >
+                    Bespoke Beds
+                  </p>
+                  <p
+                    onClick={() => setCategory("chesterfield-beds")}
+                    className={
+                      setCategory === "chesterfield-beds"
+                        ? "activeCategory"
+                        : ""
+                    }
+                  >
+                    Chesterfield Beds
+                  </p>
+                  <p
+                    onClick={() => setCategory("divan-beds")}
+                    className={
+                      setCategory === "divan-beds" ? "activeCategory" : ""
+                    }
+                  >
+                    Divan Beds
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <h2 className="m-0 p-0">
+                <button
+                  className="accordion-button collapsed accordian2"
+                  aria-expanded="false"
+                  onClick={() => setCategory("ottoman-beds")}
+                >
+                  Ottoman Box
+                </button>
+              </h2>
+            </div>
+            <div className="accordion-item">
+              <h2 className="m-0 p-0">
+                <button
+                  className="accordion-button collapsed accordian2"
+                  aria-expanded="false"
+                  onClick={() => setCategory("mattress")}
+                >
+                  Mattress
+                </button>
+              </h2>
+            </div>
+            <div className="accordion-item">
+              <h2 className="m-0 p-0">
+                <button
+                  className="accordion-button collapsed accordian2"
+                  aria-expanded="false"
+                  onClick={() => setCategory("mattress")}
+                >
+                  Footstools
+                </button>
+              </h2>
+            </div>
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingThree">
+                <button
+                  className="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  Sort By
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <p onClick={() => setSortOrder("")}>All</p>
+                  <p onClick={() => setSortOrder("asc")}>Price (Highest)</p>
+                  <p onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
+
+                </div>
+              </div>
+            </div>
+            <div>
+              <p className="m-0" style={{ fontSize: "16px", fontWeight: "500" }}>Price Range</p>
+            </div>
+            <div className="px-2" style={{ position: "relative" }}>
+              <div className="d-flex">
+                <input
+                  type="range"
+                  id="minPriceRange"
+                  className="w-50"
+                  min={0}
+                  max={9000}
+                  step={10}
+                  value={minPrice}
+                  onChange={handleMinRangeChange}
+                  style={{ height: "2px" }}
+                />
+                <input
+                  type="range"
+                  id="maxPriceRange"
+                  className="w-50"
+                  min={0}
+                  max={10000}
+                  step={10}
+                  value={maxPrice}
+                  onChange={handleMaxRangeChange}
+                  style={{
+                    height: "2px",
+                    position: "absolute",
+                    top: "0px",
+                    right: "4px",
+                  }}
+                />
+              </div>
+              <p className="m-0 mt-2 px-3" style={{ color: "red" }}>
+                &pound;{minPrice} - &pound;{maxPrice}
+              </p>
             </div>
           </div>
+            <button
+              className="btn btn-danger text-uppercase my-4 w-100"
+              onClick={ClearFilter}
+            >
+              Clear filter
+            </button>
+        </div>
+
+        <div className="row">
           <div className="col-lg-2 col-12 col_hide">
-            <p className="fs-4 fw-bolder"><FaFilter />&nbsp;Filter</p>
+            <div>
+              <p className="fs-4 fw-bolder" style={{ color: "#1b2950" }}><FaFilter />&nbsp;Filter</p>
+            </div>
             <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
               <div className="accordion-item">
                 <h2 className="accordion-header" id="headingOne">
@@ -690,39 +685,8 @@ const Products = () => {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="accordion-item">
-                <h2 className="accordion-header m-0 p-0" id="headingThree">
-                  <button
-                    className="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree"
-                    aria-expanded="true"
-                    aria-controls="collapseThree"
-                  >
-                    Sort By
-                  </button>
-                </h2>
-                <div
-                  id="collapseThree"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingThree"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div className="accordion-body">
-                  </div>
-                </div>
-              </div> */}
-              <div className="accordion-item">
-                <h2 className="m-0 p-0">
-                  <button
-                    className="accordion-button collapsed accordian2"
-                    aria-expanded="false"
-                  >
-                    Filter by Price
-                  </button>
-                </h2>
+              <div>
+                <p className="m-0" style={{ fontSize: "16px", fontWeight: "500" }}>Price Range</p>
               </div>
               <div className="px-2" style={{ position: "relative" }}>
                 <div className="d-flex">
@@ -754,50 +718,64 @@ const Products = () => {
                     }}
                   />
                 </div>
-                <p className="m-0 mt-2" style={{ color: "red" }}>
+                <p className="m-0 mt-2 px-3" style={{ color: "red" }}>
                   &pound;{minPrice} - &pound;{maxPrice}
                 </p>
               </div>
+              <button
+              className="btn btn-danger text-uppercase my-4 w-100"
+              onClick={ClearFilter}
+            >
+              Clear filter
+            </button>
             </div>
           </div>
-          <div className="col-lg-10 col-md-12 col-12">
-            <input
-              type="search"
-              className="search_bar form-control mb-3"
-              placeholder="Search Anything"
-              value={search}
-              onChange={SearchInput}
-            />
 
-            <div className="row px-4 mb-4">
-              <div className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between">
-                <div className="d-flex align-items-center gap-1">
-                  <div
-                    className={`grid_icon ${activeGrid === "grid" ? "active" : ""
-                      }`}
-                    onClick={() => setActiveGrid("grid")}
-                  >
-                    <BsFillGridFill />
-                  </div>
-                  <div
-                    className={`grid_icon ${activeGrid === "list" ? "active" : ""
-                      }`}
-                    onClick={() => setActiveGrid("list")}
-                  >
-                    <BsListStars />
-                  </div>
+
+          <div className="col-lg-10 col-md-12 col-12">
+            <div className="search_bar1 mt-2 mb-3">
+              <input
+                type="search"
+                className="form-control w-80 border"
+                placeholder="Search Anything"
+                value={search}
+                onChange={SearchInput}
+              />
+            </div>
+            <div className="mb-4 d-flex align-items-center justify-content-between">
+              <div className="d-flex align-items-center gap-1">
+                <div
+                  className={`grid_icon ${activeGrid === "grid" ? "active" : ""
+                    }`}
+                  onClick={() => setActiveGrid("grid")}
+                >
+                  <BsFillGridFill />
                 </div>
-                <div className="d-flex align-items-center">
-                  <p className="fw-bolder my-2">
-                    {filterProduct.length} Products
-                  </p>
-                </div>
-                <div className="d-flex align-items-center">
-                  <button className="btn fs-4" role="button" onClick={Filter}>
-                    <FaFilter />
-                  </button>
+                <div
+                  className={`grid_icon ${activeGrid === "list" ? "active" : ""
+                    }`}
+                  onClick={() => setActiveGrid("list")}
+                >
+                  <BsListStars />
                 </div>
               </div>
+              <div className="d-flex align-items-center">
+                <p className="fw-bolder my-2">
+                  {filterProduct.length} Products
+                </p>
+              </div>
+              <div className="search_bar d-flex align-items-center">
+                <input
+                  type="search"
+                  className="form-control w-100 border"
+                  placeholder="Search Anything"
+                  value={search}
+                  onChange={SearchInput}
+                />
+              </div>
+              <button className="btn fs-4 filter_btn_display" role="button" onClick={Filter}>
+                <FaFilter />
+              </button>
             </div>
             {loading ? (
               <div
@@ -812,7 +790,7 @@ const Products = () => {
                 {/* <p className="fs-3 bolder">No product available related to this category</p> */}
               </div>
             ) : (
-              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
+              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
                 {activeGrid === "grid" &&
                   filterProduct?.map((product, index) => (
                     <div className="col" key={index}>
