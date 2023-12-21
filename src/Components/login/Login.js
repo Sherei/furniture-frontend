@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Benefits from '../Benefits/Benefits';
 import axios from 'axios';
 import "./login.css"
 
@@ -117,10 +118,12 @@ export const Login = () => {
               }}>
                 Register
               </span>
-       
             </p>
           </form>
         </div>
+      </div>
+      <div className='row '>
+        <Benefits />
       </div>
     </div>
   </>
