@@ -852,7 +852,7 @@ const Products = () => {
               </div>
             )}
 
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-2 g-4 my-3">
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
               {activeGrid === "list" &&
                 filterProduct?.map((product, index) => {
                   return (
@@ -908,8 +908,8 @@ const Products = () => {
                               </span>
                             )}
                           </div>
-                          <div className="text-center">
-                            <button className="btn review_btn btn-outline-primary fs-10">
+                          <div className="">
+                            <button className="btn review_btn btn-outline-primary fs-10 px-5" style={{width:"fit-content"}}>
                               View Detail
                             </button>
                           </div>
