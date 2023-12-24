@@ -137,7 +137,7 @@ const Review = () => {
                     )}
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12 px-5 pt-5' style={{ position: "relative" }}>
+                <div className='col-lg-6 col-md-6 col-sm-12 px-lg-5 px-2  pt-5' style={{ position: "relative" }}>
                     {sucess && (
                         <div className="succes_box showVerify px-3">
                             <div className="text-end">

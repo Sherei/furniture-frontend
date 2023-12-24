@@ -6,8 +6,9 @@ import { Orders } from "./Orders"
 import Comments from './Comments';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { Error } from '../Error/Error';
 import "./dashboard.css";
+import { useNavigate } from 'react-router-dom';
+
 
 
 export const Dashboard = () => {
@@ -17,7 +18,7 @@ export const Dashboard = () => {
             top: 0
         });
     }, []);
-
+    const move =useNavigate()
     let cu = useSelector(store => store.userSection.cu)
     const [users, setUsers] = useState([])
     const [product, setProducts] = useState([])
@@ -46,9 +47,9 @@ export const Dashboard = () => {
     };
 
     if (cu.email != "asd@gmail.com") {
-        return <Error />
+        return move('/')
     } else if (cu._id === undefined) {
-        return <Error />
+        return move('/')
     }
 
     return (

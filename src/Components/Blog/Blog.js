@@ -13,7 +13,6 @@ const Blog = () => {
                     <h1 className='text-center fw-bolder' style={{color:"rgb(2, 2, 94)"}}>Our Blog</h1>
                     <p className='text-center'>We prepared some helpful tips for you</p>
                     <div className='d-flex flex-wrap  gap-3 justify-content-center my-5 px-4 '>
-
                         <div className='block_main ' onClick={() => move("/single-blog/clean-sofa")}>
                             <div className='blog1 text-center'>
                                 <img src="/blog1.webp" alt="No Network" />
