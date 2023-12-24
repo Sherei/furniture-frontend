@@ -1,7 +1,12 @@
+.filter_col_display,
+.filter_btn_display,
+.search_bar1 {
+    display: none;
+}
+
 .filter_col {
     position: absolute;
     width: 300px !important;
-    /* right: -400px; */
     display: none;
 }
 
@@ -15,20 +20,19 @@
     right: 0px;
     padding: 0px 10px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 40px !important;
     padding: 50px 10px;
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.5);
     z-index: 5000;
     overflow: scroll;
-    animation: filter 1s ease-in-out; /* Updated transition property */
+    animation: filter 1s ease-in-out;
+    /* Updated transition property */
 }
 
 @keyframes filter {
     0% {
         right: -400px;
     }
+
     100% {
         right: 0px;
     }
@@ -59,12 +63,6 @@
     font-weight: 600 !important;
 }
 
-.activeCategory {
-    background-color: red !important;
-    color: #fd5d39 !important;
-    font-weight: 600 !important;
-}
-
 .p_category span {
     font-size: 18px !important;
 }
@@ -91,56 +89,76 @@
     transition: all linear 0.4s;
 }
 
-.search_bar {
-    width: 80%;
+.search_bar input,
+.search_bar1 input {
     background-color: transparent;
-    padding: 10px 10px !important;
-
 }
 
-.categories p {
+.showFilter p {
     font-size: 15px;
     font-weight: 400;
-    /* color: rgb(129, 128, 128); */
 }
 
-.categories p:hover {
-    padding: 3px 5px;
-    /* color: white; */
+.showFilter p:hover {
+    padding: 0px 0px 0px 8px;
     cursor: pointer;
-    transform: scale(1.03);
-    /* background-color: #1B2950; */
     transition: all linear 0.3s;
 }
-.accordian_btn{
-    display: flex;
-    align-items: center;
-    border: none !important;
-    outline: none !important;
-    padding: 0px 10px !important;
-}
+
 .accordion-button:not(.collapsed) {
-     background-color: white; 
-     color: black ;
+    color: black !important;
+    box-shadow: none !important;
 }
-.accordian_btn2{
-    /* width: 100%; */
-    border: none !important;
+
+.accordion-button:focus {
     outline: none !important;
-    background-color: transparent;
-    padding: 10px 10px !important;
-    /* color: rgb(129, 128, 128); */
-    /* font-weight: 700; */
+    background-color: transparent !important;
+    box-shadow: none !important;
+    color: #1b2950 !important;
 }
 
-.accordian_btn2:hover{
-    cursor: pointer;
-
-}
-.accordian_btn2:hover{
-    cursor: pointer;
+.accordion,
+.accordion-item {
+    border: none !important;
     background-color: transparent !important;
 }
+
+.accordion-body p {
+    font-size: 14px;
+}
+
+.accordion-body p:hover,
+.accordian2:hover {
+    cursor: pointer;
+    border-bottom: 1px solid #1b2950;
+    color: #1b2950;
+    padding-left: 7px;
+    transition: all linear 0.3s;
+    font-weight: 600;
+}
+
+.accordion-button {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.activeCategory {
+    border-bottom: 1px solid #1b2950;
+    color: #1b2950;
+    padding-left: 7px;
+    font-weight: 600;
+    transition: all linear 0.3s;
+}
+
+.accordion-button {
+    padding: 0px !important;
+    background-color: transparent !important;
+}
+
+.accordian2::after {
+    background-image: none !important;
+}
+
 .p_display {
     display: none;
 }
@@ -201,7 +219,7 @@
 
 .product_box {
     max-height: fit-content;
-    
+
     overflow: hidden;
 }
 
@@ -225,9 +243,10 @@
     width: 100%;
     height: 250px;
 }
-.p_img_box img:hover{
-transform: scale(1.09);
-transition: all linear 2s;
+
+.p_img_box img:hover {
+    transform: scale(1.09);
+    transition: all linear 2s;
 }
 
 .p_img_box_grid {
@@ -261,7 +280,7 @@ transition: all linear 2s;
 .p_img_box_grid .overlay {
     position: absolute;
     top: 0;
-    left: -100%;
+    left: -150%;
     width: 100%;
     height: 100%;
     transition: 0.3s ease;
@@ -274,11 +293,13 @@ transition: all linear 2s;
 .p_img_box_grid:hover .overlay {
     left: 0;
 }
-.grid_box_main:hover{
+
+.grid_box_main:hover {
     cursor: pointer;
     transform: scale(1.05);
     transition: all linear 0.3s;
 }
+
 .product_btns {
     width: 100%;
     display: flex;
@@ -319,22 +340,50 @@ transition: all linear 2s;
     color: white;
     font-weight: 600;
 }
-.accordian-item1{
+
+.accordian-item1 {
     border: none !important;
     outline: none !important;
     padding: 0px;
 }
-.accordian-item1:hover, .accordian-item1:focus{
+
+.accordian-item1:hover,
+.accordian-item1:focus {
     border: none !important;
     outline: none !important;
-    
-} 
+
+}
+
+.accordion-button::after {
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+}
+
 @media screen and (max-width:768px) {
     .p_img_box {
         height: auto;
     }
+}
 
+@media screen and (max-width:992px) {
+
+    .col_hide,
     .search_bar {
-        width: 95%;
+        display: none !important;
+    }
+
+    .search_bar1 {
+        display: block !important;
+    }
+
+    .filter_btn_display {
+        display: block;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .filter_col_display {
+        display: none;
     }
 }
