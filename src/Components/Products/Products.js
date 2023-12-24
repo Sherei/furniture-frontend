@@ -83,6 +83,7 @@ const Products = () => {
     setCategory(prodctName?.toLowerCase());
   }, [prodctName]);
 
+
   useEffect(() => {
     setLoading(true)
     try {
@@ -124,6 +125,7 @@ const Products = () => {
 
   }, [data, search, category, minPrice, maxPrice, sort]);
 
+  
   return (
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
@@ -844,9 +846,8 @@ const Products = () => {
                 filterProduct?.map((product, index) => {
                   return (
                     <>
-                      <div
-                        className="col d-flex gap-2 grid_box_main"
-                        key={index}
+                      <div className="col d-flex gap-2 px-0 grid_box_main"
+                          key={index}
                         onClick={() => move("/single_Add/" + product._id)}
                         style={{ overflow: "hidden" }}
                       >
@@ -870,7 +871,7 @@ const Products = () => {
                           style={{ width: "60%" }}
                         >
                           <div>
-                            <p className="card_title px-2">{product.title}</p>
+                            <p className="card_title px-2 m-0">{product.title}</p>
                             {product.description && (
                               <p className="p_description px-2">
                                 {product.description}
