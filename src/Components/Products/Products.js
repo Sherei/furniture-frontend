@@ -126,10 +126,8 @@ const Products = () => {
 
   return (
     <>
-      <div
-        className="container-fluid min-vh-100 my-lg-5 my-3"
-        style={{ overflow: "hidden" }}
-      >
+      <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
+
         <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
           <div className="d-flex justify-content-between mb-3">
             <p className="fs-5" style={{ color: "#1B2950" }}>
@@ -911,7 +909,7 @@ const Products = () => {
           </div>
 
         </div>
-      </div >
+      </div>
     </>
   );
 };
