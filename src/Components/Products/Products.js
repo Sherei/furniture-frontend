@@ -431,7 +431,7 @@ const Products = () => {
 
         <div className="row">
 
-          <div className="col-lg-2 col-12 col_hide">
+          <div className="col-lg-2 col_hide">
             <div>
               <p className="fs-4 fw-bolder" style={{ color: "#1b2950" }}><FaFilter />&nbsp;Filter</p>
             </div>
