@@ -20,7 +20,6 @@ option {
 
 .completed-row:hover {
   background-color: rgb(255, 0, 0);
-
   /* background-color: rgb(2, 2, 94, 0.8); */
   color: white;
 }
