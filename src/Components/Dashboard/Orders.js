@@ -42,6 +42,18 @@ export const Orders = () => {
       });
   };
 
+  const filteredOrder = orders?.filter((data) => {
+    const lowerCaseSearch = search.toLowerCase();  
+    return (
+      data?.name1?.toLowerCase().includes(lowerCaseSearch) ||
+      data?.email?.toLowerCase().includes(lowerCaseSearch) ||
+      data?.status?.toLowerCase().includes(lowerCaseSearch) || 
+      (typeof data?.number1 === 'string' && data?.number1.includes(lowerCaseSearch)) ||
+      data?.orderId?.toLowerCase().includes(lowerCaseSearch)
+      );
+  });
+  
+  
   const DeleteOrder = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteOrder?id=${dataId}`).then(() => {
       setOrders(orders.filter((item) => dataId !== item._id));
@@ -85,13 +97,13 @@ export const Orders = () => {
               <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
                 <Loader />
               </div>
-            ) : orders.length === 0 ? (
+            ) : filteredOrder.length === 0 ? (
               <div className="col-12" style={{ height: "300px" }}>
                 <p className='text-center'>No Order Found...</p>
               </div>
             ) : (
               <>
-                {orders.length > 0 ? (
+                {filteredOrder.length > 0 ? (
                   <div className='table-responsive' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
                     <table className='table table-bordered' >
                       <thead>
@@ -111,21 +123,19 @@ export const Orders = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {orders.map((data, index) => {
+                        {filteredOrder.map((data, index) => {
                           const orderItemsLength = data.orderItems.length;
                           let totalFprice = 0;
                           data.orderItems.forEach((item) => {
                             totalFprice += parseFloat(item.Fprice);
                           });
-
                           const rowClassName = data.status === 'delivered' ? 'completed-row' : '';
-
                           return (
                             <tr key={index} className={`text-center ${rowClassName}`}>
                               <td>{index + 1}</td>
                               <td>{data.orderId}</td>
                               <td>
-                                <select
+                                <select className='order_Select'
                                   name=''
                                   id=''
                                   value={data.status}

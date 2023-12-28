@@ -8,7 +8,7 @@ import {
   FaHome,
   FaQq
 } from 'react-icons/fa';
-import {AiFillFolderAdd} from 'react-icons/ai'
+import { AiFillFolderAdd } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi';
 import { Dashboard } from './Dashboard';
 import { useNavigate } from 'react-router';
@@ -24,9 +24,9 @@ import "./sidebar.css"
 const Sidebar = () => {
   useEffect(() => {
     window.scrollTo({
-        top: 0,
+      top: 0,
     });
-}, []);
+  }, []);
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState('dashboard');
@@ -52,7 +52,7 @@ const Sidebar = () => {
     <div className="container-fluid d-flex p-0 m-0">
       <div style={{ width: isOpen ? '300px' : '50px' }} className="sidebar">
         <div className="px-2 pt-3 d-flex justify-content-between text-center">
-          <p  className="fs-4 fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
+          <p className="fs-5 fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
             SOFA & BEDS
           </p>
           <div className="bars">
@@ -95,16 +95,16 @@ const Sidebar = () => {
             Comments
           </div>
         </div>
-        
-          <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`} 
+
+        <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`}
           onClick={() => move('/admin-dashboard-add-product')}>
-            <div className="icon">
-              <AiFillFolderAdd />
-            </div>
-            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-              Add Product
-            </div>
+          <div className="icon">
+            <AiFillFolderAdd />
           </div>
+          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+            Add Product
+          </div>
+        </div>
 
         <div className="link" onClick={() => {
           move("/")
@@ -127,10 +127,10 @@ const Sidebar = () => {
       </div>
       <div className="dashboard">
         {activeComponent === 'dashboard' && <Dashboard />}
-        {activeComponent === 'orders' && <Orders/>}
-        {activeComponent === 'users' && <Users/>}
-        {activeComponent === 'product' && <Products/>}
-        {activeComponent === 'comments' && <Comments/>}
+        {activeComponent === 'orders' && <Orders />}
+        {activeComponent === 'users' && <Users />}
+        {activeComponent === 'product' && <Products />}
+        {activeComponent === 'comments' && <Comments />}
       </div>
     </div>
   );

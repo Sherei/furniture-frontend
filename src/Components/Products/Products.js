@@ -27,7 +27,6 @@ const Products = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(10000);
   const [filter, setFilter] = useState(false);
-  const [filterProduct, setfilterProduct] = useState([]);
   const move = useNavigate();
 
 
@@ -36,16 +35,29 @@ const Products = () => {
   };
 
   useEffect(() => {
+    setCategory(prodctName?.toLowerCase());
+  }, [prodctName]);
+
+  useEffect(() => {
     setLoading(true);
     try {
-      axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+      const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
+      const params = {
+        name: category,
+        sort: sort,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        search: search
+      };
+      axios.get(apiUrl, { params }).then((res) => {
         setData(res?.data);
       }).finally(() => {
         setLoading(false);
       });
     } catch (e) { }
 
-  }, []);
+  }, [category, sort, minPrice, maxPrice, search]);
+
 
   const handleMinRangeChange = (e) => {
     const value = parseInt(e.target.value);
@@ -62,70 +74,12 @@ const Products = () => {
   };
 
   function ClearFilter() {
-    setCategory("");
+    setCategory("all");
     setSortOrder("");
+    setSearch("");
     setActiveGrid("grid");
   }
 
-  useEffect(() => {
-    let alldata = [...data];
-    if (sort === "asc") {
-      alldata.sort((a, b) => parseInt(b.price) - parseInt(a.price));
-    } else if (sort === "desc") {
-      alldata.sort((a, b) => parseInt(a.price) - parseInt(b.price));
-    } else {
-      alldata.sort().reverse();
-    }
-    setData(alldata);
-  }, [sort]);
-
-  useEffect(() => {
-    setCategory(prodctName?.toLowerCase());
-  }, [prodctName]);
-
-
-  useEffect(() => {
-    setLoading(true)
-    try {
-      let arr = data?.filter((product) => {
-        const Lsearch = (search ?? "").toLowerCase();
-        const Lcategory = (category ?? "").toLowerCase();
-        const LproductName = (prodctName ?? "").toLowerCase();
-
-        const priceInRange =
-          parseInt(product.price) >= minPrice &&
-          parseInt(product.price) <= maxPrice;
-
-        const LsearchMatch =
-          Lcategory.includes(Lsearch) ||
-          product?.category?.toLowerCase().includes(Lsearch) ||
-          product?.title?.toLowerCase().includes(Lsearch);
-
-        const categoryMatches =
-          LproductName === "all"
-            ? true
-            : product?.category?.toLowerCase() === category ||
-            product?.subCategory?.toLowerCase() === category ||
-            category === "all";
-
-        const productNameMatches =
-          LproductName === "all" ||
-          product?.category?.toLowerCase().includes(Lcategory) ||
-          product?.subCategory?.toLowerCase().includes(Lcategory);
-
-        return (
-          productNameMatches && categoryMatches && LsearchMatch && priceInRange
-        );
-      });
-      setfilterProduct(arr);
-    } catch (e) {
-    } finally {
-      setLoading(false)
-    }
-
-  }, [data, search, category, minPrice, maxPrice, sort]);
-
-  
   return (
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
@@ -166,7 +120,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("sofa")}
                     className={
-                      setCategory === "sofa" ? "activeCategory" : ""
+                      category === "sofa" ? "activeCategory" : ""
                     }
                   >
                     All in sofas
@@ -174,7 +128,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("corner-sofas")}
                     className={
-                      setCategory === "corner-sofas" ? "activeCategory" : ""
+                      category === "corner-sofas" ? "activeCategory" : ""
                     }
                   >
                     Corner Sofas
@@ -182,7 +136,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("sofa-sets")}
                     className={
-                      setCategory === "sofa-sets" ? "activeCategory" : ""
+                      category === "sofa-sets" ? "activeCategory" : ""
                     }
                   >
                     Sofa Sets{" "}
@@ -190,7 +144,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("sofa-beds")}
                     className={
-                      setCategory === "sofa-beds" ? "activeCategory" : ""
+                      category === "sofa-beds" ? "activeCategory" : ""
                     }
                   >
                     Sofa Beds
@@ -198,7 +152,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("three-&-two-seater-sofas")}
                     className={
-                      setCategory === "three-&-two-seater-sofas"
+                      category === "three-&-two-seater-sofas"
                         ? "activeCategory"
                         : ""
                     }
@@ -208,7 +162,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("u-shaped-sofas")}
                     className={
-                      setCategory === "u-shaped-sofas"
+                      category === "u-shaped-sofas"
                         ? "activeCategory"
                         : ""
                     }
@@ -218,7 +172,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("leather-sofas")}
                     className={
-                      setCategory === "leather-sofas"
+                      category === "leather-sofas"
                         ? "activeCategory"
                         : ""
                     }
@@ -228,7 +182,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("recliner-sofas")}
                     className={
-                      setCategory === "recliner-sofas"
+                      category === "recliner-sofas"
                         ? "activeCategory"
                         : ""
                     }
@@ -261,7 +215,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("bed")}
                     className={
-                      setCategory === "bed" ? "activeCategory" : ""
+                      category === "bed" ? "activeCategory" : ""
                     }
                   >
                     All in Beds
@@ -269,7 +223,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("ambassador-beds")}
                     className={
-                      setCategory === "ambassador-beds"
+                      category === "ambassador-beds"
                         ? "activeCategory"
                         : ""
                     }
@@ -279,7 +233,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("panel-bed")}
                     className={
-                      setCategory === "panel-bed" ? "activeCategory" : ""
+                      category === "panel-bed" ? "activeCategory" : ""
                     }
                   >
                     Panel Beds
@@ -287,7 +241,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("wingback-beds-frames")}
                     className={
-                      setCategory === "wingback-beds-frames"
+                      category === "wingback-beds-frames"
                         ? "activeCategory"
                         : ""
                     }
@@ -297,7 +251,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("bespoke-beds")}
                     className={
-                      setCategory === "bespoke-beds" ? "activeCategory" : ""
+                      category === "bespoke-beds" ? "activeCategory" : ""
                     }
                   >
                     Bespoke Beds
@@ -305,7 +259,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("chesterfield-beds")}
                     className={
-                      setCategory === "chesterfield-beds"
+                      category === "chesterfield-beds"
                         ? "activeCategory"
                         : ""
                     }
@@ -315,7 +269,7 @@ const Products = () => {
                   <p
                     onClick={() => setCategory("divan-beds")}
                     className={
-                      setCategory === "divan-beds" ? "activeCategory" : ""
+                      category === "divan-beds" ? "activeCategory" : ""
                     }
                   >
                     Divan Beds
@@ -326,7 +280,7 @@ const Products = () => {
             <div className="accordion-item">
               <h2 className="m-0 p-0">
                 <button
-                  className="accordion-button collapsed accordian2"
+                  className={`accordion-button collapsed accordian2 ${category === "ottoman-box" ? "activeCategory" : ""}`}
                   aria-expanded="false"
                   onClick={() => setCategory("ottoman-box")}
                 >
@@ -337,7 +291,7 @@ const Products = () => {
             <div className="accordion-item">
               <h2 className="m-0 p-0">
                 <button
-                  className="accordion-button collapsed accordian2"
+                  className={`accordion-button collapsed accordian2 ${category === "mattress" ? "activeCategory" : ""}`}
                   aria-expanded="false"
                   onClick={() => setCategory("mattress")}
                 >
@@ -348,7 +302,7 @@ const Products = () => {
             <div className="accordion-item">
               <h2 className="m-0 p-0">
                 <button
-                  className="accordion-button collapsed accordian2"
+                  className={`accordion-button collapsed accordian2 ${category === "footstools" ? "activeCategory" : ""}`}
                   aria-expanded="false"
                   onClick={() => setCategory("footstools")}
                 >
@@ -377,9 +331,12 @@ const Products = () => {
               >
                 <div className="accordion-body">
                   <p onClick={() => setSortOrder("")}>All</p>
-                  <p onClick={() => setSortOrder("asc")}>Price (Highest)</p>
-                  <p onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
-
+                  <p
+                    className={sort === "asc" ? "activeCategory" : ""}
+                    onClick={() => setSortOrder("asc")}>Price (Highest)</p>
+                  <p
+                    className={sort === "desc" ? "activeCategory" : ""}
+                    onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
                 </div>
               </div>
             </div>
@@ -430,7 +387,7 @@ const Products = () => {
         </div>
 
         <div className="row">
-
+          
           <div className="col-lg-2 col_hide">
             <div>
               <p className="fs-4 fw-bolder" style={{ color: "#1b2950" }}><FaFilter />&nbsp;Filter</p>
@@ -459,7 +416,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("sofa")}
                       className={
-                        setCategory === "sofa" ? "activeCategory" : ""
+                        category === "sofa" ? "activeCategory" : ""
                       }
                     >
                       All in sofas
@@ -467,7 +424,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("corner-sofas")}
                       className={
-                        setCategory === "corner-sofas" ? "activeCategory" : ""
+                        category === "corner-sofas" ? "activeCategory" : ""
                       }
                     >
                       Corner Sofas
@@ -475,7 +432,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("sofa-sets")}
                       className={
-                        setCategory === "sofa-sets" ? "activeCategory" : ""
+                        category === "sofa-sets" ? "activeCategory" : ""
                       }
                     >
                       Sofa Sets{" "}
@@ -483,7 +440,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("sofa-beds")}
                       className={
-                        setCategory === "sofa-beds" ? "activeCategory" : ""
+                        category === "sofa-beds" ? "activeCategory" : ""
                       }
                     >
                       Sofa Beds
@@ -491,7 +448,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("three-&-two-seater-sofas")}
                       className={
-                        setCategory === "three-&-two-seater-sofas"
+                        category === "three-&-two-seater-sofas"
                           ? "activeCategory"
                           : ""
                       }
@@ -501,7 +458,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("u-shaped-sofas")}
                       className={
-                        setCategory === "u-shaped-sofas"
+                        category === "u-shaped-sofas"
                           ? "activeCategory"
                           : ""
                       }
@@ -511,7 +468,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("leather-sofas")}
                       className={
-                        setCategory === "leather-sofas"
+                        category === "leather-sofas"
                           ? "activeCategory"
                           : ""
                       }
@@ -521,7 +478,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("recliner-sofas")}
                       className={
-                        setCategory === "recliner-sofas"
+                        category === "recliner-sofas"
                           ? "activeCategory"
                           : ""
                       }
@@ -554,7 +511,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("bed")}
                       className={
-                        setCategory === "bed" ? "activeCategory" : ""
+                        category === "bed" ? "activeCategory" : ""
                       }
                     >
                       All in Beds
@@ -562,7 +519,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("ambassador-beds")}
                       className={
-                        setCategory === "ambassador-beds"
+                        category === "ambassador-beds"
                           ? "activeCategory"
                           : ""
                       }
@@ -572,7 +529,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("panel-bed")}
                       className={
-                        setCategory === "panel-bed" ? "activeCategory" : ""
+                        category === "panel-bed" ? "activeCategory" : ""
                       }
                     >
                       Panel Beds
@@ -580,7 +537,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("wingback-beds-frames")}
                       className={
-                        setCategory === "wingback-beds-frames"
+                        category === "wingback-beds-frames"
                           ? "activeCategory"
                           : ""
                       }
@@ -590,7 +547,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("bespoke-beds")}
                       className={
-                        setCategory === "bespoke-beds" ? "activeCategory" : ""
+                        category === "bespoke-beds" ? "activeCategory" : ""
                       }
                     >
                       Bespoke Beds
@@ -598,7 +555,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("chesterfield-beds")}
                       className={
-                        setCategory === "chesterfield-beds"
+                        category === "chesterfield-beds"
                           ? "activeCategory"
                           : ""
                       }
@@ -608,7 +565,7 @@ const Products = () => {
                     <p
                       onClick={() => setCategory("divan-beds")}
                       className={
-                        setCategory === "divan-beds" ? "activeCategory" : ""
+                        category === "divan-beds" ? "activeCategory" : ""
                       }
                     >
                       Divan Beds
@@ -619,10 +576,9 @@ const Products = () => {
               <div className="accordion-item">
                 <h2 className="m-0 p-0">
                   <button
-                    className="accordion-button collapsed accordian2"
+                    className={`accordion-button collapsed accordian2 ${category === "ottoman-box" ? "activeCategory" : ""}`}
                     aria-expanded="false"
-                    onClick={() => setCategory("ottoman-box")}
-                  >
+                    onClick={() => setCategory("ottoman-box")}>
                     Ottoman Box
                   </button>
                 </h2>
@@ -630,7 +586,7 @@ const Products = () => {
               <div className="accordion-item">
                 <h2 className="m-0 p-0">
                   <button
-                    className="accordion-button collapsed accordian2"
+                    className={`accordion-button collapsed accordian2 ${category === "mattress" ? "activeCategory" : ""}`}
                     aria-expanded="false"
                     onClick={() => setCategory("mattress")}
                   >
@@ -641,7 +597,7 @@ const Products = () => {
               <div className="accordion-item">
                 <h2 className="m-0 p-0">
                   <button
-                    className="accordion-button collapsed accordian2"
+                    className={`accordion-button collapsed accordian2 ${category === "footstools" ? "activeCategory" : ""}`}
                     aria-expanded="false"
                     onClick={() => setCategory("footstools")}
                   >
@@ -670,8 +626,14 @@ const Products = () => {
                 >
                   <div className="accordion-body">
                     <p onClick={() => setSortOrder("")}>All</p>
-                    <p onClick={() => setSortOrder("asc")}>Price (Highest)</p>
-                    <p onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
+                    <p className={
+                      sort === "asc" ? "activeCategory" : ""
+                    }
+                      onClick={() => setSortOrder("asc")} >Price (Highest)</p>
+                    <p className={
+                      sort === "desc" ? "activeCategory" : ""
+                    }
+                      onClick={() => setSortOrder("desc")}>Price (Lowest)</p>
 
                   </div>
                 </div>
@@ -751,7 +713,7 @@ const Products = () => {
               </div>
               <div className="d-flex align-items-center">
                 <p className="fw-bolder my-2">
-                  {filterProduct.length} Products
+                  {data?.length} Products
                 </p>
               </div>
               <div className="search_bar d-flex align-items-center">
@@ -774,14 +736,14 @@ const Products = () => {
               >
                 <Loader />
               </div>
-            ) : filterProduct.length === 0 ? (
-              <div className="col-12 d-flex justify-content-center align-items-center flex-wrap px-4" style={{ height: "300px" }}>
-                <p className="fs-3 bolder">Nothing found try With Ddfferent keyword</p>
+            ) : data.length === 0 ? (
+              <div className="col-12 d-flex justify-content-center align-items-center flex-wrap px-4" style={{ height: "200px" }}>
+                <p className="fs-5 bolder">Nothing found try with different keyword</p>
               </div>
             ) : (
               <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
                 {activeGrid === "grid" &&
-                  filterProduct?.map((product, index) => (
+                  data?.map((product, index) => (
                     <div className="col" key={index}>
                       <div
                         className="product_box "
@@ -843,11 +805,11 @@ const Products = () => {
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
               {activeGrid === "list" &&
-                filterProduct?.map((product, index) => {
+                data?.map((product, index) => {
                   return (
                     <>
                       <div className="col d-flex gap-2 px-0 grid_box_main"
-                          key={index}
+                        key={index}
                         onClick={() => move("/single_Add/" + product._id)}
                         style={{ overflow: "hidden" }}
                       >

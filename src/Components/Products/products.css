@@ -130,9 +130,8 @@
 .accordion-body p:hover,
 .accordian2:hover {
     cursor: pointer;
-    border-bottom: 1px solid #1b2950;
+    /* border-bottom: 1px solid #1b2950; */
     color: #1b2950;
-    padding-left: 7px;
     transition: all linear 0.3s;
     font-weight: 600;
 }
@@ -143,7 +142,7 @@
 }
 
 .activeCategory {
-    border-bottom: 1px solid #1b2950;
+    /* border-bottom: 1px solid #1b2950; */
     color: #1b2950;
     padding-left: 7px;
     font-weight: 600;

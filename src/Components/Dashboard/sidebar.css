@@ -12,6 +12,7 @@
 }
 .bars {
     display: flex;
+    margin-left: 4px;
     font-size: 25px;
 }
 .bars,.logo:hover{
