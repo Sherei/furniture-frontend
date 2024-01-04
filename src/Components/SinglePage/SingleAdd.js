@@ -64,11 +64,7 @@ const SingleAdd = () => {
   const [Error, setError] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [sucess, setSucess] = useState(false)
-
-  const toggleVerify = () => {
-    setSucess(!sucess);
-  };
+  const [sucess, setSucess] = useState("")
 
   const dispatch = useDispatch();
 
@@ -333,7 +329,7 @@ const SingleAdd = () => {
             type: "ADD_TO_CART",
             payload: response.data.alldata,
           });
-          toggleVerify();
+         setSucess("cart")
         }
       } catch (error) {
         return (
@@ -354,7 +350,7 @@ const SingleAdd = () => {
   useEffect(() => {
     if (sucess) {
       const timeoutId = setTimeout(() => {
-        toggleVerify();
+        setSucess('')
       }, 5000);
 
       return () => clearTimeout(timeoutId);
@@ -411,7 +407,7 @@ const SingleAdd = () => {
         setComments(response.data.alldata)
         console.log("comment data is==", comments)
         // reset();
-        toggleVerify();
+        setSucess("comment")
       } else {
         toast.error("Error occurred");
       }
@@ -564,12 +560,12 @@ const SingleAdd = () => {
                 </div>
               </div>
               <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
-                {sucess && (
+                {sucess==="cart" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
-                        onClick={() => setSucess(false)}> <RxCross1 /></button>
+                        onClick={() => setSucess("")}> <RxCross1 /></button>
                     </div>
                     <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
                     <p className="fw-bolder text-center">Product Added into Cart</p>
@@ -1493,55 +1489,6 @@ const SingleAdd = () => {
                       </div>
                     </>
                   )}
-
-                {/* {product?.category === "bed" &&
-                                <div className="table-responsive">
-                                    <p className='fs-6 fw-bolder'>Dimensions: (Should be in table form)</p>
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Bed Size Height (Inches)</th>
-                                                <th>Length (Inches)</th>
-                                                <th>Width (Inches)</th>
-                                                <th>Footboard</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='text-center'>
-                                                <td>Single 3ft</td>
-                                                <td>82</td>
-                                                <td>38</td>
-                                                <td>20</td>
-                                            </tr>
-                                            <tr className='text-center'>
-                                                <td>Small Double 4ft</td>
-                                                <td>82</td>
-                                                <td>50</td>
-                                                <td>20</td>
-                                            </tr>
-                                            <tr className='text-center'>
-                                                <td>Double 4'6ft</td>
-                                                <td>82</td>
-                                                <td>56</td>
-                                                <td>20</td>
-                                            </tr>
-                                            <tr className='text-center'>
-                                                <td>King Size 5ft</td>
-                                                <td>84</td>
-                                                <td>62</td>
-                                                <td>20</td>
-                                            </tr>
-                                            <tr className='text-center'>
-                                                <td>Super King 6ft</td>
-                                                <td>84</td>
-                                                <td>74</td>
-                                                <td>20</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            } */}
-
                 {product?.note2 && (
                   <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>
                     Note: {product.note2}
@@ -1619,12 +1566,12 @@ const SingleAdd = () => {
               </div>
 
               <div className="col-lg-6 col-md-6 col-sm-12 px-lg-5 px-3 pt-lg-0 pt-5 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
-                {sucess && (
+                {sucess==="comment" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
                         style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
-                        onClick={() => setSucess(false)}> <RxCross1 /></button>
+                        onClick={() => setSucess("")}> <RxCross1 /></button>
                     </div>
                     <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
                     <p className="fw-bolder text-center">Feedback Submitted</p>

@@ -1,0 +1,20 @@
+.panel_index {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b2950;
+    color: white;
+    top: 5px;
+    right: 10px;
+    font-weight: 500;
+    border-radius: 100%;
+}
+
+@media screen and (max-width:768px) {
+    .panel_index {
+        right: 5px;
+    }
+}
