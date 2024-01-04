@@ -52,7 +52,7 @@ const Signup = () => {
             <div className='row d-flex justify-content-center'>
                 <div className='col-lg-6 col-md-12 col-sm-12'>
                     <div>
-                        <p className='m-0 fs-2 text-center fw-bolder'>Create Your Account</p>
+                        <p className='m-0 fs-2 text-center fw-bolder' style={{color:"#1b2950"}}>Create Your Account</p>
                         <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>

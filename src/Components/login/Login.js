@@ -72,7 +72,7 @@ export const Login = () => {
       <div className='row d-flex justify-content-center'>
         <div className='col-lg-6 col-md-6 col-sm-12'>
           <div>
-            <p className='m-0 fs-3 text-center fw-bolder'>Login to my Account</p>
+            <p className='m-0 fs-3 text-center fw-bolder' style={{color:"#1b2950"}}>Login to my Account</p>
             <p className='m-0 fs-6 text-center text-muted my-3'>Enter your E-mail & Password</p>
           </div>
           <form action="" onSubmit={handleSubmit(Login)}>

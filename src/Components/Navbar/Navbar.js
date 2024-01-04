@@ -25,7 +25,7 @@ import CartAnimation from "../Animations/CartAnimation.json";
 import "./navbar.css";
 
 export const Navbar = () => {
-  
+
   const move = useNavigate();
   const cu = useSelector((store) => store.userSection.cu);
   const allCartItems = useSelector((store) => store.Cart.cart);
@@ -469,6 +469,7 @@ export const Navbar = () => {
         </div>
       </div>
 
+
       <div style={{ position: "relative" }}>
         <div
           className={`${isSticky ? "fixed-top navbar-custom" : ""}`}
@@ -481,8 +482,7 @@ export const Navbar = () => {
             <div className="row">
               <div className="col nav1">
                 <div className="row nav1_row">
-                  <div
-                    className="col-3 d-flex align-items-center justify-content-start gap-2 p-0"
+                  <div className="col-3 d-flex align-items-center justify-content-start gap-2 p-0"
                     style={{ position: "relative" }}
                   >
                     <button
@@ -504,8 +504,7 @@ export const Navbar = () => {
                       </NavLink>
                     </div>
                   </div>
-                  <div
-                    className="col-6 d-flex align-items-center nav_cotact"
+                  <div className="col-6 d-flex align-items-center nav_cotact"
                     style={{ position: "relative" }}
                   >
                     <input
@@ -566,12 +565,12 @@ export const Navbar = () => {
                               <div className="login_div p-4">
                                 <div className="d-flex justify-content-between align-items-center mb-4">
                                   <div>
-                                    <p className="m-0 fs-5 text-center fw-bolder" style={{ color: "rgb(2, 2, 94)" }}>
+                                    <p className="m-0 fs-5 text-center fw-bolder" style={{ color: "#1b2950" }}>
                                       Login to my Account
                                     </p>
                                   </div>
                                   <div
-                                    style={{ color: "rgb(2, 2, 94)" }}
+                                    style={{ color: "#1b2950" }}
                                     onClick={() => {
                                       setLogin(false);
                                     }}
@@ -678,10 +677,10 @@ export const Navbar = () => {
                               )}
                               {cu?.email === "asd@gmail.com" && (
                                 <li>
-                                <NavLink className="dropdown-item" to="/admin-dashboard" >
-                                  Admin
-                                </NavLink>
-                              </li>
+                                  <NavLink className="dropdown-item" to="/admin-dashboard" >
+                                    Admin
+                                  </NavLink>
+                                </li>
                               )}
                               <li>
                                 {" "}
@@ -713,7 +712,7 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-          
+
           <nav
             className="navbar navbar-expand-lg navbar-light"
             style={{ backgroundColor: "#F7EEDD" }}
