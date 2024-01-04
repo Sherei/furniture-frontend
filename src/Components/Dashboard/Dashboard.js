@@ -65,67 +65,50 @@ export const Dashboard = () => {
 
     return (
         <>
-            <div className='container-fluid mb-5 mt-2'>
-                <div className='row px-3'>
+            <div className='container my-3'>
+                <div className='row'>
                     <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
                         <h1 className="p_head">
                             Dashboard
                         </h1>
                     </div>
-                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-sm-2  g-4">
-                        {isLoading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }}>
-                                <Loader />
-                            </div>
-                        ) : (
-                            data.map((item, index) => (
-                                <div className='col' key={index} onClick={() => handleItemClick(item.id)}>
-                                    <div className='p-3 admin_card'>
-                                        <div className='d-flex justify-content-between align-items-center'>
-                                            <div>
-                                                <p className='admin_card_title'>{item.title}</p>
-                                                <p className='admin_card_number'>{item.desc}</p>
-                                            </div>
-                                            <div className='card_icon'>
-                                                {item.icon}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <div className='dash_card'>
-                                        {item.title === "New Order" && (
-                                            <div>
-                                                <p className='color_card'>4+</p>
-                                            </div>
-                                        )}*/}
-                                </div>
-                            ))
-                        )}
-                    </div>
                 </div>
-
-                <div id='order'>
-                    <div className='row my-5 d-flex gap-5 justify-content-center'>
+                <div className='row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-3'>
+                    {isLoading ? (
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }}>
+                            <Loader />
+                        </div>
+                    ) : (data.map((item, index) => {
+                        return <div className='col' key={index} onClick={() => handleItemClick(item.id)}>
+                            <div className='p-3 admin_card'>
+                                <div className='d-flex justify-content-between align-items-center'>
+                                    <div>
+                                        <p className='admin_card_title'>{item.title}</p>
+                                        <p className='admin_card_number'>{item.desc}</p>
+                                    </div>
+                                    <div className='card_icon'>
+                                        {item.icon}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    })
+                    )}
+                </div>
+                <div className='row'>
+                    <div className='col-12' id='order'>
                         <Orders />
                     </div>
-                </div>
-
-                <div  id='users'>
-                    <div className='row my-5 d-flex gap-5 justify-content-center'>
+                    <div className='col-12' id='users'>
                         <Users />
                     </div>
-                </div>
-
-                <div  id='product'>
-                    <div className='row my-5 d-flex gap-5 justify-content-center'>
+                    <div className='col-12' id='product'>
                         <Products />
                     </div>
-                </div>
-                <div  id='comment'>
-                    <div className='row my-5 d-flex gap-5 justify-content-center'>
+                    <div className='col-12' id='comment'>
                         <Comments />
                     </div>
                 </div>
-
             </div>
         </>
     );

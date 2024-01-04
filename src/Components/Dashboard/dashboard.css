@@ -1,7 +1,14 @@
 .admin_card {
     background: white;
-    border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+}
+
+.admin_card:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #02025E;
+    border: 1px solid var(--border-color);
 }
 
 .admin_card_number,
@@ -10,17 +17,11 @@
     color: #02025E;
     font-weight: 600;
 }
+
 .admin_card_title {
     font-size: 20px;
     color: #02025E;
     font-weight: 600;
-}
-
-.admin_card:hover {
-    cursor: pointer;
-    color: white;
-    background-color: #02025E;
-    border: 1px solid var(--border-color);
 }
 
 .admin_card:hover p,

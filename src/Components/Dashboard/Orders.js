@@ -43,17 +43,17 @@ export const Orders = () => {
   };
 
   const filteredOrder = orders?.filter((data) => {
-    const lowerCaseSearch = search.toLowerCase();  
+    const lowerCaseSearch = search.toLowerCase();
     return (
       data?.name1?.toLowerCase().includes(lowerCaseSearch) ||
       data?.email?.toLowerCase().includes(lowerCaseSearch) ||
-      data?.status?.toLowerCase().includes(lowerCaseSearch) || 
+      data?.status?.toLowerCase().includes(lowerCaseSearch) ||
       (typeof data?.number1 === 'string' && data?.number1.includes(lowerCaseSearch)) ||
       data?.orderId?.toLowerCase().includes(lowerCaseSearch)
-      );
+    );
   });
-  
-  
+
+
   const DeleteOrder = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteOrder?id=${dataId}`).then(() => {
       setOrders(orders.filter((item) => dataId !== item._id));
@@ -73,13 +73,12 @@ export const Orders = () => {
 
   return (
     <>
-      <div className='container-fluid'>
+      <div className='container my-5'>
         <div className='row my-3'>
           <div className='col-lg-12 col-sm-12 d-flex justify-content-between'>
             <div className=''>
               <h1 className='p_head'>Orders List</h1>
             </div>
-        
             <div>
               <input
                 type='search'
@@ -104,15 +103,15 @@ export const Orders = () => {
             ) : (
               <>
                 {filteredOrder.length > 0 ? (
-                  <div className='table-responsive' style={{ backgroundColor: 'white', minHeight: '58vh' }}>
-                    <table className='table table-bordered' >
+                  <div className='table-responsive' style={{ backgroundColor: 'white' }}>
+                    <table className='table table-striped table-bordered table-hover' >
                       <thead>
                         <tr className='text-center'>
                           <th>Sr#</th>
                           <th>OrderId</th>
                           <th>Status</th>
                           <th>Name</th>
-                          <th>Email</th>
+                          {/* <th>Email</th> */}
                           <th>Contact</th>
                           <th>Shipping</th>
                           <th>Products</th>
@@ -147,7 +146,7 @@ export const Orders = () => {
 
                               </td>
                               <td>{data.name1}</td>
-                              <td>{data.email}</td>
+                              {/* <td>{data.email}</td> */}
                               <td>{data.number1}</td>
                               <td>&pound;{data.shipping}</td>
                               <td className='text-center'>{orderItemsLength}</td>

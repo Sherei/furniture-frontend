@@ -8,7 +8,7 @@ import {
   FaHome,
   FaQq
 } from 'react-icons/fa';
-import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from "react-icons/io"
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
 import { AiFillFolderAdd } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi';
 import { Dashboard } from './Dashboard';
@@ -65,97 +65,101 @@ const Sidebar = () => {
   let move = useNavigate()
 
   return (
-    <div className="container-fluid d-flex p-0 m-0">
-      <div style={{ width: isOpen ? '300px' : '50px' }} className="sidebar">
-        <div className="px-2 pt-3 d-flex justify-content-between">
-          <p className="fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
+    <div className="container-fluid p-0 m-0">
+      <div className='d-flex flex-nowrap'>
+
+        <div style={{ width: isOpen ? '220px' : '50px' }} className="sidebar">
+          <div className="py-4 d-flex justify-content-between">
+            {/* <p className="fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
             SOFA & BEDS
-          </p>
-          <div className="bars">
-             {isOpen ? (
-            <div className="bars" onClick={toggle}>
-              <IoIosArrowDropleftCircle />
+          </p> */}
+            <div className="bars">
+              {isOpen ? (
+                <div onClick={toggle}>
+                  <IoIosArrowBack />
+                </div>
+              ) : (
+                <div onClick={toggle}>
+                  <IoIosArrowForward />
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="bars" onClick={toggle}>
-              <IoIosArrowDroprightCircle />
+          </div>
+          <div className={`link ${activeComponent === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>
+            <div className="icon">
+              <FaTh />
             </div>
-          )}
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Dashboard
+            </div>
           </div>
-        </div>
-        <div className={`link ${activeComponent === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>
-          <div className="icon">
-            <FaTh />
-          </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-            Dashboard
-          </div>
-        </div>
 
-        <div className={`link ${activeComponent === 'product' ? 'active' : ''}`} onClick={() => handleMenuClick('product')}>
-          <div className="icon">
-            <FaDiscourse />
+          <div className={`link ${activeComponent === 'product' ? 'active' : ''}`} onClick={() => handleMenuClick('product')}>
+            <div className="icon">
+              <FaDiscourse />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Products
+            </div>
           </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-            Products
-          </div>
-        </div>
 
 
-        <div className={`link ${activeComponent === 'users' ? 'active' : ''}`} onClick={() => handleMenuClick('users')}>
-          <div className="icon">
-            <FaServicestack />
+          <div className={`link ${activeComponent === 'users' ? 'active' : ''}`} onClick={() => handleMenuClick('users')}>
+            <div className="icon">
+              <FaServicestack />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Users
+            </div>
           </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-            Users
-          </div>
-        </div>
 
-        <div className={`link ${activeComponent === 'comments' ? 'active' : ''}`} onClick={() => handleMenuClick('comments')}>
-          <div className="icon">
-            <FaCameraRetro />
+          <div className={`link ${activeComponent === 'comments' ? 'active' : ''}`} onClick={() => handleMenuClick('comments')}>
+            <div className="icon">
+              <FaCameraRetro />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Comments
+            </div>
           </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-            Comments
-          </div>
-        </div>
 
-        <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`}
-          onClick={() => move('/admin-dashboard-add-product')}>
-          <div className="icon">
-            <AiFillFolderAdd />
+          <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`}
+            onClick={() => move('/admin-dashboard-add-product')}>
+            <div className="icon">
+              <AiFillFolderAdd />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Add Product
+            </div>
           </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-            Add Product
-          </div>
-        </div>
 
-        <div className="link" onClick={() => {
-          move("/")
-        }}>
-          <div className="icon">
-            <FaHome />
+          <div className="link" onClick={() => {
+            move("/")
+          }}>
+            <div className="icon">
+              <FaHome />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" >
+              Home
+            </div>
           </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" >
-            Home
+          <div className="link mb-5">
+            <div className="icon">
+              <BiLogOut />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" onClick={Logout}>
+              Logout
+            </div>
           </div>
         </div>
-        <div className="link mb-5">
-          <div className="icon">
-            <BiLogOut />
-          </div>
-          <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" onClick={Logout}>
-            Logout
-          </div>
-        </div>
-      </div>
-      <div className="dashboard">
-        {activeComponent === 'dashboard' && <Dashboard />}
+        <div className="dashboard">
+          {activeComponent === 'dashboard' && <Dashboard />}
         {activeComponent === 'orders' && <Orders />}
         {activeComponent === 'users' && <Users />}
         {activeComponent === 'product' && <Products />}
         {activeComponent === 'comments' && <Comments />}
+        </div>
       </div>
+
     </div>
   );
 };

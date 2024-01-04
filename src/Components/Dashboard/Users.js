@@ -48,7 +48,7 @@ export const Users = () => {
 
   return (
     <>
-      <div className='container-fluid'>
+      <div className='container'>
         <div className="row my-3">
           <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
             <div className="">
@@ -81,7 +81,7 @@ export const Users = () => {
               <>
                 {Users.length > 0 && (
                   <div className="table-responsive">
-                    <table className="table table-bordered">
+                    <table className="table table-striped table-bordered table-hover">
                       <thead>
                         <tr>
                           <th>Sr #</th>

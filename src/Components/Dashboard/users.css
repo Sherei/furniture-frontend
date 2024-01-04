@@ -24,9 +24,8 @@
 }
 
 .user_row {
-    height: 100vh;
+    height: 80vh;
     overflow: auto;
-    /* background-color: white; */
     border-radius: 5px;
 }
 
@@ -69,19 +68,4 @@ td {
     background-color: transparent;
     border: none;
     outline: none;
-}
-
-.excel_btn {
-    width: fit-content;
-    height: fit-content;
-    padding: 5px 10px;
-    background-color: rgb(31,211,102,0.8);
-    color: rgb(2, 2, 94,0.8);
-}
-
-.excel_btn:hover {
-    background-color: rgb(31,211,102);
-    color: rgb(2, 2, 94 );
-    transition: all linear 0.3s;
-
 }
