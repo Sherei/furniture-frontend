@@ -1471,23 +1471,25 @@ const SingleAdd = () => {
                   product.images.length > 0 &&
                   product?.description && (
                     <>
-                      <div className="my-4 d-flex flex-wrap justify-content-center gap-5">
-                        {product.images[1] && (
-                          <img
-                            src={product.images[1]}
-                            className="img-fluid rounded"
-                            alt="No Network"
-                            style={{ maxHeight: "400px" }}
-                          />
-                        )}
-                        {product.images[2] && (
-                          <img
-                            src={product.images[2]}
-                            className="img-fluid rounded"
-                            alt="No Network"
-                            style={{ maxHeight: "400px" }}
-                          />
-                        )}
+                      <div className="my-4 row row-cols-lg-2 row-cols-1 g-4">
+                        <div className="cols">
+                          {product.images[1] && (
+                            <img
+                              src={product.images[1]}
+                              className="img-fluid rounded"
+                              alt="No Network"
+                            />
+                          )}
+                        </div>
+                        <div>
+                          {product.images[2] && (
+                            <img
+                              src={product.images[2]}
+                              className="img-fluid rounded"
+                              alt="No Network"
+                            />
+                          )}
+                        </div>
                       </div>
                     </>
                   )}
@@ -1570,7 +1572,7 @@ const SingleAdd = () => {
                   .length === 0 ? (
                   <div
                     className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                    style={{ height: "50vh", color: "rgb(2, 2, 94)" }}
+                    style={{ height: "50vh" }}
                   >
                     <h2 style={{ color: "white" }}>No Review available</h2>
                   </div>
@@ -1589,16 +1591,6 @@ const SingleAdd = () => {
                           return (
                             <SwiperSlide className="review_slide">
                               <div className="px-3 py-2" key={index}>
-                                {/* <div
-                                  className="text-center"
-                                  style={{ color: "yellow" }}
-                                >
-                                  <FaStar />
-                                  <FaStar />
-                                  <FaStar />
-                                  <FaStar />
-                                  <FaStar />
-                                </div> */}
                                 <p className="review_detail text-center py-5 mt-3">
                                   {item.comment}
                                 </p>

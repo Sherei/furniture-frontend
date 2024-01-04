@@ -8,6 +8,7 @@ import {
   FaHome,
   FaQq
 } from 'react-icons/fa';
+import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from "react-icons/io"
 import { AiFillFolderAdd } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi';
 import { Dashboard } from './Dashboard';
@@ -39,6 +40,21 @@ const Sidebar = () => {
     setActiveComponent(component);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 992) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   function Logout() {
     dispatch({
       type: 'LOGOUT_USER'
@@ -56,7 +72,15 @@ const Sidebar = () => {
             SOFA & BEDS
           </p>
           <div className="bars">
-            <FaBars onClick={toggle} />
+             {isOpen ? (
+            <div className="bars" onClick={toggle}>
+              <IoIosArrowDropleftCircle />
+            </div>
+          ) : (
+            <div className="bars" onClick={toggle}>
+              <IoIosArrowDroprightCircle />
+            </div>
+          )}
           </div>
         </div>
         <div className={`link ${activeComponent === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>

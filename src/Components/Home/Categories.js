@@ -64,7 +64,7 @@ const Categories = () => {
           <div className='h_box_main'>
             <div className="h_box" onClick={() => { move('/products/sofa') }}>
               <div className='h_box_img_main'>
-                <img src="/allsofa.jpg" alt='No Network' />
+                <img src="/allsofa.jpeg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>All Sofas</p>
@@ -114,7 +114,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/mattress') }}>
               <div className='h_box_img_main'>
-                <img src="/mattress.jpg" alt='No Network' />
+                <img src="/mattress.jpeg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>Mattresses</p>
@@ -124,7 +124,7 @@ const Categories = () => {
 
             <div className="h_box" onClick={() => { move('/products/footstools') }}>
               <div className='h_box_img_main'>
-                <img src="/footstools.jpg" alt='No Network' />
+                <img src="/footstools.jpeg" alt='No Network' />
               </div>
               <div>
                 <p className='text-center m-0 mt-3 fw-bolder'>Footstools</p>

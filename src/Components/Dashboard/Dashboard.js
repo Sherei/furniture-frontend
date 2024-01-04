@@ -6,10 +6,9 @@ import { Orders } from "./Orders"
 import Comments from './Comments';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import "./dashboard.css";
+import Loader from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
-
-
+import "./dashboard.css";
 
 export const Dashboard = () => {
 
@@ -18,27 +17,39 @@ export const Dashboard = () => {
             top: 0
         });
     }, []);
-    const move =useNavigate()
+
     let cu = useSelector(store => store.userSection.cu)
+    const move = useNavigate()
+
     const [users, setUsers] = useState([])
     const [product, setProducts] = useState([])
     const [comment, setComments] = useState([])
     const [order, setOrder] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard`).then((res) => {
-            setUsers(res.data.Users)
-            setProducts(res.data.Products)
-            setComments(res.data.comments)
-            setOrder(res.data.allOrder)
-        })
-    }, [])
     let data = [
         { title: "Total Orders", desc: order.length, icon: <FaFirstOrder />, id: "order" },
         { title: "Total Users", desc: users.length, icon: <FaUsers />, id: "users" },
         { title: "Products", desc: product.length, icon: <FaClipboardList />, id: "product" },
         { title: "Comments", desc: comment.length, icon: <FaCommentDots />, id: "comment" },
     ];
+
+    useEffect(() => {
+        try {
+            setIsLoading(true);
+            axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard`).then((res) => {
+                setUsers(res.data.Users)
+                setProducts(res.data.Products)
+                setComments(res.data.comments)
+                setOrder(res.data.allOrder)
+            })
+        } catch (e) { }
+        finally {
+            setIsLoading(false);
+        }
+    }, [])
+
+    
     const handleItemClick = (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -46,11 +57,11 @@ export const Dashboard = () => {
         }
     };
 
-    if (cu.email != "asd@gmail.com") {
-        return move('/')
-    } else if (cu._id === undefined) {
-        return move('/')
-    }
+    // if (cu.email != "asd@gmail.com") {
+    //     return move('/')
+    // } else if (cu._id === undefined) {
+    //     return move('/')
+    // }
 
     return (
         <>
@@ -64,8 +75,12 @@ export const Dashboard = () => {
                         </div>
                     </div>
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-sm-2  g-4">
-                        {data.map((item, index) => {
-                            return (
+                        {isLoading ? (
+                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }}>
+                                <Loader />
+                            </div>
+                        ) : (
+                            data.map((item, index) => (
                                 <div className='col' key={index} onClick={() => handleItemClick(item.id)}>
                                     <div className='dash_card'>
                                         {item.title === "New Order" && (
@@ -86,8 +101,8 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-                            );
-                        })}
+                            ))
+                        )}
                     </div>
                 </div>
 

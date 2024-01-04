@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
 import { FaPencilAlt } from 'react-icons/fa'
-import { useDownloadExcel } from 'react-export-table-to-excel';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -16,33 +15,22 @@ export const Products = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/product`)
+      .get(`${process.env.REACT_APP_BASE_URL}/Adminproduct`, {
+        params: { search },
+      })
       .then((res) => {
         setProduct(res?.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        return <>
-          <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-            <Loader />
-          </div>
-        </>
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
       });
-  }, []);
+  }, [search]);
 
   const handleSearchInputChange = (e) => {
     setSearch(e.target.value);
   };
-
-  const filteredProduct = product.length > 0 && product?.filter((data) => {
-    const lowerCaseSearch = search.toLowerCase();
-    return (
-      data?.title?.toLowerCase().includes(lowerCaseSearch) ||
-      data?.category?.toLowerCase().includes(lowerCaseSearch) ||
-      data?.subCategory?.toLowerCase().includes(lowerCaseSearch) ||
-      data?.sn?.toString().toLowerCase().includes(lowerCaseSearch)
-    );
-  });
 
   const DeleteProduct = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteProduct?id=${dataId}`).then(() => {
@@ -88,13 +76,13 @@ export const Products = () => {
             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
               <Loader />
             </div>
-          ) : filteredProduct.length === 0 ? (
+          ) : product.length === 0 ? (
             <div className="col-12" style={{ height: "300px" }}>
               <p className='text-center'>No Products Found...</p>
             </div>
           ) : (
             <>
-              {filteredProduct.length > 0 && (
+              {product?.length > 0 && (
                 <div className="table-responsive">
                   <table className="table table-bordered">
                     <thead>
@@ -114,7 +102,7 @@ export const Products = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredProduct.map((data, index) => (
+                      {product?.map((data, index) => (
                         <tr key={index} >
                           <td>{index + 1}</td>
                           <td>{data.sn}</td>

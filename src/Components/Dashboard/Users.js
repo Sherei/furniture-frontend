@@ -12,29 +12,22 @@ export const Users = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/Users`)
+      .get(`${process.env.REACT_APP_BASE_URL}/AdminUsers`, {
+        params: { search },
+      })
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        // console.error("Error fetching data:", error);
+        // console.error('Error fetching data:', error);
         setIsLoading(false);
       });
-  }, []);
+  }, [search]);
 
   const handleSearchInputChange = (e) => {
     setSearch(e.target.value);
   };
-
-  const filteredUser = Users?.filter((data) => {
-    const lowerCaseSearch = search.toLowerCase();
-
-    return (
-      data?.name?.toLowerCase().includes(lowerCaseSearch) ||
-      data?.email?.toLowerCase().includes(lowerCaseSearch)
-    );
-  });
 
   const DeleteUser = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteUser?id=${dataId}`).then(() => {
@@ -80,13 +73,13 @@ export const Users = () => {
               <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                 <Loader />
               </div>
-            ) : filteredUser.length === 0 ? (
+            ) : Users.length === 0 ? (
               <div className="col-12" style={{ height: "300px" }}>
                 <p className='text-center'>No User Found...</p>
               </div>
             ) : (
               <>
-                {filteredUser.length > 0 && (
+                {Users.length > 0 && (
                   <div className="table-responsive">
                     <table className="table table-bordered">
                       <thead>
@@ -100,7 +93,7 @@ export const Users = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredUser.map((data, index) => (
+                        {Users.map((data, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{data.name}</td>
