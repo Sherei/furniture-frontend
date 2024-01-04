@@ -302,6 +302,7 @@
 
 .nav_search_btn {
   position: absolute;
+  height: 65%;
   top: 12px;
   right: 12px;
   padding: 0px 20px !important;

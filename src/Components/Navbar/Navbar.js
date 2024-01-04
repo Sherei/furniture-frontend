@@ -505,15 +505,15 @@ export const Navbar = () => {
                     </div>
                   </div>
                   <div className="col-6 d-flex align-items-center nav_cotact"
-                    style={{ position: "relative" }}
+                    style={{ position: "relative", overflow: "hidden" }}
                   >
                     <input
                       type="search"
                       placeholder="Search Anything"
-                      className=""
+                      className="h-70"
                       onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <button className="nav_search_btn ">
+                    <button className="nav_search_btn">
                       <FiSearch />
                     </button>
                   </div>
@@ -644,6 +644,19 @@ export const Navbar = () => {
                           </NavLink>
                         </li>
                       )}
+                      <li className="nav-item px-0" onClick={toggleCart}>
+                        <NavLink
+                          className="nav-link nav-link1"
+                          style={{ border: "none", position: "relative" }}
+                        >
+                          <span className="fs-2" style={{ color: "#E7E7E9" }}>
+                            <FiShoppingCart />
+                            <p className="m-0 cart_number">
+                              {filterCartLength}
+                            </p>
+                          </span>
+                        </NavLink>
+                      </li>
                       {cu._id != undefined && (
                         <>
                           <li className="nav-item dropdown px-0">
@@ -656,12 +669,9 @@ export const Navbar = () => {
                               aria-expanded="false"
                               style={{ borderBottom: "none", color: "white" }}
                             >
-                              <div
-                                className="fs-2"
-                                style={{ color: "#E7E7E9" }}
-                                onClick={() => setSearch(false)}
-                              >
-                                <FaRegUser />
+                              <div className="d-flex gap-1 align-items-center">
+                                <img src="/profile.png" style={{ width: "50px" }} alt="No Network" onClick={() => setSearch(false)} />
+                                <span style={{ color: "white" }}><FaAngleDown /></span>
                               </div>
                             </NavLink>
                             <ul
@@ -693,19 +703,6 @@ export const Navbar = () => {
                           </li>
                         </>
                       )}
-                      <li className="nav-item px-0" onClick={toggleCart}>
-                        <NavLink
-                          className="nav-link nav-link1"
-                          style={{ border: "none", position: "relative" }}
-                        >
-                          <span className="fs-2" style={{ color: "#E7E7E9" }}>
-                            <FiShoppingCart />
-                            <p className="m-0 cart_number">
-                              {filterCartLength}
-                            </p>
-                          </span>
-                        </NavLink>
-                      </li>
                     </div>
                   </div>
                 </div>
