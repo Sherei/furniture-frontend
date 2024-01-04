@@ -52,7 +52,9 @@
 
 .register_btn {
     cursor: pointer;
-    color: blue;
+    color: darkblue;
+    font-weight: 600;
+    border-bottom: 1px solid darkblue;
 }
 
 .active_btn {

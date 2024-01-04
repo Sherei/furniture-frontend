@@ -113,7 +113,9 @@ export const Login = () => {
             </div>
             <button className='btn rounded login_btn mt-3'>Login</button>
             <p className='mt-2 fs-6'>I don't have an account. &nbsp;
-              <span onClick={() => {
+              <span
+               className='register_btn' 
+              onClick={() => {
                 move("/signup")
               }}>
                 Register

@@ -67,9 +67,7 @@ const UserPanel = () => {
         } else {
             return <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                 <Loader />
-                move('/')
             </div>
-
         }
     }
 

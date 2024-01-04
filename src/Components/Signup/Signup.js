@@ -102,11 +102,13 @@ const Signup = () => {
                         </div>
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
                         <p className='mt-2 fs-6'>Already have an account? &nbsp;
-                            <span onClick={() => {
-                                move("/login")
-                            }}>
+                            <span
+                                className='register_btn'
+                                onClick={() => {
+                                    move("/login")
+                                }}
+                            >
                                 Login
-
                             </span>
                         </p>
 
