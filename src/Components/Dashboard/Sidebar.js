@@ -67,8 +67,8 @@ const Sidebar = () => {
   return (
     <div className="container-fluid d-flex p-0 m-0">
       <div style={{ width: isOpen ? '300px' : '50px' }} className="sidebar">
-        <div className="px-2 pt-3 d-flex justify-content-between text-center">
-          <p className="fs-5 fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
+        <div className="px-2 pt-3 d-flex justify-content-between">
+          <p className="fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
             SOFA & BEDS
           </p>
           <div className="bars">

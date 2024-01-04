@@ -49,7 +49,7 @@ export const Dashboard = () => {
         }
     }, [])
 
-    
+
     const handleItemClick = (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -65,14 +65,12 @@ export const Dashboard = () => {
 
     return (
         <>
-            <div className='container my-5'>
+            <div className='container-fluid mb-5 mt-2'>
                 <div className='row px-3'>
                     <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
-                        <div className="">
-                            <h1 className="p_head">
-                                Dashboard
-                            </h1>
-                        </div>
+                        <h1 className="p_head">
+                            Dashboard
+                        </h1>
                     </div>
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-sm-2  g-4">
                         {isLoading ? (
@@ -82,48 +80,47 @@ export const Dashboard = () => {
                         ) : (
                             data.map((item, index) => (
                                 <div className='col' key={index} onClick={() => handleItemClick(item.id)}>
-                                    <div className='dash_card'>
+                                    <div className='p-3 admin_card'>
+                                        <div className='d-flex justify-content-between align-items-center'>
+                                            <div>
+                                                <p className='admin_card_title'>{item.title}</p>
+                                                <p className='admin_card_number'>{item.desc}</p>
+                                            </div>
+                                            <div className='card_icon'>
+                                                {item.icon}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* <div className='dash_card'>
                                         {item.title === "New Order" && (
                                             <div>
                                                 <p className='color_card'>4+</p>
                                             </div>
-                                        )}
-                                        <div className='dash_icon' style={{ fontSize: "50px" }}>
-                                            {item.icon}
-                                        </div>
-                                        <div className='dash_detail' style={{ fontSize: "20px" }}>
-                                            <div>
-                                                <p style={{ fontWeight: "600" }}>{item.title}</p>
-                                            </div>
-                                            <div className='d-flex justify-content-end px-3'>
-                                                <p style={{ fontWeight: "600" }}>{item.desc}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        )}*/}
                                 </div>
                             ))
                         )}
                     </div>
                 </div>
 
-                <div className='col-lg-12 col-sm-12' id='order'>
+                <div id='order'>
                     <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Orders />
                     </div>
                 </div>
 
-                <div className='col-lg-12 col-sm-12' id='users'>
+                <div  id='users'>
                     <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Users />
                     </div>
                 </div>
 
-                <div className='col-lg-12 col-sm-12' id='product'>
+                <div  id='product'>
                     <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Products />
                     </div>
                 </div>
-                <div className='col-lg-12 col-sm-12' id='comment'>
+                <div  id='comment'>
                     <div className='row my-5 d-flex gap-5 justify-content-center'>
                         <Comments />
                     </div>
