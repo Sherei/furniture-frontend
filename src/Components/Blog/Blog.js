@@ -46,7 +46,7 @@ const Blog = () => {
                         <p className='text-center'>No Blog Uploaded yet...</p>
                     </div>
                 ) : (
-                    <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2 px-5 g-4">
+                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 px-lg-3 px-2 g-4">
                         {blog?.slice(0, 3).map((data, index) => {
                             return <div className='col block_main' key={index} onClick={() => move("/blog_detail/" + data._id)}>
                                 <div className='blog3 text-center'>
