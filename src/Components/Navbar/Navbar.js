@@ -587,6 +587,7 @@ export const Navbar = () => {
                                   )}
                                   <div className="input-group my-4">
                                     <input required="true"
+                                      autocomplete="off"
                                       type="email"
                                       className="input w-100" {...register('email', {
                                         required: true, validate: function (typedValue) {
@@ -604,6 +605,7 @@ export const Navbar = () => {
                                   </div>
                                   <div className="input-group mb-3">
                                     <input required="true"
+                                      autocomplete="off"
                                       type={showPassword ? "text" : "password"}
                                       className="input w-100"
                                       {...register('password', { required: true })} />
@@ -644,19 +646,6 @@ export const Navbar = () => {
                           </NavLink>
                         </li>
                       )}
-                      <li className="nav-item px-0" onClick={toggleCart}>
-                        <NavLink
-                          className="nav-link nav-link1"
-                          style={{ border: "none", position: "relative" }}
-                        >
-                          <span className="fs-2" style={{ color: "#E7E7E9" }}>
-                            <FiShoppingCart />
-                            <p className="m-0 cart_number">
-                              {filterCartLength}
-                            </p>
-                          </span>
-                        </NavLink>
-                      </li>
                       {cu._id != undefined && (
                         <>
                           <li className="nav-item dropdown px-0">
@@ -667,11 +656,14 @@ export const Navbar = () => {
                               role="button"
                               data-bs-toggle="dropdown"
                               aria-expanded="false"
-                              style={{ borderBottom: "none", color: "white" }}
+                              style={{ borderBottom: "none" }}
+                              onClick={() => setSearch(false)}
                             >
-                              <div className="d-flex gap-1 align-items-center">
-                                <img src="/profile.png" style={{ width: "50px" }} alt="No Network" onClick={() => setSearch(false)} />
-                                <span style={{ color: "white" }}><FaAngleDown /></span>
+                              <div
+                                className="fs-2"
+                                style={{ color: "#E7E7E9" }}
+                              >
+                                <FaRegUser />
                               </div>
                             </NavLink>
                             <ul
@@ -703,6 +695,20 @@ export const Navbar = () => {
                           </li>
                         </>
                       )}
+                      <li className="nav-item px-0" onClick={toggleCart}>
+                        <NavLink
+                          className="nav-link nav-link1"
+                          style={{ border: "none", position: "relative" }}
+                        >
+                          <span className="fs-2" style={{ color: "#E7E7E9" }}>
+                            <FiShoppingCart />
+                            <p className="m-0 cart_number">
+                              {filterCartLength}
+                            </p>
+                          </span>
+                        </NavLink>
+                      </li>
+
                     </div>
                   </div>
                 </div>

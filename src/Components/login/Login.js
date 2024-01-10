@@ -81,6 +81,7 @@ export const Login = () => {
             }
             <div className="input-group mb-3">
               <input required="true"
+              autocomplete="off"
                 type="email"
                 className="input w-100" {...register('email', {
                   required: true, validate: function (typedValue) {
@@ -98,6 +99,7 @@ export const Login = () => {
             </div>
             <div className="input-group mb-3">
               <input required="true"
+              autocomplete="off"
                 type={showPassword ? "text" : "password"}
                 className="input w-100"
                 {...register('password', { required: true })} />

@@ -329,7 +329,7 @@ const SingleAdd = () => {
             type: "ADD_TO_CART",
             payload: response.data.alldata,
           });
-         setSucess("cart")
+          setSucess("cart")
         }
       } catch (error) {
         return (
@@ -560,7 +560,7 @@ const SingleAdd = () => {
                 </div>
               </div>
               <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
-                {sucess==="cart" && (
+                {sucess === "cart" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
@@ -1566,7 +1566,7 @@ const SingleAdd = () => {
               </div>
 
               <div className="col-lg-6 col-md-6 col-sm-12 px-lg-5 px-3 pt-lg-0 pt-5 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
-                {sucess==="comment" && (
+                {sucess === "comment" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
@@ -1586,6 +1586,7 @@ const SingleAdd = () => {
                 <form action="" onSubmit={handleSubmit(Comment)}>
                   <div className="input-group mb-3">
                     <input required="true"
+                      autocomplete="off"
                       type="text"
                       className="input w-100"
                       {...register('name', { required: true })}
@@ -1595,6 +1596,7 @@ const SingleAdd = () => {
                   </div>
                   <div className="input-group mb-3">
                     <input required="true"
+                      autocomplete="off"
                       type="email"
                       className="input w-100"
                       {...register('email', { required: true })}

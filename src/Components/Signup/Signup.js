@@ -26,13 +26,8 @@ const Signup = () => {
     const move = useNavigate()
 
     async function SignUp(data) {
-
-        console.log("Signup data is::", data)
-
         try {
-
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
-
             if (response.data === "User Created") {
                 toast.success("Account Created")
                 move('/login')
@@ -52,7 +47,7 @@ const Signup = () => {
             <div className='row d-flex justify-content-center'>
                 <div className='col-lg-6 col-md-12 col-sm-12'>
                     <div>
-                        <p className='m-0 fs-2 text-center fw-bolder' style={{color:"#1b2950"}}>Create Your Account</p>
+                        <p className='m-0 fs-2 text-center fw-bolder' style={{ color: "#1b2950" }}>Create Your Account</p>
                         <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
@@ -61,6 +56,7 @@ const Signup = () => {
                         }
                         <div className="input-group mb-3">
                             <input required="true"
+                                autocomplete="off"
                                 type="text"
                                 className="input w-100"
                                 {...register('name', { required: true })}
@@ -70,6 +66,7 @@ const Signup = () => {
                         </div>
                         <div className="input-group mb-3">
                             <input required="true"
+                                autocomplete="off"
                                 type="email"
                                 className="input w-100" {...register('email', {
                                     required: true, validate: function (typedValue) {
@@ -87,6 +84,7 @@ const Signup = () => {
                         </div>
                         <div className="input-group mb-3">
                             <input required="true"
+                                autocomplete="off"
                                 type={showPassword ? "text" : "password"}
                                 className="input w-100"
                                 {...register('password', { required: true })} />

@@ -104,7 +104,7 @@ const Review = () => {
                             <Loader />
                         </div>
                     ) : comments.length === 0 ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh"}} >
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                             <h2 style={{ color: "white" }}>No Review available</h2>
                         </div>
                     ) : (
@@ -154,6 +154,7 @@ const Review = () => {
                     <form action="" onSubmit={handleSubmit(Comment)}>
                         <div className="input-group mb-3">
                             <input required="true"
+                                autocomplete="off"
                                 type="text"
                                 className="input w-100"
                                 {...register('name', { required: true })}
@@ -163,6 +164,7 @@ const Review = () => {
                         </div>
                         <div className="input-group mb-3">
                             <input required="true"
+                                autocomplete="off"
                                 type="email"
                                 className="input w-100"
                                 {...register('email', { required: true })}

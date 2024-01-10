@@ -77,8 +77,8 @@ const Comments = () => {
 
 
     return <>
-        <div className="container">
-            <div className="row my-3">
+        <div className="container my-5">
+            <div className="row">
                 <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
                     <div className="">
                         <h1 className="p_head">
@@ -96,7 +96,7 @@ const Comments = () => {
                     </div>
                 </div>
             </div>
-            <div className='row px-0 py-3 user_row'>
+            <div className='row px-0'>
                 <div className='col'>
                     {loading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
