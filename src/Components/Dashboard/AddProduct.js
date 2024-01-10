@@ -223,7 +223,6 @@ export const AddProduct = () => {
           }
            {product &&
             <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Edit Product </h1>
-          
           }
             <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
           </div>

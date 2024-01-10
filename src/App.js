@@ -26,6 +26,7 @@ import { AddProduct } from './Components/Dashboard/AddProduct';
 import AllBlog from './Components/Blog/AllBlog';
 import Allcategories from './Components/Home/Allcategories';
 import './App.css';
+import AddBlog from './Components/Dashboard/AddBlog';
 
 ReactGA.initialize('G-Y946N662J4');
 
@@ -125,32 +126,46 @@ function App() {
 
             </div>
 
-          </a>  
+          </a>
 
           <BrowserRouter>
             <Navbar />
             <main>
               <Routes>
                 <Route exact path='/' element={<Home />} />
-                <Route exact path='/user-profile/:userId' element={<UserPanel />} />
-                <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
-                <Route exact path='/Products' element={<Products />} />
-                <Route exact path='/Products/:prodctName' element={<Products />} />
-                <Route exact path='/cart/:userId' element={<Cart />} />
-                <Route exact path='/login' element={<Login />} />
+                {/* User */}
                 <Route exact path='/signup' element={<Signup />} />
-                <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
-                <Route exact path='/admin-dashboard' element={<Sidebar />} />
+                <Route exact path='/login' element={<Login />} />
+                <Route exact path='/user-profile/:userId' element={<UserPanel />} />
+                
+                {/* Products */}
+                <Route path='/collections' element={<Allcategories />} />
                 <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
                 <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
+                <Route exact path='/Products' element={<Products />} />
+                <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
+                <Route exact path='/Products/:prodctName' element={<Products />} />
+                
+                {/* Cart */}
+                <Route exact path='/cart/:userId' element={<Cart />} />
+                <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
+                
+                {/* Order */}
                 <Route path='/placed' element={<Orderplaced />} />
                 <Route path='/order-placed/:userId' element={<Orderplaced />} />
                 <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
-                {/* <Route path='/faq' element={<Faq />} /> */}
-                <Route path='/single-blog/:Name' element={<SingleBlog />} />
+                
+                {/* Admin */}
+                <Route exact path='/admin-dashboard' element={<Sidebar />} />
+                
+                {/* Blog */}
+                <Route exact path='/admin-dashboard-add-blog' element={<AddBlog />}/>
+                <Route exact path='/admin-dashboard-add-blog/:blogId' element={<AddBlog />}/>
+                <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
-                <Route path='/collections' element={<Allcategories />} />
+              
                 <Route exact path='*' element={<Home />} />
+              
               </Routes>
             </main>
             <Footer />

@@ -12,7 +12,7 @@ export const Users = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/AdminUsers`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/AdminBlog`, {
         params: { search },
       })
       .then((res) => {
@@ -20,7 +20,6 @@ export const Users = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        // console.error('Error fetching data:', error);
         setIsLoading(false);
       });
   }, [search]);

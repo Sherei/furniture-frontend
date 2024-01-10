@@ -1,21 +1,76 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FaArrowRight } from "react-icons/fa"
+import axios from 'axios'
 
 const SingleBlog = () => {
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     }, []);
-    const { Name } = useParams()
+
+    const { blogId } = useParams()
+    const [blog, setBlog] = useState({})
+    const [loading, setLoading] = useState(true);
     const move = useNavigate()
+
+    useEffect(() => {
+        setLoading(true);
+        try {
+            axios
+                .get(`${process.env.REACT_APP_BASE_URL}/singleBlog?id=${blogId}`)
+                .then((res) => {
+                    setBlog(res.data);
+                });
+        } catch (e) {
+            setLoading(true);
+        } finally {
+            setLoading(false);
+        }
+    }, [blogId]);
+    const formatDateTime = (dateStr) => {
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+
+        };
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-GB', options);
+    };
+
     return <>
         <div className='container min-vh-100 '>
             <div className='row mt-5'>
                 <div className='col'>
-                    {Name === "perfect-bed" && <>
+                    <p className='text-center text-muted'>{formatDateTime(blog?.issueDate)} &nbsp;&nbsp;
+                        {blog?.author}</p>
+                    <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)", textTransform: "capitalize" }}>{blog?.title}</h1>
+                    <img
+                        src={blog?.image}
+                        className='mt-5 img-fluid'
+                        alt="No Network"
+                    />
+                    <div className='my-5 px-lg-5 px-2' >
+                        <p className='m-auto'>
+                            Hey, <br /> <br />
+                        </p>
+                        <ul className='mt-4' style={{ width: "95%" }}>
+                            {blog.description1 && <li>{blog.description1}</li>}
+                            {blog.description2 && <li className='mt-3'>{blog.description2}</li>}
+                            {blog.description3 && <li className='mt-3'>{blog.description3}</li>}
+                            {blog.description4 && <li className='mt-3'>{blog.description4}</li>}
+                            {blog.description5 && <li className='mt-3'>{blog.description5}</li>}
+                            {blog.description6 && <li className='mt-3'>{blog.description6}</li>}
+                        </ul>
+                    </div>
+                    <div className='text-center'>
+                        <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
+                    </div>
+                    {/* {Name === "perfect-bed" && <>
                         <p className='text-center text-muted'>APR 10, 2023
                             JELENA PETKOVIC</p>
                         <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>How to Choose a Perfect Bed</h1>
@@ -290,10 +345,8 @@ const SingleBlog = () => {
 
                             </div>
                         </>
-                    }
-                    <div className='my-5 text-center'>
-                        <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
-                    </div>
+                    } */}
+                    
                 </div>
             </div>
         </div>

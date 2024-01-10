@@ -8,6 +8,7 @@ import {
   FaHome,
   FaQq
 } from 'react-icons/fa';
+import { FaBlog } from "react-icons/fa6";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
 import { AiFillFolderAdd } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi';
@@ -132,6 +133,16 @@ const Sidebar = () => {
             </div>
           </div>
 
+          <div className={`link ${activeComponent === 'addBlog' ? 'active' : ''}`}
+            onClick={() => move('/admin-dashboard-add-blog')}>
+            <div className="icon">
+              <FaBlog />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Add Blog
+            </div>
+          </div>
+
           <div className="link" onClick={() => {
             move("/")
           }}>
@@ -153,10 +164,10 @@ const Sidebar = () => {
         </div>
         <div className="dashboard">
           {activeComponent === 'dashboard' && <Dashboard />}
-        {activeComponent === 'orders' && <Orders />}
-        {activeComponent === 'users' && <Users />}
-        {activeComponent === 'product' && <Products />}
-        {activeComponent === 'comments' && <Comments />}
+          {activeComponent === 'orders' && <Orders />}
+          {activeComponent === 'users' && <Users />}
+          {activeComponent === 'product' && <Products />}
+          {activeComponent === 'comments' && <Comments />}
         </div>
       </div>
 

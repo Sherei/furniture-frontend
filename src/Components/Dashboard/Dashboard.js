@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaUsers, FaClipboardList, FaFirstOrder, FaCommentDots } from "react-icons/fa";
+import { FaUsers, FaClipboardList, FaFirstOrder, FaCommentDots, FaBlog } from "react-icons/fa";
 import { Users } from "./Users"
 import { Products } from "./Products"
 import { Orders } from "./Orders"
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 import "./dashboard.css";
+import Blogs from './Blogs';
 
 export const Dashboard = () => {
 
@@ -25,6 +26,7 @@ export const Dashboard = () => {
     const [product, setProducts] = useState([])
     const [comment, setComments] = useState([])
     const [order, setOrder] = useState([])
+    const [blog, setBlog] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
     let data = [
@@ -32,6 +34,7 @@ export const Dashboard = () => {
         { title: "Total Users", desc: users.length, icon: <FaUsers />, id: "users" },
         { title: "Products", desc: product.length, icon: <FaClipboardList />, id: "product" },
         { title: "Comments", desc: comment.length, icon: <FaCommentDots />, id: "comment" },
+        { title: "Blogs", desc: blog.length, icon: <FaBlog />, id: "blog" },
     ];
 
     useEffect(() => {
@@ -42,6 +45,7 @@ export const Dashboard = () => {
                 setProducts(res.data.Products)
                 setComments(res.data.comments)
                 setOrder(res.data.allOrder)
+                setBlog(res.data.allBlog)
             })
         } catch (e) { }
         finally {
@@ -107,6 +111,9 @@ export const Dashboard = () => {
                     </div>
                     <div className='col-12' id='comment'>
                         <Comments />
+                    </div>
+                    <div className='col-12' id='blog'>
+                        <Blogs/>
                     </div>
                 </div>
             </div>
