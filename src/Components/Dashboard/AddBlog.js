@@ -130,19 +130,17 @@ const AddBlog = () => {
                                     {errors.title && errors.title.type == "required" ? <div className='error'> Title is required </div> : null}
                                 </div>
                                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Author Name *</label>
-                                    <input type="text" {...register('author', { required: true })} className="form-control mb-2 mr-sm-2" />
-                                    {errors.author && errors.author.type == "required" ? <div className='error'>Author Name is required</div> : null}
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Author Name</label>
+                                    <input type="text" {...register('author')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Publish Date *</label>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Publish Date</label>
                                     <input
                                         type="date"
                                         defaultValue={blog ? blog.issueDate : ''}
-                                        {...register('issueDate', { required: blogId ? false : true })}
+                                        {...register('issueDate')}
                                         className="form-control mb-2 mr-sm-2"
                                     />
-                                    {errors.issueDate && errors.issueDate.type == "required" ? <div className='error'>Issue Date is required</div> : null}
                                 </div>
                                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Image *</label>
@@ -159,25 +157,54 @@ const AddBlog = () => {
 
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Description *</label>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Introduction *</label>
+                                    <textarea type="text" rows={3} {...register('introduction', { required: true })} className="form-control mb-2 mr-sm-2" />
+                                    {errors.introduction && errors.introduction.type == "required" ? <div className='error'>Introduction is required</div> : null}
+                                </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1 *</label>
+                                    <input type="text"  {...register('heading1', { required: true })} className="form-control mb-2 mr-sm-2" />
+                               </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1 *</label>
                                     <textarea type="text" rows={3} {...register('description1', { required: true })} className="form-control mb-2 mr-sm-2" />
                                     {errors.description1 && errors.description1.type == "required" ? <div className='error'>Discription is required</div> : null}
+                                </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 2</label>
+                                    <input type="text" {...register('heading2')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 2</label>
                                     <textarea type="text" rows={3} {...register('description2')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 3</label>
+                                    <input type="text"{...register('heading3')} className="form-control mb-2 mr-sm-2" />
+                                </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 3</label>
                                     <textarea type="text" rows={3} {...register('description3')} className="form-control mb-2 mr-sm-2" />
+                                </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 4</label>
+                                    <input type="text" {...register('heading4')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 4</label>
                                     <textarea type="text" rows={3} {...register('description4')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 5</label>
+                                    <input type="text" {...register('heading5')} className="form-control mb-2 mr-sm-2" />
+                                </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 5</label>
                                     <textarea type="text" rows={3} {...register('description5')} className="form-control mb-2 mr-sm-2" />
+                                </div>
+                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 6</label>
+                                    <input type="text" {...register('heading6')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 6</label>

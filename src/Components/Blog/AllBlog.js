@@ -30,7 +30,7 @@ const AllBlog = () => {
 
     return <>
         <div className='container-fluid p-0 min-vh-100'>
-            <div className='row'>
+            <div className='row my-5'>
                 <div className='col'>
                     <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Our Blog</h1>
                     <p className='text-center'>We prepared some helpful tips for you</p>
@@ -43,7 +43,7 @@ const AllBlog = () => {
                 >
                     <Loader />
                 </div>
-            ) : blog.length === 0 ? (
+            ) : blog?.length === 0 ? (
                 <div className="col-12" style={{ height: "300px" }}>
                     <p className='text-center'>No Blog Uploaded yet...</p>
                 </div>
@@ -55,7 +55,7 @@ const AllBlog = () => {
                                 <img src={data?.image} alt="No Network" />
                             </div>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{ color: "rgb(2, 2, 94)" }}>{data.title}</p>
-                            <p className='text-center mt-2 mb-4'>{data?.description1.slice(0, 100)}...</p>
+                            <p className='text-center mt-2 mb-4'>{data?.introduction?.slice(0,100)}...</p>
                             <p className='text-muted text-center read'>READ MORE</p>
                         </div>
                     })
