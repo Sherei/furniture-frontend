@@ -61,9 +61,8 @@ const Beds = () => {
                 if (res) {
                     setData(res.data);
                 }
-            } catch (e) {
-                // Handle error
-            } finally {
+            } catch (e) { }
+            finally {
                 setLoading(false);
             }
         });

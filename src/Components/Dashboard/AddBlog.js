@@ -24,18 +24,7 @@ const AddBlog = () => {
     const { blogId } = useParams();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        defaultValues: {
-            title: blog?.title || '',
-            issueDate: blog?.issueDate || '',
-            description1: blog?.description1 || '',
-            description2: blog?.description2 || '',
-            description3: blog?.description3 || '',
-            description4: blog?.description4 || '',
-            description5: blog?.description5 || '',
-            description6: blog?.description6 || '',
-            image: blog?.image || '',
-            author: blog?.author || '',
-        },
+        defaultValues: blog,
     });
 
     useEffect(() => {

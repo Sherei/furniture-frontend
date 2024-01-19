@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FaArrowRight } from "react-icons/fa"
 import axios from 'axios'
+import Loader from "../Loader/Loader"
 
 const SingleBlog = () => {
 
@@ -31,6 +32,7 @@ const SingleBlog = () => {
             setLoading(false);
         }
     }, [blogId]);
+
     const formatDateTime = (dateStr) => {
         const options = {
             year: 'numeric',
@@ -43,41 +45,45 @@ const SingleBlog = () => {
     };
 
     return <>
-        <div className='container min-vh-100 '>
-            <div className='row mt-5'>
-                <div className='col'>
-                    <h1 className='fw-bolder' style={{ color: "rgb(2, 2, 94)", textTransform: "capitalize" }}>{blog?.title}</h1>
-                    {(blog.author && blog.issueDate ) && <p className='text-muted'>{formatDateTime(blog?.issueDate)} &nbsp;&nbsp;{blog?.author}</p>}
-                    {/* <img
-                        src={blog?.image}
-                        className='mt-5 img-fluid'
-                        alt="No Network"
-                    /> */}
-                    <div className='my-5 px-lg-5 px-2' >
-                        <ul className='' style={{ width: "95%" }}>
-                            <p className=''>
-                                Hey, <br /> <br />
-                            </p>
-                            <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>Introduction:</p>
-                            {blog?.introduction && <li className='mb-3'>{blog?.introduction}</li>}
-                            {blog?.heading1 &&<p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading1}</p>}
-                            {blog?.description1 && <li className='mb-3'>{blog?.description1}</li>}
-                            {blog?.heading2 &&<p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading2}</p>}
-                            {blog?.description2 && <li className='mb-3'>{blog?.description2}</li>}
-                            {blog?.heading3 &&<p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading3}</p>}
-                            {blog?.description3 && <li className='mb-3'>{blog?.description3}</li>}
-                            {blog?.heading4 &&<p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading4}</p>}
-                            {blog?.description4 && <li className='mb-3'>{blog?.description4}</li>}
-                            {blog?.heading5 &&<p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading5}</p>}
-                            {blog?.description5 && <li className='mb-3'>{blog?.description5}</li>}
-                            {blog?.heading6 &&<p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading6}</p>}
-                            {blog?.description6 && <li className='mb-3'>{blog?.description6}</li>}
-                        </ul>
+        {loading ? (
+            <div className='d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
+                <Loader />
+            </div>
+        ) : (
+            <div className='container min-vh-100 '>
+                <div className='row mt-5'>
+                    <div className='col'>
+                        <h1 className='fw-bolder' style={{ color: "rgb(2, 2, 94)", textTransform: "capitalize" }}>{blog?.title}</h1>
+                        {(blog.author && blog.issueDate) && <p className='text-muted'>{formatDateTime(blog?.issueDate)} &nbsp;&nbsp;{blog?.author}</p>}
+                        <div className='my-5 px-lg-5 px-2' >
+                            <ul className='' style={{ width: "95%" }}>
+                                <p className=''>
+                                    Hey, <br /> <br />
+                                </p>
+                                <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>Introduction:</p>
+                                {blog?.introduction && <li className='mb-3'>{blog?.introduction}</li>}
+                                {blog?.heading1 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading1}</p>}
+                                {blog?.description1 && <li className='mb-3'>{blog?.description1}</li>}
+                                {blog?.heading2 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading2}</p>}
+                                {blog?.description2 && <li className='mb-3'>{blog?.description2}</li>}
+                                {blog?.heading3 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading3}</p>}
+                                {blog?.description3 && <li className='mb-3'>{blog?.description3}</li>}
+                                {blog?.heading4 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading4}</p>}
+                                {blog?.description4 && <li className='mb-3'>{blog?.description4}</li>}
+                                {blog?.heading5 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading5}</p>}
+                                {blog?.description5 && <li className='mb-3'>{blog?.description5}</li>}
+                                {blog?.heading6 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading6}</p>}
+                                {blog?.description6 && <li className='mb-3'>{blog?.description6}</li>}
+                            </ul>
+                        </div>
+                        <div className='text-center'>
+                            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
+                        </div>
                     </div>
-                    <div className='text-center'>
-                        <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
-                    </div>
-                    {/* {Name === "perfect-bed" && <>
+                </div>
+            </div>
+        )}
+        {/* {Name === "perfect-bed" && <>
                         <p className='text-center text-muted'>APR 10, 2023
                             JELENA PETKOVIC</p>
                         <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>How to Choose a Perfect Bed</h1>
@@ -354,9 +360,6 @@ const SingleBlog = () => {
                         </>
                     } */}
 
-                </div>
-            </div>
-        </div>
     </>
 }
 

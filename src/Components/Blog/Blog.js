@@ -28,7 +28,7 @@ const Blog = () => {
     return <>
         {blog.length !== 0 &&
             <div className='container-fluid p-0 min-vh-100'>
-                <div className='row'>
+                <div className='row mb-4'>
                     <div className='col'>
                         <h1 className='text-center fw-bolder' style={{ color: "rgb(2, 2, 94)" }}>Our Blog</h1>
                         <p className='text-center'>We prepared some helpful tips for you</p>

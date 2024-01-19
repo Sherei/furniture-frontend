@@ -12,7 +12,7 @@ export const Users = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/AdminBlog`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/AdminUsers`, {
         params: { search },
       })
       .then((res) => {
@@ -53,7 +53,6 @@ export const Users = () => {
             <div className="">
               <h1 className="p_head">Users List</h1>
             </div>
-            {/* <button className='excel_btn btn' onClick={onDownload}><FaDownload /></button> */}
             <div>
               <input
                 type="search"
@@ -114,8 +113,6 @@ export const Users = () => {
             )}
           </div>
         </div>
-
-
       </div>
     </>
   );
