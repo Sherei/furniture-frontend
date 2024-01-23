@@ -384,10 +384,11 @@
   .navbar {
     padding: 0px !important;
   }
-  .show_nav {
+  /* .show_nav {
+    display: flex;
     height: 80vh;
     overflow: auto;
-  }
+  } */
 
   .login_div::before {
     right: 67px !important;
