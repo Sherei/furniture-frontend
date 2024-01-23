@@ -382,7 +382,7 @@
 @media screen and (max-width:992px) {
 
   .navbar {
-    padding: 0px;
+    padding: 0px !important;
   }
   .show_nav {
     height: 80vh;
