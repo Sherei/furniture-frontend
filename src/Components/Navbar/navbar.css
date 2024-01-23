@@ -384,10 +384,10 @@
   .navbar {
     padding: 0px !important;
   }
-  /* .show_nav {
-    height: 80vh;
+  .show_nav {
+    min-height: 80vh;
     overflow: auto;
-  } */
+  }
 
   .login_div::before {
     right: 67px !important;
