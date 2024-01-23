@@ -385,7 +385,7 @@
     padding: 0px !important;
   }
   .show_nav {
-    min-height: 80vh;
+    height: 80vh;
     overflow: auto;
   }
 
