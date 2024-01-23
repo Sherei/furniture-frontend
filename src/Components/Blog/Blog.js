@@ -52,7 +52,7 @@ const Blog = () => {
                                 <div className='blog3 text-center'>
                                     <img src={data?.image} alt="No Network" />
                                 </div>
-                                <p className='fw-bolder fs-5 text-center my-4' style={{ color: "rgb(2, 2, 94)", height:"50px", overflow:"hidden" }}>{data.title}</p>
+                                <p className='fw-bolder fs-5 text-center my-4' style={{ color: "rgb(2, 2, 94)", height:"70px", overflow:"hidden" }}>{data.title}</p>
                                 <p className='text-muted text-center read'>READ MORE</p>
                             </div>
                         })
