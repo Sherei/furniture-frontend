@@ -57,7 +57,7 @@
 .swiper-slide img {
     display: block;
     width: 100%;
-    max-height: 500px;
+    height: 600px;
     object-fit: cover;
 }
 
@@ -89,4 +89,13 @@
     .hero_text {
         font-size: 15px;
     }
+
+    .hero_main {
+        width: 100%;
+    }
+
+    .swiper-slide img {
+        height: 350px;
+    }
+
 }
