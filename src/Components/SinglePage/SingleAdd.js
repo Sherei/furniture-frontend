@@ -328,8 +328,10 @@ const SingleAdd = () => {
           dispatch({
             type: "ADD_TO_CART",
             payload: response.data.alldata,
+      
           });
-          setSucess("cart")
+          toast.warning("Added to cart");
+          // setSucess("cart")s
         }
       } catch (error) {
         return (
