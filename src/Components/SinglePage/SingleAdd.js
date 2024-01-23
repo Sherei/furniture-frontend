@@ -560,7 +560,7 @@ const SingleAdd = () => {
                 </div>
               </div>
               <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
-                {sucess === "cart" && (
+                {/* {sucess === "cart" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
@@ -568,9 +568,9 @@ const SingleAdd = () => {
                         onClick={() => setSucess("")}> <RxCross1 /></button>
                     </div>
                     <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
-                    <p className="fw-bolder text-center">Product Added into Cart</p>
+                    <p className="fw-bolder text-center">Added to Cart</p>
                   </div>
-                )}
+                )} */}
                 <div
                   className={`s_content ${product?.category === "bed" ? "bed_class" : ""
                     }`}
@@ -1566,7 +1566,7 @@ const SingleAdd = () => {
               </div>
 
               <div className="col-lg-6 col-md-6 col-sm-12 px-lg-5 px-3 pt-lg-0 pt-5 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
-                {sucess === "comment" && (
+                {/* {sucess === "comment" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
                       <button className="btn fw-bolder fs-3"
@@ -1576,7 +1576,7 @@ const SingleAdd = () => {
                     <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
                     <p className="fw-bolder text-center">Feedback Submitted</p>
                   </div>
-                )}
+                )} */}
                 <p
                   className="fw-bolder fs-2 text-center"
                   style={{ color: "rgb(2, 2, 94)" }}

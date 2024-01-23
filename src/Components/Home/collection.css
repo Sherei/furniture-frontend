@@ -13,3 +13,6 @@
     transform: scale(1.5);
     transition: all linear 5s;
 }
+.h_box:hover{
+    cursor: pointer;
+}

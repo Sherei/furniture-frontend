@@ -55,7 +55,7 @@ const AllBlog = () => {
                                 <img src={data?.image} alt="No Network" />
                             </div>
                             <p className='fw-bolder fs-5 text-center mt-4' style={{ color: "rgb(2, 2, 94)" }}>{data.title}</p>
-                            <p className='text-center mt-2 mb-4'>{data?.introduction?.slice(0,100)}...</p>
+                            {data?.introduction && <p className='text-center mt-2 mb-4'>{data?.introduction?.slice(0,50)}...</p>}
                             <p className='text-muted text-center read'>READ MORE</p>
                         </div>
                     })

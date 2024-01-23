@@ -11,7 +11,6 @@
 
 .navbar {
   padding: 0px 0px 0px 0px;
-  background-color: #F7EEDD;
 }
 
 .nav1 {
@@ -381,6 +380,15 @@
 }
 
 @media screen and (max-width:992px) {
+
+  .navbar {
+    padding: 0px;
+  }
+  .show_nav {
+    height: 80vh;
+    overflow: auto;
+  }
+
   .login_div::before {
     right: 67px !important;
   }
@@ -388,6 +396,7 @@
   .menu_hide {
     display: none;
   }
+
   .nav_cotact {
     display: none;
   }
@@ -440,10 +449,6 @@
 
   .login_div {
     top: 75px;
-  }
-
-  .navbar {
-    padding: 0px;
   }
 
   .dropdown-menu {

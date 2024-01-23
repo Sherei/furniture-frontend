@@ -69,7 +69,7 @@ const Three = () => {
     }, []);
 
     return (
-        <div className='container main_container' id='beds'>
+        <div className='container-fluid px-lg-5 px-sm-4 my-5'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  hero_main'>
                     <div>

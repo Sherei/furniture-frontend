@@ -88,14 +88,14 @@ const Signup = () => {
                                 type={showPassword ? "text" : "password"}
                                 className="input w-100"
                                 {...register('password', { required: true })} />
-                            <label class="user-label">Passowrd *</label>
-                            {errors.password ? <div className='error'>Passowrd is required </div> : null}
+                            <label class="user-label">Password *</label>
+                            {errors.password ? <div className='error'>Password is required </div> : null}
                             <button
                                 type="button"
                                 className="password-toggle-btn"
                                 onClick={togglePasswordVisibility}
                             >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
                             </button>
                         </div>
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>

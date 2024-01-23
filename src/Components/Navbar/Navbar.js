@@ -5,10 +5,7 @@ import { AiFillMail } from "react-icons/ai";
 import {
   FaRegUser,
   FaAngleDown,
-  FaArrowRight,
-  FaHeart,
-  FaEye,
-  FaEyeSlash,
+  FaArrowRight
 } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { RxCross1 } from "react-icons/rx";
@@ -43,22 +40,21 @@ export const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [login, setLogin] = useState(false);
   const [search, setSearch] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [open, setCartOpen] = useState(false);
 
-  const toggleCart = () => {
-    if (cu._id === undefined || cu.email === "asd@gmail.com") {
+  const toggleCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!cu._id) {
       setLogin(true);
-      dispatch({
-        type: "LOGOUT_USER",
-      });
-      toast.warning("Login to see your Cart");
+      setNavOpen(false);
+      setSearch(false);
     } else {
       setCartOpen(true);
-      setLogin(false);
-      setSearch(false);
       setNavOpen(false);
+      setSearch(false);
+      setLogin(false);
     }
   };
 
@@ -86,10 +82,6 @@ export const Navbar = () => {
     setLogin(!login);
     setSearch(false);
     setNavOpen(false);
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   useEffect(() => {
@@ -487,9 +479,10 @@ export const Navbar = () => {
                   >
                     <button
                       className={`custom-toggler fs-2`}
+                      type="button"
                       data-bs-toggle="collapse"
-                      data-bs-target="#navbarNavDropdown"
-                      aria-controls="navbarNavDropdown"
+                      data-bs-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
                       aria-expanded="false"
                       aria-label="Toggle navigation"
                       onClick={toggleNav}
@@ -606,18 +599,12 @@ export const Navbar = () => {
                                   <div className="input-group mb-3">
                                     <input required="true"
                                       autocomplete="off"
-                                      type={showPassword ? "text" : "password"}
+                                      type="password"
                                       className="input w-100"
                                       {...register('password', { required: true })} />
-                                    <label class="user-label">Passowrd *</label>
-                                    {errors.password ? <div className='error'>Passowrd is required </div> : null}
-                                    <button
-                                      type="button"
-                                      className="password-toggle-btn"
-                                      onClick={togglePasswordVisibility}
-                                    >
-                                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                    </button>
+                                    <label class="user-label">Password *</label>
+                                    {errors.password ? <div className='error'>Password is required </div> : null}
+
                                   </div>
                                   <button
                                     className="btn rounded login_btn mt-3"
@@ -650,25 +637,19 @@ export const Navbar = () => {
                         <>
                           <li className="nav-item dropdown px-0">
                             <NavLink
-                              to="/"
-                              className="nav-link dropdown-toggle1 "
-                              id="navbarDarkDropdownMenuLink1"
+                              className="nav-link nav-link1 dropdown-toggle1 fs-2"
+                              id="navbarDropdown"
                               role="button"
                               data-bs-toggle="dropdown"
                               aria-expanded="false"
-                              style={{ borderBottom: "none" }}
+                              style={{ borderBottom: "none", color: "#E7E7E9" }}
                               onClick={() => setSearch(false)}
                             >
-                              <div
-                                className="fs-2"
-                                style={{ color: "#E7E7E9" }}
-                              >
-                                <FaRegUser />
-                              </div>
+                              <FaRegUser />
                             </NavLink>
                             <ul
                               className="dropdown-menu menu3"
-                              aria-labelledby="navbarDarkDropdownMenuLink"
+                              aria-labelledby="navbarDropdown"
                             >
                               {cu?.email != "asd@gmail.com" && (
                                 <li>
@@ -692,23 +673,27 @@ export const Navbar = () => {
                                 </NavLink>
                               </li>
                             </ul>
+
                           </li>
+
                         </>
                       )}
-                      <li className="nav-item px-0" onClick={toggleCart}>
+                      <li className="nav-item px-0">
                         <NavLink
                           className="nav-link nav-link1"
                           style={{ border: "none", position: "relative" }}
+                          onClick={toggleCart}
                         >
                           <span className="fs-2" style={{ color: "#E7E7E9" }}>
                             <FiShoppingCart />
-                            <p className="m-0 cart_number">
-                              {filterCartLength}
-                            </p>
+                            {(cu._id != undefined && cu.email != "asd@gmail.com") &&
+                              <p className="m-0 cart_number">
+                                {filterCartLength}
+                              </p>
+                            }
                           </span>
                         </NavLink>
                       </li>
-
                     </div>
                   </div>
                 </div>
@@ -717,7 +702,7 @@ export const Navbar = () => {
           </div>
 
           <nav
-            className="navbar navbar-expand-lg navbar-light"
+            className={`navbar navbar-expand-lg navbar-light ${isNavOpen ? "show_nav" : ""}`}
             style={{ backgroundColor: "#F7EEDD" }}
           >
             <div className="container-fluid">
@@ -829,7 +814,6 @@ export const Navbar = () => {
                           Recliner Sofas
                         </NavLink>
                       </li>
-                      {/* <li> <NavLink className="dropdown-item" to="products/arm-chair-&-swivel-chair" onClick={(event) => closeNav(event)}>Arm Chair & Swivel Chair</NavLink></li> */}
                     </ul>
                   </li>
                   <li className="nav-item nav-item2">
@@ -912,7 +896,6 @@ export const Navbar = () => {
                           Wingback Beds
                         </NavLink>
                       </li>
-                      {/* <li> <NavLink className="dropdown-item" to="products/ottoman-beds" onClick={(event) => closeNav(event)}>Ottoman Beds</NavLink></li> */}
                       <li>
                         {" "}
                         <NavLink

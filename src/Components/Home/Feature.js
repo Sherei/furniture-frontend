@@ -35,7 +35,7 @@ const Feature = () => {
     }, []);
 
     return <>
-        <div className='container main_container' id='beds'>
+        <div className='container my-5' id='beds'>
             <div className='row'>
                 <div className='col-lg-12 col-sm-12 my-2 d-flex  justify-content-between'>
                     <div>

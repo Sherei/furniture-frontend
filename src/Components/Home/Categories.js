@@ -1,14 +1,17 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import Loader from "../Loader/Loader"
 import axios from 'axios';
 import "./home_category.css"
 
 const Categories = () => {
 
   const move = useNavigate()
-
+  const containerRef = useRef(null);
   const [product, setProduct] = useState([])
+  const [loading, setLoading] = useState(true);
   const [counts, setCounts] = useState({
     sofa: 0,
     cornerSofas: 0,
@@ -19,18 +22,64 @@ const Categories = () => {
     footstools: 0,
   });
 
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      setShowLeftArrow(container.scrollLeft > 0);
+      setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth);
+    }
+  };
+
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+    if (containerRef.current) {
+      containerRef.current.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
+
+
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      container.scrollTo({
+        left: container.scrollLeft - 300,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      container.scrollTo({
+        left: container.scrollLeft + 200,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/product`);
         if (res) {
           setProduct(res.data);
           updateCounts(res.data);
         }
-      } catch (e) {
-
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    });
+    };
+    fetchData();
   }, []);
+
 
   const updateCounts = (data) => {
     setCounts((prevCounts) => ({
@@ -44,9 +93,22 @@ const Categories = () => {
     }));
   };
 
+  const [data, setData] = useState([])
+  
+  useEffect(() => {
+    setData([
+      { title: "All Sofas", img: "/allsofa.jpeg", numbers: counts.sofa, path: "/products/sofa" },
+      { title: "Corner Sofas", img: "/cornersofa.jpeg", numbers: counts.cornerSofas, path: "/products/corner-sofas" },
+      { title: "3+2 Sofa Sets", img: "/3+2.jpg", numbers: counts.threeTwoSeaterSofas, path: "/products/three-&-two-seater-sofas" },
+      { title: "All Beds", img: "/allbeds.jpg", numbers: counts.bed, path: "/products/bed" },
+      { title: "Ottoman Box", img: "/ottomanbox.jpg", numbers: counts.ottomanBox, path: "/products/ottoman-box" },
+      { title: "Mattresses", img: "/mattress.jpeg", numbers: counts.mattress, path: "/products/mattress" },
+      { title: "Footstools", img: "/footstools.jpeg", numbers: counts.footstools, path: "/products/footstools" }
+    ]);
+  }, [counts]);
 
   return (
-    <div className='container main_container'>
+    <div className='container-fluid px-lg-5 px-sm-4 my-5'>
       <div className='row'>
         <div className='col-lg-12 col-sm-12 my-2 d-flex  hero_main'>
           <div>
@@ -60,82 +122,27 @@ const Categories = () => {
             </p>
           </div>
         </div>
-        <div className='col-lg-12 col-sm-12'>
-          <div className='h_box_main'>
-            <div className="h_box" onClick={() => { move('/products/sofa') }}>
-              <div className='h_box_img_main'>
-                <img src="/allsofa.jpeg" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>All Sofas</p>
-                <p className="text-center mt-1">{counts.sofa} Products</p>
-              </div>
-            </div>
+        <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
 
-            <div className="h_box" onClick={() => { move('/products/corner-sofas') }}>
-              <div className='h_box_img_main'>
-                <img src="/cornersofa.jpeg" alt='No Network' />
+          <div className='h_box_main' ref={containerRef}>
+            {data.map((product, index) => (
+              <div className="h_box" onClick={() => { move(product.path) }} key={index}>
+                <div className='h_box_img_main'>
+                  <img src={product.img} alt='No Network' />
+                </div>
+                <div>
+                  <p className='text-center m-0 mt-3 fw-bolder'>{product.title}</p>
+                  <p className="text-center mt-1">{product.numbers} Products</p>
+                </div>
               </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>Corner Sofas</p>
-                <p className="text-center mt-1">{counts.cornerSofas} Products</p>
-              </div>
-            </div>
-
-            <div className="h_box" onClick={() => { move('/products/three-&-two-seater-sofas') }}>
-              <div className='h_box_img_main'>
-                <img src="/3+2.jpg" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>3+2 Sofa Sets</p>
-                <p className="text-center mt-1">{counts.threeTwoSeaterSofas} Products</p>
-              </div>
-            </div>
-
-            <div className="h_box" onClick={() => { move('/products/bed') }}>
-              <div className='h_box_img_main'>
-                <img src="/allbeds.jpg" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>All Beds</p>
-                <p className="text-center mt-1">{counts.bed} Products</p>
-              </div>
-            </div>
-
-            <div className="h_box" onClick={() => { move('/products/ottoman-box') }}>
-              <div className='h_box_img_main'>
-                <img src="/ottomanbox.jpg" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>Ottoman Box</p>
-                <p className="text-center mt-1">{counts.ottomanBox} Products</p>
-              </div>
-            </div>
-
-            <div className="h_box" onClick={() => { move('/products/mattress') }}>
-              <div className='h_box_img_main'>
-                <img src="/mattress.jpeg" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>Mattresses</p>
-                <p className="text-center mt-1">{counts.mattress} Products</p>
-              </div>
-            </div>
-
-            <div className="h_box" onClick={() => { move('/products/footstools') }}>
-              <div className='h_box_img_main'>
-                <img src="/footstools.jpeg" alt='No Network' />
-              </div>
-              <div>
-                <p className='text-center m-0 mt-3 fw-bolder'>Footstools</p>
-                <p className="text-center mt-1">{counts.footstools} Products</p>
-              </div>
-            </div>
-
+            )
+            )}
 
           </div>
-        </div>
+          <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
+          <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
 
+        </div>
       </div>
     </div>
   );
