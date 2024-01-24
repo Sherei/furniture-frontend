@@ -702,7 +702,7 @@ export const Navbar = () => {
           </div>
 
           <nav
-            className={`navbar-expand-lg navbar-light  ${isNavOpen ? "show_nav" : ""}`}
+            className={`navbar navbar-expand-lg navbar-light ${isNavOpen ? "show_nav" : ""}`}
             style={{ backgroundColor: "#F7EEDD" }}
           >
             <div className="container-fluid">

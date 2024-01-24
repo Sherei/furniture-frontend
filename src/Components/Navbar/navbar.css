@@ -9,6 +9,9 @@
   /* height: 80px; */
 }
 
+.navbar {
+  padding: 0px 0px 0px 0px;
+}
 
 .nav1 {
   vertical-align: middle;
@@ -377,11 +380,12 @@
 }
 
 @media screen and (max-width:992px) {
-
+  .navbar {
+    padding: 0px !important;
+  }
   .show_nav {
-    height: 80vh !important;
-    padding: 10px 0px !important;
-    overflow: auto !important;
+    height: 80vh;
+    overflow: auto;
   }
 
   .login_div::before {
