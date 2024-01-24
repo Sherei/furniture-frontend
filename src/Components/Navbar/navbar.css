@@ -129,7 +129,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0px 5px 0px 5px;
+  margin-left: 7px;
 }
 
 .additional-class {
@@ -310,6 +310,11 @@
   color: #1b2950;
 }
 
+.show_nav {
+  height: 88vh;
+  overflow: auto;
+}
+
 @media screen and (min-width:769px) and (max-width:992px) {
   .nav_searchbar {
     top: 82px;
@@ -326,11 +331,6 @@
   .navbar {
     padding: 0px !important;
   }
-  .show_nav {
-    height: 88vh;
-    overflow: auto;
-  }
-
   .login_div::before {
     right: 67px !important;
   }
