@@ -460,7 +460,6 @@ const SingleAdd = () => {
         <>
           <div className="container-fluid min-vh-100">
             <div className="row">
-
               <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
                 <p style={{ textTransform: "capitalize" }}>
                   home <FaAngleRight />
@@ -469,10 +468,7 @@ const SingleAdd = () => {
                   } <FaAngleRight /> {product?.subCategory}
                 </p>
               </div>
-              <div
-                className="col-lg-1 col-md-2 col-sm-12 p-0 m-0 d-flex flex-column align-items-center"
-                style={{ position: "relative" }}
-              >
+              <div className="col-lg-1 col-md-2 col-sm-12 order-lg-1 order-md-1 order-2 p-0 m-0 d-flex flex-column align-items-center" style={{ position: "relative" }}>
                 <div className="small_images">
                   {product?.images &&
                     product?.images.map((image, index) => (
@@ -519,10 +515,7 @@ const SingleAdd = () => {
                 )}
               </div>
 
-              <div
-                className="col-lg-5 col-md-8 col-sm-12 mb-5"
-                style={{ height: "fit-content" }}
-              >
+              <div className="col-lg-5 col-md-8 col-sm-12 order-lg-2 order-md-2 order-1 mb-5" style={{ height: "fit-content" }}>
                 <div style={{ position: "relative" }}>
                   <InnerImageZoom
                     zoomScale={1}
@@ -559,7 +552,7 @@ const SingleAdd = () => {
                   )}
                 </div>
               </div>
-              <div className="col-lg-5 col-sm-12" style={{ position: "relative" }}>
+              <div className="col-lg-5 col-sm-12 order-3" style={{ position: "relative" }}>
                 {sucess === "cart" && (
                   <div className="succes_box showVerify px-3">
                     <div className="text-end">
