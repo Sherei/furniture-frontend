@@ -378,13 +378,10 @@
 
 @media screen and (max-width:992px) {
 
-  .navbar {
-    padding: 0px !important;
-  }
   .show_nav {
-    height: fit-content;
-    padding: 20px 10px;
-    overflow: auto;
+    height: 80vh !important;
+    padding: 10px 0px !important;
+    overflow: auto !important;
   }
 
   .login_div::before {
