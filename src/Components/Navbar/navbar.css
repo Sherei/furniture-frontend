@@ -1,3 +1,27 @@
+.nav_cotact {
+  display: flex;
+}
+.nav_cotact p {
+  color: white;
+}
+
+.nav_cotact a,
+.nav_contact2 a {
+  color: white;
+}
+
+.nav_cotact a:hover {
+  cursor: pointer;
+}
+
+.nav_cotact_icon {
+  font-size: 20px;
+}
+
+.nav_contact2 span {
+  font-size: 18px;
+}
+
 .sticky-navbar {
   position: sticky;
   top: 0;
@@ -6,7 +30,6 @@
 
 .logo_navbar {
   width: 125px;
-  /* height: 80px; */
 }
 
 .navbar {
@@ -20,9 +43,7 @@
 
 .navbar-custom {
   width: 100%;
-  /* background-color: rgb(216, 216, 216, 0.9) !important; */
 }
-
 
 .nav-item .nav-link {
   font-size: 18px;
@@ -93,57 +114,13 @@
   border: none !important;
   outline: none !important;
 }
-
-.heart {
-  color: white;
-}
-
 .dropdown-toggle1::after {
   color: white;
 }
-
-.heart:hover {
-  cursor: pointer;
-}
-
 .dropdown-item.active {
   color: white !important;
   background-color: #1b2950 !important;
 }
-
-.nav_cotact {
-  display: flex;
-}
-
-.nav_cotact p {
-  color: white;
-}
-
-.nav_cotact a,
-.nav_contact2 a {
-  color: white;
-}
-
-.nav_cotact a:hover {
-  cursor: pointer;
-}
-
-.nav_cotact_icon {
-  font-size: 20px;
-}
-
-.nav_contact2 span {
-  font-size: 18px;
-}
-
-.heart {
-  font-size: 25px !important;
-}
-
-.nav_image {
-  width: 50px;
-}
-
 .custom-toggler {
   opacity: 0;
   color: white !important;
@@ -152,46 +129,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0px 5px 0px 0px;
+  padding: 0px 5px 0px 5px;
 }
 
 .additional-class {
   top: -52px;
 }
-
-.custom-toggler .line1,
-.custom-toggler .line2,
-.custom-toggler .line3 {
-  width: 25px;
-  height: 2px;
-  background-color: #E7E7E9;
-  transition: all 0.3s;
-}
-
-.cross-line1 {
-  position: relative;
-  top: 5px;
-  transform: rotate(45deg);
-  transform-origin: center;
-}
-
-.cross-line3 {
-  position: relative;
-  left: 0px;
-  top: -9px;
-  transform: rotate(-45deg);
-  transform-origin: center;
-}
-
-.lines {
-  margin-left: 20px;
-  margin-top: 5px;
-}
-
-.cross-line2 {
-  opacity: 0;
-}
-
 .login_div {
   position: absolute;
   top: 80px;
@@ -384,7 +327,7 @@
     padding: 0px !important;
   }
   .show_nav {
-    height: 80vh;
+    height: 88vh;
     overflow: auto;
   }
 

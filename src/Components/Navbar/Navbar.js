@@ -472,7 +472,8 @@ export const Navbar = () => {
             style={{ backgroundColor: "rgb(2, 2, 94)" }}
           >
             <div className="row">
-              <div className="col nav1">
+              <div className="col 
+              ">
                 <div className="row nav1_row">
                   <div className="col-3 d-flex align-items-center justify-content-start gap-2 p-0"
                     style={{ position: "relative" }}
@@ -700,7 +701,7 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-
+    
           <nav
             className={`navbar navbar-expand-lg navbar-light ${isNavOpen ? "show_nav" : ""}`}
             style={{ backgroundColor: "#F7EEDD" }}
