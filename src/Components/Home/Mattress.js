@@ -100,7 +100,7 @@ const Mattress = () => {
                     ) : (
                         <div className='h_box_main' ref={containerRef}>
                             {data
-                                .filter((item) => item.category === "mattress" && item.home === true)
+                                .filter((item) => item.category === "mattress")
                                 .map((product, index) => (
 
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >

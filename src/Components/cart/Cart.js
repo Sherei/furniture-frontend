@@ -86,27 +86,33 @@ export const Cart = () => {
           const { size, headboard, detail, ottoman, base, mattress } = item;
           let additionalPrices = 0;
 
+          
           if (item.category === "bed") {
-
+            // Size
             if (size === "4ft-small-double") additionalPrices += 120;
             else if (size === "4'6ft-standard-ouble") additionalPrices += 180;
             else if (size === "5ft-king") additionalPrices += 250;
             else if (size === "6ft-super-king") additionalPrices += 300;
-
+            // Headboard
             if (headboard === "premium") additionalPrices += 50;
             else if (headboard === "extra-premium") additionalPrices += 70;
             else if (headboard === "exclusive") additionalPrices += 90;
             else if (headboard === "extra-exclusive") additionalPrices += 150;
             else if (headboard === "diamond") additionalPrices += 180;
-
-            if (size === "small-double") additionalPrices += 20;
-            else if (size === "double") additionalPrices += 70;
-            else if (size === "king") additionalPrices += 120;
-            else if (size === "super-king") additionalPrices += 170;
-
+            // Mattress
+            if (mattress === "sprung-single") additionalPrices += 80;
+            else if (mattress === "sprung-small-double") additionalPrices += 95;
+            else if (mattress === "sprung-double") additionalPrices += 105;
+            else if (mattress === "sprung-king") additionalPrices += 120;
+            else if (mattress === "sprung-super-king") additionalPrices += 160;
+            else if (mattress === "ortho-single") additionalPrices += 100;
+            else if (mattress === "ortho-small-double") additionalPrices += 120;
+            else if (mattress === "ortho-double") additionalPrices += 130;
+            else if (mattress === "ortho-king") additionalPrices += 150;
+            else if (mattress === "ortho-super-king") additionalPrices += 180;
+              // Buttons
             if (detail === "button") additionalPrices += 10;
             if (ottoman === "Yes") additionalPrices += 90;
-
           }
 
           if (item.category === "sofa") {

@@ -91,14 +91,14 @@ const Ottoman = () => {
                             No product available related to this category
                         </div>
                     }
-                        {loading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
-                                <Loader />
-                            </div>
-                        ) : (
-                            <div className='h_box_main' ref={containerRef}>
+                    {loading ? (
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
+                            <Loader />
+                        </div>
+                    ) : (
+                        <div className='h_box_main' ref={containerRef}>
                             {data
-                                .filter((item) => item.category === "ottoman-box" && item.home === true)
+                                .filter((item) => item.category === "ottoman-box")
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
@@ -134,8 +134,8 @@ const Ottoman = () => {
                                         </div>
                                     </div>
                                 ))}
-                    </div>
-                        )}
+                        </div>
+                    )}
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>

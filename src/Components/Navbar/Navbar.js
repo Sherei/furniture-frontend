@@ -435,9 +435,9 @@ export const Navbar = () => {
               >
                 <TbPhoneCall />
               </span>{" "}
-              &nbsp;
+            
               <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
-              +447392608087
+              +44 7392 608087
               </span>
               &nbsp;
             </a>

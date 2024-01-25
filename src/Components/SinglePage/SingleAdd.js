@@ -157,6 +157,7 @@ const SingleAdd = () => {
     headboard,
     ottoman
   ) => {
+
     let totalPrice = (product?.Fprice || 0) * quantity;
 
     if (product?.category === "bed") {
@@ -214,17 +215,17 @@ const SingleAdd = () => {
           totalPrice += 105;
         } else if (mattress === "sprung-king") {
           totalPrice += 120;
-        }else if (mattress === "sprung-super-king") {
+        } else if (mattress === "sprung-super-king") {
           totalPrice += 160;
-        }else if (mattress === "ortho-single") {
+        } else if (mattress === "ortho-single") {
           totalPrice += 100;
-        }else if (mattress === "ortho-small-double") {
+        } else if (mattress === "ortho-small-double") {
           totalPrice += 120;
-        }else if (mattress === "ortho-double") {
+        } else if (mattress === "ortho-double") {
           totalPrice += 130;
-        }else if (mattress === "ortho-king") {
+        } else if (mattress === "ortho-king") {
           totalPrice += 150;
-        }else if (mattress === "ortho-super-king") {
+        } else if (mattress === "ortho-super-king") {
           totalPrice += 180;
         }
       }
@@ -262,7 +263,7 @@ const SingleAdd = () => {
       }
     }
 
-    return totalPrice;
+    return totalPrice
   };
 
   const totalPrice = calculateTotalPrice(
@@ -976,7 +977,7 @@ const SingleAdd = () => {
                             <option value="ortho-double">Orthopedic Memory Foam Mattress (Double Size +£130.00)</option>
                             <option value="ortho-king">Orthopedic Memory Foam Mattress (King Size +£150.00)</option>
                             <option value="ortho-super-king">Orthopedic Memory Foam Mattress (Super King Size +£180.00)</option>
-                            
+
                           </select>
                         </div>
 
