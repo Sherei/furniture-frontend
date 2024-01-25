@@ -205,13 +205,13 @@ const SingleAdd = () => {
       }
       if (mattress !== undefined && mattress !== "") {
         if (mattress === "small-double") {
-          totalPrice += 70;
+          totalPrice += 20;
         } else if (mattress === "double") {
-          totalPrice += 130;
+          totalPrice += 70;
         } else if (mattress === "king") {
-          totalPrice += 180;
+          totalPrice += 120;
         } else if (mattress === "super-king") {
-          totalPrice += 220;
+          totalPrice += 170;
         }
       }
     }
@@ -230,13 +230,13 @@ const SingleAdd = () => {
     else if (product?.category === "mattress") {
       if (size !== undefined && size !== "") {
         if (size === "small-double") {
-          totalPrice += 60;
+          totalPrice += 20;
         } else if (size === "double") {
-          totalPrice += 90;
+          totalPrice += 70;
         } else if (size === "king") {
-          totalPrice += 150;
+          totalPrice += 120;
         } else if (size === "super-king") {
-          totalPrice += 190;
+          totalPrice += 170;
         } else {
           totalPrice += 0;
         }
@@ -328,7 +328,7 @@ const SingleAdd = () => {
           dispatch({
             type: "ADD_TO_CART",
             payload: response.data.alldata,
-      
+
           });
           setSucess("cart")
         }
@@ -497,7 +497,7 @@ const SingleAdd = () => {
                         <FaArrowDown />
                       </button>
                     </div>
-                    <div className="arrow_display2">
+                    {/* <div className="arrow_display2">
                       <button
                         className="plus_btn plus_btn1 mx-2"
                         onClick={() => handleScroll("left")}
@@ -510,7 +510,7 @@ const SingleAdd = () => {
                       >
                         <IoIosArrowForward />
                       </button>
-                    </div>
+                    </div> */}
                   </>
                 )}
               </div>
@@ -960,15 +960,11 @@ const SingleAdd = () => {
                             className="form-select mb-2 mr-sm-2"
                           >
                             <option value="select size">Please Choose</option>
-                            <option value="Single">Single</option>
-                            <option value="small-double">
-                              Small Double +(£70)
-                            </option>
-                            <option value="double">Double +(£130)</option>
-                            <option value="king">King +(£180)</option>
-                            <option value="super-king">
-                              Super King +(£220)
-                            </option>
+                            <option value="Single">Single Size</option>
+                            <option value="small-double">Small Double Size+(£20)</option>
+                            <option value="double">Double Size+(£70)</option>
+                            <option value="king">King Size+(£120)</option>
+                            <option value="super-king">Super King Size+(£170)</option>
                             <option value="not-require">Not Require</option>
                           </select>
                         </div>
@@ -1043,13 +1039,13 @@ const SingleAdd = () => {
                           className="form-select mb-2 mr-sm-2"
                         >
                           <option value="select size">Please Choose</option>
-                          <option value="Single">Single</option>
+                          <option value="Single">Single Size</option>
                           <option value="small-double">
-                            Small Double +(£60)
+                            Small Double Size+(£20)
                           </option>
-                          <option value="double">Double +(£90)</option>
-                          <option value="king">King +(£150)</option>
-                          <option value="super-king">Super King +(£190)</option>
+                          <option value="double">Double Size+(£70)</option>
+                          <option value="king">King Size+(£120)</option>
+                          <option value="super-king">Super King Size+(£170)</option>
                         </select>
                       </div>
 

@@ -92,10 +92,10 @@ export const Cart = () => {
             else if (headboard === "exclusive") additionalPrices += 129;
             else if (headboard === "extra-exclusive") additionalPrices += 200;
             else if (headboard === "diamond") additionalPrices += 380;
-            if (size === "small-double") additionalPrices += 70;
-            else if (size === "double") additionalPrices += 130;
-            else if (size === "king") additionalPrices += 180;
-            else if (size === "super-king") additionalPrices += 220;
+            if (size === "small-double") additionalPrices += 20;
+            else if (size === "double") additionalPrices += 70;
+            else if (size === "king") additionalPrices += 120;
+            else if (size === "super-king") additionalPrices += 170;
             if (detail === "button") additionalPrices += 10;
             if (ottoman === "Yes") additionalPrices += 90;
           }
@@ -106,10 +106,10 @@ export const Cart = () => {
           }
 
           if (item.category === "mattress") {
-            if (size === "small-double") additionalPrices += 60;
-            else if (size === "double") additionalPrices += 90;
-            else if (size === "king") additionalPrices += 150;
-            else if (size === "super-king") additionalPrices += 190;
+            if (size === "small-double") additionalPrices += 20;
+            else if (size === "double") additionalPrices += 70;
+            else if (size === "king") additionalPrices += 120;
+            else if (size === "super-king") additionalPrices += 170;
           }
 
           const updatedFprice = item.price * newQuantity + additionalPrices;
