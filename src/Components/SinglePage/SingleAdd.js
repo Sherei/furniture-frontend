@@ -965,6 +965,7 @@ const SingleAdd = () => {
                             className="form-select mb-2 mr-sm-2"
                           >
                             <option value="select size">Please Choose</option>
+                            <option value="no">No</option>
                             <option value="sprung-single">Sprung Memory Foam Mattress (Single Size +£80.00)</option>
                             <option value="sprung-small-double">Sprung Memory Foam Mattress (Small Double Size +£95.00)</option>
                             <option value="sprung-double">Sprung Memory Foam Mattress (Double Size +£105.00)</option>
