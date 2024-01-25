@@ -415,6 +415,8 @@
 
     .small_images {
         height: fit-content;
+        width: 100%;
+        overflow-x: auto;
         justify-content: center;
         margin: 20px 0px;
         flex-direction: row;
