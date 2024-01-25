@@ -95,7 +95,6 @@ const Beds = () => {
                         <div className='h_box_main' ref={containerRef}>
                             {data
                                 .filter((item) => item.category === "bed" && item.home === true)
-                                .slice(0, 15)
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)}>
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
