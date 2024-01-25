@@ -206,14 +206,26 @@ const SingleAdd = () => {
         }
       }
       if (mattress !== undefined && mattress !== "") {
-        if (mattress === "small-double") {
-          totalPrice += 20;
-        } else if (mattress === "double") {
-          totalPrice += 70;
-        } else if (mattress === "king") {
+        if (mattress === "sprung-single") {
+          totalPrice += 80;
+        } else if (mattress === "sprung-small-double") {
+          totalPrice += 95;
+        } else if (mattress === "sprung-double") {
+          totalPrice += 105;
+        } else if (mattress === "sprung-king") {
           totalPrice += 120;
-        } else if (mattress === "super-king") {
-          totalPrice += 170;
+        }else if (mattress === "sprung-super-king") {
+          totalPrice += 160;
+        }else if (mattress === "ortho-single") {
+          totalPrice += 100;
+        }else if (mattress === "ortho-small-double") {
+          totalPrice += 120;
+        }else if (mattress === "ortho-double") {
+          totalPrice += 130;
+        }else if (mattress === "ortho-king") {
+          totalPrice += 150;
+        }else if (mattress === "ortho-super-king") {
+          totalPrice += 180;
         }
       }
     }
@@ -953,12 +965,17 @@ const SingleAdd = () => {
                             className="form-select mb-2 mr-sm-2"
                           >
                             <option value="select size">Please Choose</option>
-                            <option value="Single">Single Size</option>
-                            <option value="small-double">Small Double Size+(£20)</option>
-                            <option value="double">Double Size+(£70)</option>
-                            <option value="king">King Size+(£120)</option>
-                            <option value="super-king">Super King Size+(£170)</option>
-                            <option value="not-require">Not Require</option>
+                            <option value="sprung-single">Sprung Memory Foam Mattress (Single Size +£80.00)</option>
+                            <option value="sprung-small-double">Sprung Memory Foam Mattress (Small Double Size +£95.00)</option>
+                            <option value="sprung-double">Sprung Memory Foam Mattress (Double Size +£105.00)</option>
+                            <option value="sprung-king">Sprung Memory Foam Mattress (King Size +£120.00)</option>
+                            <option value="sprung-super-king">Sprung Memory Foam Mattress (Super King Size +£160.00)</option>
+                            <option value="ortho-single">Orthopedic Memory Foam Mattress (Single Size +£100.00)</option>
+                            <option value="ortho-small-double">Orthopedic Memory Foam Mattress (Small Double Size +£120.00)</option>
+                            <option value="ortho-double">Orthopedic Memory Foam Mattress (Double Size +£130.00)</option>
+                            <option value="ortho-king">Orthopedic Memory Foam Mattress (King Size +£150.00)</option>
+                            <option value="ortho-super-king">Orthopedic Memory Foam Mattress (Super King Size +£180.00)</option>
+                            
                           </select>
                         </div>
 
