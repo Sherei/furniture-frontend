@@ -58,7 +58,6 @@ const Ottoman = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            // axios.get("/product").then((res) => {
             try {
                 if (res) {
                     setData(res.data);
@@ -92,13 +91,13 @@ const Ottoman = () => {
                             No product available related to this category
                         </div>
                     }
-                    <div className='h_box_main' ref={containerRef}>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
                                 <Loader />
                             </div>
                         ) : (
-                            data
+                            <div className='h_box_main' ref={containerRef}>
+                            {data
                                 .filter((item) => item.category === "ottoman-box")
                                 .slice(0, 10).reverse()
                                 .map((product, index) => (
@@ -135,9 +134,9 @@ const Ottoman = () => {
                                             </div>
                                         </div>
                                     </div>
-                                ))
-                        )}
+                                ))}
                     </div>
+                        )}
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>

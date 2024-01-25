@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { FiShoppingCart } from "react-icons/fi";
-import Products from "../Products/Products";
+import { Login } from "../login/Login"
 import Loader from "../Loader/Loader";
 import Lottie from "lottie-react";
 import CartAnimation from "../Animations/CartAnimation.json";
@@ -28,7 +28,7 @@ export const Cart = () => {
   const [cart, setCart] = useState([]);
   const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1);
-  
+
   const allCartItems = useSelector((store) => store.Cart.cart);
 
   useEffect(() => {
@@ -76,30 +76,37 @@ export const Cart = () => {
     }
   };
 
-  
+
   const handleQuantityChange = (itemId, newQuantity) => {
+
     setCart((prevCart) =>
       prevCart.map((item) => {
         if (item._id === itemId) {
+
           const { size, headboard, detail, ottoman, base, mattress } = item;
           let additionalPrices = 0;
+
           if (item.category === "bed") {
+
             if (size === "4ft-small-double") additionalPrices += 120;
             else if (size === "4'6ft-standard-ouble") additionalPrices += 180;
             else if (size === "5ft-king") additionalPrices += 250;
             else if (size === "6ft-super-king") additionalPrices += 300;
-            
+
             if (headboard === "premium") additionalPrices += 50;
-            else if (headboard === "extra-premium") additionalPrices +=70;
+            else if (headboard === "extra-premium") additionalPrices += 70;
             else if (headboard === "exclusive") additionalPrices += 90;
             else if (headboard === "extra-exclusive") additionalPrices += 150;
             else if (headboard === "diamond") additionalPrices += 180;
+
             if (size === "small-double") additionalPrices += 20;
             else if (size === "double") additionalPrices += 70;
             else if (size === "king") additionalPrices += 120;
             else if (size === "super-king") additionalPrices += 170;
+
             if (detail === "button") additionalPrices += 10;
             if (ottoman === "Yes") additionalPrices += 90;
+
           }
 
           if (item.category === "sofa") {
@@ -229,7 +236,7 @@ export const Cart = () => {
   if (cu._id === undefined || cu.email === "asd@gmail.com") {
     return (
       <>
-        <Products />
+        <Login />
       </>
     );
   }
@@ -308,9 +315,8 @@ export const Cart = () => {
                           >
                             {item?.title}
                             <div
-                              className={`chk_detail ${
-                                expandedItems[index] ? "detail_height" : ""
-                              }`}
+                              className={`chk_detail ${expandedItems[index] ? "detail_height" : ""
+                                }`}
                               onClick={() => toggleDetails(index)}
                             >
                               {item?.size && (
@@ -530,9 +536,8 @@ export const Cart = () => {
                           <td>
                             {item?.title}
                             <div
-                              className={`chk_detail ${
-                                expandedItems[index] ? "detail_height" : ""
-                              }`}
+                              className={`chk_detail ${expandedItems[index] ? "detail_height" : ""
+                                }`}
                               onClick={() => toggleDetails(index)}
                             >
                               {item?.size && (

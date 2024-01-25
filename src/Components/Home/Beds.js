@@ -87,13 +87,13 @@ const Beds = () => {
                             No product available related to this category
                         </div>
                     )}
-                    <div className='h_box_main' ref={containerRef}>
-                        {loading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
-                                <Loader />
-                            </div>
-                        ) : (
-                            data
+                    {loading ? (
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
+                            <Loader />
+                        </div>
+                    ) : (
+                        <div className='h_box_main' ref={containerRef}>
+                            {data
                                 .filter((item) => item.category === "bed")
                                 .slice(0, 15)
                                 .map((product, index) => (
@@ -126,9 +126,9 @@ const Beds = () => {
                                             <div className='card_btns'></div>
                                         </div>
                                     </div>
-                                ))
-                        )}
-                    </div>
+                                ))}
+                        </div>
+                    )}
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>

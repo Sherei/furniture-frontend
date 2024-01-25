@@ -517,7 +517,7 @@ const SingleAdd = () => {
                 )}
               </div>
 
-              <div className="col-lg-5 col-md-8 col-sm-12 order-lg-2 order-md-2 order-1 mb-5" style={{ height: "fit-content" }}>
+              <div className="col-lg-5 col-md-8 col-sm-12 order-lg-2 order-md-2 order-1 mb-lg-5 mb-2" style={{ height: "fit-content" }}>
                 <div style={{ position: "relative" }}>
                   <InnerImageZoom
                     zoomScale={1}
@@ -933,7 +933,7 @@ const SingleAdd = () => {
                           <label
                             style={{ fontSize: "17px", fontWeight: "600" }}
                           >
-                            Mattress Size &nbsp;{" "}
+                            Mattress &nbsp;{" "}
                             <span style={{ color: "red" }}>* </span>&nbsp;{" "}
                             <span className="lable_Case">
                               {mattress ? mattress.replace(/-/g, " ") : ""}
@@ -1014,7 +1014,7 @@ const SingleAdd = () => {
                     <>
                       <div className="mt-1">
                         <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                          Mattress Size
+                          Mattress
                           <span style={{ color: "red" }}>* </span> &nbsp;{" "}
                           <span className="lable_Case">
                             {size ? size.replace(/-/g, " ") : ""}
