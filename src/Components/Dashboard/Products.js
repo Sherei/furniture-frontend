@@ -14,18 +14,20 @@ export const Products = () => {
   let move = useNavigate()
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/Adminproduct`, {
-        params: { search },
-      })
-      .then((res) => {
-        setProduct(res?.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setIsLoading(false);
-      });
+    try {
+      axios
+        .get(`${process.env.REACT_APP_BASE_URL}/Adminproduct`, {
+          params: { search },
+        })
+        .then((res) => {
+          setProduct(res?.data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setIsLoading(false);
+        });
+    } catch (e) { }
   }, [search]);
 
   const handleSearchInputChange = (e) => {
