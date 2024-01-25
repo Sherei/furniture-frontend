@@ -952,7 +952,7 @@ const SingleAdd = () => {
                             </span>
                           </label>
                           <p className="mt-1 mb-0">
-                            Please Choose Mattress Size
+                            Please Choose Mattress
                           </p>
                           <select
                             onChange={(e) => {
