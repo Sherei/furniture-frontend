@@ -88,10 +88,12 @@ export const Cart = () => {
             else if (size === "4'6ft-standard-ouble") additionalPrices += 180;
             else if (size === "5ft-king") additionalPrices += 250;
             else if (size === "6ft-super-king") additionalPrices += 300;
-            if (headboard === "extra-premium") additionalPrices += 79;
-            else if (headboard === "exclusive") additionalPrices += 129;
-            else if (headboard === "extra-exclusive") additionalPrices += 200;
-            else if (headboard === "diamond") additionalPrices += 380;
+            
+            if (headboard === "premium") additionalPrices += 50;
+            else if (headboard === "extra-premium") additionalPrices +=70;
+            else if (headboard === "exclusive") additionalPrices += 90;
+            else if (headboard === "extra-exclusive") additionalPrices += 150;
+            else if (headboard === "diamond") additionalPrices += 180;
             if (size === "small-double") additionalPrices += 20;
             else if (size === "double") additionalPrices += 70;
             else if (size === "king") additionalPrices += 120;

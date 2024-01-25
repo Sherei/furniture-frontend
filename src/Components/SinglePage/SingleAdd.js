@@ -174,14 +174,16 @@ const SingleAdd = () => {
         }
       }
       if (headboard !== undefined && headboard !== "") {
-        if (headboard === "extra-premium") {
-          totalPrice += 79;
+        if (headboard === "premium") {
+          totalPrice += 50;
+        } else if (headboard === "extra-premium") {
+          totalPrice += 70;
         } else if (headboard === "exclusive") {
-          totalPrice += 129;
+          totalPrice += 90;
         } else if (headboard === "extra-exclusive") {
-          totalPrice += 200;
+          totalPrice += 150;
         } else if (headboard === "diamond") {
-          totalPrice += 380;
+          totalPrice += 180;
         } else {
           totalPrice += 0;
         }
@@ -817,21 +819,12 @@ const SingleAdd = () => {
                               Please Choose
                             </option>
                             <option value="standard">Standard (54")</option>
-                            <option value="extra-premium">
-                              Extra Premium (65") (+£79.00)
-                            </option>
-                            <option value="exclusive">
-                              Exclusive (70") (+£129.00)
-                            </option>
-                            <option value="extra-exclusive">
-                              Extra Exclusive (80") (+£200.00)
-                            </option>
-                            <option value="diamond">
-                              Diamond (90") (+£380.00)
-                            </option>
-                            <option value="two-part">
-                              Two Part Option Available
-                            </option>
+                            <option value="premium">Premium (60") (+£50.00)</option>
+                            <option value="extra-premium">Extra Premium (65") (+£70.00)</option>
+                            <option value="exclusive">Exclusive (70") (+£90.00)</option>
+                            <option value="extra-exclusive">Extra Eclusive Split Headboard (80") (+£150.00)</option>
+                            <option value="diamond">Diamond Spilt Headboard (90") (+£180.00)</option>
+                            <option value="two-part">Two Part Option Available</option>
                           </select>
                         </div>
 
