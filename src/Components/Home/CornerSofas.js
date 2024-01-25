@@ -96,9 +96,9 @@ const CornerSofas = () => {
                             <Loader />
                         </div>
                     ) : (
-                            <div className='h_box_main' ref={containerRef}>
+                        <div className='h_box_main' ref={containerRef}>
                             {data
-                                .filter((item) => item.subCategory === "corner-sofas")
+                                .filter((item) => item.subCategory === "corner-sofas" && item.home === true)
                                 .slice(0, 15).reverse()
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
@@ -136,8 +136,8 @@ const CornerSofas = () => {
                                         </div>
                                     </div>
                                 ))}
-                    </div>
-                        )}
+                        </div>
+                    )}
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
                 </div>

@@ -428,7 +428,7 @@ export const Navbar = () => {
       <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
         <div className="row py-2">
           <div className="col d-flex justify-content-center align-items-center gap-lg-5 gap-md-5 gap-2 ">
-            <a href="tel:00923067208343" target="blank" className="fs-6">
+            <a href="tel:+447392608087" target="blank" className="fs-6">
               <span
                 className="nav_cotact_icon"
                 style={{ color: "rgb(2, 2, 94)" }}
@@ -437,11 +437,11 @@ export const Navbar = () => {
               </span>{" "}
               &nbsp;
               <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
-                00923067208343
+              +447392608087
               </span>
               &nbsp;
             </a>
-            <a href="mailto:sharjeelakhtar245@gmail.com" target="blank">
+            <a href="mailto:sofabedsltd@gmail.com" target="blank">
               <span
                 className="nav_cotact_icon"
                 style={{ color: "rgb(2, 2, 94)" }}
@@ -453,15 +453,13 @@ export const Navbar = () => {
                 className="m-0 text-lowercase"
                 style={{ color: "rgb(2, 2, 94)" }}
               >
-                sharjeelakhtar245@gmail.com
+                sofabedsltd@gmail.com
               </span>
               &nbsp;
             </a>
           </div>
         </div>
       </div>
-
-
       <div style={{ position: "relative" }}>
         <div
           className={`${isSticky ? "fixed-top navbar-custom" : ""}`}

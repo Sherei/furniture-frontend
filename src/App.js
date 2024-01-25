@@ -115,7 +115,7 @@ function App() {
             </div>
           )} */}
           {/* <img src="/greeting.svg" className='greeting' /> */}
-          <a href='https://wa.me/+923067208343' target="blank">
+          <a href='https://wa.me/+447392608087' target="blank">
             <div className='d-flex align-items-center gap-2 whatsapp-btn_main'>
               <div>
                 <p className='m-0'>Chat</p>

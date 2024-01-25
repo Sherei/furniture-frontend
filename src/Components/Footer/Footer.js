@@ -25,22 +25,22 @@ const Footer = () => {
             supplying good quality furniture products to the consumers
             with substantial savings and ease.</p>
           <div className='footer_address'>
-            <a href="tel:00923067208343" target='blak'>
+            <a href="tel:+447392608087" target='blak'>
               <div className='mb-2'>
                 <span className='footer_addres_icon'><FaPhoneSquareAlt />
-                  <span className='px-2'>+923067208343</span>
+                  <span className='px-2'>+447392608087</span>
                 </span>
               </div>
             </a>
-            <a href="mailto:sharjeelakhtar245@gmail.com" target='blak'>
+            <a href="mailto:sofabedsltd@gmail.com" target='blak'>
               <div className='mb-2'>
                 <span className='footer_addres_icon'><FaEnvelope />
-                  <span className='px-2'>sharjeelakhtar245@gmail.com</span>
+                  <span className='px-2'>sofabedsltd@gmail.com</span>
                 </span>
               </div>
             </a>
             <div className='mb-2'>
-              <span className='footer_addres_icon'><ImLocation2 /> <span className='px-2'>66 Broklyn Street New York, USA</span></span>
+              <span className='footer_addres_icon'><ImLocation2 /> <span className='px-2'>14 Southbrook Terrace, City of Bradford, BD7 1AD, United Kingdom</span></span>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ const Footer = () => {
             <Link to='about'>
               <p>About Us</p>
             </Link>
-            <a href="https://wa.me/+923067208343" target='blank'>
+            <a href="https://wa.me/+447392608087" target='blank'>
                 <p>Contact Us</p>
             </a>
           </div>
@@ -110,7 +110,7 @@ const Footer = () => {
                 <FaInstagram />
               </div>
             </a>
-            <a href='https://wa.me/+923067208343' target="blank">
+            <a href='https://wa.me/+447392608087' target="blank">
               <div><FaWhatsapp /></div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>

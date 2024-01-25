@@ -181,12 +181,10 @@ export const AddProduct = () => {
         }
       }
     } else {
-
       data.images = cloudinaryUrls;
       data.discount = discount;
       data.price = price;
       data.Fprice = finalPrice;
-
       try {
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
         if (response.data) {
@@ -217,13 +215,13 @@ export const AddProduct = () => {
       <div className='row border py-5 px-4'>
         <div className='col-lg-12 col-sm-12'>
           <div className='d-flex justify-content-between'>
-          {!product &&
-            <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
-          
-          }
-           {product &&
-            <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Edit Product </h1>
-          }
+            {!product &&
+              <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Add Product </h1>
+
+            }
+            {product &&
+              <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Edit Product </h1>
+            }
             <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
           </div>
           {Error === "Serial number" &&
@@ -358,91 +356,91 @@ export const AddProduct = () => {
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1</label>
-                  <input {...register('descriptionHead1')} className="border form-control" />
+                  <input type="text"{...register('descriptionHead1')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
-                  <input {...register('description')} className="border form-control" />
+                  <input type="text"{...register('description')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 2</label>
-                  <input {...register('descriptionHead2')} className="border form-control" />
+                  <input type="text"{...register('descriptionHead2')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 2</label>
-                  <input {...register('description2')} className="border form-control" />
+                  <input type="text"{...register('description2')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 3</label>
-                  <input {...register('descriptionHead3')} className="border form-control" />
+                  <input type="text" {...register('descriptionHead3')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 3</label>
-                  <input {...register('description3')} className="border form-control" />
+                  <input type="text"{...register('description3')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 4</label>
-                  <input {...register('descriptionHead4')} className="border form-control" />
+                  <input type="text"{...register('descriptionHead4')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 4</label>
-                  <input {...register('description4')} className="border form-control" />
+                  <input type="text" {...register('description4')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature Heading</label>
-                  <input {...register('featureHead')} className="border form-control" />
+                  <input type="text" {...register('featureHead')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 1</label>
-                  <input {...register('feature1')} className="border form-control" />
+                  <input type="text" {...register('feature1')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 2</label>
-                  <input {...register('feature2')} className="border form-control" />
+                  <input type="text" {...register('feature2')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 3</label>
-                  <input {...register('feature3')} className="border form-control" />
+                  <input type="text" {...register('feature3')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 4</label>
-                  <input {...register('feature4')} className="border form-control" />
+                  <input type="text" {...register('feature4')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 5</label>
-                  <input {...register('feature5')} className="border form-control" />
+                  <input type="text" {...register('feature5')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 6</label>
-                  <input {...register('feature6')} className="border form-control" />
+                  <input type="text" {...register('feature6')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
-                  <input {...register('feature7')} className="border form-control" />
+                  <input type="text" {...register('feature7')} className="border form-control" />
                 </div>
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note</label>
-                  <input {...register('note2')} className="border form-control" />
+                  <input type="text" {...register('note2')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension Heading</label>
-                  <input {...register('dimensionHead')} className="border form-control" />
+                  <input type="text" {...register('dimensionHead')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 1</label>
-                  <input {...register('dimension1')} className="border form-control" />
+                  <input type="text" {...register('dimension1')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 2</label>
-                  <input {...register('dimension2')} className="border form-control" />
+                  <input type="text" {...register('dimension2')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 3</label>
-                  <input {...register('dimension3')} className="border form-control" />
+                  <input type="text" {...register('dimension3')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
+                  <label type="text" style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
                   <input {...register('dimension4')} className="border form-control" />
                 </div>
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
@@ -487,6 +485,13 @@ export const AddProduct = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                  
+                    <input className="form-check-input" type="checkbox" {...register('home')}  /> &nbsp;
+                    <span>Home Screen</span>
+                  {/* <input {...register('dimension4')} className="border form-control" /> */}
+                  {/* <label style={{ fontSize: "17px", fontWeight: "600" }}>Home Screen</label> */}
                 </div>
               </div>
               <div className='row'>

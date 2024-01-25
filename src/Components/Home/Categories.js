@@ -131,8 +131,8 @@ const Categories = () => {
                   <img src={product.img} alt='No Network' />
                 </div>
                 <div>
-                  <p className='text-center m-0 mt-3 fw-bolder'>{product.title}</p>
-                  <p className="text-center mt-1">{product.numbers} Products</p>
+                  <p className='text-center m-0 my-3 fw-bolder'>{product.title}</p>
+                  {/* <p className="text-center mt-1">{product.numbers} Products</p> */}
                 </div>
               </div>
             )

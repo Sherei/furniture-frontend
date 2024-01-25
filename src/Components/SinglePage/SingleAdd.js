@@ -598,9 +598,9 @@ const SingleAdd = () => {
                         </span>
                       </span>
                     )}
-                  <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
+                  {/* <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
-                  </p>
+                  </p> */}
 
                   {product.discount && product.discount > 0 ? (
                     <>

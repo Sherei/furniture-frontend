@@ -97,7 +97,7 @@ const Three = () => {
                     ) : (
                         <div className='h_box_main' ref={containerRef}>
                             {data
-                                .filter((item) => item.subCategory === "three-&-two-seater-sofas")
+                                .filter((item) => item.subCategory === "three-&-two-seater-sofas" && item.home === true)
                                 .slice(0, 15).reverse()
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >

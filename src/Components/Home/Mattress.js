@@ -100,7 +100,7 @@ const Mattress = () => {
                     ) : (
                         <div className='h_box_main' ref={containerRef}>
                             {data
-                                .filter((item) => item.category === "mattress")
+                                .filter((item) => item.category === "mattress" && item.home === true)
                                 .slice(0, 10).reverse()
                                 .map((product, index) => (
 
