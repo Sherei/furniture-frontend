@@ -446,21 +446,21 @@ export const Cart = () => {
                             className="sigle_quatity "
                             style={{ border: "none" }}
                           >
-                            <button
+                            {/* <button
                               className="plus_btn"
                               onClick={() => Decrement(item?._id)}
                             >
                               <FaMinus />
-                            </button>
+                            </button> */}
                             <p className="input_single text-center m-0 p-0">
                               {item.quantity}
                             </p>
-                            <button
+                            {/* <button
                               className="plus_btn"
                               onClick={() => Increment(item?._id)}
                             >
                               <FaPlus />
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                         <hr className="m-0 p-0" />
@@ -631,27 +631,27 @@ export const Cart = () => {
                           </td>
                           <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
                           <td className="text-center">
+                            <p className="input_single text-center m-0 p-0">
+                              {item.quantity}
+                            </p>
                             <div
                               className="sigle_quatity"
                               style={{ border: "none" }}
                             >
-                              <button
+                              {/* <button
                                 className="plus_btn"
                                 onClick={() => Decrement(item._id)}
                               >
                                 <FaMinus />
-                              </button>
+                              </button> */}
 
-                              <p className="input_single text-center m-0 p-0">
-                                {item.quantity}
-                              </p>
 
-                              <button
+                              {/* <button
                                 className="plus_btn"
                                 onClick={() => Increment(item._id)}
                               >
                                 <FaPlus />
-                              </button>
+                              </button> */}
                             </div>
                           </td>
                           <td className="text-center">{`£${(item?.total).toFixed()}`}</td>
@@ -672,10 +672,16 @@ export const Cart = () => {
               )}
             </div>
           </div>
-          <div className="d-flex justify-content-end">
+          <div className="cart_btns gap-2">
             <button
-              className="btn review_btn"
-              style={{ width: "1005" }}
+              className="btn review_btn px-4"
+              style={{ backgroundColor: "#8B0000"}}
+
+            >
+              Continue Shopping
+            </button>
+            <button
+              className="btn review_btn px-4"
               onClick={updateCart}
             >
               Update Cart
