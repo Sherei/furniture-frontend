@@ -242,7 +242,19 @@ export const Cart = () => {
   if (cu._id === undefined || cu.email === "asd@gmail.com") {
     return (
       <>
-        <Login />
+        <div
+          className="py-0 mb-5 d-flex flex-column align-items-center justify-content-center"
+          style={{ height: "70vh" }}
+        >
+          <p>Your Cart is empty</p>
+          <button
+            className="btn review_btn"
+            style={{ width: "fit-content" }}
+            onClick={() => move("/Products/all")}
+          >
+            Browse Products <FaArrowRight />
+          </button>
+        </div>
       </>
     );
   }
