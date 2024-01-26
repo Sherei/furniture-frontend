@@ -156,114 +156,115 @@ const SingleAdd = () => {
     detail,
     headboard,
     ottoman
-  ) => {
+  
+    ) => {
+    
+    let updatedFprice = product?.Fprice || 0;
 
-    let totalPrice = (product?.Fprice || 0) * quantity;
+    updatedFprice += calculateAdditionalPrice(size, mattress, detail, headboard, ottoman);
+
+    let totalPrice = updatedFprice * quantity;
+
+    return totalPrice;
+  };
+
+  const calculateAdditionalPrice = (size, mattress, detail, headboard, ottoman) => {
+  
+    let additionalPrice = 0;
 
     if (product?.category === "bed") {
       if (size !== undefined && size !== "") {
         if (size === "4ft-small-double") {
-          totalPrice += 120;
+          additionalPrice += 120;
         } else if (size === "4'6ft-standard-ouble") {
-          totalPrice += 180;
+          additionalPrice += 180;
         } else if (size === "5ft-king") {
-          totalPrice += 250;
+          additionalPrice += 250;
         } else if (size === "6ft-super-king") {
-          totalPrice += 300;
+          additionalPrice += 300;
         } else {
-          totalPrice += 0;
+          additionalPrice += 0;
         }
       }
       if (headboard !== undefined && headboard !== "") {
         if (headboard === "premium") {
-          totalPrice += 50;
+          additionalPrice += 50;
         } else if (headboard === "extra-premium") {
-          totalPrice += 70;
+          additionalPrice += 70;
         } else if (headboard === "exclusive") {
-          totalPrice += 90;
+          additionalPrice += 90;
         } else if (headboard === "extra-exclusive") {
-          totalPrice += 150;
+          additionalPrice += 150;
         } else if (headboard === "diamond") {
-          totalPrice += 180;
+          additionalPrice += 180;
         } else {
-          totalPrice += 0;
+          additionalPrice += 0;
         }
       }
       if (detail !== undefined && detail !== "") {
         if (detail === "button") {
-          totalPrice += 10;
+          additionalPrice += 10;
         }
       }
       if (ottoman !== undefined && ottoman !== "") {
         if (ottoman === "Yes") {
-          totalPrice += 90;
+          additionalPrice += 90;
         }
       }
       if (base !== undefined && base !== "") {
         if (base === "ottoman-gaslift") {
-          totalPrice += 120;
+          additionalPrice += 120;
         } else if (base === "solid-base") {
-          totalPrice += 60;
+          additionalPrice += 60;
         }
       }
       if (mattress !== undefined && mattress !== "") {
+
         if (mattress === "sprung-single") {
-          totalPrice += 80;
+          additionalPrice += 80;
         } else if (mattress === "sprung-small-double") {
-          totalPrice += 95;
+          additionalPrice += 95;
         } else if (mattress === "sprung-double") {
-          totalPrice += 105;
+          additionalPrice += 105;
         } else if (mattress === "sprung-king") {
-          totalPrice += 120;
+          additionalPrice += 120;
         } else if (mattress === "sprung-super-king") {
-          totalPrice += 160;
+          additionalPrice += 160;
         } else if (mattress === "ortho-single") {
-          totalPrice += 100;
+          additionalPrice += 100;
         } else if (mattress === "ortho-small-double") {
-          totalPrice += 120;
+          additionalPrice += 120;
         } else if (mattress === "ortho-double") {
-          totalPrice += 130;
+          additionalPrice += 130;
         } else if (mattress === "ortho-king") {
-          totalPrice += 150;
+          additionalPrice += 150;
         } else if (mattress === "ortho-super-king") {
-          totalPrice += 180;
+          additionalPrice += 180;
         }
       }
     }
-    // else if (product?.category === "sofa") {
-    //     if (size !== undefined && size !== '') {
-    //         if (size === "3-seater") {
-    //             totalPrice += 200;
-    //         }
-    //         else if (size === "2-seater") {
-    //             totalPrice += 100;
-    //         } else {
-    //             totalPrice += 0;
-    //         }
-    //     }
-    // }
     else if (product?.category === "mattress") {
       if (size !== undefined && size !== "") {
         if (size === "small-double") {
-          totalPrice += 20;
+          additionalPrice += 20;
         } else if (size === "double") {
-          totalPrice += 70;
+          additionalPrice += 70;
         } else if (size === "king") {
-          totalPrice += 120;
+          additionalPrice += 120;
         } else if (size === "super-king") {
-          totalPrice += 170;
+          additionalPrice += 170;
         } else {
-          totalPrice += 0;
+          additionalPrice += 0;
         }
       }
       if (ottoman !== undefined && ottoman !== "") {
         if (ottoman === "pillow") {
-          totalPrice += 50;
+          additionalPrice += 50;
         }
       }
     }
 
-    return totalPrice
+    return additionalPrice;
   };
 
   const totalPrice = calculateTotalPrice(
@@ -348,21 +349,13 @@ const SingleAdd = () => {
           setSucess("cart")
         }
       } catch (error) {
-        return (
-          <>
-            <div
-              className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-              style={{ height: "50vh" }}
-            >
-              <Loader />
-            </div>
-          </>
-        );
+        toast.warning("Server Error Try Again Later...")
       } finally {
         setLoading(false);
       }
     }
   }
+
   useEffect(() => {
     if (sucess) {
       const timeoutId = setTimeout(() => {
@@ -383,8 +376,8 @@ const SingleAdd = () => {
       base,
       headboard,
       ottoman,
-      mattress,
-      totalPrice
+      totalPrice,
+      mattress
     );
 
     if (cu._id) {
@@ -614,7 +607,6 @@ const SingleAdd = () => {
                   {/* <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
                   </p> */}
-
                   {product.discount && product.discount > 0 ? (
                     <>
                       {product?.category === "bed" ? (
