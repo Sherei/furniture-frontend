@@ -39,40 +39,37 @@ const Products = () => {
 
 
   useEffect(() => {
-    setLoading(true);
     const source = axios.CancelToken.source();
-    try {
-      const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
-  
-      const params = {
-        name: category,
-        sort: sort,
-        minPrice: minPrice,
-        maxPrice: maxPrice,
-        search: search
-      };
-  
-      axios.get(apiUrl, { params, cancelToken: source.token }).then((res) => {
+
+    const fetchData = async () => {
+      try {
+
+        const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
+        const params = {
+          name: category,
+          sort: sort,
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+          search: search
+        };
+        const res = await axios.get(apiUrl, { params, cancelToken: source.token });
         setData(res?.data);
-        // console.log("Response is ::: ", res?.data);
-      }).finally(() => {
-        setLoading(false);
-      }).catch((error) => {
+      } catch (error) {
         if (axios.isCancel(error)) {
           console.log("Request canceled:", error.message);
         } else {
           console.error("Error:", error.message);
         }
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
     return () => {
-        source.cancel();
+      source.cancel();
     };
   }, [category, sort, minPrice, maxPrice, search]);
-  
+
   const handleMinRangeChange = (e) => {
     const value = parseInt(e.target.value);
     setMinPrice(value);
@@ -93,7 +90,11 @@ const Products = () => {
     setSearch("");
     setActiveGrid("grid");
   }
-
+  if (loading) {
+    return <div className="d-flex justify-content-center align-items-center" style={{height:"50vh"}}>
+        <Loader/>
+    </div>
+  }
   return (
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
@@ -743,14 +744,15 @@ const Products = () => {
               </button>
             </div>
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
-              
+
               {(data?.length === 0 || loading) && (
                 <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
-                  {loading ? <Loader /> : "Nothing found try with different keyword"}
+                  {loading ? <Loader /> : (
+                    data?.length === 0 ? "Nothing found, try with a different keyword" : null
+                  )}
                 </div>
               )}
-
-              {activeGrid === "grid" &&
+              {(activeGrid === "grid" && !loading && data?.length > 0) &&
                 data?.map((product, index) => (
                   <div className="col" key={index}>
                     <div
@@ -813,7 +815,7 @@ const Products = () => {
 
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
-              {activeGrid === "list" &&
+              {(activeGrid === "list" && !loading && data?.length > 0) &&
                 data?.map((product, index) => {
                   return (
                     <>

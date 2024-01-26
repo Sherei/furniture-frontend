@@ -688,16 +688,16 @@ export const Cart = () => {
             <button
               className="btn review_btn px-4"
               style={{ backgroundColor: "#8B0000"}}
-
+              onClick={() => move("/Products/all")}
             >
               Continue Shopping
             </button>
-            <button
+            {/* <button
               className="btn review_btn px-4"
               onClick={updateCart}
             >
               Update Cart
-            </button>
+            </button> */}
           </div>
         </div>
 
