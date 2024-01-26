@@ -86,16 +86,6 @@ const Ottoman = () => {
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                    {data?.filter((product) => product.category === "ottoman-box").length === 0 &&
-                        <div className='px-4'>
-                            No product available related to this category
-                        </div>
-                    }
-                    {loading ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
-                            <Loader />
-                        </div>
-                    ) : (
                         <div className='h_box_main' ref={containerRef}>
                             {data
                                 .filter((item) => item.category === "ottoman-box")
@@ -135,10 +125,14 @@ const Ottoman = () => {
                                     </div>
                                 ))}
                         </div>
-                    )}
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
-                </div>
+                    {(data?.filter(product => product.category === "ottoman-box").length === 0 || loading) && (
+                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
+                            {loading ? <Loader /> : "No product available related to this category"}
+                        </div>
+                    )}
+                    </div>
             </div>
         </div>
     );

@@ -14,8 +14,6 @@ const Allcategories = () => {
         { img: "/cornersofa.jpeg", title: "Corner Sofas", path: "/products/corner-sofas" },
         { img: "/3+2.jpg", title: "3+2 Seater Sofa Set", path: "/products/three-&-two-seater-sofas" },
         { img: "/sofa-beds.webp", title: "Sofa Beds", path: "/products/sofa-beds" },
-        // { img: "/3_1060x550_crop_center.webp", title: "Fabric Sofas", path: "/products/fabric-sofas" },
-        // { img: "/3_1060x550_crop_center.webp", title: "Chesterfield Sofas", path: "/products/chesterfield-sofas" },
         { img: "/u-shaped.jpg", title: "U Shaped Sofas", path: "/products/u-shaped-sofas" },
         { img: "/leather.webp", title: "Leather Sofas", path: "/products/leather-sofas" },
         { img: "/recliner.jpg", title: "Recliner Sofas", path: "/products/recliner-sofas" },
@@ -23,7 +21,6 @@ const Allcategories = () => {
         { img: "/ambassador.jpg", title: "Ambassador Beds", path: "/products/ambassador-beds" },
         { img: "/panel.jpg", title: "Panel Beds", path: "/products/panel-bed" },
         { img: "/wingback.jpg", title: "Wingback beds", path: "/products/wingback-beds-frames" },
-        // { img: "/3_1060x550_crop_center.webp", title: "Ottoman Beds", path: "/products/ottoman-beds" },
         { img: "/bespoke.png", title: "Bespoke Beds", path: "/products/bespoke-beds" },
         { img: "/chesterfield.jpg", title: "Chesterfield Beds", path: "/products/chesterfield-beds" },
         { img: "/divanbed.webp", title: "Divan Beds", path: "/products/divan-beds" },
@@ -36,31 +33,33 @@ const Allcategories = () => {
     return <>
         <div className='container-fluid my-5'>
             <div className='my-5'>
-                <p className='fs-2 fw-bolder text-center' style={{color:"rgb(2, 2, 94)"}}>All Collection</p>
+                <p className='fs-2 fw-bolder text-center' style={{ color: "rgb(2, 2, 94)" }}>All Collection</p>
             </div>
             <div className="row px-lg-5 px-2 row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2  g-4">
                 {collection.map((item, index) => (
-                    <div key={index} className='all_collection_main' onClick={() => move(item.path)}>
-                        <div style={{ position: "relative", width: "100%", height: "200px", overflow: "hidden" }}>
-                            <img src={item.img} alt="No Network" className='rounded-3 img-fluid all_img' style={{ width: "100%", height: "100%" }} />
-                            <div
-                                className='d-flex align-items-center justify-content-center'
-                                style={{
-                                    position: 'absolute',
-                                    height: '100%', 
-                                    width: '100%',
-                                    top: '0',
-                                    left: '0',
-                                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                                    color: '#fff',
-                                    padding: '10px',
-                                    boxSizing: 'border-box',
-                                }}
-                            >
-                                <p className='m-0 all_title'>{item.title}</p>
+                    <a href={item.path}>
+                        <div key={index} className='all_collection_main'>
+                            <div style={{ position: "relative", width: "100%", height: "200px", overflow: "hidden" }}>
+                                <img src={item.img} alt="No Network" className='rounded-3 img-fluid all_img' style={{ width: "100%", height: "100%" }} />
+                                <div
+                                    className='d-flex align-items-center justify-content-center'
+                                    style={{
+                                        position: 'absolute',
+                                        height: '100%',
+                                        width: '100%',
+                                        top: '0',
+                                        left: '0',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                                        color: '#fff',
+                                        padding: '10px',
+                                        boxSizing: 'border-box',
+                                    }}
+                                >
+                                    <p className='m-0 all_title'>{item.title}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 ))}
 
             </div>

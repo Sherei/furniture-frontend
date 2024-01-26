@@ -20,6 +20,7 @@
     "react-export-table-to-excel": "^1.0.6",
     "react-ga": "^3.3.1",
     "react-hook-form": "^7.45.4",
+    "react-horizontal-scrolling-menu": "^4.1.2",
     "react-icons": "^4.10.1",
     "react-inner-image-zoom": "^3.0.2",
     "react-pdf": "^7.5.0",

@@ -94,7 +94,7 @@ const Categories = () => {
   };
 
   const [data, setData] = useState([])
-  
+
   useEffect(() => {
     setData([
       { title: "All Sofas", img: "/allsofa.jpeg", numbers: counts.sofa, path: "/products/sofa" },
@@ -137,7 +137,6 @@ const Categories = () => {
               </div>
             )
             )}
-
           </div>
           <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
           <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>

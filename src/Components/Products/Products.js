@@ -37,10 +37,13 @@ const Products = () => {
     setCategory(prodctName?.toLowerCase());
   }, [prodctName]);
 
+
   useEffect(() => {
     setLoading(true);
+    const source = axios.CancelToken.source();
     try {
       const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
+  
       const params = {
         name: category,
         sort: sort,
@@ -48,15 +51,28 @@ const Products = () => {
         maxPrice: maxPrice,
         search: search
       };
-      axios.get(apiUrl, { params }).then((res) => {
+  
+      axios.get(apiUrl, { params, cancelToken: source.token }).then((res) => {
         setData(res?.data);
+        // console.log("Response is ::: ", res?.data);
       }).finally(() => {
         setLoading(false);
+      }).catch((error) => {
+        if (axios.isCancel(error)) {
+          console.log("Request canceled:", error.message);
+        } else {
+          console.error("Error:", error.message);
+        }
       });
-    } catch (e) { }
-
+    } catch (e) {
+      console.error(e);
+    }
+  
+    return () => {
+        source.cancel();
+    };
   }, [category, sort, minPrice, maxPrice, search]);
-
+  
   const handleMinRangeChange = (e) => {
     const value = parseInt(e.target.value);
     setMinPrice(value);
@@ -384,7 +400,7 @@ const Products = () => {
         </div>
 
         <div className="row">
-          
+
           <div className="col-lg-2 col_hide">
             <div>
               <p className="fs-4 fw-bolder" style={{ color: "#1b2950" }}><FaFilter />&nbsp;Filter</p>
@@ -726,79 +742,75 @@ const Products = () => {
                 <FaFilter />
               </button>
             </div>
-            {loading ? (
-              <div
-                className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                style={{ height: "50vh" }}
-              >
-                <Loader />
-              </div>
-            ) : data.length === 0 ? (
-              <div className="col-12 d-flex justify-content-center align-items-center flex-wrap px-4" style={{ height: "200px" }}>
-                <p className="fs-5 bolder">Nothing found try with different keyword</p>
-              </div>
-            ) : (
-              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
-                {activeGrid === "grid" &&
-                  data?.map((product, index) => (
-                    <div className="col" key={index}>
+            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
+              
+              {(data?.length === 0 || loading) && (
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
+                  {loading ? <Loader /> : "Nothing found try with different keyword"}
+                </div>
+              )}
+
+              {activeGrid === "grid" &&
+                data?.map((product, index) => (
+                  <div className="col" key={index}>
+                    <div
+                      className="product_box "
+                      style={{ position: "relative" }}
+                    >
                       <div
-                        className="product_box "
-                        style={{ position: "relative" }}
+                        className="p_img_box"
+                        onClick={() => move("/single_Add/" + product._id)}
                       >
-                        <div
-                          className="p_img_box"
-                          onClick={() => move("/single_Add/" + product._id)}
-                        >
-                          <img src={product.images[0]} alt="No network" />
-                          <div className="overlay">
-                            {product.images[1] && (
-                              <img src={product.images[1]} alt="" />
-                            )}
-                          </div>
-                        </div>
-                        {product.discount && product.discount > 0 ? (
-                          <div className="discount">
-                            {`${product.discount}%`}
-                          </div>
-                        ) : null}
-                        <p className="card_title px-2">{product.title}</p>
-                        <div className="text-left">
-                          {product.discount && product.discount > 0 ? (
-                            <>
-                              <span className="card_Fprice px-2 ">
-                                {" "}
-                                {`£${product.Fprice?.toFixed(1)}`}
-                              </span>
-                              <span className="card_price">
-                                <s>{`£${product.price?.toFixed(1)}`}</s>
-                              </span>
-                            </>
-                          ) : (
-                            <span className="card_Fprice px-2 ">
-                              {" "}
-                              {`£${product.Fprice?.toFixed(2)}`}
-                            </span>
+                        <img src={product.images[0]} alt="No network" />
+                        <div className="overlay">
+                          {product.images[1] && (
+                            <img src={product.images[1]} alt="" />
                           )}
                         </div>
-                        <div className="product_btns">
-                          <button
-                            className="btn p_detail_btn"
-                            onClick={() => move("/single_Add/" + product._id)}
-                          >
-                            View Detail
-                          </button>
-                          <a href="https://wa.me/+923067208343" target="blank">
-                            <button className="btn p_whatsapp_btn">
-                              Buy Via WhatsApp
-                            </button>
-                          </a>
+                      </div>
+                      {product.discount && product.discount > 0 ? (
+                        <div className="discount">
+                          {`${product.discount}%`}
                         </div>
+                      ) : null}
+                      <p className="card_title px-2">{product.title}</p>
+                      <div className="text-left">
+                        {product.discount && product.discount > 0 ? (
+                          <>
+                            <span className="card_Fprice px-2 ">
+                              {" "}
+                              {`£${product.Fprice?.toFixed(1)}`}
+                            </span>
+                            <span className="card_price">
+                              <s>{`£${product.price?.toFixed(1)}`}</s>
+                            </span>
+                          </>
+                        ) : (
+                          <span className="card_Fprice px-2 ">
+                            {" "}
+                            {`£${product.Fprice?.toFixed(2)}`}
+                          </span>
+                        )}
+                      </div>
+                      <div className="product_btns">
+                        <button
+                          className="btn p_detail_btn"
+                          onClick={() => move("/single_Add/" + product._id)}
+                        >
+                          View Detail
+                        </button>
+                        <a href="https://wa.me/+923067208343" target="blank">
+                          <button className="btn p_whatsapp_btn">
+                            Buy Via WhatsApp
+                          </button>
+                        </a>
                       </div>
                     </div>
-                  ))}
-              </div>
-            )}
+                  </div>
+                ))}
+            </div>
+
+
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
               {activeGrid === "list" &&
