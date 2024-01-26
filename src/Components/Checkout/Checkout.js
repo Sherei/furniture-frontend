@@ -111,6 +111,7 @@ const Checkout = () => {
             filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
+                    productId: item.productId,
                     sn: item.sn,
                     category: item.category,
                     image: item.image,

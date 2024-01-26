@@ -337,7 +337,7 @@ export const Navbar = () => {
                     className="side_img_main"
                     style={{ width: "100px", minHeight: "80px" }}
                     onClick={() => {
-                      move(`single_Add/${item._id}`);
+                      move("/single_Add/" + item.productId);
                       setCartOpen(false);
                     }}
                   >

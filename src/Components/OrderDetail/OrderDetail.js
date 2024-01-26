@@ -111,7 +111,7 @@ const OrderDetail = () => {
                                 }} key={index}>
                                     <div className='row'>
                                         <div className='col-4'>
-                                            <div className='text-center' onClick={() => move(`single_Add/${item._id}`)} style={{ position: "relative" }}>
+                                            <div className='text-center' onClick={() => move("/single_Add/" + item.productId)} style={{ position: "relative" }}>
                                                 <img
                                                     src={item?.image}
                                                     className="img-fluid rounded-3"
@@ -248,7 +248,7 @@ const OrderDetail = () => {
                                                 <tr key={index} >
                                                     <td>{index + 1}</td>
                                                     <td>{data?.sn}</td>
-                                                    <td onClick={() => move("/single_Add/" + data?._id)} >
+                                                    <td onClick={() => move("/single_Add/" + data.productId)} >
                                                         <img src={data?.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
                                                     </td>
                                                     <td >

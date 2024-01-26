@@ -71,32 +71,14 @@ const SingleAdd = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      axios
-        .get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`)
+      axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`)
         .then((res) => {
           setProduct(res.data);
         });
     } catch (e) {
       setLoading(true);
-    } finally {
-      setLoading(false);
     }
   }, [productId]);
-
-  useEffect(() => {
-    setLoading(true);
-    try {
-      axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-        if (res) {
-          setData(res.data);
-        }
-      });
-    } catch (e) {
-      setLoading(true);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   const totalImages = product?.images?.length || 0;
 
@@ -607,7 +589,7 @@ const SingleAdd = () => {
                   {/* <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
                   </p> */}
-                  {product.discount && product.discount > 0 ? (
+                  {product?.discount && product?.discount > 0 ? (
                     <>
                       {product?.category === "bed" ? (
                         <div className="">
@@ -1413,9 +1395,9 @@ const SingleAdd = () => {
                   )}
                 </ul>
 
-                {product.featureHead && (
+                {product?.featureHead && (
                   <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>
-                    {product.featureHead}
+                    {product?.featureHead}
                   </p>
                 )}
                 <ul className="fs-6">

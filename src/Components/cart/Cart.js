@@ -86,7 +86,7 @@ export const Cart = () => {
           const { size, headboard, detail, ottoman, base, mattress } = item;
           let additionalPrices = 0;
 
-          
+
           if (item.category === "bed") {
             // Size
             if (size === "4ft-small-double") additionalPrices += 120;
@@ -110,7 +110,7 @@ export const Cart = () => {
             else if (mattress === "ortho-double") additionalPrices += 130;
             else if (mattress === "ortho-king") additionalPrices += 150;
             else if (mattress === "ortho-super-king") additionalPrices += 180;
-              // Buttons
+            // Buttons
             if (detail === "button") additionalPrices += 10;
             if (ottoman === "Yes") additionalPrices += 90;
           }
@@ -281,7 +281,7 @@ export const Cart = () => {
                     <div className="col-4">
                       <div
                         className="text-center"
-                        onClick={() => move(`single_Add/${item._id}`)}
+                        onClick={() => move("/single_Add/" + item.productId)}
                         style={{ position: "relative" }}
                       >
                         <img
@@ -508,7 +508,7 @@ export const Cart = () => {
                           <td className="text-center">
                             <div
                               className="text-center"
-                              onClick={() => move(`single_Add/${item._id}`)}
+                              onClick={() => move("/single_Add/" + item.productId)}
                               style={{ position: "relative" }}
                             >
                               <img
