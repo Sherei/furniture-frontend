@@ -35,6 +35,11 @@
   align-items: center;
 }
 
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
 .navbar-custom {
   width: 100%;
 }
