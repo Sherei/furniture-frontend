@@ -120,7 +120,7 @@ const Beds = () => {
                     </div>
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
-                    
+
                     {(data?.filter(product => product.category === "bed").length === 0 || loading) && (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                             {loading ? <Loader /> : "No product available related to this category"}
