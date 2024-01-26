@@ -806,7 +806,7 @@ const SingleAdd = () => {
                         <option value="premium">Premium (60") (+£50.00)</option>
                         <option value="extra-premium">Extra Premium (65") (+£70.00)</option>
                         <option value="exclusive">Exclusive (70") (+£90.00)</option>
-                        <option value="extra-exclusive">Extra Eclusive Split Headboard (80") (+£150.00)</option>
+                        <option value="extra-exclusive">Extra Exclusive Split Headboard (80") (+£150.00)</option>
                         <option value="diamond">Diamond Spilt Headboard (90") (+£180.00)</option>
                         <option value="two-part">Two Part Option Available</option>
                       </select>
