@@ -70,13 +70,14 @@ const SingleAdd = () => {
 
   useEffect(() => {
     try {
-      setLoading(true);
       axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`)
         .then((res) => {
           setProduct(res.data);
-          setLoading(false);
         });
     } catch (e) { }
+    finally {
+      setLoading(false);
+    }
   }, [productId]);
 
   const totalImages = product?.images?.length || 0;
