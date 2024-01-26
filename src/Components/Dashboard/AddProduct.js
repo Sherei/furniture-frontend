@@ -174,7 +174,7 @@ export const AddProduct = () => {
         const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data);
         setLoading(false);
         toast.success("Product updated");
-        move('/admin-dashboard');
+        // move('/admin-dashboard');
       } catch (error) {
         if (error.response && error.response.status === 400 && error.response.data.message === 'Cannot add more than 10 images') {
           return setError('images');
@@ -324,6 +324,30 @@ export const AddProduct = () => {
                     </select>
                     {errors.subCategory ? <div className='error'>Select subCategory</div> : null}
                   </div>
+                )}
+                {(selectedCategory === 'bed') && (
+                  <>
+                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                    <label style={{ fontSize: "17px", fontWeight: "600" }}>4ft Small Double Add Price *</label>
+                    <input type="number" {...register('double', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
+                    {errors.double && errors.double.type == "required" ? <div className='error'>This Field is required</div> : null}
+                  </div>
+                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                    <label style={{ fontSize: "17px", fontWeight: "600" }}>4'6ft Standard Double Add Price *</label>
+                    <input type="number" {...register('standard', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
+                    {errors.standard && errors.standard.type == "required" ? <div className='error'>This Field is required</div> : null}
+                  </div>
+                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                    <label style={{ fontSize: "17px", fontWeight: "600" }}>5ft King Add Price *</label>
+                    <input type="number" {...register('king', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
+                    {errors.king && errors.king.type == "required" ? <div className='error'>This Field is required</div> : null}
+                  </div>
+                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                    <label style={{ fontSize: "17px", fontWeight: "600" }}>6ft Super King Add Price *</label>
+                    <input type="number" {...register('super', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
+                    {errors.super && errors.super.type == "required" ? <div className='error'>This Field is required</div> : null}
+                  </div>
+                  </>
                 )}
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
@@ -487,9 +511,9 @@ export const AddProduct = () => {
                   </div>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                  
-                    <input className="form-check-input" type="checkbox" {...register('home')}  /> &nbsp;
-                    <span>Home Screen</span>
+
+                  <input className="form-check-input" type="checkbox" {...register('home')} /> &nbsp;
+                  <span>Home Screen</span>
                   {/* <input {...register('dimension4')} className="border form-control" /> */}
                   {/* <label style={{ fontSize: "17px", fontWeight: "600" }}>Home Screen</label> */}
                 </div>
