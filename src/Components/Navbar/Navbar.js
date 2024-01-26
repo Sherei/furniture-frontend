@@ -19,6 +19,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import CartAnimation from "../Animations/CartAnimation.json";
+import Headroom from "react-headroom";
 import "./navbar.css";
 
 export const Navbar = () => {
@@ -289,6 +290,7 @@ export const Navbar = () => {
 
   return (
     <>
+
       {open && (
         <div className={`side_cart px-2 ${open === true ? "side_open" : ""}`} cartRef={ref}>
           <div className="pt-2 d-flex justify-content-between align-items-center">
@@ -425,6 +427,7 @@ export const Navbar = () => {
         </div>
       )}
 
+
       <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
         <div className="row py-2">
           <div className="col d-flex justify-content-center align-items-center gap-lg-5 gap-md-5 gap-2 ">
@@ -435,9 +438,9 @@ export const Navbar = () => {
               >
                 <TbPhoneCall />
               </span>{" "}
-            
+
               <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
-              +44 7392 608087
+                +44 7392 608087
               </span>
               &nbsp;
             </a>
@@ -460,246 +463,248 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+
       <div style={{ position: "relative" }}>
         <div
-          className={`${isSticky ? "fixed-top navbar-custom" : ""}`}
           style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }}
         >
-          <div
-            className={`py-2 container-fluid`}
-            style={{ backgroundColor: "rgb(2, 2, 94)" }}
-          >
-            <div className="row">
-              <div className="col 
+          <Headroom>
+            <div
+              className={`py-2 container-fluid`}
+              style={{ backgroundColor: "rgb(2, 2, 94)" }}
+            >
+              <div className="row">
+                <div className="col 
               ">
-                <div className="row nav1_row">
-                  <div className="col-3 d-flex align-items-center justify-content-start gap-2 p-0"
-                    style={{ position: "relative" }}
-                  >
-                    <button
-                      className={`custom-toggler fs-2`}
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                      onClick={toggleNav}
+                  <div className="row nav1_row">
+                    <div className="col-3 d-flex align-items-center justify-content-start gap-2 p-0"
+                      style={{ position: "relative" }}
                     >
-                      <div className="fs-2 lines">
-                        {isNavOpen ? <RxCross1 /> : <HiOutlineBars3 />}
+                      <button
+                        className={`custom-toggler fs-2`}
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        onClick={toggleNav}
+                      >
+                        <div className="fs-2 lines">
+                          {isNavOpen ? <RxCross1 /> : <HiOutlineBars3 />}
+                        </div>
+                      </button>
+                      <div>
+                        <NavLink to="/" className="ms-md-2">
+                          <img className="logo_navbar" src="/logo2.png" />
+                        </NavLink>
                       </div>
-                    </button>
-                    <div>
-                      <NavLink to="/" className="ms-md-2">
-                        <img className="logo_navbar" src="/logo2.png" />
-                      </NavLink>
                     </div>
-                  </div>
-                  <div className="col-6 d-flex align-items-center nav_cotact"
-                    style={{ position: "relative", overflow: "hidden" }}
-                  >
-                    <input
-                      type="search"
-                      placeholder="Search Anything"
-                      className="h-70"
-                      onChange={(e) => setSearchValue(e.target.value)}
-                    />
-                    <button className="nav_search_btn">
-                      <FiSearch />
-                    </button>
-                  </div>
-                  {search && (
-                    <div
-                      className={`nav_searchbar w-100 `}
-                      style={{ backgroundColor: "#02025E", height: "55px" }}
+                    <div className="col-6 d-flex align-items-center nav_cotact"
+                      style={{ position: "relative", overflow: "hidden" }}
                     >
                       <input
                         type="search"
                         placeholder="Search Anything"
+                        className="h-70"
                         onChange={(e) => setSearchValue(e.target.value)}
                       />
-                      <button className="nav_search_btn ">
+                      <button className="nav_search_btn">
                         <FiSearch />
                       </button>
                     </div>
-                  )}
-                  <div className="col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center">
-                    <div className="d-flex align-items-end">
-                      <li className="nav-item px-0">
-                        <NavLink
-                          className="nav-link nav-link1"
-                          style={{ border: "none" }}
-                        >
-                          <div
-                            className="fs-2 nav_search"
-                            onClick={handleSearchToggle}
-                            style={{ color: "#E7E7E9" }}
-                          >
-                            <FiSearch />
-                          </div>
-                        </NavLink>
-                      </li>
-                      {cu._id == undefined && (
-                        <li className="nav-item px-0" ref={ref}>
+                    {search && (
+                      <div
+                        className={`nav_searchbar w-100 `}
+                        style={{ backgroundColor: "#02025E", height: "55px" }}
+                      >
+                        <input
+                          type="search"
+                          placeholder="Search Anything"
+                          onChange={(e) => setSearchValue(e.target.value)}
+                        />
+                        <button className="nav_search_btn ">
+                          <FiSearch />
+                        </button>
+                      </div>
+                    )}
+                    <div className="col-3 col-lg-3 col-md-3 d-flex justify-content-end align-items-center">
+                      <div className="d-flex align-items-end">
+                        <li className="nav-item px-0">
                           <NavLink
                             className="nav-link nav-link1"
                             style={{ border: "none" }}
                           >
                             <div
-                              className="fs-2"
-                              onClick={toggleLogin}
+                              className="fs-2 nav_search"
+                              onClick={handleSearchToggle}
                               style={{ color: "#E7E7E9" }}
                             >
-                              <FaRegUser />
+                              <FiSearch />
                             </div>
-                            {login && (
-                              <div className="login_div p-4">
-                                <div className="d-flex justify-content-between align-items-center mb-4">
-                                  <div>
-                                    <p className="m-0 fs-5 text-center fw-bolder" style={{ color: "#1b2950" }}>
-                                      Login to my Account
-                                    </p>
-                                  </div>
-                                  <div
-                                    style={{ color: "#1b2950" }}
-                                    onClick={() => {
-                                      setLogin(false);
-                                    }}
-                                  >
-                                    <RxCross1 />
-                                  </div>
-                                </div>
-                                <form action="" onSubmit={handleSubmit(Login)}>
-                                  {Error === "Invalid Credentials" && (
-                                    <div className="error mb-3">
-                                      {" "}
-                                      Invalid Credentials{" "}
-                                    </div>
-                                  )}
-                                  <div className="input-group my-4">
-                                    <input required="true"
-                                      autocomplete="off"
-                                      type="email"
-                                      className="input w-100" {...register('email', {
-                                        required: true, validate: function (typedValue) {
-                                          if (typedValue.match(
-                                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                                          )) {
-                                            return true;
-                                          } else {
-                                            return false;
-                                          }
-                                        }
-                                      })} />
-                                    <label class="user-label">Email *</label>
-                                    {errors.email ? <div className='error'>Email is required </div> : null}
-                                  </div>
-                                  <div className="input-group mb-3">
-                                    <input required="true"
-                                      autocomplete="off"
-                                      type="password"
-                                      className="input w-100"
-                                      {...register('password', { required: true })} />
-                                    <label class="user-label">Password *</label>
-                                    {errors.password ? <div className='error'>Password is required </div> : null}
-
-                                  </div>
-                                  <button
-                                    className="btn rounded login_btn mt-3"
-                                    onClick={handleSubmit(Login)}
-                                  >
-                                    Login
-                                  </button>
-                                  <div className="mt-3">
-                                    <p className="m-0 fs-6">
-                                      I don't have an account.{" "}
-                                      <NavLink to="/signup">
-                                        <span
-                                          className="register_btn"
-                                          onClick={() => {
-                                            setLogin(false);
-                                          }}
-                                        >
-                                          Register
-                                        </span>
-                                      </NavLink>
-                                    </p>
-                                  </div>
-                                </form>
-                              </div>
-                            )}
                           </NavLink>
                         </li>
-                      )}
-                      {cu._id != undefined && (
-                        <>
-                          <li className="nav-item dropdown px-0">
+                        {cu._id == undefined && (
+                          <li className="nav-item px-0" ref={ref}>
                             <NavLink
-                              className="nav-link nav-link1 dropdown-toggle1 fs-2"
-                              id="navbarDropdown"
-                              role="button"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                              style={{ borderBottom: "none", color: "#E7E7E9" }}
-                              onClick={() => setSearch(false)}
+                              className="nav-link nav-link1"
+                              style={{ border: "none" }}
                             >
-                              <FaRegUser />
+                              <div
+                                className="fs-2"
+                                onClick={toggleLogin}
+                                style={{ color: "#E7E7E9" }}
+                              >
+                                <FaRegUser />
+                              </div>
+                              {login && (
+                                <div className="login_div p-4">
+                                  <div className="d-flex justify-content-between align-items-center mb-4">
+                                    <div>
+                                      <p className="m-0 fs-5 text-center fw-bolder" style={{ color: "#1b2950" }}>
+                                        Login to my Account
+                                      </p>
+                                    </div>
+                                    <div
+                                      style={{ color: "#1b2950" }}
+                                      onClick={() => {
+                                        setLogin(false);
+                                      }}
+                                    >
+                                      <RxCross1 />
+                                    </div>
+                                  </div>
+                                  <form action="" onSubmit={handleSubmit(Login)}>
+                                    {Error === "Invalid Credentials" && (
+                                      <div className="error mb-3">
+                                        {" "}
+                                        Invalid Credentials{" "}
+                                      </div>
+                                    )}
+                                    <div className="input-group my-4">
+                                      <input required="true"
+                                        autocomplete="off"
+                                        type="email"
+                                        className="input w-100" {...register('email', {
+                                          required: true, validate: function (typedValue) {
+                                            if (typedValue.match(
+                                              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                                            )) {
+                                              return true;
+                                            } else {
+                                              return false;
+                                            }
+                                          }
+                                        })} />
+                                      <label class="user-label">Email *</label>
+                                      {errors.email ? <div className='error'>Email is required </div> : null}
+                                    </div>
+                                    <div className="input-group mb-3">
+                                      <input required="true"
+                                        autocomplete="off"
+                                        type="password"
+                                        className="input w-100"
+                                        {...register('password', { required: true })} />
+                                      <label class="user-label">Password *</label>
+                                      {errors.password ? <div className='error'>Password is required </div> : null}
+
+                                    </div>
+                                    <button
+                                      className="btn rounded login_btn mt-3"
+                                      onClick={handleSubmit(Login)}
+                                    >
+                                      Login
+                                    </button>
+                                    <div className="mt-3">
+                                      <p className="m-0 fs-6">
+                                        I don't have an account.{" "}
+                                        <NavLink to="/signup">
+                                          <span
+                                            className="register_btn"
+                                            onClick={() => {
+                                              setLogin(false);
+                                            }}
+                                          >
+                                            Register
+                                          </span>
+                                        </NavLink>
+                                      </p>
+                                    </div>
+                                  </form>
+                                </div>
+                              )}
                             </NavLink>
-                            <ul
-                              className="dropdown-menu menu3"
-                              aria-labelledby="navbarDropdown"
-                            >
-                              {cu?.email != "asd@gmail.com" && (
-                                <li>
-                                  <NavLink className="dropdown-item" to={`/user-profile/${cu._id}`} >
-                                    Profile
-                                  </NavLink>
-                                </li>
-                              )}
-                              {cu?.email === "asd@gmail.com" && (
-                                <li>
-                                  <NavLink className="dropdown-item" to="/admin-dashboard" >
-                                    Admin
-                                  </NavLink>
-                                </li>
-                              )}
-                              <li>
-                                {" "}
-                                <NavLink
-                                  className="dropdown-item" to="/login" onClick={Logout} >
-                                  Logout{" "}
-                                </NavLink>
-                              </li>
-                            </ul>
-
                           </li>
+                        )}
+                        {cu._id != undefined && (
+                          <>
+                            <li className="nav-item dropdown px-0">
+                              <NavLink
+                                className="nav-link nav-link1 dropdown-toggle1 fs-2"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                style={{ borderBottom: "none", color: "#E7E7E9" }}
+                                onClick={() => setSearch(false)}
+                              >
+                                <FaRegUser />
+                              </NavLink>
+                              <ul
+                                className="dropdown-menu menu3"
+                                aria-labelledby="navbarDropdown"
+                              >
+                                {cu?.email != "asd@gmail.com" && (
+                                  <li>
+                                    <NavLink className="dropdown-item" to={`/user-profile/${cu._id}`} >
+                                      Profile
+                                    </NavLink>
+                                  </li>
+                                )}
+                                {cu?.email === "asd@gmail.com" && (
+                                  <li>
+                                    <NavLink className="dropdown-item" to="/admin-dashboard" >
+                                      Admin
+                                    </NavLink>
+                                  </li>
+                                )}
+                                <li>
+                                  {" "}
+                                  <NavLink
+                                    className="dropdown-item" to="/login" onClick={Logout} >
+                                    Logout{" "}
+                                  </NavLink>
+                                </li>
+                              </ul>
 
-                        </>
-                      )}
-                      <li className="nav-item px-0">
-                        <NavLink
-                          className="nav-link nav-link1"
-                          style={{ border: "none", position: "relative" }}
-                          onClick={toggleCart}
-                        >
-                          <span className="fs-2" style={{ color: "#E7E7E9" }}>
-                            <FiShoppingCart />
-                            {(cu._id != undefined && cu.email != "asd@gmail.com") &&
-                              <p className="m-0 cart_number">
-                                {filterCartLength}
-                              </p>
-                            }
-                          </span>
-                        </NavLink>
-                      </li>
+                            </li>
+
+                          </>
+                        )}
+                        <li className="nav-item px-0">
+                          <NavLink
+                            className="nav-link nav-link1"
+                            style={{ border: "none", position: "relative" }}
+                            onClick={toggleCart}
+                          >
+                            <span className="fs-2" style={{ color: "#E7E7E9" }}>
+                              <FiShoppingCart />
+                              {(cu._id != undefined && cu.email != "asd@gmail.com") &&
+                                <p className="m-0 cart_number">
+                                  {filterCartLength}
+                                </p>
+                              }
+                            </span>
+                          </NavLink>
+                        </li>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-    
+          </Headroom>
+          
           <nav
             className={`navbar navbar-expand-lg navbar-light ${isNavOpen ? "show_nav" : ""}`}
             style={{ backgroundColor: "#F7EEDD" }}
@@ -982,7 +987,9 @@ export const Navbar = () => {
             </div>
           </nav>
         </div>
-      </div>
+
+
+      </div >
 
       {searchValue && (
         <div className="container-fluid px-lg-3 px-2">
@@ -1050,7 +1057,8 @@ export const Navbar = () => {
             ))}
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 };

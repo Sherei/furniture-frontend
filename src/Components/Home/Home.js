@@ -43,7 +43,6 @@ const Home = () => {
     <Review />
     <Benefits />
     <Blog />
-
   </>
 }
 

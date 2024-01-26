@@ -22,12 +22,6 @@
   font-size: 18px;
 }
 
-.sticky-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 10000;
-}
-
 .logo_navbar {
   width: 125px;
 }
