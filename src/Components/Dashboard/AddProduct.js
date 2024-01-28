@@ -25,7 +25,11 @@ export const AddProduct = () => {
   const [Error, setError] = useState("");
   const [imagePreviews, setImagePreviews] = useState([]);
   const [formData, setFormData] = useState(new FormData());
+  const [open, setOpen] = useState(false);
 
+  const toggleMore = () => {
+    setOpen(!open);
+  }
 
   let move = useNavigate();
 
@@ -327,28 +331,77 @@ export const AddProduct = () => {
                 )}
                 {(selectedCategory === 'bed') && (
                   <>
-                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>4ft Small Double Add Price *</label>
-                    <input type="number" {...register('double', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
-                    {errors.double && errors.double.type == "required" ? <div className='error'>This Field is required</div> : null}
-                  </div>
-                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>4'6ft Standard Double Add Price *</label>
-                    <input type="number" {...register('standard', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
-                    {errors.standard && errors.standard.type == "required" ? <div className='error'>This Field is required</div> : null}
-                  </div>
-                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>5ft King Add Price *</label>
-                    <input type="number" {...register('king', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
-                    {errors.king && errors.king.type == "required" ? <div className='error'>This Field is required</div> : null}
-                  </div>
-                  <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>6ft Super King Add Price *</label>
-                    <input type="number" {...register('super', { required: true })} min={1} className="border form-control mb-2 mr-sm-2"/>
-                    {errors.super && errors.super.type == "required" ? <div className='error'>This Field is required</div> : null}
-                  </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>4ft Small Double Add Price *</label>
+                      <input type="number" {...register('double', { required: true })} min={1} className="border form-control mb-2 mr-sm-2" />
+                      {errors.double && errors.double.type == "required" ? <div className='error'>This Field is required</div> : null}
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>4'6ft Standard Double Add Price *</label>
+                      <input type="number" {...register('standard', { required: true })} min={1} className="border form-control mb-2 mr-sm-2" />
+                      {errors.standard && errors.standard.type == "required" ? <div className='error'>This Field is required</div> : null}
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>5ft King Add Price *</label>
+                      <input type="number" {...register('king', { required: true })} min={1} className="border form-control mb-2 mr-sm-2" />
+                      {errors.king && errors.king.type == "required" ? <div className='error'>This Field is required</div> : null}
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>6ft Super King Add Price *</label>
+                      <input type="number" {...register('super', { required: true })} min={1} className="border form-control mb-2 mr-sm-2" />
+                      {errors.super && errors.super.type == "required" ? <div className='error'>This Field is required</div> : null}
+                    </div>
                   </>
                 )}
+                {/* Colors */}
+
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 1 *</label>
+                  <input type="text" {...register('color1', { required: true })} className="border form-control" />
+                  {errors.color1 && errors.color1.type == "required" ? <div className='error'>This Field is required</div> : null}
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 2</label>
+                  <input type="text" {...register('color2')} className="border form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 3</label>
+                  <input type="text" {...register('color3')} className="border form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 4</label>
+                  <input type="text" {...register('color4')} className="border form-control" />
+                </div>
+                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 5</label>
+                  <input type="text" {...register('color5')} className="border form-control" />
+                  <button className='btn review-btn' onClick={toggleMore}>Add more </button>
+                </div>
+                {open &&
+                  <>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 6</label>
+                      <input type="text" {...register('color6')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 7</label>
+                      <input type="text" {...register('color7')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 8</label>
+                      <input type="text" {...register('color8')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 9</label>
+                      <input type="text" {...register('color9')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 10</label>
+                      <input type="text" {...register('color10')} className="border form-control" />
+                    </div>
+                  </>
+                }
+                {/* Pricing */}
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
@@ -377,6 +430,8 @@ export const AddProduct = () => {
                     className="border form-control mb-2 mr-sm-2"
                   />
                 </div>
+
+                {/* Description */}
 
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1</label>
@@ -425,24 +480,30 @@ export const AddProduct = () => {
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 3</label>
                   <input type="text" {...register('feature3')} className="border form-control" />
+                  <button className='btn review-btn' onClick={toggleMore}>Add more </button>
                 </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 4</label>
-                  <input type="text" {...register('feature4')} className="border form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 5</label>
-                  <input type="text" {...register('feature5')} className="border form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 6</label>
-                  <input type="text" {...register('feature6')} className="border form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
-                  <input type="text" {...register('feature7')} className="border form-control" />
-                </div>
+                {open &&
+                  <>
 
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 4</label>
+                      <input type="text" {...register('feature4')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 5</label>
+                      <input type="text" {...register('feature5')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 6</label>
+                      <input type="text" {...register('feature6')} className="border form-control" />
+                    </div>
+                    <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 7</label>
+                      <input type="text" {...register('feature7')} className="border form-control" />
+                    </div>
+                  </>
+                }
+                
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note</label>
                   <input type="text" {...register('note2')} className="border form-control" />
@@ -467,6 +528,9 @@ export const AddProduct = () => {
                   <label type="text" style={{ fontSize: "17px", fontWeight: "600" }}>Dimension 4</label>
                   <input {...register('dimension4')} className="border form-control" />
                 </div>
+
+                {/* Pictures */}
+
                 <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
                   <input

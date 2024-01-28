@@ -127,7 +127,7 @@ const Review = () => {
                                                 {item.comment}
                                             </p>
                                             <p className='text-center' style={{ color: "white" }}>{item.name}</p>
-                                            <p className='text-center text-muted' style={{ fontWeight: "700" }}>{formatDateTime(item.date)}</p>
+                                            {/* <p className='text-center text-muted' style={{ fontWeight: "700" }}>{formatDateTime(item.date)}</p> */}
                                         </div>
                                     </SwiperSlide>
                                 })}

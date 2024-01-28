@@ -7,6 +7,7 @@ import {
   FaAngleDown,
   FaArrowRight
 } from "react-icons/fa";
+import { FaVanShuttle } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
 import { RxCross1 } from "react-icons/rx";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -427,33 +428,24 @@ export const Navbar = () => {
 
       <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
         <div className="row py-2">
-          <div className="col d-flex justify-content-center align-items-center gap-lg-5 gap-md-5 gap-2 ">
+          <div className="col d-flex flex-wrap justify-content-between align-items-center px-lg-5 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
+          
+              <span
+                className="nav_cotact_icon fs-6"
+                style={{ color: "rgb(2, 2, 94)" }}
+              >
+                <FaVanShuttle /> Express Delivery
+              </span>{" "}
             <a href="tel:+447392608087" target="blank" className="fs-6">
               <span
                 className="nav_cotact_icon"
                 style={{ color: "rgb(2, 2, 94)" }}
               >
-                <TbPhoneCall />
+                Support: <TbPhoneCall />
               </span>{" "}
-            
+
               <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
-              +44 7392 608087
-              </span>
-              &nbsp;
-            </a>
-            <a href="mailto:sofabedsltd@gmail.com" target="blank">
-              <span
-                className="nav_cotact_icon"
-                style={{ color: "rgb(2, 2, 94)" }}
-              >
-                <AiFillMail />
-              </span>
-              &nbsp;
-              <span
-                className="m-0 text-lowercase"
-                style={{ color: "rgb(2, 2, 94)" }}
-              >
-                sofabedsltd@gmail.com
+                +44 7392 608087
               </span>
               &nbsp;
             </a>
@@ -699,7 +691,7 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-    
+
           <nav
             className={`navbar navbar-expand-lg navbar-light ${isNavOpen ? "show_nav" : ""}`}
             style={{ backgroundColor: "#F7EEDD" }}

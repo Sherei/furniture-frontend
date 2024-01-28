@@ -6,11 +6,11 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import "./checkout.css"
 import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
 import { FaArrowRight, FaAngleDown } from "react-icons/fa"
+import "./checkout.css"
 
 const Checkout = () => {
 
