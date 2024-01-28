@@ -354,51 +354,55 @@ export const AddProduct = () => {
                   </>
                 )}
                 {/* Colors */}
-
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 1 *</label>
-                  <input type="text" {...register('color1', { required: true })} className="border form-control" />
-                  {errors.color1 && errors.color1.type == "required" ? <div className='error'>This Field is required</div> : null}
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 2</label>
-                  <input type="text" {...register('color2')} className="border form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 3</label>
-                  <input type="text" {...register('color3')} className="border form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 4</label>
-                  <input type="text" {...register('color4')} className="border form-control" />
-                </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 5</label>
-                  <input type="text" {...register('color5')} className="border form-control" />
-                  <button className='btn review-btn' onClick={toggleMore}>Add more </button>
-                </div>
-                {open &&
+                {selectedCategory != "mattress" &&
                   <>
+
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 6</label>
-                      <input type="text" {...register('color6')} className="border form-control" />
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 1 *</label>
+                      <input type="text" {...register('color1', { required: true })} className="border form-control" />
+                      {errors.color1 && errors.color1.type == "required" ? <div className='error'>This Field is required</div> : null}
                     </div>
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 7</label>
-                      <input type="text" {...register('color7')} className="border form-control" />
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 2</label>
+                      <input type="text" {...register('color2')} className="border form-control" />
                     </div>
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 8</label>
-                      <input type="text" {...register('color8')} className="border form-control" />
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 3</label>
+                      <input type="text" {...register('color3')} className="border form-control" />
                     </div>
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 9</label>
-                      <input type="text" {...register('color9')} className="border form-control" />
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 4</label>
+                      <input type="text" {...register('color4')} className="border form-control" />
                     </div>
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 10</label>
-                      <input type="text" {...register('color10')} className="border form-control" />
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 5</label>
+                      <input type="text" {...register('color5')} className="border form-control" />
+                      <button className='btn review-btn' onClick={toggleMore}>Add more </button>
                     </div>
+                    {open &&
+                      <>
+                        <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                          <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 6</label>
+                          <input type="text" {...register('color6')} className="border form-control" />
+                        </div>
+                        <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                          <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 7</label>
+                          <input type="text" {...register('color7')} className="border form-control" />
+                        </div>
+                        <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                          <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 8</label>
+                          <input type="text" {...register('color8')} className="border form-control" />
+                        </div>
+                        <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                          <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 9</label>
+                          <input type="text" {...register('color9')} className="border form-control" />
+                        </div>
+                        <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                          <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 10</label>
+                          <input type="text" {...register('color10')} className="border form-control" />
+                        </div>
+                      </>
+                    }
                   </>
                 }
                 {/* Pricing */}
@@ -503,7 +507,7 @@ export const AddProduct = () => {
                     </div>
                   </>
                 }
-                
+
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Note</label>
                   <input type="text" {...register('note2')} className="border form-control" />
