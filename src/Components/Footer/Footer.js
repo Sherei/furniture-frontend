@@ -18,7 +18,7 @@ const Footer = () => {
   }
   return <>
     <div className='container-fluid mx-0 mt-3 pb-3 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
-      <div className='row px-lg-5 px-3 mt-5' style={{ minHeight: "60vh",borderBottom:"1px solid #fff" }}>
+      <div className='row mx-lg-5 px-3 mt-5' style={{ minHeight: "60vh",borderBottom:"1px solid #fff" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
           <p className='fw-bolder fs-5' style={{ color: "white" }}>ABOUT US</p>
           <p className='footer_head_detail'>We are an independent retail company dedicated to
@@ -98,8 +98,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className='row '>
-        <div className='col-12 px-lg-5 px-3 footer_display'>
+      <div className='row mx-lg-5 mx-3'>
+        <div className='col-12 footer_display'>
           <div>
             <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved by SOFA BEDS UK 2023.</p>
           </div>
