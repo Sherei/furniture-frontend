@@ -262,24 +262,34 @@ export const Cart = () => {
   return (
     <div className="container-fluid h-100">
       <div className="row">
-        <div
-          className="col d-flex align-items-center justify-content-center py-5"
-          style={{
-            height: "200px",
-            backgroundColor: "rgb(27, 41, 80,0.3)",
-          }}
-        >
-          <p
-            className="fs-2 fw-bolder text-center"
-            style={{ color: "rgb(27, 41, 80)" }}
+        <div className="col px-0" style={{ position: "relative", width: "100%", maxHeight: "250px", overflow: "hidden" }}>
+          <img src="/cartbg.png" alt="No Network" className='img-fluid all_img' style={{ width: "100%", height: "100%" }} />
+          <div
+            className='d-flex align-items-center justify-content-center'
+            style={{
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              top: '0',
+              left: '0',
+              backgroundColor: 'rgb(27, 41, 80,0.5)',
+              color: '#fff',
+              padding: '10px',
+              boxSizing: 'border-box',
+            }}
           >
-            Shopping Cart <FiShoppingCart />
-          </p>
+            <p
+              className="fs-2 fw-bolder text-center"
+              style={{ color: "white" }}
+            >
+              Shopping Cart <FiShoppingCart />
+            </p>
+          </div>
         </div>
       </div>
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-5">
         <div className="col-lg-8 col-md-12 col-sm-12">
-          <div className="my-4" style={{minHeight:"50vh"}}>
+          <div className="my-4" style={{ minHeight: "50vh" }}>
             {filterCart.map((item, index) => {
               return (
                 <div
@@ -299,10 +309,10 @@ export const Cart = () => {
                         <img
                           src={item?.image}
                           className="img-fluid rounded-3"
-                          alt="No Internet"
+                          alt="Loading"
                           style={{ width: "150px" }}
                         />
-                        {item?.discount && item.discount > 1 && (
+                        {item?.discount > 0 && (
                           <div
                             className="p-1"
                             style={{
@@ -315,7 +325,7 @@ export const Cart = () => {
                             }}
                           >
                             <p className="m-0" style={{ fontSize: "10px" }}>
-                              {`-${item?.discount}%`}
+                              {`-${item.discount}%`}
                             </p>
                           </div>
                         )}
@@ -687,7 +697,7 @@ export const Cart = () => {
           <div className="cart_btns gap-2">
             <button
               className="btn review_btn px-4"
-              style={{ backgroundColor: "#8B0000"}}
+              style={{ backgroundColor: "#8B0000" }}
               onClick={() => move("/Products/all")}
             >
               Continue Shopping

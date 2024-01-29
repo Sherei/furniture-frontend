@@ -274,15 +274,15 @@ const SingleAdd = () => {
         return setError("options");
       }
     } else if (product?.category === "mattress") {
-      if (!size) {
+      if (!size, !ottoman) {
         return setError("options");
       }
     } else if (product?.category === "ottoman-box") {
-      if ((!detail, !fabric, !color)) {
+      if ((!detail, !fabric)) {
         return setError("options");
       }
     } else if (product?.category === "footstools") {
-      if ((!fabric, !color)) {
+      if ((!fabric)) {
         return setError("options");
       }
     }
@@ -625,7 +625,9 @@ const SingleAdd = () => {
                 )}
 
                 <div className="single_form  mt-1">
+
                   {/*........................ Bed Start ..................... */}
+
                   {(product?.category != "bed" && product.subCategory != "corner-sofas") &&
                     <div className="mt-1">
                       <label
@@ -641,7 +643,7 @@ const SingleAdd = () => {
                         onChange={(e) => {
                           if (e.target.value === "select color") {
                             setColor("No color selection");
-                          }else {
+                          } else {
                             setColor(e.target.value);
                           }
                         }}
@@ -650,6 +652,7 @@ const SingleAdd = () => {
                         <option value="select color">Please Choose</option>
                         <option value="black">Black</option>
                         <option value="silver">Silver</option>
+                        <option value="pink">Pink</option>
                         <option value="grey">Grey</option>
                         <option value="mink">Mink</option>
                         <option value="royal-blue">Royal Blue</option>
@@ -943,7 +946,8 @@ const SingleAdd = () => {
                         <label
                           style={{ fontSize: "17px", fontWeight: "600" }}
                         >
-                          Matching Ottoman Box &nbsp;{" "}
+                          Matching Ottoman Box
+                          <span style={{ color: "red" }}>* </span>&nbsp;{" "}&nbsp;{" "}
                           <span className="lable_Case">
                             {ottoman ? ottoman.replace(/-/g, " ") : ""}
                           </span>
@@ -1021,12 +1025,13 @@ const SingleAdd = () => {
 
                     <div className="mt-1">
                       <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                        Mattress Pillow Topper &nbsp;{" "}
+                        Mattress Pillow Topper
+                        <span style={{ color: "red" }}>* </span>&nbsp;{" "}&nbsp;{" "}
+                        &nbsp;{" "}
                         <span className="lable_Case">
                           {ottoman ? ottoman.replace(/-/g, " ") : ""}
                         </span>
                       </label>
-
                       <div className="d-flex gap-2">
                         <div className="d-flex gap-2">
                           <input

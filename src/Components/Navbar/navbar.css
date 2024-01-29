@@ -16,6 +16,10 @@
 
 .nav_cotact_icon {
   font-size: 20px;
+  font-weight: 600;
+}
+.nav_contact3{
+  display: none;
 }
 
 .nav_contact2 span {
@@ -426,5 +430,8 @@
 @media screen and (max-width:353px) {
   .nav_contact2{
     display: none !important;
+  }
+  .nav_contact3{
+    display: block !important;
   }
 }

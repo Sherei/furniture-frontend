@@ -441,7 +441,7 @@ export const Navbar = () => {
                   style={{ color: "rgb(2, 2, 94)" }}
                 >
                   <img src="/express.png" style={{ width: "50px" }} alt="" />
-                  &nbsp;&nbsp;Express Delivery
+                  &nbsp;&nbsp;Express Delivery UK!!
                 </span>{" "}
               </div>
               <div className="d-flex gap-5 fs-5 nav_social">
@@ -471,6 +471,22 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
+        <div className="container-fluid nav_contact3" style={{ backgroundColor: "#F7EEDD" }}>
+          <div className="row py-2">
+            <div className="col d-flex justify-content-center align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
+              <div>
+                <span
+                  className="nav_cotact_icon"
+                  style={{ color: "rgb(2, 2, 94)" }}
+                >
+                  <img src="/express.png" style={{ width: "50px" }} alt="" />
+                  &nbsp;&nbsp;Express Delivery UK!!
+                </span>{" "}
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <div style={{ position: "relative" }}>
           <div style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }} >

@@ -193,15 +193,32 @@ const Checkout = () => {
 
     return <>
         <div className='container-fluid '>
-            <div className='row'>
-                <div className='col d-flex align-items-center justify-content-center py-5'
-                    style={{
-                        height: "200px",
-                        backgroundColor: 'rgb(27, 41, 80,0.3)'
-                    }}>
-                    <p className='fs-2 fw-bolder text-center' style={{ color: "rgb(27, 41, 80)" }}>Place Order!</p>
-                </div>
-            </div>
+        <div className="row">
+        <div className="col px-0" style={{ position: "relative", width: "100%", maxHeight: "250px", overflow: "hidden" }}>
+          <img src="/checkbg.jpg" alt="No Network" className='img-fluid all_img' style={{ width: "100%", height: "100%" }} />
+          <div
+            className='d-flex align-items-center justify-content-center'
+            style={{
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              top: '0',
+              left: '0',
+              backgroundColor: 'rgb(27, 41, 80,0.5)',
+              color: '#fff',
+              padding: '10px',
+              boxSizing: 'border-box',
+            }}
+          >
+            <p
+              className="fs-2 fw-bolder text-center"
+              style={{ color: "white" }}
+            >
+              Place Order !
+            </p>
+          </div>
+        </div>
+      </div>
             <div className='row checkout_display d-flex justify-content-center my-lg-5'>
                 <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
