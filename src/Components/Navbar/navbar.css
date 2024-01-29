@@ -413,13 +413,13 @@
 }
 
 @media screen and (max-width:550px) {
-  .nav_contact2 span {
+  .nav_cotact_icon {
     font-size: 15px;
   }
 }
 
 @media screen and (max-width:398px) {
-  .nav_contact2 {
-    display: none;
+  .nav_cotact_icon {
+    font-size: 7px;
   }
 }
