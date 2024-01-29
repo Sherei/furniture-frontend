@@ -5,7 +5,11 @@ import { AiFillMail } from "react-icons/ai";
 import {
   FaRegUser,
   FaAngleDown,
-  FaArrowRight
+  FaArrowRight, 
+  FaInstagram,
+  FaTiktok,
+  FaFacebook,
+  FaWhatsapp
 } from "react-icons/fa";
 import { FaVanShuttle } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
@@ -164,44 +168,44 @@ export const Navbar = () => {
       const titleMatch = title?.includes(searchResult);
       const categoryMatch = category?.includes(searchResult);
       const subCategoryMatch = subCategory?.includes(searchResult);
-      const description = product?.description?.includes(searchResult);
-      const descriptionHead2 =
-        product?.descriptionHead2?.includes(searchResult);
-      const description2 = product?.description2?.includes(searchResult);
-      const descriptionHead3 =
-        product?.descriptionHead3?.includes(searchResult);
-      const description3 = product?.description3?.includes(searchResult);
-      const descriptionHead4 =
-        product?.descriptionHead4?.includes(searchResult);
-      const description4 = product?.description4?.includes(searchResult);
-      const featureHead = product?.featureHead?.includes(searchResult);
-      const feature1 = product?.feature1?.includes(searchResult);
-      const feature2 = product?.feature2?.includes(searchResult);
-      const feature3 = product?.feature3?.includes(searchResult);
-      const feature4 = product?.feature4?.includes(searchResult);
-      const feature5 = product?.feature5?.includes(searchResult);
-      const feature6 = product?.feature6?.includes(searchResult);
-      const feature7 = product?.feature7?.includes(searchResult);
+      // const description = product?.description?.includes(searchResult);
+      // const descriptionHead2 =
+      //   product?.descriptionHead2?.includes(searchResult);
+      // const description2 = product?.description2?.includes(searchResult);
+      // const descriptionHead3 =
+      //   product?.descriptionHead3?.includes(searchResult);
+      // const description3 = product?.description3?.includes(searchResult);
+      // const descriptionHead4 =
+      //   product?.descriptionHead4?.includes(searchResult);
+      // const description4 = product?.description4?.includes(searchResult);
+      // const featureHead = product?.featureHead?.includes(searchResult);
+      // const feature1 = product?.feature1?.includes(searchResult);
+      // const feature2 = product?.feature2?.includes(searchResult);
+      // const feature3 = product?.feature3?.includes(searchResult);
+      // const feature4 = product?.feature4?.includes(searchResult);
+      // const feature5 = product?.feature5?.includes(searchResult);
+      // const feature6 = product?.feature6?.includes(searchResult);
+      // const feature7 = product?.feature7?.includes(searchResult);
 
       return (
         titleMatch ||
         categoryMatch ||
-        subCategoryMatch ||
-        description ||
-        description2 ||
-        description3 ||
-        description4 ||
-        descriptionHead2 ||
-        descriptionHead3 ||
-        descriptionHead4 ||
-        featureHead ||
-        feature1 ||
-        feature2 ||
-        feature3 ||
-        feature4 ||
-        feature5 ||
-        feature6 ||
-        feature7
+        subCategoryMatch
+        // description ||
+        // description2 ||
+        // description3 ||
+        // description4 ||
+        // descriptionHead2 ||
+        // descriptionHead3 ||
+        // descriptionHead4 ||
+        // featureHead ||
+        // feature1 ||
+        // feature2 ||
+        // feature3 ||
+        // feature4 ||
+        // feature5 ||
+        // feature6 ||
+        // feature7
       );
     });
 
@@ -428,27 +432,45 @@ export const Navbar = () => {
 
       <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
         <div className="row py-2">
-          <div className="col d-flex flex-wrap justify-content-between align-items-center px-lg-5 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
-          
+          <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
+            <div>
               <span
                 className="nav_cotact_icon fs-6"
                 style={{ color: "rgb(2, 2, 94)" }}
               >
-                <FaVanShuttle /> Express Delivery
+                <img src="/express.png" style={{ width: "50px" }} alt="" />
+                &nbsp;&nbsp;Express Delivery
               </span>{" "}
-            <a href="tel:+447392608087" target="blank" className="fs-6">
-              <span
-                className="nav_cotact_icon"
-                style={{ color: "rgb(2, 2, 94)" }}
-              >
-                Support: <TbPhoneCall />
-              </span>{" "}
+            </div>
+            <div className="d-flex gap-5 fs-5 nav_social">
+              <a style={{ color: "#02025E" }} href="">
+                <FaTiktok />
+              </a>
+              {/* <a style={{ color: "#02025E" }} href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>
+                <FaWhatsapp />
+              </a> */}
+              <a style={{ color: "#02025E" }} href='https://wa.me/+447392608087' target="blank">
+                <FaInstagram />
+              </a>
+              <a style={{ color: "#02025E" }} href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
+                <FaFacebook />
+              </a>
+            </div>
+            <div>
+              <a href="tel:+447392608087" target="blank" className="fs-6">
+                <span
+                  className="nav_cotact_icon"
+                  style={{ color: "rgb(2, 2, 94)" }}
+                >
+                  Support: <TbPhoneCall />
+                </span>{" "}
 
-              <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
-                +44 7392 608087
-              </span>
-              &nbsp;
-            </a>
+                <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
+                  +44 7392 608087
+                </span>
+                &nbsp;
+              </a>
+            </div>
           </div>
         </div>
       </div>

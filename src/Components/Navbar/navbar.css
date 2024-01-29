@@ -407,6 +407,9 @@
   .logo_navbar {
     width: 100px;
   }
+  .nav_social{
+    display: none !important;
+  }
 }
 
 @media screen and (max-width:550px) {
@@ -415,8 +418,8 @@
   }
 }
 
-@media screen and (max-width:390px) {
+@media screen and (max-width:398px) {
   .nav_contact2 {
-    /* display: none; */
+    display: none;
   }
 }

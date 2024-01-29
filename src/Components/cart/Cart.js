@@ -279,7 +279,7 @@ export const Cart = () => {
       </div>
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-5">
         <div className="col-lg-8 col-md-12 col-sm-12">
-          <div className="my-4">
+          <div className="my-4" style={{minHeight:"50vh"}}>
             {filterCart.map((item, index) => {
               return (
                 <div

@@ -98,13 +98,10 @@ const Checkout = () => {
 
     async function Order(data) {
 
-        console.log("Order function : ", data);
-       
         setLoading(true);
         window.scrollTo({
             top: 0
         });
-
         try {
             const orderItems = [];
             const orderId = uuidv4().substr(0, 10);

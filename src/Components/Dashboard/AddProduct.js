@@ -18,6 +18,7 @@ export const AddProduct = () => {
   const cu = useSelector(store => store.userSection.cu);
   const [product, setProduct] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('');
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(product ? product.discount : 0);
   const [finalPrice, setFinalPrice] = useState(product ? product.Fprice : 1);;
@@ -53,6 +54,9 @@ export const AddProduct = () => {
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
+  const handleSubCategoryChange = (e) => {
+    setSubCategory(e.target.value);
+  };
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: product,
@@ -63,11 +67,12 @@ export const AddProduct = () => {
     try {
       if (productId) {
         axios.get(`${process.env.REACT_APP_BASE_URL}/product_edit?id=${productId}`).then(function (resp) {
-          setProduct(resp.data);
-          setPrice(resp.data.price);
-          setDiscount(resp.data.discount);
-          setFinalPrice(resp.data.Fprice);
-          setSelectedCategory(resp.data.category);
+          setProduct(resp?.data);
+          setPrice(resp?.data?.price);
+          setDiscount(resp?.data?.discount);
+          setFinalPrice(resp?.data?.Fprice);
+          setSelectedCategory(resp?.data?.category);
+          setSubCategory(resp?.data?.subCategory)
           const imageArray = [];
           for (let i = 0; i < resp.data.images.length; i++) {
             imageArray.push(resp.data.images[i]);
@@ -290,6 +295,7 @@ export const AddProduct = () => {
                         }
                       }
                     })} className="border form-control mb-2 mr-sm-2"
+                      onChange={handleSubCategoryChange}
                     >
                       <option value="select subCategory">Select subCategory</option>
                       <option value="corner-sofas">Corner Sofas</option>
@@ -354,7 +360,7 @@ export const AddProduct = () => {
                   </>
                 )}
                 {/* Colors */}
-                {selectedCategory != "mattress" &&
+                {setSubCategory === "corner-sofas" &&
                   <>
 
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
