@@ -748,7 +748,7 @@ const Products = () => {
               {(data?.length === 0 || loading) && (
                 <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
-                    data?.length === 0 ? <Loader /> : null
+                    data?.length === 0 ? "No product is available related to this category" : null
                   )}
                 </div>
               )}
