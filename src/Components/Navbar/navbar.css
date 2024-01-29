@@ -414,17 +414,17 @@
 
 @media screen and (max-width:550px) {
   .nav_cotact_icon {
-    font-size: 15px;
+    font-size: 15px !important;
   }
 }
 
-@media screen and (max-width:398px) {
+@media screen and (max-width:452px) {
   .nav_cotact_icon {
-    font-size: 7px;
+    font-size: 12px !important;
   }
 }
-@media screen and (max-width:250px) {
+@media screen and (max-width:353px) {
   .nav_contact2{
-    display: none;
+    display: none !important;
   }
 }

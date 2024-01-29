@@ -464,13 +464,8 @@ export const Navbar = () => {
                     className="nav_cotact_icon"
                     style={{ color: "rgb(2, 2, 94)" }}
                   >
-                    Support: <TbPhoneCall />
+                    Support: <TbPhoneCall />  +44 7392 608087
                   </span>{" "}
-
-                  <span className="ml-2" style={{ color: "rgb(2, 2, 94)" }}>
-                    +44 7392 608087
-                  </span>
-                  &nbsp;
                 </a>
               </div>
             </div>
