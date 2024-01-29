@@ -270,7 +270,7 @@ const SingleAdd = () => {
     totalPrice
   ) {
     if (product?.category === "bed") {
-      if ((!size, !detail, !fabric, !headboard, !base, !mattress)) {
+      if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman)) {
         return setError("options");
       }
     } else if (product?.category === "mattress") {
