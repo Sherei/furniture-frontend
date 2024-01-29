@@ -476,7 +476,7 @@ export const Navbar = () => {
             <div className="col d-flex justify-content-center align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
               <div>
                 <span
-                  className="nav_cotact_icon"
+                  className="fs-6 fw-bolder"
                   style={{ color: "rgb(2, 2, 94)" }}
                 >
                   <img src="/express.png" style={{ width: "50px" }} alt="" />

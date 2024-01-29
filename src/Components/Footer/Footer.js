@@ -17,8 +17,8 @@ const Footer = () => {
     reset()
   }
   return <>
-    <div className='container-fluid mx-0 mt-3 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
-      <div className='row footer_row ' style={{ minHeight: "60vh" }}>
+    <div className='container-fluid mx-0 mt-3 pb-3 px-0' style={{ backgroundColor: "rgb(2, 2, 94)" }} >
+      <div className='row px-lg-5 px-3 mt-5' style={{ minHeight: "60vh",borderBottom:"1px solid #fff" }}>
         <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
           <p className='fw-bolder fs-5' style={{ color: "white" }}>ABOUT US</p>
           <p className='footer_head_detail'>We are an independent retail company dedicated to
@@ -99,9 +99,9 @@ const Footer = () => {
         </div>
       </div>
       <div className='row '>
-        <div className='col-12 px-lg-5 px-sm-3 footer_display'>
+        <div className='col-12 px-lg-5 px-3 footer_display'>
           <div>
-            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved SOFA BEDS UK 2023 Created By Excellence Creative.</p>
+            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved by SOFA BEDS UK 2023.</p>
           </div>
           <div className='footer_icon'>
             <a href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>
