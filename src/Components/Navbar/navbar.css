@@ -423,3 +423,8 @@
     font-size: 7px;
   }
 }
+@media screen and (max-width:250px) {
+  .nav_contact2{
+    display: none;
+  }
+}

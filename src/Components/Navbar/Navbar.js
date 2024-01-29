@@ -431,6 +431,7 @@ export const Navbar = () => {
       )}
 
       <div className={`${isSticky ? "fixed-top navbar-custom" : ""}`}>
+       
         <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="row py-2">
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
@@ -475,6 +476,7 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
+
         <div style={{ position: "relative" }}>
           <div  style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }} >
             <div
@@ -995,6 +997,7 @@ export const Navbar = () => {
             </nav>
           </div>
         </div>
+        
       </div>
       {searchValue && (
         <div className="container-fluid px-lg-3 px-2">
