@@ -262,7 +262,7 @@ export const Cart = () => {
   return (
     <div className="container-fluid h-100">
       <div className="row">
-        <div className="col px-0" style={{ position: "relative", width: "100%", maxHeight: "250px", overflow: "hidden" }}>
+        <div className="col px-0" style={{ position: "relative", width: "100%", maxHeight: "200px", overflow: "hidden" }}>
           <img src="/cartbg.png" alt="No Network" className='img-fluid all_img' style={{ width: "100%", height: "100%" }} />
           <div
             className='d-flex align-items-center justify-content-center'
