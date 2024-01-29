@@ -13,7 +13,9 @@ body {
 a {
   text-decoration: none !important;
 }
-
+.cursor:hover{
+  cursor: pointer;
+}
 .error {
   font-family: 'Montserrat', sans-serif;
   color: red;

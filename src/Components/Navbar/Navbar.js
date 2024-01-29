@@ -330,21 +330,21 @@ export const Navbar = () => {
             <div className="" style={{ height: "72vh", overflow: "auto" }}>
               {filterCart?.map((item, index) => (
                 <div
-                  className="px-2 mt-2 py-2 d-flex gap-2"
+                  className="px-2 mt-2 py-2 d-flex gap-2 cursor"
                   key={index}
                   style={{
                     maxWidth: "320px",
                     position: "relative",
                     boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                   }}
+                  onClick={() => {
+                    move("/single_Add/" + item.productId);
+                    setCartOpen(false);
+                  }}
                 >
                   <div
                     className="side_img_main"
                     style={{ width: "100px", minHeight: "80px" }}
-                    onClick={() => {
-                      move("/single_Add/" + item.productId);
-                      setCartOpen(false);
-                    }}
                   >
                     <img
                       src={item?.image}
@@ -431,7 +431,7 @@ export const Navbar = () => {
       )}
 
       <div className={`${isSticky ? "fixed-top navbar-custom" : ""}`}>
-       
+
         <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="row py-2">
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
@@ -473,7 +473,7 @@ export const Navbar = () => {
         </div>
 
         <div style={{ position: "relative" }}>
-          <div  style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }} >
+          <div style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }} >
             <div
               className={`py-2 container-fluid`}
               style={{ backgroundColor: "rgb(2, 2, 94)" }}
@@ -992,7 +992,7 @@ export const Navbar = () => {
             </nav>
           </div>
         </div>
-        
+
       </div>
       {searchValue && (
         <div className="container-fluid px-lg-3 px-2">
