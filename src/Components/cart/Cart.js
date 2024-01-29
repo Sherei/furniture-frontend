@@ -539,7 +539,7 @@ export const Cart = () => {
                                 alt="No Internet"
                                 style={{ width: "100px" }}
                               />
-                              {item?.discount && item?.discount > 1 && (
+                              {item?.discount > 1 && (
                                 <div
                                   className="p-1"
                                   style={{
