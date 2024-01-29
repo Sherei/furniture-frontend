@@ -5,11 +5,6 @@
     margin-top: 50px;
     border-bottom: 1px solid #fff;
 }
-.footer_row2{
-    width: 90%;
-    margin: auto;
-}
-
 .footer_menus p{
     color: #fff;
 }
@@ -97,11 +92,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 @media screen and (max-width:768px) {
-    .footer_row, .footer_row2 {
-        width: 100%;
-        padding: 5px;
-    }
     .newsletter_btn{
         font-size: 10px;
         top: 15px;

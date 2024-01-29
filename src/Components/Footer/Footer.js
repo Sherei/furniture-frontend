@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaPhoneSquareAlt, FaEnvelope, FaInstagram, FaLinkedin, FaTwitter, FaFacebook, FaWhatsapp } from "react-icons/fa"
+import { FaPhoneSquareAlt, FaEnvelope, FaInstagram, FaTiktok, FaFacebook, FaWhatsapp } from "react-icons/fa"
 import { ImLocation2 } from "react-icons/im"
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-scroll'
@@ -13,7 +13,7 @@ const Footer = () => {
 
   function News(data) {
     localStorage.setItem('email', data.email)
-    toast.success("Submitted")
+    toast.success("Successfully Subscribed")
     reset()
   }
   return <>
@@ -93,14 +93,13 @@ const Footer = () => {
               <form onSubmit={handleSubmit(News)}>
                 <input type="email" placeholder='Email Address' className='newsletter_input' {...register('news', { required: true })} />
                 <button className='newsletter_btn'>REGISTER</button>
-
               </form>
             </div>
           </div>
         </div>
       </div>
-      <div className='row footer_row2'>
-        <div className='col-12 footer_display'>
+      <div className='row '>
+        <div className='col-12 px-lg-5 px-sm-3 footer_display'>
           <div>
             <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved SOFA BEDS UK 2023 Created By Excellence Creative.</p>
           </div>
@@ -110,13 +109,18 @@ const Footer = () => {
                 <FaInstagram />
               </div>
             </a>
-            <a href='https://wa.me/+447392608087' target="blank">
-              <div><FaWhatsapp /></div>
+            <a href="" target='blank'>
+              <div>
+                <FaTiktok />
+              </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
               <div>
                 <FaFacebook />
               </div>
+            </a>
+            <a href='https://wa.me/+447392608087' target="blank">
+              <div><FaWhatsapp /></div>
             </a>
           </div>
         </div>
