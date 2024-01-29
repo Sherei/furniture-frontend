@@ -460,6 +460,7 @@ const SingleAdd = () => {
                       alt="No Network"
                       onClick={() => handleThumbnailClick(index)}
                       className={index === selectedImage ? "activeImg" : ""}
+                      style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                     />
                   ))}
               </div>
@@ -506,6 +507,7 @@ const SingleAdd = () => {
                       ? product.images[selectedImage]
                       : "fallbackImageURL"
                   }
+                  style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                   zoomSrc={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]

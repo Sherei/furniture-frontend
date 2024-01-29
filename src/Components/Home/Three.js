@@ -94,7 +94,9 @@ const Three = () => {
                                             <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
                                         </a>
                                         <div className='card_img_box'>
-                                            <img src={product?.images[0]} className='img-fluid' alt='No Network' />
+                                            <img src={product?.images[0]} className='img-fluid' alt='No Network' 
+                                            style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                                            />
                                             <div className='overlay'>
                                                 {product.images[1] &&
                                                     <img src={product?.images[1]} alt="" />

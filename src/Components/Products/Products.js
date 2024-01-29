@@ -91,8 +91,8 @@ const Products = () => {
     setActiveGrid("grid");
   }
   if (loading) {
-    return <div className="d-flex justify-content-center align-items-center" style={{height:"50vh"}}>
-        <Loader/>
+    return <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      <Loader />
     </div>
   }
   return (
@@ -748,7 +748,7 @@ const Products = () => {
               {(data?.length === 0 || loading) && (
                 <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
-                    data?.length === 0 ? <Loader />  : null
+                    data?.length === 0 ? <Loader /> : null
                   )}
                 </div>
               )}
@@ -763,7 +763,9 @@ const Products = () => {
                         className="p_img_box"
                         onClick={() => move("/single_Add/" + product._id)}
                       >
-                        <img src={product.images[0]} alt="No network" />
+                        <img src={product.images[0]} alt="No network"
+                          style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                        />
                         <div className="overlay">
                           {product.images[1] && (
                             <img src={product.images[1]} alt="" />
@@ -826,7 +828,9 @@ const Products = () => {
                       >
                         <div style={{ width: "40%" }}>
                           <div className="p_img_box_grid">
-                            <img src={product.images[0]} alt="No network" />
+                            <img src={product.images[0]} alt="No network"
+                              style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                            />
                             {product.discount && product.discount > 0 ? (
                               <div className="discount">
                                 {`${product.discount}%`}
