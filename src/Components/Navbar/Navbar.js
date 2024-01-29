@@ -337,10 +337,6 @@ export const Navbar = () => {
                     position: "relative",
                     boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                   }}
-                  onClick={() => {
-                    move("/single_Add/" + item.productId);
-                    setCartOpen(false);
-                  }}
                 >
                   <div
                     className="side_img_main"
@@ -350,6 +346,10 @@ export const Navbar = () => {
                       src={item?.image}
                       alt="No Network"
                       style={{ width: "100%", height: "100%" }}
+                      onClick={() => {
+                        move("/single_Add/" + item.productId);
+                        setCartOpen(false);
+                      }}
                     />
                   </div>
                   <div
