@@ -68,15 +68,23 @@ const SingleAdd = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    try {
-      axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`)
-        .then((res) => {
-          setProduct(res.data);
-        });
-    } catch (e) { }
-    finally {
-      setLoading(false);
-    }
+    const source = axios.CancelToken.source();
+
+    const fetchData = async () => {
+      try {
+        const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
+        setProduct(resp?.data)
+      } catch (error) {
+        if (axios.isCancel(error)) {
+        } else { }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+    return () => {
+      source.cancel();
+    };
   }, [productId]);
 
   const totalImages = product?.images?.length || 0;
@@ -782,7 +790,7 @@ const SingleAdd = () => {
                           <option value="chenille">Chenille</option>
                         </select>
                       </div>
-                      
+
                       {product.subCategory != "corner-sofas" &&
                         <div className="mt-1">
                           <label

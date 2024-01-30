@@ -43,7 +43,6 @@ const Products = () => {
 
     const fetchData = async () => {
       try {
-
         const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
         const params = {
           name: category,
@@ -56,10 +55,7 @@ const Products = () => {
         setData(res?.data);
       } catch (error) {
         if (axios.isCancel(error)) {
-          console.log("Request canceled:", error.message);
-        } else {
-          console.error("Error:", error.message);
-        }
+        } else { }
       } finally {
         setLoading(false);
       }

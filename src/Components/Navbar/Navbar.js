@@ -347,7 +347,7 @@ export const Navbar = () => {
                       alt="No Network"
                       style={{ width: "100%", height: "100%" }}
                       onClick={() => {
-                        move("/single_Add/" + item.productId);
+                        move(`/single_Add/${item.productId}`);
                         setCartOpen(false);
                       }}
                     />
