@@ -430,8 +430,7 @@ export const Navbar = () => {
         </div>
       )}
 
-      <div className={`${isSticky ? "fixed-top navbar-custom" : ""}`}>
-
+      <div className="fixed-top">
         <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="row py-2">
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
@@ -448,9 +447,6 @@ export const Navbar = () => {
                 <a style={{ color: "#02025E" }} href="">
                   <FaTiktok />
                 </a>
-                {/* <a style={{ color: "#02025E" }} href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>
-                <FaWhatsapp />
-              </a> */}
                 <a style={{ color: "#02025E" }} href='https://wa.me/+447392608087' target="blank">
                   <FaInstagram />
                 </a>
@@ -1009,7 +1005,10 @@ export const Navbar = () => {
           </div>
         </div>
 
-      </div>
+      </div >
+
+
+
       {searchValue && (
         <div className="container-fluid px-lg-3 px-2">
           <div className="my-4 fs-5">Search Result...</div>
@@ -1076,7 +1075,8 @@ export const Navbar = () => {
             ))}
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 };

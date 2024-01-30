@@ -1,6 +1,14 @@
+.navbar-custom {
+  position: sticky;
+  top: 0px;
+  z-index: 10000;
+}
+
+
 .nav_cotact {
   display: flex;
 }
+
 .nav_cotact p {
   color: white;
 }
@@ -18,7 +26,8 @@
   font-size: 20px;
   font-weight: 600;
 }
-.nav_contact3{
+
+.nav_contact3 {
   display: none;
 }
 
@@ -37,15 +46,6 @@
 .nav1 {
   vertical-align: middle;
   align-items: center;
-}
-
-.sticky-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 10000;
-}
-.navbar-custom {
-  width: 100%;
 }
 
 .nav-item .nav-link {
@@ -117,13 +117,16 @@
   border: none !important;
   outline: none !important;
 }
+
 .dropdown-toggle1::after {
   color: white;
 }
+
 .dropdown-item.active {
   color: white !important;
   background-color: #1b2950 !important;
 }
+
 .custom-toggler {
   opacity: 0;
   color: white !important;
@@ -138,6 +141,7 @@
 .additional-class {
   top: -52px;
 }
+
 .login_div {
   position: absolute;
   top: 80px;
@@ -334,6 +338,7 @@
   .navbar {
     padding: 0px !important;
   }
+
   .login_div::before {
     right: 67px !important;
   }
@@ -388,7 +393,7 @@
     display: none !important;
   }
 
-  .navbar-custom .login_div {
+  .login_div {
     top: 74px !important;
   }
 
@@ -411,7 +416,8 @@
   .logo_navbar {
     width: 100px;
   }
-  .nav_social{
+
+  .nav_social {
     display: none !important;
   }
 }
@@ -427,11 +433,13 @@
     font-size: 12px !important;
   }
 }
+
 @media screen and (max-width:387px) {
-  .nav_contact2{
+  .nav_contact2 {
     display: none !important;
   }
-  .nav_contact3{
+
+  .nav_contact3 {
     display: block !important;
   }
 }
