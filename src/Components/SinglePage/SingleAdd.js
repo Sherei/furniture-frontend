@@ -273,15 +273,18 @@ const SingleAdd = () => {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman)) {
         return setError("options");
       }
-    } else if (product?.category === "mattress") {
+    }
+    if (product?.category === "mattress") {
       if (!size, !ottoman) {
         return setError("options");
       }
-    } else if (product?.category === "ottoman-box") {
+    }
+    if (product?.category === "ottoman-box") {
       if ((!detail, !fabric)) {
         return setError("options");
       }
-    } else if (product?.category === "footstools") {
+    }
+    if (product?.category === "footstools") {
       if ((!fabric)) {
         return setError("options");
       }
@@ -779,6 +782,7 @@ const SingleAdd = () => {
                           <option value="chenille">Chenille</option>
                         </select>
                       </div>
+                      
                       {product.subCategory != "corner-sofas" &&
                         <div className="mt-1">
                           <label
@@ -1089,13 +1093,7 @@ const SingleAdd = () => {
                       <p className="mt-1 mb-0">Please Choose Fabric</p>
                       <select
                         className="form-select mb-2 mr-sm-2"
-                        onChange={(e) => {
-                          if (e.target.value === "select fabric") {
-                            return setError("fabric");
-                          } else {
-                            setFabric(e.target.value);
-                          }
-                        }}
+                        onChange={(e) => { e.target.value === "select fabric" ? setError("fabric") : setFabric(e.target.value) }}
                       >
                         <option value="select fabric">Please Choose</option>
                         <option value="plush-velvet">Plush Velvet</option>
@@ -1103,6 +1101,7 @@ const SingleAdd = () => {
                         <option value="chenille">Chenille</option>
                       </select>
                     </div>
+
                     <div className="mt-1">
                       <label style={{ fontSize: "17px", fontWeight: "600" }}>
                         Detail
@@ -1111,24 +1110,17 @@ const SingleAdd = () => {
                           {detail ? detail.replace(/-/g, " ") : ""}
                         </span>
                       </label>
-                      <p className="mt-1 mb-0">Please Choose more Detail</p>
+                      <p className="mt-1 mb-0">Please Choose Detail</p>
                       <select
-                        onChange={(e) => {
-                          if (e.target.value === "select detail") {
-                            return setError("detail");
-                          } else {
-                            setDetail(e.target.value);
-                          }
-                        }}
                         className="form-select mb-2 mr-sm-2"
+                        onChange={(e) => { e.target.value === "select detail" ? setError("detail") : setDetail(e.target.value) }}
                       >
                         <option value="select detail">Please Choose</option>
-                        <option value="matchig-buttons">
-                          Matchig Buttons{" "}
-                        </option>
+                        <option value="matchig-buttons">Matchig Buttons</option>
                         <option value="diamonds">Diamonds</option>
                       </select>
                     </div>
+
                   </>
                 )}
                 {/*.................................... Ottoman End .......................... */}
@@ -1148,13 +1140,7 @@ const SingleAdd = () => {
                       <p className="mt-1 mb-0">Please Choose Fabric</p>
                       <select
                         className="form-select mb-2 mr-sm-2"
-                        onChange={(e) => {
-                          if (e.target.value === "select fabric") {
-                            return setError("fabric");
-                          } else {
-                            setFabric(e.target.value);
-                          }
-                        }}
+                        onChange={(e) => { e.target.value === "select fabric" ? setError("fabric") : setFabric(e.target.value) }}
                       >
                         <option value="select fabric">Please Choose</option>
                         <option value="plush-velvet">Plush Velvet</option>
@@ -1164,55 +1150,9 @@ const SingleAdd = () => {
                     </div>
                   </>
                 )}
-
                 {/*.................................... Footstools End .......................... */}
-
-                {/*.................................... Mattress Start .......................... */}
-
-                {(product.category != "mattress" && product.color1 != undefined) &&
-                  <div className="mt-1">
-                    <label
-                      style={{ fontSize: "17px", fontWeight: "600" }}
-                    >
-                      Colour <span style={{ color: "red" }}>* </span>
-                      &nbsp;{" "}
-                      <span className="lable_Case">
-                        {color ? color.replace(/-/g, " ") : ""}
-                      </span>
-                    </label>
-                    <p className="mt-1 mb-0">Please Choose Colour</p>
-                    <select
-                      onChange={(e) => {
-                        if (e.target.value === "select color") {
-                          return setError("color");
-                        } else if (
-                          product?.category === "mattress" &&
-                          e.target.value === "select color"
-                        ) {
-                          return setColor("Not selected");
-                        } else {
-                          setColor(e.target.value);
-                        }
-                      }}
-                      className="form-select mb-2 mr-sm-2"
-                    >
-                      <option value="select color">Please Choose</option>
-                      {product?.color1 && <option value={product.color1}>{product.color1}</option>}
-                      {product?.color2 && <option value={product.color2}>{product.color2}</option>}
-                      {product?.color3 && <option value={product.color3}>{product.color3}</option>}
-                      {product?.color4 && <option value={product.color4}>{product.color4}</option>}
-                      {product?.color5 && <option value={product.color5}>{product.color5}</option>}
-                      {product?.color6 && <option value={product.color6}>{product.color6}</option>}
-                      {product?.color7 && <option value={product.color7}>{product.color7}</option>}
-                      {product?.color8 && <option value={product.color8}>{product.color8}</option>}
-                      {product?.color9 && <option value={product.color9}>{product.color9}</option>}
-                      {product?.color10 && <option value={product.color10}>{product.color10}</option>}
-                    </select>
-                  </div>
-                }
-                {/*.................................... Mattress End .......................... */}
-
               </div>
+
               <div className="sigle_quatity_main mt-1">
                 <div className="">
                   <p
