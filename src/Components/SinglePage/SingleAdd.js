@@ -308,8 +308,8 @@ const SingleAdd = () => {
       toast.warning("Login with different account");
     } else {
       try {
-        product.productId = product?._id;
         product.userId = cu?._id;
+        product.productId = product?._id;
         product.size = size;
         product.color = color;
         product.fabric = fabric;

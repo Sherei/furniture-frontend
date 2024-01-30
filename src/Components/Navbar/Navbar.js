@@ -168,47 +168,12 @@ export const Navbar = () => {
       const titleMatch = title?.includes(searchResult);
       const categoryMatch = category?.includes(searchResult);
       const subCategoryMatch = subCategory?.includes(searchResult);
-      // const description = product?.description?.includes(searchResult);
-      // const descriptionHead2 =
-      //   product?.descriptionHead2?.includes(searchResult);
-      // const description2 = product?.description2?.includes(searchResult);
-      // const descriptionHead3 =
-      //   product?.descriptionHead3?.includes(searchResult);
-      // const description3 = product?.description3?.includes(searchResult);
-      // const descriptionHead4 =
-      //   product?.descriptionHead4?.includes(searchResult);
-      // const description4 = product?.description4?.includes(searchResult);
-      // const featureHead = product?.featureHead?.includes(searchResult);
-      // const feature1 = product?.feature1?.includes(searchResult);
-      // const feature2 = product?.feature2?.includes(searchResult);
-      // const feature3 = product?.feature3?.includes(searchResult);
-      // const feature4 = product?.feature4?.includes(searchResult);
-      // const feature5 = product?.feature5?.includes(searchResult);
-      // const feature6 = product?.feature6?.includes(searchResult);
-      // const feature7 = product?.feature7?.includes(searchResult);
-
       return (
         titleMatch ||
         categoryMatch ||
         subCategoryMatch
-        // description ||
-        // description2 ||
-        // description3 ||
-        // description4 ||
-        // descriptionHead2 ||
-        // descriptionHead3 ||
-        // descriptionHead4 ||
-        // featureHead ||
-        // feature1 ||
-        // feature2 ||
-        // feature3 ||
-        // feature4 ||
-        // feature5 ||
-        // feature6 ||
-        // feature7
       );
     });
-
     setFilteredProducts(filtered);
   }, [searchValue]);
 
@@ -260,7 +225,7 @@ export const Navbar = () => {
   };
 
   const filterCart = cart?.filter((item) => item.userId === cu._id);
-
+  console.log("filter is ::", filterCart)
   const filterCartLength = filterCart.length;
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
@@ -347,7 +312,7 @@ export const Navbar = () => {
                       alt="No Network"
                       style={{ width: "100%", height: "100%" }}
                       onClick={() => {
-                        move(`/single_Add/${item.productId}`);
+                        move(`/single_Add/${item?.productId}`);
                         setCartOpen(false);
                       }}
                     />
@@ -436,7 +401,7 @@ export const Navbar = () => {
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
               <div>
                 <span
-                  className="nav_cotact_icon"
+                  className="nav_cotact_icon m-0"
                   style={{ color: "rgb(2, 2, 94)" }}
                 >
                   <img src="/express.png" style={{ width: "50px" }} alt="" />
@@ -457,7 +422,7 @@ export const Navbar = () => {
               <div>
                 <a href="tel:+447392608087" target="blank" className="fs-6">
                   <span
-                    className="nav_cotact_icon"
+                    className="nav_cotact_icon m-0"
                     style={{ color: "rgb(2, 2, 94)" }}
                   >
                     Support: <TbPhoneCall />  +44 7392 608087
@@ -472,7 +437,7 @@ export const Navbar = () => {
             <div className="col d-flex justify-content-center align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
               <div>
                 <span
-                  className="fs-6 fw-bolder"
+                  className="fs-6 fw-bolder m-0"
                   style={{ color: "rgb(2, 2, 94)" }}
                 >
                   <img src="/express.png" style={{ width: "50px" }} alt="" />

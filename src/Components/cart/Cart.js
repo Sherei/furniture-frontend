@@ -262,8 +262,8 @@ export const Cart = () => {
   return (
     <div className="container-fluid h-100">
       <div className="row">
-        <div className="col px-0" style={{ position: "relative", width: "100%", maxHeight: "200px", overflow: "hidden" }}>
-          <img src="/cartbg.png" alt="No Network" className='img-fluid all_img' style={{ width: "100%", height: "100%" }} />
+        <div className="col px-0" style={{ position: "relative", width: "100%", height: "250px", overflow: "hidden" }}>
+          <img src="/cartbg.png" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
           <div
             className='d-flex align-items-center justify-content-center'
             style={{
@@ -287,7 +287,7 @@ export const Cart = () => {
           </div>
         </div>
       </div>
-      <div className="row d-flex justify-content-center min-h-100 gap-4 my-5">
+      <div className="row d-flex justify-content-center min-h-100 gap-4 my-lg-3">
         <div className="col-lg-8 col-md-12 col-sm-12">
           <div className="my-4" style={{ minHeight: "50vh" }}>
             {filterCart.map((item, index) => {
