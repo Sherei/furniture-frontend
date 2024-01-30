@@ -340,7 +340,14 @@ const SingleAdd = () => {
 
       return () => clearTimeout(timeoutId);
     }
-  }, [sucess]);
+    if (Error) {
+      const timeoutId = setTimeout(() => {
+        setError('')
+      }, 4000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [sucess, Error]);
 
   async function Order() {
     await AddToCart(

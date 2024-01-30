@@ -483,7 +483,6 @@ export const Navbar = () => {
           </div>
         </div>
 
-
         <div style={{ position: "relative" }}>
           <div style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }} >
             <div

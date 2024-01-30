@@ -31,6 +31,7 @@ main {
   flex: 1 0 auto;
   background-color: rgb(240, 240, 235, 0.3);
   overscroll-behavior: none !important;
+  margin-top: 190px;
 }
 
 .main_body {
@@ -77,20 +78,8 @@ main {
   align-items: center;
 }
 
-
-@media screen and (max-width:400px) {
-  .whatsapp-btn {
-    left: 14%;
-  }
-}
-
-@media screen and (min-width:401px) and (max-width:768px) {
-  .whatsapp-btn {
-    left: 7%;
-  }
-}
 @media screen and (max-width:992px){
-  .top_btn{
-    top: 100px !important;
+  main {
+    margin-top: 137px !important;
   }
 }
