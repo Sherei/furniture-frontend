@@ -401,7 +401,8 @@ export const Navbar = () => {
                 Express Delivery UK!!
                 </p>
               </div>
-              <div className="d-flex gap-5 fs-5 nav_social">
+              <div className="d-flex gap-3 align-items-center fs-5 nav_social">
+                <p className="m-0 fw-bolder">Follow us</p>
                 <a style={{ color: "#02025E" }} href="">
                   <FaTiktok />
                 </a>
