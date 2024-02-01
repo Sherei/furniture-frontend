@@ -741,7 +741,7 @@ const SingleAdd = () => {
                           className="form-control form-select mb-2 mr-sm-2"
                           onChange={(e) => {
                             if (e.target.value === "select size") {
-                              return setError("bed-size");
+                              return setError("bed-size"), setSize('');
                             } else {
                               setSize(e.target.value);
                             }
@@ -777,7 +777,7 @@ const SingleAdd = () => {
                           className="form-select mb-2 mr-sm-2"
                           onChange={(e) => {
                             if (e.target.value === "select fabric") {
-                              return setError("fabric");
+                              return setError("fabric"), setFabric('');
                             } else {
                               setFabric(e.target.value);
                             }
@@ -842,7 +842,7 @@ const SingleAdd = () => {
                           className="form-select mb-2 mr-sm-2"
                           onChange={(e) => {
                             if (e.target.value === "headboard") {
-                              return setError("headboard");
+                              return setError("headboard"), setHeadboard('');
                             } else {
                               setHeadboard(e.target.value);
                             }
@@ -875,7 +875,7 @@ const SingleAdd = () => {
                         <select
                           onChange={(e) => {
                             if (e.target.value === "select detail") {
-                              return setError("detail");
+                              return setError("detail"), setDetail('');
                             } else {
                               setDetail(e.target.value);
                             }
@@ -902,8 +902,8 @@ const SingleAdd = () => {
                         <p className="mt-1 mb-0">Please Choose Bed Base</p>
                         <select
                           onChange={(e) => {
-                            if (e.target.value === "select base") {
-                              setBase("Not Selected");
+                            if (e.target.value === "select detail") {
+                              return setError("detail"), setBase('');
                             } else {
                               setBase(e.target.value);
                             }
@@ -937,7 +937,7 @@ const SingleAdd = () => {
                         <select
                           onChange={(e) => {
                             if (e.target.value === "select size") {
-                              return setError("mat");
+                              return setError("mat"), setMattress('');
                             } else {
                               setMattress(e.target.value);
                             }
@@ -1023,7 +1023,7 @@ const SingleAdd = () => {
                       <select
                         onChange={(e) => {
                           if (e.target.value === "select size") {
-                            return setError("mat");
+                            return setError("mat"), setSize('');
                           } else {
                             setSize(e.target.value);
                           }
@@ -1100,7 +1100,13 @@ const SingleAdd = () => {
                       <p className="mt-1 mb-0">Please Choose Fabric</p>
                       <select
                         className="form-select mb-2 mr-sm-2"
-                        onChange={(e) => { e.target.value === "select fabric" ? setError("fabric") : setFabric(e.target.value) }}
+                        onChange={(e) => {
+                          if (e.target.value === "select fabric") {
+                            return setError("mat"), setFabric('');
+                          } else {
+                            setFabric(e.target.value);
+                          }
+                        }}
                       >
                         <option value="select fabric">Please Choose</option>
                         <option value="plush-velvet">Plush Velvet</option>
@@ -1120,7 +1126,13 @@ const SingleAdd = () => {
                       <p className="mt-1 mb-0">Please Choose Detail</p>
                       <select
                         className="form-select mb-2 mr-sm-2"
-                        onChange={(e) => { e.target.value === "select detail" ? setError("detail") : setDetail(e.target.value) }}
+                        onChange={(e) => {
+                          if (e.target.value === "select detail") {
+                            return setError("detail"), setDetail('');
+                          } else {
+                            setDetail(e.target.value);
+                          }
+                        }}
                       >
                         <option value="select detail">Please Choose</option>
                         <option value="matchig-buttons">Matchig Buttons</option>
@@ -1146,7 +1158,13 @@ const SingleAdd = () => {
                       <p className="mt-1 mb-0">Please Choose Fabric</p>
                       <select
                         className="form-select mb-2 mr-sm-2"
-                        onChange={(e) => { e.target.value === "select fabric" ? setError("fabric") : setFabric(e.target.value) }}
+                        onChange={(e) => {
+                          if (e.target.value === "select fabric") {
+                            return setError("fabric"), setFabric('');
+                          } else {
+                            setFabric(e.target.value);
+                          }
+                        }}
                       >
                         <option value="select fabric">Please Choose</option>
                         <option value="plush-velvet">Plush Velvet</option>
@@ -1156,7 +1174,6 @@ const SingleAdd = () => {
                     </div>
                   </>
                 )}
-                {/*.................................... Footstools End .......................... */}
               </div>
 
               <div className="sigle_quatity_main mt-1">
@@ -1425,7 +1442,7 @@ const SingleAdd = () => {
                         return (
                           <SwiperSlide className="review_slide">
                             <div className="px-3 py-2" key={index}>
-                              <p className="review_detail text-center py-5 mt-3">
+                              <p className="review_detail text-center">
                                 {item.comment}
                               </p>
                               <p
