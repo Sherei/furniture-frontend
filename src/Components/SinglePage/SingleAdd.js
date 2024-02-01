@@ -306,7 +306,7 @@ const SingleAdd = () => {
       });
       move("/login");
       toast.warning("Login with different account");
-    }else {
+    } else {
 
       try {
         product.userId = cu?._id;
@@ -645,7 +645,7 @@ const SingleAdd = () => {
 
                 <div className="single_form  mt-1">
 
-                  {(product?.category != "bed" && product.subCategory != "corner-sofas" && product?.category != "mattress") &&
+                  {(product?.category != "bed" && product?.category != "sofa" && product?.category != "mattress" && product?.category != "footstools") &&
                     <div className="mt-1">
                       <label
                         style={{ fontSize: "17px", fontWeight: "600" }}
@@ -686,7 +686,7 @@ const SingleAdd = () => {
                     </div>
                   }
 
-                  {(product.subCategory === "corner-sofas" && product.color1 != undefined) &&
+                  {(product.category === "sofa" && product.category === "footstools" && product.color1 != undefined) &&
                     <div className="mt-1">
                       <label
                         style={{ fontSize: "17px", fontWeight: "600" }}
@@ -1133,7 +1133,6 @@ const SingleAdd = () => {
                 {/*.................................... Ottoman End .......................... */}
 
                 {/*.................................... Footstools Start .......................... */}
-
                 {product?.category === "footstools" && (
                   <>
                     <div className="mt-1">
