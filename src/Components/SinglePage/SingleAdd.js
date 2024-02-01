@@ -478,7 +478,6 @@ const SingleAdd = () => {
                       alt="No Network"
                       onClick={() => handleThumbnailClick(index)}
                       className={index === selectedImage ? "activeImg" : ""}
-                      style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                     />
                   ))}
               </div>
