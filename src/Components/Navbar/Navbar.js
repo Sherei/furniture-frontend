@@ -395,14 +395,11 @@ export const Navbar = () => {
         <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="row py-2">
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
-              <div>
-                <span
-                  className="nav_cotact_icon m-0"
-                  style={{ color: "rgb(2, 2, 94)" }}
-                >
-                  <img src="/express.png" style={{ width: "50px" }} alt="" />
-                  &nbsp;&nbsp;Express Delivery UK!!
-                </span>{" "}
+              <div className="d-flex align-items-center gap-2 nav_cotact_icon "> 
+                <img src="/express.png" style={{ width: "50px" }} alt="" />
+                <p className="m-0">
+                Express Delivery UK!!
+                </p>
               </div>
               <div className="d-flex gap-5 fs-5 nav_social">
                 <a style={{ color: "#02025E" }} href="">

@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-.nav_cotact_icon {
+.nav_cotact_icon,.nav_cotact_icon p{
   font-size: 20px;
   font-weight: 600;
 }
@@ -416,23 +416,26 @@
 }
 
 @media screen and (max-width:550px) {
-  .nav_cotact_icon {
+  .nav_cotact_icon,.nav_cotact_icon p{
     font-size: 15px !important;
+  }
+  .nav_cotact_icon span{
+    margin-top: -10px;
   }
 }
 
 @media screen and (max-width:462px) {
-  .nav_cotact_icon {
+  /* .nav_cotact_icon,.nav_cotact_icon p{
     font-size: 12px !important;
+  } */
+  .nav_contact2 {
+    display: none !important;
+  }
+  
+  .nav_contact3 {
+    display: block !important;
   }
 }
 
 @media screen and (max-width:387px) {
-  .nav_contact2 {
-    display: none !important;
-  }
-
-  .nav_contact3 {
-    display: block !important;
-  }
 }
