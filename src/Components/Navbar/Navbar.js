@@ -397,12 +397,12 @@ export const Navbar = () => {
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
               <div className="d-flex align-items-center gap-2 nav_cotact_icon "> 
                 <img src="/express.png" style={{ width: "50px" }} alt="" />
-                <p className="m-0">
+                <p className="m-0" style={{color:"#02025E"}}>
                 Express Delivery UK!!
                 </p>
               </div>
               <div className="d-flex gap-3 align-items-center fs-5 nav_social">
-                <p className="m-0 fw-bolder">Follow us</p>
+                <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p>
                 <a style={{ color: "#02025E" }} href="">
                   <FaTiktok />
                 </a>
@@ -417,7 +417,7 @@ export const Navbar = () => {
                 <a href="tel:+447392608087" target="blank" className="fs-6">
                   <span
                     className="nav_cotact_icon m-0"
-                    style={{ color: "rgb(2, 2, 94)" }}
+                    style={{color:"#02025E"}}
                   >
                     Support: <TbPhoneCall />  +44 7392 608087
                   </span>{" "}
