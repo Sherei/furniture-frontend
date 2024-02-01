@@ -554,6 +554,7 @@ const SingleAdd = () => {
                 )}
               </div>
             </div>
+
             <div className="col-lg-5 col-sm-12 order-3" style={{ position: "relative" }}>
               {sucess === "cart" && (
                 <div className="succes_box showVerify px-3">
@@ -807,6 +808,7 @@ const SingleAdd = () => {
                           >
                             <option value="select color">Please Choose</option>
                             <option value="black">Black</option>
+                            <option value="pink">Pink</option>
                             <option value="silver">Silver</option>
                             <option value="grey">Grey</option>
                             <option value="mink">Mink</option>
