@@ -1441,7 +1441,7 @@ const SingleAdd = () => {
                                   fontWeight: "700",
                                 }}
                               >
-                                {formatDateTime(item.date1)}
+                                {formatDateTime(item.date1 ? item.date1 : item.date)}
                               </p>
                             </div>
                           </SwiperSlide>

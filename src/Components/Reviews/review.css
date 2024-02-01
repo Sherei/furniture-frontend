@@ -32,12 +32,7 @@
 }
 
 .review_detail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
-    height: 200px;
-    overflow: auto;
 }
 
 .review_detail::-webkit-scrollbar {
