@@ -358,7 +358,7 @@ export const AddProduct = () => {
                   </>
                 )}
                 {/* Colors */}
-                {setSubCategory === "corner-sofas" &&
+                {(subCategory === "corner-sofas" || selectedCategory === "footstools") &&
                   <>
 
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
