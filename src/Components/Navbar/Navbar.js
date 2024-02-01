@@ -127,17 +127,30 @@ export const Navbar = () => {
 
   useEffect(() => {
     setLoading(true);
-    try {
-      axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+      try {
         if (res) {
-          dispatch({ type: "ADD_TO_CART", payload: res.data });
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: res.data,
+          });
         }
-      });
-    } catch (e) {
-    } finally {
-      setLoading(false);
-    }
+      } catch (e) {
+      } finally {
+        setLoading(false);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    if (allCartItems) {
+      setCart(allCartItems);
+    }
+  }, [allCartItems]);
+
+  const filterCart = cart.filter((item) => cu._id === item.userId);
+
+  const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
   useEffect(() => {
 
@@ -155,10 +168,6 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
 
     const filtered = products?.filter((product) => {
       const searchResult = searchValue?.toLowerCase();
@@ -176,12 +185,6 @@ export const Navbar = () => {
     });
     setFilteredProducts(filtered);
   }, [searchValue]);
-
-  useEffect(() => {
-    if (allCartItems) {
-      setCart(allCartItems);
-    }
-  }, [allCartItems]);
 
   const {
     register,
@@ -223,12 +226,6 @@ export const Navbar = () => {
       }
     }
   };
-
-  const filterCart = cart?.filter((item) => item.userId === cu._id);
-  // console.log("filter is ::", filterCart)
-  const filterCartLength = filterCart.length;
-
-  const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
   const DeleteCartItem = async (itemId) => {
     try {
@@ -312,7 +309,6 @@ export const Navbar = () => {
                       alt="No Network"
                       style={{ width: "100%", height: "100%" }}
                       onClick={() => {
-                        move(`/single_Add/${item?.productId}`);
                         setCartOpen(false);
                       }}
                     />
@@ -326,7 +322,7 @@ export const Navbar = () => {
                         className="m-0"
                         style={{ fontSize: "13px" }}
                         onClick={() => {
-                          move(`single_Add/${item._id}`);
+                          move(`/single_Add/${item.productId}`)
                           setCartOpen(false);
                         }}
                       >
@@ -392,7 +388,7 @@ export const Navbar = () => {
               </button>
             </div>
           )}
-        </div>
+        </div >
       )}
 
       <div className="fixed-top">
@@ -672,7 +668,7 @@ export const Navbar = () => {
                               <FiShoppingCart />
                               {(cu._id != undefined && cu.email != "asd@gmail.com") &&
                                 <p className="m-0 cart_number">
-                                  {filterCartLength}
+                                  {filterCart.length}
                                 </p>
                               }
                             </span>
@@ -973,73 +969,74 @@ export const Navbar = () => {
 
 
 
-      {searchValue && (
-        <div className="container-fluid px-lg-3 px-2">
-          <div className="my-4 fs-5">Search Result...</div>
-          {filteredProducts.length === 0 && (
-            <div className="mb-5">
-              <p className="m-0 fs-6">No result found...</p>
-            </div>
-          )}
-          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
-            {filteredProducts?.reverse().map((product, index) => (
-              <div className="col " key={index}>
-                <div className="product_box">
-                  <div
-                    className="p_img_box"
-                    onClick={() => move("/single_Add/" + product._id)}
-                  >
-                    <img src={product.images[0]} alt="No network" />
-                    {product.discount && product.discount > 0 ? (
-                      <div className="discount">{`${product.discount}%`}</div>
-                    ) : null}
-                    <div className="overlay">
-                      {product.images[1] && (
-                        <img src={product.images[1]} alt="" />
-                      )}
+      {
+        searchValue && (
+          <div className="container-fluid px-lg-3 px-2">
+            <div className="my-4 fs-5">Search Result...</div>
+            {filteredProducts.length === 0 && (
+              <div className="mb-5">
+                <p className="m-0 fs-6">No result found...</p>
+              </div>
+            )}
+            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
+              {filteredProducts?.reverse().map((product, index) => (
+                <div className="col " key={index}>
+                  <div className="product_box">
+                    <div
+                      className="p_img_box"
+                      onClick={() => move("/single_Add/" + product._id)}
+                    >
+                      <img src={product.images[0]} alt="No network" />
+                      {product.discount && product.discount > 0 ? (
+                        <div className="discount">{`${product.discount}%`}</div>
+                      ) : null}
+                      <div className="overlay">
+                        {product.images[1] && (
+                          <img src={product.images[1]} alt="" />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <p className="card_title px-2">{product.title}</p>
-                  {product.description && (
-                    <p className="p_description px-2">{product.description}</p>
-                  )}
-                  <div className="text-left">
-                    {product.discount && product.discount > 0 ? (
-                      <>
+                    <p className="card_title px-2">{product.title}</p>
+                    {product.description && (
+                      <p className="p_description px-2">{product.description}</p>
+                    )}
+                    <div className="text-left">
+                      {product.discount && product.discount > 0 ? (
+                        <>
+                          <span className="card_Fprice px-2 ">
+                            {" "}
+                            {`£${product.Fprice?.toFixed(2)}`}
+                          </span>
+                          <span className="card_price">
+                            <s>{`£${product.price?.toFixed(2)}`}</s>
+                          </span>
+                        </>
+                      ) : (
                         <span className="card_Fprice px-2 ">
                           {" "}
                           {`£${product.Fprice?.toFixed(2)}`}
                         </span>
-                        <span className="card_price">
-                          <s>{`£${product.price?.toFixed(2)}`}</s>
-                        </span>
-                      </>
-                    ) : (
-                      <span className="card_Fprice px-2 ">
-                        {" "}
-                        {`£${product.Fprice?.toFixed(2)}`}
-                      </span>
-                    )}
-                  </div>
-                  <div className="product_btns">
-                    <button
-                      className="btn p_detail_btn"
-                      onClick={() => move("/single_Add/" + product._id)}
-                    >
-                      View Detail
-                    </button>
-                    <a href="https://wa.me/+923067208343" target="blank">
-                      <button className="btn p_whatsapp_btn">
-                        Buy Via WhatsApp
+                      )}
+                    </div>
+                    <div className="product_btns">
+                      <button
+                        className="btn p_detail_btn"
+                        onClick={() => move("/single_Add/" + product._id)}
+                      >
+                        View Detail
                       </button>
-                    </a>
+                      <a href="https://wa.me/+923067208343" target="blank">
+                        <button className="btn p_whatsapp_btn">
+                          Buy Via WhatsApp
+                        </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )
+        )
       }
     </>
   );
