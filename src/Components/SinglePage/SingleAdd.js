@@ -402,7 +402,7 @@ const SingleAdd = () => {
       const commentWithProductId = { ...cmnt, productId };
 
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
-      if (response.data.message === "Feedback submitted") {
+      if (response.data.message === "Comment Added") {
         dispatch({
           type: "ADD_COMMENT",
           payload: response.data.alldata,
@@ -410,8 +410,7 @@ const SingleAdd = () => {
         setComments(response.data.alldata)
         reset();
         setSucess("comment")
-      } else {
-        toast.error("Error occurred");
+        toast.success("Feedback submitted");
       }
     } catch (e) {
     } finally {
@@ -644,9 +643,7 @@ const SingleAdd = () => {
 
                 <div className="single_form  mt-1">
 
-                  {/*........................ Bed Start ..................... */}
-
-                  {(product?.category != "bed" && product.subCategory != "corner-sofas") &&
+                  {(product?.category != "bed" && product.subCategory != "corner-sofas" && product?.category != "mattress") &&
                     <div className="mt-1">
                       <label
                         style={{ fontSize: "17px", fontWeight: "600" }}
@@ -790,7 +787,6 @@ const SingleAdd = () => {
                           <option value="chenille">Chenille</option>
                         </select>
                       </div>
-
                       {product.subCategory != "corner-sofas" &&
                         <div className="mt-1">
                           <label

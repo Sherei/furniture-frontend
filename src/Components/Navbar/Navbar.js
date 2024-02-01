@@ -225,7 +225,7 @@ export const Navbar = () => {
   };
 
   const filterCart = cart?.filter((item) => item.userId === cu._id);
-  console.log("filter is ::", filterCart)
+  // console.log("filter is ::", filterCart)
   const filterCartLength = filterCart.length;
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);

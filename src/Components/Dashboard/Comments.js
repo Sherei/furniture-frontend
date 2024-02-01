@@ -44,19 +44,13 @@ const Comments = () => {
         setSearch(e.target.value);
     };
 
-    const DeleteComment = async (dataId) => {
+    const DeleteComment = (dataId) => {
+        setLoading(true);
         try {
-            setLoading(true);
-            const resp = await axios.delete(
-                `${process.env.REACT_APP_BASE_URL}/deleteComment?id=${dataId}`
-            );
-            if (resp.data.message === "success") {
-                dispatch({
-                    type: "ADD_COMMENT",
-                    payload: resp.data.alldata,
-                });
-                toast.success("Item Removed");
-            }
+            axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteComment?id=${dataId}`).then(() => {
+                setComments(comments.filter((item) => dataId !== item._id));
+                toast.success("Comment Removed");
+            });
         } catch (e) {
             // console.log(e);
         } finally {

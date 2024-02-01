@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
-
 import { useForm } from 'react-hook-form';
 import { RxCross1 } from "react-icons/rx";
 import { toast } from 'react-toastify';
@@ -31,10 +30,11 @@ const Review = () => {
 
 
     const Comment = async (cmnt) => {
+        console.log("Comment is ::", cmnt)
         setLoading(true)
         try {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, cmnt);
-            if (response.data.message === "Feedback submitted") {
+            if (response.data.message === "Comment Added") {
                 dispatch({
                     type: "ADD_COMMENT",
                     payload: response.data.alldata,
@@ -42,7 +42,7 @@ const Review = () => {
                 setComments(response.data.alldata)
                 reset();
                 toggleVerify();
-
+                toast.success("Feedback submitted");
             } else {
                 toast.error("Error occurred");
             }

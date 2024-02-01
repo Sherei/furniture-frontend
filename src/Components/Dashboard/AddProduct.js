@@ -247,8 +247,6 @@ export const AddProduct = () => {
 
             <form>
               <div className='row'>
-
-
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
                   <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2 border" />
