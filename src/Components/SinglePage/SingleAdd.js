@@ -282,17 +282,17 @@ const SingleAdd = () => {
         return setError("options");
       }
     }
-    if (product?.category === "mattress") {
+    else if (product?.category === "mattress") {
       if (!size, !ottoman) {
         return setError("options");
       }
     }
-    if (product?.category === "ottoman-box") {
+    else if (product?.category === "ottoman-box") {
       if ((!detail, !fabric)) {
         return setError("options");
       }
     }
-    if (product?.category === "footstools") {
+    else if (product?.category === "footstools") {
       if ((!fabric)) {
         return setError("options");
       }
@@ -306,7 +306,8 @@ const SingleAdd = () => {
       });
       move("/login");
       toast.warning("Login with different account");
-    } else {
+    }else {
+
       try {
         product.userId = cu?._id;
         product.productId = product?._id;
