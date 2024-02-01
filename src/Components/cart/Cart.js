@@ -20,8 +20,8 @@ export const Cart = () => {
     });
   }, []);
 
-  const dispatch = useDispatch();
   const cu = useSelector((store) => store.userSection.cu);
+  const dispatch = useDispatch();
   const move = useNavigate();
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
@@ -262,7 +262,7 @@ export const Cart = () => {
   return (
     <div className="container-fluid h-100">
       <div className="row">
-        <div className="col px-0" style={{ position: "relative", width: "100%", height: "250px", overflow: "hidden" }}>
+        <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
           <img src="/cartbg.png" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
           <div
             className='d-flex align-items-center justify-content-center'

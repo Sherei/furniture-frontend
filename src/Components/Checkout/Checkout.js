@@ -104,7 +104,7 @@ const Checkout = () => {
         });
         try {
             const orderItems = [];
-            const orderId = uuidv4().substr(0, 10);
+            const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
             filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
@@ -194,7 +194,7 @@ const Checkout = () => {
     return <>
         <div className='container-fluid '>
         <div className="row">
-        <div className="col px-0" style={{ position: "relative", width: "100%", maxHeight: "250px", overflow: "hidden" }}>
+        <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
           <img src="/checkbg.jpg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
           <div
             className='d-flex align-items-center justify-content-center'

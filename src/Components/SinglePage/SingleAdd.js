@@ -1433,15 +1433,15 @@ const SingleAdd = () => {
                               >
                                 {item.name}
                               </p>
-                              {/* <p
+                              <p
                                 className="text-center text-muted"
                                 style={{
                                   fontWeight: "700",
                                   fontWeight: "700",
                                 }}
                               >
-                                {formatDateTime(item.date)}
-                              </p> */}
+                                {formatDateTime(item.date1)}
+                              </p>
                             </div>
                           </SwiperSlide>
                         );
@@ -1488,7 +1488,7 @@ const SingleAdd = () => {
                     {...register('email', { required: true })}
                   />
                   <label class="user-label">Email *</label>
-                  {errors.email ? <div className='error'>Name is required </div> : null}
+                  {errors.email ? <div className='error'>E-mail is required </div> : null}
                 </div>
                 <div className="input-group mb-3">
                   <textarea required="true"

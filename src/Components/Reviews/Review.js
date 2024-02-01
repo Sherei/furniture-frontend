@@ -15,6 +15,7 @@ import "./review.css"
 
 const Review = () => {
 
+    const cu = useSelector((store) => store.userSection.cu);
     const allComments = useSelector((store) => store.Comment.comment);
     const dispatch = useDispatch()
 
@@ -127,7 +128,7 @@ const Review = () => {
                                                 {item.comment}
                                             </p>
                                             <p className='text-center' style={{ color: "white" }}>{item.name}</p>
-                                            {/* <p className='text-center text-muted' style={{ fontWeight: "700" }}>{formatDateTime(item.date)}</p> */}
+                                            <p className='text-center text-muted' style={{ fontWeight: "700" }}>{formatDateTime(item.date1)}</p>
                                         </div>
                                     </SwiperSlide>
                                 })}
@@ -170,8 +171,18 @@ const Review = () => {
                                 {...register('email', { required: true })}
                             />
                             <label class="user-label">Email *</label>
-                            {errors.email ? <div className='error'>Name is required </div> : null}
+                            {errors.email ? <div className='error'>E-mail is required </div> : null}
                         </div>
+                        {cu.email === "asd@gmail.com" &&
+                            < div className="input-group mb-3">
+                                <input
+                                    autocomplete="off"
+                                    type="date"
+                                    className="input w-100"
+                                    {...register('date1')}
+                                />
+                            </div>
+                        }
                         <div className="input-group mb-3">
                             <textarea required="true"
                                 type="text"
@@ -189,9 +200,9 @@ const Review = () => {
                     </form>
 
                 </div>
-            </div>
+            </div >
 
-        </div>
+        </div >
     </>
 }
 
