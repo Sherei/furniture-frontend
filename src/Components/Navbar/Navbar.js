@@ -403,7 +403,7 @@ export const Navbar = () => {
               </div>
               <div className="d-flex gap-3 align-items-center fs-5 nav_social">
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
-                <img src="/follow.png" className="img-fluid" style={{width:"70px"}} alt="" />
+                <img src="/follow.png" className="img-fluid" style={{width:"0px"}} alt="" />
                 <a style={{ color: "#02025E" }} href="">
                   <FaTiktok />
                 </a>
