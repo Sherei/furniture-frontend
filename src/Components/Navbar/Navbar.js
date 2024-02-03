@@ -402,7 +402,8 @@ export const Navbar = () => {
                 </p>
               </div>
               <div className="d-flex gap-3 align-items-center fs-5 nav_social">
-                <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p>
+                {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
+                <img src="/follow.png" className="img-fluid" style={{width:"70px"}} alt="" />
                 <a style={{ color: "#02025E" }} href="">
                   <FaTiktok />
                 </a>
@@ -413,16 +414,14 @@ export const Navbar = () => {
                   <FaFacebook />
                 </a>
               </div>
-              <div>
                 <a href="tel:+447392608087" target="blank" className="fs-6">
                   <span
-                    className="nav_cotact_icon m-0"
+                    className="nav_cotact_icon suport_margin"
                     style={{color:"#02025E"}}
                   >
                     Support: <TbPhoneCall />  +44 7392 608087
                   </span>{" "}
                 </a>
-              </div>
             </div>
           </div>
         </div>

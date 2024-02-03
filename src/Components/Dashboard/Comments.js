@@ -123,7 +123,7 @@ const Comments = () => {
                                                     <td>{data.name}</td>
                                                     <td>{data.email}</td>
                                                     <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
-                                                    <td className='text-center'>{formatDateTime(data.date)}</td>
+                                                    <td className='text-center'>{formatDateTime(data.date1 ? data.date1 : data.date)}</td>
                                                     <td className='text-center'>
                                                         <button className="delete_btn" onClick={() => DeleteComment(data._id)}>
                                                             <AiFillDelete />
