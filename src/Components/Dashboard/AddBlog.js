@@ -67,8 +67,8 @@ const AddBlog = () => {
         setLoading(true);
 
         if (blogId) {
-            data.image = cloudinaryUrl;
             try {
+                data.image = cloudinaryUrl;
                 const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/blog_update`, data);
                 setLoading(false);
                 toast.success("Blog updated");
@@ -78,8 +78,8 @@ const AddBlog = () => {
                 setLoading(false);
             }
         } else {
-            data.image = cloudinaryUrl;
             try {
+                data.image = cloudinaryUrl;
                 const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/blog`, data);
                 if (response.data) {
                     toast.success("Blog Uploaded");
@@ -134,7 +134,6 @@ const AddBlog = () => {
                                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Image *</label>
                                     <input type="file"
-                                        defaultValue={blog ? blog.image : ""}
                                         {...register('image',
                                             {
                                                 required: blogId ? false : true,
