@@ -101,7 +101,7 @@ const Footer = () => {
       <div className='row mx-lg-5 mx-3'>
         <div className='col-12 footer_display'>
           <div>
-            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved by SOFA BEDS UK 2023.</p>
+            <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved by SOFA BEDS UK 2023</p>
           </div>
           <div className='footer_icon'>
             <a href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>
