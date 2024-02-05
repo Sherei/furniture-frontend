@@ -293,10 +293,28 @@ const SingleAdd = () => {
       }
     }
     else if (product?.category === "footstools") {
-      if ((!fabric, !color)) {
-        return setError("options");
+      if (product.color1 != undefined) {
+        if (!fabric, !color) {
+          return setError("options");
+        }
+      }else if(product.color1===undefined){
+        if(!fabric){
+          return setError("options");
+        }
       }
     }
+    else if (product?.category === "sofa") {
+      if (product.color1 != undefined) {
+        if (!color) {
+          return setError("options");
+        }
+      }
+    }
+    // else if (product?.category === "footstools" && product.color1 != undefined) {
+    //   if ((!fabric, !color)) {
+    //     return setError("options");
+    //   }
+    // }
     if (cu._id === undefined) {
       move("/login");
       toast.warning("Login to Place Order");
