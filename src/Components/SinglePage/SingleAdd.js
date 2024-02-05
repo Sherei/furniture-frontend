@@ -310,11 +310,6 @@ const SingleAdd = () => {
         }
       }
     }
-    // else if (product?.category === "footstools" && product.color1 != undefined) {
-    //   if ((!fabric, !color)) {
-    //     return setError("options");
-    //   }
-    // }
     if (cu._id === undefined) {
       move("/login");
       toast.warning("Login to Place Order");
