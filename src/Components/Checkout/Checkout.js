@@ -156,8 +156,8 @@ const Checkout = () => {
                 dispatch({
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
-                  });
-                  move(`/order-placed/${userId}`)
+                });
+                move(`/order-placed/${userId}`)
             }
 
         } catch (e) {
@@ -193,32 +193,32 @@ const Checkout = () => {
 
     return <>
         <div className='container-fluid '>
-        <div className="row">
-        <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
-          <img src="/checkbg.jpg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
-          <div
-            className='d-flex align-items-center justify-content-center'
-            style={{
-              position: 'absolute',
-              height: '100%',
-              width: '100%',
-              top: '0',
-              left: '0',
-              backgroundColor: 'rgb(27, 41, 80,0.5)',
-              color: '#fff',
-              padding: '10px',
-              boxSizing: 'border-box',
-            }}
-          >
-            <p
-              className="fs-2 fw-bolder text-center"
-              style={{ color: "white" }}
-            >
-              Place Order !
-            </p>
-          </div>
-        </div>
-      </div>
+            <div className="row">
+                <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
+                    <img src="/checkbg.jpg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
+                    <div
+                        className='d-flex align-items-center justify-content-center'
+                        style={{
+                            position: 'absolute',
+                            height: '100%',
+                            width: '100%',
+                            top: '0',
+                            left: '0',
+                            backgroundColor: 'rgb(27, 41, 80,0.5)',
+                            color: '#fff',
+                            padding: '10px',
+                            boxSizing: 'border-box',
+                        }}
+                    >
+                        <p
+                            className="fs-2 fw-bolder text-center"
+                            style={{ color: "white" }}
+                        >
+                            Place Order !
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div className='row checkout_display d-flex justify-content-center my-lg-3'>
                 <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                     <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
@@ -226,16 +226,16 @@ const Checkout = () => {
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='First Name*' className="form-control py-2 border" {...register('name1', {required:true})} />
+                                <input type="text" placeholder='First Name*' className="form-control py-2 border" {...register('name1', { required: true })} />
                                 {errors.name1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Last Name *' className="form-control py-2 border"{...register('name2' , {required:true})} />
+                                <input type="text" placeholder='Last Name *' className="form-control py-2 border"{...register('name2', { required: true })} />
                                 {errors.name2 ? <div className='error'>This Field is required</div> : null}
 
                             </div>
                             <div className="col-12 mb-3">
-                                <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border" {...register('number1' , {required:true})} />
+                                <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border" {...register('number1', { required: true })} />
                                 {errors.number1 ? <div className='error'>This Field is required</div> : null}
                             </div>
                         </div>
@@ -243,28 +243,28 @@ const Checkout = () => {
                         <div className="row py-3">
                             <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Address</p>
                             <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border" {...register('street', {required:true})} />
+                                <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border" {...register('street', { required: true })} />
                                 {errors.street ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment', {required:true})} />
+                                <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment', { required: true })} />
                                 {errors.appartment ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Country*' className="form-control py-2 border" {...register('country', {required:true})} />
+                                <input type="text" placeholder='Country*' className="form-control py-2 border" {...register('country', { required: true })} />
                                 {errors.country ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Town/City*' className="form-control py-2 border" {...register('city', {required:true})} />
+                                <input type="text" placeholder='Town/City*' className="form-control py-2 border" {...register('city', { required: true })} />
                                 {errors.city ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', {required:true})} />
+                                <input type="number" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', { required: true })} />
                                 {errors.postal ? <div className='error'>This Field is required</div> : null}
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email', {required:true})} />
+                                <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email', { required: true })} />
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mt-3">
@@ -383,7 +383,7 @@ const Checkout = () => {
 
                     <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
                         <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
-                            <p className='fs-6'>Subtotal</p>
+                            <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className='fw-bolder'>({totalQuantity}X)</span>}</p>
                             <p className='fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center'>

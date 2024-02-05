@@ -118,7 +118,7 @@ const Mattress = () => {
                                             {product?.discount && product?.discount > 0 ? (
                                                 <>
                                                     <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(1)}`}</span>
-                                                    <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span>
+                                                    {/* <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span> */}
                                                 </>
                                             ) : (
                                                 <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed(2)}`}</span>

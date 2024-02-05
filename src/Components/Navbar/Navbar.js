@@ -152,6 +152,10 @@ export const Navbar = () => {
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
+  const totalQuantity = filterCart.reduce((accumulator, item) => {
+    return accumulator + item.quantity;
+  }, 0);
+
   useEffect(() => {
 
     setLoading(true);
@@ -329,7 +333,7 @@ export const Navbar = () => {
                         {item?.title}
                       </p>
                       <p className="m-0 fw-bolder" style={{ color: "red" }}>
-                        &pound;{item?.total}
+                        &pound;{item?.total?.toFixed(2)}
                       </p>
                     </div>
                     <button
@@ -346,8 +350,8 @@ export const Navbar = () => {
           {filterCart?.length > 0 && (
             <div className="">
               <div className="d-flex justify-content-between fw-bolder fs-5">
-                <p className="mb-1">Subtotal</p>
-                <p className="mb-1">&pound;{subtotal}</p>
+                <p className="mb-1">Subtotal {totalQuantity > 1 && <span className='fw-bolder'>({totalQuantity}X)</span>}</p>
+                <p className="mb-1">&pound;{subtotal?.toFixed(2)}</p>
               </div>
               <button
                 className="btn"

@@ -289,11 +289,11 @@ export const Cart = () => {
       </div>
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-lg-3">
         <div className="col-lg-8 col-md-12 col-sm-12">
-          <div className="my-4" style={{ minHeight: "50vh" }}>
+          <div className="" style={{ minHeight: "50vh" }}>
             {filterCart.map((item, index) => {
               return (
                 <div
-                  className="d-flex gap-4 my-3 border py-3 cart_display_layout1"
+                  className="d-flex gap-4 border py-3 cart_display_layout1"
                   style={{
                     marginBottom: "1px solid lightgray",
                   }}
@@ -718,12 +718,12 @@ export const Cart = () => {
                 CART TOTALS
               </p>
               <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
-                {filterCart?.length}
+                {totalQuantity}
               </p>
             </div>
             <div className="fw-normal d-flex justify-content-between">
               <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
-                Subtotal:
+                Subtotal
               </p>
               <p className="text-muted m-0" style={{ fontSize: "15px" }}>
                 &pound;{subtotal.toFixed(2)}
@@ -733,7 +733,7 @@ export const Cart = () => {
 
             <div className="fw-normal d-flex justify-content-between align-items-center gap-3">
               <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
-                Shipping:
+                Shipping
               </p>
               <div>
                 <p

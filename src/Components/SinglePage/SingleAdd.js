@@ -165,7 +165,7 @@ const SingleAdd = () => {
       if (size !== undefined && size !== "") {
         if (size === "4ft-small-double") {
           additionalPrice += Number(product.double);
-        } else if (size === "4'6ft-standard-ouble") {
+        } else if (size === "4'6ft-standard-double") {
           additionalPrice += Number(product.standard);
         } else if (size === "5ft-king") {
           additionalPrice += Number(product.king);
@@ -278,7 +278,7 @@ const SingleAdd = () => {
     totalPrice
   ) {
     if (product?.category === "bed") {
-      if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman)) {
+      if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
         return setError("options");
       }
     }
@@ -288,12 +288,12 @@ const SingleAdd = () => {
       }
     }
     else if (product?.category === "ottoman-box") {
-      if ((!detail, !fabric)) {
+      if ((!detail, !fabric, !color)) {
         return setError("options");
       }
     }
     else if (product?.category === "footstools") {
-      if ((!fabric)) {
+      if ((!fabric, !color)) {
         return setError("options");
       }
     }
@@ -461,12 +461,19 @@ const SingleAdd = () => {
         <>
           <div className="row">
             <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
-              <p style={{ textTransform: "capitalize" }}>
-                home <FaAngleRight />
-                products <FaAngleRight /> {
-                  product?.category
-                } <FaAngleRight /> {product?.subCategory}
-              </p>
+              {product.subCategory != "three-&-two-seater-sofas" &&
+                <p style={{ textTransform: "capitalize" }}>
+                  home <FaAngleRight />
+                  products <FaAngleRight /> {
+                    product?.category
+                  } <FaAngleRight /> {product?.subCategory}
+                </p>}
+              {product.subCategory === "three-&-two-seater-sofas" &&
+                <p style={{}}>
+                  Home <FaAngleRight />
+                  Products <FaAngleRight /> <span style={{ textTransform: "capitalize" }}>{product?.category}</span>
+                  <FaAngleRight /> 3 and 2 Seater Sofas
+                </p>}
             </div>
             <div className="col-lg-1 col-md-2 col-sm-12 order-lg-1 order-md-1 order-2 p-0 m-0 d-flex flex-column align-items-center" style={{ position: "relative" }}>
               <div className="small_images">
@@ -649,7 +656,7 @@ const SingleAdd = () => {
                       <label
                         style={{ fontSize: "17px", fontWeight: "600" }}
                       >
-                        Colour{" "}
+                        Colour<span style={{ color: "red" }}>* </span>&nbsp;{" "}
                         <span className="lable_Case">
                           {color ? color.replace(/-/g, " ") : ""}
                         </span>
@@ -690,7 +697,7 @@ const SingleAdd = () => {
                       <label
                         style={{ fontSize: "17px", fontWeight: "600" }}
                       >
-                        Colour{" "}
+                        Colour<span style={{ color: "red" }}>* </span>&nbsp;{" "}
                         <span className="lable_Case">
                           {color ? color.replace(/-/g, " ") : ""}
                         </span>
@@ -751,7 +758,7 @@ const SingleAdd = () => {
                           <option value="4ft-small-double">
                             4ft Small Double {product?.double ? `(£+${Number(product.double)})` : " "}
                           </option>
-                          <option value="4'6ft-standard-ouble">
+                          <option value="4'6ft-standard-double">
                             4'6ft Standard Double {product?.standard ? `(£+${Number(product.standard)})` : " "}
                           </option>
                           <option value="5ft-king">5ft King {product?.king ? `(£+${Number(product.king)})` : " "}</option>
@@ -793,7 +800,7 @@ const SingleAdd = () => {
                           <label
                             style={{ fontSize: "17px", fontWeight: "600" }}
                           >
-                            Colour{" "}
+                            Colour<span style={{ color: "red" }}>* </span>&nbsp;{" "}
                             <span className="lable_Case">
                               {color ? color.replace(/-/g, " ") : ""}
                             </span>
@@ -1450,7 +1457,7 @@ const SingleAdd = () => {
                               >
                                 {item.name}
                               </p>
-                             <p
+                              <p
                                 className="text-center text-muted"
                                 style={{
                                   fontWeight: "700",
