@@ -314,9 +314,8 @@
   max-height: 88vh;
   overflow: auto;
 }
+
 .nav_social a{
-  background-color: #02025E;
-  color: white;
   width: fit-content;
   height: fit-content;
   padding: 2px 7px;

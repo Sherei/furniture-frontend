@@ -405,16 +405,16 @@ export const Navbar = () => {
                 Express Delivery UK!!
                 </p>
               </div>
-              <div className="d-flex gap-3 align-items-center fs-5 nav_social">
+              <div className="d-flex gap-3 align-items-center fs-4 nav_social">
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
                 <img src="/follow.png" className="img-fluid" style={{width:"70px"}} alt="" />
-                <a  href="">
+                <a  href="" style={{backgroundColor:"rgb(255, 0, 0)", color:"rgb(0, 0, 0)"}}>
                   <FaTiktok />
                 </a>
-                <a href='https://wa.me/+447392608087' target="blank">
+                <a href='https://wa.me/+447392608087' target="blank" style={{backgroundColor:"#813B5C", color:"rgb(255, 255, 255)"}}>
                   <FaInstagram />
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
+                <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank' style={{backgroundColor:"rgb(24, 119, 242)", color:"rgb(255, 255, 255)"}}>
                   <FaFacebook />
                 </a>
               </div>
