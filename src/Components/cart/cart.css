@@ -82,7 +82,15 @@
     width: fit-content;
 }
 
+.cart_bg {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+}
+
 @media(max-width:768px) {
+
     .cart-total {
         justify-content: center;
     }
