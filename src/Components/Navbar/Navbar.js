@@ -411,7 +411,7 @@ export const Navbar = () => {
                 <a  href="" style={{backgroundColor:"rgb(255, 0, 0)", color:"rgb(0, 0, 0)"}}>
                   <FaTiktok />
                 </a>
-                <a href='https://wa.me/+447392608087' target="blank" style={{backgroundColor:"#813B5C", color:"rgb(255, 255, 255)"}}>
+                <a href='https://wa.me/+447392608087' target="blank" style={{backgroundColor:"#EF3A74", color:"rgb(255, 255, 255)"}}>
                   <FaInstagram />
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank' style={{backgroundColor:"rgb(24, 119, 242)", color:"rgb(255, 255, 255)"}}>
