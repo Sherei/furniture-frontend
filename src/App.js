@@ -137,6 +137,7 @@ function App() {
                 {/* User */}
                 <Route exact path='/signup' element={<Signup />} />
                 <Route exact path='/login' element={<Login />} />
+                <Route exact path='/login/:productId' element={<Login />} />
                 <Route exact path='/user-profile/:userId' element={<UserPanel />} />
 
                 {/* Products */}

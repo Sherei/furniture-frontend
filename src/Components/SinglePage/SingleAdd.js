@@ -311,7 +311,7 @@ const SingleAdd = () => {
       }
     }
     if (cu._id === undefined) {
-      move("/login");
+      move("/login/" + productId);
       toast.warning("Login to Place Order");
     } else if (cu.email === "asd@gmail.com") {
       dispatch({

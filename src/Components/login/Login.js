@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Benefits from '../Benefits/Benefits';
@@ -16,6 +16,7 @@ export const Login = () => {
       behavior: 'smooth'
     });
   }, []);
+  const { productId } = useParams();
 
   const cu = useSelector(store => store.userSection.cu)
 
@@ -46,8 +47,10 @@ export const Login = () => {
           type: "LOGIN_USER",
           payload: loginUser.user,
         });
-
-        if (loginUser.user.email === "asd@gmail.com") {
+        if (productId) {
+          move("/single_Add/" + productId);
+        }
+        else if (loginUser.user.email === "asd@gmail.com") {
           move('/admin-dashboard');
         } else {
           move("/products/all");
