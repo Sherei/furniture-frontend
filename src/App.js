@@ -28,17 +28,17 @@ import Allcategories from './Components/Home/Allcategories';
 import './App.css';
 import AddBlog from './Components/Dashboard/AddBlog';
 import { inject } from '@vercel/analytics';
-ReactGA.initialize('G-Y946N662J4');
+// ReactGA.initialize('G-Y946N662J4');
 
 function App() {
 
   inject();
   
-  ReactGA.event({
-    category: 'User Interaction',
-    action: 'Button Click',
-    label: 'My Button',
-  });
+  // ReactGA.event({
+  //   category: 'User Interaction',
+  //   action: 'Button Click',
+  //   label: 'My Button',
+  // });
 
 
   const [showScrollButton, setShowScrollButton] = useState(false);

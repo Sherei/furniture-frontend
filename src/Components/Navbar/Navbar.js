@@ -414,7 +414,7 @@ export const Navbar = () => {
                 <a href='https://wa.me/+447392608087' target="blank">
                   <FaInstagram />
                 </a>
-                <a  href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
+                <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
                   <FaFacebook />
                 </a>
               </div>
@@ -444,7 +444,6 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
-
         <div style={{ position: "relative" }}>
           <div style={{ backgroundColor: "rgb(2, 2, 94)", minHeight: "75px" }} >
             <div
@@ -970,8 +969,7 @@ export const Navbar = () => {
 
 
 
-      {
-        searchValue && (
+      {searchValue && (
           <div className="container-fluid px-lg-3 px-2">
             <div className="my-4 fs-5">Search Result...</div>
             {filteredProducts.length === 0 && (
