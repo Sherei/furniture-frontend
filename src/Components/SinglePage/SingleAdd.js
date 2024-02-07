@@ -629,7 +629,7 @@ const SingleAdd = () => {
                 </span>}
               </div>
 
-              <div className="single_form  mt-1" style={{minHeight:"150px"}}>
+              <div className="single_form  mt-1" >
 
                 {(product?.category != "bed" && product?.category != "sofa" && product?.category != "mattress" && product?.category != "footstools") &&
                   <div className="mt-1">
