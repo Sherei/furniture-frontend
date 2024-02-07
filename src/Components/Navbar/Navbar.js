@@ -408,13 +408,13 @@ export const Navbar = () => {
               <div className="d-flex gap-3 align-items-center fs-5 nav_social">
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
                 <img src="/follow.png" className="img-fluid" style={{width:"70px"}} alt="" />
-                <a style={{ color: "#02025E" }} href="">
+                <a  href="">
                   <FaTiktok />
                 </a>
-                <a style={{ color: "#02025E" }} href='https://wa.me/+447392608087' target="blank">
+                <a href='https://wa.me/+447392608087' target="blank">
                   <FaInstagram />
                 </a>
-                <a style={{ color: "#02025E" }} href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
+                <a  href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
                   <FaFacebook />
                 </a>
               </div>

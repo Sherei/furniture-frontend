@@ -314,7 +314,14 @@
   max-height: 88vh;
   overflow: auto;
 }
-
+.nav_social a{
+  background-color: #02025E;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  padding: 3px 7px;
+  border-radius: 100%;
+}
 @media screen and (min-width:769px) and (max-width:992px) {
   .nav_searchbar {
     top: 82px;
