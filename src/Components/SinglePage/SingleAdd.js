@@ -349,13 +349,16 @@ const SingleAdd = () => {
           });
           setSucess("cart")
           window.gtag('event', 'add_to_cart', {
-            'items': [
+            currency: "USD",
+            items: [
               {
-                "item_quantity": product.quantity,
-                'item_id': product.productId,
-                'item_name': product.title,
-                'item_price': product.total,
-                'customer_name': cu.name,
+                item_id: product.productId,
+                item_name: product.title,
+                item_category: product.category,
+                item_subCategory: product.subCategory,
+                item_quantity: product.quantity,
+                item_price: product.total,
+                customer_name: cu.name,
               }
             ]
           });

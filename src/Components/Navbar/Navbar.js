@@ -242,6 +242,9 @@ export const Navbar = () => {
           type: "ADD_TO_CART",
           payload: resp.data.alldata,
         });
+        window.gtag('event', 'remove_from_cart', {
+          item_id: itemId,
+      });
         toast.success("Item Removed");
       }
     } catch (e) {

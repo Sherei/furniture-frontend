@@ -76,6 +76,11 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
+                
+                window.gtag('event', 'remove_from_cart', {
+                    item_id: itemId,
+                });
+                
                 toast.success("Item Removed");
             }
         } catch (e) {
@@ -157,6 +162,24 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
+                window.gtag('event', 'purchase', {
+                    transaction_id: data.orderId,
+                    value: data.total,
+                    customer_name:data.name1,
+                    customer_contact:data.number1,
+                    customer_email:data.email,
+                    customer_country:data.country,
+                    currency: "USD",
+                    items: orderItems.map(item => ({
+                        id: item.productId,
+                        name: item.title,
+                        price: item.total,
+                        quantity: item.quantity,
+                        category: item.category,
+                        subCategory: item.subCategory,
+                    })),
+                });
+                
                 move(`/order-placed/${userId}`)
             }
 
