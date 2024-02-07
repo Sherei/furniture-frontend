@@ -333,7 +333,7 @@ export const Navbar = () => {
                         {item?.title}
                       </p>
                       <p className="m-0 fw-bolder" style={{ color: "red" }}>
-                        &pound;{item?.total?.toFixed(2)}
+                        &pound;{item?.total?.toFixed()}
                       </p>
                     </div>
                     <button
@@ -350,8 +350,8 @@ export const Navbar = () => {
           {filterCart?.length > 0 && (
             <div className="">
               <div className="d-flex justify-content-between fw-bolder fs-5">
-                <p className="mb-1">Subtotal {totalQuantity > 1 && <span className='fw-bolder'>({totalQuantity}X)</span>}</p>
-                <p className="mb-1">&pound;{subtotal?.toFixed(2)}</p>
+                <p className="mb-1">Subtotal {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
+                <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
               </div>
               <button
                 className="btn"

@@ -356,7 +356,7 @@ const Checkout = () => {
                                     </div>
                                     <div className="d-flex justify-content-between flex-column">
                                         <div>
-                                            <p className='text-center fw-bolder'>{`£${item?.total?.toFixed(2)}`}</p>
+                                            <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
                                             <div className='text-center' >
                                                 <button style={{
                                                     border: "none",
@@ -383,8 +383,8 @@ const Checkout = () => {
 
                     <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
                         <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
-                            <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className='fw-bolder'>({totalQuantity}X)</span>}</p>
-                            <p className='fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
+                            <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className='fw-bolder'>({totalQuantity})</span>}</p>
+                            <p className='fs-6'>{`£${totalSum?.toFixed()}`}</p>
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
                             <p className=' fs-6'>Shipping</p>
@@ -392,7 +392,7 @@ const Checkout = () => {
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
                             <p className='fs-5'>Total</p>
-                            <p className='fs-5'>{`£${total?.toFixed(2)}`}</p>
+                            <p className='fs-5'>{`£${total?.toFixed()}`}</p>
                         </div>
                     </div>
                     {/* <div className='chk_btns chk_btns2 mt-5'>

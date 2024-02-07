@@ -726,7 +726,7 @@ export const Cart = () => {
                 Subtotal
               </p>
               <p className="text-muted m-0" style={{ fontSize: "15px" }}>
-                &pound;{subtotal.toFixed(2)}
+                &pound;{subtotal.toFixed()}
               </p>
             </div>
             <hr className="m-1" />
@@ -742,7 +742,7 @@ export const Cart = () => {
                 >
                   Standard Delivery:{" "}
                   <span className="fw-bolder">
-                    &pound;{shippingFee.toFixed(2)}
+                    &pound;{shippingFee.toFixed()}
                   </span>{" "}
                 </p>
                 <p className="m-0 text-end" style={{ fontSize: "11px" }}>
@@ -759,7 +759,7 @@ export const Cart = () => {
                 className="fw-bolder m-0"
                 style={{ color: "red", fontSize: "17px" }}
               >
-                &pound;{total.toFixed(2)}
+                &pound;{total.toFixed()}
               </p>
             </div>
 

@@ -779,16 +779,16 @@ const Products = () => {
                           <>
                             <span className="card_Fprice px-2 ">
                               {" "}
-                              {`£${product.Fprice?.toFixed(1)}`}
+                              {`£${product.Fprice?.toFixed()}`}
                             </span>
                             <span className="card_price">
-                              <s>{`£${product.price?.toFixed(1)}`}</s>
+                              <s>{`£${product.price?.toFixed()}`}</s>
                             </span>
                           </>
                         ) : (
                           <span className="card_Fprice px-2 ">
                             {" "}
-                            {`£${product.Fprice?.toFixed(2)}`}
+                            {`£${product.Fprice?.toFixed()}`}
                           </span>
                         )}
                       </div>
@@ -856,16 +856,16 @@ const Products = () => {
                               <>
                                 <span className="card_Fprice px-2 ">
                                   {" "}
-                                  {`£${product.Fprice?.toFixed(1)}`}
+                                  {`£${product.Fprice?.toFixed()}`}
                                 </span>
                                 <span className="card_price">
-                                  <s>{`£${product.price?.toFixed(1)}`}</s>
+                                  <s>{`£${product.price?.toFixed()}`}</s>
                                 </span>
                               </>
                             ) : (
                               <span className="card_Fprice px-2 ">
                                 {" "}
-                                {`£${product.Fprice?.toFixed(2)}`}
+                                {`£${product.Fprice?.toFixed()}`}
                               </span>
                             )}
                           </div>
