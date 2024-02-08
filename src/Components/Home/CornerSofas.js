@@ -77,59 +77,58 @@ const CornerSofas = () => {
                         <p className='fw-bolder fs-5' style={{ color: 'rgb(2, 2, 94)' }}  >Corner Sofas</p>
                     </div>
                     <div>
-                        <p className='view' onClick={() => {
-                            move("/Products/corner-sofas");
-                        }}>
-                            View All
-                        </p>
+                        <a href="/Products/corner-sofas">
+                            <p className='view'>
+                                View All
+                            </p>
+                        </a>
                     </div>
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
-                        <div className='h_box_main' ref={containerRef}>
-                            {data.filter((item) => item.subCategory === "corner-sofas" && item.home === true && item.stock === false)
-                                .map((product, index) => (
-                                    <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
-                                        <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
-                                        <a href="https://wa.me/+923067208343" target="blank">
-                                            <button className='btn card_whatsAp '>Buy Via WhatsApp</button>
-                                        </a>
+                    <div className='h_box_main' ref={containerRef}>
+                        {data.filter((item) => item.subCategory === "corner-sofas" && item.home === true && item.stock === undefined)
+                            .map((product, index) => (
+                                <div className='card_box' key={index}>
+                                    <a href={"/single_Add/" + product._id}>
+                                        <button className='btn order_btn'>View Detail</button>
+                                    </a>
+                                    <a href="https://wa.me/+923067208343" target="blank">
+                                        <button className='btn card_whatsAp'>Buy Via WhatsApp</button>
+                                    </a>
+                                    <a href={"/single_Add/" + product._id}>
                                         <div className='card_img_box'>
                                             <img src={product?.images[0]} className='img-fluid' alt='No Network'
-                                            style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                                                style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                             />
                                             <div className='overlay'>
-                                                {product.images[1] &&
-                                                    <img src={product?.images[1]} alt="" />
-                                                }
+                                                {product.images[1] && <img src={product?.images[1]} alt="" />}
                                             </div>
                                         </div>
+                                    </a>
+                                    {product?.discount && product?.discount > 0 ? (
+                                        <div className='discount'>
+                                            {`${product?.discount}%`}
+                                        </div>
+                                    ) : null}
+                                    <p className='card_title px-2'>{product?.title}</p>
+                                    <div>
                                         {product?.discount && product?.discount > 0 ? (
-                                            <div className='discount'>
-                                                {`${product?.discount}%`}
-                                            </div>
-                                        ) : null}
-
-                                        <p className='card_title px-2'>{product?.title}</p>
-                                        <div>
-                                            {product?.discount && product?.discount > 0 ? (
-                                                <>
-                                                    <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed()}`}</span>
-                                                    {/* <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span> */}
-                                                </>
-                                            ) : (
+                                            <>
                                                 <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed()}`}</span>
-                                            )}
-                                            <div className='card_btns'>
-
-                                            </div>
-                                        </div>
+                                                {/* <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span> */}
+                                            </>
+                                        ) : (
+                                            <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed()}`}</span>
+                                        )}
+                                        <div className='card_btns'></div>
                                     </div>
-                                ))}
-                        </div>
+                                </div>
+                            ))}
+                    </div>
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
-                    
-                    {(data?.filter(product => product.subCategory === "corner-sofas").length === 0 || loading) && (
+
+                    {(data?.filter(product => product.subCategory === "corner-sofas" && product.stock === undefined).length === 0 || loading) && (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                             {loading ? <Loader /> : "No product available related to this category"}
                         </div>
