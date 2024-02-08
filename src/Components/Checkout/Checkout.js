@@ -10,6 +10,7 @@ import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
 import { FaArrowRight, FaAngleDown } from "react-icons/fa"
+import { TagManager } from 'react-gtm-module';
 import "./checkout.css"
 
 const Checkout = () => {
