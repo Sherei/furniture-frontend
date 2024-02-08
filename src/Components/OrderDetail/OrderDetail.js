@@ -34,11 +34,6 @@ const OrderDetail = () => {
             };
             fetchData();
         } catch (error) {
-            return <>
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                    <Loader />
-                </div>
-            </>
         } finally {
             setLoading(false);
         }
