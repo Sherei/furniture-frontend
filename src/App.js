@@ -29,24 +29,15 @@ import Allcategories from './Components/Home/Allcategories';
 import './App.css';
 import AddBlog from './Components/Dashboard/AddBlog';
 import { inject } from '@vercel/analytics';
-// ReactGA.initialize('G-Y946N662J4');
 
-// Initialize Google Tag Manager
 TagManager.initialize({
-  gtmId: 'GTM-MXQ3QL4D' // Replace with your GTM container ID
+  gtmId: 'GTM-NWFTB5LV'
 });
+
 function App() {
-  
   
   inject();
   
-  // ReactGA.event({
-  //   category: 'User Interaction',
-  //   action: 'Button Click',
-  //   label: 'My Button',
-  // });
-
-
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
