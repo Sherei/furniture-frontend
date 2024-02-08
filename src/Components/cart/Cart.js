@@ -67,7 +67,7 @@ export const Cart = () => {
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-       
+
         toast.success("Item Removed");
       }
     } catch (e) {
@@ -251,13 +251,13 @@ export const Cart = () => {
           <p>Your Cart is empty</p>
           <a href="/Products/all">
 
-          <button
-            className="btn review_btn"
-            style={{ width: "fit-content" }}
+            <button
+              className="btn review_btn"
+              style={{ width: "fit-content" }}
             >
-            Browse Our Products 
-          </button>
-            </a>
+              Browse Our Products
+            </button>
+          </a>
         </div>
       </>
     );
@@ -266,29 +266,19 @@ export const Cart = () => {
   return (
     <div className="container-fluid h-100">
       <div className="row">
-        <div className="col px-0 cart_bg">
-          <img src="/cartbg.jpg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
-          <div
-            className='d-flex align-items-center justify-content-center'
-            style={{
-              position: 'absolute',
-              height: '100%',
-              width: '100%',
-              top: '0',
-              left: '0',
-              backgroundColor: 'rgb(27, 41, 80,0.5)',
-              color: '#fff',
-              padding: '10px',
-              boxSizing: 'border-box',
-            }}
+        <div className="col px-0 d-flex justify-content-center align-items-center"
+         style={{
+          height:"300px",
+          backgroundImage: "url(/cartbg.png)",
+          backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"
+        }}>
+          {/* <img src="/cartbg.jpg" alt="No Network" className='all_img img-fluid' style={{ width: "100%" }} /> */}
+          <p
+            className="fs-2 fw-bolder text-center"
+            style={{ color: "white" }}
           >
-            <p
-              className="fs-2 fw-bolder text-center"
-              style={{ color: "white" }}
-            >
-              Shopping Cart <FiShoppingCart />
-            </p>
-          </div>
+            Shopping Cart <FiShoppingCart />
+          </p>
         </div>
       </div>
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-lg-3">
@@ -306,33 +296,33 @@ export const Cart = () => {
                   <div className="row">
                     <div className="col-4">
                       <a href={"/single_Add/" + item.productId}>
-                      <div
-                        className="text-center"
-                        style={{ position: "relative" }}>
-                        <img
-                          src={item?.image}
-                          className="img-fluid rounded-3"
-                          alt="Loading"
-                          style={{ width: "150px" }}
-                        />
-                        {item?.discount > 0 && (
-                          <div
-                            className="p-1"
-                            style={{
-                              position: "absolute",
-                              top: "-5px",
-                              right: "2px",
-                              backgroundColor: "red",
-                              color: "white",
-                              borderRadius: "40px",
-                            }}
-                          >
-                            <p className="m-0" style={{ fontSize: "10px" }}>
-                              {`-${item.discount}%`}
-                            </p>
-                          </div>
-                        )}
-                      </div>
+                        <div
+                          className="text-center"
+                          style={{ position: "relative" }}>
+                          <img
+                            src={item?.image}
+                            className="img-fluid rounded-3"
+                            alt="Loading"
+                            style={{ width: "150px" }}
+                          />
+                          {item?.discount > 0 && (
+                            <div
+                              className="p-1"
+                              style={{
+                                position: "absolute",
+                                top: "-5px",
+                                right: "2px",
+                                backgroundColor: "red",
+                                color: "white",
+                                borderRadius: "40px",
+                              }}
+                            >
+                              <p className="m-0" style={{ fontSize: "10px" }}>
+                                {`-${item.discount}%`}
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </a>
                     </div>
                     <div className="col-8">
@@ -369,7 +359,7 @@ export const Cart = () => {
                                   /
                                 </p>
                               )}
-                               {item?.side && (
+                              {item?.side && (
                                 <p className="text-muted fs-6 m-0">
                                   Side:{" "}
                                   {item.side
@@ -542,35 +532,35 @@ export const Cart = () => {
                         <tr key={index} className="cart_row">
                           <td className="text-center">
                             <a href={"/single_Add/" + item.productId}>
-                            <div className="text-center"
-                              style={{ position: "relative" }}>
-                              <img
-                                src={item?.image}
-                                className="img-fluid rounded-3"
-                                alt="No Internet"
-                                style={{ width: "100px" }}
-                              />
-                              {item?.discount > 1 && (
-                                <div
-                                  className="p-1"
-                                  style={{
-                                    position: "absolute",
-                                    top: "-5px",
-                                    right: "2px",
-                                    backgroundColor: "red",
-                                    color: "white",
-                                    borderRadius: "40px",
-                                  }}
-                                >
-                                  <p
-                                    className="m-0"
-                                    style={{ fontSize: "10px" }}
+                              <div className="text-center"
+                                style={{ position: "relative" }}>
+                                <img
+                                  src={item?.image}
+                                  className="img-fluid rounded-3"
+                                  alt="No Internet"
+                                  style={{ width: "100px" }}
+                                />
+                                {item?.discount > 1 && (
+                                  <div
+                                    className="p-1"
+                                    style={{
+                                      position: "absolute",
+                                      top: "-5px",
+                                      right: "2px",
+                                      backgroundColor: "red",
+                                      color: "white",
+                                      borderRadius: "40px",
+                                    }}
                                   >
-                                    {`-${item?.discount}%`}
-                                  </p>
-                                </div>
-                              )}
-                            </div>
+                                    <p
+                                      className="m-0"
+                                      style={{ fontSize: "10px" }}
+                                    >
+                                      {`-${item?.discount}%`}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
                             </a>
                           </td>
                           <td>
@@ -598,7 +588,7 @@ export const Cart = () => {
                                   /
                                 </p>
                               )}
-                                {item?.side && (
+                              {item?.side && (
                                 <p className="text-muted fs-6 m-0">
                                   Side:{" "}
                                   {item.side
@@ -717,13 +707,13 @@ export const Cart = () => {
           </div>
           <div className="cart_btns gap-2">
             <a href="/Products/all">
-            <button
-              className="btn review_btn px-4"
-              style={{ backgroundColor: "#8B0000" }}
+              <button
+                className="btn review_btn px-4"
+                style={{ backgroundColor: "#8B0000" }}
               >
-              Continue Shopping
-            </button>
-              </a>
+                Continue Shopping
+              </button>
+            </a>
             {/* <button
               className="btn review_btn px-4"
               onClick={updateCart}
@@ -788,19 +778,19 @@ export const Cart = () => {
             {filterCart.length > 0 && (
               <div className="card-body my-4">
                 <a href={`/cart-checkout/${cu._id}`}>
-                <button
-                  type="button"
-                  className="btn fs-5 py-2"
-                  style={{
-                    backgroundColor: "#8B0000",
-                    color: "white",
-                    width: "100%",
-                    fontWeight: "600",
-                  }}
-                >
-                  Proceed to Checkout
-                </button>
-                  </a>
+                  <button
+                    type="button"
+                    className="btn fs-5 py-2"
+                    style={{
+                      backgroundColor: "#8B0000",
+                      color: "white",
+                      width: "100%",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Proceed to Checkout
+                  </button>
+                </a>
                 <p className="text-center  my-3">--or--</p>
                 <a href="https://wa.me/+923067208343" target="blank">
                   <button
