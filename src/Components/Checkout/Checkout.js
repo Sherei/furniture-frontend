@@ -289,7 +289,7 @@ const Checkout = () => {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email', { required: true })} />
+                                <input type="email" placeholder='E-mail' defaultValue={cu?.email} className="form-control py-2 border" {...register('email', { required: true })} />
                                 {errors.email ? <div className='error'>This Field is required</div> : null}
                             </div>
                             <div className="col-md-12 mt-3">
