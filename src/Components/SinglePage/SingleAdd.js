@@ -9,7 +9,7 @@ import {
   FaArrowUp,
   FaStar,
 } from "react-icons/fa";
-import {TagManager, gtag} from 'react-gtm-module'; 
+import { TagManager, gtag } from 'react-gtm-module';
 import { RiStarSFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -77,6 +77,17 @@ const SingleAdd = () => {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
+        gtag("event", "view_item", {
+          currency: "POUND",
+          items: [
+            {
+              item_title: resp.data.title,
+              item_category: resp.data.category,
+              item_subCategory: resp.data.subCategory,
+              item_price: resp.data.Fprice,
+            }
+          ]
+        });
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
@@ -358,9 +369,8 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-
           gtag("event", "add_to_cart", {
-            currency: "USD",
+            currency: "POUND",
             items: [
               {
                 item_id: product.productId,

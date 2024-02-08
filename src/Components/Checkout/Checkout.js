@@ -10,7 +10,7 @@ import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
 import { FaArrowRight, FaAngleDown } from "react-icons/fa"
-import { TagManager } from 'react-gtm-module';
+import { gtag } from 'react-gtm-module';
 import "./checkout.css"
 
 const Checkout = () => {
@@ -113,14 +113,14 @@ const Checkout = () => {
             const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
             filterCart.forEach((item) => {
                 const itemData = {
-                    title: item.title,
-                    productId: item.productId,
-                    sn: item.sn,
-                    category: item.category,
-                    image: item.image,
-                    subCategory: item.subCategory,
-                    price: parseFloat(item.price).toString(),
-                    total: parseFloat(item.total).toString(),
+                    title:item.title,
+                    productId:item.productId,
+                    sn:item.sn,
+                    category:item.category,
+                    image:item.image,
+                    subCategory:item.subCategory,
+                    price:parseFloat(item.price).toString(),
+                    total:parseFloat(item.total).toString(),
                     quantity: parseInt(item.quantity).toString(),
                     discount: item.discount,
                     size: item.size,
@@ -163,30 +163,25 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
-                TagManager.dataLayer({
-                    dataLayer: {
-                        event: 'purchase',
-                        transaction_id: data.orderId,
-                        value: data.total,
-                        customer_name: data.name1,
-                        customer_contact: data.number1,
-                        customer_email: data.email,
-                        customer_country: data.country,
-                        currency: "USD",
-                        ecommerce: {
-                            items: orderItems.map(item => ({
-                                id: item.productId,
-                                name: item.title,
-                                price: item.total,
-                                quantity: item.quantity,
-                                category: item.category,
-                                subCategory: item.subCategory,
-                            })),
-                        }
-                    }
-                })
+                gtag("event", "purchase", {
+                    currency:"POUND",
+                    transaction_id:data.orderId,
+                    value:data.total,
+                    customer_name:data.name1,
+                    customer_contact:data.number1,
+                    customer_email:data.email,
+                    customer_country:data.country,
+                    items: orderItems.map(item => ({
+                        id:item.productId,
+                        name:item.title,
+                        price:item.total,
+                        quantity:item.quantity,
+                        category:item.category,
+                        subCategory:item.subCategory,
+                    })),
+                });
 
-                window.location.href= `/order-placed/${userId}` 
+                window.location.href = `/order-placed/${userId}`
             }
 
         } catch (e) {
