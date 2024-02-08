@@ -64,14 +64,14 @@ const OrderDetail = () => {
 
 
 
-    if (cu._id === undefined || order.length === 0 || order.orderItems?.length === 0) {
-        return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-            <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-                Browse Products <FaArrowRight />
-            </button>
-        </div>
-    }
+    // if (cu._id === undefined || order.length === 0 || order.orderItems?.length === 0) {
+    //     return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
+    //         <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
+    //         <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
+    //             Browse Products <FaArrowRight />
+    //         </button>
+    //     </div>
+    // }
 
     return (
         <div className='container my-5' style={{ textTransform: "uppercase" }}>
@@ -91,10 +91,10 @@ const OrderDetail = () => {
                     {order?.email && <p><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
                     <p><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
                     <p><b style={{ color: "rgb(2,2,94)" }}>Street & House number: </b>{order?.street}</p>
-                    {order.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
+                    {order?.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
                     <p><b style={{ color: "rgb(2,2,94)" }}>Shipping Address: </b>{order?.shipping}</p>
                     <p><b style={{ color: "rgb(2,2,94)" }}>Total Products: </b>{order?.orderItems?.length}</p >
-                    {order.note && <p><b style={{ color: "rgb(2,2,94)" }}>Note: {order?.note}</b></p >}
+                    {order?.note && <p><b style={{ color: "rgb(2,2,94)" }}>Note: {order?.note}</b></p >}
                     <p><b style={{ color: "rgb(2,2,94)" }}>Date: </b>{formatDateTime(order?.date)}</p >
                 </div>
             </div>
