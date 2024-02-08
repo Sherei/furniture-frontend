@@ -411,10 +411,10 @@ export const Navbar = () => {
               <div className="d-flex gap-3 align-items-center fs-4 nav_social">
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
                 <img src="/follow.png" className="img-fluid" style={{width:"70px"}} alt="" />
-                <a  href="" style={{background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color:"white"}}>
+                <a  href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target="blank" style={{background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color:"white"}}>
                   <FaTiktok />
                 </a>
-                <a href='https://wa.me/+447392608087' target="blank" style={{background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color:"rgb(255, 255, 255)"}}>
+                <a href='https://www.instagram.com/sofa_beds_ltd?igsh=MTViOHpycmZ4dDE2Mg==' target="blank" style={{background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color:"rgb(255, 255, 255)"}}>
                   <FaInstagram />
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank' style={{backgroundColor:"rgb(24, 119, 242)", color:"rgb(255, 255, 255)"}}>

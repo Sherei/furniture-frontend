@@ -104,14 +104,14 @@ const Footer = () => {
             <p className='mt-3 ' style={{ color: "#ffff" }}>All Right Reserved by SOFA BEDS UK 2023</p>
           </div>
           <div className='footer_icon'>
-            <a href="https://www.instagram.com/sofa_beds_ltd/?igshid=MzMyNGUyNmU2YQ%3D%3D" target='blank'>
-              <div>
-                <FaInstagram />
-              </div>
-            </a>
-            <a href="" target='blank'>
+            <a href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target='blank'>
               <div>
                 <FaTiktok />
+              </div>
+            </a>
+            <a href="https://www.instagram.com/sofa_beds_ltd?igsh=MTViOHpycmZ4dDE2Mg==" target='blank'>
+              <div>
+                <FaInstagram />
               </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank'>
