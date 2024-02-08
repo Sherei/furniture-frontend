@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TagManager from 'react-gtm-module'; 
 import { Navbar } from './Components/Navbar/Navbar';
 import SingleAdd from './Components/SinglePage/SingleAdd';
 import { Login } from "./Components/login/Login";
@@ -29,15 +30,14 @@ import './App.css';
 import AddBlog from './Components/Dashboard/AddBlog';
 import { inject } from '@vercel/analytics';
 // ReactGA.initialize('G-Y946N662J4');
-import { TagManager } from 'react-gtm-module';
 
+// Initialize Google Tag Manager
 TagManager.initialize({
-  gtmId: 'GTM-MXQ3QL4D' 
+  gtmId: 'GTM-MXQ3QL4D' // Replace with your GTM container ID
 });
-
 function App() {
   
-
+  
   inject();
   
   // ReactGA.event({
