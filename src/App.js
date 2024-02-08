@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import TagManager from 'react-gtm-module'; 
 import { Navbar } from './Components/Navbar/Navbar';
 import SingleAdd from './Components/SinglePage/SingleAdd';
 import { Login } from "./Components/login/Login";
@@ -21,7 +20,6 @@ import UserPanel from './Components/UserPanel/UserPanel';
 import OrderDetail from './Components/OrderDetail/OrderDetail';
 import Lottie from 'lottie-react';
 import Nointernet from "./Components/Animations/Nointernet.json";
-import ReactGA from 'react-ga';
 import Sidebar from './Components/Dashboard/Sidebar';
 import { AddProduct } from './Components/Dashboard/AddProduct';
 import AllBlog from './Components/Blog/AllBlog';
@@ -30,9 +28,6 @@ import './App.css';
 import AddBlog from './Components/Dashboard/AddBlog';
 import { inject } from '@vercel/analytics';
 
-TagManager.initialize({
-  gtmId: 'GTM-NWFTB5LV'
-}); 
 
 function App() {
   

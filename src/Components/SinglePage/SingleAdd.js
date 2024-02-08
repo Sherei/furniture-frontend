@@ -9,6 +9,7 @@ import {
   FaArrowUp,
   FaStar,
 } from "react-icons/fa";
+import {TagManager, gtag} from 'react-gtm-module'; 
 import { RiStarSFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -25,7 +26,6 @@ import { toast } from "react-toastify";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import axios from "axios";
-import { TagManager } from 'react-gtm-module';
 import "./single.css";
 
 
@@ -358,24 +358,21 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          TagManager.dataLayer({
-            dataLayer: {
-              event: 'add_to_cart',
-              ecommerce: {
-                items: [
-                  {
-                    item_id: product.productId,
-                    item_name: product.title,
-                    item_category: product.category,
-                    item_subCategory: product.subCategory,
-                    item_quantity: product.quantity,
-                    item_price: product.total,
-                    customer_name: cu.name,
-                  }
-                ]
+
+          gtag("event", "add_to_cart", {
+            currency: "USD",
+            items: [
+              {
+                item_id: product.productId,
+                item_name: product.title,
+                item_category: product.category,
+                item_subCategory: product.subCategory,
+                item_quantity: product.quantity,
+                item_price: product.total,
+                customer_name: cu.name,
               }
-            }
-          })
+            ]
+          });
         }
       } catch (error) {
         // toast.warning("Server Error Try Again Later...")
