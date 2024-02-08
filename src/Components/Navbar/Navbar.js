@@ -180,7 +180,7 @@ export const Navbar = () => {
       const titleMatch = title?.includes(searchResult);
       const categoryMatch = category?.includes(searchResult);
       const subCategoryMatch = subCategory?.includes(searchResult);
-      const stockUndefined = product.stock === undefined;
+      const stockUndefined = product.stock === undefined || product.stock === false;
 
       return (
         (titleMatch || categoryMatch || subCategoryMatch) && stockUndefined
@@ -294,7 +294,7 @@ export const Navbar = () => {
                       setCartOpen("close");
                     }}
                   >
-                    Browse Our Products <FaArrowRight />
+                    Browse Our Products
                   </button>
                 </a>
               </center>

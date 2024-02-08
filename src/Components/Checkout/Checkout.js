@@ -209,7 +209,7 @@ const Checkout = () => {
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
                 <a href="/Products/all">
                     <button className='btn review_btn' style={{ width: "fit-content" }}>
-                        Browse Our Products <FaArrowRight />
+                        Browse Our Products
                     </button>
                 </a>
             </div>

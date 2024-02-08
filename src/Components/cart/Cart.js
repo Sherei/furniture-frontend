@@ -255,7 +255,7 @@ export const Cart = () => {
             className="btn review_btn"
             style={{ width: "fit-content" }}
             >
-            Browse Our Products <FaArrowRight />
+            Browse Our Products 
           </button>
             </a>
         </div>
