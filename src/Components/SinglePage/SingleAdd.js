@@ -327,7 +327,8 @@ const SingleAdd = () => {
           return setError("options");
         }
       }
-      if (side != undefined) {
+      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
         if (!color, !side) {
           return setError("options");
         }
