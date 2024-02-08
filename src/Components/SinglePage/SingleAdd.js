@@ -370,7 +370,7 @@ const SingleAdd = () => {
           })
         }
       } catch (error) {
-        toast.warning("Server Error Try Again Later...")
+        // toast.warning("Server Error Try Again Later...")
       } finally {
         setLoading(false);
       }
