@@ -24,14 +24,14 @@ const Benefits = () => {
                         <div className='benefit_box'>
                             <div className='benefit_icon'><FaShuttleVan /></div>
                             <div><p className='text-center' style={{ fontSize: "20px", fontWeight: "600", color: "rgb(2, 2, 94)" }}>Fast Delivery</p></div>
-                            <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>Delivery in as little as 5 -7  days</p></div>
+                            <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>Delivery in as little as 5-7  days</p></div>
                         </div>
                     </div>
                 </div>
                 <div className='col-lg-12 my-4 d-flex justify-content-center'>
 
                     <a href="/Products/all">
-                        <button className='review_btn'>Browse Products <FaArrowRight /></button>
+                        <button className='review_btn'>Browse Our Products</button>
                     </a>
                 </div>
 
