@@ -12,11 +12,11 @@ const Products = () => {
   const cu = useSelector((store) => store.userSection.cu);
   const { prodctName } = useParams();
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
-  }, [prodctName]);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //   });
+  // }, []);
 
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
@@ -751,23 +751,20 @@ const Products = () => {
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
                 data?.map((product, index) => (
                   <div className="col" key={index}>
-                    <div
-                      className="product_box "
-                      style={{ position: "relative" }}
-                    >
-                      <div
-                        className="p_img_box"
-                        onClick={() => move("/single_Add/" + product._id)}
-                      >
-                        <img src={product.images[0]} alt="No network"
-                          style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
-                        />
-                        <div className="overlay">
-                          {product.images[1] && (
-                            <img src={product.images[1]} alt="" />
-                          )}
+                    <div className="product_box "
+                      style={{ position: "relative" }}>
+                      <a href={"/single_Add/" + product._id}>
+                        <div className="p_img_box">
+                          <img src={product.images[0]} alt="No network"
+                            style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                          />
+                          <div className="overlay">
+                            {product.images[1] && (
+                              <img src={product.images[1]} alt="" />
+                            )}
+                          </div>
                         </div>
-                      </div>
+                      </a>
                       {product.discount && product.discount > 0 ? (
                         <div className="discount">
                           {`${product.discount}%`}
@@ -793,12 +790,11 @@ const Products = () => {
                         )}
                       </div>
                       <div className="product_btns">
-                        <button
-                          className="btn p_detail_btn"
-                          onClick={() => move("/single_Add/" + product._id)}
-                        >
-                          View Detail
-                        </button>
+                        <a href={"/single_Add/" + product._id}>
+                          <button className="btn p_detail_btn">
+                            View Detail
+                          </button>
+                        </a>
                         <a href="https://wa.me/+923067208343" target="blank">
                           <button className="btn p_whatsapp_btn">
                             Buy Via WhatsApp
@@ -819,26 +815,27 @@ const Products = () => {
                     <>
                       <div className="col d-flex gap-2 px-0 grid_box_main"
                         key={index}
-                        onClick={() => move("/single_Add/" + product._id)}
                         style={{ overflow: "hidden" }}
                       >
-                        <div style={{ width: "40%" }}>
-                          <div className="p_img_box_grid">
-                            <img src={product.images[0]} alt="No network"
-                              style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
-                            />
-                            {product.discount && product.discount > 0 ? (
-                              <div className="discount">
-                                {`${product.discount}%`}
+                        <a href={"/single_Add/" + product._id}>
+                          <div style={{ width: "40%" }}>
+                            <div className="p_img_box_grid">
+                              <img src={product.images[0]} alt="No network"
+                                style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                              />
+                              {product.discount && product.discount > 0 ? (
+                                <div className="discount">
+                                  {`${product.discount}%`}
+                                </div>
+                              ) : null}
+                              <div className="overlay">
+                                {product.images[1] && (
+                                  <img src={product.images[1]} alt="" />
+                                )}
                               </div>
-                            ) : null}
-                            <div className="overlay">
-                              {product.images[1] && (
-                                <img src={product.images[1]} alt="" />
-                              )}
                             </div>
                           </div>
-                        </div>
+                        </a>
                         <div
                           className="d-flex flex-column justify-content-between gap-3"
                           style={{ width: "60%" }}
@@ -870,9 +867,11 @@ const Products = () => {
                             )}
                           </div>
                           <div className="">
-                            <button className="btn review_btn btn-outline-primary fs-10 px-5" style={{ width: "fit-content" }}>
-                              View Detail
-                            </button>
+                            <a href={"/single_Add/" + product._id}>
+                              <button className="btn review_btn btn-outline-primary fs-10 px-5" style={{ width: "fit-content" }}>
+                                View Detail
+                              </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -883,7 +882,7 @@ const Products = () => {
           </div>
 
         </div>
-      </div>
+      </div >
     </>
   );
 };

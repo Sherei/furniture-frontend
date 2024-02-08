@@ -30,11 +30,11 @@ import "./single.css";
 
 
 const SingleAdd = () => {
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //   });
+  // }, []);
 
   let cu = useSelector((store) => store.userSection.cu);
 
