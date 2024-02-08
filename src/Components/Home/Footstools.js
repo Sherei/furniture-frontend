@@ -87,7 +87,7 @@ const FootStools = () => {
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
                     <div className='h_box_main' ref={containerRef}>
-                        {data.filter((item) => item.category === "footstools" && item.stock === undefined)
+                        {data.filter((item) => item.category === "footstools" && (item.stock === undefined || item.stock === false))
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
                                     <a href={"/single_Add/" + product._id}>
@@ -128,7 +128,7 @@ const FootStools = () => {
                     </div>
                     <button className={`btn bed_left ${showLeftArrow ? '' : 'hidden'}`} onClick={scrollLeft}><IoIosArrowBack /></button>
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
-                    {(data?.filter(product => product.category === "footstools" && product.stock === undefined).length === 0 || loading) && (
+                    {(data?.filter(product => product.category === "footstools" && (product.stock === undefined || product.stock === false)).length === 0 || loading) && (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                             {loading ? <Loader /> : "No product available related to this category"}
                         </div>

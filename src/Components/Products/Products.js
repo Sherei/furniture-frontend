@@ -741,7 +741,7 @@ const Products = () => {
             </div>
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
 
-              {(data?.filter((item) =>item.stock === undefined).length === 0 || loading) && (
+              {(data?.filter((item)=>(item.stock === undefined || item.stock === false)).length === 0 || loading) && (
                 <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
                     data?.length === 0 ? <Loader /> : null
@@ -749,7 +749,7 @@ const Products = () => {
                 </div>
               )}
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
-                data.filter((item) => item.stock === undefined).map((product, index) => (
+                data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => (
                   <div className="col" key={index}>
                     <div className="product_box "
                       style={{ position: "relative" }}>
@@ -810,7 +810,7 @@ const Products = () => {
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
               {(activeGrid === "list" && !loading && data?.length > 0) &&
-                data.filter((item) => item.stock === undefined).map((product, index) => {
+                data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => {
                   return (
                     <>
                       <div className="col d-flex gap-2 px-0 grid_box_main"
