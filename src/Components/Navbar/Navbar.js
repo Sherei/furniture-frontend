@@ -43,7 +43,7 @@ export const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [search, setSearch] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [open, setCartOpen] = useState(false);
