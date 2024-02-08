@@ -33,7 +33,7 @@ import { TagManager } from 'react-gtm-module';
 
 function App() {
   TagManager.initialize({
-    gtmId: 'GTM-XXXXXXX' // Replace 'GTM-XXXXXXX' with your actual GTM container ID
+    gtmId: 'GTM-MXQ3QL4D' // Replace 'GTM-XXXXXXX' with your actual GTM container ID
   });
 
   inject();
