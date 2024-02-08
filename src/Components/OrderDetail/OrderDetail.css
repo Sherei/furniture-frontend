@@ -1,7 +1,13 @@
+.btn_width {
+  width: fit-content;
+}
 
-
-  @media screen and (max-width:768px) {
-    .table_display1{
-      display: none !important;
-    }
+@media screen and (max-width:768px) {
+  .table_display1 {
+    display: none !important;
   }
+
+  .btn_width {
+    width: 100%;
+  }
+}

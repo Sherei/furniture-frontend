@@ -77,10 +77,15 @@ const OrderDetail = () => {
     }
 
     return (
-        <div className='container my-5'>
+        <div className='container my-5' style={{textTransform:"uppercase"}}>
             <div className='row'>
                 <div className='col'>
-                    <center><p className='fw-bolder fs-3' style={{ color: "rgb(2, 2, 94)" }}>Order Detail</p></center>
+                    <center>
+                        <p className='fw-bolder fs-3'
+                            style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)" }}
+                        >Order Detail</p>
+                        <p><b>Tracking Id: </b>{order?.orderId}</p >
+                    </center>
                 </div>
             </div>
             <div className='row' id="orderDetail">
@@ -94,7 +99,6 @@ const OrderDetail = () => {
                     <p><b>Total Products: </b>{order?.orderItems?.length}</p >
                     {order.note && <p><b>Note: {order?.note}</b></p >}
                     <p><b>Date: </b>{formatDateTime(order?.date)}</p >
-                    <p><b>Tracking Id: </b>{order?.orderId}</p >
                 </div>
             </div>
             <div className='col-12'>
@@ -119,7 +123,7 @@ const OrderDetail = () => {
                                                         alt="No Internet"
                                                         style={{ width: "150px" }}
                                                     />
-                                                    {(item?.discount && item.discount > 1) &&
+                                                    {item?.discount > 1 &&
                                                         <div className='p-1'
                                                             style={{
                                                                 position: "absolute", top: "-5px", right: "2px",
@@ -157,8 +161,7 @@ const OrderDetail = () => {
                                                     </p>
                                                 </div>
                                                 <hr className='m-0 p-0' />
-
-                                                <div className='py-2 d-flex justify-content-between align-items-center'>
+                                                {/* <div className='py-2 d-flex justify-content-between align-items-center'>
                                                     <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                                                         Code
                                                     </p>
@@ -166,7 +169,7 @@ const OrderDetail = () => {
                                                         &pound;{item?.sn}
                                                     </p>
                                                 </div>
-                                                <hr className='m-0 p-0' />
+                                                <hr className='m-0 p-0' /> */}
 
                                                 <div className='py-2 d-flex justify-content-between align-items-center'>
                                                     <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
@@ -177,7 +180,7 @@ const OrderDetail = () => {
                                                     </p>
                                                 </div>
                                                 <hr className='m-0 p-0' />
-
+                                                {/* 
                                                 <div className='py-2 d-flex justify-content-between align-items-center'>
                                                     <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                                                         Sub Category
@@ -186,14 +189,14 @@ const OrderDetail = () => {
                                                         {item?.subCategory ? item?.subCategory : "No subcategory"}
                                                     </p>
                                                 </div>
-                                                <hr className='m-0 p-0' />
+                                                <hr className='m-0 p-0' /> */}
 
                                                 <div className='py-2 d-flex justify-content-between align-items-center'>
                                                     <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                                                         Price
                                                     </p>
                                                     <p className='m-0' style={{ fontSize: "14px" }}>
-                                                        &pound; {item?.price}
+                                                        &pound;{item?.price}
                                                     </p>
                                                 </div>
                                                 <hr className='m-0 p-0' />
@@ -214,7 +217,7 @@ const OrderDetail = () => {
                                                         Total Price
                                                     </p>
                                                     <p className='m-0' style={{ fontSize: "14px" }}>
-                                                        &pound; {item?.total.toFixed()}
+                                                        &pound;{item?.total.toFixed()}
                                                     </p>
                                                 </div>
                                                 <hr className='m-0 p-0' />
@@ -234,11 +237,11 @@ const OrderDetail = () => {
                                     <thead>
                                         <tr>
                                             <th>Sr#</th>
-                                            <th>Code</th>
+                                            {/* <th>Code</th> */}
                                             <th>Picture</th>
                                             <th>Title</th>
                                             <th>Category</th>
-                                            <th>Sub Category</th>
+                                            {/* <th>Sub Category</th> */}
                                             <th>Price</th>
                                             <th>Quantity</th>
                                             <th>Discount</th>
@@ -250,7 +253,7 @@ const OrderDetail = () => {
                                             order?.orderItems?.map((data, index) => (
                                                 <tr key={index} >
                                                     <td>{index + 1}</td>
-                                                    <td>{data?.sn}</td>
+                                                    {/* <td>{data?.sn}</td> */}
                                                     <td>
                                                         <a href={"/single_Add/" + data.productId}>
                                                             <img src={data?.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
@@ -277,7 +280,7 @@ const OrderDetail = () => {
                                                         </p>
                                                     </td>
                                                     <td>{data?.category}</td>
-                                                    <td className='text-center'>{data?.subCategory ? data?.subCategory : "No subcategory"}</td>
+                                                    {/* <td className='text-center'>{data?.subCategory ? data?.subCategory : "No subcategory"}</td> */}
                                                     <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed()}`}</td>
                                                     <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>
                                                     <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed()}%`}</td>
@@ -333,9 +336,9 @@ const OrderDetail = () => {
                     </a>
                 }
                 {cu.email != "asd@gmail.com" &&
-                    <a href={`/user-profile/${cu._id}`}>
-                        <button className='btn review_btn' style={{ width: "fit-content" }}>
-                            Back to Profile <FaArrowRight />
+                    <a href={`/user-profile/${cu._id}`} >
+                        <button className='btn review_btn btn_width' >
+                            Back to Website <FaArrowRight />
                         </button>
                     </a>
                 }
