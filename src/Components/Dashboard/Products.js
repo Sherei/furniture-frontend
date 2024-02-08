@@ -111,8 +111,8 @@ export const Products = () => {
                           <td onClick={() => move("/single_Add/" + data._id)}>
                             <img src={data.images[0]} alt="No   network" style={{ maxWidth: '80px', height: '80px' }} />
                           </td>
-                          <td className='text-center'>{data.stock === undefined ? "No" : "Yes"}</td>
-                          <td className='text-center' style={{ color: "red" }}>{data.home === true ? "Home" : "No"}</td>
+                          <td className='text-center'>{data.stock}</td>
+                          <td className='text-center'>{data.home}</td>
                           <td><a href={"/single_Add/" + data._id}>{data.title}</a></td>
                           <td >{data.category}</td>
                           <td className='text-center'>
