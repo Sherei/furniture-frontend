@@ -39,7 +39,6 @@ const OrderDetail = () => {
         }
     }, [OrderId]);
 
-
     const formatDateTime = (dateStr) => {
         const options = {
             year: 'numeric',
