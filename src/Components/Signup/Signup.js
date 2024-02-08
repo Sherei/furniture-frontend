@@ -35,9 +35,9 @@ const Signup = () => {
             }
         } catch (error) {
             if (error.response && error.response.status === 400) {
-                setError('Try with different E-mail')
+                setError('This E-mail is already registered with us. Try another one')
             } else {
-                setError('Try with different E-mail')
+                setError('This E-mail is already registered with us. Try another one')
             }
         }
     }
