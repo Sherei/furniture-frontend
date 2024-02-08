@@ -352,7 +352,7 @@ const SingleAdd = () => {
           setSucess("cart")
           TagManager.dataLayer({
             dataLayer: {
-              event: 'Add_To_Cart',
+              event: 'add_to_cart',
               ecommerce: {
                 items: [
                   {
