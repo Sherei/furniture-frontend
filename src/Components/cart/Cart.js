@@ -67,9 +67,7 @@ export const Cart = () => {
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-        window.gtag('event', 'remove_from_cart', {
-          item_id: itemId,
-        });
+       
         toast.success("Item Removed");
       }
     } catch (e) {

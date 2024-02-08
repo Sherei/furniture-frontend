@@ -38,7 +38,9 @@ const Hero = () => {
                                 return <SwiperSlide>
                                     <div className='slide' key={index} style={{ position: "relative" }}>
                                         <img src={data.img} alt="No Network" />
-                                            <button className='btn hero_shop' onClick={() => move('/products/all')}>SHOP NOW</button>
+                                        <a href="/products/all">
+                                            <button className='btn hero_shop'>SHOP NOW</button>
+                                        </a>
                                     </div>
                                 </SwiperSlide>
                             })

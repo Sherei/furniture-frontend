@@ -24,6 +24,7 @@ import "./sidebar.css"
 
 
 const Sidebar = () => {
+  
   useEffect(() => {
     window.scrollTo({
       top: 0,

@@ -47,12 +47,13 @@ export const Login = () => {
           type: "LOGIN_USER",
           payload: loginUser.user,
         });
-        if (productId) {
-          window.location.href = "/single_Add/" + productId;
-        } else if (loginUser.user.email === "asd@gmail.com") {
-          window.location.href = '/admin-dashboard';
-        } else {
-          window.location.href = "/products/all";
+
+        if (loginUser.user.email === "asd@gmail.com") {
+         return move('/admin-dashboard');
+        } else if (productId) {
+         return move("/single_Add/" + productId);
+        } else if (!productId) {
+         return move("/products/all");
         }
       }
     } catch (e) {
@@ -66,7 +67,7 @@ export const Login = () => {
   };
 
   if (cu._id !== undefined) {
-    window.location.href="/products/all"
+    move("/products/all")
   }
 
   return <>

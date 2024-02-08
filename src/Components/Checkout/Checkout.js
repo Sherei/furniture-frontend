@@ -163,6 +163,9 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
+                
+                move(`/order-placed/${userId}`)
+
                 gtag("event", "purchase", {
                     transaction_id: data.orderId,
                     value: total,
@@ -178,8 +181,6 @@ const Checkout = () => {
                         price: item.total,
                     })),
                 });
-
-                window.location.href = `/order-placed/${userId}`
             }
 
         } catch (e) {
