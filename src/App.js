@@ -31,10 +31,12 @@ import { inject } from '@vercel/analytics';
 // ReactGA.initialize('G-Y946N662J4');
 import { TagManager } from 'react-gtm-module';
 
+TagManager.initialize({
+  gtmId: 'GTM-MXQ3QL4D' 
+});
+
 function App() {
-  TagManager.initialize({
-    gtmId: 'GTM-MXQ3QL4D' // Replace 'GTM-XXXXXXX' with your actual GTM container ID
-  });
+  
 
   inject();
   
