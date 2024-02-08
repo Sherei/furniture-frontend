@@ -29,8 +29,12 @@ import './App.css';
 import AddBlog from './Components/Dashboard/AddBlog';
 import { inject } from '@vercel/analytics';
 // ReactGA.initialize('G-Y946N662J4');
+import { TagManager } from 'react-gtm-module';
 
 function App() {
+  TagManager.initialize({
+    gtmId: 'GTM-XXXXXXX' // Replace 'GTM-XXXXXXX' with your actual GTM container ID
+  });
 
   inject();
   

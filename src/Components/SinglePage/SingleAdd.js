@@ -25,7 +25,9 @@ import { toast } from "react-toastify";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import axios from "axios";
+import { TagManager } from 'react-gtm-module';
 import "./single.css";
+
 
 const SingleAdd = () => {
   useEffect(() => {
@@ -348,21 +350,24 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          window.gtag('event', 'add_to_cart', {
-            currency: "USD",
-            items: [
-              {
-                item_id: product.productId,
-                item_name: product.title,
-                item_category: product.category,
-                item_subCategory: product.subCategory,
-                item_quantity: product.quantity,
-                item_price: product.total,
-                customer_name: cu.name,
+          TagManager.dataLayer({
+            dataLayer: {
+              event: 'Add_To_Cart',
+              ecommerce: {
+                items: [
+                  {
+                    item_id: product.productId,
+                    item_name: product.title,
+                    item_category: product.category,
+                    item_subCategory: product.subCategory,
+                    item_quantity: product.quantity,
+                    item_price: product.total,
+                    customer_name: cu.name,
+                  }
+                ]
               }
-            ]
-          });
-
+            }
+          })
         }
       } catch (error) {
         toast.warning("Server Error Try Again Later...")
