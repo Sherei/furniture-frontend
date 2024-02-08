@@ -15,11 +15,11 @@ import "./checkout.css"
 
 const Checkout = () => {
 
-    // useEffect(() => {
-    //     window.scrollTo({
-    //         top: 0
-    //     });
-    // }, []);
+    useEffect(() => {
+        window.scrollTo({
+            top: 0
+        });
+    }, []);
 
     const cu = useSelector(store => store.userSection.cu)
     const dispatch = useDispatch()
