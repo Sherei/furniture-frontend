@@ -344,7 +344,7 @@ const SingleAdd = () => {
 
     if (cu._id === undefined) {
       move("/login/" + productId);
-      toast.warning("Login to Place Order");
+      toast.success("Login to Place Your Order");
     } else if (cu.email === "asd@gmail.com") {
       dispatch({
         type: "LOGOUT_USER",
