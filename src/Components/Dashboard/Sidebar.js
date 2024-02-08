@@ -154,11 +154,11 @@ const Sidebar = () => {
               Home
             </div>
           </div>
-          <div className="link mb-5">
+          <div className="link mb-5" onClick={Logout}>
             <div className="icon">
               <BiLogOut />
             </div>
-            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" onClick={Logout}>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" >
               Logout
             </div>
           </div>
