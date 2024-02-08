@@ -795,7 +795,7 @@ const Products = () => {
                             View Detail
                           </button>
                         </a>
-                        <a href="https://wa.me/+923067208343" target="blank">
+                        <a href="https://wa.me/+447392608087" target="blank">
                           <button className="btn p_whatsapp_btn">
                             Buy Via WhatsApp
                           </button>

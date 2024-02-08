@@ -307,11 +307,10 @@ export const Cart = () => {
                 >
                   <div className="row">
                     <div className="col-4">
+                      <a href={"/single_Add/" + item.productId}>
                       <div
                         className="text-center"
-                        onClick={() => move("/single_Add/" + item.productId)}
-                        style={{ position: "relative" }}
-                      >
+                        style={{ position: "relative" }}>
                         <img
                           src={item?.image}
                           className="img-fluid rounded-3"
@@ -336,6 +335,7 @@ export const Cart = () => {
                           </div>
                         )}
                       </div>
+                      </a>
                     </div>
                     <div className="col-8">
                       <div className="w-100 px-2">

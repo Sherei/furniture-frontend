@@ -92,7 +92,7 @@ const Three = () => {
                                     <a href={"/single_Add/" + product._id}>
                                         <button className='btn order_btn'>View Detail</button>
                                     </a>
-                                    <a href="https://wa.me/+923067208343" target="blank">
+                                    <a href="https://wa.me/+447392608087" target="blank">
                                         <button className='btn card_whatsAp'>Buy Via WhatsApp</button>
                                     </a>
                                     <a href={"/single_Add/" + product._id}>

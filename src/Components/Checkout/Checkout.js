@@ -186,7 +186,7 @@ const Checkout = () => {
                     }
                 })
 
-                move(`/order-placed/${userId}`)
+                window.location.href= `/order-placed/${userId}` 
             }
 
         } catch (e) {
@@ -213,9 +213,11 @@ const Checkout = () => {
         } else {
             return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
                 <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-                <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-                    Browse Products <FaArrowRight />
-                </button>
+                <a href="/Products/all">
+                    <button className='btn review_btn' style={{ width: "fit-content" }}>
+                        Browse Products <FaArrowRight />
+                    </button>
+                </a>
             </div>
         }
     }

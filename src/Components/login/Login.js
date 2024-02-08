@@ -48,12 +48,11 @@ export const Login = () => {
           payload: loginUser.user,
         });
         if (productId) {
-          move("/single_Add/" + productId);
-        }
-        else if (loginUser.user.email === "asd@gmail.com") {
-          move('/admin-dashboard');
+          window.location.href = "/single_Add/" + productId;
+        } else if (loginUser.user.email === "asd@gmail.com") {
+          window.location.href = '/admin-dashboard';
         } else {
-          move("/products/all");
+          window.location.href = "/products/all";
         }
       }
     } catch (e) {
@@ -67,7 +66,7 @@ export const Login = () => {
   };
 
   if (cu._id !== undefined) {
-    move('/products')
+    window.location.href="/products/all"
   }
 
   return <>

@@ -1272,7 +1272,7 @@ const SingleAdd = () => {
                 </button>
               </div>
               <div className="">
-                <a href="https://wa.me/+923067208343" target="blank">
+                <a href="https://wa.me/+447392608087" target="blank">
                   <button className="btn s_whatsapp fw-bolder">
                     Buy via WhatsApp
                   </button>
