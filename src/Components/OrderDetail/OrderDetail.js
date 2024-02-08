@@ -298,7 +298,7 @@ const OrderDetail = () => {
             </div>
 
             <div className='col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end'>
-                <div className='update mb-3 p-3 border' style={{ width: "300px" }}>
+                <div className='update mb-3 p-3 border' >
                     <div className='d-flex justify-content-between'>
                         <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>Summary</p>
                     </div>
