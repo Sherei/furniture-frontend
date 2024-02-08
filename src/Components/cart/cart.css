@@ -74,11 +74,10 @@
 
 .cart_btns {
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-end;
 }
 
-.cart_btns button {
+.cart_btns a button {
     width: fit-content;
 }
 
@@ -94,9 +93,11 @@
     .cart-total {
         justify-content: center;
     }
-
-    .cart_btns button {
-        width: 100%;
+    .cart_btns {
+        display: block;
+    }
+    .cart_btns a button {
+        width: 100% !important;
     }
 
     .cart_display_layout1 {

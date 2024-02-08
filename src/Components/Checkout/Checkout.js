@@ -113,14 +113,14 @@ const Checkout = () => {
             const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
             filterCart.forEach((item) => {
                 const itemData = {
-                    title:item.title,
-                    productId:item.productId,
-                    sn:item.sn,
-                    category:item.category,
-                    image:item.image,
-                    subCategory:item.subCategory,
-                    price:parseFloat(item.price).toString(),
-                    total:parseFloat(item.total).toString(),
+                    title: item.title,
+                    productId: item.productId,
+                    sn: item.sn,
+                    category: item.category,
+                    image: item.image,
+                    subCategory: item.subCategory,
+                    price: parseFloat(item.price).toString(),
+                    total: parseFloat(item.total).toString(),
                     quantity: parseInt(item.quantity).toString(),
                     discount: item.discount,
                     size: item.size,
@@ -164,20 +164,18 @@ const Checkout = () => {
                     payload: response.data.alldata,
                 });
                 gtag("event", "purchase", {
-                    currency:"POUND",
-                    transaction_id:data.orderId,
-                    value:data.total,
-                    customer_name:data.name1,
-                    customer_contact:data.number1,
-                    customer_email:data.email,
-                    customer_country:data.country,
-                    items: orderItems.map(item => ({
-                        id:item.productId,
-                        name:item.title,
-                        price:item.total,
-                        quantity:item.quantity,
-                        category:item.category,
-                        subCategory:item.subCategory,
+                    transaction_id: data.orderId,
+                    value: total,
+                    shipping: shippingFee,
+                    currency: "POUND",
+                    items: orderItems.map((item, index) => ({
+                        item_id: item.productId,
+                        item_name: item.title,
+                        index: index,
+                        item_category: item.category,
+                        item_category2: item.subCategory ? item.subCategory : "No Subcategory",
+                        quantity: item.quantity,
+                        price: item.total,
                     })),
                 });
 

@@ -79,12 +79,16 @@ const SingleAdd = () => {
         setProduct(resp?.data)
         gtag("event", "view_item", {
           currency: "POUND",
+          value: product.Fprice,
           items: [
             {
-              item_title: resp.data.title,
-              item_category: resp.data.category,
-              item_subCategory: resp.data.subCategory,
-              item_price: resp.data.Fprice,
+              item_id: product._id,
+              item_name: product.title,
+              discount: product.discount ? product.discount : "0",
+              item_category: product.category,
+              item_category2: product.subCategory ? product.subCategory : "No subCategory",
+              item_variant: product.color1 ? product.color1 : "No Color",
+              price: product.price,
             }
           ]
         });
@@ -371,18 +375,21 @@ const SingleAdd = () => {
           setSucess("cart")
           gtag("event", "add_to_cart", {
             currency: "POUND",
+            value: product.total,
             items: [
               {
                 item_id: product.productId,
                 item_name: product.title,
+                discount: product.discount ? product.discount : "0",
                 item_category: product.category,
-                item_subCategory: product.subCategory,
-                item_quantity: product.quantity,
-                item_price: product.total,
-                customer_name: cu.name,
+                item_category2: product.subCategory ? product.subCategory : "No subCategory",
+                item_list_name: cu.name,
+                item_variant: product.color1 ? product.color1 : "No Color",
+                price: product.Fprice,
               }
             ]
           });
+            
         }
       } catch (error) {
         // toast.warning("Server Error Try Again Later...")
