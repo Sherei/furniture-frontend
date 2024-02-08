@@ -140,10 +140,6 @@ const OrderDetail = () => {
                                                 <div className='py-2 d-flex justify-content-between align-items-center'>
                                                     <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
                                                         {item?.title}
-                                                        <div
-                                                            className={`chk_detail ${expandedItems[index] ? 'detail_height' : ''}`}
-                                                            onClick={() => toggleDetails(index)}
-                                                        >
                                                             {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}/</p>}
                                                             {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}/</p>}
                                                             {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}/</p>}
@@ -154,7 +150,6 @@ const OrderDetail = () => {
                                                             {item?.side && <p className='text-muted fs-6 m-0'>Side: {item.side ? item.side.replace(/-/g, " ") : ""}/</p>}
                                                             {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
                                                             {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
-                                                        </div>
                                                     </p>
                                                 </div>
                                                 <hr className='m-0 p-0' />

@@ -278,22 +278,26 @@ export const Navbar = () => {
               className="py-0 d-flex flex-column align-items-center justify-content-center "
               style={{ height: "75vh" }}
             >
-              <Lottie
+              <center>
+                <img src="/cart.png" alt=""  style={{ width: "100px" }} />
+                <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                {/* <Lottie
                 animationData={CartAnimation}
                 loop={true}
                 style={{ width: "100%", height: "100%" }}
-              />
-              <a href="/Products/all">
-                <button
-                  className="btn review_btn"
-                  style={{ width: "fit-content" }}
-                  onClick={() => {
-                    setCartOpen("close");
-                  }}
-                >
-                  Browse Products <FaArrowRight />
-                </button>
-              </a>
+              /> */}
+                <a href="/Products/all">
+                  <button
+                    className="btn review_btn my-5"
+                    style={{ width: "fit-content" }}
+                    onClick={() => {
+                      setCartOpen("close");
+                    }}
+                  >
+                    Browse Products <FaArrowRight />
+                  </button>
+                </a>
+              </center>
             </div>
           ) : (
             <div className="" style={{ height: "72vh", overflow: "auto" }}>
@@ -328,7 +332,7 @@ export const Navbar = () => {
                       <a href={`/single_Add/${item.productId}`}>
                         <p
                           className="m-0"
-                          style={{ fontSize: "13px", color:"#1B1B6D"}}
+                          style={{ fontSize: "13px", color: "#1B1B6D" }}
                           onClick={() => {
                             setCartOpen(false);
                           }}
@@ -413,8 +417,8 @@ export const Navbar = () => {
               <div className="d-flex gap-3 align-items-center fs-4 nav_social">
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
                 <img src="/follow.png" className="img-fluid" style={{ width: "70px" }} alt="" />
-                <a href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target="blank" 
-                style={{ background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color: "#02025E" }}>
+                <a href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target="blank"
+                  style={{ background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color: "#02025E" }}>
                   <FaTiktok />
                 </a>
                 <a href='https://www.instagram.com/sofa_beds_ltd?igsh=MTViOHpycmZ4dDE2Mg==' target="blank" style={{ background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)" }}>

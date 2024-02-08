@@ -80,16 +80,15 @@ const Orderplaced = () => {
                             Order will be delivered within 05-07 working days
 
                         </p>
-                        <div className='d-flex gap-lg-4 gap-md-4 gap-sm-4 gap-2 flex-wrap align-items-center justify-content-center'
-                        >
-                            <button className="review_btn my-3" onClick={() => {
+                        <div className='order_btns'>
+                            <button className="review_btn" onClick={() => {
                                 move(`/user-profile/${cu._id}`)
                             }}
-                                style={{ zIndex: 5000, width: "fit-content" }}>
+                                style={{ zIndex: 5000}}>
                                 My Order <FaArrowRight />
                             </button>
-                            <button className="review_btn my-3"
-                                style={{ zIndex: 5000, width: "fit-content" }}
+                            <button className="review_btn"
+                                style={{ zIndex: 5000}}
                                 onClick={() => {
                                     move(`/products`)
                                 }}>
