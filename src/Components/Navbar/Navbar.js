@@ -244,7 +244,7 @@ export const Navbar = () => {
         });
         window.gtag('event', 'remove_from_cart', {
           item_id: itemId,
-      });
+        });
         toast.success("Item Removed");
       }
     } catch (e) {
@@ -402,33 +402,33 @@ export const Navbar = () => {
         <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="row py-2">
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
-              <div className="d-flex align-items-center gap-2 nav_cotact_icon "> 
+              <div className="d-flex align-items-center gap-2 nav_cotact_icon ">
                 <img src="/express.png" style={{ width: "50px" }} alt="" />
-                <p className="m-0" style={{color:"#02025E"}}>
-                Express Delivery UK!!
+                <p className="m-0" style={{ color: "#02025E" }}>
+                  Express Delivery UK!!
                 </p>
               </div>
               <div className="d-flex gap-3 align-items-center fs-4 nav_social">
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
-                <img src="/follow.png" className="img-fluid" style={{width:"70px"}} alt="" />
-                <a  href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target="blank" style={{background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color:"white"}}>
+                <img src="/follow.png" className="img-fluid" style={{ width: "70px" }} alt="" />
+                <a href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target="blank" style={{ background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color: "white" }}>
                   <FaTiktok />
                 </a>
-                <a href='https://www.instagram.com/sofa_beds_ltd?igsh=MTViOHpycmZ4dDE2Mg==' target="blank" style={{background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color:"rgb(255, 255, 255)"}}>
+                <a href='https://www.instagram.com/sofa_beds_ltd?igsh=MTViOHpycmZ4dDE2Mg==' target="blank" style={{ background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)" }}>
                   <FaInstagram />
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank' style={{backgroundColor:"rgb(24, 119, 242)", color:"rgb(255, 255, 255)"}}>
+                <a href="https://www.facebook.com/profile.php?id=100094639442134&mibextid=2JQ9oc" target='blank' style={{ backgroundColor: "rgb(24, 119, 242)", color: "rgb(255, 255, 255)" }}>
                   <FaFacebook />
                 </a>
               </div>
-                <a href="tel:+447392608087" target="blank" className="fs-6">
-                  <span
-                    className="nav_cotact_icon suport_margin"
-                    style={{color:"#02025E"}}
-                  >
-                    Support: <TbPhoneCall />  +44 7392 608087
-                  </span>{" "}
-                </a>
+              <a href="tel:+447392608087" target="blank" className="fs-6">
+                <span
+                  className="nav_cotact_icon suport_margin"
+                  style={{ color: "#02025E" }}
+                >
+                  Support: <TbPhoneCall />  +44 7392 608087
+                </span>{" "}
+              </a>
             </div>
           </div>
         </div>
@@ -973,72 +973,72 @@ export const Navbar = () => {
 
 
       {searchValue && (
-          <div className="container-fluid px-lg-3 px-2">
-            <div className="my-4 fs-5">Search Result...</div>
-            {filteredProducts.length === 0 && (
-              <div className="mb-5">
-                <p className="m-0 fs-6">No result found...</p>
-              </div>
-            )}
-            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
-              {filteredProducts?.reverse().map((product, index) => (
-                <div className="col " key={index}>
-                  <div className="product_box">
-                    <div
-                      className="p_img_box"
-                      onClick={() => move("/single_Add/" + product._id)}
-                    >
-                      <img src={product.images[0]} alt="No network" />
-                      {product.discount && product.discount > 0 ? (
-                        <div className="discount">{`${product.discount}%`}</div>
-                      ) : null}
-                      <div className="overlay">
-                        {product.images[1] && (
-                          <img src={product.images[1]} alt="" />
-                        )}
-                      </div>
+        <div className="container-fluid px-lg-3 px-2">
+          <div className="my-4 fs-5">Search Result...</div>
+          {filteredProductsfilter((item) => { item.stock === undefined }).length === 0 && (
+            <div className="mb-5">
+              <p className="m-0 fs-6">No result found...</p>
+            </div>
+          )}
+          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2  g-4">
+            {filteredProducts.filter((item) => { item.stock === undefined }).reverse().map((product, index) => (
+              <div className="col " key={index}>
+                <div className="product_box">
+                  <div
+                    className="p_img_box"
+                    onClick={() => move("/single_Add/" + product._id)}
+                  >
+                    <img src={product.images[0]} alt="No network" />
+                    {product.discount && product.discount > 0 ? (
+                      <div className="discount">{`${product.discount}%`}</div>
+                    ) : null}
+                    <div className="overlay">
+                      {product.images[1] && (
+                        <img src={product.images[1]} alt="" />
+                      )}
                     </div>
-                    <p className="card_title px-2">{product.title}</p>
-                    {product.description && (
-                      <p className="p_description px-2">{product.description}</p>
-                    )}
-                    <div className="text-left">
-                      {product.discount && product.discount > 0 ? (
-                        <>
-                          <span className="card_Fprice px-2 ">
-                            {" "}
-                            {`£${product.Fprice?.toFixed(2)}`}
-                          </span>
-                          <span className="card_price">
-                            <s>{`£${product.price?.toFixed(2)}`}</s>
-                          </span>
-                        </>
-                      ) : (
+                  </div>
+                  <p className="card_title px-2">{product.title}</p>
+                  {product.description && (
+                    <p className="p_description px-2">{product.description}</p>
+                  )}
+                  <div className="text-left">
+                    {product.discount && product.discount > 0 ? (
+                      <>
                         <span className="card_Fprice px-2 ">
                           {" "}
                           {`£${product.Fprice?.toFixed(2)}`}
                         </span>
-                      )}
-                    </div>
-                    <div className="product_btns">
-                      <button
-                        className="btn p_detail_btn"
-                        onClick={() => move("/single_Add/" + product._id)}
-                      >
-                        View Detail
+                        <span className="card_price">
+                          <s>{`£${product.price?.toFixed(2)}`}</s>
+                        </span>
+                      </>
+                    ) : (
+                      <span className="card_Fprice px-2 ">
+                        {" "}
+                        {`£${product.Fprice?.toFixed(2)}`}
+                      </span>
+                    )}
+                  </div>
+                  <div className="product_btns">
+                    <button
+                      className="btn p_detail_btn"
+                      onClick={() => move("/single_Add/" + product._id)}
+                    >
+                      View Detail
+                    </button>
+                    <a href="https://wa.me/+923067208343" target="blank">
+                      <button className="btn p_whatsapp_btn">
+                        Buy Via WhatsApp
                       </button>
-                      <a href="https://wa.me/+923067208343" target="blank">
-                        <button className="btn p_whatsapp_btn">
-                          Buy Via WhatsApp
-                        </button>
-                      </a>
-                    </div>
+                    </a>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        )
+        </div>
+      )
       }
     </>
   );
