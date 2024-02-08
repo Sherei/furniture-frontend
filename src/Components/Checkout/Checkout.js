@@ -15,11 +15,11 @@ import "./checkout.css"
 
 const Checkout = () => {
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0
-        });
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0
+    //     });
+    // }, []);
 
     const cu = useSelector(store => store.userSection.cu)
     const dispatch = useDispatch()
@@ -379,6 +379,7 @@ const Checkout = () => {
                                             {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}</p>}
                                             {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}</p>}
                                             {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}</p>}
+                                            {item?.side && <p className='text-muted fs-6 m-0'>Side: {item.side ? item.side.replace(/-/g, " ") : ""}</p>}
                                             {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
                                             {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
                                         </div>

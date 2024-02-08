@@ -11,12 +11,12 @@ import axios from 'axios';
 
 const OrderDetail = () => {
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // }, []);
 
     const { OrderId } = useParams();
     const cu = useSelector(store => store.userSection.cu);
@@ -80,7 +80,7 @@ const OrderDetail = () => {
         <div className='container my-5'>
             <div className='row'>
                 <div className='col'>
-                    <center><p className='fw-bolder fs-3'style={{color:"rgb(2, 2, 94)"}}>Order Detail</p></center>
+                    <center><p className='fw-bolder fs-3' style={{ color: "rgb(2, 2, 94)" }}>Order Detail</p></center>
                 </div>
             </div>
             <div className='row' id="orderDetail">
@@ -111,26 +111,28 @@ const OrderDetail = () => {
                                 }} key={index}>
                                     <div className='row'>
                                         <div className='col-4'>
-                                            <div className='text-center' onClick={() => move("/single_Add/" + item.productId)} style={{ position: "relative" }}>
-                                                <img
-                                                    src={item?.image}
-                                                    className="img-fluid rounded-3"
-                                                    alt="No Internet"
-                                                    style={{ width: "150px" }}
-                                                />
-                                                {(item?.discount && item.discount > 1) &&
-                                                    <div className='p-1'
-                                                        style={{
-                                                            position: "absolute", top: "-5px", right: "2px",
-                                                            backgroundColor: "red", color: "white",
-                                                            borderRadius: "40px",
-                                                        }}>
-                                                        <p className='m-0' style={{ fontSize: "10px" }}>
-                                                            {`-${item?.discount}%`}
-                                                        </p>
-                                                    </div>
-                                                }
-                                            </div>
+                                            <a href={"/single_Add/" + item.productId}>
+                                                <div className='text-center' style={{ position: "relative" }}>
+                                                    <img
+                                                        src={item?.image}
+                                                        className="img-fluid rounded-3"
+                                                        alt="No Internet"
+                                                        style={{ width: "150px" }}
+                                                    />
+                                                    {(item?.discount && item.discount > 1) &&
+                                                        <div className='p-1'
+                                                            style={{
+                                                                position: "absolute", top: "-5px", right: "2px",
+                                                                backgroundColor: "red", color: "white",
+                                                                borderRadius: "40px",
+                                                            }}>
+                                                            <p className='m-0' style={{ fontSize: "10px" }}>
+                                                                {`-${item?.discount}%`}
+                                                            </p>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </a>
                                         </div>
                                         <div className='col-8'>
                                             <div className='w-100 px-2'>
@@ -148,6 +150,7 @@ const OrderDetail = () => {
                                                             {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}/</p>}
                                                             {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}/</p>}
                                                             {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}/</p>}
+                                                            {item?.side && <p className='text-muted fs-6 m-0'>Side: {item.side ? item.side.replace(/-/g, " ") : ""}/</p>}
                                                             {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
                                                             {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
                                                         </div>
@@ -248,8 +251,10 @@ const OrderDetail = () => {
                                                 <tr key={index} >
                                                     <td>{index + 1}</td>
                                                     <td>{data?.sn}</td>
-                                                    <td onClick={() => move("/single_Add/" + data.productId)} >
-                                                        <img src={data?.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
+                                                    <td>
+                                                        <a href={"/single_Add/" + data.productId}>
+                                                            <img src={data?.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
+                                                        </a>
                                                     </td>
                                                     <td >
                                                         <p className='m-0' style={{ color: "rgb(2, 2, 94 )", fontSize: "14px" }}>
@@ -264,6 +269,7 @@ const OrderDetail = () => {
                                                                 {data?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {data.headboard ? data.headboard.replace(/-/g, " ") : ""}/</p>}
                                                                 {data?.base && <p className='text-muted fs-6 m-0'>Base: {data.base ? data.base.replace(/-/g, " ") : ""}/</p>}
                                                                 {data?.detail && <p className='text-muted fs-6 m-0'>Detail: {data.detail ? data.detail.replace(/-/g, " ") : ""}/</p>}
+                                                                {data?.side && <p className='text-muted fs-6 m-0'>Side: {data.side ? data.side.replace(/-/g, " ") : ""}/</p>}
                                                                 {data?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {data.mattress ? data.mattress.replace(/-/g, " ") : ""}/</p>}
                                                                 {(data?.category === "bed" && data?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {data.ottoman ? data.ottoman.replace(/-/g, " ") : ""}/</p>}
                                                                 {(data?.category !== "bed" && data?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {data.ottoman ? data.ottoman.replace(/-/g, " ") : ""}/</p>}

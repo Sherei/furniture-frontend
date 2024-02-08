@@ -10,12 +10,12 @@ import "./login.css"
 
 export const Login = () => {
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: 'smooth'
+  //   });
+  // }, []);
   const { productId } = useParams();
 
   const cu = useSelector(store => store.userSection.cu)
@@ -118,13 +118,11 @@ export const Login = () => {
             </div>
             <button className='btn rounded login_btn mt-3'>Login</button>
             <p className='mt-2 fs-6'>I don't have an account. &nbsp;
-              <span
-                className='register_btn'
-                onClick={() => {
-                  move("/signup")
-                }}>
-                Register
-              </span>
+              <a href="/signup">
+                <span className='register_btn'>
+                  Register
+                </span>
+              </a>
             </p>
           </form>
         </div>

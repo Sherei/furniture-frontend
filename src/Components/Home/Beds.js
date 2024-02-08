@@ -85,7 +85,7 @@ const Beds = () => {
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
                     <div className='h_box_main' ref={containerRef}>
-                        {data.filter((item) => item.category === "bed" && item.home === true)
+                        {data.filter((item) => item.category === "bed" && item.home === true && item.stock === false)
                             .map((product, index) => (
                                 <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)}>
                                     <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>
@@ -93,8 +93,8 @@ const Beds = () => {
                                         <button className='btn card_whatsAp'>Buy Via WhatsApp</button>
                                     </a>
                                     <div className='card_img_box'>
-                                        <img src={product?.images[0]} className='img-fluid' alt='No Network' 
-                                        style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                                        <img src={product?.images[0]} className='img-fluid' alt='No Network'
+                                            style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                         />
                                         <div className='overlay'>
                                             {product.images[1] && <img src={product?.images[1]} alt="" />}

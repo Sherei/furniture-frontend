@@ -62,6 +62,7 @@ const SingleAdd = () => {
   const [headboard, setHeadboard] = useState("");
   const [ottoman, setOttoman] = useState("");
   const [mattress, setMattress] = useState("");
+  const [side, setSide] = useState("");
   const [Error, setError] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -311,7 +312,13 @@ const SingleAdd = () => {
           return setError("options");
         }
       }
+      if (side != undefined) {
+        if (!color, !side) {
+          return setError("options");
+        }
+      }
     }
+
     if (cu._id === undefined) {
       move("/login/" + productId);
       toast.warning("Login to Place Order");
@@ -334,6 +341,7 @@ const SingleAdd = () => {
         product.headboard = headboard;
         product.ottoman = ottoman;
         product.mattress = mattress;
+        product.side = side;
         product.total = totalPrice;
         // product.price = product?.price;
         product.quantity = quantity;
@@ -706,7 +714,7 @@ const SingleAdd = () => {
                       <select
                         onChange={(e) => {
                           if (e.target.value === "select color") {
-                            setColor("No color selection");
+                            setError("No color selection");
                           } else {
                             setColor(e.target.value);
                           }
@@ -724,6 +732,34 @@ const SingleAdd = () => {
                         {product?.color8 && <option value={product.color8}>{product.color8}</option>}
                         {product?.color9 && <option value={product.color9}>{product.color9}</option>}
                         {product?.color10 && <option value={product.color10}>{product.color10}</option>}
+                      </select>
+                    </div>
+                  }
+                  {(product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+                    || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) &&
+                    <div className="mt-1">
+                      <label
+                        style={{ fontSize: "17px", fontWeight: "600" }}
+                      >
+                        Side<span style={{ color: "red" }}>* </span>&nbsp;{" "}
+                        <span className="lable_Case">
+                          {side ? side.replace(/-/g, " ") : ""}
+                        </span>
+                      </label>
+                      <p className="mt-1 mb-0">Please Choose Side</p>
+                      <select
+                        onChange={(e) => {
+                          if (e.target.value === "select side") {
+                            setError("No side selection");
+                          } else {
+                            setSide(e.target.value);
+                          }
+                        }}
+                        className="form-select mb-2 mr-sm-2"
+                      >
+                        <option value="select side">Please Choose</option>
+                        <option value="right-side">Rigth Side</option>
+                        <option value="left-side">Left Side</option>
                       </select>
                     </div>
                   }
@@ -1181,7 +1217,6 @@ const SingleAdd = () => {
                   </>
                 )}
               </div>
-
               <div className="sigle_quatity_main mt-1">
                 <div className="">
                   <p

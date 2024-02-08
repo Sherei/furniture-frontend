@@ -6,12 +6,12 @@ import Loader from "../Loader/Loader"
 
 const SingleBlog = () => {
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // }, []);
 
     const { blogId } = useParams()
     const [blog, setBlog] = useState({})

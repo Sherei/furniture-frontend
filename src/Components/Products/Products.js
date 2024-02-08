@@ -749,7 +749,7 @@ const Products = () => {
                 </div>
               )}
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
-                data?.map((product, index) => (
+                 data?.filter((item) => { item.stock === false }).map((product, index) => (
                   <div className="col" key={index}>
                     <div className="product_box "
                       style={{ position: "relative" }}>
@@ -810,29 +810,27 @@ const Products = () => {
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
               {(activeGrid === "list" && !loading && data?.length > 0) &&
-                data?.map((product, index) => {
+                data?.filter((item) => { item.stock === false }).map((product, index) => {
                   return (
                     <>
                       <div className="col d-flex gap-2 px-0 grid_box_main"
                         key={index}
                         style={{ overflow: "hidden" }}
                       >
-                        <a href={"/single_Add/" + product._id}>
-                          <div style={{ width: "40%" }}>
-                            <div className="p_img_box_grid">
-                              <img src={product.images[0]} alt="No network"
-                                style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
-                              />
-                              {product.discount && product.discount > 0 ? (
-                                <div className="discount">
-                                  {`${product.discount}%`}
-                                </div>
-                              ) : null}
-                              <div className="overlay">
-                                {product.images[1] && (
-                                  <img src={product.images[1]} alt="" />
-                                )}
+                        <a href={"/single_Add/" + product._id} style={{ width: "40%" }}>
+                          <div className="p_img_box_grid">
+                            <img src={product.images[0]} alt="No network"
+                              style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                            />
+                            {product.discount && product.discount > 0 ? (
+                              <div className="discount">
+                                {`${product.discount}%`}
                               </div>
+                            ) : null}
+                            <div className="overlay">
+                              {product.images[1] && (
+                                <img src={product.images[1]} alt="" />
+                              )}
                             </div>
                           </div>
                         </a>

@@ -87,8 +87,7 @@ const FootStools = () => {
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>      
                         <div className='h_box_main' ref={containerRef}>
-                            {data
-                                .filter((item) => item.category === "footstools")
+                            {data.filter((item) => item.category === "footstools" && item.stock === false)
                                 .map((product, index) => (
                                     <div className='card_box' key={index} onClick={() => move("/single_Add/" + product._id)} >
                                         <button className='btn order_btn' onClick={() => move("/single_Add/" + product._id)}>View Detail</button>

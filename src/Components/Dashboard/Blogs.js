@@ -104,7 +104,7 @@ const Blogs = () => {
                                                 <tr key={index} >
                                                     <td>{index + 1}</td>
                                                     <td> <img src={data.image} className='rounded-3 img-fluid' style={{ maxWidth: '80px', height: '80px' }} alt="No Network" /></td>
-                                                    <td>{data.title}</td>
+                                                    <td><a href={"/blog_detail/" + data._id}>{data.title}</a></td>
                                                     <td>{data.author}</td>
                                                     <td>{data.description1}</td>
                                                     <td className='text-center'>{formatDateTime(data.date)}</td>
@@ -114,11 +114,13 @@ const Blogs = () => {
                                                         </button>
                                                     </td>
                                                     <td className='text-center'>
-                                                        <button
-                                                            className="delete_btn" onClick={() => move(`/admin-dashboard-add-blog/${data?._id}`)}
-                                                            style={{ color: "rgb(2, 2, 94)" }}>
-                                                            <FaPencilAlt />
-                                                        </button>
+                                                        <a href={`/admin-dashboard-add-blog/${data?._id}`}>
+                                                            <button
+                                                                className="delete_btn"
+                                                                style={{ color: "rgb(2, 2, 94)" }}>
+                                                                <FaPencilAlt />
+                                                            </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             ))}

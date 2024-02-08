@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 const AllBlog = () => {
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // }, []);
 
     const [blog, setBlog] = useState([])
     const [loading, setLoading] = useState(false)
@@ -50,14 +50,16 @@ const AllBlog = () => {
             ) : (
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 px-lg-3 px-2 g-4">
                     {blog?.map((data, index) => {
-                        return <div className='col block_main' key={index} onClick={() => move("/blog_detail/" + data._id)}>
-                            <div className='blog3 text-center'>
-                                <img src={data?.image} alt="No Network" />
+                        return <a href={"/blog_detail/" + data._id}>
+                            <div className='col block_main' key={index}>
+                                <div className='blog3 text-center'>
+                                    <img src={data?.image} alt="No Network" />
+                                </div>
+                                <p className='fw-bolder fs-5 text-center mt-4' style={{ color: "rgb(2, 2, 94)" }}>{data.title}</p>
+                                {data?.introduction && <p className='text-center mt-2 mb-4'>{data?.introduction?.slice(0, 50)}...</p>}
+                                <p className='text-muted text-center read'>READ MORE</p>
                             </div>
-                            <p className='fw-bolder fs-5 text-center mt-4' style={{ color: "rgb(2, 2, 94)" }}>{data.title}</p>
-                            {data?.introduction && <p className='text-center mt-2 mb-4'>{data?.introduction?.slice(0,50)}...</p>}
-                            <p className='text-muted text-center read'>READ MORE</p>
-                        </div>
+                        </a>
                     })
                     }
                 </div>

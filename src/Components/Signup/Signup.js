@@ -100,14 +100,13 @@ const Signup = () => {
                         </div>
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
                         <p className='mt-2 fs-6'>Already have an account? &nbsp;
-                            <span
-                                className='register_btn'
-                                onClick={() => {
-                                    move("/login")
-                                }}
-                            >
-                                Login
-                            </span>
+                            <a href="/login">
+                                <span
+                                    className='register_btn'
+                                >
+                                    Login
+                                </span>
+                            </a>
                         </p>
 
                     </form>

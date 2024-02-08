@@ -48,13 +48,15 @@ const Blog = () => {
                 ) : (
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 px-lg-3 px-2 g-4">
                         {blog?.slice(0, 3).map((data, index) => {
-                            return <div className='col block_main' key={index} onClick={() => move("/blog_detail/" + data._id)}>
+                            return <a href={"/blog_detail/" + data._id}>
+                            <div className='col block_main' key={index}>
                                 <div className='blog3 text-center'>
                                     <img src={data?.image} alt="No Network" />
                                 </div>
                                 <p className='fw-bolder fs-5 text-center my-4' style={{ color: "rgb(2, 2, 94)", height:"70px", overflow:"hidden" }}>{data.title}</p>
                                 <p className='text-muted text-center read'>READ MORE</p>
                             </div>
+                            </a> 
                         })
                         }
                     </div>

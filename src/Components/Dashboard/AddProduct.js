@@ -148,7 +148,6 @@ export const AddProduct = () => {
       top: 0,
     });
 
-
     if (imagePreviews.length > 10) {
       setError('images');
       return;
@@ -231,7 +230,9 @@ export const AddProduct = () => {
             {product &&
               <h1 className='p_head' style={{ color: "rgb(2, 2, 94)", fontWeight: "700" }}> Edit Product </h1>
             }
-            <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
+         <a href="/admin-dashboard">
+           <p className='panel_btn'>Admin Panel</p>
+          </a>
           </div>
           {Error === "Serial number" &&
             <div className='error'>Try with different serial number</div>
@@ -583,11 +584,12 @@ export const AddProduct = () => {
                   </div>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-
                   <input className="form-check-input" type="checkbox" {...register('home')} /> &nbsp;
                   <span>Home Screen</span>
-                  {/* <input {...register('dimension4')} className="border form-control" /> */}
-                  {/* <label style={{ fontSize: "17px", fontWeight: "600" }}>Home Screen</label> */}
+                </div>
+                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                  <input className="form-check-input" type="checkbox" {...register('stock')} /> &nbsp;
+                  <span>Out of stock</span>
                 </div>
               </div>
               <div className='row'>

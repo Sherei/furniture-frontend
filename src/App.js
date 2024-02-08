@@ -32,7 +32,7 @@ import { inject } from '@vercel/analytics';
 
 TagManager.initialize({
   gtmId: 'GTM-NWFTB5LV'
-});
+}); 
 
 function App() {
   

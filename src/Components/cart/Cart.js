@@ -69,7 +69,7 @@ export const Cart = () => {
         });
         window.gtag('event', 'remove_from_cart', {
           item_id: itemId,
-      });
+        });
         toast.success("Item Removed");
       }
     } catch (e) {
@@ -219,13 +219,14 @@ export const Cart = () => {
             loop={true}
             style={{ width: "100%", height: "100%" }}
           />
-          <button
-            className="btn review_btn"
-            style={{ width: "fit-content" }}
-            onClick={() => move("/Products/all")}
-          >
-            Browse Products <FaArrowRight />
-          </button>
+          <a href="/Products/all">
+            <button
+              className="btn review_btn"
+              style={{ width: "fit-content" }}
+            >
+              Browse Products <FaArrowRight />
+            </button>
+          </a>
         </div>
       );
     }
@@ -250,13 +251,15 @@ export const Cart = () => {
           style={{ height: "70vh" }}
         >
           <p>Your Cart is empty</p>
+          <a href="/Products/all">
+
           <button
             className="btn review_btn"
             style={{ width: "fit-content" }}
-            onClick={() => move("/Products/all")}
-          >
+            >
             Browse Products <FaArrowRight />
           </button>
+            </a>
         </div>
       </>
     );
@@ -364,6 +367,15 @@ export const Cart = () => {
                                   Colour:{" "}
                                   {item.color
                                     ? item.color.replace(/-/g, " ")
+                                    : ""}
+                                  /
+                                </p>
+                              )}
+                               {item?.side && (
+                                <p className="text-muted fs-6 m-0">
+                                  Side:{" "}
+                                  {item.side
+                                    ? item.side.replace(/-/g, " ")
                                     : ""}
                                   /
                                 </p>
@@ -531,11 +543,9 @@ export const Cart = () => {
                       {filterCart?.map((item, index) => (
                         <tr key={index} className="cart_row">
                           <td className="text-center">
-                            <div
-                              className="text-center"
-                              onClick={() => move("/single_Add/" + item.productId)}
-                              style={{ position: "relative" }}
-                            >
+                            <a href={"/single_Add/" + item.productId}>
+                            <div className="text-center"
+                              style={{ position: "relative" }}>
                               <img
                                 src={item?.image}
                                 className="img-fluid rounded-3"
@@ -563,6 +573,7 @@ export const Cart = () => {
                                 </div>
                               )}
                             </div>
+                            </a>
                           </td>
                           <td>
                             {item?.title}
@@ -585,6 +596,15 @@ export const Cart = () => {
                                   Colour:{" "}
                                   {item.color
                                     ? item.color.replace(/-/g, " ")
+                                    : ""}
+                                  /
+                                </p>
+                              )}
+                                {item?.side && (
+                                <p className="text-muted fs-6 m-0">
+                                  Side:{" "}
+                                  {item.side
+                                    ? item.side.replace(/-/g, " ")
                                     : ""}
                                   /
                                 </p>
@@ -698,13 +718,14 @@ export const Cart = () => {
             </div>
           </div>
           <div className="cart_btns gap-2">
+            <a href="/Products/all">
             <button
               className="btn review_btn px-4"
               style={{ backgroundColor: "#8B0000" }}
-              onClick={() => move("/Products/all")}
-            >
+              >
               Continue Shopping
             </button>
+              </a>
             {/* <button
               className="btn review_btn px-4"
               onClick={updateCart}
@@ -768,6 +789,7 @@ export const Cart = () => {
 
             {filterCart.length > 0 && (
               <div className="card-body my-4">
+                <a href={`/cart-checkout/${cu._id}`}>
                 <button
                   type="button"
                   className="btn fs-5 py-2"
@@ -777,12 +799,10 @@ export const Cart = () => {
                     width: "100%",
                     fontWeight: "600",
                   }}
-                  onClick={() => {
-                    move(`/cart-checkout/${cu._id}`);
-                  }}
                 >
                   Proceed to Checkout
                 </button>
+                  </a>
                 <p className="text-center  my-3">--or--</p>
                 <a href="https://wa.me/+923067208343" target="blank">
                   <button
