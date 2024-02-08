@@ -84,7 +84,7 @@ const OrderDetail = () => {
                         <p className='fw-bolder fs-3'
                             style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)" }}
                         >Order Detail</p>
-                        <p><b>Tracking Id: </b>{order?.orderId}</p >
+                        <p><b>Tracking Id: </b>{order?.orderId}</p>
                     </center>
                 </div>
             </div>
