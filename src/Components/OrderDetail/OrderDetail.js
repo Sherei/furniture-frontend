@@ -77,7 +77,7 @@ const OrderDetail = () => {
     }
 
     return (
-        <div className='container my-5' style={{textTransform:"uppercase"}}>
+        <div className='container my-5' style={{ textTransform: "uppercase" }}>
             <div className='row'>
                 <div className='col'>
                     <center>
@@ -90,15 +90,15 @@ const OrderDetail = () => {
             </div>
             <div className='row' id="orderDetail">
                 <div className='col-12'>
-                    <p><b>Name:</b> {order?.name1} {order?.name2}</p>
-                    {order?.email && <p><b>E-mail: </b>{order?.email}</p>}
-                    <p><b>Mobile Number: </b>{order?.number1}</p>
-                    <p><b>Street & House number: </b>{order?.street}</p>
-                    {order.appartment && <p><b>Appartment: </b>{order?.appartment}</p>}
-                    <p><b>Shipping Address: </b>{order?.shipping}</p>
-                    <p><b>Total Products: </b>{order?.orderItems?.length}</p >
-                    {order.note && <p><b>Note: {order?.note}</b></p >}
-                    <p><b>Date: </b>{formatDateTime(order?.date)}</p >
+                    <p><b style={{ color: "rgb(2,2,94)" }}>Name:</b> {order?.name1} {order?.name2}</p>
+                    {order?.email && <p><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
+                    <p><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
+                    <p><b style={{ color: "rgb(2,2,94)" }}>Street & House number: </b>{order?.street}</p>
+                    {order.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
+                    <p><b style={{ color: "rgb(2,2,94)" }}>Shipping Address: </b>{order?.shipping}</p>
+                    <p><b style={{ color: "rgb(2,2,94)" }}>Total Products: </b>{order?.orderItems?.length}</p >
+                    {order.note && <p><b style={{ color: "rgb(2,2,94)" }}>Note: {order?.note}</b></p >}
+                    <p><b style={{ color: "rgb(2,2,94)" }}>Date: </b>{formatDateTime(order?.date)}</p >
                 </div>
             </div>
             <div className='col-12'>
@@ -235,7 +235,7 @@ const OrderDetail = () => {
                             <div className="table-responsive">
                                 <table className="table table-bordered" style={{ tableLayout: 'auto' }}>
                                     <thead>
-                                        <tr>
+                                        <tr style={{ color: "rgb(2,2,94)" }}>
                                             <th>Sr#</th>
                                             {/* <th>Code</th> */}
                                             <th>Picture</th>
@@ -306,15 +306,15 @@ const OrderDetail = () => {
                         <p className='fw-bolder fs-4' style={{ color: "rgb(2, 2, 94)" }}>Summary</p>
                     </div>
                     <div className='fw-normal d-flex justify-content-between'>
-                        <p>Items:</p>
+                        <p style={{ color: "rgb(2,2,94)" }}>Items:</p>
                         <p>{order?.orderItems?.length}</p>
                     </div>
                     <div className='fw-normal d-flex justify-content-between'>
-                        <p>Shipping Fee</p>
+                        <p style={{ color: "rgb(2,2,94)" }}>Shipping Fee</p>
                         <p>&pound;{order?.shipping}</p>
                     </div>
                     <div className='fw-bold d-flex justify-content-between'>
-                        <p>Net Total:</p>
+                        <p style={{ color: "rgb(2,2,94)" }}>Net Total:</p>
                         <p>&pound;{order?.total}</p>
                     </div>
                     {/* <div className=''>
