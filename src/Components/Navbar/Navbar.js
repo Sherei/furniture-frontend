@@ -975,7 +975,7 @@ export const Navbar = () => {
       {searchValue && (
         <div className="container-fluid px-lg-3 px-2">
           <div className="my-4 fs-5">Search Result...</div>
-          {filteredProductsfilter((item) => { item.stock === undefined }).length === 0 && (
+          {filteredProducts.filter((item) => { item.stock === undefined }).length === 0 && (
             <div className="mb-5">
               <p className="m-0 fs-6">No result found...</p>
             </div>
