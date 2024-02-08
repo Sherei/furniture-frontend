@@ -10,12 +10,12 @@ import "./login.css"
 
 export const Login = () => {
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: 'smooth'
-  //   });
-  // }, []);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
   const { productId } = useParams();
 
   const cu = useSelector(store => store.userSection.cu)
