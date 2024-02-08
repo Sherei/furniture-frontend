@@ -127,7 +127,7 @@ const UserPanel = () => {
                                 <p className='fw-bolder text-muted'>No Order Placed yet</p>
                                 <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
                                 <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-                                    Browse Products <FaArrowRight />
+                                    Browse Our Products <FaArrowRight />
                                 </button>
                             </div>
 

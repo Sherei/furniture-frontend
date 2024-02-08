@@ -294,7 +294,7 @@ export const Navbar = () => {
                       setCartOpen("close");
                     }}
                   >
-                    Browse Products <FaArrowRight />
+                    Browse Our Products <FaArrowRight />
                   </button>
                 </a>
               </center>
