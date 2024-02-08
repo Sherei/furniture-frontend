@@ -317,13 +317,13 @@ const OrderDetail = () => {
                         <p>Net Total:</p>
                         <p>&pound;{order?.total}</p>
                     </div>
-                    <div className=''>
+                    {/* <div className=''>
                         <a href="https://wa.me/+447392608087">
                             <button className='btn review_btn'>
                                 Cancel Order
                             </button>
                         </a>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
