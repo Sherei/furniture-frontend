@@ -329,7 +329,7 @@ const OrderDetail = () => {
                     {cu.email != "asd@gmail.com" &&
                         <a href={`/user-profile/${cu._id}`} >
                             <button className='btn review_btn btn_width' >
-                                Back to Website <FaArrowRight />
+                                Back to Website
                             </button>
                         </a>
                     }
