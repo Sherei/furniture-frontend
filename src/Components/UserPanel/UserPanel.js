@@ -5,6 +5,7 @@ import Loader from '../Loader/Loader';
 import { FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
+import { useDispatch } from "react-redux";
 import userPanel from "../Animations/userPanel.json"
 import axios from 'axios';
 import "./userPanel.css"
@@ -23,6 +24,7 @@ const UserPanel = () => {
     const move = useNavigate();
     const { userid } = useParams();
     const [order, setOrder] = useState([]);
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -56,7 +58,12 @@ const UserPanel = () => {
         return date.toLocaleDateString('en-GB', options);
     };
 
-
+    function Logout() {
+        dispatch({
+          type: "LOGOUT_USER",
+        });
+        move("/login");
+      }
     if (cu._id === undefined || cu.email === 'asd@gmail.com') {
         if (loading) {
             return (
@@ -74,7 +81,7 @@ const UserPanel = () => {
     return (
         <section style={{ backgroundColor: "#eee", minHeight: "100vh" }}>
             <div className="container py-5">
-                <div className="row">
+                {/* <div className="row">
                     <div className="col">
                         <nav aria-label="breadcrumb" className="rounded-3 p-3 mb-4" style={{ backgroundColor: "white" }}>
                             <ol className="breadcrumb mb-0">
@@ -90,7 +97,7 @@ const UserPanel = () => {
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> */}
                 <div className="row">
                     <div className="col-lg-4 col-md-4 col-sm-12">
                         <div className="card mb-4">
@@ -106,6 +113,9 @@ const UserPanel = () => {
                                 <p className="text-muted mb-4">{cu.email}</p>
                                 <button type="button" className="btn review_btn ms-1" >
                                     My Orders
+                                </button>
+                                <button type="button" className="btn review_btn ms-1 my-3" onClick={Logout}>
+                                    Logout
                                 </button>
                             </div>
 
@@ -144,7 +154,7 @@ const UserPanel = () => {
                                                     <div className='col-8 ' style={{ position: "relative" }}>
                                                         <p className='panel_index'>{index + 1}</p>
                                                         <p className='m-0'>
-                                                            Order Id: {item?.orderId}
+                                                            Order ID: {item?.orderId}
                                                         </p>
                                                         <p className='m-0'>
                                                             Contact: {item?.number1}

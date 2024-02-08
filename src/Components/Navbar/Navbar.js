@@ -279,7 +279,7 @@ export const Navbar = () => {
               style={{ height: "75vh" }}
             >
               <center>
-                <img src="/cart.png" alt=""  style={{ width: "100px" }} />
+                <img src="/cart.png" alt="" style={{ width: "100px" }} />
                 <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
                 {/* <Lottie
                 animationData={CartAnimation}
@@ -626,46 +626,22 @@ export const Navbar = () => {
                         {cu._id != undefined && (
                           <>
                             <li className="nav-item dropdown px-0">
-                              <NavLink
-                                className="nav-link nav-link1 dropdown-toggle1 fs-2"
-                                id="navbarDropdown"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
+                              <div
+                                className="cursor nav-link nav-link1 fs-2"
+                                aria-current="page"
                                 style={{ borderBottom: "none", color: "#E7E7E9" }}
-                                onClick={() => setSearch(false)}
+                                onClick={() => {
+                                  if (cu.email === "asd@gmail.com") {
+                                    move("/admin-dashboard");
+                                  } else {
+                                    move(`/user-profile/${cu._id}`);
+                                  }
+                                  setSearch(false);
+                                }}
                               >
                                 <FaRegUser />
-                              </NavLink>
-                              <ul
-                                className="dropdown-menu menu3"
-                                aria-labelledby="navbarDropdown"
-                              >
-                                {cu?.email != "asd@gmail.com" && (
-                                  <li>
-                                    <NavLink className="dropdown-item" to={`/user-profile/${cu._id}`} >
-                                      Profile
-                                    </NavLink>
-                                  </li>
-                                )}
-                                {cu?.email === "asd@gmail.com" && (
-                                  <li>
-                                    <NavLink className="dropdown-item" to="/admin-dashboard" >
-                                      Admin
-                                    </NavLink>
-                                  </li>
-                                )}
-                                <li>
-                                  {" "}
-                                  <NavLink
-                                    className="dropdown-item" to="/login" onClick={Logout} >
-                                    Logout{" "}
-                                  </NavLink>
-                                </li>
-                              </ul>
-
+                              </div>
                             </li>
-
                           </>
                         )}
                         <li className="nav-item px-0">
