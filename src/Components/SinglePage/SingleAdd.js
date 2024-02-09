@@ -791,8 +791,8 @@ const SingleAdd = () => {
                       className="form-select mb-2 mr-sm-2"
                     >
                       <option value="select side">Please Choose</option>
-                      <option value="right-side">Rigth Side</option>
-                      <option value="left-side">Left Side</option>
+                      <option value="right-hand">Rigth Hand</option>
+                      <option value="left-hand">Left Hans</option>
                     </select>
                   </div>
                 }
