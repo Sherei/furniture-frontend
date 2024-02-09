@@ -78,21 +78,45 @@ const SingleAdd = () => {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
-        gtag("event", "view_item", {
-          currency: "POUND",
-          value: product.Fprice,
-          items: [
-            {
-              item_id: product._id,
-              item_name: product.title,
-              discount: product.discount ? product.discount : "0",
-              item_category: product.category,
-              item_category2: product.subCategory ? product.subCategory : "No subCategory",
-              item_variant: product.color1 ? product.color1 : "No Color",
-              price: product.price,
-            }
-          ]
+        
+        const dataLayer = window.dataLayer || [];
+
+        dataLayer.push({ ecommerce: null });
+        dataLayer.push({
+          event: "view_item",
+          ecommerce: {
+            currency: "GBP",
+            value: product.Fprice,
+            items: [
+              {
+                item_id: product._id,
+                item_name: product.title,
+                discount: product.discount ? product.discount : "0",
+                item_category: product.category,
+                item_category2: product.subCategory ? product.subCategory : "No subCategory",
+                item_variant: product.color1 ? product.color1 : "No Color",
+                location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+                price: product.price,
+
+              }
+            ]
+          }
         });
+        // gtag("event", "view_item", {
+        //   currency: "POUND",
+        //   value: product.Fprice,
+        //   items: [
+        //     {
+        //       item_id: product._id,
+        //       item_name: product.title,
+        //       discount: product.discount ? product.discount : "0",
+        //       item_category: product.category,
+        //       item_category2: product.subCategory ? product.subCategory : "No subCategory",
+        //       item_variant: product.color1 ? product.color1 : "No Color",
+        //       price: product.price,
+        //     }
+        //   ]
+        // });
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
@@ -515,7 +539,7 @@ const SingleAdd = () => {
   return <>
     {loading ? (
       <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
-     <Loader/>
+        <Loader />
       </div >
     ) : (
       <div className="container-fluid min-vh-100">
@@ -581,45 +605,45 @@ const SingleAdd = () => {
               </>
             )}
           </div>
-                  
+
           <div className="col-lg-5 col-md-8 col-sm-12 order-lg-2 order-md-2 order-1 mb-lg-5 mb-2" style={{ height: "fit-content" }}>
             {!loading &&
-            <div className="d-flex justify-content-center align-items-center" style={{ position: "relative" }}>
-              <InnerImageZoom
-                zoomScale={1}
-                src={
-                  product?.images && product.images[selectedImage]
-                    ? product.images[selectedImage]
-                    : "fallbackImageURL"
-                }
-                style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
-                zoomSrc={
-                  product?.images && product.images[selectedImage]
-                    ? product.images[selectedImage]
-                    : "fallbackImageURL"
-                }
-              />
-              {product?.discount && product?.discount > 0 ? (
-                <div className="discount">{`-${product?.discount}%`}</div>
-              ) : null}
+              <div className="d-flex justify-content-center align-items-center" style={{ position: "relative" }}>
+                <InnerImageZoom
+                  zoomScale={1}
+                  src={
+                    product?.images && product.images[selectedImage]
+                      ? product.images[selectedImage]
+                      : "fallbackImageURL"
+                  }
+                  style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                  zoomSrc={
+                    product?.images && product.images[selectedImage]
+                      ? product.images[selectedImage]
+                      : "fallbackImageURL"
+                  }
+                />
+                {product?.discount && product?.discount > 0 ? (
+                  <div className="discount">{`-${product?.discount}%`}</div>
+                ) : null}
 
-              {product?.images && product?.images.length > 1 && (
-                <>
-                  <div
-                    className="single_arrow1"
-                    onClick={handleLeftArrowClick}
-                  >
-                    <FaArrowLeft />
-                  </div>
-                  <div
-                    className="single_arrow2"
-                    onClick={handleRightArrowClick}
-                  >
-                    <FaArrowRight />
-                  </div>
-                </>
-              )}
-            </div>
+                {product?.images && product?.images.length > 1 && (
+                  <>
+                    <div
+                      className="single_arrow1"
+                      onClick={handleLeftArrowClick}
+                    >
+                      <FaArrowLeft />
+                    </div>
+                    <div
+                      className="single_arrow2"
+                      onClick={handleRightArrowClick}
+                    >
+                      <FaArrowRight />
+                    </div>
+                  </>
+                )}
+              </div>
             }
           </div>
 
