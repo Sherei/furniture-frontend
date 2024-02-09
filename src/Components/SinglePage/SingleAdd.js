@@ -79,7 +79,7 @@ const SingleAdd = () => {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
 
-        const dataLayer = window.dataLayer;
+        // const dataLayer = window.dataLayer;
         // dataLayer.push({ ecommerce: null });
         // dataLayer.push({
         //   event: "view_item",
@@ -389,7 +389,7 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          const dataLayer = window.dataLayer ;
+          // const dataLayer = window.dataLayer ;
           // dataLayer.push({ ecommerce: null });
           // dataLayer.push({
           //   event: "add_to_cart",
