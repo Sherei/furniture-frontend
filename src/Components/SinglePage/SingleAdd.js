@@ -78,9 +78,8 @@ const SingleAdd = () => {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
-        
-        const dataLayer = window.dataLayer || [];
 
+        const dataLayer = window.dataLayer || [];
         dataLayer.push({ ecommerce: null });
         dataLayer.push({
           event: "view_item",
@@ -101,21 +100,6 @@ const SingleAdd = () => {
             ]
           }
         });
-        // gtag("event", "view_item", {
-        //   currency: "POUND",
-        //   value: product.Fprice,
-        //   items: [
-        //     {
-        //       item_id: product._id,
-        //       item_name: product.title,
-        //       discount: product.discount ? product.discount : "0",
-        //       item_category: product.category,
-        //       item_category2: product.subCategory ? product.subCategory : "No subCategory",
-        //       item_variant: product.color1 ? product.color1 : "No Color",
-        //       price: product.price,
-        //     }
-        //   ]
-        // });
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
@@ -405,23 +389,27 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          gtag("event", "add_to_cart", {
-            currency: "POUND",
-            value: product.total,
-            items: [
-              {
-                item_id: product.productId,
-                item_name: product.title,
-                discount: product.discount ? product.discount : "0",
-                item_category: product.category,
-                item_category2: product.subCategory ? product.subCategory : "No subCategory",
-                item_list_name: cu.name,
-                item_variant: product.color1 ? product.color1 : "No Color",
-                price: product.Fprice,
-              }
-            ]
+          const dataLayer = window.dataLayer || [];
+          dataLayer.push({ ecommerce: null });
+          dataLayer.push({
+            event: "add_to_cart",
+            ecommerce: {
+              currency: "GBP",
+              value: product.total,
+              items: [
+                {
+                  item_id: product.productId,
+                  item_name: product.title,
+                  discount: product.discount ? product.discount : "0",
+                  item_category: product.category,
+                  item_category2: product.subCategory ? product.subCategory : "No subCategory",
+                  item_list_name: cu.name,
+                  item_variant: product.color1 ? product.color1 : "No Color",
+                  price: product.Fprice,
+                }
+              ]
+            }
           });
-
         }
       } catch (error) {
         // toast.warning("Server Error Try Again Later...")
