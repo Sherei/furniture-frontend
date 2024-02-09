@@ -742,7 +742,7 @@ const Products = () => {
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
 
               {(data?.filter((item)=>(item.stock === undefined || item.stock === false)).length === 0 || loading) && (
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "200vh" }}>
+                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
                     data?.length === 0 ? <Loader /> : null
                   )}
