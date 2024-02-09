@@ -307,8 +307,8 @@ const SingleAdd = () => {
     base,
     headboard,
     ottoman,
-    mattress,
-    totalPrice
+    totalPrice,
+    mattress
   ) {
     if (product?.category === "bed") {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
@@ -444,6 +444,7 @@ const SingleAdd = () => {
       fabric,
       detail,
       base,
+      side,
       headboard,
       ottoman,
       mattress,

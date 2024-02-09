@@ -453,7 +453,7 @@ export const Cart = () => {
                             Price
                           </p>
                           <p className="m-0" style={{ fontSize: "14px" }}>
-                            &pound;{item?.total.toFixed()}
+                            &pound;{item?.total?.toFixed()}
                           </p>
                         </div>
                         <hr className="m-0 p-0" />
@@ -503,7 +503,7 @@ export const Cart = () => {
                             className="m-0 fw-bolder fs-5"
                             style={{ color: "red", fontSize: "17px" }}
                           >
-                            &pound;{item?.total.toFixed()}
+                            &pound;{item?.total?.toFixed()}
                           </p>
                         </div>
                       </div>
@@ -687,7 +687,7 @@ export const Cart = () => {
                               </button> */}
                             </div>
                           </td>
-                          <td className="text-center">{`£${(item?.total).toFixed()}`}</td>
+                          <td className="text-center">{`£${item?.total?.toFixed()}`}</td>
                           <td className="text-center">
                             <button
                               className=" btn text-danger"
@@ -738,7 +738,7 @@ export const Cart = () => {
                 Subtotal
               </p>
               <p className="text-muted m-0" style={{ fontSize: "15px" }}>
-                &pound;{subtotal.toFixed()}
+                &pound;{subtotal?.toFixed()}
               </p>
             </div>
             <hr className="m-1" />
@@ -754,7 +754,7 @@ export const Cart = () => {
                 >
                   Standard Delivery:{" "}
                   <span className="fw-bolder">
-                    &pound;{shippingFee.toFixed()}
+                    &pound;{shippingFee?.toFixed()}
                   </span>{" "}
                 </p>
                 <p className="m-0 text-end" style={{ fontSize: "11px" }}>
@@ -771,7 +771,7 @@ export const Cart = () => {
                 className="fw-bolder m-0"
                 style={{ color: "red", fontSize: "17px" }}
               >
-                &pound;{total.toFixed()}
+                &pound;{total?.toFixed()}
               </p>
             </div>
 
