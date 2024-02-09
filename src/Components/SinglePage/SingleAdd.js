@@ -444,11 +444,11 @@ const SingleAdd = () => {
       fabric,
       detail,
       base,
-      side,
       headboard,
       ottoman,
+      totalPrice,
       mattress,
-      totalPrice
+      side,
     );
 
     if (cu._id) {
