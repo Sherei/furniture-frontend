@@ -294,6 +294,7 @@ const SingleAdd = () => {
     product,
     size,
     color,
+    side,
     fabric,
     detail,
     base,
