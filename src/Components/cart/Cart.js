@@ -269,7 +269,7 @@ export const Cart = () => {
         <div className="col px-0 d-flex justify-content-center align-items-center"
          style={{
           height:"300px",
-          backgroundImage: "url(/cartbg.png)",
+          backgroundImage: "url(/cartbg2.webp)",
           backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"
         }}>
           {/* <img src="/cartbg.jpg" alt="No Network" className='all_img img-fluid' style={{ width: "100%" }} /> */}
