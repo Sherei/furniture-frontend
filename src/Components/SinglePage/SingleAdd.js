@@ -86,17 +86,16 @@ const SingleAdd = () => {
           event: "view_item",
           ecommerce: {
             currency: "GBP",
-            value: product.Fprice,
+            value: resp.data.Fprice,
             items: [
               {
-                item_id: product._id,
-                item_name: product.title,
-                discount: product.discount ? product.discount : "0",
-                item_category: product.category,
-                item_category2: product.subCategory ? product.subCategory : "No subCategory",
-                item_variant: product.color1 ? product.color1 : "No Color",
-                location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
-                price: product.price,
+                item_id: resp.data._id,
+                item_name: resp.data.title,
+                discount: resp.data.discount ? resp.data.discount : "0",
+                item_category: resp.data.category,
+                item_category2: resp.data.subCategory ? resp.data.subCategory : "No subCategory",
+                item_variant: resp.data.color1 ? resp.data.color1 : "No Color",
+                price: resp.data.price,
 
               }
             ]
