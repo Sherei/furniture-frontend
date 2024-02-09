@@ -81,25 +81,25 @@ const SingleAdd = () => {
 
         const dataLayer = window.dataLayer;
         // dataLayer.push({ ecommerce: null });
-        dataLayer.push({
-          event: "view_item",
-          ecommerce: {
-            currency: "GBP",
-            value: resp.data.Fprice,
-            items: [
-              {
-                item_id: resp.data._id,
-                item_name: resp.data.title,
-                discount: resp.data.discount ? resp.data.discount : "0",
-                item_category: resp.data.category,
-                item_category2: resp.data.subCategory ? resp.data.subCategory : "No subCategory",
-                item_variant: resp.data.color1 ? resp.data.color1 : "No Color",
-                price: resp.data.price,
+        // dataLayer.push({
+        //   event: "view_item",
+        //   ecommerce: {
+        //     currency: "GBP",
+        //     value: resp.data.Fprice,
+        //     items: [
+        //       {
+        //         item_id: resp.data._id,
+        //         item_name: resp.data.title,
+        //         discount: resp.data.discount ? resp.data.discount : "0",
+        //         item_category: resp.data.category,
+        //         item_category2: resp.data.subCategory ? resp.data.subCategory : "No subCategory",
+        //         item_variant: resp.data.color1 ? resp.data.color1 : "No Color",
+        //         price: resp.data.price,
 
-              }
-            ]
-          }
-        });
+        //       }
+        //     ]
+        //   }
+        // });
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
@@ -391,25 +391,25 @@ const SingleAdd = () => {
           setSucess("cart")
           const dataLayer = window.dataLayer ;
           // dataLayer.push({ ecommerce: null });
-          dataLayer.push({
-            event: "add_to_cart",
-            ecommerce: {
-              currency: "GBP",
-              value: product.total,
-              items: [
-                {
-                  item_id: product.productId,
-                  item_name: product.title,
-                  discount: product.discount ? product.discount : "0",
-                  item_category: product.category,
-                  item_category2: product.subCategory ? product.subCategory : "No subCategory",
-                  item_list_name: cu.name,
-                  item_variant: product.color1 ? product.color1 : "No Color",
-                  price: product.Fprice,
-                }
-              ]
-            }
-          });
+          // dataLayer.push({
+          //   event: "add_to_cart",
+          //   ecommerce: {
+          //     currency: "GBP",
+          //     value: product.total,
+          //     items: [
+          //       {
+          //         item_id: product.productId,
+          //         item_name: product.title,
+          //         discount: product.discount ? product.discount : "0",
+          //         item_category: product.category,
+          //         item_category2: product.subCategory ? product.subCategory : "No subCategory",
+          //         item_list_name: cu.name,
+          //         item_variant: product.color1 ? product.color1 : "No Color",
+          //         price: product.Fprice,
+          //       }
+          //     ]
+          //   }
+          // });
         }
       } catch (error) {
         // toast.warning("Server Error Try Again Later...")
