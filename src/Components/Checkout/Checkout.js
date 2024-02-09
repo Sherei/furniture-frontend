@@ -165,8 +165,8 @@ const Checkout = () => {
                 });
                 move(`/order-placed/${userId}`)
 
-                const dataLayer = window.dataLayer || [];
-                dataLayer.push({ ecommerce: null });
+                const dataLayer = window.dataLayer ;
+                // dataLayer.push({ ecommerce: null });
                 dataLayer.push({
                     event: "purchase",
                     ecommerce: {
