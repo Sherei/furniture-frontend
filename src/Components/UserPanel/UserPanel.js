@@ -111,9 +111,7 @@ const UserPanel = () => {
                                 <h5 className="my-3">{cu.name}</h5>
                                 <p className="text-muted mb-1">{cu.number}</p>
                                 <p className="text-muted mb-4">{cu.email}</p>
-                                <button type="button" className="btn review_btn ms-1" >
-                                    My Orders
-                                </button>
+                             
                                 <button type="button" className="btn review_btn ms-1 my-3" onClick={Logout}>
                                     Logout
                                 </button>
