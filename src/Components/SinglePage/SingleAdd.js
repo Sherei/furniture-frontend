@@ -321,7 +321,7 @@ const SingleAdd = () => {
       }
     }
     else if (product?.category === "ottoman-box") {
-      if ((!detail, !fabric, !color)) {
+      if (!detail, !fabric, !color) {
         return setError("options");
       }
     }
@@ -726,7 +726,7 @@ const SingleAdd = () => {
                     <select
                       onChange={(e) => {
                         if (e.target.value === "select color") {
-                          setColor("No color selection");
+                          return setError("No color selection"), setColor('');
                         } else {
                           setColor(e.target.value);
                         }
@@ -767,7 +767,8 @@ const SingleAdd = () => {
                     <select
                       onChange={(e) => {
                         if (e.target.value === "select color") {
-                          setError("No color selection");
+                          return setError("No color selection"), setColor('');
+
                         } else {
                           setColor(e.target.value);
                         }
@@ -803,7 +804,7 @@ const SingleAdd = () => {
                     <select
                       onChange={(e) => {
                         if (e.target.value === "select side") {
-                          setError("No side selection");
+                          return setError("No side selection"), setSide('');
                         } else {
                           setSide(e.target.value);
                         }
@@ -1197,7 +1198,7 @@ const SingleAdd = () => {
                       className="form-select mb-2 mr-sm-2"
                       onChange={(e) => {
                         if (e.target.value === "select fabric") {
-                          return setError("mat"), setFabric('');
+                          return setError("fabrics"), setFabric('');
                         } else {
                           setFabric(e.target.value);
                         }

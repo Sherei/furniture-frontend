@@ -54,7 +54,7 @@ const Checkout = () => {
                             event: "begin_checkout",
                             ecommerce: {
                                 currency: "GBP",
-                                value: res.data.total,
+                                value: total,
                                 items: [
                                     {
                                         item_id: res.data.productId,
