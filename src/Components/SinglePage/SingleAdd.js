@@ -400,10 +400,9 @@ const SingleAdd = () => {
                   {
                     item_id: product.productId,
                     item_name: product.title,
-                    discount: product.discount ? product.discount : "0",
+                    discount: product.discount ? product.discount + "%" : "0",
                     item_category: product.category,
                     item_category2: product.subCategory ? product.subCategory : "No subCategory",
-                    item_list_name: cu.name,
                     item_variant: product.color1 ? product.color1 : "No Color",
                     price: product.Fprice,
                   }
@@ -440,6 +439,7 @@ const SingleAdd = () => {
   async function Order() {
     await AddToCart(
       product,
+      totalPrice,
       size,
       color,
       fabric,
@@ -447,12 +447,31 @@ const SingleAdd = () => {
       base,
       headboard,
       ottoman,
-      totalPrice,
       mattress,
       side,
     );
 
     if (cu._id) {
+      TagManager.dataLayer.push({
+        dataLayer: {
+          event: "begin_checkout",
+          ecommerce: {
+            currency: "GBP",
+            value: product.total,
+            items: [
+              {
+                item_id: product.productId,
+                item_name: product.title,
+                discount: product.discount ? product.discount + "%" : "0",
+                item_category: product.category,
+                item_category2: product.subCategory ? product.subCategory : "No subCategory",
+                item_variant: product.color1 ? product.color1 : "No Color",
+                price: product.Fprice,
+              }
+            ]
+          }
+        }
+      });
       if (cu._id && cu.email !== "asd@gmail.com") {
         move(`/cart-checkout/${cu._id}`);
       }

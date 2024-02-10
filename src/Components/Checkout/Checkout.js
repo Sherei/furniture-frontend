@@ -49,6 +49,26 @@ const Checkout = () => {
                         type: "ADD_TO_CART",
                         payload: res.data,
                     });
+                    TagManager.dataLayer.push({
+                        dataLayer: {
+                            event: "begin_checkout",
+                            ecommerce: {
+                                currency: "GBP",
+                                value: res.data.total,
+                                items: [
+                                    {
+                                        item_id: res.data.productId,
+                                        item_name: res.data.title,
+                                        discount: res.data.discount ? res.data.discount + "%" : "0",
+                                        item_category: res.data.category,
+                                        item_category2: res.data.subCategory ? res.data.subCategory : "No subCategory",
+                                        item_variant: res.data.color1 ? res.data.color1 : "No Color",
+                                        price: res.data.Fprice,
+                                    }
+                                ]
+                            }
+                        }
+                    });
                 }
             } catch (e) {
                 // console.log(e);
@@ -77,11 +97,6 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
-
-                window.gtag('event', 'remove_from_cart', {
-                    item_id: itemId,
-                });
-
                 toast.success("Item Removed");
             }
         } catch (e) {
@@ -166,22 +181,23 @@ const Checkout = () => {
                 move(`/order-placed/${userId}`)
                 TagManager.dataLayer({
                     dataLayer: {
-                    event: "purchase",
-                    ecommerce: {
-                        transaction_id: data.orderId,
-                        value: total,
-                        shipping: shippingFee,
-                        currency: "GBP",
-                        items: orderItems.map((item, index) => ({
-                            item_id: item.productId,
-                            item_name: item.title,
-                            index: index,
-                            item_category: item.category,
-                            item_category2: item.subCategory ? item.subCategory : "No Subcategory",
-                            quantity: item.quantity,
-                            price: item.total,
-                        })),
-                    }}
+                        event: "purchase",
+                        ecommerce: {
+                            transaction_id: data.orderId,
+                            value: total,
+                            shipping: shippingFee,
+                            currency: "GBP",
+                            items: orderItems.map((item, index) => ({
+                                item_id: item.productId,
+                                item_name: item.title,
+                                index: index,
+                                item_category: item.category,
+                                item_category2: item.subCategory ? item.subCategory : "No Subcategory",
+                                quantity: item.quantity,
+                                price: item.total,
+                            })),
+                        }
+                    }
                 });
             }
 
