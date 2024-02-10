@@ -164,6 +164,24 @@ const Checkout = () => {
                     payload: response.data.alldata,
                 });
                 move(`/order-placed/${userId}`)
+                window.dataLayer.push({
+                    event: "purchase",
+                    ecommerce: {
+                        transaction_id: data.orderId,
+                        value: total,
+                        shipping: shippingFee,
+                        currency: "GBP",
+                        items: orderItems.map((item, index) => ({
+                            item_id: item.productId,
+                            item_name: item.title,
+                            index: index,
+                            item_category: item.category,
+                            item_category2: item.subCategory ? item.subCategory : "No Subcategory",
+                            quantity: item.quantity,
+                            price: item.total,
+                        })),
+                    }
+                });
             }
 
         } catch (e) {
