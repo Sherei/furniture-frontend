@@ -27,6 +27,9 @@ import Allcategories from './Components/Home/Allcategories';
 import './App.css';
 import AddBlog from './Components/Dashboard/AddBlog';
 import { inject } from '@vercel/analytics';
+import TagManager from 'react-gtm-module';
+
+TagManager.initialize({ gtmId: 'GTM-NWFTB5LV' });
 
 
 function App() {

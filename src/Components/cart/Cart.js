@@ -780,7 +780,7 @@ export const Cart = () => {
                 <a href={`/cart-checkout/${cu._id}`}>
                   <button
                     type="button"
-                    className="btn fs-5 py-2"
+                    className="btn fs-6 py-2"
                     style={{
                       backgroundColor: "#8B0000",
                       color: "white",
@@ -795,7 +795,7 @@ export const Cart = () => {
                 <a href="https://wa.me/+923067208343" target="blank">
                   <button
                     type="button"
-                    className="btn fs-5 py-2"
+                    className="btn fs-6 py-2"
                     style={{
                       backgroundColor: "#25d366",
                       color: "White",

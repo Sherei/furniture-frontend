@@ -10,7 +10,7 @@ import Loader from '../Loader/Loader';
 import Lottie from 'lottie-react';
 import CartAnimation from "../Animations/CartAnimation.json"
 import { FaArrowRight, FaAngleDown } from "react-icons/fa"
-import { gtag } from 'react-gtm-module';
+import TagManager from 'react-gtm-module';
 import "./checkout.css"
 
 const Checkout = () => {
@@ -164,7 +164,8 @@ const Checkout = () => {
                     payload: response.data.alldata,
                 });
                 move(`/order-placed/${userId}`)
-                window.dataLayer.push({
+                TagManager.dataLayer({
+                    dataLayer: {
                     event: "purchase",
                     ecommerce: {
                         transaction_id: data.orderId,
@@ -180,7 +181,7 @@ const Checkout = () => {
                             quantity: item.quantity,
                             price: item.total,
                         })),
-                    }
+                    }}
                 });
             }
 

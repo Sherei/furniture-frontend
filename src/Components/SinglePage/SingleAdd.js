@@ -9,7 +9,7 @@ import {
   FaArrowUp,
   FaStar,
 } from "react-icons/fa";
-import { TagManager, gtag } from 'react-gtm-module';
+import TagManager from 'react-gtm-module';
 import { RiStarSFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -78,7 +78,8 @@ const SingleAdd = () => {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
-        window.dataLayer.push({
+        TagManager.dataLayer({
+          dataLayer: {
           event: "view_item",
           ecommerce: {
             currency: "GBP",
@@ -96,7 +97,7 @@ const SingleAdd = () => {
               }
             ]
           }
-        });
+      }});
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
@@ -339,11 +340,11 @@ const SingleAdd = () => {
           return setError("options");
         }
       }
-      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-        if (!color, !side) {
-          return setError("options");
-        }
+    }
+    else if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+      if (!color, !side) {
+        return setError("options");
       }
     }
 
@@ -386,8 +387,9 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          
-          window.dataLayer.push({
+
+          TagManager.dataLayer({
+            dataLayer: {
             event: "add_to_cart",
             ecommerce: {
               currency: "GBP",
@@ -404,7 +406,7 @@ const SingleAdd = () => {
                   price: product.Fprice,
                 }
               ]
-            }
+            }}
           });
         }
       } catch (error) {
@@ -788,7 +790,7 @@ const SingleAdd = () => {
                     >
                       <option value="select side">Please Choose</option>
                       <option value="right-hand">Rigth Hand</option>
-                      <option value="left-hand">Left Hans</option>
+                      <option value="left-hand">Left Hand</option>
                     </select>
                   </div>
                 }
@@ -1094,7 +1096,7 @@ const SingleAdd = () => {
                     <select
                       onChange={(e) => {
                         if (e.target.value === "select size") {
-                          return setError("mat"), setSize('');
+                          return setError("mat"), setSize('')
                         } else {
                           setSize(e.target.value);
                         }
