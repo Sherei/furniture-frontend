@@ -363,9 +363,8 @@ export const AddProduct = () => {
                   <>
 
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
-                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 1 *</label>
-                      <input type="text" {...register('color1', { required: true })} className="border form-control" />
-                      {errors.color1 && errors.color1.type == "required" ? <div className='error'>This Field is required</div> : null}
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 1</label>
+                      <input type="text" {...register('color1')} className="border form-control" />
                     </div>
                     <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                       <label style={{ fontSize: "17px", fontWeight: "600" }}>Color 2</label>

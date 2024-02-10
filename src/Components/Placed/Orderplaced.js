@@ -89,9 +89,7 @@ const Orderplaced = () => {
                             </a>
 
                             <a href="/Products/all">
-                                <button className="review_btn"
-                                    style={{ zIndex: 5000 }}
-                                >
+                                <button className="review_btn" style={{ zIndex: 5000 }} >
                                     Browse  More Products
                                 </button>
                             </a>

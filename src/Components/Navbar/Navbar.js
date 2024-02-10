@@ -417,7 +417,7 @@ export const Navbar = () => {
                 {/* <p className="m-0 fw-bolder" style={{color:"#02025E"}}>Follow us</p> */}
                 <img src="/follow.png" className="img-fluid" style={{ width: "70px" }} alt="" />
                 <a href="https://www.tiktok.com/@sofabedsltd?_t=8jhkG9FAna6&_r=1" target="blank"
-                  style={{ background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", color: "#02025E" }}>
+                  style={{ background: "black", color: "white" }}>
                   <FaTiktok />
                 </a>
                 <a href='https://www.instagram.com/sofa_beds_ltd?igsh=MTViOHpycmZ4dDE2Mg==' target="blank" style={{ background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)" }}>
@@ -955,7 +955,7 @@ export const Navbar = () => {
 
 
       {searchValue && (
-        <div className="container-fluid px-lg-3 px-2">
+        <div className="container-fluid px-lg-3 px-2 nav_search_margin" >
           <div className="my-4 fs-5">Search Result...</div>
           {filteredProducts?.length === 0 && (
             <div className="mb-5">

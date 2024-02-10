@@ -70,7 +70,7 @@ main {
   cursor: pointer;
   font-size: 25px;
   font-weight: 700;
-  z-index: 10000 !important;
+  z-index: 1000;
   border-radius: 15px;
   padding: 10px 10px;
   display: flex;
