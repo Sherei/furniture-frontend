@@ -309,7 +309,7 @@ const SingleAdd = () => {
     mattress,
     side,
   ) {
-    console.log("Total Price:", totalPrice);
+    // console.log("Total Price:", totalPrice);
     if (product?.category === "bed") {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
         return setError("options");
@@ -389,7 +389,7 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          console.log("Add to cart is::", product.total)
+          // console.log("Add to cart is::", product.total)
           TagManager.dataLayer({
             dataLayer: {
               event: "add_to_cart",
