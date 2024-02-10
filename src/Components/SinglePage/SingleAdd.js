@@ -80,24 +80,25 @@ const SingleAdd = () => {
         setProduct(resp?.data)
         TagManager.dataLayer({
           dataLayer: {
-          event: "view_item",
-          ecommerce: {
-            currency: "GBP",
-            value: resp.data.Fprice,
-            items: [
-              {
-                item_id: resp.data._id,
-                item_name: resp.data.title,
-                discount: resp.data.discount ? resp.data.discount : "0",
-                item_category: resp.data.category,
-                item_category2: resp.data.subCategory ? resp.data.subCategory : "No subCategory",
-                item_variant: resp.data.color1 ? resp.data.color1 : "No Color",
-                price: resp.data.price,
+            event: "view_item",
+            ecommerce: {
+              currency: "GBP",
+              value: resp.data.Fprice,
+              items: [
+                {
+                  item_id: resp.data._id,
+                  item_name: resp.data.title,
+                  discount: resp.data.discount ? resp.data.discount : "0",
+                  item_category: resp.data.category,
+                  item_category2: resp.data.subCategory ? resp.data.subCategory : "No subCategory",
+                  item_variant: resp.data.color1 ? resp.data.color1 : "No Color",
+                  price: resp.data.price,
 
-              }
-            ]
+                }
+              ]
+            }
           }
-      }});
+        });
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
@@ -297,6 +298,7 @@ const SingleAdd = () => {
 
   async function AddToCart(
     product,
+    totalPrice,
     size,
     color,
     fabric,
@@ -304,10 +306,10 @@ const SingleAdd = () => {
     base,
     headboard,
     ottoman,
-    totalPrice,
     mattress,
     side,
   ) {
+    console.log("Total Price:", totalPrice);
     if (product?.category === "bed") {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
         return setError("options");
@@ -387,26 +389,27 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-
+          console.log("Add to cart is::", product.total)
           TagManager.dataLayer({
             dataLayer: {
-            event: "add_to_cart",
-            ecommerce: {
-              currency: "GBP",
-              value: product.total,
-              items: [
-                {
-                  item_id: product.productId,
-                  item_name: product.title,
-                  discount: product.discount ? product.discount : "0",
-                  item_category: product.category,
-                  item_category2: product.subCategory ? product.subCategory : "No subCategory",
-                  item_list_name: cu.name,
-                  item_variant: product.color1 ? product.color1 : "No Color",
-                  price: product.Fprice,
-                }
-              ]
-            }}
+              event: "add_to_cart",
+              ecommerce: {
+                currency: "GBP",
+                value: product.total,
+                items: [
+                  {
+                    item_id: product.productId,
+                    item_name: product.title,
+                    discount: product.discount ? product.discount : "0",
+                    item_category: product.category,
+                    item_category2: product.subCategory ? product.subCategory : "No subCategory",
+                    item_list_name: cu.name,
+                    item_variant: product.color1 ? product.color1 : "No Color",
+                    price: product.Fprice,
+                  }
+                ]
+              }
+            }
           });
         }
       } catch (error) {
@@ -1284,6 +1287,7 @@ const SingleAdd = () => {
                 onClick={() =>
                   AddToCart(
                     product,
+                    totalPrice,
                     size,
                     color,
                     fabric,
@@ -1292,7 +1296,7 @@ const SingleAdd = () => {
                     headboard,
                     ottoman,
                     mattress,
-                    totalPrice
+                    side
                   )
                 }
               >
