@@ -63,7 +63,6 @@ const Checkout = () => {
                                         item_category: res.data.category,
                                         item_category2: res.data.subCategory ? res.data.subCategory : "No subCategory",
                                         item_variant: res.data.color1 ? res.data.color1 : "No Color",
-                                        price: res.data.Fprice,
                                     }
                                 ]
                             }
