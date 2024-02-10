@@ -208,29 +208,12 @@ const Checkout = () => {
     };
 
 
-    if (loading) {
+    if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                 <Loader />
             </div>
         );
-    }
-
-    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
-        if (loading) {
-            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <Loader />
-            </div>
-        } else {
-            return <div className='py-0 mb-5 d-flex flex-column align-items-center justify-content-center' style={{ height: '70vh' }}>
-                <Lottie animationData={CartAnimation} loop={true} style={{ width: "100%", height: "100%" }} />
-                <a href="/Products/all">
-                    <button className='btn review_btn' style={{ width: "fit-content" }}>
-                        Browse Our Products
-                    </button>
-                </a>
-            </div>
-        }
     }
 
     return <>
