@@ -217,7 +217,6 @@ export const Navbar = () => {
           move("/admin-dashboard");
           reset();
         } else {
-          move("/products/all");
           reset();
         }
       }
