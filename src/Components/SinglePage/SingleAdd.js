@@ -92,7 +92,7 @@ const SingleAdd = () => {
                   item_category: resp.data.category,
                   item_category2: resp.data.subCategory ? resp.data.subCategory : "No subCategory",
                   item_variant: resp.data.color1 ? resp.data.color1 : "No Color",
-                  price: resp.data.price,
+                  price: resp.data.Fprice,
 
                 }
               ]
