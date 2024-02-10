@@ -81,12 +81,13 @@ const Orderplaced = () => {
 
                         </p>
                         <div className='order_btns'>
-                            <button className="review_btn" onClick={() => {
-                                move(`/user-profile/${cu._id}`)
-                            }}
-                                style={{ zIndex: 5000 }}>
-                                My Order
-                            </button>
+                            <a href={`/user-profile/${cu._id}`}>
+
+                                <button className="review_btn" style={{ zIndex: 5000 }}>
+                                    My Order
+                                </button>
+                            </a>
+
                             <a href="/Products/all">
                                 <button className="review_btn"
                                     style={{ zIndex: 5000 }}
