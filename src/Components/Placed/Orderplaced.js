@@ -62,16 +62,19 @@ const Orderplaced = () => {
     }
 
     return (
-        <div className="container my-5" style={{ position: "relative" }}>
+        <div className="container my-5">
             <div className="row">
+                {/* <div className='col' style={{position:"relative"}}>
                 <Lottie animationData={celebration} loop={20} autoplay={true}
                     style={{
                         position: "absolute",
                         width: "100%",
                         height: "100%",
-                        zIndex: 500,
+                        zIndex: 100,
 
                     }} />
+
+                </div> */}
                 <center>
                     <div className="col-12" style={{ minHeight: "80vh" }}>
                         <p className='text-center' style={{ lineHeight: "50px" }}>
@@ -82,14 +85,13 @@ const Orderplaced = () => {
                         </p>
                         <div className='order_btns'>
                             <a href={`/user-profile/${cu._id}`}>
-
-                                <button className="review_btn" style={{ zIndex: 5000 }}>
+                                <button className="review_btn cursor" type='button'>
                                     My Order
                                 </button>
                             </a>
 
                             <a href="/Products/all">
-                                <button className="review_btn" style={{ zIndex: 5000 }} >
+                                <button className="review_btn cursor" type='button'>
                                     Browse  More Products
                                 </button>
                             </a>
