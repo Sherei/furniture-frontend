@@ -85,7 +85,7 @@ const Orderplaced = () => {
                                 move(`/user-profile/${cu._id}`)
                             }}
                                 style={{ zIndex: 5000 }}>
-                                My Order <FaArrowRight />
+                                My Order
                             </button>
                             <a href="/Products/all">
                                 <button className="review_btn"
