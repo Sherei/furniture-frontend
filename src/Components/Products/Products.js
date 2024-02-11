@@ -25,7 +25,7 @@ const Products = () => {
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(true);
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(10000);
+  const [maxPrice, setMaxPrice] = useState(3000);
   const [filter, setFilter] = useState(false);
   const move = useNavigate();
 
@@ -91,6 +91,7 @@ const Products = () => {
       <Loader />
     </div>
   }
+
   return (
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
@@ -360,7 +361,7 @@ const Products = () => {
                   id="minPriceRange"
                   className="w-50"
                   min={0}
-                  max={9000}
+                  max={2999}
                   step={10}
                   value={minPrice}
                   onChange={handleMinRangeChange}
@@ -371,7 +372,7 @@ const Products = () => {
                   id="maxPriceRange"
                   className="w-50"
                   min={0}
-                  max={10000}
+                  max={3000}
                   step={10}
                   value={maxPrice}
                   onChange={handleMaxRangeChange}
@@ -658,7 +659,7 @@ const Products = () => {
                     id="minPriceRange"
                     className="w-50"
                     min={0}
-                    max={9000}
+                    max={2900}
                     step={10}
                     value={minPrice}
                     onChange={handleMinRangeChange}
@@ -669,7 +670,7 @@ const Products = () => {
                     id="maxPriceRange"
                     className="w-50"
                     min={0}
-                    max={10000}
+                    max={3000}
                     step={10}
                     value={maxPrice}
                     onChange={handleMaxRangeChange}
@@ -723,7 +724,7 @@ const Products = () => {
               </div>
               <div className="d-flex align-items-center">
                 <p className="fw-bolder my-2">
-                  {data?.filter((item) => item.stock === undefined).length} Products
+                  {data?.filter((item) => (item.stock === undefined || item.stock === false)).length} Products
                 </p>
               </div>
               <div className="search_bar d-flex align-items-center">
@@ -741,7 +742,7 @@ const Products = () => {
             </div>
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
 
-              {(data?.filter((item)=>(item.stock === undefined || item.stock === false)).length === 0 || loading) && (
+              {(data?.filter((item) => (item.stock === undefined || item.stock === false)).length === 0 || loading) && (
                 <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
                     data?.length === 0 ? <Loader /> : null
