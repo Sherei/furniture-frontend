@@ -130,12 +130,13 @@ const Checkout = () => {
     const total = totalSum + shippingFeeAmount;
 
     async function Order(data) {
-
-        setLoading(true);
+        
         window.scrollTo({
             top: 0
         });
+        
         try {
+            setLoading(true);
             const orderItems = [];
             const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
             filterCart.forEach((item) => {
