@@ -56,7 +56,7 @@ const Checkout = () => {
                             event: "begin_checkout",
                             ecommerce: {
                                 currency: "GBP",
-                                value: totalSum,
+                                value: total,
                                 items: res.data.map((item, index) => ({
                                     item_id: item.productId,
                                     item_name: item.title,
@@ -194,7 +194,6 @@ const Checkout = () => {
                     'Content-Type': 'application/json',
                 },
             });
-
             if (response.data === "Order is Placed") {
                 dispatch({
                     type: "ADD_TO_CART",
