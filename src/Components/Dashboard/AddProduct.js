@@ -488,7 +488,7 @@ export const AddProduct = () => {
                 <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Feature 3</label>
                   <input type="text" {...register('feature3')} className="border form-control" />
-                  <button className='btn review-btn' onClick={toggleMore}>Add more </button>
+                  <button type='button' className='btn review-btn' onClick={toggleMore}>{open ? "Show Less" : "Add more"}</button>
                 </div>
                 {open &&
                   <>

@@ -14,6 +14,7 @@ import axios from "axios";
 import "./cart.css";
 
 export const Cart = () => {
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -21,15 +22,16 @@ export const Cart = () => {
   }, []);
 
   const cu = useSelector((store) => store.userSection.cu);
+  const allCartItems = useSelector((store) => store.Cart.cart);
+  const { userId } = useParams();
+
   const dispatch = useDispatch();
   const move = useNavigate();
-  const { userId } = useParams();
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1);
-
-  const allCartItems = useSelector((store) => store.Cart.cart);
+  
 
   useEffect(() => {
     setLoading(true);
@@ -52,9 +54,10 @@ export const Cart = () => {
     if (allCartItems) {
       setCart(allCartItems);
     }
-  }, [allCartItems]);
 
-  const filterCart = cart.filter((item) => userId === item.userId);
+  }, [allCartItems]);
+  
+  const filterCart = cart.filter((item) => item.userId === userId)
 
   const DeleteCartItem = async (itemId) => {
     try {
@@ -146,8 +149,17 @@ export const Cart = () => {
     return accumulator + item.quantity;
   }, 0);
 
-  const shippingFee = totalQuantity * 50;
-
+  const shippingFee = () => {
+    if (totalQuantity === 1) {
+      return 50;
+    } else if (totalQuantity === 2) {
+      return 70;
+    } else {
+      return 90;
+    }
+  };
+  const shippingFeeAmount = shippingFee();
+  
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
   const total = subtotal + shippingFee;
 
@@ -284,7 +296,7 @@ export const Cart = () => {
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-lg-3">
         <div className="col-lg-8 col-md-12 col-sm-12">
           <div className="" style={{ minHeight: "50vh" }}>
-            {filterCart.map((item, index) => {
+            {filterCart?.map((item, index) => {
               return (
                 <div
                   className="d-flex gap-4 border py-3 cart_display_layout1"
@@ -754,7 +766,7 @@ export const Cart = () => {
                 >
                   Standard Delivery:{" "}
                   <span className="fw-bolder">
-                    &pound;{shippingFee?.toFixed()}
+                    &pound;{shippingFeeAmount?.toFixed()}
                   </span>{" "}
                 </p>
                 <p className="m-0 text-end" style={{ fontSize: "11px" }}>
@@ -775,7 +787,7 @@ export const Cart = () => {
               </p>
             </div>
 
-            {filterCart.length > 0 && (
+            {filterCart?.length > 0 && (
               <div className="card-body my-4">
                 <a href={`/cart-checkout/${cu._id}`}>
                   <button

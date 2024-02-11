@@ -148,7 +148,7 @@ export const Navbar = () => {
     }
   }, [allCartItems]);
 
-  const filterCart = cart.filter((item) => cu._id === item.userId);
+  const filterCart = cart.filter((item) => item.userId === cu._id)
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
 
@@ -272,7 +272,7 @@ export const Navbar = () => {
               <RxCross1 /> CLOSE
             </button>
           </div>
-          {filterCart.length === 0 ? (
+          {filterCart?.length === 0 ? (
             <div
               className="py-0 d-flex flex-column align-items-center justify-content-center "
               style={{ height: "75vh" }}
@@ -653,7 +653,7 @@ export const Navbar = () => {
                               <FiShoppingCart />
                               {(cu._id != undefined && cu.email != "asd@gmail.com") &&
                                 <p className="m-0 cart_number">
-                                  {filterCart.length}
+                                  {cart?.length}
                                 </p>
                               }
                             </span>

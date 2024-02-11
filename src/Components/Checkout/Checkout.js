@@ -21,11 +21,11 @@ const Checkout = () => {
         });
     }, []);
 
-    const { userId } = useParams();
     const cu = useSelector(store => store.userSection.cu)
-    let userID = cu._id;
-    
+    const allCartItems = useSelector((store) => store.Cart.cart);
+    const { userId } = useParams();
     const dispatch = useDispatch()
+
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -34,7 +34,6 @@ const Checkout = () => {
     const [cart, setCart] = useState([])
     const [expandedItems, setExpandedItems] = useState({});
 
-    const allCartItems = useSelector((store) => store.Cart.cart);
     const toggleDetails = (index) => {
         setExpandedItems((prev) => ({
             ...prev,
@@ -44,10 +43,9 @@ const Checkout = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/checkout?userID=${userId}`).then((res) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
             try {
                 if (res) {
-                    setCart(res.data)
                     dispatch({
                         type: "ADD_TO_CART",
                         payload: res.data,
@@ -87,6 +85,9 @@ const Checkout = () => {
         }
     }, [allCartItems]);
 
+    const filterCart = cart.filter((item) => item.userId === userId)
+
+
     const DeleteCartItem = async (itemId) => {
         try {
             setLoading(true);
@@ -107,16 +108,25 @@ const Checkout = () => {
         }
     };
 
-    const totalSum = cart.reduce((accumulator, item) => {
+    const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.total;
     }, 0);
-    const totalQuantity = cart.reduce((accumulator, item) => {
+    const totalQuantity = filterCart.reduce((accumulator, item) => {
         return accumulator + item.quantity;
     }, 0);
 
-    const shippingFee = totalQuantity * 50;
+    const shippingFee = () => {
+        if (totalQuantity === 1) {
+            return 50;
+        } else if (totalQuantity === 2) {
+            return 70;
+        } else {
+            return 90;
+        }
+    };
+    const shippingFeeAmount = shippingFee();
 
-    const total = totalSum + shippingFee;
+    const total = totalSum + shippingFeeAmount;
 
     async function Order(data) {
 
@@ -150,22 +160,32 @@ const Checkout = () => {
                 };
                 orderItems.push(itemData);
             });
-            const totalSum = cart.reduce((accumulator, item) => {
+            const totalSum = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.total;
             }, 0);
-            const totalQuantity = cart.reduce((accumulator, item) => {
+            const totalQuantity = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.quantity;
             }, 0);
 
-            const shippingFee = totalQuantity * 50;
-            const Ordertotal = totalSum + shippingFee;
+            const shippingFee = () => {
+                if (totalQuantity === 1) {
+                    return 50;
+                } else if (totalQuantity === 2) {
+                    return 70;
+                } else {
+                    return 90;
+                }
+            };
+            const shippingFeeAmount = shippingFee();
+
+            const Ordertotal = totalSum + shippingFeeAmount;
             const orderItemsJSON = JSON.stringify(orderItems);
             data.orderItems = orderItemsJSON;
             data.orderId = orderId;
             data.total = Ordertotal;
             data.userId = userId;
             data.street = data.street;
-            data.shipping = shippingFee;
+            data.shipping = shippingFeeAmount;
             data.appartment = data.appartment;
 
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order`, data, {
@@ -186,7 +206,7 @@ const Checkout = () => {
                         ecommerce: {
                             transaction_id: data.orderId,
                             value: total,
-                            shipping: shippingFee,
+                            shipping: shippingFeeAmount,
                             currency: "GBP",
                             items: orderItems.map((item, index) => ({
                                 item_id: item.productId,
@@ -210,7 +230,7 @@ const Checkout = () => {
     };
 
 
-    if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || cart?.length === 0) {
+    if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                 <Loader />
@@ -352,7 +372,7 @@ const Checkout = () => {
                             <p className='fw-bolder fs-4'>{cart?.length}</p>
                         </div>
                     </div>
-                    {cart?.map((item, index) => {
+                    {filterCart?.map((item, index) => {
                         return <>
                             <div className='row border mb-1 py-3' key={index}>
                                 <div className='col-3' style={{ position: "relative" }}>
@@ -416,7 +436,7 @@ const Checkout = () => {
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
                             <p className=' fs-6'>Shipping</p>
-                            <p className=' fs-6'>{`£${shippingFee}`}</p>
+                            <p className=' fs-6'>{`£${shippingFeeAmount}`}</p>
                         </div>
                         <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
                             <p className='fs-5'>Total</p>
