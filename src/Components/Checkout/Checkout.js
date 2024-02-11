@@ -21,13 +21,15 @@ const Checkout = () => {
         });
     }, []);
 
+    const { userId } = useParams();
     const cu = useSelector(store => store.userSection.cu)
+    let userID = cu._id;
+    
     const dispatch = useDispatch()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const move = useNavigate()
-    const { userId } = useParams();
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState([])
     const [expandedItems, setExpandedItems] = useState({});
@@ -42,9 +44,10 @@ const Checkout = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/checkout?userID=${userId}`).then((res) => {
             try {
                 if (res) {
+                    setCart(res.data)
                     dispatch({
                         type: "ADD_TO_CART",
                         payload: res.data,
@@ -54,17 +57,18 @@ const Checkout = () => {
                             event: "begin_checkout",
                             ecommerce: {
                                 currency: "GBP",
-                                value: total,
-                                items: [
-                                    {
-                                        item_id: res.data.productId,
-                                        item_name: res.data.title,
-                                        discount: res.data.discount ? res.data.discount + "%" : "0",
-                                        item_category: res.data.category,
-                                        item_category2: res.data.subCategory ? res.data.subCategory : "No subCategory",
-                                        item_variant: res.data.color1 ? res.data.color1 : "No Color",
-                                    }
-                                ]
+                                value: totalSum,
+                                items: res.data.map((item, index) => ({
+                                    item_id: item.productId,
+                                    item_name: item.title,
+                                    index: index,
+                                    item_category: item.category,
+                                    item_category2: item.subCategory ? item.subCategory : "No Subcategory",
+                                    quantity: item.quantity,
+                                    price: item.total,
+                                    discount: item.discount ? item.discount + "%" : "0",
+                                    item_variant: item.color1 ? item.color1 : "No Color",
+                                })),
                             }
                         }
                     });
@@ -105,10 +109,10 @@ const Checkout = () => {
         }
     };
 
-    const totalSum = filterCart.reduce((accumulator, item) => {
+    const totalSum = cart.reduce((accumulator, item) => {
         return accumulator + item.total;
     }, 0);
-    const totalQuantity = filterCart.reduce((accumulator, item) => {
+    const totalQuantity = cart.reduce((accumulator, item) => {
         return accumulator + item.quantity;
     }, 0);
 
@@ -125,7 +129,7 @@ const Checkout = () => {
         try {
             const orderItems = [];
             const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
-            filterCart.forEach((item) => {
+            cart.forEach((item) => {
                 const itemData = {
                     title: item.title,
                     productId: item.productId,
@@ -148,10 +152,10 @@ const Checkout = () => {
                 };
                 orderItems.push(itemData);
             });
-            const totalSum = filterCart.reduce((accumulator, item) => {
+            const totalSum = cart.reduce((accumulator, item) => {
                 return accumulator + item.total;
             }, 0);
-            const totalQuantity = filterCart.reduce((accumulator, item) => {
+            const totalQuantity = cart.reduce((accumulator, item) => {
                 return accumulator + item.quantity;
             }, 0);
 
@@ -208,7 +212,7 @@ const Checkout = () => {
     };
 
 
-    if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
+    if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || cart?.length === 0) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                 <Loader />
@@ -347,10 +351,10 @@ const Checkout = () => {
                     <div className='row'>
                         <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
                             <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
-                            <p className='fw-bolder fs-4'>{filterCart?.length}</p>
+                            <p className='fw-bolder fs-4'>{cart?.length}</p>
                         </div>
                     </div>
-                    {filterCart?.map((item, index) => {
+                    {cart?.map((item, index) => {
                         return <>
                             <div className='row border mb-1 py-3' key={index}>
                                 <div className='col-3' style={{ position: "relative" }}>
