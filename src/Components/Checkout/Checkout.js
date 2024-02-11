@@ -87,8 +87,6 @@ const Checkout = () => {
         }
     }, [allCartItems]);
 
-    const filterCart = cart.filter((item) => userId === item.userId)
-
     const DeleteCartItem = async (itemId) => {
         try {
             setLoading(true);

@@ -9,11 +9,12 @@ import { toast } from 'react-toastify';
 export const Products = () => {
 
   const [product, setProduct] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState('');
   let move = useNavigate()
 
   useEffect(() => {
+    setIsLoading(true)
     try {
       axios
         .get(`${process.env.REACT_APP_BASE_URL}/Adminproduct`, {
