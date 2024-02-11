@@ -653,7 +653,7 @@ export const Navbar = () => {
                               <FiShoppingCart />
                               {(cu._id != undefined && cu.email != "asd@gmail.com") &&
                                 <p className="m-0 cart_number">
-                                  {cart?.length}
+                                  {filterCart?.length}
                                 </p>
                               }
                             </span>
