@@ -138,7 +138,7 @@ const Checkout = () => {
         try {
             const orderItems = [];
             const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
-            cart.forEach((item) => {
+            filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
                     productId: item.productId,
