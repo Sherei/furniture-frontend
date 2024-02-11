@@ -67,7 +67,7 @@ const Checkout = () => {
                                     quantity: item.quantity,
                                     price: item.total,
                                     discount: item.discount ? item.discount + "%" : "0",
-                                    item_variant: item.color1 ? item.color1 : "No Color",
+                                    item_variant: item.color ? item.color : "No Color",
                                 })),
                             }
                         }
