@@ -30,6 +30,7 @@ import "./single.css";
 
 
 const SingleAdd = () => {
+
   // useEffect(() => {
   //   window.scrollTo({
   //     top: 0,
@@ -263,17 +264,65 @@ const SingleAdd = () => {
         }
       }
     }
+
     else if (product?.category === "mattress") {
       if (size !== undefined && size !== "") {
-        if (size === "small-double") {
-          additionalPrice += 20;
-        } else if (size === "double") {
-          additionalPrice += 70;
-        } else if (size === "king") {
-          additionalPrice += 120;
-        } else if (size === "super-king") {
-          additionalPrice += 170;
-        } else {
+        if (product.sn === 1226) {
+          if (size === "small-double") {
+            additionalPrice += 15;
+          } else if (size === "double") {
+            additionalPrice += 25;
+          } else if (size === "king") {
+            additionalPrice += 40;
+          } else if (size === "super-king") {
+            additionalPrice += 80;
+          }
+        }
+        if (product.sn === 1227) {
+          if (size === "small-double") {
+            additionalPrice += 20;
+          } else if (size === "double") {
+            additionalPrice += 30;
+          } else if (size === "king") {
+            additionalPrice += 50;
+          } else if (size === "super-king") {
+            additionalPrice += 80;
+          }
+        }
+        if (product.sn === 1228) {
+          if (size === "small-double") {
+            additionalPrice += 20;
+          } else if (size === "double") {
+            additionalPrice += 30;
+          } else if (size === "king") {
+            additionalPrice += 70;
+          } else if (size === "super-king") {
+            additionalPrice += 120;
+          }
+        }
+        if (product.sn === 1229) {
+          if (size === "small-double") {
+            additionalPrice += 40;
+          } else if (size === "double") {
+            additionalPrice += 60;
+          } else if (size === "king") {
+            additionalPrice += 110;
+          } else if (size === "super-king") {
+            additionalPrice += 170;
+          }
+        }
+        if (product.sn === 1230) {
+          if (size === "small-double") {
+            additionalPrice += 20;
+          } else if (size === "double") {
+            additionalPrice += 70;
+          } else if (size === "king") {
+            additionalPrice += 120;
+          } else if (size === "super-king") {
+            additionalPrice += 170;
+          }
+        }
+        else {
           additionalPrice += 0;
         }
       }
@@ -389,7 +438,7 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          
+
           TagManager.dataLayer({
             dataLayer: {
               event: "add_to_cart",

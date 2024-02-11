@@ -17,9 +17,7 @@ export const Products = () => {
     setIsLoading(true)
     try {
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}/Adminproduct`, {
-          params: { search },
-        })
+        .get(`${process.env.REACT_APP_BASE_URL}/product`)
         .then((res) => {
           setProduct(res?.data);
           setIsLoading(false);
@@ -32,6 +30,17 @@ export const Products = () => {
   const handleSearchInputChange = (e) => {
     setSearch(e.target.value);
   };
+
+  const filterProducts = product.filter(item => {
+
+    const searchText = search?.toLowerCase();
+    const categoryMatch = item?.category?.toLowerCase().includes(searchText);
+    const subCategoryMatch = item?.subCategory?.toLowerCase().includes(searchText);
+    const serialNumberMatch = item?.sn?.toString().includes(searchText); 
+
+    return categoryMatch || subCategoryMatch || serialNumberMatch;
+  });
+  
 
   const DeleteProduct = (dataId) => {
     axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteProduct?id=${dataId}`).then(() => {
@@ -77,13 +86,13 @@ export const Products = () => {
             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
               <Loader />
             </div>
-          ) : product.length === 0 ? (
+          ) : filterProducts.length === 0 ? (
             <div className="col-12" style={{ height: "300px" }}>
               <p className='text-center'>No Products Found...</p>
             </div>
           ) : (
             <>
-              {product?.length > 0 && (
+              {filterProducts?.length > 0 && (
                 <div className="table-responsive">
                   <table className="table table-striped table-bordered table-hover">
                     <thead>
@@ -105,7 +114,7 @@ export const Products = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {product?.map((data, index) => (
+                      {filterProducts?.map((data, index) => (
                         <tr key={index} >
                           <td>{index + 1}</td>
                           <td>{data.sn}</td>
