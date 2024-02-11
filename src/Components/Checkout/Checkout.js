@@ -50,7 +50,8 @@ const Checkout = () => {
                         type: "ADD_TO_CART",
                         payload: res.data,
                     });
-                    TagManager.dataLayer.push({
+                    
+                    TagManager.dataLayer({
                         dataLayer: {
                             event: "begin_checkout",
                             ecommerce: {

@@ -389,7 +389,7 @@ const SingleAdd = () => {
 
           });
           setSucess("cart")
-          // console.log("Add to cart is::", product.total)
+          
           TagManager.dataLayer({
             dataLayer: {
               event: "add_to_cart",
