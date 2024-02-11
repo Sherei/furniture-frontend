@@ -161,7 +161,7 @@ export const Cart = () => {
   const shippingFeeAmount = shippingFee();
   
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
-  const total = subtotal + shippingFee;
+  const total = subtotal + shippingFeeAmount;
 
   const updateCart = () => {
     try {
