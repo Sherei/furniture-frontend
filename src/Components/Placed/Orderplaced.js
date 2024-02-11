@@ -84,9 +84,9 @@ const Orderplaced = () => {
 
                         </p>
                         <div className='order_btns'>
-                            <a href={`/user-profile/${cu._id}`}>
+                        <a href={`/order-detail/${filterOrder[0]._id}`}>
                                 <button className="review_btn cursor" type='button'>
-                                    My Order
+                                    Order detail
                                 </button>
                             </a>
 

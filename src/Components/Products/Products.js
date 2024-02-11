@@ -43,6 +43,7 @@ const Products = () => {
 
     const fetchData = async () => {
       try {
+        const startTime = performance.now();
         const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
         const params = {
           name: category,
@@ -53,6 +54,9 @@ const Products = () => {
         };
         const res = await axios.get(apiUrl, { params, cancelToken: source.token });
         setData(res?.data);
+        const endTime = performance.now(); // Capturing the end time
+        const responseTime = endTime - startTime; // Calculating the response time
+        console.log("API Response Time:", responseTime);
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
