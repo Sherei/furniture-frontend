@@ -68,6 +68,7 @@ const Checkout = () => {
                 };
                 const shippingFeeAmount = shippingFee();
                 const total = totalSum + shippingFeeAmount;
+                
                     TagManager.dataLayer({
                         dataLayer: {
                             event: "begin_checkout",

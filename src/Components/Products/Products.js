@@ -37,14 +37,20 @@ const Products = () => {
     setCategory(prodctName?.toLowerCase());
   }, [prodctName]);
 
-
   useEffect(() => {
     const source = axios.CancelToken.source();
 
     const fetchData = async () => {
       try {
-        const apiUrl = `${process.env.REACT_APP_BASE_URL}/product`;
-        const res = await axios.get(apiUrl, {cancelToken: source.token });
+        const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
+        const params = {
+          name: category,
+          sort: sort,
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+          search: search
+        };
+        const res = await axios.get(apiUrl, { params, cancelToken: source.token });
         setData(res?.data);
         
       } catch (error) {
@@ -58,7 +64,7 @@ const Products = () => {
     return () => {
       source.cancel();
     };
-  }, []);
+  }, [category, sort, minPrice, maxPrice, search]);
 
   const handleMinRangeChange = (e) => {
     const value = parseInt(e.target.value);
@@ -74,34 +80,6 @@ const Products = () => {
     setSearch(e.target.value);
   };
 
-  useEffect(() => {
-    let filteredData = [...data];
-    if (search) {
-      const searchRegex = new RegExp(search, 'i');
-      filteredData = filteredData.filter(product =>
-        product.title.includes(searchRegex) ||
-        product.category.includes(searchRegex) ||
-        product.subCategory.includes(searchRegex)
-      );
-    }
-    if (category && category?.toLowerCase() !== 'all') {
-      filteredData = filteredData?.filter(product =>
-        product?.category?.toLowerCase() === category?.toLowerCase() ||
-        product?.subCategory?.toLowerCase() === category?.toLowerCase()
-      );
-    }
-    filteredData = filteredData.filter(product =>
-      product?.Fprice >= minPrice && product?.Fprice <= maxPrice
-    );
-    if (sort === 'asc') {
-      filteredData?.sort((a, b) => a.Fprice - b.Fprice);
-    } else if (sort === 'desc') {
-      filteredData?.sort((a, b) => b.Fprice - a.Fprice);
-    }
-  
-    setData(filteredData);
-  }, [search, category, minPrice, maxPrice, sort]);
-  
   function ClearFilter() {
     setCategory("all");
     setSortOrder("");
@@ -830,7 +808,6 @@ const Products = () => {
             </div>
 
 
-
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-sm-2 g-4 my-3">
               {(activeGrid === "list" && !loading && data?.length > 0) &&
                 data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => {
@@ -909,5 +886,6 @@ const Products = () => {
 };
 
 export default Products;
+
 
 
