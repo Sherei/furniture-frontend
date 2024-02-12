@@ -263,7 +263,7 @@ export const Navbar = () => {
     <>
       {open && (
         <div className={`side_cart px-2 ${open === true ? "side_open" : ""}`} cartRef={ref}>
-          <div className="pt-2 d-flex justify-content-between align-items-center">
+          <div className="py-2 d-flex justify-content-between align-items-center" style={{borderBottom:"1px solid lightgray"}}>
             <p className="fw-bolder fs-5 m-0">SHOPPING CART</p>
             <button
               className="m-0 side_cart_cross"

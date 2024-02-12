@@ -412,7 +412,7 @@ const SingleAdd = () => {
         type: "LOGOUT_USER",
       });
       move("/login");
-      toast.warning("Login with different account");
+      toast.success("Login with different account");
     } else {
 
       try {
@@ -510,7 +510,7 @@ const SingleAdd = () => {
         move(`/cart-checkout/${cu._id}`);
       }
     } else if (cu._id === undefined || cu.email !== "asd@gmail.com") {
-      toast.warning("Login to see cart");
+      toast.success("Login to see cart");
       move("/login");
     }
   }
@@ -690,17 +690,7 @@ const SingleAdd = () => {
           </div>
 
           <div className="col-lg-5 col-sm-12 order-3" style={{ position: "relative" }}>
-            {sucess === "cart" && (
-              <div className="succes_box showVerify px-3">
-                <div className="text-end">
-                  <button className="btn fw-bolder fs-3"
-                    style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
-                    onClick={() => setSucess("")}> <RxCross1 /></button>
-                </div>
-                <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
-                <p className="fw-bolder text-center">Added to Cart</p>
-              </div>
-            )}
+
             <div className={`s_content ${product?.category === "bed" ? "bed_class" : ""}`}>
               <h1
                 className="text-center fs-1 "
@@ -711,11 +701,6 @@ const SingleAdd = () => {
               {comments.filter((item) => item.productId === productId)
                 .length > 0 && (
                   <span className="mt-2 mb-3" style={{ color: "red" }}>
-                    <RiStarSFill />
-                    <RiStarSFill />
-                    <RiStarSFill />
-                    <RiStarSFill />
-                    <RiStarSFill />
                     <span
                       className="text-center"
                       style={{ color: "#1b2950" }}
@@ -726,7 +711,7 @@ const SingleAdd = () => {
                           (item) => item.productId === productId
                         ).length
                       }{" "}
-                      Review)
+                      Customer Review)
                     </span>
                   </span>
                 )}
@@ -744,8 +729,18 @@ const SingleAdd = () => {
                   </span>}
               </div>
 
-              <div className="single_form  mt-1" >
-
+              <div className="single_form  mt-1" style={{ position: "relative" }}>
+                {sucess === "cart" && (
+                  <div className={`succes_box  px-3 ${sucess === "cart" ? "showVerify" : ""}`}>
+                    <div className="text-end">
+                      <button className="btn fw-bolder fs-3"
+                        style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
+                        onClick={() => setSucess("")}> <RxCross1 /></button>
+                    </div>
+                    <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                    <p className="fw-bolder text-center">Added to Cart</p>
+                  </div>
+                )}
                 {(product?.category != "bed" && product?.category != "sofa" && product?.category != "mattress" && product?.category != "footstools") &&
                   <div className="mt-1">
                     <label
@@ -772,6 +767,7 @@ const SingleAdd = () => {
                       <option value="silver">Silver</option>
                       <option value="pink">Pink</option>
                       <option value="grey">Grey</option>
+                      <option value="light-grey">Light Grey</option>
                       <option value="mink">Mink</option>
                       <option value="royal-blue">Royal Blue</option>
                       <option value="sky-blue">Sky Blue</option>
@@ -941,6 +937,7 @@ const SingleAdd = () => {
                           <option value="pink">Pink</option>
                           <option value="silver">Silver</option>
                           <option value="grey">Grey</option>
+                          <option value="light-grey">Light Grey</option>
                           <option value="mink">Mink</option>
                           <option value="royal-blue">Royal Blue</option>
                           <option value="sky-blue">Sky Blue</option>
@@ -1133,204 +1130,204 @@ const SingleAdd = () => {
                     </div>
                   </>
                 )}
-              </div>
+                {/*.................................... Bed End .......................... */}
 
-              {/*.................................... Bed End .......................... */}
+                {/*.................................... Mattress Start .......................... */}
 
-              {/*.................................... Mattress Start .......................... */}
+                {product?.category === "mattress" && (
+                  <>
+                    <div className="mt-1">
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                        Mattress
+                        <span style={{ color: "red" }}>* </span> &nbsp;{" "}
+                        <span className="lable_Case">
+                          {size ? size.replace(/-/g, " ") : ""}
+                        </span>
+                      </label>
+                      <p className="mt-1 mb-0">Please Choose Mattress Size</p>
+                      <select
+                        onChange={(e) => {
+                          if (e.target.value === "select size") {
+                            return setError("mat"), setSize('')
+                          } else {
+                            setSize(e.target.value);
+                          }
+                        }}
+                        className="form-select mb-2 mr-sm-2"
+                      >
+                        <option value="select size">Please Choose</option>
+                        <option value="Single">Single Size</option>
+                        <option value="small-double">
+                          Small Double Size
+                        </option>
+                        <option value="double">Double Size</option>
+                        <option value="king">King Size</option>
+                        <option value="super-king">Super King Size</option>
+                      </select>
+                    </div>
 
-              {product?.category === "mattress" && (
-                <>
-                  <div className="mt-1">
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                      Mattress
-                      <span style={{ color: "red" }}>* </span> &nbsp;{" "}
-                      <span className="lable_Case">
-                        {size ? size.replace(/-/g, " ") : ""}
-                      </span>
-                    </label>
-                    <p className="mt-1 mb-0">Please Choose Mattress Size</p>
-                    <select
-                      onChange={(e) => {
-                        if (e.target.value === "select size") {
-                          return setError("mat"), setSize('')
-                        } else {
-                          setSize(e.target.value);
-                        }
-                      }}
-                      className="form-select mb-2 mr-sm-2"
-                    >
-                      <option value="select size">Please Choose</option>
-                      <option value="Single">Single Size</option>
-                      <option value="small-double">
-                        Small Double Size+(£20)
-                      </option>
-                      <option value="double">Double Size+(£70)</option>
-                      <option value="king">King Size+(£120)</option>
-                      <option value="super-king">Super King Size+(£170)</option>
-                    </select>
-                  </div>
-
-                  <div className="mt-1">
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                      Mattress Pillow Topper
-                      <span style={{ color: "red" }}>* </span>&nbsp;{" "}&nbsp;{" "}
-                      &nbsp;{" "}
-                      <span className="lable_Case">
-                        {ottoman ? ottoman.replace(/-/g, " ") : ""}
-                      </span>
-                    </label>
-                    <div className="d-flex gap-2">
+                    <div className="mt-1">
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                        Mattress Pillow Topper
+                        <span style={{ color: "red" }}>* </span>&nbsp;{" "}&nbsp;{" "}
+                        &nbsp;{" "}
+                        <span className="lable_Case">
+                          {ottoman ? ottoman.replace(/-/g, " ") : ""}
+                        </span>
+                      </label>
                       <div className="d-flex gap-2">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="flexRadioDefault1"
-                          onChange={() => {
-                            setOttoman("pillow");
-                          }}
-                        />
-                        <p className="m-0">
-                          Yes + £50.00
-                        </p>
-                      </div>
-                      <div className="d-flex gap-2">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="flexRadioDefault1"
-                          onChange={() => {
-                            setOttoman("No");
-                          }}
-                        />{" "}
-                        <p className="m-0">
-                          No
-                        </p>
+                        <div className="d-flex gap-2">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault1"
+                            onChange={() => {
+                              setOttoman("pillow");
+                            }}
+                          />
+                          <p className="m-0">
+                            Yes + £50.00
+                          </p>
+                        </div>
+                        <div className="d-flex gap-2">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault1"
+                            onChange={() => {
+                              setOttoman("No");
+                            }}
+                          />{" "}
+                          <p className="m-0">
+                            No
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </>
-              )}
-              {/*.................................... Mattress End .......................... */}
+                  </>
+                )}
+                {/*.................................... Mattress End .......................... */}
 
-              {/*.................................... Ottoman Start .......................... */}
+                {/*.................................... Ottoman Start .......................... */}
 
-              {product?.category === "ottoman-box" && (
-                <>
-                  <div className="mt-1">
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                      Fabric
-                      <span style={{ color: "red" }}>* </span> &nbsp;{" "}
-                      <span className="lable_Case">
-                        {fabric ? fabric.replace(/-/g, " ") : ""}
-                      </span>
-                    </label>
-                    <p className="mt-1 mb-0">Please Choose Fabric</p>
-                    <select
-                      className="form-select mb-2 mr-sm-2"
-                      onChange={(e) => {
-                        if (e.target.value === "select fabric") {
-                          return setError("fabrics"), setFabric('');
-                        } else {
-                          setFabric(e.target.value);
-                        }
-                      }}
-                    >
-                      <option value="select fabric">Please Choose</option>
-                      <option value="plush-velvet">Plush Velvet</option>
-                      <option value="crush-velvet">Crush Velvet</option>
-                      <option value="chenille">Chenille</option>
-                    </select>
-                  </div>
+                {product?.category === "ottoman-box" && (
+                  <>
+                    <div className="mt-1">
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                        Fabric
+                        <span style={{ color: "red" }}>* </span> &nbsp;{" "}
+                        <span className="lable_Case">
+                          {fabric ? fabric.replace(/-/g, " ") : ""}
+                        </span>
+                      </label>
+                      <p className="mt-1 mb-0">Please Choose Fabric</p>
+                      <select
+                        className="form-select mb-2 mr-sm-2"
+                        onChange={(e) => {
+                          if (e.target.value === "select fabric") {
+                            return setError("fabrics"), setFabric('');
+                          } else {
+                            setFabric(e.target.value);
+                          }
+                        }}
+                      >
+                        <option value="select fabric">Please Choose</option>
+                        <option value="plush-velvet">Plush Velvet</option>
+                        <option value="crush-velvet">Crush Velvet</option>
+                        <option value="chenille">Chenille</option>
+                      </select>
+                    </div>
 
-                  <div className="mt-1">
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                      Detail
-                      <span style={{ color: "red" }}>* </span> &nbsp;{" "}
-                      <span className="lable_Case">
-                        {detail ? detail.replace(/-/g, " ") : ""}
-                      </span>
-                    </label>
-                    <p className="mt-1 mb-0">Please Choose Detail</p>
-                    <select
-                      className="form-select mb-2 mr-sm-2"
-                      onChange={(e) => {
-                        if (e.target.value === "select detail") {
-                          return setError("detail"), setDetail('');
-                        } else {
-                          setDetail(e.target.value);
-                        }
-                      }}
-                    >
-                      <option value="select detail">Please Choose</option>
-                      <option value="matchig-buttons">Matchig Buttons</option>
-                      <option value="diamonds">Diamonds</option>
-                    </select>
-                  </div>
+                    <div className="mt-1">
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                        Detail
+                        <span style={{ color: "red" }}>* </span> &nbsp;{" "}
+                        <span className="lable_Case">
+                          {detail ? detail.replace(/-/g, " ") : ""}
+                        </span>
+                      </label>
+                      <p className="mt-1 mb-0">Please Choose Detail</p>
+                      <select
+                        className="form-select mb-2 mr-sm-2"
+                        onChange={(e) => {
+                          if (e.target.value === "select detail") {
+                            return setError("detail"), setDetail('');
+                          } else {
+                            setDetail(e.target.value);
+                          }
+                        }}
+                      >
+                        <option value="select detail">Please Choose</option>
+                        <option value="matchig-buttons">Matchig Buttons</option>
+                        <option value="diamonds">Diamonds</option>
+                      </select>
+                    </div>
 
-                </>
-              )}
-              {/*.................................... Ottoman End .......................... */}
+                  </>
+                )}
+                {/*.................................... Ottoman End .......................... */}
 
-              {/*.................................... Footstools Start .......................... */}
-              {product?.category === "footstools" && (
-                <>
-                  <div className="mt-1">
-                    <label style={{ fontSize: "17px", fontWeight: "600" }}>
-                      Fabric
-                      <span style={{ color: "red" }}>* </span> &nbsp;{" "}
-                      <span className="lable_Case">
-                        {fabric ? fabric.replace(/-/g, " ") : ""}
-                      </span>
-                    </label>
-                    <p className="mt-1 mb-0">Please Choose Fabric</p>
-                    <select
-                      className="form-select mb-2 mr-sm-2"
-                      onChange={(e) => {
-                        if (e.target.value === "select fabric") {
-                          return setError("fabric"), setFabric('');
-                        } else {
-                          setFabric(e.target.value);
-                        }
-                      }}
-                    >
-                      <option value="select fabric">Please Choose</option>
-                      <option value="plush-velvet">Plush Velvet</option>
-                      <option value="crush-velvet">Crush Velvet</option>
-                      <option value="chenille">Chenille</option>
-                    </select>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="sigle_quatity_main mt-1">
-              <div className="">
-                <p
-                  className="m-0"
-                  style={{
-                    fontSize: "17px",
-                    color: "#1b2950",
-                    fontWeight: "600",
-                  }}
-                >
-                  Quantity:{" "}
-                </p>
+                {/*.................................... Footstools Start .......................... */}
+                {product?.category === "footstools" && (
+                  <>
+                    <div className="mt-1">
+                      <label style={{ fontSize: "17px", fontWeight: "600" }}>
+                        Fabric
+                        <span style={{ color: "red" }}>* </span> &nbsp;{" "}
+                        <span className="lable_Case">
+                          {fabric ? fabric.replace(/-/g, " ") : ""}
+                        </span>
+                      </label>
+                      <p className="mt-1 mb-0">Please Choose Fabric</p>
+                      <select
+                        className="form-select mb-2 mr-sm-2"
+                        onChange={(e) => {
+                          if (e.target.value === "select fabric") {
+                            return setError("fabric"), setFabric('');
+                          } else {
+                            setFabric(e.target.value);
+                          }
+                        }}
+                      >
+                        <option value="select fabric">Please Choose</option>
+                        <option value="plush-velvet">Plush Velvet</option>
+                        <option value="crush-velvet">Crush Velvet</option>
+                        <option value="chenille">Chenille</option>
+                      </select>
+                    </div>
+                  </>
+                )}
               </div>
-              <div className="sigle_quatity">
-                <button className="plus_btn fs-6" onClick={Decrement}>
-                  <FaMinus />
-                </button>
+              <div className="sigle_quatity_main mt-1">
+                <div className="">
+                  <p
+                    className="m-0"
+                    style={{
+                      fontSize: "17px",
+                      color: "#1b2950",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Quantity:{" "}
+                  </p>
+                </div>
+                <div className="sigle_quatity">
+                  <button className="plus_btn fs-6" onClick={Decrement}>
+                    <FaMinus />
+                  </button>
 
-                <p className="input_single text-center m-0 p-0">
-                  {quantity}
-                </p>
-                <button className="plus_btn fs-6" onClick={Increment}>
-                  <FaPlus />
-                </button>
+                  <p className="input_single text-center m-0 p-0">
+                    {quantity}
+                  </p>
+                  <button className="plus_btn fs-6" onClick={Increment}>
+                    <FaPlus />
+                  </button>
+                </div>
               </div>
             </div>
+
             {Error === "options" && (
               <div className="error">All fields are required</div>
             )}
@@ -1601,7 +1598,7 @@ const SingleAdd = () => {
 
           <div className="col-lg-6 col-md-6 col-sm-12 px-lg-5 px-3 pt-lg-0 pt-5 order-1 order-lg-2 order-md-2 order-xl-2" style={{ position: "relative" }}>
             {sucess === "comment" && (
-              <div className="succes_box showVerify px-3">
+              <div className={`succes_box  px-3 ${sucess === "comment" ? "showVerify" : ""}`}>
                 <div className="text-end">
                   <button className="btn fw-bolder fs-3"
                     style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}

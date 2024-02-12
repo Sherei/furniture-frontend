@@ -348,6 +348,7 @@
     right: 0px;
 }
 
+
 .succes_box {
     position: absolute !important;
     left: 35% !important;
@@ -364,17 +365,17 @@
     align-items: center;
     border: 1px solid lightgray;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    opacity: 0;
-    animation: fadeInOut 0.5s ease-in-out;
+    /* opacity: 0; */
+    /* animation: fadeInOut 0.5s ease-in-out; */
 }
 
-.succes_box.showVerify {
-    opacity: 1;
+.showVerify {
+    animation: fadeInOut 0.5s ease-in-out;
 }
 
 @keyframes fadeInOut {
     0% {
-        opacity: 0;
+        opacity: 0.3;
     }
 
     50% {

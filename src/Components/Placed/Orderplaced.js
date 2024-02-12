@@ -80,13 +80,12 @@ const Orderplaced = () => {
                         <p className='text-center' style={{ lineHeight: "50px" }}>
                             Thank you for placing an order, <br />
                             Your Order ID is: <b>{filterOrder[0].orderId}</b> <br />
-                            Order will be delivered within 05-07 working days
-
+                            Order will be delivered within 05-07 working days. We will update you soon. 
                         </p>
                         <div className='order_btns'>
                         <a href={`/order-detail/${filterOrder[0]._id}`}>
                                 <button className="review_btn cursor" type='button'>
-                                    Order detail
+                                    Order Detail
                                 </button>
                             </a>
 

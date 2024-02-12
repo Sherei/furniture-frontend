@@ -128,7 +128,7 @@ const Review = () => {
                                                 {item.comment}
                                             </p>
                                             <p className='text-center' style={{ color: "white" }}>{item.name}</p>
-                                          <p className='text-center text-muted' style={{ fontWeight: "700" }}>{formatDateTime(item.date1 ? item.date1 : item.date)}</p> 
+                                            <p className='text-center text-muted' style={{ fontWeight: "700" }}>{formatDateTime(item.date1 ? item.date1 : item.date)}</p>
                                         </div>
                                     </SwiperSlide>
                                 })}
@@ -140,7 +140,7 @@ const Review = () => {
 
                 <div className='col-lg-6 col-md-6 col-sm-12 px-lg-5 px-4  pt-5' style={{ position: "relative" }}>
                     {sucess && (
-                        <div className="succes_box showVerify px-3">
+                        <div className={`succes_box px-3${sucess === "comment" ? "showVerify" : ""}`}>
                             <div className="text-end">
                                 <button className="btn fw-bolder fs-3"
                                     style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}

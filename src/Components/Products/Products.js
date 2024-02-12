@@ -85,6 +85,8 @@ const Products = () => {
     setSortOrder("");
     setSearch("");
     setActiveGrid("grid");
+    setMaxPrice(3000);
+    setMinPrice(0);
   }
   if (loading) {
     return <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
@@ -96,16 +98,19 @@ const Products = () => {
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
         <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
-          <div className="d-flex justify-content-between mb-3">
-            <p className="fs-5" style={{ color: "#1B2950" }}>
+          <div className="d-flex justify-content-end mb-3">
+            {/* <p className="fs-5" style={{ color: "#1B2950" }}>
               <FaFilter /> Filter
-            </p>
-            <span
+            </p> */}
+            <button className="btn" type="button" onClick={() => setFilter(false)} >
+              Close X
+            </button>
+            {/* <span
               className="close px-3 fs-5"
               onClick={() => setFilter(false)}
             >
               ❌
-            </span>
+            </span> */}
           </div>
           <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
             <div className="accordion-item">
@@ -145,14 +150,6 @@ const Products = () => {
                     Corner Sofas
                   </p>
                   <p
-                    onClick={() => setCategory("sofa-sets")}
-                    className={
-                      category === "sofa-sets" ? "activeCategory" : ""
-                    }
-                  >
-                    Sofa Sets{" "}
-                  </p>
-                  <p
                     onClick={() => setCategory("sofa-beds")}
                     className={
                       category === "sofa-beds" ? "activeCategory" : ""
@@ -168,7 +165,7 @@ const Products = () => {
                         : ""
                     }
                   >
-                    3 & 2 Seater Sofas
+                    3+2 Seater Sofas
                   </p>
                   <p
                     onClick={() => setCategory("u-shaped-sofas")}
@@ -360,7 +357,7 @@ const Products = () => {
                   type="range"
                   id="minPriceRange"
                   className="w-50"
-                  min={0}
+                  min={1}
                   max={2999}
                   step={10}
                   value={minPrice}
@@ -371,7 +368,7 @@ const Products = () => {
                   type="range"
                   id="maxPriceRange"
                   className="w-50"
-                  min={0}
+                  min={1}
                   max={3000}
                   step={10}
                   value={maxPrice}
@@ -401,7 +398,7 @@ const Products = () => {
 
           <div className="col-lg-2 col_hide">
             <div>
-              <p className="fs-4 fw-bolder" style={{ color: "#1b2950" }}><FaFilter />&nbsp;Filter</p>
+              <p className="fs-5 fw-bolder" style={{ color: "#1b2950" }}>Product Categories</p>
             </div>
             <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
               <div className="accordion-item">
@@ -441,14 +438,6 @@ const Products = () => {
                       Corner Sofas
                     </p>
                     <p
-                      onClick={() => setCategory("sofa-sets")}
-                      className={
-                        category === "sofa-sets" ? "activeCategory" : ""
-                      }
-                    >
-                      Sofa Sets{" "}
-                    </p>
-                    <p
                       onClick={() => setCategory("sofa-beds")}
                       className={
                         category === "sofa-beds" ? "activeCategory" : ""
@@ -464,7 +453,7 @@ const Products = () => {
                           : ""
                       }
                     >
-                      3 & 2 Seater Sofas
+                      3+2 Seater Sofas
                     </p>
                     <p
                       onClick={() => setCategory("u-shaped-sofas")}
@@ -745,7 +734,7 @@ const Products = () => {
               {(data?.filter((item) => (item.stock === undefined || item.stock === false)).length === 0 || loading) && (
                 <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
-                    data?.length === 0 ? <Loader /> : null
+                    data?.length === 0 ? "No Product available" : null
                   )}
                 </div>
               )}

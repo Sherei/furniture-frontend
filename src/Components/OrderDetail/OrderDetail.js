@@ -92,7 +92,7 @@ const OrderDetail = () => {
                         <p><b style={{ color: "rgb(2,2,94)" }}>Street & House number: </b>{order?.street}</p>
                         {order?.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
                         <p><b style={{ color: "rgb(2,2,94)" }}>Shipping Address: </b>{order?.shipping}</p>
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Total Products: </b>{order?.orderItems?.length}</p >
+                        <p><b style={{ color: "rgb(2,2,94)" }}>Total Items: </b>{order?.orderItems?.length}</p >
                         {order?.note && <p><b style={{ color: "rgb(2,2,94)" }}>Note: {order?.note}</b></p >}
                         <p><b style={{ color: "rgb(2,2,94)" }}>Date: </b>{formatDateTime(order?.date)}</p >
                     </div>
@@ -329,7 +329,7 @@ const OrderDetail = () => {
                     {cu.email != "asd@gmail.com" &&
                         <a href={`/user-profile/${cu._id}`} >
                             <button className='btn review_btn btn_width' >
-                                Back to Website
+                                Back to Profile
                             </button>
                         </a>
                     }
