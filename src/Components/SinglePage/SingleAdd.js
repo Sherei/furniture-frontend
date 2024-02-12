@@ -1331,7 +1331,7 @@ const SingleAdd = () => {
                   </button>
                 </div>
               </div>
-              <p className="fw-bolder fs-6 mt-3 mb-0 cursor d-flex align-items-center" onClick={copyUrlToClipboard}>Share Product <LuClipboard /></p>
+              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center" style={{fontWeight:"500"}} onClick={copyUrlToClipboard}>Share Product <LuClipboard /></p>
             </div>
 
             {Error === "options" && (
