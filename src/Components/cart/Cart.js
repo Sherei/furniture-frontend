@@ -70,13 +70,11 @@ export const Cart = () => {
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-
+        setLoading(false);
         toast.success("Item Removed");
       }
     } catch (e) {
       // console.log(e);
-    } finally {
-      setLoading(false);
     }
   };
 

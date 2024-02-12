@@ -77,14 +77,11 @@ const SingleAdd = () => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const startTime = performance.now();
-
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
-        const endTime = performance.now(); // Capturing the end time
-        const responseTime = endTime - startTime; // Calculating the response time
-        console.log("API Response Time:", responseTime);
-        TagManager.dataLayer({
+        
+      setLoading(false)
+      TagManager.dataLayer({
           dataLayer: {
             event: "view_item",
             ecommerce: {
@@ -108,11 +105,6 @@ const SingleAdd = () => {
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
-      } finally {
-        const id = setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-        setTimeoutId(id);
       }
     };
     fetchData();

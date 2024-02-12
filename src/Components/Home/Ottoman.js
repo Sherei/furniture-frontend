@@ -10,7 +10,7 @@ const Ottoman = () => {
 
     const cu = useSelector(store => store.userSection.cu);
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const move = useNavigate();
     const containerRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -57,17 +57,15 @@ const Ottoman = () => {
     };
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
-            try {
+        setLoading(true)
+        try {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
                 if (res) {
                     setData(res.data);
                 }
-            } catch (e) {
-                // console.log(e);
-            } finally {
-                setLoading(false);
-            }
-        });
+                setLoading(false)
+            });
+        } catch (e) { }
     }, []);
 
     return (

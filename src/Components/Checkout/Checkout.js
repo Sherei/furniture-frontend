@@ -50,25 +50,26 @@ const Checkout = () => {
                         type: "ADD_TO_CART",
                         payload: res.data,
                     });
-                    
-                const totalSum = res.data.reduce((accumulator, item) => {
-                    return accumulator + item.total;
-                }, 0);
-                const totalQuantity = res.data.reduce((accumulator, item) => {
-                    return accumulator + item.quantity;
-                }, 0);
-                const shippingFee = () => {
-                    if (totalQuantity === 1) {
-                        return 50;
-                    } else if (totalQuantity === 2) {
-                        return 70;
-                    } else {
-                        return 99;
-                    }
-                };
-                const shippingFeeAmount = shippingFee();
-                const total = totalSum + shippingFeeAmount;
-                
+                    setLoading(false);
+
+                    const totalSum = res.data.reduce((accumulator, item) => {
+                        return accumulator + item.total;
+                    }, 0);
+                    const totalQuantity = res.data.reduce((accumulator, item) => {
+                        return accumulator + item.quantity;
+                    }, 0);
+                    const shippingFee = () => {
+                        if (totalQuantity === 1) {
+                            return 50;
+                        } else if (totalQuantity === 2) {
+                            return 70;
+                        } else {
+                            return 99;
+                        }
+                    };
+                    const shippingFeeAmount = shippingFee();
+                    const total = totalSum + shippingFeeAmount;
+
                     TagManager.dataLayer({
                         dataLayer: {
                             event: "begin_checkout",
@@ -99,8 +100,11 @@ const Checkout = () => {
     }, []);
 
     useEffect(() => {
+        setLoading(true);
+
         if (allCartItems) {
             setCart(allCartItems);
+            setLoading(false);
         }
     }, [allCartItems]);
 
@@ -148,11 +152,11 @@ const Checkout = () => {
     const total = totalSum + shippingFeeAmount;
 
     async function Order(data) {
-        
+
         window.scrollTo({
             top: 0
         });
-        
+
         try {
             setLoading(true);
             const orderItems = [];

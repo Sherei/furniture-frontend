@@ -24,7 +24,7 @@ const Products = () => {
   const [activeGrid, setActiveGrid] = useState("grid");
   const [sort, setSortOrder] = useState("");
   const [category, setCategory] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(3000);
   const [filter, setFilter] = useState(false);
@@ -43,6 +43,7 @@ const Products = () => {
 
     const fetchData = async () => {
       try {
+        setLoading(true)
         const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
         const params = {
           name: category,
@@ -53,13 +54,12 @@ const Products = () => {
         };
         const res = await axios.get(apiUrl, { params, cancelToken: source.token });
         setData(res?.data);
+        setLoading(false);
         
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
     fetchData();
     return () => {
@@ -99,14 +99,12 @@ const Products = () => {
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
         <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
-          <div className="d-flex justify-content-end mb-3">
-            {/* <p className="fs-5" style={{ color: "#1B2950" }}>
-              <FaFilter /> Filter
-            </p> */}
+          <div className="d-flex justify-content-end mb-3" style={{borderBottom:"1px solid lightgray"}}>
             <button className="btn" type="button" onClick={() => setFilter(false)} >
             <RxCross1 /> CLOSE 
             </button>
           </div>
+          <p className="fs-4" style={{color:"#02025E", fontWeight:"500"}}>Product Categories</p>
           <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingOne">
