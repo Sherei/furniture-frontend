@@ -262,7 +262,7 @@ export const Navbar = () => {
   return (
     <>
       {open && (
-        <div className={`side_cart px-2 ${open === true ? "side_open" : ""}`} cartRef={ref}>
+        <div className={` px-2 ${open ? "side_open" : "side_cart"}`} cartRef={ref}>
           <div className="py-2 d-flex justify-content-between align-items-center" style={{borderBottom:"1px solid lightgray"}}>
             <p className="fw-bolder fs-5 m-0">SHOPPING CART</p>
             <button
@@ -356,7 +356,7 @@ export const Navbar = () => {
             </div>
           )}
           {filterCart?.length > 0 && (
-            <div className="">
+            <div className="border">
               <div className="d-flex justify-content-between fw-bolder fs-5">
                 <p className="mb-1">Subtotal {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
                 <p className="mb-1">&pound;{subtotal?.toFixed()}</p>

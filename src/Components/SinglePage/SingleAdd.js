@@ -692,20 +692,13 @@ const SingleAdd = () => {
               </h1>
               {comments.filter((item) => item.productId === productId)
                 .length > 0 && (
-                  <span className="mt-2 mb-3" style={{ color: "red" }}>
-                    <span
-                      className="text-center"
-                      style={{ color: "#1b2950" }}
-                    >
-                      (
-                      {
-                        comments.filter(
+                  <span className="text-center my-2" style={{ color: "#1b2950" }}>
+                      ({comments.filter(
                           (item) => item.productId === productId
                         ).length
                       }{" "}
                       Customer Review)
                     </span>
-                  </span>
                 )}
               {/* <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
