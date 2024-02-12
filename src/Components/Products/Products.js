@@ -381,12 +381,12 @@ const Products = () => {
               </p>
             </div>
           </div>
-          <button
+          {/* <button
             className="btn btn-danger text-uppercase my-4 w-100"
             onClick={ClearFilter}
           >
             Clear filter
-          </button>
+          </button> */}
         </div>
 
         <div className="row">
@@ -670,12 +670,12 @@ const Products = () => {
                   &pound;{minPrice} - &pound;{maxPrice}
                 </p>
               </div>
-              <button
+              {/* <button
                 className="btn btn-danger text-uppercase my-4 w-100"
                 onClick={ClearFilter}
               >
                 Clear filter
-              </button>
+              </button> */}
             </div>
           </div>
 
