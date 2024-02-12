@@ -267,9 +267,10 @@ export const Navbar = () => {
             <p className="fw-bolder fs-5 m-0">SHOPPING CART</p>
             <button
               className="m-0 side_cart_cross"
+              type="button"
               onClick={() => setCartOpen(false)}
             >
-              <RxCross1 /> CLOSE
+              CLOSE <RxCross1 /> 
             </button>
           </div>
           {filterCart?.length === 0 ? (
