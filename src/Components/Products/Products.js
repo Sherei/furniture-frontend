@@ -30,8 +30,8 @@ const Products = () => {
   const [filter, setFilter] = useState(false);
   const move = useNavigate();
   
-  const sendWhatsAppMessage = (sn) => {
-    const message = `I'm interested in product.\nSerial Number is ${sn}\nCan you provide more details?`;
+  const sendWhatsAppMessage = (title) => {
+    const message = `I'm interested in product.\n${title}\nCan you provide more details?`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
@@ -779,7 +779,7 @@ const Products = () => {
                             View Detail
                           </button>
                         </a>
-                          <button className="btn p_whatsapp_btn" onClick={() => sendWhatsAppMessage(product.sn)}>
+                          <button className="btn p_whatsapp_btn" onClick={() => sendWhatsAppMessage(product?.title)}>
                             Buy Via WhatsApp
                           </button>
                       </div>

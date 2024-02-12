@@ -83,7 +83,7 @@ const SingleAdd = () => {
   };
 
   const sendWhatsAppMessage = () => {
-    const message = `I'm interested in product\n\n${window.location.href}\n\nSerial Number ${product.sn}\n\nCan you provide more details?`;
+    const message = `I'm interested in product\n\n** ${window.location.href}\n\n** ${product?.title}\n\nCan you provide more details?`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
