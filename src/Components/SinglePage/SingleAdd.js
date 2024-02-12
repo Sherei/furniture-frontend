@@ -7,8 +7,8 @@ import {
   FaArrowRight,
   FaArrowDown,
   FaArrowUp,
-  FaStar,
 } from "react-icons/fa";
+import { LuClipboard } from "react-icons/lu";
 import TagManager from 'react-gtm-module';
 import { RiStarSFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
@@ -72,6 +72,23 @@ const SingleAdd = () => {
   const [timeoutId, setTimeoutId] = useState(null);
   const dispatch = useDispatch();
 
+  const copyUrlToClipboard = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL).then(() => {
+      toast.success("URL copied to clipboard");
+    }).catch((error) => {
+      console.error("Error copying URL to clipboard: ", error);
+      toast.error("Failed to copy URL to clipboard");
+    });
+  };
+
+  const sendWhatsAppMessage = () => {
+    const message = `I'm interested in product serial number is ${product.sn}.URL: ${window.location.href}. Can you provide more details?`;
+    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
+
+
   useEffect(() => {
     const source = axios.CancelToken.source();
 
@@ -80,9 +97,9 @@ const SingleAdd = () => {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
-        
-      setLoading(false)
-      TagManager.dataLayer({
+
+        setLoading(false)
+        TagManager.dataLayer({
           dataLayer: {
             event: "view_item",
             ecommerce: {
@@ -693,15 +710,15 @@ const SingleAdd = () => {
               </h1>
               {comments.filter((item) => item.productId === productId)
                 .length > 0 && (
-                  <div className="text-center my-2" style={{ color: "#1b2950" }}>
-                  <Link to="review">
+                  <div className="text-center my-2 cursor" style={{ color: "#1b2950" }}>
+                    <Link to="review">
                       ({comments.filter(
                         (item) => item.productId === productId
-                        ).length
+                      ).length
                       }{" "}
                       Customer Review)
-                </Link>
-                      </div>
+                    </Link>
+                  </div>
                 )}
               {/* <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
@@ -1314,6 +1331,7 @@ const SingleAdd = () => {
                   </button>
                 </div>
               </div>
+              <p className="fw-bolder fs-6 mt-3 mb-0 cursor" onClick={copyUrlToClipboard}>Share Product <LuClipboard /></p>
             </div>
 
             {Error === "options" && (
@@ -1346,11 +1364,9 @@ const SingleAdd = () => {
               </button>
             </div>
             <div className="">
-              <a href="https://wa.me/+447392608087" target="blank">
-                <button className="btn s_whatsapp fw-bolder">
-                  Buy via WhatsApp
-                </button>
-              </a>
+              <button className="btn s_whatsapp fw-bolder" onClick={sendWhatsAppMessage}>
+                Buy via WhatsApp
+              </button>
             </div>
           </div>
         </div>
