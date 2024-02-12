@@ -83,12 +83,12 @@ const SingleAdd = () => {
   };
 
   const sendWhatsAppMessage = () => {
-    const message = `I'm interested in product serial number is ${product.sn}.URL: ${window.location.href}. Can you provide more details?`;
+    const message = `I'm interested in product\nSerial Number ${product.sn}.\nURL: ${window.location.href}\nCan you provide more details?`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
-
-
+  
+  
   useEffect(() => {
     const source = axios.CancelToken.source();
 
@@ -1363,11 +1363,9 @@ const SingleAdd = () => {
                 Order Now
               </button>
             </div>
-            <div className="">
-              <button className="btn s_whatsapp fw-bolder" onClick={sendWhatsAppMessage}>
+             <button className="btn s_whatsapp fw-bolder" onClick={sendWhatsAppMessage}>
                 Buy via WhatsApp
               </button>
-            </div>
           </div>
         </div>
 
