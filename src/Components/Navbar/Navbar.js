@@ -270,7 +270,7 @@ export const Navbar = () => {
               type="button"
               onClick={() => setCartOpen(false)}
             >
-              CLOSE <RxCross1 /> 
+             <RxCross1 /> CLOSE  
             </button>
           </div>
           {filterCart?.length === 0 ? (

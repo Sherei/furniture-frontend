@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BsFillGridFill, BsListStars } from "react-icons/bs";
 import { FaFilter } from "react-icons/fa";
+import { RxCross1 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
@@ -103,14 +104,8 @@ const Products = () => {
               <FaFilter /> Filter
             </p> */}
             <button className="btn" type="button" onClick={() => setFilter(false)} >
-              Close X
+            <RxCross1 /> CLOSE 
             </button>
-            {/* <span
-              className="close px-3 fs-5"
-              onClick={() => setFilter(false)}
-            >
-              ❌
-            </span> */}
           </div>
           <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
             <div className="accordion-item">
