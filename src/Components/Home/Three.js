@@ -14,8 +14,9 @@ const Three = () => {
     const containerRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
+   
     const sendWhatsAppMessage = (sn) => {
-        const message = `I'm interested in product serial number is ${sn}. Can you provide more details?`;
+        const message = `I'm interested in product\nSerial Number is ${sn}\nCan you provide more details?`;
         const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, "_blank");
     };
