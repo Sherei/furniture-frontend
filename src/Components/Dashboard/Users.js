@@ -7,10 +7,11 @@ import './users.css';
 
 export const Users = () => {
   const [Users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/AdminUsers`, {
         params: { search },
@@ -20,7 +21,6 @@ export const Users = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        setIsLoading(false);
       });
   }, [search]);
 

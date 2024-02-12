@@ -12,7 +12,7 @@ const Comments = () => {
     const dispatch = useDispatch()
 
     const [comments, setComments] = useState([])
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const [search, setSearch] = useState('');
 
@@ -26,11 +26,10 @@ const Comments = () => {
                     if (res) {
                         dispatch({ type: "ADD_COMMENT", payload: res.data });
                     }
+                setLoading(false);
                 });
         } catch (e) {
-        } finally {
-            setLoading(false);
-        }
+        } 
     }, [search]);
 
     useEffect(() => {

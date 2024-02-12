@@ -9,12 +9,13 @@ import axios from 'axios';
 const Blogs = () => {
 
     const [blog, setblog] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState('');
 
     let move = useNavigate()
 
     useEffect(() => {
+        setIsLoading(true)
         axios
             .get(`${process.env.REACT_APP_BASE_URL}/blog`, {
                 params: { search }
@@ -24,7 +25,6 @@ const Blogs = () => {
                 setIsLoading(false);
             })
             .catch((error) => {
-                setIsLoading(false);
             });
     }, [search]);
 

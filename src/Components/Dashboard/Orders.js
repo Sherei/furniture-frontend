@@ -7,10 +7,12 @@ import axios from 'axios';
 export const Orders = () => {
 
   const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    setIsLoading(true);
+    
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/order`)
       .then((res) => {
@@ -18,8 +20,6 @@ export const Orders = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
       });
   }, []);
 
@@ -43,6 +43,7 @@ export const Orders = () => {
   };
 
   const filteredOrder = orders?.filter((data) => {
+    
     const lowerCaseSearch = search.toLowerCase();
     return (
       data?.name1?.toLowerCase().includes(lowerCaseSearch) ||

@@ -27,7 +27,7 @@ export const Dashboard = () => {
     const [comment, setComments] = useState([])
     const [order, setOrder] = useState([])
     const [blog, setBlog] = useState([])
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     let data = [
         { title: "Total Orders", desc: order.length, icon: <FaFirstOrder />, id: "order" },
@@ -46,11 +46,9 @@ export const Dashboard = () => {
                 setComments(res.data.comments)
                 setOrder(res.data.allOrder)
                 setBlog(res.data.allBlog)
+                setIsLoading(false);
             })
         } catch (e) { }
-        finally {
-            setIsLoading(false);
-        }
     }, [])
 
 
@@ -113,7 +111,7 @@ export const Dashboard = () => {
                         <Comments />
                     </div>
                     <div className='col-12' id='blog'>
-                        <Blogs/>
+                        <Blogs />
                     </div>
                 </div>
             </div>
