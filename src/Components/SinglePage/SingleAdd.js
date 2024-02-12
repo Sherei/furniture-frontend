@@ -90,8 +90,8 @@ const SingleAdd = () => {
   
   
   useEffect(() => {
-    const source = axios.CancelToken.source();
 
+    const source = axios.CancelToken.source();
     const fetchData = async () => {
       setLoading(true)
       try {
