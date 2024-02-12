@@ -73,6 +73,7 @@ const CornerSofas = () => {
             });
         } catch (e) { }
     }, []);
+
     return (
         <div className='container-fluid px-lg-5 px-sm-4 my-5'>
             <div className='row'>
@@ -90,7 +91,7 @@ const CornerSofas = () => {
                 </div>
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
                     <div className='h_box_main' ref={containerRef}>
-                        {data.filter((item) => item.category === "corner-sofas" && item.home === true &&
+                        {data.filter((item) => item.subCategory === "corner-sofas" && item.home === true &&
                             (item.stock === undefined || item.stock === false))
                             .map((product, index) => (
                                 <div className='card_box' key={index}>

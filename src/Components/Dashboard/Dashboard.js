@@ -27,7 +27,7 @@ export const Dashboard = () => {
     const [comment, setComments] = useState([])
     const [order, setOrder] = useState([])
     const [blog, setBlog] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     let data = [
         { title: "Total Orders", desc: order.length, icon: <FaFirstOrder />, id: "order" },
@@ -39,16 +39,16 @@ export const Dashboard = () => {
 
     useEffect(() => {
         try {
-            setIsLoading(true);
             axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard`).then((res) => {
                 setUsers(res.data.Users)
                 setProducts(res.data.Products)
                 setComments(res.data.comments)
                 setOrder(res.data.allOrder)
                 setBlog(res.data.allBlog)
-                setIsLoading(false);
             })
-        } catch (e) { }
+        } catch (e) { }finally{
+            setIsLoading(false)
+        }
     }, [])
 
 
