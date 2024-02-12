@@ -96,7 +96,7 @@ const Review = () => {
 
     return <>
         <div className='container-fluid p-0 ' id='review'>
-            <div className='row pt-lg-0 pt-5'>
+            <div className='row pt-lg-0 pt-1'>
                 <div className='col-lg-6 col-md-6 col-sm-12 pt-5' style={{ backgroundColor: "rgb(2, 2, 94)" }}>
                     <h1 className='text-center fs-1 fw-bolder' style={{ color: "white" }}>Our Customers</h1>
                     <p className='text-center fs-6' style={{ color: "white" }}>Over 10,000 happy customers!</p>

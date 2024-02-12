@@ -300,7 +300,7 @@ export const Navbar = () => {
               </center>
             </div>
           ) : (
-            <div className="" style={{ height: "72vh", overflow: "auto" }}>
+            <div className="" style={{ height: "68vh", overflow: "auto" }}>
               {filterCart?.map((item, index) => (
                 <div
                   className="px-2 mt-2 py-2 d-flex gap-2 cursor"
