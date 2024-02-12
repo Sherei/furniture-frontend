@@ -29,6 +29,12 @@ const Products = () => {
   const [maxPrice, setMaxPrice] = useState(3000);
   const [filter, setFilter] = useState(false);
   const move = useNavigate();
+  
+  const sendWhatsAppMessage = (sn) => {
+    const message = `I'm interested in product serial number is ${sn}.URL: ${window.location.href}. Can you provide more details?`;
+    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
 
   const Filter = () => {
     setFilter(!filter);
@@ -773,11 +779,9 @@ const Products = () => {
                             View Detail
                           </button>
                         </a>
-                        <a href="https://wa.me/+447392608087" target="blank">
-                          <button className="btn p_whatsapp_btn">
+                          <button className="btn p_whatsapp_btn" onClick={() => sendWhatsAppMessage(product.sn)}>
                             Buy Via WhatsApp
                           </button>
-                        </a>
                       </div>
                     </div>
                   </div>
