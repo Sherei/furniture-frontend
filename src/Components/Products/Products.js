@@ -89,11 +89,6 @@ const Products = () => {
     setMaxPrice(3000);
     setMinPrice(0);
   }
-  if (loading) {
-    return <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
-      <Loader />
-    </div>
-  }
 
   return (
     <>
