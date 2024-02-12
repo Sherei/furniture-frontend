@@ -26,6 +26,7 @@ import { toast } from "react-toastify";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import axios from "axios";
+import { Link } from "react-scroll";
 import "./single.css";
 
 
@@ -692,13 +693,15 @@ const SingleAdd = () => {
               </h1>
               {comments.filter((item) => item.productId === productId)
                 .length > 0 && (
-                  <span className="text-center my-2" style={{ color: "#1b2950" }}>
+                  <div className="text-center my-2" style={{ color: "#1b2950" }}>
+                  <Link to="review">
                       ({comments.filter(
-                          (item) => item.productId === productId
+                        (item) => item.productId === productId
                         ).length
                       }{" "}
                       Customer Review)
-                    </span>
+                </Link>
+                      </div>
                 )}
               {/* <p className="fs-6 fw-bolder " style={{ color: "#1b2950" }}>
                     Product code: {product?.sn}
@@ -1513,7 +1516,7 @@ const SingleAdd = () => {
           </div>
         </div>
 
-        <div className="row my-5">
+        <div className="row my-5" id="review">
           <div
             className="col-lg-6 col-md-6 col-sm-12 py-5"
             style={{ backgroundColor: "rgb(2, 2, 94)" }}
