@@ -101,7 +101,7 @@ const Products = () => {
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
         <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
           <div className="d-flex justify-content-end mb-3" style={{borderBottom:"1px solid lightgray"}}>
-            <button className="btn" type="button" onClick={() => setFilter(false)} >
+            <button className="btn" type="button" style={{color:"red"}} onClick={() => setFilter(false)} >
             <RxCross1 /> CLOSE 
             </button>
           </div>
