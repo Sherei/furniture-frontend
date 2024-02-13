@@ -11,12 +11,12 @@ const Ottoman = () => {
     const cu = useSelector(store => store.userSection.cu);
     const move = useNavigate();
     const containerRef = useRef(null);
-    
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
-    
+
     const sendWhatsAppMessage = (title) => {
         const message = `I'm interested in product\n${title}\nCan you provide more details?`;
         const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
@@ -93,17 +93,17 @@ const Ottoman = () => {
                 <div className='col-lg-12 col-sm-12' style={{ position: "relative" }}>
                     <div className='h_box_main' ref={containerRef}>
                         {data
-                            .filter((item) => item.category === "ottoman-box" && item.home === true &&  
-                            (item.stock === undefined || item.stock === false))
+                            .filter((item) => item.category === "ottoman-box" && item.home === true &&
+                                (item.stock === undefined || item.stock === false))
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
-                                    <a href={"/single_Add/" + product._id}>
-                                        <button className='btn order_btn'>View Detail</button>
+                                   <a href={`/single_add/${product._id}`}>
+                                         <button className='btn order_btn'>View Detail</button>
                                     </a>
                                     <button className='btn card_whatsAp' onClick={() => sendWhatsAppMessage(product.title)}>Buy Via WhatsApp</button>
 
-                                    <a href={"/single_Add/" + product._id}>
-                                        <div className='card_img_box'>
+                                    <a href={`/single_add/${product._id}`}>
+                                         <div className='card_img_box'>
                                             <img src={product?.images[0]} className='img-fluid' alt='No Network'
                                                 style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                             />

@@ -83,12 +83,12 @@ const SingleAdd = () => {
   };
 
   const sendWhatsAppMessage = () => {
-    const message = ` I'm interested in product\n\n ${window.location.href}\n\n ${product?.title}\n\n Can you provide more details?`;
+    const message = `I'm interested in product\n${window.location.href}\n${product.category}${product.subCategory ? "/"+product.subCategory:""}/${product?.title}\nCan you provide more details?`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
-  
-  
+
+
   useEffect(() => {
 
     const source = axios.CancelToken.source();
@@ -97,7 +97,6 @@ const SingleAdd = () => {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
-
         setLoading(false)
         TagManager.dataLayer({
           dataLayer: {
@@ -597,14 +596,14 @@ const SingleAdd = () => {
       <div className="container-fluid min-vh-100">
         <div className="row">
           <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
-            {product.subCategory != "three-&-two-seater-sofas" &&
+            {product?.subCategory != "three-&-two-seater-sofas" &&
               <p style={{ textTransform: "capitalize" }}>
                 home <FaAngleRight />
                 products <FaAngleRight /> {
                   product?.category
                 } <FaAngleRight /> {product?.subCategory}
               </p>}
-            {product.subCategory === "three-&-two-seater-sofas" &&
+            {product?.subCategory === "three-&-two-seater-sofas" &&
               <p style={{}}>
                 Home <FaAngleRight />
                 Products <FaAngleRight /> <span style={{ textTransform: "capitalize" }}>{product?.category}</span>
@@ -1331,7 +1330,7 @@ const SingleAdd = () => {
                   </button>
                 </div>
               </div>
-              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center" style={{fontWeight:"500"}} onClick={copyUrlToClipboard}>Share Product <LuClipboard /></p>
+              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center" style={{ fontWeight: "500" }} onClick={copyUrlToClipboard}>Share Product <LuClipboard /></p>
             </div>
 
             {Error === "options" && (
@@ -1363,9 +1362,9 @@ const SingleAdd = () => {
                 Order Now
               </button>
             </div>
-             <button className="btn s_whatsapp fw-bolder" onClick={sendWhatsAppMessage}>
-                Buy via WhatsApp
-              </button>
+            <button className="btn s_whatsapp fw-bolder" onClick={sendWhatsAppMessage}>
+              Buy via WhatsApp
+            </button>
           </div>
         </div>
 

@@ -95,13 +95,13 @@ const CornerSofas = () => {
                             (item.stock === undefined || item.stock === false))
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
-                                    <a href={"/single_Add/" + product._id}>
+                                    <a href={`/single_add/${product._id}`}>
                                         <button className='btn order_btn'>View Detail</button>
                                     </a>
                                     <button className='btn card_whatsAp' onClick={() => sendWhatsAppMessage(product.title)}>Buy Via WhatsApp</button>
 
-                                    <a href={"/single_Add/" + product._id}>
-                                        <div className='card_img_box'>
+                                    <a href={`/single_add/${product._id}`}>
+                                         <div className='card_img_box'>
                                             <img src={product?.images[0]} className='img-fluid' alt='No Network'
                                                 style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                             />

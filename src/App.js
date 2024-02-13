@@ -141,7 +141,7 @@ function App() {
                 <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
                 <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
                 <Route exact path='/Products' element={<Products />} />
-                <Route exact path='/single_Add/:productId' element={<SingleAdd />} />
+                <Route path='/single_add/:productId' element={<SingleAdd />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
 
                 {/* Cart */}
