@@ -229,13 +229,14 @@
 
 @keyframes filter {
   0% {
-      right: -400px;
+    right: -400px;
   }
 
   100% {
-      right: 0px;
+    right: 0px;
   }
 }
+
 .side_cart_cross {
   font-weight: 600;
   font-size: 15px;
@@ -479,5 +480,16 @@
 
   .nav_contact3 {
     display: block !important;
+  }
+}
+
+@media screen and (max-width:320px) {
+  .side_cart {
+    width: 250px !important;
+  }
+
+  .side_open {
+    width: 250px !important;
+
   }
 }
