@@ -236,7 +236,9 @@
     right: 0px;
   }
 }
-
+.cart_text{
+  font-size: 20px;
+}
 .side_cart_cross {
   font-weight: 600;
   font-size: 15px;
@@ -484,12 +486,12 @@
 }
 
 @media screen and (max-width:320px) {
-  .side_cart {
+  .side_cart,.side_open {
     width: 250px !important;
   }
-
-  .side_open {
-    width: 250px !important;
-
+  .cart_text,.side_remove,.side_cart_cross {
+    font-size: 14px !important;
   }
+
+
 }
