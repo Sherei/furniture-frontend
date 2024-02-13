@@ -257,6 +257,7 @@
     height: 100%;
     transition: 0.3s ease;
 }
+
 .p_img_box img:hover {
     transform: scale(1.09) !important;
     transition: all linear 2s;
@@ -289,12 +290,13 @@
 .p_img_box:hover .overlay {
     left: 0;
 }
+
 .p_img_box_grid:hover .overlay {
     left: 0;
 }
 
 .grid_box_main:hover {
-    cursor: pointer;    
+    cursor: pointer;
     transform: scale(1.02);
     transition: all linear 0.3s;
 }
@@ -385,4 +387,11 @@
     .filter_col_display {
         display: none;
     }
+}
+
+@media screen and (max-width:320px) {
+    .filter_col,.showFilter {
+        width: 250px !important;
+    }
+
 }
