@@ -49,11 +49,11 @@ export const Login = () => {
         });
 
         if (loginUser.user.email === "asd@gmail.com") {
-         return move('/admin-dashboard');
+          return move('/admin-dashboard');
         } else if (productId) {
-         return move("/single_Add/" + productId);
+          return move("/single_Add/" + productId);
         } else if (!productId) {
-         return move("/products/all");
+          return move("/products/all");
         }
       }
     } catch (e) {
@@ -118,11 +118,16 @@ export const Login = () => {
             </div>
             <button className='btn rounded login_btn mt-3'>Login</button>
             <p className='mt-2 fs-6'>I don't have an account. &nbsp;
-              <a href="/signup">
+              {productId && <a href={"/signup/" + productId}>
                 <span className='register_btn'>
                   Register
                 </span>
-              </a>
+              </a>}
+              {!productId && <a href="/signup">
+                <span className='register_btn'>
+                  Register
+                </span>
+              </a>}
             </p>
           </form>
         </div>

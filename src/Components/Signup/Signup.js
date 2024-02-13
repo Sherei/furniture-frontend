@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from "react-toastify";
 import Benefits from '../Benefits/Benefits';
@@ -14,6 +14,7 @@ const Signup = () => {
             behavior: 'smooth'
         });
     }, []);
+    const { productId } = useParams();
 
     const [Error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +31,11 @@ const Signup = () => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
             if (response.data === "User Created") {
                 toast.success("Account Created")
-                move('/login')
+                if(productId){
+                    move('/login/'+productId)
+                }else{
+                    move('/login')
+                }
                 reset();
             }
         } catch (error) {
@@ -100,13 +105,20 @@ const Signup = () => {
                         </div>
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
                         <p className='mt-2 fs-6'>Already have an account? &nbsp;
-                            <a href="/login">
+                           {productId && <a href={"/login/" + productId}>
                                 <span
                                     className='register_btn'
                                 >
                                     Login
                                 </span>
-                            </a>
+                            </a>}
+                            {!productId && <a href={"/login"}>
+                                <span
+                                    className='register_btn'
+                                >
+                                    Login
+                                </span>
+                            </a>}
                         </p>
 
                     </form>
