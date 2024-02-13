@@ -10,6 +10,7 @@ import Footer from "./Components/Footer/Footer"
 import Checkout from './Components/Checkout/Checkout';
 import SingleBlog from './Components/Blog/SingleBlog';
 import { useDispatch } from "react-redux";
+import { FaWhatsapp } from "react-icons/fa";
 import { RiMessage2Line } from "react-icons/ri"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
@@ -39,6 +40,12 @@ function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+ 
+  const sendWhatsAppMessage = () => {
+    const message = `https://sofabedsltd.co.uk/\n\nHow can we help you?`;
+    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
 
   useEffect(() => {
     function onlineHandler() {
@@ -111,18 +118,14 @@ function App() {
             </div>
           )} */}
           {/* <img src="/greeting.svg" className='greeting' /> */}
-          <a href='https://wa.me/+447392608087' target="blank">
-            <div className='d-flex align-items-center gap-2 whatsapp-btn_main'>
+            <div className='d-flex align-items-center gap-2 whatsapp-btn_main' onClick={sendWhatsAppMessage}>
               <div>
                 <p className='m-0'>Chat</p>
               </div>
               <div className='whatsapp-btn'>
-                <RiMessage2Line />
+              <FaWhatsapp />
               </div>
-
             </div>
-
-          </a>
 
           <BrowserRouter>
             <Navbar />
