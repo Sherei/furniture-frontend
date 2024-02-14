@@ -71,7 +71,7 @@ export const Cart = () => {
           payload: response.data.alldata,
         });
         setLoading(false);
-        toast.success("Item Removed");
+        // toast.success("Item Removed");
       }
     } catch (e) {
       // console.log(e);
@@ -172,16 +172,16 @@ export const Cart = () => {
               type: "ADD_TO_CART",
               payload: res.data.alldata,
             });
-            toast.success("Cart updated successfully");
+            // toast.success("Cart updated successfully");
           } else {
-            toast.error("Failed to update cart");
+            // toast.error("Failed to update cart");
           }
         })
         .catch((error) => {
-          toast.error("Failed to update cart");
+          // toast.error("Failed to update cart");
         });
     } catch (e) {
-      toast.error("Failed to update cart");
+      // toast.error("Failed to update cart");
     } finally {
       setLoading(false);
     }
@@ -403,7 +403,7 @@ export const Cart = () => {
                                 Price
                               </p>
                               <p className="m-0" style={{ fontSize: "14px" }}>
-                                &pound;{item?.total?.toFixed()}
+                                &pound;{item?.total?.toFixed(2)}
                               </p>
                             </div>
                             <hr className="m-0 p-0" />
@@ -453,7 +453,7 @@ export const Cart = () => {
                                 className="m-0 fw-bolder fs-5"
                                 style={{ color: "red", fontSize: "17px" }}
                               >
-                                &pound;{item?.total?.toFixed()}
+                                &pound;{item?.total?.toFixed(2)}
                               </p>
                             </div>
                           </div>
@@ -612,7 +612,7 @@ export const Cart = () => {
                                   )}
                                 </div>
                               </td>
-                              <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
+                              <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
                               <td className="text-center">
                                 <p className="input_single text-center m-0 p-0">
                                   {item.quantity}
@@ -637,7 +637,7 @@ export const Cart = () => {
                               </button> */}
                                 </div>
                               </td>
-                              <td className="text-center">{`£${item?.total?.toFixed()}`}</td>
+                              <td className="text-center">{`£${item?.total?.toFixed(2)}`}</td>
                               <td className="text-center">
                                 <button
                                   className=" btn text-danger"
@@ -677,13 +677,13 @@ export const Cart = () => {
           ) : (
             <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "80vh" }}>
               <img src="/cart.png" alt="" style={{ width: "150px" }} />
-              <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+              <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
               <a href="/Products/all">
                 <button
                   className="btn review_btn"
                   style={{ width: "fit-content" }}
                 >
-                  Browse Our Products
+                  Shop our products
                 </button>
               </a>
             </div >
@@ -693,64 +693,65 @@ export const Cart = () => {
 
         </div>
 
-        <div className="col-lg-3 col-md-12 col-sm-12">
-          <div className="update mb-3 py-3 px-lg-3 px-md-3 px-sm-1 px-1 border">
-            <div className="d-flex justify-content-between">
-              <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
-                CART TOTALS
-              </p>
-              <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
-                {totalQuantity}
-              </p>
-            </div>
-            <div className="fw-normal d-flex justify-content-between">
-              <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
-                Subtotal
-              </p>
-              <p className="text-muted m-0" style={{ fontSize: "15px" }}>
-                &pound;{subtotal?.toFixed()}
-              </p>
-            </div>
-            <hr className="m-1" />
-
-            <div className="fw-normal d-flex justify-content-between align-items-center gap-3">
-              <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
-                Shipping
-              </p>
-              <div>
-                <p
-                  className="text-muted m-0  text-end"
-                  style={{ fontSize: "13px" }}
-                >
-                  Standard Delivery:{" "}
-                  <span className="fw-bolder">
-                    &pound;{shippingFeeAmount?.toFixed()}
-                  </span>{" "}
+        {filterCart?.length > 0 && (
+          <div className="col-lg-3 col-md-12 col-sm-12">
+            <div className="update mb-3 py-3 px-3 border">
+              <div className="d-flex justify-content-between">
+                <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
+                  CART TOTALS
                 </p>
-                <p className="m-0 text-end" style={{ fontSize: "11px" }}>
-                  Shipping options will be updated during checkout.
+                <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
+                  {totalQuantity}
                 </p>
               </div>
-            </div>
-            <hr className="m-1" />
-            <div className="fw-normal d-flex justify-content-between mt-4">
-              <p className="fw-bolder m-0" style={{ fontSize: "17px" }}>
-                Total:
-              </p>
-              <p
-                className="fw-bolder m-0"
-                style={{ color: "red", fontSize: "17px" }}
-              >
-                &pound;{total?.toFixed()}
-              </p>
-            </div>
+              <div className="fw-normal d-flex justify-content-between">
+                <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
+                  Subtotal
+                </p>
+                <p className="text-muted m-0" style={{ fontSize: "15px" }}>
+                  &pound;{subtotal?.toFixed(2)}
+                </p>
+              </div>
+              <hr className="m-1" />
 
-            {filterCart?.length > 0 && (
-              <div className="card-body my-4">
+              <div className="fw-normal d-flex justify-content-between align-items-center gap-3">
+                <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
+                  Shipping
+                </p>
+                <div>
+                  <p
+                    className="text-muted m-0  text-end"
+                    style={{ fontSize: "13px" }}
+                  >
+                    Standard Delivery:{" "}
+                    <span className="fw-bolder">
+                      &pound;{shippingFeeAmount?.toFixed(2)}
+                    </span>{" "}
+                  </p>
+                  <p className="m-0 text-end" style={{ fontSize: "11px" }}>
+                    Shipping options will be updated during checkout.
+                  </p>
+                </div>
+              </div>
+              <hr className="m-1" />
+
+              <div className="fw-normal d-flex justify-content-between mt-4">
+                <p className="fw-bolder m-0" style={{ fontSize: "17px" }}>
+                  Total:
+                </p>
+                <p
+                  className="fw-bolder m-0"
+                  style={{ color: "red", fontSize: "17px" }}
+                >
+                  &pound;{total?.toFixed(2)}
+                </p>
+              </div>
+
+              <div className="my-4">
                 <a href={`/cart-checkout/${cu._id}`}>
                   <button
                     type="button"
-                    className="btn fs-6 py-2"
+                    className="btn fs-6 py-2 w-100"
                     style={{
                       backgroundColor: "#8B0000",
                       color: "white",
@@ -777,9 +778,9 @@ export const Cart = () => {
                   </button>
                 </a>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -60,10 +60,10 @@ const UserPanel = () => {
 
     function Logout() {
         dispatch({
-          type: "LOGOUT_USER",
+            type: "LOGOUT_USER",
         });
         move("/login");
-      }
+    }
     if (cu._id === undefined || cu.email === 'asd@gmail.com') {
         if (loading) {
             return (
@@ -111,7 +111,7 @@ const UserPanel = () => {
                                 <h5 className="my-3">{cu.name}</h5>
                                 <p className="text-muted mb-1">{cu.number}</p>
                                 <p className="text-muted mb-4">{cu.email}</p>
-                             
+
                                 <button type="button" className="btn review_btn ms-1 my-3" onClick={Logout}>
                                     Logout
                                 </button>
@@ -124,8 +124,8 @@ const UserPanel = () => {
                             <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ height: '50vh', backgroundColor: '#eee' }}>
                                 <p className='fw-bolder text-muted'>No Order Placed yet</p>
                                 <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
-                                <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move('/Products/all')}>
-                                    Browse Our Products 
+                                <button className='btn review_btn' style={{ width: "100%" }} onClick={() => move('/Products/all')}>
+                                    Shop our products
                                 </button>
                             </div>
 
@@ -137,7 +137,7 @@ const UserPanel = () => {
                                     </div>
                                 ) : (
                                     <div className='px-2'>
-                                        <p className='fs-5 fw-bolder m-0' style={{color:"#1b2950"}}>Orders : {filterOrder?.length}</p>
+                                        <p className='fs-5 fw-bolder m-0' style={{ color: "#1b2950" }}>Orders : {filterOrder?.length}</p>
                                         {filterOrder?.map((item, index) => {
                                             const orderItemsLength = item.orderItems.length;
                                             let totalFprice = 0;
@@ -147,7 +147,7 @@ const UserPanel = () => {
                                             return <>
                                                 <div className='row my-2 p-3' key={index} style={{ backgroundColor: "white" }}>
                                                     <div className='col-4'>
-                                                        <img src={item?.orderItems[0]?.image} style={{  maxHeight: '180px' }} className='rounded-3 img-fluid' alt="" />
+                                                        <img src={item?.orderItems[0]?.image} style={{ maxHeight: '180px' }} className='rounded-3 img-fluid' alt="" />
                                                     </div>
                                                     <div className='col-8 ' style={{ position: "relative" }}>
                                                         <p className='panel_index'>{index + 1}</p>
@@ -161,7 +161,7 @@ const UserPanel = () => {
                                                             Items: {orderItemsLength}
                                                         </p>
                                                         <p className='m-0'>
-                                                            Total: &pound;{item?.total.toFixed()}
+                                                            Total: &pound;{item?.total?.toFixed(2)}
                                                         </p>
                                                         <p className='m-0'>
                                                             Date: {formatDateTime(item?.date)}

@@ -134,10 +134,9 @@ export const Navbar = () => {
             type: "ADD_TO_CART",
             payload: res.data,
           });
+          setLoading(false)
         }
       } catch (e) {
-      } finally {
-        setLoading(false);
       }
     });
   }, []);
@@ -243,7 +242,7 @@ export const Navbar = () => {
         window.gtag('event', 'remove_from_cart', {
           item_id: itemId,
         });
-        toast.success("Item Removed");
+        // toast.success("Item Removed");
       }
     } catch (e) {
       // console.log(e);
@@ -263,14 +262,14 @@ export const Navbar = () => {
     <>
       {open && (
         <div className={` px-2 ${open ? "side_open" : "side_cart"}`} cartRef={ref}>
-          <div className="py-2 d-flex justify-content-between align-items-center" style={{borderBottom:"1px solid lightgray"}}>
-            <p className="fw-bolder m-0 cart_text" style={{color:"#02025E"}}>SHOPPING CART</p>
+          <div className="py-2 d-flex justify-content-between align-items-center" style={{ borderBottom: "1px solid lightgray" }}>
+            <p className="fw-bolder m-0 cart_text" style={{ color: "#02025E" }}>SHOPPING CART</p>
             <button
               className="m-0 side_cart_cross"
               type="button"
               onClick={() => setCartOpen(false)}
             >
-             <RxCross1 /> CLOSE  
+              <RxCross1 /> CLOSE
             </button>
           </div>
           {filterCart?.length === 0 ? (
@@ -280,7 +279,7 @@ export const Navbar = () => {
             >
               <center>
                 <img src="/cart.png" alt="" style={{ width: "100px" }} />
-                <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
                 {/* <Lottie
                 animationData={CartAnimation}
                 loop={true}
@@ -294,7 +293,7 @@ export const Navbar = () => {
                       setCartOpen("close");
                     }}
                   >
-                    Browse Our Products
+                    Shop our products
                   </button>
                 </a>
               </center>
@@ -313,7 +312,7 @@ export const Navbar = () => {
                 >
                   <div
                     className="side_img_main"
-                    style={{ width: "100px", minHeight: "80px" }}
+                    style={{ width: "100px", minHeight: "80px", position: "relative" }}
                   >
                     <img
                       src={item?.image}
@@ -323,6 +322,23 @@ export const Navbar = () => {
                         setCartOpen(false);
                       }}
                     />
+                    {item?.discount > 0 && (
+                      <div
+                        className="p-1"
+                        style={{
+                          position: "absolute",
+                          top: "-5px",
+                          left: "0px",
+                          backgroundColor: "red",
+                          color: "white",
+                          borderRadius: "40px",
+                        }}
+                      >
+                        <p className="m-0" style={{ fontSize: "10px" }}>
+                          {`-${item.discount}%`}
+                        </p>
+                      </div>
+                    )}
                   </div>
                   <div
                     className="d-flex gap-2 justify-content-between"
@@ -341,7 +357,7 @@ export const Navbar = () => {
                         </p>
                       </a>
                       <p className="m-0 fw-bolder" style={{ color: "red" }}>
-                        &pound;{item?.total?.toFixed()}
+                        &pound;{item?.total?.toFixed(2)}
                       </p>
                     </div>
                     <button
@@ -358,9 +374,13 @@ export const Navbar = () => {
           {filterCart?.length > 0 && (
             <div className="border">
               <div className="d-flex justify-content-between fw-bolder fs-5">
-                <p className="mb-1">Subtotal {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
-                <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
+                <p className="mb-1">Total {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
+                <p className="mb-1">&pound;{subtotal?.toFixed(2)}</p>
               </div>
+              {/* <div className="d-flex justify-content-between fw-bolder fs-5">
+                <p className="mb-1">You Saved {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
+                <p className="mb-1">&pound;{subtotal?.toFixed(2)}</p>
+              </div> */}
               <button
                 className="btn"
                 style={{
@@ -372,9 +392,9 @@ export const Navbar = () => {
                 onClick={() => {
                   if (cu._id === undefined) {
                     setLogin("login");
-                    toast.warning("Login to see your Cart");
+                    // toast.warning("Login to see your Cart");
                   } else if (cu.email === "asd@gmail.com") {
-                    toast.warning("Login too see cart");
+                    // toast.warning("Login too see cart");
                   } else {
                     setCartOpen(false);
                     move(`/cart/${cu._id}`);

@@ -75,10 +75,10 @@ const SingleAdd = () => {
   const copyUrlToClipboard = () => {
     const currentURL = window.location.href;
     navigator.clipboard.writeText(currentURL).then(() => {
-      toast.success("URL copied to clipboard");
+      // toast.success("URL copied to clipboard");
     }).catch((error) => {
       console.error("Error copying URL to clipboard: ", error);
-      toast.error("Failed to copy URL to clipboard");
+      // toast.error("Failed to copy URL to clipboard");
     });
   };
 
@@ -421,7 +421,7 @@ const SingleAdd = () => {
         type: "LOGOUT_USER",
       });
       move("/login");
-      toast.success("Login with different account");
+      // toast.success("Login with different account");
     } else {
 
       try {
@@ -588,7 +588,7 @@ const SingleAdd = () => {
         setComments(response.data.alldata)
         reset();
         setSucess("comment")
-        toast.success("Feedback submitted");
+        // toast.success("Feedback submitted");
       }
     } catch (e) {
     } finally {
@@ -764,10 +764,10 @@ const SingleAdd = () => {
                 <span
                   className="fw-bold fs-5"
                   style={{ color: "red" }}
-                >{`£${totalPrice?.toFixed()}`}</span>
+                >{`£${totalPrice?.toFixed(2)}`}</span>
                 {product.discount > 0 &&
                   <span className="fs-6" style={{ color: "red" }}>
-                    <s className="mx-2">{`£${product?.price.toFixed()}`}</s>
+                    <s className="mx-2">{`£${product?.price.toFixed(2)}`}</s>
                   </span>}
               </div>
 

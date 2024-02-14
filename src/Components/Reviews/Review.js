@@ -21,7 +21,7 @@ const Review = () => {
 
     const [comments, setComments] = useState([])
     const [sucess, setSucess] = useState(false)
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     let { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -31,7 +31,6 @@ const Review = () => {
 
 
     const Comment = async (cmnt) => {
-        console.log("Comment is ::", cmnt)
         setLoading(true)
         try {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, cmnt);
@@ -41,28 +40,27 @@ const Review = () => {
                     payload: response.data.alldata,
                 });
                 setComments(response.data.alldata)
+                setLoading(false)
                 reset();
                 toggleVerify();
-                toast.success("Feedback submitted");
+                // toast.success("Feedback submitted");
             } else {
-                toast.error("Error occurred");
+                // toast.error("Error occurred");
             }
         } catch (e) {
-        } finally {
-            setLoading(false)
         }
     };
     useEffect(() => {
+
         setLoading(true);
         try {
             axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
                 if (res) {
                     dispatch({ type: "ADD_COMMENT", payload: res.data });
+                    setLoading(false)
                 }
             });
         } catch (e) {
-        } finally {
-            setLoading(false);
         }
     }, []);
 

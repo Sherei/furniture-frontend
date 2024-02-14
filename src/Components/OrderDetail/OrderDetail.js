@@ -207,7 +207,7 @@ const OrderDetail = () => {
                                                             Total Price
                                                         </p>
                                                         <p className='m-0' style={{ fontSize: "14px" }}>
-                                                            &pound;{item?.total.toFixed()}
+                                                            &pound;{item?.total.toFixed(2)}
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
@@ -271,10 +271,10 @@ const OrderDetail = () => {
                                                         </td>
                                                         <td>{data?.category}</td>
                                                         {/* <td className='text-center'>{data?.subCategory ? data?.subCategory : "No subcategory"}</td> */}
-                                                        <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed()}`}</td>
+                                                        <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed(2)}`}</td>
                                                         <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>
-                                                        <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed()}%`}</td>
-                                                        <td className='text-center'>{`£${parseFloat(data?.total)?.toFixed()}`}</td>
+                                                        <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed(2)}%`}</td>
+                                                        <td className='text-center'>{`£${parseFloat(data?.total)?.toFixed(2)}`}</td>
                                                     </tr>
                                                 ))
                                             ) : (

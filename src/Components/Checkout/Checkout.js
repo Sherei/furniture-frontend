@@ -26,7 +26,6 @@ const Checkout = () => {
     const { userId } = useParams();
     const dispatch = useDispatch()
 
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const move = useNavigate()
@@ -46,11 +45,14 @@ const Checkout = () => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/checkout?userId=${userId}`).then((res) => {
             try {
                 if (res) {
+                    // dispatch({
+                    //     type: "BEGIN_CHECKOUT",
+                    //     payload: res.data,
+                    // });
                     dispatch({
                         type: "ADD_TO_CART",
                         payload: res.data,
                     });
-                    setCart(res.data);
                     setLoading(false);
                     const totalSum = res.data.reduce((accumulator, item) => {
                         return accumulator + item.total;
@@ -99,16 +101,14 @@ const Checkout = () => {
         });
     }, []);
 
-    // useEffect(() => {
-    //     setLoading(true);
-    //     if (allCartItems) {
-    //         setCart(allCartItems);
-    //         setLoading(false);
-    //     }
-    // }, [allCartItems]);
+    useEffect(() => {
+        if (allCartItems) {
+            setCart(allCartItems);
+        }
 
-    // const filterCart = cart.filter((item) => item.userId === userId)
+    }, [allCartItems]);
 
+    const filterCart = cart.filter((item) => item.userId === userId)
 
     const DeleteCartItem = async (itemId, userId) => {
         try {
@@ -117,13 +117,17 @@ const Checkout = () => {
                 `${process.env.REACT_APP_BASE_URL}/chkdeleteCart?userId=${userId}&id=${itemId}`
             );
             if (response.data.status === "success") {
+                // dispatch({
+                //     type: "BEGIN_CHECKOUT",
+                //     payload: response.data.alldata,
+                // });
                 dispatch({
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
+
                 setLoading(false);
-                setCart(response.data.alldata)
-                toast.success("Item Removed");
+                // toast.success("Item Removed");
             }
         } catch (e) {
             // console.log(e);
@@ -132,10 +136,10 @@ const Checkout = () => {
         }
     };
 
-    const totalSum = cart.reduce((accumulator, item) => {
+    const totalSum = filterCart.reduce((accumulator, item) => {
         return accumulator + item.total;
     }, 0);
-    const totalQuantity = cart.reduce((accumulator, item) => {
+    const totalQuantity = filterCart.reduce((accumulator, item) => {
         return accumulator + item.quantity;
     }, 0);
 
@@ -162,7 +166,7 @@ const Checkout = () => {
             setLoading(true);
             const orderItems = [];
             const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
-            cart.forEach((item) => {
+            filterCart.forEach((item) => {
                 const itemData = {
                     title: item.title,
                     productId: item.productId,
@@ -185,10 +189,10 @@ const Checkout = () => {
                 };
                 orderItems.push(itemData);
             });
-            const totalSum = cart.reduce((accumulator, item) => {
+            const totalSum = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.total;
             }, 0);
-            const totalQuantity = cart.reduce((accumulator, item) => {
+            const totalQuantity = filterCart.reduce((accumulator, item) => {
                 return accumulator + item.quantity;
             }, 0);
 
@@ -293,7 +297,7 @@ const Checkout = () => {
                     <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                         <Loader />
                     </div>
-                ) : cart?.length > 0 ? (
+                ) : filterCart?.length > 0 ? (
                     <>
                         <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
                             <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
@@ -353,8 +357,8 @@ const Checkout = () => {
                                     <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
                                     <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
                                         style={{ border: "1px solid lightgray" }}>
-                                        <p className='m-0'>Standard</p>
-                                        <p className='m-0'>&pound;50</p>
+                                        <p className='m-0 fs-5'>Standard</p>
+                                        <p className='m-0 fs-5' >&pound;50</p>
                                     </div>
                                 </div>
                                 <div className='py-3'>
@@ -368,7 +372,7 @@ const Checkout = () => {
                                 </div>
                                 <hr className="mb-4" />
                                 <div className='py-3'>
-                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Order notes</p>
+                                    <p className='fs-5' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Order notes</p>
                                     <div className="col-md-12 mb-3">
                                         <textarea type="text" placeholder='Notes about your order, e.g. special notes for delivery.'
                                             className="form-control py-2 rounded" rows={7} {...register('note')}
@@ -378,7 +382,7 @@ const Checkout = () => {
                                 </div>
                                 <hr className="mb-4" />
 
-                                {cart.length > 0 &&
+                                {filterCart?.length > 0 &&
                                     <div className='chk_btns chk_btns1 mt-5'>
                                         <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}>
                                             COMPLETE ORDER
@@ -399,10 +403,10 @@ const Checkout = () => {
                             <div className='row'>
                                 <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
                                     <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
-                                    <p className='fw-bolder fs-4'>{cart?.length}</p>
+                                    <p className='fw-bolder fs-4'>{filterCart?.length}</p>
                                 </div>
                             </div>
-                            {cart?.map((item, index) => {
+                            {filterCart?.map((item, index) => {
                                 return <>
                                     <div className='row border mb-1 py-3' key={index}>
                                         <div className='col-3' style={{ position: "relative" }}>
@@ -434,7 +438,7 @@ const Checkout = () => {
                                             </div>
                                             <div className="d-flex justify-content-between flex-column">
                                                 <div>
-                                                    <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
+                                                    <p className='text-center fw-bolder'>{`£${item?.total?.toFixed(2)}`}</p>
                                                     <div className='text-center' >
                                                         <button style={{
                                                             border: "none",
@@ -446,10 +450,10 @@ const Checkout = () => {
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div>
+                                                {/* <div>
                                                     <button className='btn btn-outline-secondary text-muted'
                                                         style={{ backgroundColor: "transparent" }} onClick={() => DeleteCartItem(item._id, userId)}>remove</button>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
@@ -460,15 +464,15 @@ const Checkout = () => {
                             <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
                                 <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
                                     <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className=''>({totalQuantity})</span>}</p>
-                                    <p className='fs-6'>{`£${totalSum?.toFixed()}`}</p>
+                                    <p className='fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                                 </div>
                                 <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
                                     <p className=' fs-6'>Shipping</p>
                                     <p className=' fs-6'>{`£${shippingFeeAmount}`}</p>
                                 </div>
-                                <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
+                                <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600" }}>
                                     <p className='fs-5'>Total</p>
-                                    <p className='fs-5'>{`£${total?.toFixed()}`}</p>
+                                    <p className='fs-5'>{`£${total?.toFixed(2)}`}</p>
                                 </div>
                             </div>
                             {/* <div className='chk_btns chk_btns2 mt-5'>
@@ -491,13 +495,13 @@ const Checkout = () => {
                 ) : (
                     <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3 d-flex flex-column justify-content-center align-items-center' style={{ height: "50vh" }}>
                         <img src="/cart.png" alt="" style={{ width: "150px" }} />
-                        <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                                        <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
                         <a href="/Products/all">
                             <button
                                 className="btn review_btn"
                                 style={{ width: "fit-content" }}
                             >
-                                Browse Our Products
+                                Shop our products
                             </button>
                         </a>
                     </div >
