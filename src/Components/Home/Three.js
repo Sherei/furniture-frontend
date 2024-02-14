@@ -93,7 +93,8 @@ const Three = () => {
                         {data
                             .filter((item) => item.subCategory === "three-&-two-seater-sofas"
                                 && item.home === true && (item.stock === undefined || item.stock === false))
-                                .reverse()
+                            .reverse()
+                            .slice(0, 20)
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
                                     <a href={`/single_add/${product._id}`}>

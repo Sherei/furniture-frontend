@@ -51,7 +51,6 @@ const Checkout = () => {
                         payload: res.data,
                     });
                     setLoading(false);
-
                     const totalSum = res.data.reduce((accumulator, item) => {
                         return accumulator + item.total;
                     }, 0);
@@ -111,11 +110,11 @@ const Checkout = () => {
     // const filterCart = cart.filter((item) => item.userId === userId)
 
 
-    const DeleteCartItem = async (itemId) => {
+    const DeleteCartItem = async (itemId, userId) => {
         try {
             setLoading(true);
             const response = await axios.delete(
-                `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
+                `${process.env.REACT_APP_BASE_URL}/chkdeleteCart?userId=${userId}&id=${itemId}`
             );
             if (response.data.status === "success") {
                 dispatch({
@@ -255,8 +254,19 @@ const Checkout = () => {
 
     if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || cart?.length === 0) {
         return (
-            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <Loader />
+            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "70vh" }}>
+                <center>
+                    <img src="/cart.png" alt="" style={{ width: "150px" }} />
+                    <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                    <a href="/Products/all">
+                        <button
+                            className="btn review_btn"
+                            style={{ width: "fit-content" }}
+                        >
+                            Browse Our Products
+                        </button>
+                    </a>
+                </center>
             </div>
         );
     }
@@ -440,10 +450,8 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <button className='btn btn-outline-secondary text-muted' style={{
-                                                backgroundColor: "transparent",
-
-                                            }} onClick={() => DeleteCartItem(item._id)}>remove</button>
+                                            <button className='btn btn-outline-secondary text-muted'
+                                                style={{ backgroundColor: "transparent" }} onClick={() => DeleteCartItem(item._id, userId)}>remove</button>
                                         </div>
                                     </div>
                                 </div>

@@ -97,7 +97,7 @@ const Mattress = () => {
                     <div className='h_box_main' ref={containerRef}>
                         {data
                             .filter((item) => item.category === "mattress" && item.home === true
-                                && (item.stock === undefined || item.stock === false)).reverse()
+                                && (item.stock === undefined || item.stock === false)).reverse().slice(0, 20)
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
                                   <a href={`/single_add/${product._id}`}>

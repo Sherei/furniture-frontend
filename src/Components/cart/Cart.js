@@ -31,7 +31,7 @@ export const Cart = () => {
   const [cart, setCart] = useState([]);
   const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1);
-  
+
 
   useEffect(() => {
     setLoading(true);
@@ -56,7 +56,7 @@ export const Cart = () => {
     }
 
   }, [allCartItems]);
-  
+
   const filterCart = cart.filter((item) => item.userId === userId)
 
   const DeleteCartItem = async (itemId) => {
@@ -157,7 +157,7 @@ export const Cart = () => {
     }
   };
   const shippingFeeAmount = shippingFee();
-  
+
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
   const total = subtotal + shippingFeeAmount;
 
@@ -206,7 +206,7 @@ export const Cart = () => {
     }));
   };
 
-  if (filterCart?.length === 0) {
+  if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
     if (loading) {
       return (
         <div
@@ -218,24 +218,18 @@ export const Cart = () => {
       );
     } else {
       return (
-        <div
-          className="py-0 mb-5 d-flex flex-column align-items-center justify-content-center"
-          style={{ height: "70vh" }}
-        >
-          <Lottie
-            animationData={CartAnimation}
-            loop={true}
-            style={{ width: "100%", height: "100%" }}
-          />
+        <center>
+          <img src="/cart.png" alt="" style={{ width: "150px" }} />
+          <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
           <a href="/Products/all">
             <button
               className="btn review_btn"
               style={{ width: "fit-content" }}
             >
-              Browse Our Products <FaArrowRight />
+              Browse Our Products
             </button>
           </a>
-        </div>
+        </center>
       );
     }
   }
@@ -251,37 +245,16 @@ export const Cart = () => {
     );
   }
 
-  if (cu._id === undefined || cu.email === "asd@gmail.com") {
-    return (
-      <>
-        <div
-          className="py-0 mb-5 d-flex flex-column align-items-center justify-content-center"
-          style={{ height: "70vh" }}
-        >
-          <p>Your Cart is empty</p>
-          <a href="/Products/all">
-
-            <button
-              className="btn review_btn"
-              style={{ width: "fit-content" }}
-            >
-              Browse Our Products
-            </button>
-          </a>
-        </div>
-      </>
-    );
-  }
 
   return (
     <div className="container-fluid h-100">
       <div className="row">
         <div className="col px-0 d-flex justify-content-center align-items-center"
-         style={{
-          height:"300px",
-          backgroundImage: "url(/cartbg2.webp)",
-          backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"
-        }}>
+          style={{
+            height: "300px",
+            backgroundImage: "url(/cartbg2.webp)",
+            backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"
+          }}>
           {/* <img src="/cartbg.jpg" alt="No Network" className='all_img img-fluid' style={{ width: "100%" }} /> */}
           <p
             className="fs-2 fw-bolder text-center"
