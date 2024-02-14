@@ -500,6 +500,7 @@ const SingleAdd = () => {
   }, [sucess, Error]);
 
   async function Order() {
+
     await AddToCart(
       product,
       totalPrice,
@@ -512,14 +513,52 @@ const SingleAdd = () => {
       ottoman,
       mattress,
       side,
-    );
+    )
 
-    if (cu._id) {
-      if (cu._id && cu.email !== "asd@gmail.com") {
-        move(`/cart-checkout/${cu._id}`);
+    if (product?.category === "bed") {
+      if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
+        return setError("options");
       }
-    } else if (cu._id === undefined || cu.email !== "asd@gmail.com") {
-      move("/login");
+    }
+    else if (product?.category === "mattress") {
+      if (!size, !ottoman) {
+        return setError("options");
+      }
+    }
+    else if (product?.category === "ottoman-box") {
+      if (!detail, !fabric, !color) {
+        return setError("options");
+      }
+    }
+    else if (product?.category === "footstools") {
+      if (product.color1 != undefined) {
+        if (!fabric, !color) {
+          return setError("options");
+        }
+      } else if (product.color1 === undefined) {
+        if (!fabric) {
+          return setError("options");
+        }
+      }
+    }
+    else if (product?.category === "sofa") {
+      if (product.color1 != undefined) {
+        if (!color) {
+          return setError("options");
+        }
+      }
+    }
+    else if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+      if (!color, !side) {
+        return setError("options");
+      }
+    }
+
+    if (cu._id && cu.email !== "asd@gmail.com") {
+      move(`/cart-checkout/${cu._id}`);
+    } else {
+      move("/login/" + productId);
     }
   }
 
