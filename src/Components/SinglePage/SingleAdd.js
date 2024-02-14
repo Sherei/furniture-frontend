@@ -389,18 +389,18 @@ const SingleAdd = () => {
       }
     }
     else if (product?.category === "footstools") {
-      if (product.color1 != undefined) {
-        if (!fabric, !color) {
+      if (product.color1 === undefined) {
+        if (!fabric) {
           return setError("options");
         }
-      } else if (product.color1 === undefined) {
-        if (!fabric) {
+      } else if (product.color1 != undefined) {
+        if (!fabric, !color) {
           return setError("options");
         }
       }
     }
     else if (product?.category === "sofa") {
-      if (product.color1 != undefined) {
+      if (product.color1 !== undefined) {
         if (!color) {
           return setError("options");
         }
@@ -825,7 +825,7 @@ const SingleAdd = () => {
                   </div>
                 }
 
-                {((product.category === "sofa" || product.category === "footstools") && !product.color1) &&
+                {((product.category === "sofa" || product.category === "footstools") && product.color1 !==undefined) &&
                   <div className="mt-1">
                     <label
                       style={{ fontSize: "17px", fontWeight: "600" }}
