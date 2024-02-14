@@ -19,11 +19,13 @@ a {
 .error {
   font-family: 'Montserrat', sans-serif;
   color: red;
+  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.1rem;
   margin-top: 0.5rem;
   padding: 5px 10px;
-  background-color: rgb(255, 0, 0, 0.2);
+  background-color: #F7EEDD;
+  /* background-color: rgb(255, 0, 0, 0.2); */
 }
 
 main {
