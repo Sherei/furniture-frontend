@@ -50,6 +50,7 @@ const Checkout = () => {
                         type: "ADD_TO_CART",
                         payload: res.data,
                     });
+                    setCart(res.data);
                     setLoading(false);
                     const totalSum = res.data.reduce((accumulator, item) => {
                         return accumulator + item.total;
@@ -98,14 +99,13 @@ const Checkout = () => {
         });
     }, []);
 
-    useEffect(() => {
-        setLoading(true);
-
-        if (allCartItems) {
-            setCart(allCartItems);
-            setLoading(false);
-        }
-    }, [allCartItems]);
+    // useEffect(() => {
+    //     setLoading(true);
+    //     if (allCartItems) {
+    //         setCart(allCartItems);
+    //         setLoading(false);
+    //     }
+    // }, [allCartItems]);
 
     // const filterCart = cart.filter((item) => item.userId === userId)
 
@@ -122,6 +122,7 @@ const Checkout = () => {
                     payload: response.data.alldata,
                 });
                 setLoading(false);
+                setCart(response.data.alldata)
                 toast.success("Item Removed");
             }
         } catch (e) {
