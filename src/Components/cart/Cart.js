@@ -681,7 +681,6 @@ export const Cart = () => {
               <a href="/Products/all">
                 <button
                   className="btn review_btn"
-                  style={{ width: "fit-content" }}
                 >
                   Shop our products
                 </button>

@@ -192,7 +192,7 @@ const Review = () => {
                             <label class="user-label">Write a Review *</label>
                             {errors.comment ? <div className='error'>Cannot submit empty comment</div> : null}
                         </div>
-                        <button type="submit" className="btn mt-2 review_btn">
+                        <button type="submit" className="btn mt-2 review_btn w-100" >
                             Submit
                         </button>
                     </form>

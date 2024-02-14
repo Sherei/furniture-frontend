@@ -9,7 +9,7 @@
 }
 
 .review_btn {
-    width: 100%;
+    width: fit-content;
     height: fit-content;
     font-weight: 500;
     color: white;
@@ -79,4 +79,9 @@ input:valid~label,textarea:valid~label,textarea:focus~label {
     padding: 0 .2em;
     color: rgb(2, 2, 94) !important;
     font-weight: 500;
+}
+@media screen and (max-width:768px) {
+    .review_btn{
+        width: 100%;
+    }
 }

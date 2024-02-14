@@ -320,7 +320,7 @@ const OrderDetail = () => {
                 <div>
                     {cu.email === "asd@gmail.com" &&
                         <a href={`/admin-dashboard`}>
-                            <button className='btn review_btn' style={{ width: "fit-content" }}>
+                            <button className='btn review_btn'>
                                 Dashboard <FaArrowRight />
                             </button>
                         </a>
