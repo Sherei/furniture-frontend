@@ -56,8 +56,8 @@ const Signup = () => {
                         <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
-                        {Error === "Try with different E-mail" &&
-                            <div className='error mb-3'>Try with different E-mail</div>
+                        {Error &&
+                            <div className='error mb-3'>{Error}</div>
                         }
                         <div className="input-group mb-3">
                             <input required="true"
