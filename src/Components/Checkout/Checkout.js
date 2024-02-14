@@ -117,10 +117,7 @@ const Checkout = () => {
                 `${process.env.REACT_APP_BASE_URL}/chkdeleteCart?userId=${userId}&id=${itemId}`
             );
             if (response.data.status === "success") {
-                // dispatch({
-                //     type: "BEGIN_CHECKOUT",
-                //     payload: response.data.alldata,
-                // });
+              
                 dispatch({
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
@@ -463,7 +460,7 @@ const Checkout = () => {
 
                             <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
                                 <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
-                                    <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className=''>({totalQuantity})</span>}</p>
+                                    <p className='fs-6'>Subtotal</p>
                                     <p className='fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
                                 </div>
                                 <div className='px-3 col-12 d-flex justify-content-between align-items-center'>

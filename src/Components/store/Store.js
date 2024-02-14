@@ -29,18 +29,6 @@ const Cart = (
   return { ...oldData, cart: Array.isArray(oldData.cart) ? oldData.cart : [] };
 };
 
-const Checkout = (
-  oldData = {
-    check: [],
-  },
-  newData
-) => {
-  if (newData.type === "BEGIN_CHECKOUT") {
-    oldData.cart = newData.payload;
-  }
-  return { ...oldData, check: Array.isArray(oldData.check) ? oldData.check : [] };
-};
-
 const Comment = (
   oldData = {
     comment: [],
@@ -58,7 +46,7 @@ const persistConfig = {
   storage,
 };
 
-const allSections = combineReducers({ userSection, Cart, Comment, Checkout });
+const allSections = combineReducers({ userSection, Cart, Comment });
 const persistedReducer = persistReducer(persistConfig, allSections);
 const meraStore = createStore(
   persistedReducer,
