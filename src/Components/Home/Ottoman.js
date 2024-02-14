@@ -95,6 +95,7 @@ const Ottoman = () => {
                         {data
                             .filter((item) => item.category === "ottoman-box" && item.home === true &&
                                 (item.stock === undefined || item.stock === false))
+                                .reverse()
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
                                    <a href={`/single_add/${product._id}`}>

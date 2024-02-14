@@ -25,7 +25,7 @@ const Products = () => {
   const [sort, setSortOrder] = useState("");
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
-  const [minPrice, setMinPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(3000);
   const [filter, setFilter] = useState(false);
   const move = useNavigate();
@@ -73,10 +73,10 @@ const Products = () => {
     };
   }, [category, sort, minPrice, maxPrice, search]);
 
-  const handleMinRangeChange = (e) => {
-    const value = parseInt(e.target.value);
-    setMinPrice(value);
-  };
+  // const handleMinRangeChange = (e) => {
+  //   const value = parseInt(e.target.value);
+  //   setMinPrice(value);
+  // };
 
   const handleMaxRangeChange = (e) => {
     const value = parseInt(e.target.value);
@@ -133,7 +133,7 @@ const Products = () => {
                       category === "sofa" ? "activeCategory" : ""
                     }
                   >
-                    All in sofas
+                    All Sofas
                   </p>
                   <p
                     onClick={() => setCategory("corner-sofas")}
@@ -220,7 +220,7 @@ const Products = () => {
                       category === "bed" ? "activeCategory" : ""
                     }
                   >
-                    All in Beds
+                    All Beds
                   </p>
                   <p
                     onClick={() => setCategory("ambassador-beds")}
@@ -351,11 +351,7 @@ const Products = () => {
                   type="range"
                   id="minPriceRange"
                   className="w-50"
-                  min={1}
-                  max={2999}
-                  step={10}
-                  value={minPrice}
-                  onChange={handleMinRangeChange}
+                  value={1}
                   style={{ height: "2px" }}
                 />
                 <input
@@ -421,7 +417,7 @@ const Products = () => {
                         category === "sofa" ? "activeCategory" : ""
                       }
                     >
-                      All in sofas
+                      All Sofas
                     </p>
                     <p
                       onClick={() => setCategory("corner-sofas")}
@@ -508,7 +504,7 @@ const Products = () => {
                         category === "bed" ? "activeCategory" : ""
                       }
                     >
-                      All in Beds
+                      All Beds
                     </p>
                     <p
                       onClick={() => setCategory("ambassador-beds")}
@@ -641,11 +637,7 @@ const Products = () => {
                     type="range"
                     id="minPriceRange"
                     className="w-50"
-                    min={0}
-                    max={2900}
-                    step={10}
-                    value={minPrice}
-                    onChange={handleMinRangeChange}
+                    value={1}
                     style={{ height: "2px" }}
                   />
                   <input
