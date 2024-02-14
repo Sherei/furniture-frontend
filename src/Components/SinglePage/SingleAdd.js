@@ -825,7 +825,7 @@ const SingleAdd = () => {
                   </div>
                 }
 
-                {((product.category === "sofa" || product.category === "footstools") && product.color1 != undefined) &&
+                {((product.category === "sofa" || product.category === "footstools") && !product.color1) &&
                   <div className="mt-1">
                     <label
                       style={{ fontSize: "17px", fontWeight: "600" }}
