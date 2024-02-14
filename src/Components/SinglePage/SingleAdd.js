@@ -65,7 +65,7 @@ const SingleAdd = () => {
   const [ottoman, setOttoman] = useState("");
   const [mattress, setMattress] = useState("");
   const [side, setSide] = useState("");
-  const [Error, setError] = useState(1);
+  const [Error, setError] = useState("");
   const [selectedImage, setSelectedImage] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [sucess, setSucess] = useState("")
@@ -869,7 +869,7 @@ const SingleAdd = () => {
                     >
                       Side<span style={{ color: "red" }}>* </span>&nbsp;{" "}
                       <span className="lable_Case">
-                        {side ? side.replace(/-/g, " ") : ""}
+                        {side ? side.replace(/-/g, " ") : Error}
                       </span>
                     </label>
                     <p className="mt-1 mb-0">Please Choose Side</p>
