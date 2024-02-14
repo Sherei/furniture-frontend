@@ -519,7 +519,6 @@ const SingleAdd = () => {
         move(`/cart-checkout/${cu._id}`);
       }
     } else if (cu._id === undefined || cu.email !== "asd@gmail.com") {
-      toast.success("Login to see cart");
       move("/login");
     }
   }
