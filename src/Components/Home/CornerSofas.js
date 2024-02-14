@@ -122,7 +122,7 @@ const CornerSofas = () => {
                                         {product?.discount && product?.discount > 0 ? (
                                             <>
                                                 <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed()}`}</span>
-                                                {/* <span className='card_price'><s>{`£${product?.price?.toFixed(1)}`}</s></span> */}
+                                                <span className='card_price'><s>{`£${product?.price?.toFixed()}`}</s></span>
                                             </>
                                         ) : (
                                             <span className='card_Fprice px-2'>{`£${product?.Fprice?.toFixed()}`}</span>
