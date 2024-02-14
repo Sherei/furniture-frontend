@@ -737,7 +737,17 @@ const SingleAdd = () => {
           </div>
 
           <div className="col-lg-5 col-sm-12 order-3" style={{ position: "relative" }}>
-
+            {sucess === "cart" && (
+              <div className={`succes_box  px-3 ${sucess === "cart" ? "showVerify" : ""}`}>
+                <div className="text-end">
+                  <button className="btn fw-bolder fs-3"
+                    style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
+                    onClick={() => setSucess("")}> <RxCross1 /></button>
+                </div>
+                <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
+                <p className="fw-bolder text-center">Added to Cart</p>
+              </div>
+            )}
             <div className={`s_content ${product?.category === "bed" ? "bed_class" : ""}`}>
               <h1
                 className="text-center fs-1 "
@@ -771,18 +781,8 @@ const SingleAdd = () => {
                   </span>}
               </div>
 
-              <div className="single_form  mt-1" style={{ position: "relative" }}>
-                {sucess === "cart" && (
-                  <div className={`succes_box  px-3 ${sucess === "cart" ? "showVerify" : ""}`}>
-                    <div className="text-end">
-                      <button className="btn fw-bolder fs-3"
-                        style={{ position: "absolute", top: "0px", right: "10px", color: "red" }}
-                        onClick={() => setSucess("")}> <RxCross1 /></button>
-                    </div>
-                    <img src="/verified.gif" alt="No Network" style={{ width: "70px" }} />
-                    <p className="fw-bolder text-center">Added to Cart</p>
-                  </div>
-                )}
+              <div className="single_form  mt-1">
+
                 {(product?.category != "bed" && product?.category != "sofa" && product?.category != "mattress" && product?.category != "footstools") &&
                   <div className="mt-1">
                     <label
@@ -825,7 +825,7 @@ const SingleAdd = () => {
                   </div>
                 }
 
-                {((product.category === "sofa" || product.category === "footstools") && product.color1 !==undefined) &&
+                {((product.category === "sofa" || product.category === "footstools") && product.color1 !== undefined) &&
                   <div className="mt-1">
                     <label
                       style={{ fontSize: "17px", fontWeight: "600" }}
