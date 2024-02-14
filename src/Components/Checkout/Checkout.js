@@ -30,7 +30,7 @@ const Checkout = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const move = useNavigate()
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [cart, setCart] = useState([])
     const [expandedItems, setExpandedItems] = useState({});
 
@@ -121,6 +121,7 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
+                setLoading(false);
                 toast.success("Item Removed");
             }
         } catch (e) {
@@ -221,6 +222,7 @@ const Checkout = () => {
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
                 });
+                setLoading(false);
                 move(`/order-placed/${userId}`)
                 TagManager.dataLayer({
                     dataLayer: {
@@ -245,33 +247,19 @@ const Checkout = () => {
             }
 
         } catch (e) {
-            console.log(e);
-        } finally {
-            setLoading(false);
+            // console.log(e);
         }
     };
 
-
-    if (loading || cu._id === undefined || cu.email === "asd@gmail.com" || cart?.length === 0) {
+    if (loading) {
         return (
             <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "70vh" }}>
-                <center>
-                    <img src="/cart.png" alt="" style={{ width: "150px" }} />
-                    <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
-                    <a href="/Products/all">
-                        <button
-                            className="btn review_btn"
-                            style={{ width: "fit-content" }}
-                        >
-                            Browse Our Products
-                        </button>
-                    </a>
-                </center>
+                <Loader />
             </div>
         );
     }
-
     return <>
+
         <div className='container-fluid '>
             <div className="row">
                 <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
@@ -300,197 +288,223 @@ const Checkout = () => {
                 </div>
             </div>
             <div className='row checkout_display d-flex justify-content-center my-lg-3'>
-                <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
-                    <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
-                    <form action="" onSubmit={handleSubmit(Order)}>
-                        <div className="row py-3">
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
-                            <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='First Name*' className="form-control py-2 border" {...register('name1', { required: true })} />
-                                {errors.name1 ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Last Name *' className="form-control py-2 border"{...register('name2', { required: true })} />
-                                {errors.name2 ? <div className='error'>This Field is required</div> : null}
+                {loading ? (
+                    <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                        <Loader />
+                    </div>
+                ) : cart?.length > 0 ? (
+                    <>
+                        <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
+                            <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
+                            <form action="" onSubmit={handleSubmit(Order)}>
+                                <div className="row py-3">
+                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
+                                    <div className="col-md-6 mb-3">
+                                        <input type="text" placeholder='First Name*' className="form-control py-2 border" {...register('name1', { required: true })} />
+                                        {errors.name1 ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                    <div className="col-md-6 mb-3">
+                                        <input type="text" placeholder='Last Name *' className="form-control py-2 border"{...register('name2', { required: true })} />
+                                        {errors.name2 ? <div className='error'>This Field is required</div> : null}
 
-                            </div>
-                            <div className="col-12 mb-3">
-                                <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border" {...register('number1', { required: true })} />
-                                {errors.number1 ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="row py-3">
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Address</p>
-                            <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border" {...register('street', { required: true })} />
-                                {errors.street ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-12 mb-3">
-                                <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment', { required: true })} />
-                                {errors.appartment ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Country*' className="form-control py-2 border" {...register('country', { required: true })} />
-                                {errors.country ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <input type="text" placeholder='Town/City*' className="form-control py-2 border" {...register('city', { required: true })} />
-                                {errors.city ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <input type="number" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', { required: true })} />
-                                {errors.postal ? <div className='error'>This Field is required</div> : null}
-                            </div>
+                                    </div>
+                                    <div className="col-12 mb-3">
+                                        <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border" {...register('number1', { required: true })} />
+                                        {errors.number1 ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row py-3">
+                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Address</p>
+                                    <div className="col-md-12 mb-3">
+                                        <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border" {...register('street', { required: true })} />
+                                        {errors.street ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                    <div className="col-md-12 mb-3">
+                                        <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment', { required: true })} />
+                                        {errors.appartment ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                    <div className="col-md-6 mb-3">
+                                        <input type="text" placeholder='Country*' className="form-control py-2 border" {...register('country', { required: true })} />
+                                        {errors.country ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                    <div className="col-md-6 mb-3">
+                                        <input type="text" placeholder='Town/City*' className="form-control py-2 border" {...register('city', { required: true })} />
+                                        {errors.city ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                    <div className="col-md-6 mb-3">
+                                        <input type="number" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', { required: true })} />
+                                        {errors.postal ? <div className='error'>This Field is required</div> : null}
+                                    </div>
 
-                            <div className="col-md-6 mb-3">
-                                <input type="email" placeholder='E-mail' defaultValue={cu?.email} className="form-control py-2 border" {...register('email', { required: true })} />
-                                {errors.email ? <div className='error'>This Field is required</div> : null}
-                            </div>
-                            <div className="col-md-12 mt-3">
-                                <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: Remember all orders are delivered on ground floor.
-                                    Extra charges for uplift or desired room.</p>
-                            </div>
-                        </div>
+                                    <div className="col-md-6 mb-3">
+                                        <input type="email" placeholder='E-mail' defaultValue={cu?.email} className="form-control py-2 border" {...register('email', { required: true })} />
+                                        {errors.email ? <div className='error'>This Field is required</div> : null}
+                                    </div>
+                                    <div className="col-md-12 mt-3">
+                                        <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: Remember all orders are delivered on ground floor.
+                                            Extra charges for uplift or desired room.</p>
+                                    </div>
+                                </div>
 
-                        <hr className="mb-4" />
-                        <div className="col-md-12 mb-3">
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
-                            <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
-                                style={{ border: "1px solid lightgray" }}>
-                                <p className='m-0'>Standard</p>
-                                <p className='m-0'>&pound;50</p>
-                            </div>
+                                <hr className="mb-4" />
+                                <div className="col-md-12 mb-3">
+                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
+                                    <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
+                                        style={{ border: "1px solid lightgray" }}>
+                                        <p className='m-0'>Standard</p>
+                                        <p className='m-0'>&pound;50</p>
+                                    </div>
+                                </div>
+                                <div className='py-3'>
+                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Payment Method</p>
+                                    <div className="col-md-12 mb-3">
+                                        <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
+                                            style={{ border: "1px solid lightgray" }}>
+                                            <p className='m-0'>Cash on Delivery (COD)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr className="mb-4" />
+                                <div className='py-3'>
+                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Order notes</p>
+                                    <div className="col-md-12 mb-3">
+                                        <textarea type="text" placeholder='Notes about your order, e.g. special notes for delivery.'
+                                            className="form-control py-2 rounded" rows={7} {...register('note')}
+                                            style={{ border: "1px solid lightgray" }}
+                                        />
+                                    </div>
+                                </div>
+                                <hr className="mb-4" />
+
+                                {cart.length > 0 &&
+                                    <div className='chk_btns chk_btns1 mt-5'>
+                                        <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}>
+                                            COMPLETE ORDER
+                                        </button>
+                                        <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
+
+                                        <a href="https://wa.me/+923067208343" target='blank'>
+                                            <button className="w-100 btn btn-lg chk_btn"
+                                                style={{ backgroundColor: "rgb(38,211,103)" }}>
+                                                Order Via WhatsApp
+                                            </button>
+                                        </a>
+                                    </div>
+                                }
+                            </form>
                         </div>
-                        <div className='py-3'>
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Payment Method</p>
-                            <div className="col-md-12 mb-3">
-                                <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
-                                    style={{ border: "1px solid lightgray" }}>
-                                    <p className='m-0'>Cash on Delivery (COD)</p>
+                        <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>
+                            <div className='row'>
+                                <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
+                                    <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
+                                    <p className='fw-bolder fs-4'>{cart?.length}</p>
                                 </div>
                             </div>
-                        </div>
-                        <hr className="mb-4" />
-                        <div className='py-3'>
-                            <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Order notes</p>
-                            <div className="col-md-12 mb-3">
-                                <textarea type="text" placeholder='Notes about your order, e.g. special notes for delivery.'
-                                    className="form-control py-2 rounded" rows={7} {...register('note')}
-                                    style={{ border: "1px solid lightgray" }}
-                                />
+                            {cart?.map((item, index) => {
+                                return <>
+                                    <div className='row border mb-1 py-3' key={index}>
+                                        <div className='col-3' style={{ position: "relative" }}>
+                                            <img className='img-fluid' src={item?.image} alt="No Internet" />
+                                            <p className='m-0 cart_number' style={{
+                                                top: "-4px",
+                                                right: "4px,"
+                                            }}>
+                                                {item?.quantity}
+                                            </p>
+                                        </div>
+                                        <div className='col-9 d-flex justify-content-between'>
+                                            <div>
+                                                <p className='m-0'>{item?.title.slice(0, 50)}</p>
+                                                <div
+                                                    className={`chk_detail ${expandedItems[index] ? 'detail_height' : ''}`}
+                                                >
+                                                    {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}</p>}
+                                                    {item?.side && <p className='text-muted fs-6 m-0'>Side: {item.side ? item.side.replace(/-/g, " ") : ""}</p>}
+                                                    {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
+                                                    {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
+                                                </div>
+                                            </div>
+                                            <div className="d-flex justify-content-between flex-column">
+                                                <div>
+                                                    <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
+                                                    <div className='text-center' >
+                                                        <button style={{
+                                                            border: "none",
+                                                            backgroundColor: "transparent",
+
+                                                        }}>
+                                                            <FaAngleDown style={{ transform: expandedItems[index] ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                                                onClick={() => toggleDetails(index)} />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button className='btn btn-outline-secondary text-muted'
+                                                        style={{ backgroundColor: "transparent" }} onClick={() => DeleteCartItem(item._id, userId)}>remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            })
+                            }
+
+                            <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
+                                <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
+                                    <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className=''>({totalQuantity})</span>}</p>
+                                    <p className='fs-6'>{`£${totalSum?.toFixed()}`}</p>
+                                </div>
+                                <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
+                                    <p className=' fs-6'>Shipping</p>
+                                    <p className=' fs-6'>{`£${shippingFeeAmount}`}</p>
+                                </div>
+                                <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
+                                    <p className='fs-5'>Total</p>
+                                    <p className='fs-5'>{`£${total?.toFixed()}`}</p>
+                                </div>
                             </div>
-                        </div>
-                        <hr className="mb-4" />
-                        <div className='chk_btns chk_btns1 mt-5'>
-                            <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}>
+                            {/* <div className='chk_btns chk_btns2 mt-5'>
+                            <button className="fw-bolder btn btn-lg"
+                                style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
+                            >
                                 COMPLETE ORDER
                             </button>
                             <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
-
+    
                             <a href="https://wa.me/+923067208343" target='blank'>
                                 <button className="w-100 btn btn-lg chk_btn"
                                     style={{ backgroundColor: "rgb(38,211,103)" }}>
                                     Order Via WhatsApp
                                 </button>
                             </a>
+                        </div> */}
                         </div>
-                    </form>
-                </div>
-
-                <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>
-                    <div className='row'>
-                        <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
-                            <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
-                            <p className='fw-bolder fs-4'>{cart?.length}</p>
-                        </div>
-                    </div>
-                    {cart?.map((item, index) => {
-                        return <>
-                            <div className='row border mb-1 py-3' key={index}>
-                                <div className='col-3' style={{ position: "relative" }}>
-                                    <img className='img-fluid' src={item?.image} alt="No Internet" />
-                                    <p className='m-0 cart_number' style={{
-                                        top: "-4px",
-                                        right: "4px,"
-                                    }}>
-                                        {item?.quantity}
-                                    </p>
-                                </div>
-                                <div className='col-9 d-flex justify-content-between'>
-                                    <div>
-                                        <p className='m-0'>{item?.title.slice(0, 50)}</p>
-                                        <div
-                                            className={`chk_detail ${expandedItems[index] ? 'detail_height' : ''}`}
-                                        >
-                                            {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}</p>}
-                                            {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}</p>}
-                                            {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}</p>}
-                                            {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}</p>}
-                                            {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}</p>}
-                                            {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}</p>}
-                                            {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}</p>}
-                                            {item?.side && <p className='text-muted fs-6 m-0'>Side: {item.side ? item.side.replace(/-/g, " ") : ""}</p>}
-                                            {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
-                                            {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}</p>}
-                                        </div>
-                                    </div>
-                                    <div className="d-flex justify-content-between flex-column">
-                                        <div>
-                                            <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
-                                            <div className='text-center' >
-                                                <button style={{
-                                                    border: "none",
-                                                    backgroundColor: "transparent",
-
-                                                }}>
-                                                    <FaAngleDown style={{ transform: expandedItems[index] ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                                                        onClick={() => toggleDetails(index)} />
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button className='btn btn-outline-secondary text-muted'
-                                                style={{ backgroundColor: "transparent" }} onClick={() => DeleteCartItem(item._id, userId)}>remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </>
-                    })
-                    }
-
-                    <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
-                        <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
-                            <p className='fs-6'>Subtotal {totalQuantity > 1 && <span className=''>({totalQuantity})</span>}</p>
-                            <p className='fs-6'>{`£${totalSum?.toFixed()}`}</p>
-                        </div>
-                        <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
-                            <p className=' fs-6'>Shipping</p>
-                            <p className=' fs-6'>{`£${shippingFeeAmount}`}</p>
-                        </div>
-                        <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>
-                            <p className='fs-5'>Total</p>
-                            <p className='fs-5'>{`£${total?.toFixed()}`}</p>
-                        </div>
-                    </div>
-                    {/* <div className='chk_btns chk_btns2 mt-5'>
-                        <button className="fw-bolder btn btn-lg"
-                            style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
-                        >
-                            COMPLETE ORDER
-                        </button>
-                        <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
-
-                        <a href="https://wa.me/+923067208343" target='blank'>
-                            <button className="w-100 btn btn-lg chk_btn"
-                                style={{ backgroundColor: "rgb(38,211,103)" }}>
-                                Order Via WhatsApp
+                    </>
+                ) : (
+                    <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3 d-flex flex-column justify-content-center align-items-center' style={{ height: "50vh" }}>
+                        <img src="/cart.png" alt="" style={{ width: "150px" }} />
+                        <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                        <a href="/Products/all">
+                            <button
+                                className="btn review_btn"
+                                style={{ width: "fit-content" }}
+                            >
+                                Browse Our Products
                             </button>
                         </a>
-                    </div> */}
-                </div>
+                    </div >
+                )}
+
+
             </div>
+
             <div className='row d-flex justify-content-center my-5'>
                 <div className='col-lg-10 col-sm-12 mt-5'>
                     <div className='row'>

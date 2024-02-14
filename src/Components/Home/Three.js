@@ -135,11 +135,9 @@ const Three = () => {
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
 
                     {(data?.filter(product => product.subCategory === "three-&-two-seater-sofas" && (product.stock === undefined || product.stock === false)).length === 0 || loading) && (
-                        <center>
-                        <div className='col-12' style={{ height: "80vh" }}>
-                             {loading ? <Loader /> : "No product available related to this category"}
-                         </div>
-                        </center>
+                      <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
+                      {loading ? <Loader /> : "No product available related to this category"}
+                  </div>
                     )}
 
                 </div>
