@@ -288,6 +288,7 @@ export const Navbar = () => {
                 <a href="/Products/all">
                   <button
                     className="btn review_btn my-5"
+                    style={{width:"200px"}}
                     onClick={() => {
                       setCartOpen("close");
                     }}
