@@ -136,9 +136,11 @@ const CornerSofas = () => {
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
 
                     {(data?.filter(product => product.subCategory === "corner-sofas" && (product.stock === undefined || product.stock === false)).length === 0 || loading) && (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
-                            {loading ? <Loader /> : "No product available related to this category"}
-                        </div>
+                        <center>
+                        <div className='col-12' style={{ height: "80vh" }}>
+                             {loading ? <Loader /> : "No product available related to this category"}
+                         </div>
+                        </center>
                     )}
                 </div>
             </div>

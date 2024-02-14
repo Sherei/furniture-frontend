@@ -29,7 +29,7 @@ const Products = () => {
   const [maxPrice, setMaxPrice] = useState(3000);
   const [filter, setFilter] = useState(false);
   const move = useNavigate();
-  
+
   const sendWhatsAppMessage = (title) => {
     const message = `I'm interested in product.\n${title}\nCan you provide more details?`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
@@ -61,11 +61,11 @@ const Products = () => {
         const res = await axios.get(apiUrl, { params, cancelToken: source.token });
         setData(res?.data);
         setLoading(false);
-        
+
       } catch (error) {
         if (axios.isCancel(error)) {
         } else { }
-      } 
+      }
     };
     fetchData();
     return () => {
@@ -100,12 +100,12 @@ const Products = () => {
     <>
       <div className="container-fluid min-vh-100 my-lg-5 my-3" style={{ overflow: "hidden" }}>
         <div className={`filter_col_display ${filter ? "showFilter" : "filter_col"}`}>
-          <div className="d-flex justify-content-end mb-3" style={{borderBottom:"1px solid lightgray"}}>
-            <button className="btn" type="button" style={{color:"red"}} onClick={() => setFilter(false)} >
-            <RxCross1 /> CLOSE 
+          <div className="d-flex justify-content-end mb-3" style={{ borderBottom: "1px solid lightgray" }}>
+            <button className="btn" type="button" style={{ color: "red" }} onClick={() => setFilter(false)} >
+              <RxCross1 /> CLOSE
             </button>
           </div>
-          <p className="fs-4" style={{color:"#02025E", fontWeight:"500"}}>Product Categories</p>
+          <p className="fs-4" style={{ color: "#02025E", fontWeight: "500" }}>Product Categories</p>
           <div className="accordion d-flex  flex-column gap-4" id="accordionExample">
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingOne">
@@ -718,11 +718,13 @@ const Products = () => {
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
 
               {(data?.filter((item) => (item.stock === undefined || item.stock === false)).length === 0 || loading) && (
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
-                  {loading ? <Loader /> : (
-                    data?.length === 0 ? "No Product available" : null
-                  )}
-                </div>
+                <center>
+                  <div className='col-12' style={{ height: "80vh" }}>
+                    {loading ? <Loader /> : (
+                      data?.length === 0 ? "No Product available" : null
+                    )}
+                  </div>
+                </center>
               )}
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
                 data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => (
@@ -771,9 +773,9 @@ const Products = () => {
                             View Detail
                           </button>
                         </a>
-                          <button className="btn p_whatsapp_btn" onClick={() => sendWhatsAppMessage(product?.title)}>
-                            Buy Via WhatsApp
-                          </button>
+                        <button className="btn p_whatsapp_btn" onClick={() => sendWhatsAppMessage(product?.title)}>
+                          Buy Via WhatsApp
+                        </button>
                       </div>
                     </div>
                   </div>

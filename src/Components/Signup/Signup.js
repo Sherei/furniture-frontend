@@ -31,18 +31,18 @@ const Signup = () => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
             if (response.data === "User Created") {
                 toast.success("Account Created")
-                if(productId){
-                    move('/login/'+productId)
-                }else{
+                if (productId) {
+                    move('/login/' + productId)
+                } else {
                     move('/login')
                 }
                 reset();
             }
         } catch (error) {
             if (error.response && error.response.status === 400) {
-                setError('This E-mail is already registered with us. Try another one')
+                setError('This E-mail is already registered.Please login')
             } else {
-                setError('This E-mail is already registered with us. Try another one')
+                setError('This E-mail is already registered.Please login')
             }
         }
     }
@@ -57,7 +57,7 @@ const Signup = () => {
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
                         {Error &&
-                            <div className='error mb-3'>{Error}</div>
+                            <div className='error mb-3 py-2' style={{ background: "rgb(255, 255, 0,0.7)" }}>{Error}</div>
                         }
                         <div className="input-group mb-3">
                             <input required="true"
@@ -105,7 +105,7 @@ const Signup = () => {
                         </div>
                         <button className='btn border rounded login_btn mt-4'>Create my account</button>
                         <p className='mt-2 fs-6'>Already have an account? &nbsp;
-                           {productId && <a href={"/login/" + productId}>
+                            {productId && <a href={"/login/" + productId}>
                                 <span
                                     className='register_btn'
                                 >

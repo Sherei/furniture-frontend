@@ -27,7 +27,7 @@ export const Cart = () => {
 
   const dispatch = useDispatch();
   const move = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -207,44 +207,21 @@ export const Cart = () => {
   };
 
   if (cu._id === undefined || cu.email === "asd@gmail.com" || filterCart?.length === 0) {
-    if (loading) {
-      return (
-        <div
-          className="col-12 my-5 d-flex justify-content-center align-items-center"
-          style={{ height: "80vh" }}
-        >
-          <Loader />
-        </div>
-      );
-    } else {
-      return (
-        <center>
-          <img src="/cart.png" alt="" style={{ width: "150px" }} />
-          <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
-          <a href="/Products/all">
-            <button
-              className="btn review_btn"
-              style={{ width: "fit-content" }}
-            >
-              Browse Our Products
-            </button>
-          </a>
-        </center>
-      );
-    }
-  }
-
-  if (loading) {
     return (
-      <div
-        className="col-12 my-5 d-flex justify-content-center align-items-center"
-        style={{ height: "80vh" }}
-      >
-        <Loader />
-      </div>
+      <center>
+        <img src="/cart.png" alt="" style={{ width: "150px" }} />
+        <p style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+        <a href="/Products/all">
+          <button
+            className="btn review_btn"
+            style={{ width: "fit-content" }}
+          >
+            Browse Our Products
+          </button>
+        </a>
+      </center>
     );
   }
-
 
   return (
     <div className="container-fluid h-100">
@@ -265,265 +242,40 @@ export const Cart = () => {
         </div>
       </div>
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-lg-3">
+
         <div className="col-lg-8 col-md-12 col-sm-12">
-          <div className="" style={{ minHeight: "50vh" }}>
-            {filterCart?.map((item, index) => {
-              return (
-                <div
-                  className="d-flex gap-4 border py-3 cart_display_layout1"
-                  style={{
-                    marginBottom: "1px solid lightgray",
-                  }}
-                  key={index}
-                >
-                  <div className="row">
-                    <div className="col-4">
-                      <a href={"/single_Add/" + item.productId}>
-                        <div
-                          className="text-center"
-                          style={{ position: "relative" }}>
-                          <img
-                            src={item?.image}
-                            className="img-fluid rounded-3"
-                            alt="Loading"
-                            style={{ width: "150px" }}
-                          />
-                          {item?.discount > 0 && (
-                            <div
-                              className="p-1"
-                              style={{
-                                position: "absolute",
-                                top: "-5px",
-                                right: "2px",
-                                backgroundColor: "red",
-                                color: "white",
-                                borderRadius: "40px",
-                              }}
-                            >
-                              <p className="m-0" style={{ fontSize: "10px" }}>
-                                {`-${item.discount}%`}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </a>
-                    </div>
-                    <div className="col-8">
-                      <div className="w-100 px-2">
-                        <div className="py-2 d-flex justify-content-between align-items-center">
-                          <p
-                            className="m-0"
-                            style={{
-                              color: "rgb(2, 2, 94 )",
-                              fontSize: "14px",
-                            }}
-                          >
-                            {item?.title}
-                            <div
-                              className={`chk_detail ${expandedItems[index] ? "detail_height" : ""
-                                }`}
-                              onClick={() => toggleDetails(index)}
-                            >
-                              {item?.size && (
-                                <p className="text-muted fs-6 m-0">
-                                  Size:{" "}
-                                  {item.size
-                                    ? item.size.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.color && (
-                                <p className="text-muted fs-6 m-0">
-                                  Colour:{" "}
-                                  {item.color
-                                    ? item.color.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.side && (
-                                <p className="text-muted fs-6 m-0">
-                                  Side:{" "}
-                                  {item.side
-                                    ? item.side.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.fabric && (
-                                <p className="text-muted fs-6 m-0">
-                                  Fabric:{" "}
-                                  {item.fabric
-                                    ? item.fabric.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.headboard && (
-                                <p className="text-muted fs-6 m-0">
-                                  Headboard:{" "}
-                                  {item.headboard
-                                    ? item.headboard.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.base && (
-                                <p className="text-muted fs-6 m-0">
-                                  Base:{" "}
-                                  {item.base
-                                    ? item.base.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.detail && (
-                                <p className="text-muted fs-6 m-0">
-                                  Detail:{" "}
-                                  {item.detail
-                                    ? item.detail.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.mattress && (
-                                <p className="text-muted fs-6 m-0">
-                                  Mattress:{" "}
-                                  {item.mattress
-                                    ? item.mattress.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.category === "bed" && item?.ottoman && (
-                                <p className="text-muted fs-6 m-0">
-                                  Match with Ottoman:{" "}
-                                  {item.ottoman
-                                    ? item.ottoman.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.category !== "bed" && item?.ottoman && (
-                                <p className="text-muted fs-6 m-0">
-                                  Mattress Pillow:{" "}
-                                  {item.ottoman
-                                    ? item.ottoman.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                            </div>
-                          </p>
-                          <button
-                            className="btn text-danger"
-                            onClick={() => DeleteCartItem(item._id)}
-                          >
-                            <RxCross1 />
-                          </button>
-                        </div>
-                        <hr className="m-0 p-0" />
-
-                        <div className="py-2 d-flex justify-content-between align-items-center">
-                          <p
-                            className="m-0"
-                            style={{
-                              color: "rgb(2, 2, 94 )",
-                              fontSize: "14px",
-                            }}
-                          >
-                            Price
-                          </p>
-                          <p className="m-0" style={{ fontSize: "14px" }}>
-                            &pound;{item?.total?.toFixed()}
-                          </p>
-                        </div>
-                        <hr className="m-0 p-0" />
-                        <div className="py-2  d-flex justify-content-between align-items-center">
-                          <p
-                            className="mb-0"
-                            style={{
-                              color: "rgb(2, 2, 94 )",
-                              fontSize: "14px",
-                            }}
-                          >
-                            Quantity
-                          </p>
-                          <div
-                            className="sigle_quatity "
-                            style={{ border: "none" }}
-                          >
-                            {/* <button
-                              className="plus_btn"
-                              onClick={() => Decrement(item?._id)}
-                            >
-                              <FaMinus />
-                            </button> */}
-                            <p className="input_single text-center m-0 p-0">
-                              {item.quantity}
-                            </p>
-                            {/* <button
-                              className="plus_btn"
-                              onClick={() => Increment(item?._id)}
-                            >
-                              <FaPlus />
-                            </button> */}
-                          </div>
-                        </div>
-                        <hr className="m-0 p-0" />
-                        <div className="py-2 d-flex justify-content-between align-items-center">
-                          <p
-                            className="mb-0 text-black"
-                            style={{
-                              color: "rgb(2, 2, 94 )",
-                              fontSize: "14px",
-                            }}
-                          >
-                            Subtotal
-                          </p>
-                          <p
-                            className="m-0 fw-bolder fs-5"
-                            style={{ color: "red", fontSize: "17px" }}
-                          >
-                            &pound;{item?.total?.toFixed()}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          {
+            loading ? (
+              <center>
+                <div className="col-12" style={{ height: "80vh" }}>
+                  <Loader />
                 </div>
-              );
-            })}
-
-            <div className="cart-display">
-              {filterCart?.length > 0 && (
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                        <th>Remove</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filterCart?.map((item, index) => (
-                        <tr key={index} className="cart_row">
-                          <td className="text-center">
+              </center>
+            ) : (
+              <>
+                <div className="" style={{ minHeight: "50vh" }}>
+                  {filterCart?.map((item, index) => {
+                    return (
+                      <div
+                        className="d-flex gap-4 border py-3 cart_display_layout1"
+                        style={{
+                          marginBottom: "1px solid lightgray",
+                        }}
+                        key={index}
+                      >
+                        <div className="row">
+                          <div className="col-4">
                             <a href={"/single_Add/" + item.productId}>
-                              <div className="text-center"
+                              <div
+                                className="text-center"
                                 style={{ position: "relative" }}>
                                 <img
                                   src={item?.image}
                                   className="img-fluid rounded-3"
-                                  alt="No Internet"
-                                  style={{ width: "100px" }}
+                                  alt="Loading"
+                                  style={{ width: "150px" }}
                                 />
-                                {item?.discount > 1 && (
+                                {item?.discount > 0 && (
                                   <div
                                     className="p-1"
                                     style={{
@@ -535,126 +287,361 @@ export const Cart = () => {
                                       borderRadius: "40px",
                                     }}
                                   >
-                                    <p
-                                      className="m-0"
-                                      style={{ fontSize: "10px" }}
-                                    >
-                                      {`-${item?.discount}%`}
+                                    <p className="m-0" style={{ fontSize: "10px" }}>
+                                      {`-${item.discount}%`}
                                     </p>
                                   </div>
                                 )}
                               </div>
                             </a>
-                          </td>
-                          <td>
-                            {item?.title}
-                            <div
-                              className={`chk_detail ${expandedItems[index] ? "detail_height" : ""
-                                }`}
-                              onClick={() => toggleDetails(index)}
+                          </div>
+                          <div className="col-8">
+                            <div className="w-100 px-2">
+                              <div className="py-2 d-flex justify-content-between align-items-center">
+                                <p
+                                  className="m-0"
+                                  style={{
+                                    color: "rgb(2, 2, 94 )",
+                                    fontSize: "14px",
+                                  }}
+                                >
+                                  {item?.title}
+                                  <div
+                                    className={`chk_detail ${expandedItems[index] ? "detail_height" : ""
+                                      }`}
+                                    onClick={() => toggleDetails(index)}
+                                  >
+                                    {item?.size && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Size:{" "}
+                                        {item.size
+                                          ? item.size.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.color && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Colour:{" "}
+                                        {item.color
+                                          ? item.color.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.side && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Side:{" "}
+                                        {item.side
+                                          ? item.side.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.fabric && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Fabric:{" "}
+                                        {item.fabric
+                                          ? item.fabric.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.headboard && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Headboard:{" "}
+                                        {item.headboard
+                                          ? item.headboard.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.base && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Base:{" "}
+                                        {item.base
+                                          ? item.base.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.detail && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Detail:{" "}
+                                        {item.detail
+                                          ? item.detail.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.mattress && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Mattress:{" "}
+                                        {item.mattress
+                                          ? item.mattress.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.category === "bed" && item?.ottoman && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Match with Ottoman:{" "}
+                                        {item.ottoman
+                                          ? item.ottoman.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.category !== "bed" && item?.ottoman && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Mattress Pillow:{" "}
+                                        {item.ottoman
+                                          ? item.ottoman.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                  </div>
+                                </p>
+                                <button
+                                  className="btn text-danger"
+                                  onClick={() => DeleteCartItem(item._id)}
+                                >
+                                  <RxCross1 />
+                                </button>
+                              </div>
+                              <hr className="m-0 p-0" />
+
+                              <div className="py-2 d-flex justify-content-between align-items-center">
+                                <p
+                                  className="m-0"
+                                  style={{
+                                    color: "rgb(2, 2, 94 )",
+                                    fontSize: "14px",
+                                  }}
+                                >
+                                  Price
+                                </p>
+                                <p className="m-0" style={{ fontSize: "14px" }}>
+                                  &pound;{item?.total?.toFixed()}
+                                </p>
+                              </div>
+                              <hr className="m-0 p-0" />
+                              <div className="py-2  d-flex justify-content-between align-items-center">
+                                <p
+                                  className="mb-0"
+                                  style={{
+                                    color: "rgb(2, 2, 94 )",
+                                    fontSize: "14px",
+                                  }}
+                                >
+                                  Quantity
+                                </p>
+                                <div
+                                  className="sigle_quatity "
+                                  style={{ border: "none" }}
+                                >
+                                  {/* <button
+                              className="plus_btn"
+                              onClick={() => Decrement(item?._id)}
                             >
-                              {item?.size && (
-                                <p className="text-muted fs-6 m-0">
-                                  Size:{" "}
-                                  {item.size
-                                    ? item.size.replace(/-/g, " ")
-                                    : ""}
-                                  /
+                              <FaMinus />
+                            </button> */}
+                                  <p className="input_single text-center m-0 p-0">
+                                    {item.quantity}
+                                  </p>
+                                  {/* <button
+                              className="plus_btn"
+                              onClick={() => Increment(item?._id)}
+                            >
+                              <FaPlus />
+                            </button> */}
+                                </div>
+                              </div>
+                              <hr className="m-0 p-0" />
+                              <div className="py-2 d-flex justify-content-between align-items-center">
+                                <p
+                                  className="mb-0 text-black"
+                                  style={{
+                                    color: "rgb(2, 2, 94 )",
+                                    fontSize: "14px",
+                                  }}
+                                >
+                                  Subtotal
                                 </p>
-                              )}
-                              {item?.color && (
-                                <p className="text-muted fs-6 m-0">
-                                  Colour:{" "}
-                                  {item.color
-                                    ? item.color.replace(/-/g, " ")
-                                    : ""}
-                                  /
+                                <p
+                                  className="m-0 fw-bolder fs-5"
+                                  style={{ color: "red", fontSize: "17px" }}
+                                >
+                                  &pound;{item?.total?.toFixed()}
                                 </p>
-                              )}
-                              {item?.side && (
-                                <p className="text-muted fs-6 m-0">
-                                  Side:{" "}
-                                  {item.side
-                                    ? item.side.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.fabric && (
-                                <p className="text-muted fs-6 m-0">
-                                  Fabric:{" "}
-                                  {item.fabric
-                                    ? item.fabric.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.headboard && (
-                                <p className="text-muted fs-6 m-0">
-                                  Headboard:{" "}
-                                  {item.headboard
-                                    ? item.headboard.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.base && (
-                                <p className="text-muted fs-6 m-0">
-                                  Base:{" "}
-                                  {item.base
-                                    ? item.base.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.detail && (
-                                <p className="text-muted fs-6 m-0">
-                                  Detail:{" "}
-                                  {item.detail
-                                    ? item.detail.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.mattress && (
-                                <p className="text-muted fs-6 m-0">
-                                  Mattress:{" "}
-                                  {item.mattress
-                                    ? item.mattress.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.category === "bed" && item?.ottoman && (
-                                <p className="text-muted fs-6 m-0">
-                                  Match with Ottoman:{" "}
-                                  {item.ottoman
-                                    ? item.ottoman.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
-                              {item?.category !== "bed" && item?.ottoman && (
-                                <p className="text-muted fs-6 m-0">
-                                  Mattress Pillow:{" "}
-                                  {item.ottoman
-                                    ? item.ottoman.replace(/-/g, " ")
-                                    : ""}
-                                  /
-                                </p>
-                              )}
+                              </div>
                             </div>
-                          </td>
-                          <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
-                          <td className="text-center">
-                            <p className="input_single text-center m-0 p-0">
-                              {item.quantity}
-                            </p>
-                            <div
-                              className="sigle_quatity"
-                              style={{ border: "none" }}
-                            >
-                              {/* <button
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  <div className="cart-display">
+                    {filterCart?.length > 0 && (
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>Image</th>
+                              <th>Title</th>
+                              <th>Price</th>
+                              <th>Quantity</th>
+                              <th>Subtotal</th>
+                              <th>Remove</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {filterCart?.map((item, index) => (
+                              <tr key={index} className="cart_row">
+                                <td className="text-center">
+                                  <a href={"/single_Add/" + item.productId}>
+                                    <div className="text-center"
+                                      style={{ position: "relative" }}>
+                                      <img
+                                        src={item?.image}
+                                        className="img-fluid rounded-3"
+                                        alt="No Internet"
+                                        style={{ width: "100px" }}
+                                      />
+                                      {item?.discount > 1 && (
+                                        <div
+                                          className="p-1"
+                                          style={{
+                                            position: "absolute",
+                                            top: "-5px",
+                                            right: "2px",
+                                            backgroundColor: "red",
+                                            color: "white",
+                                            borderRadius: "40px",
+                                          }}
+                                        >
+                                          <p
+                                            className="m-0"
+                                            style={{ fontSize: "10px" }}
+                                          >
+                                            {`-${item?.discount}%`}
+                                          </p>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </a>
+                                </td>
+                                <td>
+                                  {item?.title}
+                                  <div
+                                    className={`chk_detail ${expandedItems[index] ? "detail_height" : ""
+                                      }`}
+                                    onClick={() => toggleDetails(index)}
+                                  >
+                                    {item?.size && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Size:{" "}
+                                        {item.size
+                                          ? item.size.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.color && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Colour:{" "}
+                                        {item.color
+                                          ? item.color.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.side && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Side:{" "}
+                                        {item.side
+                                          ? item.side.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.fabric && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Fabric:{" "}
+                                        {item.fabric
+                                          ? item.fabric.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.headboard && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Headboard:{" "}
+                                        {item.headboard
+                                          ? item.headboard.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.base && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Base:{" "}
+                                        {item.base
+                                          ? item.base.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.detail && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Detail:{" "}
+                                        {item.detail
+                                          ? item.detail.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.mattress && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Mattress:{" "}
+                                        {item.mattress
+                                          ? item.mattress.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.category === "bed" && item?.ottoman && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Match with Ottoman:{" "}
+                                        {item.ottoman
+                                          ? item.ottoman.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                    {item?.category !== "bed" && item?.ottoman && (
+                                      <p className="text-muted fs-6 m-0">
+                                        Mattress Pillow:{" "}
+                                        {item.ottoman
+                                          ? item.ottoman.replace(/-/g, " ")
+                                          : ""}
+                                        /
+                                      </p>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
+                                <td className="text-center">
+                                  <p className="input_single text-center m-0 p-0">
+                                    {item.quantity}
+                                  </p>
+                                  <div
+                                    className="sigle_quatity"
+                                    style={{ border: "none" }}
+                                  >
+                                    {/* <button
                                 className="plus_btn"
                                 onClick={() => Decrement(item._id)}
                               >
@@ -662,48 +649,55 @@ export const Cart = () => {
                               </button> */}
 
 
-                              {/* <button
+                                    {/* <button
                                 className="plus_btn"
                                 onClick={() => Increment(item._id)}
                               >
                                 <FaPlus />
                               </button> */}
-                            </div>
-                          </td>
-                          <td className="text-center">{`£${item?.total?.toFixed()}`}</td>
-                          <td className="text-center">
-                            <button
-                              className=" btn text-danger"
-                              style={{ fontSize: "20px" }}
-                              onClick={() => DeleteCartItem(item._id)}
-                            >
-                              <RxCross1 />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                                  </div>
+                                </td>
+                                <td className="text-center">{`£${item?.total?.toFixed()}`}</td>
+                                <td className="text-center">
+                                  <button
+                                    className=" btn text-danger"
+                                    style={{ fontSize: "20px" }}
+                                    onClick={() => DeleteCartItem(item._id)}
+                                  >
+                                    <RxCross1 />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
-            </div>
-          </div>
-          <div className="cart_btns gap-2">
-            <a href="/Products/all">
-              <button
-                className="btn review_btn px-4"
-                style={{ backgroundColor: "#8B0000" }}
-              >
-                Continue Shopping
-              </button>
-            </a>
-            {/* <button
+
+                <div className="cart_btns gap-2">
+                  <a href="/Products/all">
+                    <button
+                      className="btn review_btn px-4"
+                      style={{ backgroundColor: "#8B0000" }}
+                    >
+                      Continue Shopping
+                    </button>
+                  </a>
+                  {/* <button
               className="btn review_btn px-4"
               onClick={updateCart}
             >
               Update Cart
             </button> */}
-          </div>
+                </div>
+
+              </>
+            )
+          }
+
+
         </div>
 
         <div className="col-lg-3 col-md-12 col-sm-12">
