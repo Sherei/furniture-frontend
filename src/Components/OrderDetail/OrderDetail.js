@@ -79,7 +79,7 @@ const OrderDetail = () => {
                             <p className='fw-bolder fs-3'
                                 style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)" }}
                             >Order Detail</p>
-                            <p><b>Tracking Id: </b>{order?.orderId}</p>
+                            <p><b>ID: </b>{order?.orderId}</p>
                         <p className='text-left'><b >Date: </b>{formatDateTime(order?.date)}</p >
                         </center>
                     </div>
