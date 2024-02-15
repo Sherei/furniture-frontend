@@ -18,7 +18,7 @@ a {
 }
 .error {
   font-family: 'Montserrat', sans-serif;
-  color: red;
+  color: black;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.1rem;
@@ -27,7 +27,9 @@ a {
   background-color: #F7EEDD;
   /* background-color: rgb(255, 0, 0, 0.2); */
 }
-
+.toast {
+  background-color: #F7EEDD !important;
+}
 main {
   padding: 0px !important;
   flex: 1 0 auto;

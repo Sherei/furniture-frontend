@@ -415,7 +415,7 @@ const SingleAdd = () => {
 
     if (cu._id === undefined) {
       move("/login/" + productId);
-      toast.success("Login to Place Your Order");
+      // toast.success("Login to Place Your Order");
     } else if (cu.email === "asd@gmail.com") {
       dispatch({
         type: "LOGOUT_USER",
@@ -774,10 +774,10 @@ const SingleAdd = () => {
                 <span
                   className="fw-bold fs-5"
                   style={{ color: "red" }}
-                >{`£${totalPrice?.toFixed(2)}`}</span>
+                >{`£${totalPrice?.toFixed()}`}.00</span>
                 {product.discount > 0 &&
                   <span className="fs-6" style={{ color: "red" }}>
-                    <s className="mx-2">{`£${product?.price.toFixed(2)}`}</s>
+                    <s className="mx-2">{`£${product?.price.toFixed()}`}.00</s>
                   </span>}
               </div>
 

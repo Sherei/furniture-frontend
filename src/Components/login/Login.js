@@ -40,9 +40,7 @@ export const Login = () => {
       let loginUser = response.data;
 
       if (loginUser) {
-
         localStorage.setItem('userToken', loginUser.myToken);
-
         dispatch({
           type: "LOGIN_USER",
           payload: loginUser.user,
@@ -56,6 +54,7 @@ export const Login = () => {
           return move("/");
         }
       }
+      
     } catch (e) {
       if (e.response && e.response.status === 404) {
         setError("Invalid Credentials")

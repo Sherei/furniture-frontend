@@ -40,9 +40,9 @@ const Signup = () => {
             }
         } catch (error) {
             if (error.response && error.response.status === 400) {
-                setError('This E-mail is already registered.Please login')
+                setError('This E-mail is already registered. Please login')
             } else {
-                setError('This E-mail is already registered.Please login')
+                setError('This E-mail is already registered. Please login')
             }
         }
     }
@@ -57,7 +57,7 @@ const Signup = () => {
                     </div>
                     <form action="" onSubmit={handleSubmit(SignUp)}>
                         {Error &&
-                            <div className='error mb-3 py-2' style={{ background: "rgb(255, 255, 0,0.7)" }}>{Error}</div>
+                            <div className='error mb-3 py-2'>{Error}</div>
                         }
                         <div className="input-group mb-3">
                             <input required="true"
