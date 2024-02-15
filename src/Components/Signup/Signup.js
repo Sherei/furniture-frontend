@@ -30,7 +30,7 @@ const Signup = () => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
             if (response.data === "User Created") {
-                toast.success("Your account has been created")
+                // toast.success("Your account has been created")
                 if (productId) {
                     move('/login/' + productId)
                 } else {

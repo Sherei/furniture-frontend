@@ -425,6 +425,7 @@ export const Navbar = () => {
       )}
 
       <div className="fixed-top">
+
         <div className="container-fluid nav_contact2" style={{ backgroundColor: "#F7EEDD" }}>
           <div className="row py-2">
             <div className="col d-flex justify-content-between align-items-center px-lg-4 px-sm-2 gap-lg-5 gap-md-5 gap-2 ">
@@ -973,9 +974,7 @@ export const Navbar = () => {
           </div>
         </div>
 
-      </div >
-
-
+      </div>
 
       {searchValue && (
         <div className="container-fluid px-lg-3 px-2 nav_search_margin" >
@@ -1043,8 +1042,8 @@ export const Navbar = () => {
             ))}
           </div>
         </div>
-      )
-      }
+      )}
+
     </>
   );
 };
