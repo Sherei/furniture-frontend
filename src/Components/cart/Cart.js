@@ -20,6 +20,12 @@ export const Cart = () => {
       top: 0,
     });
   }, []);
+  
+  const sendWhatsAppMessage = () => {
+    const message = `i want to place this order \n\n${window.location.href}`;
+    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
 
   const cu = useSelector((store) => store.userSection.cu);
   const allCartItems = useSelector((store) => store.Cart.cart);
@@ -712,7 +718,6 @@ export const Cart = () => {
                 </p>
               </div>
               <hr className="m-1" />
-
               <div className="fw-normal d-flex justify-content-between align-items-center gap-3">
                 <p className="fw-bolder m-0" style={{ fontSize: "15px" }}>
                   Shipping
@@ -738,10 +743,7 @@ export const Cart = () => {
                 <p className="fw-bolder m-0" style={{ fontSize: "17px" }}>
                   Total:
                 </p>
-                <p
-                  className="fw-bolder m-0"
-                  style={{ color: "red", fontSize: "17px" }}
-                >
+                <p className="fw-bolder m-0" style={{ color: "red", fontSize: "17px" }}>
                   &pound;{total?.toFixed()}.00
                 </p>
               </div>
@@ -762,7 +764,6 @@ export const Cart = () => {
                   </button>
                 </a>
                 <p className="text-center  my-3">--or--</p>
-                <a href="https://wa.me/+923067208343" target="blank">
                   <button
                     type="button"
                     className="btn fs-6 py-2"
@@ -772,10 +773,10 @@ export const Cart = () => {
                       width: "100%",
                       fontWeight: "600",
                     }}
+                    onClick={sendWhatsAppMessage}
                   >
                     Order via WhatsApp
                   </button>
-                </a>
               </div>
             </div>
           </div>

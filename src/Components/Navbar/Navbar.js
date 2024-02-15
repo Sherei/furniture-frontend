@@ -376,7 +376,7 @@ export const Navbar = () => {
             {filterCart?.length > 0 && (
               <div className="border">
                 <div className="d-flex justify-content-between fw-bolder fs-5">
-                  <p className="mb-1">Total {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
+                  <p className="mb-1">Total </p>
                   <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
                 </div>
                 {/* <div className="d-flex justify-content-between fw-bolder fs-5">
@@ -403,7 +403,7 @@ export const Navbar = () => {
                     }
                   }}
                 >
-                  view cart
+                  View Cart
                 </button>
                 <a href={`/cart-checkout/${cu._id}`}>
                   <button
@@ -418,7 +418,7 @@ export const Navbar = () => {
                       setCartOpen(false);
                     }}
                   >
-                    check out
+                    Check Out
                   </button>
                 </a>
               </div>
