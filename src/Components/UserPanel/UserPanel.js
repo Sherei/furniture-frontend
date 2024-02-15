@@ -161,7 +161,7 @@ const UserPanel = () => {
                                                             Items: {orderItemsLength}
                                                         </p>
                                                         <p className='m-0'>
-                                                            Total: &pound;{item?.total?.toFixed(2)}
+                                                            Total: &pound;{item?.total?.toFixed()}
                                                         </p>
                                                         <p className='m-0'>
                                                             Date: {formatDateTime(item?.date)}
