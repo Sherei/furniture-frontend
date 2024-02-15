@@ -31,8 +31,8 @@ export const Cart = () => {
   const allCartItems = useSelector((store) => store.Cart.cart);
   const { userId } = useParams();
 
-  const dispatch = useDispatch();
   const move = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [expandedItems, setExpandedItems] = useState({});

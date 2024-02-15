@@ -344,7 +344,7 @@ const Checkout = () => {
                                         {errors.email ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-12 mt-3">
-                                        <p className='mb-0 fw-bold' style={{ fontSize: "14px" }}>Note: Remember all orders are delivered on ground floor.
+                                        <p className='mb-0 fw-bold' style={{ fontSize: "16px" }}>Note: Remember all orders are delivered on ground floor.
                                             Extra charges for uplift or desired room.</p>
                                     </div>
                                 </div>
@@ -354,7 +354,7 @@ const Checkout = () => {
                                     <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
                                     <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
                                         style={{ border: "1px solid lightgray" }}>
-                                        <p className='m-0'>Standard Delivery Chargess</p>
+                                        <p className='m-0'>Standard Delivery</p>
                                         <p className='m-0' >&pound;50</p>
                                     </div>
                                 </div>
