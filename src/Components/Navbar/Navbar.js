@@ -262,166 +262,170 @@ export const Navbar = () => {
     <>
       {open && (
         <div className={` px-2 ${open ? "side_open" : "side_cart"}`} cartRef={ref}>
-          <div className="py-2 d-flex justify-content-between align-items-center" style={{ borderBottom: "1px solid lightgray" }}>
-            <p className="fw-bolder m-0 cart_text" style={{ color: "#02025E" }}>SHOPPING CART</p>
-            <button
-              className="m-0 side_cart_cross"
-              type="button"
-              onClick={() => setCartOpen(false)}
-            >
-              <RxCross1 /> CLOSE
-            </button>
-          </div>
-          {filterCart?.length === 0 ? (
-            <div
-              className="py-0 d-flex flex-column align-items-center justify-content-center "
-              style={{ height: "75vh" }}
-            >
-              <center>
-                <img src="/cart.png" alt="" style={{ width: "100px" }} />
-                <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
-                {/* <Lottie
+          <div className="" style={{ position: "relative", height:"100vh" }}>
+
+            <div className="py-2 d-flex justify-content-between align-items-center" style={{ borderBottom: "1px solid lightgray" }}>
+              <p className="fw-bolder m-0 cart_text" style={{ color: "#02025E" }}>SHOPPING CART</p>
+              <button
+                className="m-0 side_cart_cross"
+                type="button"
+                onClick={() => setCartOpen(false)}
+              >
+                <RxCross1 /> CLOSE
+              </button>
+            </div>
+            {filterCart?.length === 0 ? (
+              <div
+                className="py-0 d-flex flex-column align-items-center justify-content-center "
+                style={{ height: "75vh" }}
+              >
+                <center>
+                  <img src="/cart.png" alt="" style={{ width: "100px" }} />
+                  <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                  {/* <Lottie
                 animationData={CartAnimation}
                 loop={true}
                 style={{ width: "100%", height: "100%" }}
               /> */}
-                <a href="/Products/all">
-                  <button
-                    className="btn review_btn my-5"
-                    style={{ width: "200px" }}
-                    onClick={() => {
-                      setCartOpen("close");
+                  <a href="/Products/all">
+                    <button
+                      className="btn review_btn my-5"
+                      style={{ width: "200px" }}
+                      onClick={() => {
+                        setCartOpen("close");
+                      }}
+                    >
+                      Shop our products
+                    </button>
+                  </a>
+                </center>
+              </div>
+            ) : (
+              <div className="" style={{ height: "68vh", overflow: "auto" }}>
+                {filterCart?.map((item, index) => (
+                  <div
+                    className="px-2 mt-2 py-2 d-flex gap-2 cursor"
+                    key={index}
+                    style={{
+                      maxWidth: "320px",
+                      position: "relative",
+                      boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                     }}
                   >
-                    Shop our products
-                  </button>
-                </a>
-              </center>
-            </div>
-          ) : (
-            <div className="" style={{ height: "68vh", overflow: "auto" }}>
-              {filterCart?.map((item, index) => (
-                <div
-                  className="px-2 mt-2 py-2 d-flex gap-2 cursor"
-                  key={index}
-                  style={{
-                    maxWidth: "320px",
-                    position: "relative",
-                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                  }}
-                >
-                  <div
-                    className="side_img_main"
-                    style={{ width: "100px", minHeight: "80px", position: "relative" }}
-                  >
-                    <img
-                      src={item?.image}
-                      alt="No Network"
-                      style={{ width: "100%", height: "100%" }}
-                      onClick={() => {
-                        setCartOpen(false);
-                      }}
-                    />
-                    {item?.discount > 0 && (
-                      <div
-                        className="p-1"
-                        style={{
-                          position: "absolute",
-                          top: "-5px",
-                          left: "0px",
-                          backgroundColor: "red",
-                          color: "white",
-                          borderRadius: "40px",
+                    <div
+                      className="side_img_main"
+                      style={{ width: "100px", minHeight: "80px", position: "relative" }}
+                    >
+                      <img
+                        src={item?.image}
+                        alt="No Network"
+                        style={{ width: "100%", height: "100%" }}
+                        onClick={() => {
+                          setCartOpen(false);
                         }}
-                      >
-                        <p className="m-0" style={{ fontSize: "10px" }}>
-                          {`-${item.discount}%`}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div
-                    className="d-flex gap-2 justify-content-between"
-                    style={{ width: "220px", maxHeight: "100px" }}
-                  >
-                    <div className="d-flex flex-column justify-content-around">
-                      <a href={`/single_Add/${item.productId}`}>
-                        <p
-                          className="m-0"
-                          style={{ fontSize: "13px", color: "#1B1B6D" }}
-                          onClick={() => {
-                            setCartOpen(false);
+                      />
+                      {item?.discount > 0 && (
+                        <div
+                          className="p-1"
+                          style={{
+                            position: "absolute",
+                            top: "-5px",
+                            left: "0px",
+                            backgroundColor: "red",
+                            color: "white",
+                            borderRadius: "40px",
                           }}
                         >
-                          {item?.title}
-                        </p>
-                      </a>
-                      <p className="m-0 fw-bolder" style={{ color: "red" }}>
-                        &pound;{item?.total?.toFixed()}
-                      </p>
+                          <p className="m-0" style={{ fontSize: "10px" }}>
+                            {`-${item.discount}%`}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                    <button
-                      className="side_remove text-danger"
-                      onClick={() => DeleteCartItem(item._id)}
+                    <div
+                      className="d-flex gap-2 justify-content-between"
+                      style={{ width: "220px", maxHeight: "100px" }}
                     >
-                      <RxCross1 />
-                    </button>
+                      <div className="d-flex flex-column justify-content-around">
+                        <a href={`/single_Add/${item.productId}`}>
+                          <p
+                            className="m-0"
+                            style={{ fontSize: "13px", color: "#1B1B6D" }}
+                            onClick={() => {
+                              setCartOpen(false);
+                            }}
+                          >
+                            {item?.title}
+                          </p>
+                        </a>
+                        <p className="m-0 fw-bolder" style={{ color: "red" }}>
+                          &pound;{item?.total?.toFixed()}
+                        </p>
+                      </div>
+                      <button
+                        className="side_remove text-danger"
+                        onClick={() => DeleteCartItem(item._id)}
+                      >
+                        <RxCross1 />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-          {filterCart?.length > 0 && (
-            <div className="border">
-              <div className="d-flex justify-content-between fw-bolder fs-5">
-                <p className="mb-1">Total {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
-                <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
+                ))}
               </div>
-              {/* <div className="d-flex justify-content-between fw-bolder fs-5">
+            )}
+            {filterCart?.length > 0 && (
+              <div className="border">
+                <div className="d-flex justify-content-between fw-bolder fs-5">
+                  <p className="mb-1">Total {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
+                  <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
+                </div>
+                {/* <div className="d-flex justify-content-between fw-bolder fs-5">
                 <p className="mb-1">You Saved {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
                 <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
               </div> */}
-              <button
-                className="btn"
-                style={{
-                  backgroundColor: "#1b2950",
-                  color: "white",
-                  fontWeight: "500",
-                  width: "100%",
-                }}
-                onClick={() => {
-                  if (cu._id === undefined) {
-                    setLogin("login");
-                    // toast.warning("Login to see your Cart");
-                  } else if (cu.email === "asd@gmail.com") {
-                    // toast.warning("Login too see cart");
-                  } else {
-                    setCartOpen(false);
-                    move(`/cart/${cu._id}`);
-                  }
-                }}
-              >
-                view cart
-              </button>
-              <a href={`/cart-checkout/${cu._id}`}>
                 <button
-                  className="btn mt-1"
+                  className="btn"
                   style={{
-                    backgroundColor: "#8B0000",
+                    backgroundColor: "#1b2950",
                     color: "white",
                     fontWeight: "500",
                     width: "100%",
                   }}
                   onClick={() => {
-                    setCartOpen(false);
+                    if (cu._id === undefined) {
+                      setLogin("login");
+                      // toast.warning("Login to see your Cart");
+                    } else if (cu.email === "asd@gmail.com") {
+                      // toast.warning("Login too see cart");
+                    } else {
+                      setCartOpen(false);
+                      move(`/cart/${cu._id}`);
+                    }
                   }}
                 >
-                  check out
+                  view cart
                 </button>
-              </a>
-            </div>
-          )}
-        </div >
+                <a href={`/cart-checkout/${cu._id}`}>
+                  <button
+                    className="btn mt-1"
+                    style={{
+                      backgroundColor: "#8B0000",
+                      color: "white",
+                      fontWeight: "500",
+                      width: "100%",
+                    }}
+                    onClick={() => {
+                      setCartOpen(false);
+                    }}
+                  >
+                    check out
+                  </button>
+                </a>
+              </div>
+            )}
+
+          </div>
+        </div>
       )}
 
       <div className="fixed-top">
@@ -654,9 +658,9 @@ export const Navbar = () => {
                                 onClick={() => {
                                   if (cu.email === "asd@gmail.com") {
                                     move("/admin-dashboard");
-                                  } else if(window.location.href===`https://www.sofabedsltd.co.uk/user-profile/${cu._id}`) {
+                                  } else if (window.location.href === `https://www.sofabedsltd.co.uk/user-profile/${cu._id}`) {
                                     move(`/`);
-                                  }else{
+                                  } else {
                                     move(`/user-profile/${cu._id}`);
                                   }
                                   setSearch(false);
