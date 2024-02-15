@@ -72,7 +72,7 @@ const OrderDetail = () => {
                 <Loader />
             </div >
         ) : (
-            <div className='container my-5' style={{ textTransform: "uppercase" }}>
+            <div className='container my-5'>
                 <div className='row'>
                     <div className='col'>
                         <center>
@@ -85,14 +85,16 @@ const OrderDetail = () => {
                 </div>
                 <div className='row' id="orderDetail">
                     <div className='col-12'>
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Name:</b> {order?.name1} {order?.name2}</p>
-                        {order?.email && <p><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Street & House number: </b>{order?.street}</p>
-                        {order?.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
-                        {order?.postal && <p><b style={{ color: "rgb(2,2,94)" }}>Postalcode: </b>{order?.postal}</p>}
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Total Items: </b>{order?.orderItems?.length}</p >
-                        {order?.note && <p><b style={{ color: "rgb(2,2,94)" }}>Note: {order?.note}</b></p >}
+                        <p><b style={{ color: "rgb(2,2,94)" }}>NAME:</b> {order?.name1} {order?.name2}</p>
+                        {order?.email && <p><b style={{ color: "rgb(2,2,94)" }}>E-MAIL: </b>{order?.email}</p>}
+                        <p><b style={{ color: "rgb(2,2,94)" }}>MOBILE NUMBER: </b>{order?.number1}</p>
+                        {order?.country && <p><b style={{ color: "rgb(2,2,94)" }}>COUNTRY: </b>{order?.country}</p>}
+                        {order?.city && <p><b style={{ color: "rgb(2,2,94)" }}>CITY: </b>{order?.city}</p>}
+                        <p><b style={{ color: "rgb(2,2,94)" }}>STREET & HOUSE NUMBER: </b>{order?.street}</p>
+                        {order?.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>APPARTMENT: </b>{order?.appartment}</p>}
+                        {order?.postal && <p><b style={{ color: "rgb(2,2,94)" }}>POSTCODE: </b>{order?.postal}</p>}
+                        <p><b style={{ color: "rgb(2,2,94)" }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p >
+                        {order?.note && <p><b style={{ color: "rgb(2,2,94)" }}>NOTE: {order?.note}</b></p >}
                         <p><b style={{ color: "rgb(2,2,94)" }}>Date: </b>{formatDateTime(order?.date)}</p >
                     </div>
                 </div>
@@ -301,11 +303,11 @@ const OrderDetail = () => {
                         </div>
                         <div className='fw-normal d-flex justify-content-between'>
                             <p style={{ color: "rgb(2,2,94)" }}>Shipping Fee</p>
-                            <p>&pound;{order?.shipping}</p>
+                            <p>&pound;{order?.shipping}.00</p>
                         </div>
                         <div className='fw-bold d-flex justify-content-between'>
                             <p style={{ color: "rgb(2,2,94)" }}>Net Total:</p>
-                            <p>&pound;{order?.total}</p>
+                            <p>&pound;{order?.total}.00</p>
                         </div>
                         {/* <div className=''>
                         <a href="https://wa.me/+447392608087">

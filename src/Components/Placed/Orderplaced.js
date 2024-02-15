@@ -84,13 +84,13 @@ const Orderplaced = () => {
                         </p>
                         <div className='order_btns'>
                         <a href={`/order-detail/${filterOrder[0]._id}`}>
-                                <button className="review_btn cursor" type='button'>
+                                <button className="review_btn cursor px-5" type='button'>
                                     Order Detail
                                 </button>
                             </a>
 
                             <a href="/Products/all">
-                                <button className="review_btn cursor" type='button'>
+                                <button className="review_btn cursor px-5" type='button'>
                                     Browse  More Products
                                 </button>
                             </a>
