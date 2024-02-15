@@ -199,7 +199,7 @@ const Checkout = () => {
                 } else if (totalQuantity === 2) {
                     return 70;
                 } else {
-                    return 90;
+                    return 99;
                 }
             };
             const shippingFeeAmount = shippingFee();

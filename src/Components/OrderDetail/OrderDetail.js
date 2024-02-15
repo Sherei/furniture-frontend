@@ -80,6 +80,7 @@ const OrderDetail = () => {
                                 style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)" }}
                             >Order Detail</p>
                             <p><b>Tracking Id: </b>{order?.orderId}</p>
+                        <p className='text-left'><b >Date: </b>{formatDateTime(order?.date)}</p >
                         </center>
                     </div>
                 </div>
@@ -93,9 +94,8 @@ const OrderDetail = () => {
                         <p><b style={{ color: "rgb(2,2,94)" }}>STREET & HOUSE NUMBER: </b>{order?.street}</p>
                         {order?.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>APPARTMENT: </b>{order?.appartment}</p>}
                         {order?.postal && <p><b style={{ color: "rgb(2,2,94)" }}>POSTCODE: </b>{order?.postal}</p>}
-                        <p><b style={{ color: "rgb(2,2,94)" }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p >
+                        {/* <p><b style={{ color: "rgb(2,2,94)" }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p > */}
                         {order?.note && <p><b style={{ color: "rgb(2,2,94)" }}>NOTE: {order?.note}</b></p >}
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Date: </b>{formatDateTime(order?.date)}</p >
                     </div>
                 </div>
                 <div className='col-12'>
@@ -209,7 +209,7 @@ const OrderDetail = () => {
                                                             Total Price
                                                         </p>
                                                         <p className='m-0' style={{ fontSize: "14px" }}>
-                                                            &pound;{item?.total.toFixed(2)}
+                                                            &pound;{item?.total.toFixed()}.00
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
@@ -273,10 +273,10 @@ const OrderDetail = () => {
                                                         </td>
                                                         <td>{data?.category}</td>
                                                         {/* <td className='text-center'>{data?.subCategory ? data?.subCategory : "No subcategory"}</td> */}
-                                                        <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed(2)}`}</td>
+                                                        <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed()}`}.00</td>
                                                         <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>
-                                                        <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed(2)}%`}</td>
-                                                        <td className='text-center'>{`£${parseFloat(data?.total)?.toFixed(2)}`}</td>
+                                                        <td className='text-center'>{`${parseFloat(data?.discount || 0).toFixed()}%`}</td>
+                                                        <td className='text-center'>{`£${parseFloat(data?.total)?.toFixed()}`}.00</td>
                                                     </tr>
                                                 ))
                                             ) : (
@@ -307,7 +307,7 @@ const OrderDetail = () => {
                         </div>
                         <div className='fw-bold d-flex justify-content-between'>
                             <p style={{ color: "rgb(2,2,94)" }}>Net Total:</p>
-                            <p>&pound;{order?.total}.00</p>
+                            <p>&pound;{order?.total.toFixed()}.00</p>
                         </div>
                         {/* <div className=''>
                         <a href="https://wa.me/+447392608087">
@@ -316,7 +316,6 @@ const OrderDetail = () => {
                             </button>
                         </a>
                     </div> */}
-
                     </div>
                 </div>
                 <div>
@@ -328,9 +327,9 @@ const OrderDetail = () => {
                         </a>
                     }
                     {cu.email != "asd@gmail.com" &&
-                        <a href={`/user-profile/${cu._id}`} >
+                        <a href={`/`} >
                             <button className='btn review_btn btn_width' >
-                                Back to Profile
+                                Back to Home Page
                             </button>
                         </a>
                     }
