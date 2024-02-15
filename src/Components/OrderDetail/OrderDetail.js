@@ -90,7 +90,7 @@ const OrderDetail = () => {
                         <p><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
                         <p><b style={{ color: "rgb(2,2,94)" }}>Street & House number: </b>{order?.street}</p>
                         {order?.appartment && <p><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
-                        <p><b style={{ color: "rgb(2,2,94)" }}>Shipping Address: </b>{order?.shipping}</p>
+                        {/* <p><b style={{ color: "rgb(2,2,94)" }}>Shipping Address: </b>{order?.shipping}</p> */}
                         <p><b style={{ color: "rgb(2,2,94)" }}>Total Items: </b>{order?.orderItems?.length}</p >
                         {order?.note && <p><b style={{ color: "rgb(2,2,94)" }}>Note: {order?.note}</b></p >}
                         <p><b style={{ color: "rgb(2,2,94)" }}>Date: </b>{formatDateTime(order?.date)}</p >

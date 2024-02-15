@@ -354,8 +354,8 @@ const Checkout = () => {
                                     <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
                                     <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
                                         style={{ border: "1px solid lightgray" }}>
-                                        <p className='m-0 fs-5'>Standard</p>
-                                        <p className='m-0 fs-5' >&pound;50</p>
+                                        <p className='m-0'>Standard Delivery Chargess</p>
+                                        <p className='m-0' >&pound;50</p>
                                     </div>
                                 </div>
                                 <div className='py-3'>
