@@ -465,7 +465,7 @@ const Checkout = () => {
                                 </div>
                                 <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
                                     <p className=' fs-6'>Shipping</p>
-                                    <p className=' fs-6'>{`£${shippingFeeAmount}`}</p>
+                                    <p className=' fs-6'>{`£${shippingFeeAmount}`}.00</p>
                                 </div>
                                 <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600" }}>
                                     <p className='fs-5'>Total</p>
