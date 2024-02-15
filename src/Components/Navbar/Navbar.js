@@ -653,7 +653,9 @@ export const Navbar = () => {
                                 onClick={() => {
                                   if (cu.email === "asd@gmail.com") {
                                     move("/admin-dashboard");
-                                  } else {
+                                  } else if(window.location.href===`https://www.sofabedsltd.co.uk/user-profile/${cu._id}`) {
+                                    move(`/`);
+                                  }else{
                                     move(`/user-profile/${cu._id}`);
                                   }
                                   setSearch(false);

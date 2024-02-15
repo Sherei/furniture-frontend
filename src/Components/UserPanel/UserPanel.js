@@ -112,7 +112,7 @@ const UserPanel = () => {
                                 <p className="text-muted mb-1">{cu.number}</p>
                                 <p className="text-muted mb-4">{cu.email}</p>
 
-                                <button type="button" className="btn review_btn ms-1 my-3" onClick={Logout}>
+                                <button type="button" className="btn review_btn ms-1 my-3" style={{width:"100%"}} onClick={Logout}>
                                     Logout
                                 </button>
                             </div>
