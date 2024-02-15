@@ -53,7 +53,7 @@ export const Login = () => {
         } else if (productId) {
           return move("/single_Add/" + productId);
         } else if (!productId) {
-          return move("/products/all");
+          return move("/");
         }
       }
     } catch (e) {
@@ -67,7 +67,7 @@ export const Login = () => {
   };
 
   if (cu._id !== undefined) {
-    move("/products/all")
+    move("/")
   }
 
   return <>

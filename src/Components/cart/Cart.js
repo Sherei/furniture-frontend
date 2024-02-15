@@ -403,7 +403,7 @@ export const Cart = () => {
                                 Price
                               </p>
                               <p className="m-0" style={{ fontSize: "14px" }}>
-                                &pound;{item?.total?.toFixed(2)}
+                                &pound;{item?.total?.toFixed()}
                               </p>
                             </div>
                             <hr className="m-0 p-0" />
@@ -453,7 +453,7 @@ export const Cart = () => {
                                 className="m-0 fw-bolder fs-5"
                                 style={{ color: "red", fontSize: "17px" }}
                               >
-                                &pound;{item?.total?.toFixed(2)}
+                                &pound;{item?.total?.toFixed()}
                               </p>
                             </div>
                           </div>
@@ -612,7 +612,7 @@ export const Cart = () => {
                                   )}
                                 </div>
                               </td>
-                              <td className="color-red text-center">{`£${item?.price?.toFixed(2)}`}</td>
+                              <td className="color-red text-center">{`£${item?.price?.toFixed()}`}</td>
                               <td className="text-center">
                                 <p className="input_single text-center m-0 p-0">
                                   {item.quantity}
@@ -637,7 +637,7 @@ export const Cart = () => {
                               </button> */}
                                 </div>
                               </td>
-                              <td className="text-center">{`£${item?.total?.toFixed(2)}`}</td>
+                              <td className="text-center">{`£${item?.total?.toFixed()}`}</td>
                               <td className="text-center">
                                 <button
                                   className=" btn text-danger"
@@ -708,7 +708,7 @@ export const Cart = () => {
                   Subtotal
                 </p>
                 <p className="text-muted m-0" style={{ fontSize: "15px" }}>
-                  &pound;{subtotal?.toFixed(2)}
+                  &pound;{subtotal?.toFixed()}.00
                 </p>
               </div>
               <hr className="m-1" />
@@ -724,7 +724,7 @@ export const Cart = () => {
                   >
                     Standard Delivery:{" "}
                     <span className="fw-bolder">
-                      &pound;{shippingFeeAmount?.toFixed(2)}
+                      &pound;{shippingFeeAmount?.toFixed()}
                     </span>{" "}
                   </p>
                   <p className="m-0 text-end" style={{ fontSize: "11px" }}>
@@ -742,7 +742,7 @@ export const Cart = () => {
                   className="fw-bolder m-0"
                   style={{ color: "red", fontSize: "17px" }}
                 >
-                  &pound;{total?.toFixed(2)}
+                  &pound;{total?.toFixed()}.00
                 </p>
               </div>
 

@@ -288,7 +288,7 @@ export const Navbar = () => {
                 <a href="/Products/all">
                   <button
                     className="btn review_btn my-5"
-                    style={{width:"200px"}}
+                    style={{ width: "200px" }}
                     onClick={() => {
                       setCartOpen("close");
                     }}
@@ -357,7 +357,7 @@ export const Navbar = () => {
                         </p>
                       </a>
                       <p className="m-0 fw-bolder" style={{ color: "red" }}>
-                        &pound;{item?.total?.toFixed(2)}
+                        &pound;{item?.total?.toFixed()}
                       </p>
                     </div>
                     <button
@@ -375,11 +375,11 @@ export const Navbar = () => {
             <div className="border">
               <div className="d-flex justify-content-between fw-bolder fs-5">
                 <p className="mb-1">Total {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
-                <p className="mb-1">&pound;{subtotal?.toFixed(2)}</p>
+                <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
               </div>
               {/* <div className="d-flex justify-content-between fw-bolder fs-5">
                 <p className="mb-1">You Saved {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
-                <p className="mb-1">&pound;{subtotal?.toFixed(2)}</p>
+                <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
               </div> */}
               <button
                 className="btn"
@@ -401,7 +401,7 @@ export const Navbar = () => {
                   }
                 }}
               >
-                VIEW CART
+                view cart
               </button>
               <a href={`/cart-checkout/${cu._id}`}>
                 <button
@@ -416,7 +416,7 @@ export const Navbar = () => {
                     setCartOpen(false);
                   }}
                 >
-                  Check Out
+                  check out
                 </button>
               </a>
             </div>
@@ -1009,16 +1009,16 @@ export const Navbar = () => {
                       <>
                         <span className="card_Fprice px-2 ">
                           {" "}
-                          {`£${product.Fprice?.toFixed(2)}`}
+                          {`£${product.Fprice?.toFixed()}`}
                         </span>
                         <span className="card_price">
-                          <s>{`£${product.price?.toFixed(2)}`}</s>
+                          <s>{`£${product.price?.toFixed()}`}</s>
                         </span>
                       </>
                     ) : (
                       <span className="card_Fprice px-2 ">
                         {" "}
-                        {`£${product.Fprice?.toFixed(2)}`}
+                        {`£${product.Fprice?.toFixed()}`}
                       </span>
                     )}
                   </div>

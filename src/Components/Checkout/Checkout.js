@@ -335,7 +335,7 @@ const Checkout = () => {
                                         {errors.city ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="number" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', { required: true })} />
+                                        <input type="text" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', { required: true })} />
                                         {errors.postal ? <div className='error'>This Field is required</div> : null}
                                     </div>
 
@@ -435,7 +435,7 @@ const Checkout = () => {
                                             </div>
                                             <div className="d-flex justify-content-between flex-column">
                                                 <div>
-                                                    <p className='text-center fw-bolder'>{`£${item?.total?.toFixed(2)}`}</p>
+                                                    <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
                                                     <div className='text-center' >
                                                         <button style={{
                                                             border: "none",
@@ -461,7 +461,7 @@ const Checkout = () => {
                             <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
                                 <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
                                     <p className='fs-6'>Subtotal</p>
-                                    <p className='fs-6'>{`£${totalSum?.toFixed(2)}`}</p>
+                                    <p className='fs-6'>{`£${totalSum?.toFixed()}`}.00</p>
                                 </div>
                                 <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
                                     <p className=' fs-6'>Shipping</p>
@@ -469,7 +469,7 @@ const Checkout = () => {
                                 </div>
                                 <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600" }}>
                                     <p className='fs-5'>Total</p>
-                                    <p className='fs-5'>{`£${total?.toFixed(2)}`}</p>
+                                    <p className='fs-5'>{`£${total?.toFixed()}`}.00</p>
                                 </div>
                             </div>
                             {/* <div className='chk_btns chk_btns2 mt-5'>
