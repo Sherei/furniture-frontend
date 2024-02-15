@@ -7,6 +7,7 @@ import {
   FaArrowRight,
   FaArrowDown,
   FaArrowUp,
+  FaShareSquare,
 } from "react-icons/fa";
 import { LuClipboard } from "react-icons/lu";
 import TagManager from 'react-gtm-module';
@@ -1368,7 +1369,7 @@ const SingleAdd = () => {
                   </button>
                 </div>
               </div>
-              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center" style={{ fontWeight: "500" }} onClick={copyUrlToClipboard}>Share Product <LuClipboard /></p>
+              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center " style={{ fontWeight: "500", fontWeight:"500" }} onClick={copyUrlToClipboard}>Share Product&nbsp;<FaShareSquare /></p>
             </div>
 
             {Error === "options" && (
