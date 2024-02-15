@@ -22,7 +22,7 @@ export const Cart = () => {
   }, []);
   
   const sendWhatsAppMessage = () => {
-    const message = `i want to place this order \n\n${window.location.href}`;
+    const message = `I want to place this order \n\n${window.location.href}`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
