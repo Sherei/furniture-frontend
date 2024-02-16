@@ -1619,10 +1619,11 @@ const SingleAdd = () => {
                               {item.name}
                             </p>
                             <p
-                              className="text-center text-muted"
+                              className="text-center"
                               style={{
                                 fontWeight: "700",
                                 fontWeight: "700",
+                                color:"#F7EEDD",
                               }}
                             >
                               {formatDateTime(item.date1 ? item.date1 : item.date)}
