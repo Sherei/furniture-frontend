@@ -152,7 +152,7 @@ const UserPanel = () => {
                                                     <div className='col-8 ' style={{ position: "relative" }}>
                                                         <p className='panel_index'>{index + 1}</p>
                                                         <p className='m-0'>
-                                                            Order ID: {item?.orderId}
+                                                            Tracking ID: {item?.orderId}
                                                         </p>
                                                         <p className='m-0'>
                                                             Contact: {item?.number1}

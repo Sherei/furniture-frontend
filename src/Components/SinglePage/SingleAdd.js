@@ -76,7 +76,7 @@ const SingleAdd = () => {
   const copyUrlToClipboard = () => {
     const currentURL = window.location.href;
     navigator.clipboard.writeText(currentURL).then(() => {
-      // toast.success("URL copied to clipboard");
+      toast.success("URL copied to clipboard");
     }).catch((error) => {
       console.error("Error copying URL to clipboard: ", error);
       // toast.error("Failed to copy URL to clipboard");
