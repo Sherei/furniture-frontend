@@ -79,7 +79,7 @@ const Orderplaced = () => {
                     <div className="col-12" style={{ minHeight: "80vh" }}>
                         <p className='text-center' style={{ lineHeight: "50px" }}>
                             Thank you for placing an order, <br />
-                            Your Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
+                            Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
                             Order will be delivered within 05-07 working days. We will update you soon. 
                         </p>
                         <div className='order_btns'>
