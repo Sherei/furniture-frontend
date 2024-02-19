@@ -20,84 +20,70 @@ const Orderplaced = () => {
     const move = useNavigate();
     const cu = useSelector((store) => store.userSection.cu);
     const { userId } = useParams();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState([]);
 
     useEffect(() => {
-        setLoading(true);
         try {
+            setLoading(true);
             axios.get(`${process.env.REACT_APP_BASE_URL}/order`)
                 .then((res) => {
                     if (res.data && res.data.length > 0) {
                         setOrder(res.data);
+                        setLoading(false);
                     }
                 });
         } catch (e) {
-            return <>
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                    <Loader />
-                </div>
-            </>
-        } finally {
-            setLoading(false);
         }
     }, []);
 
     const filterOrder = order.filter((item) => userId === item.userId);
 
-    if (loading) {
-        return (
-            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <Loader />
-            </div>
-        );
-    }
-
-    if (cu._id === undefined || cu.email === "asd@gmail.com" || filterOrder.length < 1) {
-        return <>
-            <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <Loader />
-            </div>
-        </>
-    }
-
     return (
         <div className="container my-5">
             <div className="row">
-                {/* <div className='col' style={{position:"relative"}}>
-                <Lottie animationData={celebration} loop={20} autoplay={true}
-                    style={{
-                        position: "absolute",
-                        width: "100%",
-                        height: "100%",
-                        zIndex: 100,
-
-                    }} />
-
-                </div> */}
-                <center>
-                    <div className="col-12" style={{ minHeight: "80vh" }}>
-                        <p className='text-center' style={{ lineHeight: "50px" }}>
-                            Thank you for placing an order, <br />
-                            Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
-                            Order will be delivered within 05-07 working days. We will update you soon. 
-                        </p>
-                        <div className='order_btns'>
-                        <a href={`/order-detail/${filterOrder[0]._id}`}>
-                                <button className="review_btn cursor px-5" type='button'>
-                                    Order Detail
-                                </button>
-                            </a>
-
-                            <a href="/Products/all">
-                                <button className="review_btn cursor px-5" type='button'>
-                                    Browse  More Products
-                                </button>
-                            </a>
-
-                        </div>
+                {loading ? (
+                    <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+                        <Loader />
                     </div>
-                </center>
+
+                ) : filterOrder.length > 0 ? (
+                        <div className="col-12 d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "45vh" }}>
+                            <p className='text-center' style={{ lineHeight: "50px" }}>
+                                Thank you for placing an order, <br />
+                                Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
+                                Order will be delivered within 05-07 working days. We will update you soon.
+                            </p>
+                            <div className='order_btns'>
+                                <a href={`/order-detail/${filterOrder[0]._id}`}>
+                                    <button className="review_btn cursor px-5" type='button'>
+                                        Order Detail
+                                    </button>
+                                </a>
+
+                                <a href="/Products/all">
+                                    <button className="review_btn cursor px-5" type='button'>
+                                        Browse  More Products
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                ) : (
+                    <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "80vh" }}>
+                        <img src="/cart.png" alt="" style={{ width: "150px" }} />
+                        <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                        <a href="/Products/all">
+                            <button
+                                className="btn review_btn"
+                            >
+                                Shop our products
+                            </button>
+                        </a>
+                    </div >
+                )
+
+                }
             </div >
         </div >
     );
