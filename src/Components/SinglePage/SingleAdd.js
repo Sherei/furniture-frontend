@@ -629,7 +629,7 @@ const SingleAdd = () => {
       <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
         <Loader />
       </div >
-    ) : product.length > 0 ? (
+    ) : product ? (
       <div className="container-fluid min-vh-100">
         <div className="row">
           <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
