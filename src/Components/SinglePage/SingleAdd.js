@@ -92,8 +92,8 @@ const SingleAdd = () => {
 
     const source = axios.CancelToken.source();
     const fetchData = async () => {
-      setLoading(true)
       try {
+        setLoading(true)
         const resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/singleProduct?id=${productId}`, { cancelToken: source.token })
         setProduct(resp?.data)
         setLoading(false)
@@ -629,7 +629,7 @@ const SingleAdd = () => {
       <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
         <Loader />
       </div >
-    ) : (
+    ) : product != undefined ? (
       <div className="container-fluid min-vh-100">
         <div className="row">
           <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
@@ -1367,7 +1367,7 @@ const SingleAdd = () => {
                   </button>
                 </div>
               </div>
-              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center " style={{ fontWeight: "500", fontWeight:"500" }} onClick={copyUrlToClipboard}>Share Product&nbsp;<FaShareSquare /></p>
+              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center " style={{ fontWeight: "500", fontWeight: "500" }} onClick={copyUrlToClipboard}>Share Product&nbsp;<FaShareSquare /></p>
             </div>
 
             {Error === "options" && (
@@ -1621,7 +1621,7 @@ const SingleAdd = () => {
                               style={{
                                 fontWeight: "700",
                                 fontWeight: "700",
-                                color:"#F7EEDD",
+                                color: "#F7EEDD",
                               }}
                             >
                               {formatDateTime(item.date1 ? item.date1 : item.date)}
@@ -1698,7 +1698,12 @@ const SingleAdd = () => {
           </div>
         </div>
       </div >
-    )}
+    ) : (
+      <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
+        <Loader />
+      </div >
+    )
+    }
   </>
 };
 

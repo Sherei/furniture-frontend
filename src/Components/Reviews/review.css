@@ -82,6 +82,6 @@ input:valid~label,textarea:valid~label,textarea:focus~label {
 }
 @media screen and (max-width:768px) {
     .review_btn{
-        width: 100%;
+        width: 100% !important;
     }
 }
