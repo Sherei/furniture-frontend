@@ -68,7 +68,7 @@ const UserPanel = () => {
                             <Loader />
                         </div>
 
-                    ) :  (
+                    ) : (
                         <div className="col-lg-4 col-md-4 col-sm-12">
                             <div className="card mb-4">
                                 <div className="card-body text-center">
@@ -108,12 +108,12 @@ const UserPanel = () => {
                                             totalFprice += parseFloat(data?.total);
                                         });
                                         return <>
-                                            <div className='row my-2 p-3' key={index} style={{ backgroundColor: "white" }}>
+                                            <div className='row my-2 p-3' key={index} style={{ backgroundColor: "white", position: "relative" }}>
+                                                <p className='panel_index'>{index + 1}</p>
                                                 <div className='col-4'>
                                                     <img src={item?.orderItems[0]?.image} style={{ maxHeight: '180px' }} className='rounded-3 img-fluid' alt="" />
                                                 </div>
                                                 <div className='col-8 ' style={{ position: "relative" }}>
-                                                    <p className='panel_index'>{index + 1}</p>
                                                     <p className='m-0'>
                                                         Tracking ID: {item?.orderId}
                                                     </p>
