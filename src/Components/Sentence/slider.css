@@ -9,20 +9,31 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  animation: moveRightToLeft 15s linear infinite; /* Adjust the duration as needed */
+  animation: moveRightToLeft 60s linear infinite;
   padding-right: 10px; 
 }
-
 
 @keyframes moveRightToLeft {
   0% {
     transform: translateX(100%);
   }
-  50% {
-    transform: translateX(0%);
-  }
   100% {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
 }
 
+@media screen and (max-width:768px) {
+  .slide-text {
+    animation: moveRightToLeft 30s linear infinite;
+  }
+  
+  @keyframes moveRightToLeft {
+    0% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+    
+}
