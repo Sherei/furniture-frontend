@@ -508,7 +508,7 @@ export const Navbar = () => {
                       </button>
                       <div>
                         <NavLink to="/" className="ms-md-2">
-                          <img className="logo_navbar" src="/as.png" />
+                          <img className="logo_navbar" src="/logo2.png" />
                         </NavLink>
                       </div>
                     </div>
