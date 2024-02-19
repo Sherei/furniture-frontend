@@ -40,7 +40,7 @@ const Orderplaced = () => {
     const filterOrder = order.filter((item) => userId === item.userId);
 
     return (
-        <div className="container my-5">
+        <div className="container my-4">
             <div className="row">
                 {loading ? (
                     <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
@@ -48,27 +48,29 @@ const Orderplaced = () => {
                     </div>
 
                 ) : filterOrder.length > 0 ? (
-                        <div className="col-12 d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "45vh" }}>
-                            <p className='text-center' style={{ lineHeight: "50px" }}>
-                                Thank you for placing an order, <br />
-                                Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
-                                Order will be delivered within 05-07 working days. We will update you soon.
-                            </p>
-                            <div className='order_btns'>
-                                <a href={`/order-detail/${filterOrder[0]._id}`}>
-                                    <button className="review_btn cursor px-5" type='button'>
-                                        Order Detail
-                                    </button>
-                                </a>
+                    <div className="col-12 d-flex flex-column  align-items-center mb-5">
+                        <img src="/express.png" className='img-fluid' style={{width:"250px"}} alt="" />
 
-                                <a href="/Products/all">
-                                    <button className="review_btn cursor px-5" type='button'>
-                                        Browse  More Products
-                                    </button>
-                                </a>
+                        <p className='text-center' style={{ lineHeight: "50px" }}>
+                            Thank you for placing an order, <br />
+                            Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
+                            Order will be delivered within 05-07 working days. We will update you soon.
+                        </p>
+                        <div className='order_btns'>
+                            <a href={`/order-detail/${filterOrder[0]._id}`}>
+                                <button className="review_btn cursor px-5" type='button'>
+                                    Order Detail
+                                </button>
+                            </a>
 
-                            </div>
+                            <a href="/Products/all">
+                                <button className="review_btn cursor px-5" type='button'>
+                                    Browse  More Products
+                                </button>
+                            </a>
+
                         </div>
+                    </div>
                 ) : (
                     <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "80vh" }}>
                         <img src="/cart.png" alt="" style={{ width: "150px" }} />
