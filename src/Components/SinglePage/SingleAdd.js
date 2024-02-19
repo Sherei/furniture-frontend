@@ -76,8 +76,7 @@ const SingleAdd = () => {
     navigator.clipboard.writeText(currentURL).then(() => {
       toast.success("URL copied to clipboard");
     }).catch((error) => {
-      console.error("Error copying URL to clipboard: ", error);
-      // toast.error("Failed to copy URL to clipboard");
+      toast.error("Failed to copy URL");
     });
   };
 
@@ -577,21 +576,19 @@ const SingleAdd = () => {
     setLoading(true)
     try {
       const commentWithProductId = { ...cmnt, productId };
-
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
       if (response.data.message === "Comment Added") {
         dispatch({
           type: "ADD_COMMENT",
           payload: response.data.alldata,
         });
+        setLoading(false)
         setComments(response.data.alldata)
         reset();
         setSucess("comment")
         // toast.success("Feedback submitted");
       }
     } catch (e) {
-    } finally {
-      setLoading(false)
     }
   };
   useEffect(() => {
@@ -600,11 +597,10 @@ const SingleAdd = () => {
       axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((res) => {
         if (res) {
           dispatch({ type: "ADD_COMMENT", payload: res.data });
+          setLoading(false)
         }
       });
     } catch (e) {
-    } finally {
-      setLoading(false);
     }
   }, []);
 
