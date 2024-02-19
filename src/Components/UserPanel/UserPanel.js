@@ -25,24 +25,18 @@ const UserPanel = () => {
     const { userid } = useParams();
     const [order, setOrder] = useState([]);
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
         try {
+            setLoading(true);
             axios.get(`${process.env.REACT_APP_BASE_URL}/order`).then((res) => {
                 if (res.data) {
                     setOrder(res.data);
+                    setLoading(false);
                 }
             });
         } catch (e) {
-            return <>
-                <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                    <Loader />
-                </div>
-            </>
-        } finally {
-            setLoading(false);
         }
     }, []);
 
@@ -64,63 +58,87 @@ const UserPanel = () => {
         });
         move("/login");
     }
-    if (cu._id === undefined || cu.email === 'asd@gmail.com') {
-        if (loading) {
-            return (
-                <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                    <Loader />
-                </div>
-            );
-        } else {
-            return <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <Loader />
-            </div>
-        }
-    }
 
     return (
         <section style={{ backgroundColor: "#eee", minHeight: "100vh" }}>
             <div className="container py-5">
-                {/* <div className="row">
-                    <div className="col">
-                        <nav aria-label="breadcrumb" className="rounded-3 p-3 mb-4" style={{ backgroundColor: "white" }}>
-                            <ol className="breadcrumb mb-0">
-                                <li className="breadcrumb-item">
-                                    <a href="#">Home</a>
-                                </li>
-                                <li className="breadcrumb-item">
-                                    <a href="#">User</a>
-                                </li>
-                                <li className="breadcrumb-item active" aria-current="page">
-                                    User Profile
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div> */}
                 <div className="row">
-                    <div className="col-lg-4 col-md-4 col-sm-12">
-                        <div className="card mb-4">
-                            <div className="card-body text-center">
-                                <img
-                                    src="/profile.png"
-                                    alt="avatar"
-                                    className="rounded-circle img-fluid"
-                                    style={{ width: 150 }}
-                                />
-                                <h5 className="my-3">{cu.name}</h5>
-                                <p className="text-muted mb-1">{cu.number}</p>
-                                <p className="text-muted mb-4">{cu.email}</p>
-
-                                <button type="button" className="btn review_btn ms-1 my-3" style={{width:"100%"}} onClick={Logout}>
-                                    Logout
-                                </button>
-                            </div>
-
+                    {loading ? (
+                        <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
+                            <Loader />
                         </div>
-                    </div>
+
+                    ) :  (
+                        <div className="col-lg-4 col-md-4 col-sm-12">
+                            <div className="card mb-4">
+                                <div className="card-body text-center">
+                                    <img
+                                        src="/profile.png"
+                                        alt="avatar"
+                                        className="rounded-circle img-fluid"
+                                        style={{ width: 150 }}
+                                    />
+                                    <h5 className="my-3">{cu.name}</h5>
+                                    <p className="text-muted mb-1">{cu.number}</p>
+                                    <p className="text-muted mb-4">{cu.email}</p>
+
+                                    <button type="button" className="btn review_btn ms-1 my-3" style={{ width: "100%" }} onClick={Logout}>
+                                        Logout
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    )
+                    }
+
                     <div className='col-lg-8 col-md-8 col-sm-12'>
-                        {filterOrder.length === 0 ? (
+                        {loading ? (
+                            <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
+                                <Loader />
+                            </div>
+                        ) : filterOrder.length > 0 ? (
+                            <>
+                                <div className='px-2'>
+                                    <p className='fs-5 fw-bolder m-0' style={{ color: "#1b2950" }}>Orders : {filterOrder?.length}</p>
+                                    {filterOrder?.map((item, index) => {
+                                        const orderItemsLength = item.orderItems.length;
+                                        let totalFprice = 0;
+                                        item.orderItems.forEach((data) => {
+                                            totalFprice += parseFloat(data?.total);
+                                        });
+                                        return <>
+                                            <div className='row my-2 p-3' key={index} style={{ backgroundColor: "white" }}>
+                                                <div className='col-4'>
+                                                    <img src={item?.orderItems[0]?.image} style={{ maxHeight: '180px' }} className='rounded-3 img-fluid' alt="" />
+                                                </div>
+                                                <div className='col-8 ' style={{ position: "relative" }}>
+                                                    <p className='panel_index'>{index + 1}</p>
+                                                    <p className='m-0'>
+                                                        Tracking ID: {item?.orderId}
+                                                    </p>
+                                                    <p className='m-0'>
+                                                        Contact: {item?.number1}
+                                                    </p>
+                                                    <p className='m-0'>
+                                                        Items: {orderItemsLength}
+                                                    </p>
+                                                    <p className='m-0'>
+                                                        Total: &pound;{item?.total?.toFixed()}
+                                                    </p>
+                                                    <p className='m-0'>
+                                                        Date: {formatDateTime(item?.date)}
+                                                    </p>
+                                                    <p className='m-0'>
+                                                        <a href={`/order-detail/${item?._id}`}>Detail</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </>
+                                    })}
+                                </div>
+                            </>
+                        ) : (
                             <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ height: '50vh', backgroundColor: '#eee' }}>
                                 <p className='fw-bolder text-muted'>No Order Placed yet</p>
                                 <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
@@ -128,59 +146,12 @@ const UserPanel = () => {
                                     Shop our products
                                 </button>
                             </div>
-
-                        ) : (
-                            <>
-                                {loading ? (
-                                    <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
-                                        <Loader />
-                                    </div>
-                                ) : (
-                                    <div className='px-2'>
-                                        <p className='fs-5 fw-bolder m-0' style={{ color: "#1b2950" }}>Orders : {filterOrder?.length}</p>
-                                        {filterOrder?.map((item, index) => {
-                                            const orderItemsLength = item.orderItems.length;
-                                            let totalFprice = 0;
-                                            item.orderItems.forEach((data) => {
-                                                totalFprice += parseFloat(data?.total);
-                                            });
-                                            return <>
-                                                <div className='row my-2 p-3' key={index} style={{ backgroundColor: "white" }}>
-                                                    <div className='col-4'>
-                                                        <img src={item?.orderItems[0]?.image} style={{ maxHeight: '180px' }} className='rounded-3 img-fluid' alt="" />
-                                                    </div>
-                                                    <div className='col-8 ' style={{ position: "relative" }}>
-                                                        <p className='panel_index'>{index + 1}</p>
-                                                        <p className='m-0'>
-                                                            Tracking ID: {item?.orderId}
-                                                        </p>
-                                                        <p className='m-0'>
-                                                            Contact: {item?.number1}
-                                                        </p>
-                                                        <p className='m-0'>
-                                                            Items: {orderItemsLength}
-                                                        </p>
-                                                        <p className='m-0'>
-                                                            Total: &pound;{item?.total?.toFixed()}
-                                                        </p>
-                                                        <p className='m-0'>
-                                                            Date: {formatDateTime(item?.date)}
-                                                        </p>
-                                                        <p className='m-0'>
-                                                            <a href={`/order-detail/${item?._id}`}>Detail</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        })}
-                                    </div>
-                                )}
-                            </>
-                        )}
+                        )
+                        }
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 
