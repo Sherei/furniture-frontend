@@ -9,7 +9,7 @@
   font-weight: 600;
   font-size: 30px;
   white-space: nowrap;
-  animation: moveRightToLeft 200s linear infinite;
+  animation: moveRightToLeft 30s linear infinite;
   padding-right: 10px; 
 }
 
