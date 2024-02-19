@@ -34,13 +34,13 @@ TagManager.initialize({ gtmId: 'GTM-NWFTB5LV' });
 
 
 function App() {
-  
+
   inject();
-  
+
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
- 
+
   const sendWhatsAppMessage = () => {
     const message = `https://sofabedsltd.co.uk/\n\nHow can we help you?`;
     const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
@@ -118,14 +118,14 @@ function App() {
             </div>
           )} */}
           {/* <img src="/greeting.svg" className='greeting' /> */}
-            <div className='d-flex align-items-center gap-2 whatsapp-btn_main' onClick={sendWhatsAppMessage}>
-              <div>
-                <p className='m-0'>Chat</p>
-              </div>
-              <div className='whatsapp-btn'>
-              <FaWhatsapp />
-              </div>
+          <div className='d-flex align-items-center gap-2 whatsapp-btn_main' onClick={sendWhatsAppMessage}>
+            <div>
+              <p className='m-0'>Chat</p>
             </div>
+            <div className='whatsapp-btn'>
+              <FaWhatsapp />
+            </div>
+          </div>
 
           <BrowserRouter>
             <Navbar />
@@ -172,18 +172,18 @@ function App() {
             <Footer />
           </BrowserRouter>
           <ToastContainer
-          position="top-center"
-          autoClose={1500}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          theme="light"
-          pauseOnHover
-          transition="Bounce"
+            position="top-center"
+            autoClose={1500}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover={false}
+            theme="light"
           />
+
         </div>
       </>
     );
