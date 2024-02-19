@@ -12,7 +12,7 @@
   align-items: center;
   gap: 20px;
 }
-.order_btns button{
+.order_btns a{
   width: fit-content;
 }
 @media screen and (max-width:768px) {
@@ -20,7 +20,7 @@
     display: none !important;
   }
   
-  .btn_width, .update, .order_btns button {
+  .btn_width, .update, .order_btns a {
     width: 100%;
   }
 }
