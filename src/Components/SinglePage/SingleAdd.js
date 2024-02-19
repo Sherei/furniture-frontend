@@ -9,11 +9,9 @@ import {
   FaArrowUp,
   FaShareSquare,
 } from "react-icons/fa";
-import { LuClipboard } from "react-icons/lu";
-import TagManager from 'react-gtm-module';
-import { RiStarSFill } from "react-icons/ri";
-import { RxCross1 } from "react-icons/rx";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
+import TagManager from 'react-gtm-module'
+import { RxCross1 } from "react-icons/rx"
 import { useNavigate, useParams } from "react-router-dom";
 import Benefits from "../Benefits/Benefits";
 import Loader from "../Loader/Loader";
@@ -723,13 +721,13 @@ const SingleAdd = () => {
                       className="single_arrow1"
                       onClick={handleLeftArrowClick}
                     >
-                      <FaArrowLeft />
+                      <IoIosArrowBack />
                     </div>
                     <div
                       className="single_arrow2"
                       onClick={handleRightArrowClick}
                     >
-                      <FaArrowRight />
+                      <IoIosArrowForward />
                     </div>
                   </>
                 )}
