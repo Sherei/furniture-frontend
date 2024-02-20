@@ -30,12 +30,6 @@
 }
 
 .logo_navbar {
-  font-size: 20px;
-  font-family: 'Times New Roman', Times, serif !important;
-  font-weight: 500;
-}
-
-.logo_navbar {
   width: 200px;
 }
 
@@ -451,9 +445,9 @@
 }
 
 @media screen and (max-width:768px) {
-  /* .logo_navbar {
-    width: 100px;
-  } */
+  .logo_navbar {
+    width: 140px;
+  }
 
 }
 
@@ -464,10 +458,6 @@
 }
 
 @media screen and (max-width:560px) {
-  .logo_navbar {
-    font-size: 15px;
-  }
-
   .nav_cotact_icon,
   .nav_cotact_icon p {
     font-size: 15px !important;
@@ -490,11 +480,9 @@
   .nav_contact2 {
     display: none !important;
   }
-
   .logo_navbar {
-    width: 150px;
+    width: 120px;
   }
-
   .nav_contact3 {
     display: block !important;
   }
