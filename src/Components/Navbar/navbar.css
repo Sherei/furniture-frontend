@@ -446,9 +446,12 @@
 
 @media screen and (max-width:768px) {
   .logo_navbar {
-    width: 140px;
+    /* width: 140px; */
   }
 
+  .nav1_row {
+    padding-right: 2px;
+  }
 }
 
 @media screen and (max-width:820px) {
@@ -458,6 +461,7 @@
 }
 
 @media screen and (max-width:560px) {
+
   .nav_cotact_icon,
   .nav_cotact_icon p {
     font-size: 15px !important;
@@ -469,6 +473,7 @@
 }
 
 @media screen and (max-width:462px) {
+
   .nav_cotact_icon,
   .nav_cotact_icon p {
     font-size: 12px !important;
@@ -479,9 +484,11 @@
   .nav_contact2 {
     display: none !important;
   }
+
   .logo_navbar {
-    width: 120px;
+    width: 150px;
   }
+
   .nav_contact3 {
     display: block !important;
   }
