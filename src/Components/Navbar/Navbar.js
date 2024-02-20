@@ -156,7 +156,9 @@ export const Navbar = () => {
   }, 0);
 
   useEffect(() => {
-
+    window.scrollTo({
+      top: 0,
+    });
     setLoading(true);
     try {
       axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
@@ -262,7 +264,7 @@ export const Navbar = () => {
     <>
       {open && (
         <div className={` px-2 ${open ? "side_open" : "side_cart"}`} cartRef={ref}>
-          <div className="" style={{ position: "relative", height:"100vh" }}>
+          <div className="" style={{ position: "relative", height: "100vh" }}>
 
             <div className="py-2 d-flex justify-content-between align-items-center" style={{ borderBottom: "1px solid lightgray" }}>
               <p className="fw-bolder m-0 cart_text" style={{ color: "#02025E" }}>SHOPPING CART</p>
