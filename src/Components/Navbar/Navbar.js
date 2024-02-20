@@ -489,7 +489,7 @@ export const Navbar = () => {
                 <div className="col 
               ">
                   <div className="row nav1_row">
-                    <div className="col-3 d-flex align-items-center justify-content-start gap-2 p-0"
+                    <div className="col-lg-3 col-6 d-flex align-items-center justify-content-start gap-2 p-0"
                       style={{ position: "relative" }}
                     >
                       <button
@@ -506,8 +506,9 @@ export const Navbar = () => {
                           {isNavOpen ? <RxCross1 /> : <HiOutlineBars3 />}
                         </div>
                       </button>
-                      <div>
-                        <NavLink to="/" className="ms-md-2">
+                      <div className="">
+                        <NavLink to="/" className="">
+                          {/* <p className="logo_navbar m-0" style={{verticalAlign:"middle",color:"#E7E7E9"}}>FURNITURE STORE</p> */}
                           <img className="logo_navbar" src="/a.png" />
                         </NavLink>
                       </div>
