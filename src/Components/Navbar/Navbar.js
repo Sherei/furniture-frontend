@@ -510,7 +510,7 @@ export const Navbar = () => {
                       </button>
                       <div className=" ">
                         <NavLink to="/" className="">
-                          {/* <p className="logo_navbar m-0" style={{verticalAlign:"middle",color:"#E7E7E9"}}>FURNITURE STORE</p> */}
+                          {/* <p className="logo_navbar m-0" style={{verticalAlign:"middle",color:"white"}}>FURNITURE STORE</p> */}
                           <img className="logo_navbar mt-1" src="/a.png" />
                         </NavLink>
                       </div>
@@ -553,7 +553,7 @@ export const Navbar = () => {
                             <div
                               className="fs-2 nav_search"
                               onClick={handleSearchToggle}
-                              style={{ color: "#E7E7E9" }}
+                              style={{ color: "white" }}
                             >
                               <FiSearch />
                             </div>
@@ -568,7 +568,7 @@ export const Navbar = () => {
                               <div
                                 className="fs-2"
                                 onClick={toggleLogin}
-                                style={{ color: "#E7E7E9" }}
+                                style={{ color: "white" }}
                               >
                                 <FaRegUser />
                               </div>
@@ -657,7 +657,7 @@ export const Navbar = () => {
                               <div
                                 className="cursor nav-link nav-link1 fs-2"
                                 aria-current="page"
-                                style={{ borderBottom: "none", color: "#E7E7E9" }}
+                                style={{ borderBottom: "none", color: "white" }}
                                 onClick={() => {
                                   if (cu.email === "asd@gmail.com") {
                                     move("/admin-dashboard");
@@ -680,7 +680,7 @@ export const Navbar = () => {
                             style={{ border: "none", position: "relative" }}
                             onClick={toggleCart}
                           >
-                            <span className="fs-2" style={{ color: "#E7E7E9" }}>
+                            <span className="fs-2" style={{ color: "white" }}>
                               <FiShoppingCart />
                               {(cu._id != undefined && cu.email != "asd@gmail.com") &&
                                 <p className="m-0 cart_number">
