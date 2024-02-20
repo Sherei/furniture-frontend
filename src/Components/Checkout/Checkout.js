@@ -32,6 +32,12 @@ const Checkout = () => {
     const [loading, setLoading] = useState(false);
     const [cart, setCart] = useState([])
     const [expandedItems, setExpandedItems] = useState({});
+    
+    const sendWhatsAppMessage = () => {
+        const message = `I want to place this order \n\n${window.location.href}`;
+        const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, "_blank");
+      };
 
     const toggleDetails = (index) => {
         setExpandedItems((prev) => ({
@@ -386,12 +392,11 @@ const Checkout = () => {
                                         </button>
                                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
 
-                                        <a href="https://wa.me/+923067208343" target='blank'>
                                             <button className="w-100 btn btn-lg chk_btn"
-                                                style={{ backgroundColor: "rgb(38,211,103)" }}>
+                                                style={{ backgroundColor: "rgb(38,211,103)" }}
+                                                onClick={sendWhatsAppMessage}>
                                                 Order Via WhatsApp
                                             </button>
-                                        </a>
                                     </div>
                                 }
                             </form>
