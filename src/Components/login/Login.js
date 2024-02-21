@@ -34,10 +34,9 @@ export const Login = () => {
 
   const Login = async (data) => {
     try {
-
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);
-
       let loginUser = response.data;
+
 
       if (loginUser) {
         localStorage.setItem('userToken', loginUser.myToken);
@@ -59,8 +58,6 @@ export const Login = () => {
       if (e.response && e.response.status === 404) {
         setError("Invalid Credentials")
 
-      } else {
-        setError("Invalid Credentials")
       }
     }
   };
