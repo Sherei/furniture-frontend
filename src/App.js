@@ -119,9 +119,9 @@ function App() {
           )} */}
           {/* <img src="/greeting.svg" className='greeting' /> */}
           <div className='d-flex align-items-center gap-2 whatsapp-btn_main' onClick={sendWhatsAppMessage}>
-            <div>
+            {/* <div>
               <p className='m-0'>Chat</p>
-            </div>
+            </div> */}
             <div className='whatsapp-btn'>
               <FaWhatsapp />
             </div>
