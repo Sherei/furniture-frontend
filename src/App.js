@@ -112,21 +112,10 @@ function App() {
       <>
         <div className='main_body'>
 
-          {/* {showScrollButton && (
-            <div className='top_btn' onClick={scrollToTop}>
-            Back To Top
-            </div>
-          )} */}
-          {/* <img src="/greeting.svg" className='greeting' /> */}
-          <div className='d-flex align-items-center gap-2 whatsapp-btn_main' onClick={sendWhatsAppMessage}>
-            {/* <div>
-              <p className='m-0'>Chat</p>
-            </div> */}
-            <div className='whatsapp-btn'>
+            <div className='whatsapp-btn_main' onClick={sendWhatsAppMessage}>
               <FaWhatsapp />
             </div>
-          </div>
-
+     
           <BrowserRouter>
             <Navbar />
             <main>
