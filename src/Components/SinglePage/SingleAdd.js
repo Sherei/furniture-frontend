@@ -1534,18 +1534,18 @@ const SingleAdd = () => {
                 <>
                   <div className="my-4 row row-cols-lg-2 row-cols-1 g-4">
                     <div className="cols">
-                      {product.images[1] && (
+                      {product.images[0] && (
                         <img
-                          src={product.images[1]}
+                          src={product.images[0]}
                           className="img-fluid rounded"
                           alt="No Network"
                         />
                       )}
                     </div>
                     <div>
-                      {product.images[2] && (
+                      {product.images[1] && (
                         <img
-                          src={product.images[2]}
+                          src={product.images[1]}
                           className="img-fluid rounded"
                           alt="No Network"
                         />
