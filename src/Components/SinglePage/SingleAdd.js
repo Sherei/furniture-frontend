@@ -1401,7 +1401,7 @@ const SingleAdd = () => {
           </div>
         </div>
 
-        <div className="row my-5 d-flex justify-content-center">
+        <div className="row mt-5 mb-3 d-flex justify-content-center">
           <div className="col-lg-10 col-md-10 col-sm-12">
             <p
               className="fs-2 fw-bolder"
@@ -1562,7 +1562,7 @@ const SingleAdd = () => {
           </div>
         </div>
 
-        <div className="row my-5" id="review">
+        <div className="row mb-5" id="review">
           <div
             className="col-lg-6 col-md-6 col-sm-12 py-5"
             style={{ backgroundColor: "rgb(2, 2, 94)" }}
