@@ -158,7 +158,7 @@ function App() {
 
               </Routes>
             </main>
-            {/* <Footer /> */}
+            <Footer />
           </BrowserRouter>
           <ToastContainer
             position="top-center"
