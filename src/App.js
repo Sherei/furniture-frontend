@@ -117,10 +117,10 @@ function App() {
             </div>
      
           <BrowserRouter>
-            <Navbar />
+            {/* <Navbar /> */}
             <main>
               <Routes>
-                <Route exact path='/' element={<Home />} />
+                {/* <Route exact path='/' element={<Home />} /> */}
                 {/* User */}
                 <Route exact path='/signup' element={<Signup />} />
                 <Route exact path='/signup/:productId' element={<Signup />} />
@@ -158,7 +158,7 @@ function App() {
 
               </Routes>
             </main>
-            <Footer />
+            {/* <Footer /> */}
           </BrowserRouter>
           <ToastContainer
             position="top-center"
