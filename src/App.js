@@ -112,15 +112,15 @@ function App() {
       <>
         <div className='main_body'>
 
-            {/* <div className='whatsapp-btn_main' onClick={sendWhatsAppMessage}>
+            <div className='whatsapp-btn_main' onClick={sendWhatsAppMessage}>
               <FaWhatsapp />
-            </div> */}
+            </div>
      
           <BrowserRouter>
-            {/* <Navbar /> */}
+            <Navbar />
             <main>
               <Routes>
-                {/* <Route exact path='/' element={<Home />} /> */}
+                <Route exact path='/' element={<Home />} />
                 {/* User */}
                 <Route exact path='/signup' element={<Signup />} />
                 <Route exact path='/signup/:productId' element={<Signup />} />
@@ -154,7 +154,7 @@ function App() {
                 <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
 
-                {/* <Route exact path='*' element={<Home />} /> */}
+                <Route exact path='*' element={<Home />} />
 
               </Routes>
             </main>
