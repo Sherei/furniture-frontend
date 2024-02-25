@@ -112,9 +112,9 @@ function App() {
       <>
         <div className='main_body'>
 
-            <div className='whatsapp-btn_main' onClick={sendWhatsAppMessage}>
+            {/* <div className='whatsapp-btn_main' onClick={sendWhatsAppMessage}>
               <FaWhatsapp />
-            </div>
+            </div> */}
      
           <BrowserRouter>
             {/* <Navbar /> */}
