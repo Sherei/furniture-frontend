@@ -154,7 +154,7 @@ function App() {
                 <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
 
-                <Route exact path='*' element={<Home />} />
+                {/* <Route exact path='*' element={<Home />} /> */}
 
               </Routes>
             </main>
