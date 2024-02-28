@@ -1398,7 +1398,7 @@ const SingleAdd = () => {
                   fontSize: "17px",
                   color: "#1b2950",
                   fontWeight: "600",
-                }}>Share</p>
+                }}>Share Product</p>
               </div>
               <div className="col mx-3 d-flex align-items-center justify-content-center" onClick={() => handleShare("general")} style={{ width: "30px", height: "30px", backgroundColor: "#F7EEDD", borderRadius: "100%" }}>
                <p className="m-0 fs-6"><FaShareSquare /></p> 
