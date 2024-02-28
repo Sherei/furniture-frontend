@@ -136,17 +136,27 @@ const SingleAdd = () => {
     setSelectedImage(index);
     setScrollPosition(index * 23);
   };
-
-  const handleShare = (platform) => {
+  const copyUrlToClipboard = async (url) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      return true; 
+    } catch (error) {
+      console.error("Error copying URL to clipboard:", error);
+      return false;
+    }
+  };
+  
+  const handleShare = async (platform) => {
     const shareUrl = window.location.href;
-    navigator.clipboard.writeText(shareUrl)
-    const currentURL = window.location.href;
-        navigator.clipboard.writeText(currentURL).then(() => {
-          toast.success("URL copied to clipboard");
-        }).catch((error) => {
-          toast.error("Failed to copy URL");
-        });
+      const copiedSuccessfully = await copyUrlToClipboard(shareUrl);
+    if (copiedSuccessfully) {
+      toast.success("URL copied to clipboard");
+    } else {
+      toast.error("Failed to copy URL. Please try again or manually copy the URL.");
+    }
     switch (platform) {
+      case "general":
+       break;
       case "instagram":
         window.open(`https://www.instagram.com/`);
         break;
@@ -156,14 +166,15 @@ const SingleAdd = () => {
       case "facebook":
         window.open(`https://www.facebook.com/`);
         break;
-        case "pint":
-          window.open(`https://www.pinterest.com/`);
-          break;
+      case "pint":
+        window.open(`https://www.pinterest.com/`);
+        break;
       default:
         console.log("Unsupported platform:", platform);
         break;
     }
   };
+  
 
 
 
@@ -1394,16 +1405,16 @@ const SingleAdd = () => {
             </div>
 
             <div className="mt-3  d-flex flex-wrap gap-3">
-                <p className="m-0 d-flex align-items-center cursor" style={{
-                  fontSize: "17px",
-                  color: "#1b2950",
-                  fontWeight: "600",
-                }}>Share Product</p>
-                <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("general")} style={{ width: "30px", height: "30px", backgroundColor: "#F7EEDD", borderRadius: "100%" }}><FaShareSquare /></p>
-                <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("instagram")} style={{ width: "30px", height: "30px", background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}><FaInstagram /></p>
-                <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("tiktok")} style={{ width: "30px", height: "30px", background: "black", color: "white", borderRadius: "100%" }}><FaTiktok /></p>
-                <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("facebook")} style={{ width: "30px", height: "30px", backgroundColor: "rgb(24, 119, 242)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}><FaFacebook /></p>
-                <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("pint")} style={{ width: "30px", height: "30px", backgroundColor: "#E60023", color: "#FFFFFF", borderRadius: "100%" }}><FaPinterestP /></p>
+              <p className="m-0 d-flex align-items-center cursor" style={{
+                fontSize: "17px",
+                color: "#1b2950",
+                fontWeight: "600",
+              }}>Share Product</p>
+              <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("general")} style={{ width: "30px", height: "30px", backgroundColor: "#F7EEDD", borderRadius: "100%" }}><FaShareSquare /></p>
+              <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("instagram")} style={{ width: "30px", height: "30px", background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}><FaInstagram /></p>
+              <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("tiktok")} style={{ width: "30px", height: "30px", background: "black", color: "white", borderRadius: "100%" }}><FaTiktok /></p>
+              <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("facebook")} style={{ width: "30px", height: "30px", backgroundColor: "rgb(24, 119, 242)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}><FaFacebook /></p>
+              <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("pint")} style={{ width: "30px", height: "30px", backgroundColor: "#E60023", color: "#FFFFFF", borderRadius: "100%" }}><FaPinterestP /></p>
             </div>
 
             {Error === "options" && (
