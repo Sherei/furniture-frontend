@@ -13,12 +13,6 @@ const Products = () => {
   const cu = useSelector((store) => store.userSection.cu);
   const { prodctName } = useParams();
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //   });
-  // }, []);
-
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [activeGrid, setActiveGrid] = useState("grid");
@@ -719,9 +713,9 @@ const Products = () => {
 
               {(data?.filter((item) => (item.stock === undefined || item.stock === false)).length === 0 || loading) && (
                 <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
-                    {loading ? <Loader /> : (
-                      data?.length === 0 ? "No Product available" : null
-                    )}
+                  {loading ? <Loader /> : (
+                    data?.length === 0 ? "No Product available" : null
+                  )}
                 </div>
               )}
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
