@@ -137,7 +137,7 @@ const SingleAdd = () => {
   };
 
   const handleShare = (platform) => {
-    const shareUrl = window.location.href; 
+    const shareUrl = window.location.href;
     navigator.clipboard.writeText(shareUrl)
     switch (platform) {
       case "general":
@@ -162,7 +162,7 @@ const SingleAdd = () => {
         break;
     }
   };
- 
+
 
 
   const handleScroll = (direction) => {
@@ -1392,26 +1392,16 @@ const SingleAdd = () => {
               </div>
             </div>
 
-            <div className="row row-cols-5 g-4 mt-0 cursor d-flex flex-wrap">
-              <div className="col d-flex align-items-center ">
-                <p className="mt-2" style={{
+            <div className="mt-3 cursor d-flex flex-wrap gap-3">
+                <p className="m-0 d-flex align-items-center" style={{
                   fontSize: "17px",
                   color: "#1b2950",
                   fontWeight: "600",
                 }}>Share Product</p>
-              </div>
-              <div className="col mx-3 d-flex align-items-center justify-content-center" onClick={() => handleShare("general")} style={{ width: "30px", height: "30px", backgroundColor: "#F7EEDD", borderRadius: "100%" }}>
-               <p className="m-0 fs-6"><FaShareSquare /></p> 
-              </div>
-              <div className="col  d-flex align-items-center justify-content-center" onClick={() => handleShare("instagram")} style={{ width: "30px", height: "30px", background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}>
-              <p className="m-0 fs-6"><FaInstagram /></p>
-              </div>
-              <div className="col mx-3 d-flex align-items-center justify-content-center" onClick={() => handleShare("tiktok")} style={{ width: "30px", height: "30px", background: "black", color: "white", borderRadius: "100%" }}>
-              <p className="m-0 fs-6"><FaTiktok /></p>
-              </div>
-              <div className="col d-flex align-items-center justify-content-center" onClick={() => handleShare("facebook")} style={{ width: "30px", height: "30px", backgroundColor: "rgb(24, 119, 242)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}>
-              <p className="m-0 fs-6"><FaFacebook /></p>
-              </div>
+                <p className="m-0 fs-6 d-flex justify-content-center align-items-center" onClick={() => handleShare("general")} style={{ width: "30px", height: "30px", backgroundColor: "#F7EEDD", borderRadius: "100%" }}><FaShareSquare /></p>
+                <p className="m-0 fs-6 d-flex justify-content-center align-items-center" onClick={() => handleShare("instagram")} style={{ width: "30px", height: "30px", background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}><FaInstagram /></p>
+                <p className="m-0 fs-6 d-flex justify-content-center align-items-center" onClick={() => handleShare("tiktok")} style={{ width: "30px", height: "30px", background: "black", color: "white", borderRadius: "100%" }}><FaTiktok /></p>
+                <p className="m-0 fs-6 d-flex justify-content-center align-items-center" onClick={() => handleShare("facebook")} style={{ width: "30px", height: "30px", backgroundColor: "rgb(24, 119, 242)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}><FaFacebook /></p>
             </div>
 
             {Error === "options" && (
