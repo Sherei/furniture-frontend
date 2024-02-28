@@ -237,7 +237,7 @@
 }
 
 .input_single {
-    min-width: 50px;
+    min-width: 60px;
     height: fit-content;
     background-color: transparent;
 }
