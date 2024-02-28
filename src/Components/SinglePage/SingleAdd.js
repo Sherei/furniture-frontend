@@ -158,6 +158,9 @@ const SingleAdd = () => {
       case "facebook":
         window.open(`https://www.facebook.com/`);
         break;
+        case "pint":
+          window.open(`https://www.pinterest.com/`);
+          break;
       default:
         console.log("Unsupported platform:", platform);
         break;
