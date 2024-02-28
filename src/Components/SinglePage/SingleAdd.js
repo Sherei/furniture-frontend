@@ -140,15 +140,13 @@ const SingleAdd = () => {
   const handleShare = (platform) => {
     const shareUrl = window.location.href;
     navigator.clipboard.writeText(shareUrl)
-    switch (platform) {
-      case "general":
-        const currentURL = window.location.href;
+    const currentURL = window.location.href;
         navigator.clipboard.writeText(currentURL).then(() => {
           toast.success("URL copied to clipboard");
         }).catch((error) => {
           toast.error("Failed to copy URL");
         });
-        break;
+    switch (platform) {
       case "instagram":
         window.open(`https://www.instagram.com/`);
         break;
