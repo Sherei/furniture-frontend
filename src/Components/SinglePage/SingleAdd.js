@@ -798,7 +798,7 @@ const SingleAdd = () => {
                   style={{ color: "red" }}
                 >{`£${totalPrice?.toFixed()}`}.00</span>
                 {product.discount > 0 &&
-                  <span className="fs-6" style={{ color: "red" }}>
+                  <span className="fs-6 text-muted">
                     <s className="mx-2">{`£${product?.price.toFixed()}`}.00</s>
                   </span>}
               </div>
