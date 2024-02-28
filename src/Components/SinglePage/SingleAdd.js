@@ -1381,7 +1381,6 @@ const SingleAdd = () => {
                   <button className="plus_btn fs-6" onClick={Decrement}>
                     <FaMinus />
                   </button>
-
                   <p className="input_single text-center m-0 p-0">
                     {quantity}
                   </p>
