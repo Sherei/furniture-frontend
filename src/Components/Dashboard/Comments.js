@@ -118,7 +118,7 @@ const Comments = () => {
                                         <tbody>
                                             {comments.map((data, index) => (
                                                 <tr key={index}>
-                                                    <td>{index + 1}</td>
+                                                    <td className='text-center'>{index + 1}</td>
                                                     <td>{data.name}</td>
                                                     <td>{data.email}</td>
                                                     <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>

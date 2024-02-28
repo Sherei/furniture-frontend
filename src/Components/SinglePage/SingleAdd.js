@@ -1392,7 +1392,7 @@ const SingleAdd = () => {
               </div>
             </div>
 
-            <div className="row row-cols-5 g-4 mt-0 cursor">
+            <div className="row row-cols-5 g-4 mt-0 cursor d-flex flex-wrap">
               <div className="col d-flex align-items-center ">
                 <p className="mt-2" style={{
                   fontSize: "17px",

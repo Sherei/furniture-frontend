@@ -116,7 +116,7 @@ export const Products = () => {
                     <tbody>
                       {filterProducts?.map((data, index) => (
                         <tr key={index} >
-                          <td>{index + 1}</td>
+                          <td className='text-center'>{index + 1}</td>
                           <td>{data.sn}</td>
                           <td onClick={() => move("/single_Add/" + data._id)}>
                             <img src={data.images[0]} alt="No   network" style={{ maxWidth: '80px', height: '80px' }} />
@@ -124,7 +124,7 @@ export const Products = () => {
                           <td className='text-center'>{data.stock ? 'Yes' : 'No'}</td>
                           <td className='text-center'>{data.home ? 'Yes' : 'No'}</td>
 
-                          <td><a href={"/single_Add/" + data._id}>{data.title}</a></td>
+                          <td><a href={"/single_Add/" + data._id} style={{color:"black"}}>{data.title}</a></td>
                           <td >{data.category}</td>
                           <td className='text-center'>
                             {data.subCategory === undefined || data.subCategory === "" ? "No subCategory" : data.subCategory}

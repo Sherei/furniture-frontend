@@ -43,9 +43,6 @@ const Blogs = () => {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
         };
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-GB', options);
@@ -93,7 +90,7 @@ const Blogs = () => {
                                                 <th>Image</th>
                                                 <th>Title</th>
                                                 <th>Author</th>
-                                                <th>Description</th>
+                                                {/* <th>Description</th> */}
                                                 <th>Date</th>
                                                 <th>Delete</th>
                                                 <th>Edit</th>
@@ -102,11 +99,11 @@ const Blogs = () => {
                                         <tbody>
                                             {blog?.map((data, index) => (
                                                 <tr key={index} >
-                                                    <td>{index + 1}</td>
+                                                    <td className='text-center'>{index + 1}</td>
                                                     <td> <img src={data.image} className='rounded-3 img-fluid' style={{ maxWidth: '80px', height: '80px' }} alt="No Network" /></td>
-                                                    <td><a href={"/blog_detail/" + data._id}>{data.title}</a></td>
-                                                    <td>{data.author}</td>
-                                                    <td>{data.description1}</td>
+                                                    <td><a href={"/blog_detail/" + data._id} style={{color:"black"}}>{data.title}</a></td>
+                                                    <td>{data.author ? data.author : "Not Entered"}</td>
+                                                    {/* <td>{data.description1}</td> */}
                                                     <td className='text-center'>{formatDateTime(data.date)}</td>
                                                     <td className='text-center'>
                                                         <button className='delete_btn' onClick={() => Deleteblog(data._id)}>

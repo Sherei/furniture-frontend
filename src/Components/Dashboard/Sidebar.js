@@ -71,23 +71,8 @@ const Sidebar = () => {
       <div className='d-flex flex-nowrap'>
 
         <div style={{ width: isOpen ? '220px' : '50px' }} className="sidebar">
-          <div className="py-4 d-flex justify-content-between">
-            {/* <p className="fw-bolder" style={{ display: isOpen ? 'block' : 'none' }}>
-            SOFA & BEDS
-          </p> */}
-            <div className="bars">
-              {isOpen ? (
-                <div onClick={toggle}>
-                  <IoIosArrowBack />
-                </div>
-              ) : (
-                <div onClick={toggle}>
-                  <IoIosArrowForward />
-                </div>
-              )}
-            </div>
-          </div>
-          <div className={`link ${activeComponent === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>
+         
+          <div className={`link mt-3 ${activeComponent === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>
             <div className="icon">
               <FaTh />
             </div>
@@ -154,12 +139,27 @@ const Sidebar = () => {
               Home
             </div>
           </div>
-          <div className="link mb-5" onClick={Logout}>
+
+          <div className="link mb-1" onClick={Logout}>
             <div className="icon">
               <BiLogOut />
             </div>
             <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text" >
               Logout
+            </div>
+          </div>
+
+          <div className="d-flex justify-content-between">
+            <div className="bars">
+              {isOpen ? (
+                <div onClick={toggle}>
+                  <IoIosArrowBack />
+                </div>
+              ) : (
+                <div onClick={toggle}>
+                  <IoIosArrowForward />
+                </div>
+              )}
             </div>
           </div>
         </div>

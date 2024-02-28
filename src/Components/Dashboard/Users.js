@@ -93,9 +93,9 @@ export const Users = () => {
                       <tbody>
                         {Users.map((data, index) => (
                           <tr key={index}>
-                            <td>{index + 1}</td>
+                            <td className='text-center'>{index + 1}</td>
                             <td>{data.name}</td>
-                            <td>{data.email}</td>
+                            <td >{data.email}</td>
                             {/* <td>{data.number}</td> */}
                             <td className='text-center'>{formatDateTime(data.date)}</td>
                             <td className='text-center'>

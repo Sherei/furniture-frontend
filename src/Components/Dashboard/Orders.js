@@ -132,7 +132,7 @@ export const Orders = () => {
                           const rowClassName = data.status === 'delivered' ? 'completed-row' : '';
                           return (
                             <tr key={index} className={`text-center ${rowClassName}`}>
-                              <td>{index + 1}</td>
+                              <td className='text-center'>{index + 1}</td>
                               <td>{data.orderId}</td>
                               <td>
                                 <select className='order_Select'
