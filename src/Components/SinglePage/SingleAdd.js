@@ -8,6 +8,9 @@ import {
   FaArrowDown,
   FaArrowUp,
   FaShareSquare,
+  FaInstagram,
+  FaTiktok,
+  FaFacebook,
 } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
 import TagManager from 'react-gtm-module'
@@ -30,6 +33,8 @@ import "./single.css";
 
 
 const SingleAdd = () => {
+
+
 
   // useEffect(() => {
   //   window.scrollTo({
@@ -71,14 +76,6 @@ const SingleAdd = () => {
   const [timeoutId, setTimeoutId] = useState(null);
   const dispatch = useDispatch();
 
-  const copyUrlToClipboard = () => {
-    const currentURL = window.location.href;
-    navigator.clipboard.writeText(currentURL).then(() => {
-      toast.success("URL copied to clipboard");
-    }).catch((error) => {
-      toast.error("Failed to copy URL");
-    });
-  };
 
   const sendWhatsAppMessage = () => {
     const message = `I'm interested in product\n${window.location.href}\n\n${product?.title}\n\nCan you provide more details?`;
@@ -133,10 +130,40 @@ const SingleAdd = () => {
 
   const totalImages = product?.images?.length || 0;
 
+
   const handleThumbnailClick = (index) => {
     setSelectedImage(index);
     setScrollPosition(index * 23);
   };
+
+  const handleShare = (platform) => {
+    const shareUrl = window.location.href; 
+    navigator.clipboard.writeText(shareUrl)
+    switch (platform) {
+      case "general":
+        const currentURL = window.location.href;
+        navigator.clipboard.writeText(currentURL).then(() => {
+          toast.success("URL copied to clipboard");
+        }).catch((error) => {
+          toast.error("Failed to copy URL");
+        });
+        break;
+      case "instagram":
+        window.open(`https://www.instagram.com/`);
+        break;
+      case "tiktok":
+        window.open(`https://www.tiktok.com/`);
+        break;
+      case "facebook":
+        window.open(`https://www.facebook.com/`);
+        break;
+      default:
+        console.log("Unsupported platform:", platform);
+        break;
+    }
+  };
+ 
+
 
   const handleScroll = (direction) => {
     const container = document.querySelector(".small_images");
@@ -658,7 +685,7 @@ const SingleAdd = () => {
             </div>
             {product?.images && product?.images.length > 3 && (
               <>
-                <div className="mt-3 arrow_display1 text-center">
+                {/* <div className="mt-3 arrow_display1 text-center">
                   <button
                     className="plus_btn"
                     onClick={() => handleScroll("up")}
@@ -671,7 +698,7 @@ const SingleAdd = () => {
                   >
                     <FaArrowDown />
                   </button>
-                </div>
+                </div> */}
                 {/* <div className="arrow_display2">
                       <button
                         className="plus_btn plus_btn1 mx-2"
@@ -1363,7 +1390,28 @@ const SingleAdd = () => {
                   </button>
                 </div>
               </div>
-              <p className="fs-6 mt-3 mb-0 cursor d-flex align-items-center " style={{ fontWeight: "500", fontWeight: "500" }} onClick={copyUrlToClipboard}>Share Product&nbsp;<FaShareSquare /></p>
+            </div>
+
+            <div className="row row-cols-5 g-4 mt-0 cursor">
+              <div className="col d-flex align-items-center ">
+                <p className="mt-2" style={{
+                  fontSize: "17px",
+                  color: "#1b2950",
+                  fontWeight: "600",
+                }}>Share</p>
+              </div>
+              <div className="col mx-3 fs-5 d-flex align-items-center justify-content-center" onClick={() => handleShare("general")} style={{ width: "40px", height: "40px", backgroundColor: "#F7EEDD", borderRadius: "100%" }}>
+                <FaShareSquare />
+              </div>
+              <div className="col fs-5 d-flex align-items-center justify-content-center" onClick={() => handleShare("instagram")} style={{ width: "40px", height: "40px", background: "linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}>
+                <FaInstagram />
+              </div>
+              <div className="col mx-3 fs-5 d-flex align-items-center justify-content-center" onClick={() => handleShare("tiktok")} style={{ width: "40px", height: "40px", background: "black", color: "white", borderRadius: "100%" }}>
+                <FaTiktok />
+              </div>
+              <div className="col fs-5 d-flex align-items-center justify-content-center" onClick={() => handleShare("facebook")} style={{ width: "40px", height: "40px", backgroundColor: "rgb(24, 119, 242)", color: "rgb(255, 255, 255)", borderRadius: "100%" }}>
+                <FaFacebook />
+              </div>
             </div>
 
             {Error === "options" && (
@@ -1399,6 +1447,7 @@ const SingleAdd = () => {
               Buy via WhatsApp
             </button>
           </div>
+
         </div>
 
         <div className="row mt-5 mb-3 d-flex justify-content-center">
@@ -1700,7 +1749,7 @@ const SingleAdd = () => {
       </div >
     )
     }
-    
+
   </>
 };
 
