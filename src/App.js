@@ -112,10 +112,10 @@ function App() {
       <>
         <div className='main_body'>
 
-            <div className='whatsapp-btn_main p-2' onClick={sendWhatsAppMessage}>
-              <span className='fs-5'>Chat</span>&nbsp;<span className='fs-4'><FaWhatsapp /></span>
-            </div>
-     
+          <div className='whatsapp-btn_main px-3 py-2' onClick={sendWhatsAppMessage}>
+            <span className='fs-4'><FaWhatsapp /></span>&nbsp;<span className='fs-5'>Chat</span>
+          </div>
+
           <BrowserRouter>
             <Navbar />
             <main>
