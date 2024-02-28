@@ -18,8 +18,6 @@ const UserPanel = () => {
             behavior: 'smooth'
         });
     }, []);
-
-
     const cu = useSelector((store) => store.userSection.cu);
     const move = useNavigate();
     const { userid } = useParams();

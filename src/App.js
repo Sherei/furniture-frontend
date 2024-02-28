@@ -112,8 +112,8 @@ function App() {
       <>
         <div className='main_body'>
 
-            <div className='whatsapp-btn_main' onClick={sendWhatsAppMessage}>
-              <FaWhatsapp />
+            <div className='whatsapp-btn_main p-2' onClick={sendWhatsAppMessage}>
+              <span className='fs-5'>Chat</span>&nbsp;<span className='fs-4'><FaWhatsapp /></span>
             </div>
      
           <BrowserRouter>
@@ -133,7 +133,7 @@ function App() {
                 <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
                 <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
                 <Route exact path='/Products' element={<Products />} />
-                <Route path='/single_add/:productId' element={<SingleAdd />} />
+                <Route path='/product/:productId' element={<SingleAdd />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
 
                 {/* Cart */}

@@ -48,7 +48,7 @@ export const Login = () => {
         if (loginUser.user.email === "asd@gmail.com") {
           return move('/admin-dashboard');
         } else if (productId) {
-          return move("/single_Add/" + productId);
+          return move("/product/" + productId);
         } else if (!productId) {
           return move("/");
         }
