@@ -32,12 +32,17 @@ const Checkout = () => {
     const [loading, setLoading] = useState(false);
     const [cart, setCart] = useState([])
     const [expandedItems, setExpandedItems] = useState({});
-    
+    const [payment, setPayment] = useState(false)
+
+    const togglePayment = () => {
+        setPayment(!payment)
+    }
+
     const sendWhatsAppMessage = () => {
         const message = `I want to place this order \n\n${window.location.href}`;
         const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, "_blank");
-      };
+    };
 
     const toggleDetails = (index) => {
         setExpandedItems((prev) => ({
@@ -123,7 +128,7 @@ const Checkout = () => {
                 `${process.env.REACT_APP_BASE_URL}/chkdeleteCart?userId=${userId}&id=${itemId}`
             );
             if (response.data.status === "success") {
-              
+
                 dispatch({
                     type: "ADD_TO_CART",
                     payload: response.data.alldata,
@@ -367,10 +372,38 @@ const Checkout = () => {
                                 <div className='py-3'>
                                     <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Payment Method</p>
                                     <div className="col-md-12 mb-3">
-                                        <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
-                                            style={{ border: "1px solid lightgray" }}>
-                                            <p className='m-0'>Cash on Delivery (COD)</p>
-                                        </div>
+                                        <>
+                                            <div className="d-flex gap-2" >
+                                                <input
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault1"
+                                                    onClick={()=>setPayment(false)}
+                                                />
+                                                <p className="m-0" htmlFor="flexRadioDefault1">
+                                                    Cash on delivery
+                                                </p>
+                                            </div>
+                                           
+                                            <div className="d-flex gap-2" >
+                                                <input
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault2"
+                                                    defaultChecked=""
+                                                    onClick={togglePayment}
+                                                />
+                                                <p className="m-0" htmlFor="flexRadioDefault2">
+                                                    Credit Cart
+                                                </p>
+                                            </div>
+                                        </>
+                                        {payment &&
+                                            <div className='mt-4 d-flex flex-column justify-content-center align-items-center' style={{ backgroundColor: "#FAFAF9", height: "200px", borderRadius: "5px" }}>
+                                                <img src="/payment.png" className='img-fluid' style={{ height: "80px" }} alt="" />
+                                                <p className='text-muted text-center mt-2'>This store can't accept payment right now.</p>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <hr className="mb-4" />
@@ -392,11 +425,11 @@ const Checkout = () => {
                                         </button>
                                         <p className='my-4 text-center fs-3' style={{ fontWeight: "600" }}>---OR---</p>
 
-                                            <button className="w-100 btn btn-lg chk_btn"
-                                                style={{ backgroundColor: "rgb(38,211,103)" }}
-                                                onClick={sendWhatsAppMessage}>
-                                                Order Via WhatsApp
-                                            </button>
+                                        <button className="w-100 btn btn-lg chk_btn"
+                                            style={{ backgroundColor: "rgb(38,211,103)" }}
+                                            onClick={sendWhatsAppMessage}>
+                                            Order Via WhatsApp
+                                        </button>
                                     </div>
                                 }
                             </form>
@@ -497,7 +530,7 @@ const Checkout = () => {
                 ) : (
                     <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3 d-flex flex-column justify-content-center align-items-center' style={{ height: "50vh" }}>
                         <img src="/cart.png" alt="" style={{ width: "150px" }} />
-                                        <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
+                        <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
                         <a href="/Products/all">
                             <button
                                 className="btn review_btn"

@@ -65,7 +65,7 @@ const Orderplaced = () => {
 
                             <a href="/Products/all">
                                 <button className="review_btn cursor px-5" type='button'>
-                                    Browse  More Products
+                                    Shop our products
                                 </button>
                             </a>
 

@@ -107,7 +107,7 @@ function App() {
   }, []);
 
 
-  if (isOnline) {
+  // if (isOnline) {
     return (
       <>
         <div className='main_body'>
@@ -176,17 +176,17 @@ function App() {
         </div>
       </>
     );
-  }
-  return (
-    <div className='d-flex flex-column justify-content-center align-items-center' style={{ minHeight: '50vh' }}>
-      <div>
-        <Lottie animationData={Nointernet} loop={true} />;
-      </div>
-      <button className='btn review_btn' style={{ width: "200px" }} onClick={() => window.location.reload()}>
-        Reload
-      </button>
-    </div>
-  );
+  // }
+  // return (
+  //   <div className='d-flex flex-column justify-content-center align-items-center' style={{ minHeight: '50vh' }}>
+  //     <div>
+  //       <Lottie animationData={Nointernet} loop={true} />;
+  //     </div>
+  //     <button className='btn review_btn' style={{ width: "200px" }} onClick={() => window.location.reload()}>
+  //       Reload
+  //     </button>
+  //   </div>
+  // );
 }
 
 export default App;
