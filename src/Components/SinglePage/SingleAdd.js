@@ -413,43 +413,74 @@ const SingleAdd = () => {
   ) {
 
     if (product.category === "sofa") {
-      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-        if (!color, !side) {
+      if(product.color1 !==undefined){
+        if(!color){
           return setError("options");
         }
       }
+      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+        if (!side) {
+          return setError("options");
+        }if(!color){
+          return setError("options");
+        }
+      } 
     }
-
     else if (product?.category === "bed") {
-      if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
+      if (!size) {
+        return setError("options");
+      }
+      if (!detail) {
+        return setError("options");
+      }
+      if (!fabric) {
+        return setError("options");
+      }
+      if (!headboard) {
+        return setError("options");
+      }
+      if (!base) {
+        return setError("options");
+      }
+      if (!mattress) {
+        return setError("options");
+      }
+      if (!ottoman) {
+        return setError("options");
+      }
+      if (!color) {
         return setError("options");
       }
     }
     else if (product?.category === "mattress") {
-      if (!size, !ottoman) {
+      if (!size) {
+        return setError("options");
+      } if (!ottoman) {
         return setError("options");
       }
     }
     else if (product?.category === "ottoman-box") {
-      if (!detail, !fabric, !color) {
+      if (!detail) {
+        return setError("options");
+      }
+      if (!fabric) {
+        return setError("options");
+      }
+      if (!color) {
         return setError("options");
       }
     }
     else if (product?.category === "footstools") {
+      if (!fabric) {
+        return setError("options");
+      }
       if (product.color1 === undefined) {
         if (!fabric) {
           return setError("options");
         }
       } else if (product.color1 != undefined) {
         if (!fabric, !color) {
-          return setError("options");
-        }
-      }
-    }
-    else if (product?.category === "sofa") {
-      if (product.color1 !== undefined) {
-        if (!color) {
           return setError("options");
         }
       }
@@ -558,48 +589,80 @@ const SingleAdd = () => {
       color,
     )
 
-
     if (product.category === "sofa") {
-      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-        if (!color, !side) {
+      if(product.color1 !==undefined){
+        if(!color){
           return setError("options");
         }
       }
+      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+        if (!side) {
+          return setError("options");
+        }if(!color){
+          return setError("options");
+        }
+      } 
     }
     else if (product?.category === "bed") {
-      if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
+      if (!size) {
+        return setError("options");
+      }
+      if (!detail) {
+        return setError("options");
+      }
+      if (!fabric) {
+        return setError("options");
+      }
+      if (!headboard) {
+        return setError("options");
+      }
+      if (!base) {
+        return setError("options");
+      }
+      if (!mattress) {
+        return setError("options");
+      }
+      if (!ottoman) {
+        return setError("options");
+      }
+      if (!color) {
         return setError("options");
       }
     }
     else if (product?.category === "mattress") {
-      if (!size, !ottoman) {
+      if (!size) {
+        return setError("options");
+      } if (!ottoman) {
         return setError("options");
       }
     }
     else if (product?.category === "ottoman-box") {
-      if (!detail, !fabric, !color) {
+      if (!detail) {
+        return setError("options");
+      }
+      if (!fabric) {
+        return setError("options");
+      }
+      if (!color) {
         return setError("options");
       }
     }
     else if (product?.category === "footstools") {
-      if (product.color1 != undefined) {
-        if (!fabric, !color) {
-          return setError("options");
-        }
-      } else if (product.color1 === undefined) {
+      if (!fabric) {
+        return setError("options");
+      }
+      if (product.color1 === undefined) {
         if (!fabric) {
           return setError("options");
         }
-      }
-    }
-    else if (product?.category === "sofa") {
-      if (product.color1 != undefined) {
-        if (!color) {
+      } else if (product.color1 != undefined) {
+        if (!fabric, !color) {
           return setError("options");
         }
       }
     }
+
     if (cu._id && cu.email !== "asd@gmail.com") {
       move(`/cart-checkout/${cu._id}`);
     } else {
@@ -911,7 +974,7 @@ const SingleAdd = () => {
                     >
                       Side<span style={{ color: "red" }}>* </span>&nbsp;{" "}
                       <span className="lable_Case">
-                        {side ? side.replace(/-/g, " ") : Error}
+                        {side ? side.replace(/-/g, " ") : ""}
                       </span>
                     </label>
                     <p className="mt-1 mb-0">Please Choose Side</p>
