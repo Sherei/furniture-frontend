@@ -412,9 +412,9 @@ const SingleAdd = () => {
     color,
   ) {
 
-    if ((product.category === "sofa") && (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020)) {
-      if (!color, !side) {
+    if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+      if (!color, !side, side !== undefined) {
         return setError("options");
       }
     }
@@ -555,8 +555,8 @@ const SingleAdd = () => {
       color,
     )
 
-    if ((product.category === "sofa") && (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020)) {
+    if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
       if (!color, !side) {
         return setError("options");
       }
@@ -1430,14 +1430,14 @@ const SingleAdd = () => {
                     product,
                     totalPrice,
                     size,
-                    color,
+                    side,
                     fabric,
                     detail,
                     base,
                     headboard,
                     ottoman,
                     mattress,
-                    side
+                    color,
                   )
                 }
               >
