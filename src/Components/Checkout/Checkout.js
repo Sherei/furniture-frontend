@@ -394,7 +394,7 @@ const Checkout = () => {
                                                     defaultChecked=""
                                                     onClick={togglePayment}
                                                 />
-                                                <p className="m-0" htmlFor="flexRadioDefault2">
+                                                <p className="m-0 text-capitalize" htmlFor="flexRadioDefault2">
                                                     Credit Cart
                                                 </p>
                                             </div>
