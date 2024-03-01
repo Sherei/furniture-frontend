@@ -378,7 +378,7 @@ const Checkout = () => {
                                                     type="radio"
                                                     name="flexRadioDefault"
                                                     id="flexRadioDefault1"
-                                                    
+                                                    defaultChecked="true"
                                                     onClick={()=>setPayment(false)}
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault1">
@@ -391,7 +391,6 @@ const Checkout = () => {
                                                     type="radio"
                                                     name="flexRadioDefault"
                                                     id="flexRadioDefault2"
-                                                    defaultChecked=""
                                                     onClick={togglePayment}
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault2">
