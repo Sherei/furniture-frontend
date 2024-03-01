@@ -295,7 +295,7 @@ const Checkout = () => {
                             className="fs-2 fw-bolder text-center"
                             style={{ color: "white" }}
                         >
-                            Place Order !
+                            Checkout !
                         </p>
                     </div>
                 </div>
