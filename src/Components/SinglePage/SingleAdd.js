@@ -412,12 +412,15 @@ const SingleAdd = () => {
     color,
   ) {
 
-    if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-      if (!color, !side, side !== undefined) {
-        return setError("options");
+    if (product.category === "sofa") {
+      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+        if (!color, !side) {
+          return setError("options");
+        }
       }
     }
+
     else if (product?.category === "bed") {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
         return setError("options");
@@ -555,10 +558,13 @@ const SingleAdd = () => {
       color,
     )
 
-    if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-      if (!color, !side) {
-        return setError("options");
+
+    if (product.category === "sofa") {
+      if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+        || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
+        if (!color, !side) {
+          return setError("options");
+        }
       }
     }
     else if (product?.category === "bed") {
