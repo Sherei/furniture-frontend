@@ -140,16 +140,16 @@ const SingleAdd = () => {
   const copyUrlToClipboard = async (url) => {
     try {
       await navigator.clipboard.writeText(url);
-      return true; 
+      return true;
     } catch (error) {
       console.error("Error copying URL to clipboard:", error);
       return false;
     }
   };
-  
+
   const handleShare = async (platform) => {
     const shareUrl = window.location.href;
-      const copiedSuccessfully = await copyUrlToClipboard(shareUrl);
+    const copiedSuccessfully = await copyUrlToClipboard(shareUrl);
     if (copiedSuccessfully) {
       toast.success("URL copied to clipboard");
     } else {
@@ -157,7 +157,7 @@ const SingleAdd = () => {
     }
     switch (platform) {
       case "general":
-       break;
+        break;
       case "instagram":
         window.open(`https://www.instagram.com/`);
         break;
@@ -175,7 +175,7 @@ const SingleAdd = () => {
         break;
     }
   };
-  
+
 
 
 
@@ -402,17 +402,23 @@ const SingleAdd = () => {
     product,
     totalPrice,
     size,
-    color,
+    side,
     fabric,
     detail,
     base,
     headboard,
     ottoman,
     mattress,
-    side,
+    color,
   ) {
-    // console.log("Total Price:", totalPrice);
-    if (product?.category === "bed") {
+
+    if ((product.category === "sofa") && (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020)) {
+      if (!color, !side) {
+        return setError("options");
+      }
+    }
+    else if (product?.category === "bed") {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
         return setError("options");
       }
@@ -445,12 +451,7 @@ const SingleAdd = () => {
         }
       }
     }
-    else if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-      if (!color, !side) {
-        return setError("options");
-      }
-    }
+
 
     if (cu._id === undefined) {
       move("/login/" + productId);
@@ -544,17 +545,23 @@ const SingleAdd = () => {
       product,
       totalPrice,
       size,
-      color,
+      side,
       fabric,
       detail,
       base,
       headboard,
       ottoman,
       mattress,
-      side,
+      color,
     )
 
-    if (product?.category === "bed") {
+    if ((product.category === "sofa") && (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
+      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020)) {
+      if (!color, !side) {
+        return setError("options");
+      }
+    }
+    else if (product?.category === "bed") {
       if ((!size, !detail, !fabric, !headboard, !base, !mattress, !ottoman, !color)) {
         return setError("options");
       }
@@ -587,13 +594,6 @@ const SingleAdd = () => {
         }
       }
     }
-    else if (product.sn === 1546 || product.sn === 1539 || product.sn === 1527 || product.sn === 1525
-      || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
-      if (!color, !side) {
-        return setError("options");
-      }
-    }
-
     if (cu._id && cu.email !== "asd@gmail.com") {
       move(`/cart-checkout/${cu._id}`);
     } else {
