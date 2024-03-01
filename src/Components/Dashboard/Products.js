@@ -109,7 +109,7 @@ export const Products = () => {
                         <th>Final Price</th>
                         <th>Discount</th>
                         <th>Date</th>
-                        <th>Delete</th>
+                        {/* <th>Delete</th> */}
                         <th>Edit</th>
                       </tr>
                     </thead>
@@ -133,13 +133,13 @@ export const Products = () => {
                           <td className='text-center'>&pound;{data?.Fprice?.toFixed()}</td>
                           <td className='text-center'>{data.discount ? data.discount + '%' : '0%'}</td>
                           <td className='text-center'>{formatDateTime(data.date)}</td>
-                          <td className='text-center'>
+                          {/* <td className='text-center'>
                             <button
                               className="delete_btn"
                               onClick={() => DeleteProduct(data._id)}>
                               <AiFillDelete />
                             </button>
-                          </td>
+                          </td> */}
                           <td className='text-center'>
                             <a href={`/admin-dashboard-add-product/${data._id}`}>
                               <button

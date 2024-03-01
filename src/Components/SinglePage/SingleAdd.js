@@ -1404,7 +1404,7 @@ const SingleAdd = () => {
               </div>
             </div>
 
-            <div className="mt-3  d-flex flex-wrap gap-3">
+            <div className="mt-3 d-flex flex-wrap gap-3">
               <p className="m-0 d-flex align-items-center cursor" style={{
                 fontSize: "17px",
                 color: "#1b2950",

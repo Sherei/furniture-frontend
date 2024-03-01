@@ -213,7 +213,6 @@
 }
 
 .nav_cart_div {
-  height: 70vh;
   flex: 1 0 auto;
   overflow: scroll;
 }
@@ -231,7 +230,7 @@
   position: fixed !important;
   display: block;
   width: 320px;
-  height: 100vh;
+  height: 100%;
   top: 0px;
   right: 0px;
   background-color: #F7EEDD;
