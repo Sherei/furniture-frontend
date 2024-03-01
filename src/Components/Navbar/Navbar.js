@@ -265,7 +265,9 @@ export const Navbar = () => {
       {open && (
         <div className={` px-2 ${open ? "side_open" : "side_cart"}`} cartRef={ref}>
           <div className="" style={{ position: "relative" }}>
-            <div className="py-2 d-flex justify-content-between align-items-center" style={{ borderBottom: "1px solid lightgray" }}>
+            <div className="py-2 d-flex justify-content-between align-items-center"
+              style={{ borderBottom: "1px solid lightgray"}}
+            >
               <p className="fw-bolder m-0 cart_text" style={{ color: "#02025E" }}>SHOPPING CART</p>
               <button
                 className="m-0 side_cart_cross"
@@ -302,7 +304,7 @@ export const Navbar = () => {
                 </center>
               </div>
             ) : (
-              <div className="" style={{ height: "69vh", overflow: "auto" }}>
+              <div className="nav_cart_div">
                 {filterCart?.map((item, index) => (
                   <div
                     className="px-2 mt-2 py-2 d-flex gap-2 cursor"
@@ -375,7 +377,7 @@ export const Navbar = () => {
               </div>
             )}
             {filterCart?.length > 0 && (
-              <div className="mb-2" style={{}}>
+              <div className="mb-2">
                 <div className="d-flex justify-content-between fw-bolder fs-5">
                   <p className="mb-1">Total </p>
                   <p className="mb-1">&pound;{subtotal?.toFixed()}</p>

@@ -1377,7 +1377,7 @@ const SingleAdd = () => {
                   </>
                 )}
               </div>
-              <div className="sigle_quatity_main mt-1">
+              <div className="sigle_quatity_main mt-3">
                 <div className="">
                   <p
                     className="m-0"

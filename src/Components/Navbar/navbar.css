@@ -210,7 +210,20 @@
   position: absolute;
   width: 320px !important;
   /* display: none; */
+}
 
+.nav_cart_div {
+  height: 70vh;
+  flex: 1 0 auto;
+  overflow: scroll;
+}
+
+.nav_cart_div::-webkit-scrollbar {
+  width: 0;
+}
+
+.nav_cart_div {
+  scrollbar-width: none;
 }
 
 .side_open {
@@ -218,7 +231,7 @@
   position: fixed !important;
   display: block;
   width: 320px;
-  height: 100%;
+  height: 100vh;
   top: 0px;
   right: 0px;
   background-color: #F7EEDD;
@@ -375,6 +388,7 @@
   .navbar {
     padding: 0px !important;
   }
+
   .nav_cotact {
     display: none;
   }
@@ -444,8 +458,13 @@
   .nav1_row {
     padding-right: 2px;
   }
-  .login_div::before{
+
+  .login_div::before {
     right: 51px !important;
+  }
+
+  .nav_cart_div {
+    height: 65vh;
   }
 }
 
