@@ -276,7 +276,7 @@ const Checkout = () => {
         <div className='container-fluid '>
             <div className="row">
                 <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
-                    <img src="/checkbg.jpg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
+                    <img src="/chek.jpeg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
                     <div
                         className='d-flex align-items-center justify-content-center'
                         style={{
