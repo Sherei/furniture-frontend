@@ -264,7 +264,7 @@ export const Navbar = () => {
     <>
       {open && (
         <div className={` px-2 ${open ? "side_open" : "side_cart"}`} cartRef={ref}>
-          <div className="" style={{ position: "relative" }}>
+          <div className="" style={{ position: "relative", height:"100%" }}>
             <div className="py-2 d-flex justify-content-between align-items-center"
               style={{ borderBottom: "1px solid lightgray"}}
             >
@@ -285,11 +285,6 @@ export const Navbar = () => {
                 <center>
                   <img src="/cart.png" alt="" style={{ width: "100px" }} />
                   <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>Your Cart is Empty</p>
-                  {/* <Lottie
-                animationData={CartAnimation}
-                loop={true}
-                style={{ width: "100%", height: "100%" }}
-              /> */}
                   <a href="/Products/all">
                     <button
                       className="btn review_btn my-5"
@@ -377,15 +372,11 @@ export const Navbar = () => {
               </div>
             )}
             {filterCart?.length > 0 && (
-              <div className="mb-2">
+              <div className="mb-2 w-100" style={{position:"absolute", bottom:"0px"}}>
                 <div className="d-flex justify-content-between fw-bolder fs-5">
                   <p className="mb-1">Total </p>
                   <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
                 </div>
-                {/* <div className="d-flex justify-content-between fw-bolder fs-5">
-                <p className="mb-1">You Saved {totalQuantity > 1 && <span>({totalQuantity})</span>}</p>
-                <p className="mb-1">&pound;{subtotal?.toFixed()}</p>
-              </div> */}
                 <button
                   className="btn"
                   style={{
