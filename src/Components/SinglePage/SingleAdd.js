@@ -668,7 +668,7 @@ const SingleAdd = () => {
     ) : product ? (
       <div className="container-fluid min-vh-100">
         <div className="row">
-          <div className="col-lg-12 col-sm-12 my-4 s_categories_P d-flex align-items-center">
+          <div className="col-lg-12 col-sm-12 mt-4 mb-2 s_categories_P d-flex align-items-center">
             {product?.subCategory != "three-&-two-seater-sofas" &&
               <p style={{ textTransform: "capitalize" }}>
                 home <FaAngleRight />
