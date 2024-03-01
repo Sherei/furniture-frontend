@@ -394,7 +394,7 @@ const Checkout = () => {
                                                     onClick={togglePayment}
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault2">
-                                                    Credit Cart
+                                                    Credit Card
                                                 </p>
                                             </div>
                                         </>
