@@ -334,8 +334,7 @@ const Checkout = () => {
                                         {errors.street ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-12 mb-3">
-                                        <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment', { required: true })} />
-                                        {errors.appartment ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment')} />
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <input type="text" placeholder='Country*' className="form-control py-2 border" {...register('country', { required: true })} />
@@ -351,9 +350,8 @@ const Checkout = () => {
                                     </div>
 
                                     <div className="col-md-6 mb-3">
-                                        <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email', { required: true })} />
-                                        {errors.email ? <div className='error'>This Field is required</div> : null}
-                                    </div>
+                                        <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email')} />
+                                   </div>
                                     <div className="col-md-12 mt-3">
                                         <p className='mb-0 fw-bold' style={{ fontSize: "16px" }}>Note: Remember all orders are delivered on ground floor.
                                             Extra charges for uplift or desired room.</p>
