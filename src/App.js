@@ -34,8 +34,8 @@ TagManager.initialize({ gtmId: 'GTM-NWFTB5LV' });
 
 
 function App() {
-
-  inject();
+  
+    inject();
 
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [loading, setLoading] = useState(true);
