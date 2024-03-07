@@ -51,10 +51,10 @@ const Orderplaced = () => {
                     <div className="col-12 d-flex flex-column  align-items-center mb-5">
                         <img src="/express.png" className='img-fluid' style={{ width: "250px" }} alt="" />
 
-                        <p className='text-center' style={{ lineHeight: "35px" }}>
-                            <span className='fs-2 fw-bolder' style={{ fontFamily: "Times New Roman" }}>Thank you for placing an order</span><br />
-                            Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
-                            Order will be delivered within 05-07 working days. We will update you soon.
+                        <p className='text-center mt-3' style={{ lineHeight: "35px" }}>
+                            <span className='fs-1 fw-bolder' style={{ fontFamily: "Times New Roman" }}>Thank you for placing an order</span><br />
+                            <span className='fs-5' style={{ fontFamily: "Times New Roman" }}>Order Tracking ID is: <b>{filterOrder[0].orderId}</b></span>  <br />
+                            <span className='fs-5' style={{ fontFamily: "Times New Roman" }}>Order will be delivered within 05-07 working days. We will update you soon.</span>
                         </p>
                         <div className='order_btns'>
                             <a href={`/order-detail/${filterOrder[0]._id}`}>
