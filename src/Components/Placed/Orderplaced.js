@@ -49,10 +49,10 @@ const Orderplaced = () => {
 
                 ) : filterOrder.length > 0 ? (
                     <div className="col-12 d-flex flex-column  align-items-center mb-5">
-                        <img src="/express.png" className='img-fluid' style={{width:"250px"}} alt="" />
+                        <img src="/express.png" className='img-fluid' style={{ width: "250px" }} alt="" />
 
-                        <p className='text-center' style={{ lineHeight: "20px" }}>
-                           <span className='fs-2 fw-bolder' style={{fontFamily:"times-new-roman"}}>Thank you for placing an order</span>  <br />
+                        <p className='text-center' style={{ lineHeight: "35px" }}>
+                            <span className='fs-2 fw-bolder' style={{ fontFamily: "Times New Roman" }}>Thank you for placing an order</span><br />
                             Order Tracking ID is: <b>{filterOrder[0].orderId}</b> <br />
                             Order will be delivered within 05-07 working days. We will update you soon.
                         </p>
