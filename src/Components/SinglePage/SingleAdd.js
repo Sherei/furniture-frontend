@@ -806,6 +806,7 @@ const SingleAdd = () => {
                 <InnerImageZoom
                   zoomScale={1}
                   className="rounded-3"
+                  
                   src={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
