@@ -762,7 +762,7 @@ const SingleAdd = () => {
                     src={image}
                     alt="No Network"
                     onClick={() => handleThumbnailClick(index)}
-                    className={index === selectedImage ? "activeImg" : ""}
+                    className={`rounded-3 ${index === selectedImage ? "activeImg" : ""}`}
                   />
                 ))}
             </div>
@@ -805,6 +805,7 @@ const SingleAdd = () => {
               <div className="d-flex justify-content-center align-items-center" style={{ position: "relative" }}>
                 <InnerImageZoom
                   zoomScale={1}
+                  className="rounded-3"
                   src={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
@@ -1536,14 +1537,14 @@ const SingleAdd = () => {
             </p>
             {product?.descriptionHead1 && (
               <p
-                className="fs-6 my-3 fw-bolder"
+                className="fs-6 my-3 fw-bolder "
                 style={{ color: "#1b2950" }}
               >
                 {product.descriptionHead1}
               </p>
             )}
             {product?.description && (
-              <p className="fs-6 ">{product.description}</p>
+              <p className="fs-6 text-justify">{product.description}</p>
             )}
             {product?.descriptionHead2 && (
               <p
@@ -1554,7 +1555,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description2 && (
-              <p className="fs-6">{product.description2}</p>
+              <p className="fs-6 text-justify">{product.description2}</p>
             )}
             {product?.descriptionHead3 && (
               <p
@@ -1565,7 +1566,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description3 && (
-              <p className="fs-6">{product.description3}</p>
+              <p className="fs-6 text-justify">{product.description3}</p>
             )}
             {product?.descriptionHead4 && (
               <p
@@ -1576,7 +1577,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description4 && (
-              <p className="fs-6">{product.description4}</p>
+              <p className="fs-6 text-justify">{product.description4}</p>
             )}
 
             {product?.dimensionHead && (
@@ -1649,7 +1650,11 @@ const SingleAdd = () => {
                 </p>
               )}
             </ul>
-
+            {product?.note2 && (
+              <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>
+                Note: {product.note2}
+              </p>
+            )}
             {product?.images &&
               product.images.length > 0 &&
               product?.description && (
@@ -1676,11 +1681,7 @@ const SingleAdd = () => {
                   </div>
                 </>
               )}
-            {product?.note2 && (
-              <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>
-                Note: {product.note2}
-              </p>
-            )}
+          
           </div>
         </div>
 
