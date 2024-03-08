@@ -815,7 +815,11 @@ const SingleAdd = () => {
           </div>
 
           <div className="col-lg-5 col-md-8 col-sm-12 order-lg-2 order-md-2 order-1 mb-lg-5 mb-2" style={{ height: "fit-content" }}>
-            {!loading &&
+            {loading || product?.length === 0 ? (
+              <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
+                <Loader />
+              </div>
+            ) : (
               <div className="d-flex justify-content-center align-items-center" style={{ position: "relative" }}>
                 <InnerImageZoom
                   zoomScale={1}
@@ -823,13 +827,12 @@ const SingleAdd = () => {
                   src={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
-                      : "fallbackImageURL"
-                  }
-                  style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                      : <Loader />
+                  } 
                   zoomSrc={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
-                      : "fallbackImageURL"
+                      : <Loader />
                   }
                 />
                 {product?.discount && product?.discount > 0 ? (
@@ -853,7 +856,9 @@ const SingleAdd = () => {
                   </>
                 )}
               </div>
+            )
             }
+
           </div>
 
           <div className="col-lg-5 col-sm-12 order-3" style={{ position: "relative" }}>

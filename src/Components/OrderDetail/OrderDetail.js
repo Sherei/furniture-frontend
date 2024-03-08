@@ -85,7 +85,7 @@ const OrderDetail = () => {
                     </div>
                 </div>
                 <div className='row' id="orderDetail">
-                    <div className='col-12'>
+                    <div className='col-12'style={{ fontFamily: "Times New Roman" }}>
                         <p><b style={{ color: "rgb(2,2,94)" }}>Name:</b> {order?.name1} {order?.name2}</p>
                         {order?.email && <p><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
                         <p><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
