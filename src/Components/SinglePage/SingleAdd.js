@@ -60,6 +60,7 @@ const SingleAdd = () => {
 
   const [comments, setComments] = useState([])
   const [product, setProduct] = useState({});
+  const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [size, setSize] = useState("");
@@ -129,6 +130,19 @@ const SingleAdd = () => {
       }
     };
   }, [productId]);
+
+  useEffect(() => {
+    setLoading(true)
+    try {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+        if (res) {
+          setData(res.data);
+        }
+        setLoading(false)
+      });
+    } catch (e) { }
+  }, []);
+
 
   const totalImages = product?.images?.length || 0;
 
@@ -413,8 +427,8 @@ const SingleAdd = () => {
   ) {
 
     if (product.category === "sofa") {
-      if(product.color1 !==undefined){
-        if(!color){
+      if (product.color1 !== undefined) {
+        if (!color) {
           return setError("options");
         }
       }
@@ -422,10 +436,10 @@ const SingleAdd = () => {
         || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
         if (!side) {
           return setError("options");
-        }if(!color){
+        } if (!color) {
           return setError("options");
         }
-      } 
+      }
     }
     else if (product?.category === "bed") {
       if (!size) {
@@ -590,8 +604,8 @@ const SingleAdd = () => {
     )
 
     if (product.category === "sofa") {
-      if(product.color1 !==undefined){
-        if(!color){
+      if (product.color1 !== undefined) {
+        if (!color) {
           return setError("options");
         }
       }
@@ -599,10 +613,10 @@ const SingleAdd = () => {
         || product.sn === 1512 || product.sn === 1300 || product.sn === 1286 || product.sn === 1020) {
         if (!side) {
           return setError("options");
-        }if(!color){
+        } if (!color) {
           return setError("options");
         }
-      } 
+      }
     }
     else if (product?.category === "bed") {
       if (!size) {
@@ -806,7 +820,7 @@ const SingleAdd = () => {
                 <InnerImageZoom
                   zoomScale={1}
                   className="rounded-3"
-                  
+
                   src={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
@@ -1532,6 +1546,8 @@ const SingleAdd = () => {
               style={{
                 color: "#1b2950",
                 borderBottom: "1px solid #1b2950",
+                width: "fit-content"
+
               }}
             >
               Product Detail
@@ -1545,7 +1561,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description && (
-              <p className="fs-6 text-justify">{product.description}</p>
+              <p className="fs-6 text-justify" style={{ textAlign: "justify" }}>{product.description}</p>
             )}
             {product?.descriptionHead2 && (
               <p
@@ -1682,7 +1698,97 @@ const SingleAdd = () => {
                   </div>
                 </>
               )}
-          
+
+          </div>
+        </div>
+
+        <div className="row mt-5 mb-3 d-flex justify-content-center">
+
+          <div className="col-lg-10 col-md-10 col-sm-12 mb-5">
+            <p
+              className="fs-2 fw-bolder"
+              style={{
+                color: "#1b2950",
+                borderBottom: "1px solid #1b2950",
+                width: "fit-content"
+              }}
+            >
+              Related Products
+            </p>
+            {loading ? (
+              <div
+                className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
+                style={{ height: "80vh" }}
+              >
+                <Loader />
+              </div>
+            ) : data.filter((item) => item.subCategory ? item.subCategory === product.subCategory : item.category === product.category)
+              .length === 0 ? (
+              <div
+                className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
+                style={{ height: "50vh" }}
+              >
+                <h2>No more product available</h2>
+              </div>
+            ) : (
+              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
+                {data?.filter((item) => (
+                  (item?.subCategory ? item.subCategory === product?.subCategory : item.category === product?.category)
+                )).map((product, index) => (
+                  <div className="col" key={index}>
+                    <div className="product_box "
+                      style={{ position: "relative" }}>
+                      <a href={"/product/" + product._id}>
+                        <div className="p_img_box">
+                          <img src={product.images[0]} alt="No network"
+                            style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
+                          />
+                          <div className="overlay">
+                            {product.images[1] && (
+                              <img src={product.images[1]} alt="" />
+                            )}
+                          </div>
+                        </div>
+                      </a>
+                      {product.discount && product.discount > 0 ? (
+                        <div className="discount">
+                          {`${product.discount}%`}
+                        </div>
+                      ) : null}
+                      <p className="card_title px-2">{product.title}</p>
+                      <div className="text-left">
+                        {product.discount && product.discount > 0 ? (
+                          <>
+                            <span className="card_Fprice px-2 ">
+                              {" "}
+                              {`£${product.Fprice?.toFixed()}`}
+                            </span>
+                            <span className="card_price">
+                              <s>{`£${product.price?.toFixed()}`}</s>
+                            </span>
+                          </>
+                        ) : (
+                          <span className="card_Fprice px-2 ">
+                            {" "}
+                            {`£${product.Fprice?.toFixed()}`}
+                          </span>
+                        )}
+                      </div>
+                      <div className="product_btns">
+                        <a href={"/product/" + product._id}>
+                          <button className="btn p_detail_btn">
+                            View Detail
+                          </button>
+                        </a>
+                        <button className="btn p_whatsapp_btn" onClick={() => sendWhatsAppMessage(product?.title)}>
+                          Buy Via WhatsApp
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
