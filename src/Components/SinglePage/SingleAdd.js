@@ -815,26 +815,27 @@ const SingleAdd = () => {
           </div>
 
           <div className="col-lg-5 col-md-8 col-sm-12 order-lg-2 order-md-2 order-1 mb-lg-5 mb-2" style={{ height: "fit-content" }}>
-            {loading || product?.length === 0 ? (
+            {loading ? (
               <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
                 <Loader />
               </div>
             ) : (
               <div className="d-flex justify-content-center align-items-center" style={{ position: "relative" }}>
-                <InnerImageZoom
-                  zoomScale={1}
-                  className="rounded-3"
-                  src={
+               <img className="rounded-3" src={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
                       : <Loader />
-                  } 
+                  }  alt={`$<Loader/>`} />
+                {/* <InnerImageZoom
+                  zoomScale={1}
+                  className="rounded-3"
+                 
                   zoomSrc={
                     product?.images && product.images[selectedImage]
                       ? product.images[selectedImage]
                       : <Loader />
                   }
-                />
+                /> */}
                 {product?.discount && product?.discount > 0 ? (
                   <div className="discount">{`-${product?.discount}%`}</div>
                 ) : null}
