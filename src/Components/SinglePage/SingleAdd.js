@@ -1680,7 +1680,7 @@ const SingleAdd = () => {
                       {product.images[0] && (
                         <img
                           src={product.images[0]}
-                          className="img-fluid rounded"
+                          className="img-fluid rounded-3"
                           alt="No Network"
                         />
                       )}
@@ -1689,7 +1689,7 @@ const SingleAdd = () => {
                       {product.images[1] && (
                         <img
                           src={product.images[1]}
-                          className="img-fluid rounded"
+                          className="img-fluid rounded-3"
                           alt="No Network"
                         />
                       )}
@@ -1702,7 +1702,6 @@ const SingleAdd = () => {
         </div>
 
         <div className="row mt-5 mb-3 d-flex justify-content-center">
-
           <div className="col-lg-10 col-md-10 col-sm-12 mb-5">
             <p
               className="fs-2 fw-bolder"
