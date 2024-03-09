@@ -725,7 +725,7 @@ const Products = () => {
                       style={{ position: "relative" }}>
                       <a href={"/product/" + product._id}>
                         <div className="p_img_box">
-                          <img src={product.images[0]} alt="No network"
+                          <img src={product.images[0] ? product?.images[0] : "/loader.jpg"} alt="No network"
                             style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                           />
                           <div className="overlay">

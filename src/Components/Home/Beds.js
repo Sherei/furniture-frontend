@@ -99,12 +99,12 @@ const Beds = () => {
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
                                     <a href={`/product/${product._id}`}>
-                                         <button className='btn order_btn'>View Detail</button>
+                                        <button className='btn order_btn'>View Detail</button>
                                     </a>
                                     <button className='btn card_whatsAp' onClick={() => sendWhatsAppMessage(product.title)}>Buy Via WhatsApp</button>
                                     <a href={`/product/${product._id}`}>
                                         <div className='card_img_box'>
-                                            <img src={product?.images[0]} className='img-fluid' alt='No Network'
+                                            <img src={product.images[0] ? product?.images[0] : "/loader.jpg"} className='img-fluid' alt='No Network'
                                                 style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                             />
                                             <div className='overlay'>
@@ -136,7 +136,7 @@ const Beds = () => {
                     <button className={`btn bed_right ${showRightArrow ? '' : 'hidden'}`} onClick={scrollRight}><IoIosArrowForward /></button>
 
                     {(data?.filter(product => product.category === "bed" && (product.stock === undefined || product.stock === false)).length === 0 || loading) && (
-                       <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
+                        <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
                             {loading ? <Loader /> : "No product available related to this category"}
                         </div>
                     )}

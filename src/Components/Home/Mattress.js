@@ -107,7 +107,7 @@ const Mattress = () => {
 
                                     <a href={`/product/${product._id}`}>
                                         <div className='card_img_box'>
-                                            <img src={product?.images[0]} className='img-fluid' alt='No Network'
+                                            <img src={product.images[0] ? product?.images[0] : "/loader.jpg"} className='img-fluid' alt='No Network'
                                                 style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                             />
                                             <div className='overlay'>
