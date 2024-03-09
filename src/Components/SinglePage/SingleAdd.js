@@ -1725,7 +1725,7 @@ const SingleAdd = () => {
               >
                 <Loader />
               </div>
-            ) : data.filter((item) => item.subCategory ? item.subCategory === product.subCategory : item.category === product.category)
+            ) : data.filter((item) => item.sn !==product.sn && (item.subCategory ? item.subCategory === product.subCategory : item.category === product.category))
               .length === 0 ? (
               <div
                 className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
