@@ -86,7 +86,7 @@ export const Dashboard = () => {
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <div>
                                         <p className='admin_card_title'>{item.title}</p>
-                                        <p className='admin_card_number'>{item.desc}</p>
+                                        <p className='admin_card_number'>{item.desc?item.desc:<Loader/>}</p>
                                     </div>
                                     <div className='card_icon'>
                                         {item.icon}
