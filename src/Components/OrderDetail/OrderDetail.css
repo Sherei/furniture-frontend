@@ -15,6 +15,10 @@
 .order_btns a{
   width: fit-content;
 }
+.font p, .font b{
+  font-size:20px;
+  font-family: 'Times New Roman', Times, serif !important;
+}
 @media screen and (max-width:768px) {
   .table_display1 {
     display: none !important;

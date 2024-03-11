@@ -75,27 +75,27 @@ const OrderDetail = () => {
             <div className='container my-5'>
                 <div className='row'>
                     <div className='col'>
-                        <center>
+                        <center className='font' >
                             <p className='fw-bolder fs-3'
-                                style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)" }}
+                                style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)", fontFamily: "Times New Roman" }}
                             >Order Detail</p>
-                            <p><b>Tracking ID: </b>{order?.orderId}</p>
-                        <p className='text-left'><b >Date: </b>{formatDateTime(order?.date)}</p >
+                            <p ><b >Tracking ID: </b>{order?.orderId}</p>
+                        <p className='text-left fs-' F><b >Date: </b>{formatDateTime(order?.date)}</p >
                         </center>
                     </div>
                 </div>
                 <div className='row' id="orderDetail">
-                    <div className='col-12'style={{ fontFamily: "Times New Roman" }}>
-                        <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Name:</b> {order?.name1} {order?.name2}</p>
-                        {order?.email && <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
-                        <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
-                        {order?.country && <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Country: </b>{order?.country}</p>}
-                        {order?.city && <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>City: </b>{order?.city}</p>}
-                        <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Street & House Number: </b>{order?.street}</p>
-                        {order?.appartment && <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
-                        {order?.postal && <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Postcode: </b>{order?.postal}</p>}
+                    <div className='col-12 font' >
+                        <p ><b style={{ color: "rgb(2,2,94)"}}>Name:</b> {order?.name1} {order?.name2}</p>
+                        {order?.email && <p ><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
+                        <p ><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
+                        {order?.country && <p ><b style={{ color: "rgb(2,2,94)" }}>Country: </b>{order?.country}</p>}
+                        {order?.city && <p ><b style={{ color: "rgb(2,2,94)" }}>City: </b>{order?.city}</p>}
+                        <p ><b style={{ color: "rgb(2,2,94)" }}>Street & House Number: </b>{order?.street}</p>
+                        {order?.appartment && <p ><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
+                        {order?.postal && <p ><b style={{ color: "rgb(2,2,94)" }}>Postcode: </b>{order?.postal}</p>}
                         {/* <p><b style={{ color: "rgb(2,2,94)" }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p > */}
-                        {order?.note && <p style={{ fontFamily: "Times New Roman" }}><b style={{ color: "rgb(2,2,94)" }}>Note: </b>{order?.note}</p >}
+                        {order?.note && <p ><b style={{ color: "rgb(2,2,94)" }}>Note: </b>{order?.note}</p >}
                     </div>
                 </div>
                 <div className='col-12'>
