@@ -56,9 +56,8 @@ const SingleAdd = () => {
   } = useForm();
 
   const allComments = useSelector((store) => store.Comment.comment);
- 
-  const { productId, title } = useParams();
-  console.log("Paramas are :::", productId, title)
+  const { productId } = useParams();
+
   const [comments, setComments] = useState([])
   const [product, setProduct] = useState({});
   const [data, setData] = useState([]);
@@ -119,7 +118,6 @@ const SingleAdd = () => {
           }
         });
       } catch (error) {
-        console.log(error)
         if (axios.isCancel(error)) {
         } else { }
       }
@@ -132,7 +130,6 @@ const SingleAdd = () => {
       }
     };
   }, [productId]);
-
 
   useEffect(() => {
     setLoading(true)
