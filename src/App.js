@@ -9,6 +9,7 @@ import Products from './Components/Products/Products';
 import Footer from "./Components/Footer/Footer"
 import Checkout from './Components/Checkout/Checkout';
 import SingleBlog from './Components/Blog/SingleBlog';
+import { Error } from './Components/Error/Error';
 import { useDispatch } from "react-redux";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiMessage2Line } from "react-icons/ri"
@@ -117,10 +118,10 @@ function App() {
           </div>
 
           <BrowserRouter>
-            <Navbar />
+            {/* <Navbar /> */}
             <main>
               <Routes>
-                <Route exact path='/' element={<Home />} />
+                {/* <Route exact path='/' element={<Home />} /> */}
                 {/* User */}
                 <Route exact path='/signup' element={<Signup />} />
                 <Route exact path='/signup/:productId' element={<Signup />} />
@@ -132,7 +133,7 @@ function App() {
                 <Route path='/collections' element={<Allcategories />} />
                 <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
                 <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
-                <Route exact path='/Products' element={<Products />} />
+                {/* <Route exact path='/Products' element={<Products />} /> */}
                 <Route path='/product/:productId' element={<SingleAdd />} />
                 <Route exact path='/Products/:prodctName' element={<Products />} />
 
@@ -154,11 +155,11 @@ function App() {
                 <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
                 <Route path='/all-blog' element={<AllBlog />} />
 
-                <Route exact path='*' element={<Home />} />
+                <Route exact path='*' element={<Error />} />
 
               </Routes>
             </main>
-            <Footer />
+            {/* <Footer /> */}
           </BrowserRouter>
           <ToastContainer
             position="top-center"
