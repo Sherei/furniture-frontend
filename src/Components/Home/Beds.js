@@ -102,7 +102,7 @@ const Beds = () => {
                                         <button className='btn order_btn'>View Detail</button>
                                     </a>
                                     <button className='btn card_whatsAp' onClick={() => sendWhatsAppMessage(product.title)}>Buy Via WhatsApp</button>
-                                    <a href={`/product/${product._id}`}>
+                                    <a href={`/product/${product._id}/${product.title}`}>
                                         <div className='card_img_box'>
                                             <img src={product.images[0] ? product?.images[0] : "/loader.jpg"} className='img-fluid' alt='No Network'
                                                 style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
