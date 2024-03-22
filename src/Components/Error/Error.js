@@ -23,7 +23,7 @@ export const Error = () => {
                     </h2>
                     <p>
                         The Website you are looking for it is under maintenance. <br />
-                        How you got here is a mystery. 
+                        {/* How you got here is a mystery.  */}
                         {/* But you can click the button to go back to the homePage */}
                     </p>
                     {/* <button className='mt-2 btn review_btn' style={{width:"fit-content"}} onClick={()=>{
