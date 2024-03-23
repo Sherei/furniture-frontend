@@ -754,14 +754,14 @@ const SingleAdd = () => {
         <div className="row">
           <div className="col-lg-12 col-sm-12 mt-4 mb-2 s_categories_P d-flex align-items-center">
             {product?.subCategory != "three-&-two-seater-sofas" &&
-              <p style={{ textTransform: "capitalize" }}>
+              <p style={{ textTransform: "capitalize",fontFamily: "Times New Roman" }}>
                 home <FaAngleRight />
                 product <FaAngleRight /> {
                   product?.category
                 } <FaAngleRight /> {product?.subCategory}
               </p>}
             {product?.subCategory === "three-&-two-seater-sofas" &&
-              <p style={{}}>
+              <p style={{ fontFamily: "Times New Roman" }}>
                 Home <FaAngleRight />
                 Product <FaAngleRight /> <span style={{ textTransform: "capitalize" }}>{product?.category}</span>
                 <FaAngleRight /> 3 and 2 Seater Sofas
@@ -1576,7 +1576,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description2 && (
-              <p className="fs-6"style={{ textAlign: "justify" }}>{product.description2}</p>
+              <p className="fs-6" style={{ textAlign: "justify" }}>{product.description2}</p>
             )}
             {product?.descriptionHead3 && (
               <p
@@ -1598,7 +1598,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description4 && (
-              <p className="fs-6"style={{ textAlign: "justify" }}>{product.description4}</p>
+              <p className="fs-6" style={{ textAlign: "justify" }}>{product.description4}</p>
             )}
 
             {product?.dimensionHead && (
@@ -1672,7 +1672,7 @@ const SingleAdd = () => {
               )}
             </ul>
             {product?.note2 && (
-              <p className="fs-6 fw-bolder" style={{ color: "#1b2950",textAlign: "justify" }}>
+              <p className="fs-6 fw-bolder" style={{ color: "#1b2950", textAlign: "justify" }}>
                 Note: {product.note2}
               </p>
             )}
@@ -1725,7 +1725,7 @@ const SingleAdd = () => {
               >
                 <Loader />
               </div>
-            ) : data.filter((item) => item.sn !==product.sn && (item.subCategory ? item.subCategory === product.subCategory : item.category === product.category))
+            ) : data.filter((item) => item.sn !== product.sn && (item.subCategory ? item.subCategory === product.subCategory : item.category === product.category))
               .length === 0 ? (
               <div
                 className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
@@ -1736,7 +1736,7 @@ const SingleAdd = () => {
             ) : (
               <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
                 {data?.filter((item) => (
-                  (item?.subCategory ? item.subCategory === product?.subCategory  : item.category === product?.category)
+                  (item?.subCategory ? item.subCategory === product?.subCategory : item.category === product?.category)
                 )).map((product, index) => (
                   <div className="col" key={index}>
                     <div className="product_box "
