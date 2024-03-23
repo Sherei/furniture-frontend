@@ -754,14 +754,14 @@ const SingleAdd = () => {
         <div className="row">
           <div className="col-lg-12 col-sm-12 mt-4 mb-2 s_categories_P d-flex align-items-center">
             {product?.subCategory != "three-&-two-seater-sofas" &&
-              <p style={{ textTransform: "capitalize",fontFamily: "Times New Roman" }}>
+              <p style={{ textTransform: "capitalize",fontFamily: "Times New Roman", fontSize:"15px" }}>
                 home <FaAngleRight />
                 product <FaAngleRight /> {
                   product?.category
                 } <FaAngleRight /> {product?.subCategory}
               </p>}
             {product?.subCategory === "three-&-two-seater-sofas" &&
-              <p style={{ fontFamily: "Times New Roman" }}>
+              <p style={{ fontFamily: "Times New Roman", fontSize:"15px" }}>
                 Home <FaAngleRight />
                 Product <FaAngleRight /> <span style={{ textTransform: "capitalize" }}>{product?.category}</span>
                 <FaAngleRight /> 3 and 2 Seater Sofas
