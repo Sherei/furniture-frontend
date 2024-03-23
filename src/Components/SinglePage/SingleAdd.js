@@ -1637,42 +1637,42 @@ const SingleAdd = () => {
             <ul className="fs-6">
               {product?.feature1 && (
                 <p>
-                  <li>{product.feature1}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature1}</li>
                 </p>
               )}
               {product?.feature2 && (
                 <p>
-                  <li>{product.feature2}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature2}</li>
                 </p>
               )}
               {product?.feature3 && (
                 <p>
-                  <li>{product.feature3}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature3}</li>
                 </p>
               )}
               {product?.feature4 && (
                 <p>
-                  <li>{product.feature4}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature4}</li>
                 </p>
               )}
               {product?.feature5 && (
                 <p>
-                  <li>{product.feature5}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature5}</li>
                 </p>
               )}
               {product?.feature6 && (
                 <p>
-                  <li>{product.feature6}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature6}</li>
                 </p>
               )}
               {product?.feature7 && (
                 <p>
-                  <li>{product.feature7}</li>
+                  <li style={{ textAlign: "justify" }}>{product.feature7}</li>
                 </p>
               )}
             </ul>
             {product?.note2 && (
-              <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>
+              <p className="fs-6 fw-bolder" style={{ color: "#1b2950",textAlign: "justify" }}>
                 Note: {product.note2}
               </p>
             )}
