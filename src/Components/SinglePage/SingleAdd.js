@@ -1565,7 +1565,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description && (
-              <p className="fs-6 text-justify" style={{ textAlign: "justify" }}>{product.description}</p>
+              <p className="fs-6" style={{ textAlign: "justify" }}>{product.description}</p>
             )}
             {product?.descriptionHead2 && (
               <p
@@ -1576,7 +1576,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description2 && (
-              <p className="fs-6 text-justify">{product.description2}</p>
+              <p className="fs-6"style={{ textAlign: "justify" }}>{product.description2}</p>
             )}
             {product?.descriptionHead3 && (
               <p
@@ -1587,7 +1587,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description3 && (
-              <p className="fs-6 text-justify">{product.description3}</p>
+              <p className="fs-6 " style={{ textAlign: "justify" }}>{product.description3}</p>
             )}
             {product?.descriptionHead4 && (
               <p
@@ -1598,7 +1598,7 @@ const SingleAdd = () => {
               </p>
             )}
             {product?.description4 && (
-              <p className="fs-6 text-justify">{product.description4}</p>
+              <p className="fs-6"style={{ textAlign: "justify" }}>{product.description4}</p>
             )}
 
             {product?.dimensionHead && (
