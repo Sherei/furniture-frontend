@@ -97,13 +97,13 @@ const CornerSofas = () => {
                             .slice(0, 20)
                             .map((product, index) => (
                                 <div className='card_box' key={index}>
-                                    <a href={`/product/${product.title}/${product._id}`}>
+                                    <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                                         <button className='btn order_btn'>View Detail</button>
                                     </a>
                                     <button className='btn card_whatsAp' onClick={() => sendWhatsAppMessage(product.title)}>Buy Via WhatsApp</button>
 
-                                    <a href={`/product/${product.title}/${product._id}`}>
-                                         <div className='card_img_box'>
+                                    <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
+                                        <div className='card_img_box'>
                                             <img src={product.images[0] ? product?.images[0] : "/loader.jpg"} className='img-fluid' alt='No Network'
                                                 style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
                                             />
@@ -137,8 +137,8 @@ const CornerSofas = () => {
 
                     {(data?.filter(product => product.subCategory === "corner-sofas" && (product.stock === undefined || product.stock === false)).length === 0 || loading) && (
                         <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
-                        {loading ? <Loader /> : "No product available related to this category"}
-                    </div>
+                            {loading ? <Loader /> : "No product available related to this category"}
+                        </div>
                     )}
                 </div>
             </div>

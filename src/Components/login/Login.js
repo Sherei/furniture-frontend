@@ -49,7 +49,7 @@ export const Login = () => {
         if (loginUser.user.email === "asd@gmail.com") {
           return move('/admin-dashboard');
         } else if (productId) {
-          return move(`/product/${title}/${productId}`);
+          return move(`/product/${title.replace(/ /g, '-')}/${productId}`);
         } else if (!productId) {
           return move("/");
         }

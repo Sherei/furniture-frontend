@@ -723,7 +723,7 @@ const Products = () => {
                   <div className="col" key={index}>
                     <div className="product_box "
                       style={{ position: "relative" }}>
-                      <a href={`/product/${product.title}/${product._id}`}>
+                      <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                         <div className="p_img_box">
                           <img src={product.images[0] ? product?.images[0] : "/loader.jpg"} alt="No network"
                             style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
@@ -760,7 +760,7 @@ const Products = () => {
                         )}
                       </div>
                       <div className="product_btns">
-                        <a href={`/product/${product.title}/${product._id}`}>
+                        <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                           <button className="btn p_detail_btn">
                             View Detail
                           </button>
@@ -784,7 +784,7 @@ const Products = () => {
                         key={index}
                         style={{ overflow: "hidden" }}
                       >
-                        <a href={`/product/${product.title}/${product._id}`} style={{ width: "40%" }}>
+                        <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`} style={{ width: "40%" }}>
                           <div className="p_img_box_grid">
                             <img src={product.images[0]} alt="No network"
                               style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}
@@ -832,7 +832,7 @@ const Products = () => {
                             )}
                           </div>
                           <div className="">
-                            <a href={`/product/${product.title}/${product._id}`}>
+                            <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                               <button className="btn review_btn btn-outline-primary fs-10 px-5" style={{ width: "fit-content" }}>
                                 View Detail
                               </button>

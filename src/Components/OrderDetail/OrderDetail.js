@@ -112,7 +112,7 @@ const OrderDetail = () => {
                                     }} key={index}>
                                         <div className='row'>
                                             <div className='col-4'>
-                                                <a href={`/product/${item.title}/${item.productId}`}>
+                                                <a href={`/product/${item.title.replace(/ /g, '-')}/${item.productId}`}>
                                                     <div className='text-center' style={{ position: "relative" }}>
                                                         <img
                                                             src={item?.image}
@@ -247,7 +247,7 @@ const OrderDetail = () => {
                                                         <td>{index + 1}</td>
                                                         {/* <td>{data?.sn}</td> */}
                                                         <td>
-                                                            <a href={`/product/${data.title}/${data.productId}`}>
+                                                            <a href={`/product/${data.title.replace(/ /g, '-')}/${data.productId}`}>
                                                                 <img src={data?.image} alt="No network" style={{ maxWidth: '80px', height: '80px' }} />
                                                             </a>
                                                         </td>

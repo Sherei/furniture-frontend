@@ -32,7 +32,7 @@ const Signup = () => {
             if (response.data === "User Created") {
                 // toast.success("Your account has been created")
                 if (productId) {
-                    move(`/login/${title}/${productId}`)
+                    move(`/login/${title.replace(/ /g, '-')}/${productId}`)
                 } else {
                     move('/login')
                 }
