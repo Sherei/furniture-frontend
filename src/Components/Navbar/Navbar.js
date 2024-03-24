@@ -345,7 +345,7 @@ export const Navbar = () => {
                       style={{ width: "220px", maxHeight: "100px" }}
                     >
                       <div className="d-flex flex-column justify-content-around">
-                        <a href={`/product/${item.productId}`}>
+                        <a href={`/product/${item.title}/${item.productId}`}>
                           <p
                             className="m-0"
                             style={{ fontSize: "13px", color: "#1B1B6D" }}
@@ -988,7 +988,7 @@ export const Navbar = () => {
             {filteredProducts?.reverse().map((product, index) => (
               <div className="col " key={index}>
                 <div className="product_box">
-                  <a href={"/product/" + product._id}>
+                  <a href={`/product/${product.title}/${product._id}`}>
                     <div className="p_img_box">
                       <img src={product.images[0]} alt="No network" />
                       {product.discount && product.discount > 0 ? (
@@ -1024,7 +1024,7 @@ export const Navbar = () => {
                     )}
                   </div>
                   <div className="product_btns">
-                    <a href={"/product/" + product._id}>
+                    <a href={`/product/${product.title}/${product._id}`}>
                       <button
                         className="btn p_detail_btn"
                       >

@@ -35,8 +35,8 @@ TagManager.initialize({ gtmId: 'GTM-NWFTB5LV' });
 
 
 function App() {
-  
-    inject();
+
+  inject();
 
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -109,74 +109,74 @@ function App() {
 
 
   // if (isOnline) {
-    return (
-      <>
-        <div className='main_body'>
+  return (
+    <>
+      <div className='main_body'>
 
-          <div className='whatsapp-btn_main px-3 py-2' onClick={sendWhatsAppMessage}>
-           <span className='fs-5'>Chat</span>&nbsp;<span className='fs-3' style={{marginTop:"-3px"}}><FaWhatsapp /></span>
-          </div>
-
-          <BrowserRouter>
-            <Navbar /> 
-            <main>
-              <Routes>
-                <Route exact path='/' element={<Home />} /> 
-               {/*  User */}
-                <Route exact path='/signup' element={<Signup />} />
-                <Route exact path='/signup/:productId' element={<Signup />} />
-                <Route exact path='/login' element={<Login />} />
-                <Route exact path='/login/:productId' element={<Login />} />
-                <Route exact path='/user-profile/:userId' element={<UserPanel />} />
-
-                {/* Products */}
-                <Route path='/collections' element={<Allcategories />} />
-                <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
-                <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
-                <Route exact path='/Products' element={<Products />} /> 
-                <Route path='/product/:productId' element={<SingleAdd />} />
-                <Route exact path='/Products/:prodctName' element={<Products />} />
-
-                {/* Cart */}
-                <Route exact path='/cart/:userId' element={<Cart />} />
-                <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
-
-                {/* Order */}
-                <Route path='/placed' element={<Orderplaced />} />
-                <Route path='/order-placed/:userId' element={<Orderplaced />} />
-                <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
-
-                {/* Admin */}
-                <Route exact path='/admin-dashboard' element={<Sidebar />} />
-
-                {/* Blog */}
-                <Route exact path='/admin-dashboard-add-blog' element={<AddBlog />} />
-                <Route exact path='/admin-dashboard-add-blog/:blogId' element={<AddBlog />} />
-                <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
-                <Route path='/all-blog' element={<AllBlog />} />
-
-              <Route exact path='*' element={<Home />} /> 
-
-              </Routes>
-            </main>
-            <Footer /> 
-          </BrowserRouter>
-          <ToastContainer
-            position="top-center"
-            autoClose={1500}
-            hideProgressBar={true}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover={false}
-            theme="light"
-          />
-
+        <div className='whatsapp-btn_main px-3 py-2' onClick={sendWhatsAppMessage}>
+          <span className='fs-5'>Chat</span>&nbsp;<span className='fs-3' style={{ marginTop: "-3px" }}><FaWhatsapp /></span>
         </div>
-      </>
-    );
+
+        <BrowserRouter>
+          <Navbar />
+          <main>
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              {/*  User */}
+              <Route exact path='/signup' element={<Signup />} />
+              <Route exact path='/signup/:title/:productId' element={<Signup />} />
+              <Route exact path='/login' element={<Login />} />
+              <Route exact path='/login/:title/:productId' element={<Login />} />
+              <Route exact path='/user-profile/:userId' element={<UserPanel />} />
+
+              {/* Products */}
+              <Route path='/collections' element={<Allcategories />} />
+              <Route exact path='/admin-dashboard-add-product' element={<AddProduct />} />
+              <Route exact path='/admin-dashboard-add-product/:productId' element={<AddProduct />} />
+              <Route exact path='/Products' element={<Products />} />
+              <Route path='/product/:title/:productId' element={<SingleAdd />} />
+              <Route exact path='/Products/:prodctName' element={<Products />} />
+
+              {/* Cart */}
+              <Route exact path='/cart/:userId' element={<Cart />} />
+              <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
+
+              {/* Order */}
+              <Route path='/placed' element={<Orderplaced />} />
+              <Route path='/order-placed/:userId' element={<Orderplaced />} />
+              <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
+
+              {/* Admin */}
+              <Route exact path='/admin-dashboard' element={<Sidebar />} />
+
+              {/* Blog */}
+              <Route exact path='/admin-dashboard-add-blog' element={<AddBlog />} />
+              <Route exact path='/admin-dashboard-add-blog/:blogId' element={<AddBlog />} />
+              <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
+              <Route path='/all-blog' element={<AllBlog />} />
+
+              <Route exact path='*' element={<Home />} />
+
+            </Routes>
+          </main>
+          <Footer />
+        </BrowserRouter>
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          hideProgressBar={true}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
+
+      </div>
+    </>
+  );
   // }
   // return (
   //   <div className='d-flex flex-column justify-content-center align-items-center' style={{ minHeight: '50vh' }}>

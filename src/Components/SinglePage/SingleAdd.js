@@ -56,8 +56,8 @@ const SingleAdd = () => {
   } = useForm();
 
   const allComments = useSelector((store) => store.Comment.comment);
-  const { productId } = useParams();
 
+  const { productId, title } = useParams();
   const [comments, setComments] = useState([])
   const [product, setProduct] = useState({});
   const [data, setData] = useState([]);
@@ -502,7 +502,7 @@ const SingleAdd = () => {
 
 
     if (cu._id === undefined) {
-      move("/login/" + productId);
+      move(`/login/${product.title}/${productId}`);
       // toast.success("Login to Place Your Order");
     } else if (cu.email === "asd@gmail.com") {
       dispatch({

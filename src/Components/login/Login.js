@@ -16,7 +16,8 @@ export const Login = () => {
       behavior: 'smooth'
     });
   }, []);
-  const { productId } = useParams();
+
+  const { productId , title} = useParams();
 
   const cu = useSelector(store => store.userSection.cu)
 
@@ -48,7 +49,7 @@ export const Login = () => {
         if (loginUser.user.email === "asd@gmail.com") {
           return move('/admin-dashboard');
         } else if (productId) {
-          return move("/product/" + productId);
+          return move(`/product/${title}/${productId}`);
         } else if (!productId) {
           return move("/");
         }
@@ -114,7 +115,7 @@ export const Login = () => {
             </div>
             <button className='btn rounded login_btn mt-3'>Login</button>
             <p className='mt-2 fs-6'>I don't have an account. &nbsp;
-              {productId && <a href={"/signup/" + productId}>
+              {productId && <a href={`/signup/${title}/${productId}`}>
                 <span className='register_btn'>
                   Register
                 </span>

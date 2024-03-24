@@ -251,7 +251,7 @@ export const Cart = () => {
                     >
                       <div className="row">
                         <div className="col-4">
-                          <a href={"/product/" + item.productId}>
+                          <a href={`/product/${item.title}/${item.productId}`}>
                             <div
                               className="text-center"
                               style={{ position: "relative" }}>
@@ -487,7 +487,7 @@ export const Cart = () => {
                           {filterCart?.map((item, index) => (
                             <tr key={index} className="cart_row">
                               <td className="text-center">
-                                <a href={"/product/" + item.productId}>
+                                <a href={`/product/${item.title}/${item.productId}`}>
                                   <div className="text-center"
                                     style={{ position: "relative" }}>
                                     <img

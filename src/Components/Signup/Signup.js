@@ -14,7 +14,7 @@ const Signup = () => {
             behavior: 'smooth'
         });
     }, []);
-    const { productId } = useParams();
+    const { title, productId } = useParams();
 
     const [Error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +32,7 @@ const Signup = () => {
             if (response.data === "User Created") {
                 // toast.success("Your account has been created")
                 if (productId) {
-                    move('/login/' + productId)
+                    move(`/login/${title}/${productId}`)
                 } else {
                     move('/login')
                 }

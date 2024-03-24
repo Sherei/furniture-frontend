@@ -118,7 +118,7 @@ export const Products = () => {
                         <tr key={index} >
                           <td className='text-center'>{index + 1}</td>
                           <td>{data.sn}</td>
-                          <td onClick={() => move("/product/" + data._id)}>
+                          <td onClick={() => move(`/product/${data.title}/${data._id}`)}>
                             <img src={data.images[0]} alt="No   network" style={{ maxWidth: '80px', height: '80px' }} />
                           </td>
                           <td className='text-center'>{data.stock ? 'Yes' : 'No'}</td>
