@@ -1736,7 +1736,7 @@ const SingleAdd = () => {
             ) : (
               <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4">
                 {data?.filter((item) => (
-                  (item?.subCategory ? item.subCategory === product?.subCategory : item.category === product?.category)
+                  (item?.subCategory ? item.subCategory === product?.subCategory && item.sn !== product.sn : (item.category === product?.category && item.sn !== product.sn))
                 )).map((product, index) => (
                   <div className="col" key={index}>
                     <div className="product_box "
