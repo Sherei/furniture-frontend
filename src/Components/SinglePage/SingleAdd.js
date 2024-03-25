@@ -143,13 +143,24 @@ const SingleAdd = () => {
     } catch (e) { }
   }, []);
 
-
   const totalImages = product?.images?.length || 0;
 
 
   const handleThumbnailClick = (index) => {
     setSelectedImage(index);
     setScrollPosition(index * 23);
+  };
+  
+  const handleLeftArrowClick = () => {
+    setSelectedImage(
+      (prevSelectedImage) => (prevSelectedImage - 1 + totalImages) % totalImages
+    );
+  };
+
+  const handleRightArrowClick = () => {
+    setSelectedImage(
+      (prevSelectedImage) => (prevSelectedImage + 1) % totalImages
+    );
   };
   const copyUrlToClipboard = async (url) => {
     try {
@@ -684,17 +695,7 @@ const SingleAdd = () => {
     }
   }
 
-  const handleLeftArrowClick = () => {
-    setSelectedImage(
-      (prevSelectedImage) => (prevSelectedImage - 1 + totalImages) % totalImages
-    );
-  };
-
-  const handleRightArrowClick = () => {
-    setSelectedImage(
-      (prevSelectedImage) => (prevSelectedImage + 1) % totalImages
-    );
-  };
+  
 
   const Comment = async (cmnt) => {
     setLoading(true)
@@ -715,6 +716,7 @@ const SingleAdd = () => {
     } catch (e) {
     }
   };
+
   useEffect(() => {
     setLoading(true);
     try {
@@ -768,6 +770,7 @@ const SingleAdd = () => {
                 <FaAngleRight /> 3 and 2 Seater Sofas
               </p>}
           </div>
+
           <div className="col-lg-1 col-md-2 col-sm-12 order-lg-1 order-md-1 order-2 p-0 m-0 d-flex flex-column align-items-center" style={{ position: "relative" }}>
             <div className="small_images">
               {product?.images &&
@@ -821,7 +824,7 @@ const SingleAdd = () => {
                 <Loader />
               </div>
             ) : (
-              <div className="d-flex justify-content-center align-items-center" style={{ position: "relative" }}>
+              <div className="d-flex justify-content-center align-items-center" style={{ transition: "opacity 0.5s ease-in-out",position: "relative" }}>
                 <InnerImageZoom
                   zoomScale={1}
                   className="rounded-3"
