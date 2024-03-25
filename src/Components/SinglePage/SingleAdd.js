@@ -745,7 +745,7 @@ const SingleAdd = () => {
     return date.toLocaleDateString("en-GB", options);
   };
   return <>
-    {loading ? (
+    {loading || product?.images.length === 0 ? (
       <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
         <Loader />
       </div >
